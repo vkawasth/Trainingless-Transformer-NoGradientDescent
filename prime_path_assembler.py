@@ -295,7 +295,7 @@ print(f"\nSTEP 6: Phase 2 fine-tune (125 steps — DGLA co-adaptation only)...")
 print(f"  [No Phase 1 search — topology set by prime paths]")
 print(f"  [No Phase 3 refinement — stop at orientation freeze]\n")
 
-PHASE2_STEPS=125
+PHASE2_STEPS=200
 
 def phase2_train(stu,label,steps=PHASE2_STEPS):
     opt_s=torch.optim.AdamW(stu.parameters(),lr=LR,betas=(0.9,0.95),weight_decay=0.1)
@@ -305,7 +305,7 @@ def phase2_train(stu,label,steps=PHASE2_STEPS):
         stu.train(); x,y=get_batch(); _,loss=stu(x,y)
         opt_s.zero_grad(); loss.backward()
         torch.nn.utils.clip_grad_norm_(stu.parameters(),1.0); opt_s.step()
-        if step in [25,50,75,100,125]:
+        if step in [25,50,75,100,125,150,175,200]:
             v=eval_val(stu,n=20); checkpoints[step]=v
             beats="✓ beats teacher" if v<val_teacher else ""
             print(f"  [{label}] step {step:>4}  val={v:.4f}  {beats}")
@@ -320,7 +320,7 @@ vS,ckS=phase2_train(stu_serre,"serre",PHASE2_STEPS)
 # Also run 200-step for comparison
 print(f"\n  Extended (200 steps) for ceiling check:")
 stu_prime2=assemble_student(cascade_prime,"prime-200")
-vP2,ckP2=phase2_train(stu_prime2,"prime-200",200)
+vP2,ckP2=phase2_train(stu_prime2,"prime-full",200)
 
 # ─── RESULTS ──────────────────────────────────────────────────────────────────
 print(f"\n{'='*65}")
@@ -349,7 +349,7 @@ for step in [25,50,75,100,125]:
 teacher_steps=300*N_LAYERS_T
 prime_steps=PHASE2_STEPS*N_STU
 reduction=teacher_steps/prime_steps
-beats_at=next((s for s in [25,50,75,100,125] if ckP.get(s,99)<val_teacher),None)
+beats_at=next((s for s in [25,50,75,100,125,150,200] if ckP.get(s,99)<val_teacher),None)
 
 print(f"""
   MARGINAL COMPUTE:
