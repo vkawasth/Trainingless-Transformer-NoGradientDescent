@@ -399,8 +399,15 @@ for step in range(0,201):
         vl=eval_val(stu,n=20)
         Js_stu=get_student_Js(stu,x_ref_s,pos,m)
         zs_stu,_=complex_grassmannian_coords(Js_stu)
-        rho_stu=ihara_radius(Js_stu,
-                              [tuple(range(N_STU))])  # student has 6 blocks
+        # Student Ihara radius: use student Jacobians on teacher prime path structure
+        # Map student block l -> approximates teacher layer L_ATT + l
+        # Rebuild prime paths in student index space
+        student_prime_paths=[]
+        for pp in prime_paths[:N_STU]:
+            # Map teacher layers to student blocks by relative position
+            stu_pp=tuple(min(max(0,l-L_ATT+N_STU//2),N_STU-1) for l in pp)
+            student_prime_paths.append(stu_pp)
+        rho_stu=ihara_radius(Js_stu, student_prime_paths)
 
         # Middle layer complex coordinate
         mid=N_STU//2
@@ -414,10 +421,16 @@ for step in range(0,201):
                     branch_cross+=1
                     total_branch_crossings+=1
 
-        # Winding number: angle traversed / (2*pi)
+        # Winding number: unwrapped angle traversed / (2*pi)
         if prev_zs is not None:
-            dangle=sum(np.angle(zs_stu[l])-np.angle(prev_zs[l])
-                       for l in range(N_STU))/N_STU
+            dangles=[]
+            for l in range(N_STU):
+                da=np.angle(zs_stu[l])-np.angle(prev_zs[l])
+                # Unwrap: choose shortest path around circle
+                if da>math.pi: da-=2*math.pi
+                if da<-math.pi: da+=2*math.pi
+                dangles.append(da)
+            dangle=sum(dangles)/N_STU
             cumulative_winding+=dangle/(2*math.pi)
 
         profiles[step]={
