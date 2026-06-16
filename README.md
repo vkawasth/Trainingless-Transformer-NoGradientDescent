@@ -37,6 +37,7 @@ This license shall be interpreted under the laws of [Your Jurisdiction], without
 
 <img width="691" height="467" alt="Screenshot 2026-06-15 at 12 03 47 AM" src="https://github.com/user-attachments/assets/175960e1-bb87-487c-a890-caa05b9ba7f3" />
 
+Road to Transformer Algebraic Compiler Using Fukaya Categories and AU Category
 
 =================================================================
   SERRE CASCADE APPROXIMATOR
@@ -117,3 +118,204 @@ Stage 4D: 6L Serre-initialized (200 CE steps)...
     Depth (not initialization) closes the crystallization gap.
     Each additional layer adds one Serre level.
     6 layers implements Serre levels 1-6 via gradient descent.
+
+Mean Field Init MF10 Realization
+
+(base) vaw1@VAWs-MacBook-Pro j-holomorphic-Fukaya % python mf_extended.py 
+Training teacher...
+  step 100  val=3.2314
+  step 200  val=0.4628
+  step 300  val=0.2434
+  Teacher val=0.2474
+
+Computing v_neg...
+v_neg ready.
+
+=================================================================
+EXTENDED MEAN-FIELD EXPERIMENTS
+  A: Baseline (3 MF iter, lr=0.01) — confirmed val=0.024
+  B: 5 MF iterations (lr=0.01)
+  C: 10 MF iterations (lr=0.01)
+  D: 3 MF iterations (lr=0.001, more stable)
+  E: 5 MF iterations (lr=0.001)
+=================================================================
+
+  [A-MF3-lr0.01]  saddle exit: 3.5566
+    MF iter 1: val=11.2438
+    MF iter 2: val=9.0170
+    MF iter 3: val=10.1965
+    MF final: 10.0503
+    settle: 0.2884
+    sign: 0.2874
+    basin   50: 0.0618
+    basin  100: 0.0303
+    basin  125: 0.0299
+    basin  150: 0.0237
+    basin  167: 0.0238
+    FINAL=0.0215
+
+  [B-MF5-lr0.01]  saddle exit: 3.5566
+    MF iter 1: val=11.2438
+    MF iter 2: val=9.0170
+    MF iter 3: val=10.1965
+    MF iter 4: val=9.1520
+    MF iter 5: val=11.6626
+    MF final: 11.5892
+    settle: 0.2227
+    sign: 0.2376
+    basin   50: 0.0449
+    basin  100: 0.0253
+    basin  125: 0.0171
+    basin  150: 0.0184
+    basin  167: 0.0147
+    FINAL=0.0168
+
+  [C-MF10-lr0.01]  saddle exit: 3.5566
+    MF iter 1: val=11.2438
+    MF iter 2: val=9.0170
+    MF iter 3: val=10.1965
+    MF iter 4: val=9.1520
+    MF iter 5: val=11.6626
+    MF iter 6: val=11.6958
+    MF iter 7: val=10.3805
+    MF iter 8: val=10.0245
+    MF iter 9: val=9.5821
+    MF iter 10: val=8.3406
+    MF final: 8.5087
+    settle: 0.1598
+    sign: 0.1540
+    basin   50: 0.0300
+    basin  100: 0.0276
+    basin  125: 0.0216
+    basin  150: 0.0182
+    basin  167: 0.0119
+    FINAL=0.0155
+
+  [D-MF3-lr0.001]  saddle exit: 3.5566
+    MF iter 1: val=2.4008
+    MF iter 2: val=1.8519
+    MF iter 3: val=1.5278
+    MF final: 1.5638
+    settle: 0.1731
+    sign: 0.1670
+    basin   50: 0.0554
+    basin  100: 0.0321
+    basin  125: 0.0334
+    basin  150: 0.0289
+    basin  167: 0.0284
+    FINAL=0.0271
+
+  [E-MF5-lr0.001]  saddle exit: 3.5566
+    MF iter 1: val=2.4008
+    MF iter 2: val=1.8519
+    MF iter 3: val=1.5278
+    MF iter 4: val=1.3851
+    MF iter 5: val=1.3626
+    MF final: 1.3787
+    settle: 0.1498
+    sign: 0.1548
+    basin   50: 0.0496
+    basin  100: 0.0313
+    basin  125: 0.0267
+    basin  150: 0.0262
+    basin  167: 0.0244
+    FINAL=0.0244
+
+=================================================================
+  EXTENDED MF RESULTS
+=================================================================
+    Teacher:      val=0.2474
+    A (MF3 0.01): val=0.0215  [confirmed best]
+    B (MF5 0.01): val=0.0168  diff A-B=+0.0047
+    C (MF10 0.01):val=0.0155  diff A-C=+0.0060
+    D (MF3 0.001):val=0.0271  diff A-D=-0.0055
+    E (MF5 0.001):val=0.0244  diff A-E=-0.0029
+
+  IF B < A or C < A: more MF iterations → deeper basin
+  IF D < A: stable MF (smaller LR) finds better basin
+  IF D ~ A and B ~ A: 3 iterations is optimal, LR insensitive
+  
+
+Make Corpus enter Transformer Algebraic Geometry fully aligned
+(base) vaw1@VAWs-MacBook-Pro j-holomorphic-Fukaya % python mf10_analysis.py 
+Training teacher...
+  step 100  val=3.2314
+  step 200  val=0.4628
+  step 300  val=0.2434
+  Teacher val=0.2474
+
+Computing v_neg...
+v_neg ready.
+
+=================================================================
+BUILDING MODELS AT DIFFERENT MF STAGES
+=================================================================
+
+  === Baseline (saddle exit only) ===
+  val: 3.5756
+  Computing Fisher spectrum (50 seqs)...
+  Fisher lambda_1: 1.3839
+  ||mean_grad||: 1.141508
+  Gradient alignment with Fisher v1: -0.9806
+  W_K-emb alignment (top-5 dirs): 0.0412  [baseline was 0.0456]
+  Individual: ['0.025', '0.003', '0.097', '-0.078', '0.002']
+  Hessian lambda_min: -4.1268  (saddle)
+  ||E - E_init||: 0.3230  [baseline valley2 was 7.99]
+  ||W_K - W_K_init||: 0.0000
+
+  === MF3 (3 oscillatory iterations) ===
+  val: 10.0086
+  Computing Fisher spectrum (50 seqs)...
+  Fisher lambda_1: 194.9983
+  ||mean_grad||: 11.069562
+  Gradient alignment with Fisher v1: 0.9895
+  W_K-emb alignment (top-5 dirs): 0.0332  [baseline was 0.0456]
+  Individual: ['0.020', '0.018', '0.035', '-0.060', '0.032']
+  Hessian lambda_min: -115.3298  (saddle)
+  ||E - E_init||: 56.2288  [baseline valley2 was 7.99]
+  ||W_K - W_K_init||: 4.9553
+
+  === MF10 (10 oscillatory iterations) ===
+  val: 8.3052
+  Computing Fisher spectrum (50 seqs)...
+  Fisher lambda_1: 23.3711
+  ||mean_grad||: 4.345039
+  Gradient alignment with Fisher v1: -0.9443
+  W_K-emb alignment (top-5 dirs): 0.0492  [baseline was 0.0456]
+  Individual: ['0.015', '-0.013', '-0.028', '0.067', '-0.123']
+  Hessian lambda_min: -31.7586  (saddle)
+  ||E - E_init||: 106.7223  [baseline valley2 was 7.99]
+  ||W_K - W_K_init||: 8.2154
+
+=================================================================
+  MF GEOMETRIC PROGRESSION
+=================================================================
+
+  Metric                           Baseline        MF3       MF10
+  --------------------------------------------------------------
+  val                                3.5756    10.0086     8.3052
+  Fisher lambda_1                    1.3839   194.9983    23.3711
+  Grad-Fisher alignment             -0.9806     0.9895    -0.9443
+  W_K-emb alignment                  0.0412     0.0332     0.0492
+  Hessian lambda_min                -4.1268  -115.3298   -31.7586
+  ||E - E_init||                     0.3230    56.2288   106.7223
+  ||W_K - W_K_init||                 0.0000     4.9553     8.2154
+
+  INTERPRETATION:
+  IF Fisher lambda_1 INCREASES with MF: 
+    MF is implementing natural gradient — aligning with Fisher directions
+  IF Fisher lambda_1 DECREASES:
+    MF is moving to flatter regions — reducing curvature ill-conditioning
+    
+  IF W_K-emb alignment INCREASES:
+    MF resolves the W_K-embedding misalignment (the original saddle cause)
+  IF unchanged:
+    MF works through a different mechanism
+    
+  IF Hessian lambda_min INCREASES (less negative):
+    MF is driving the system toward convexity
+    The remaining CE steps are in a better-conditioned landscape
+    
+  IF ||E-E_init|| INCREASES monotonically:
+    MF is continuously moving embeddings toward valley 2
+    More iterations = closer to valley 2 floor
