@@ -39,6 +39,11 @@ This license shall be interpreted under the laws of [Your Jurisdiction], without
 
 Road to Transformer Algebraic Compiler Using Fukaya Categories and AU Category
 
+
+<img width="571" height="579" alt="Screenshot 2026-06-16 at 10 42 46 PM" src="https://github.com/user-attachments/assets/970fe92a-5bbb-4cca-9172-234927ff759a" />
+
+
+
 =================================================================
   SERRE CASCADE APPROXIMATOR
   6-layer student initialized from ad(J_14)^l
