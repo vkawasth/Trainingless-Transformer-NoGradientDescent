@@ -37,7 +37,7 @@ This license shall be interpreted under the laws of [Your Jurisdiction], without
 
 <img width="691" height="467" alt="Screenshot 2026-06-15 at 12 03 47 AM" src="https://github.com/user-attachments/assets/175960e1-bb87-487c-a890-caa05b9ba7f3" />
 
-Road to Transformer Algebraic Compiler Using Fukaya Categories and AU Category
+Road to Transformer Algebraic Compiler Using Fukaya Categories and AU Category -- run_compilation.sh -- compiles corpus and Transformer into trained inference with no need to train.
 
 
 <img width="571" height="579" alt="Screenshot 2026-06-16 at 10 42 46 PM" src="https://github.com/user-attachments/assets/970fe92a-5bbb-4cca-9172-234927ff759a" />
