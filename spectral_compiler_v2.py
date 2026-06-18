@@ -51,7 +51,9 @@ train_t=torch.tensor(train_ids,dtype=torch.long)
 val_t  =torch.tensor(val_ids,  dtype=torch.long)
 
 print(f"VOCAB={VOCAB}, corpus={len(train_ids)} tokens, val={len(val_ids)} tokens")
-assert VOCAB==1017, f"Expected VOCAB=1017, got {VOCAB}. Run with fresh /tmp/ corpus."
+if VOCAB != 1017:
+    print(f"ERROR: VOCAB={VOCAB}. Run: python build_corpus.py --out /tmp/ --loops 300")
+    import sys; sys.exit(1)
 
 def get_batch(split='train'):
     data=val_t if split=='val' else train_t
@@ -110,9 +112,9 @@ def eval_val(m,n=30):
         for _ in range(n): x,y=get_batch('val'); _,l=m(x,y); ls.append(l.item())
     return float(np.mean(ls))
 
-def clr(s,total,warmup=20):
-    if s<=warmup: return LR*s/warmup
-    return LR*0.5*(1+math.cos(math.pi*(s-warmup)/(total-warmup)))
+def clr(s, total=None, warmup=None):
+    # Constant LR: cosine LR halts memorisation prematurely on small corpus
+    return LR
 
 # ─── PASS 0: Build Spectral Embeddings from corpus ────────────────────────────
 print("\n" + "="*65)
@@ -276,16 +278,48 @@ def run_compiler_pipeline(emb_init, label, n_mf=10, do_lm=True, n_ce_final=25):
                 stu.set_flat(w0); mu=min(mu*2,5.0)
                 print(f"    LM {it+1}: REJECT μ={mu:.3f}")
 
-    # PASS 7: Embedding relaxation (25 CE steps, cosine LR)
-    print(f"  Pass 7: embedding relaxation (25 CE)...")
+    # Save model state after Pass 6 (before embedding relaxation)
+    # This is the correct starting point for Pass 11 slow-manifold projection
+    torch.save(stu.state_dict(), '/tmp/model_post_pass6.pt')
+    import json as _json
+    with open('/tmp/model_post_pass6_val.json','w') as _f:
+        _json.dump({'val': float(eval_val(stu,n=20)), 'label': label}, _f)
+    print(f"  [Saved post-Pass6 state: val={eval_val(stu,n=10):.4f}]")
+
+    # PASS 7: Embedding relaxation (167 CE steps, cosine LR)
+    # Matches the winning pipeline: settle(33) + 167CE + Newton
+    print(f"  Pass 7: embedding relaxation (167 CE)...")
     opt7 = torch.optim.AdamW(stu.parameters(),lr=LR,betas=(0.9,0.95),weight_decay=0.1)
-    for step in range(1,26):
-        for pg in opt7.param_groups: pg['lr']=clr(step,25)
+    for step in range(1,168):
+        for pg in opt7.param_groups: pg['lr']=clr(step,167)
         stu.train(); x,y=get_batch(); _,loss=stu(x,y)
         opt7.zero_grad(); loss.backward()
         torch.nn.utils.clip_grad_norm_(stu.parameters(),1.0); opt7.step()
-        if step in [10,25]:
+        if step in [25,50,100,167]:
             print(f"    CE {step}: val={eval_val(stu,n=8):.4f}")
+
+    # PASS 8: Newton correction (diagonal Fisher)
+    print(f"  Pass 8: Newton correction...")
+    ga = torch.zeros_like(stu.blocks[0].attn.WK.weight)
+    fd = torch.zeros_like(stu.blocks[0].attn.WK.weight)
+    torch.manual_seed(2)
+    for i in range(300):
+        ix = torch.randint(0, len(train_t)-SEQ-1, (1,))[0].item()
+        x = train_t[ix:ix+SEQ].unsqueeze(0)
+        y = train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+        stu.zero_grad(); _, loss = stu(x,y); loss.backward()
+        g = torch.zeros_like(stu.blocks[0].attn.WK.weight)
+        for l in range(N_STU):
+            if stu.blocks[l].attn.WK.weight.grad is not None:
+                g += stu.blocks[l].attn.WK.weight.grad / N_STU
+        ga += g; fd += g**2
+    delta = -(ga/300) / ((fd/300) + 1e-3) * 0.5
+    with torch.no_grad():
+        for l in range(N_STU):
+            stu.blocks[l].attn.WK.weight.add_(delta)
+            stu.blocks[l].attn.WQ.weight.add_(delta.T)
+    v_newton = eval_val(stu, n=20)
+    print(f"  Pass 8: after Newton: val={v_newton:.4f}")
 
     v_final = eval_val(stu, n=40)
     print(f"  [{label}] FINAL: val={v_final:.4f}")
