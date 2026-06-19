@@ -1,1 +1,4 @@
+python -m pytest tests/test_compiler.py::TestConfirmedResults tests/test_compiler.py::TestFukayaCategory -v
 
+The two fast groups (TestConfirmedResults and TestFukayaCategory) need no corpus and no model — they just verify the confirmed result table and the algebraic Fukaya strip math. Should take under 1 second and give 11 passed.
+The other four groups (TestCorpusStatistics, TestSpectralEmbedding, TestK0Structure, TestPass12) need the corpus at /tmp/train_ids.json — run build_corpus.py first if you want those.
