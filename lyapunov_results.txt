@@ -1,0 +1,86 @@
+======================================================================
+LYAPUNOV EXPONENT + HOFER NORM EXPERIMENT
+Testing: is GD-400's sheet-shattering CHAOS or just noise?
+======================================================================
+
+Corpus: VOCAB=1017, nnz=1347
+Perturbation ε: ||δθ||=2.08e-01  (=0.0001×√dim=2.08e-01)
+
+━━━ PATH A: GD-400 CONSTANT LR ━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Base + perturbed (same Adam state, different θ₀)
+   step      val         sep      λ(t)   Φ_match  Φ_base
+  ---------------------------------------------------------------------------
+  step    0: val=4.4924  sep=2.08e-01  λ=+0.0000  Φ_match=3/5  Φ=(0,0,1.34,1.96,2.06)
+  step   35: val=3.2637  sep=2.48e-01  λ=+0.0050  Φ_match=2/5  Φ=(π,2.59,0,0.55,π)
+  step   70: val=2.3919  sep=2.97e-01  λ=+0.0051  Φ_match=3/5  Φ=(π,0,π,π,π)
+  step  100: val=1.8024  sep=3.36e-01  λ=+0.0048  Φ_match=4/5  Φ=(0,2.22,π,π,π)
+  step  140: val=1.3093  sep=3.83e-01  λ=+0.0044  Φ_match=2/5  Φ=(0,1.38,0,0,0.58)
+  step  167: val=1.0024  sep=4.17e-01  λ=+0.0042  Φ_match=2/5  Φ=(0,0.42,0.70,π,0)
+  step  200: val=0.7159  sep=4.57e-01  λ=+0.0039  Φ_match=2/5  Φ=(0.93,1.52,π,0,0)
+  step  250: val=0.4061  sep=5.12e-01  λ=+0.0036  Φ_match=3/5  Φ=(0.61,0,π,π,π)
+  step  300: val=0.2384  sep=5.64e-01  λ=+0.0033  Φ_match=3/5  Φ=(0,π,1.36,π,π)
+  step  350: val=0.1455  sep=6.11e-01  λ=+0.0031  Φ_match=4/5  Φ=(0,π,2.00,π,π)
+  step  385: val=0.1049  sep=6.40e-01  λ=+0.0029  Φ_match=5/5  Φ=(0,π,0,π,π)
+  step  400: val=0.0896  sep=6.52e-01  λ=+0.0029  Φ_match=5/5  Φ=(0,π,0,π,π)
+
+  [GD-400] SUMMARY
+  Final val:      0.0896
+  λ_max:          +0.0051  (STABLE)
+  λ_final:        +0.0029
+  Sep growth:     3.1×  (6.52e-01 from 2.08e-01)
+  Hofer norm:     4.4028  (ω_kinetic is different: displacement²/ΔL)
+  β₁ (Φ-loops):   5  (GD topology: loops present)
+  Stokes total:   10
+
+━━━ PATH B: MF COMPILER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Both base and perturbed run through IDENTICAL compiler passes
+  Only θ₀ differs by ε
+   step      val         sep      λ(t)   Φ_match  Φ_base
+  ---------------------------------------------------------------------------
+  Building base compiler...
+  Building perturbed compiler...
+  step   33: val=1.2086  sep=3.69e-01  λ=+0.0000  Φ_match=2/5  Φ=(1.51,1.05,0,1.85,π)
+  step   83: val=0.7173  sep=4.25e-01  λ=+0.0017  Φ_match=4/5  Φ=(0,π,π,0,0.95)
+  step  108: val=0.5534  sep=4.54e-01  λ=+0.0019  Φ_match=3/5  Φ=(0,1.50,π,0,2.28)
+  step  133: val=0.4105  sep=4.84e-01  λ=+0.0020  Φ_match=3/5  Φ=(1.80,π,π,0,0.95)
+  step  158: val=0.3118  sep=5.11e-01  λ=+0.0021  Φ_match=3/5  Φ=(2.55,1.07,0,0,π)
+  step  174: val=0.2485  sep=5.28e-01  λ=+0.0021  Φ_match=4/5  Φ=(0,0,0,π,π)
+  step  200: val=0.2017  sep=5.53e-01  λ=+0.0020  Φ_match=4/5  Φ=(2.76,0,0,π,π)
+
+  [Compiler] SUMMARY
+  Final val:      0.2017
+  λ_max:          +0.0021  (STABLE)
+  λ_final:        +0.0020
+  Sep growth:     1.5×  (5.53e-01 from 3.69e-01)
+  Hofer norm:     1.0069  (ω_kinetic is different: displacement²/ΔL)
+  β₁ (Φ-loops):   0  (clean: no loops)
+  Stokes total:   3
+
+======================================================================
+LYAPUNOV + HOFER COMPARISON
+======================================================================
+
+  Metric                                    GD-400      Compiler  Verdict
+  ------------------------------------------------------------------------
+  λ_max (Lyapunov exponent)                +0.0051       +0.0021  similar
+  λ_final                                  +0.0029       +0.0020
+  sep growth (×initial)                        3.1           1.5  GD more sensitive
+  Hofer norm ||γ||                          4.4028        1.0069  GD higher
+  β₁ (Φ-loops, topological)                      5             0  GD has more loops
+  Final val                                 0.0896        0.2017
+
+  INTERPRETATION:
+
+  ~ GD-400 NOT chaotic (λ_max ≈ 0)
+    Sheet-shattering is bounded noise, not exponential chaos
+    GD-400 finds same basin from nearby starting points
+
+  Hofer norm: GD=4.403  Compiler=1.007
+  GD: monotone descent (no upswings) → Hofer = total val drop
+  Compiler: MF pump val 4.4→8.58→0.06 → Hofer includes upswing
+  The Hofer norm CONFIRMS the compiler pays upfront energy
+  to access the adiabatic channel (Finding 1 from path_characterizer)
+
+  β₁ Φ-loops: GD=5  Compiler=0
+  Each loop = ϕ_l completes a round trip 0→π→0 or π→0→π
+  Loops = topological noise injected by GD into Bridgeland structure

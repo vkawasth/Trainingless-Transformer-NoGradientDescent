@@ -277,23 +277,55 @@ print(f"  Energy storage: gradient-Fisher alignment oscillates sign")
 print(f"  Creates Kac-Moody orbit alignment = teacher-free J14")
 t2=time.time()
 for mf_r in range(1, N_MF+1):
-    # E-descent: gradient descent on embeddings
-    for _ in range(N_MF_SEQS):
-        model.train(); x,y=get_batch(); _,loss=model(x,y)
-        model.zero_grad(); loss.backward()
-        with torch.no_grad():
-            if model.te.weight.grad is not None:
-                model.te.weight.data -= ETA_MF * model.te.weight.grad
-    v_e=eval_val(model,n=4)
-    # W_K-ascent: ANTI-gradient on keys (parametric pumping)
-    for _ in range(N_MF_SEQS):
-        model.train(); x,y=get_batch(); _,loss=model(x,y)
-        model.zero_grad(); loss.backward()
-        with torch.no_grad():
-            for bl in model.blocks:
-                if bl.attn.WK.weight.grad is not None:
-                    bl.attn.WK.weight.data += ETA_MF * bl.attn.WK.weight.grad
-    v_wk=eval_val(model,n=4)
+    # ── Step 1: Natural gradient on E, W_K frozen ────────────────
+    for l in range(N_STU):
+        model.blocks[l].attn.WK.weight.requires_grad_(False)
+        model.blocks[l].attn.WQ.weight.requires_grad_(False)
+    emb_grad = torch.zeros(VOCAB, D)
+    emb_fish = torch.zeros(VOCAB, D)
+    torch.manual_seed(mf_r * 1000)
+    for i in range(N_MF_SEQS):
+        ix = torch.randint(0, len(train_t)-SEQ-1, (1,))[0].item()
+        x = train_t[ix:ix+SEQ].unsqueeze(0)
+        y = train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+        model.zero_grad(); _, loss = model(x, y); loss.backward()
+        if model.te.weight.grad is not None:
+            g = model.te.weight.grad.detach()
+            emb_grad += g; emb_fish += g**2
+    emb_grad /= N_MF_SEQS; emb_fish /= N_MF_SEQS
+    delta_E = -(emb_grad / (emb_fish + 1e-4))
+    with torch.no_grad():
+        model.te.weight.add_(ETA_MF * delta_E)
+    for l in range(N_STU):
+        model.blocks[l].attn.WK.weight.requires_grad_(True)
+        model.blocks[l].attn.WQ.weight.requires_grad_(True)
+    v_e = eval_val(model, n=4)
+
+    # ── Step 2: Natural gradient on W_K, E frozen ────────────────
+    model.te.weight.requires_grad_(False)
+    wk_grad = torch.zeros_like(model.blocks[0].attn.WK.weight)
+    wk_fish = torch.zeros_like(model.blocks[0].attn.WK.weight)
+    torch.manual_seed(mf_r * 1000 + 500)
+    for i in range(N_MF_SEQS):
+        ix = torch.randint(0, len(train_t)-SEQ-1, (1,))[0].item()
+        x = train_t[ix:ix+SEQ].unsqueeze(0)
+        y = train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+        model.zero_grad(); _, loss = model(x, y); loss.backward()
+        g = torch.zeros_like(model.blocks[0].attn.WK.weight)
+        for bl in model.blocks:
+            if bl.attn.WK.weight.grad is not None:
+                g += bl.attn.WK.weight.grad / N_STU
+        wk_grad += g; wk_fish += g**2
+    wk_grad /= N_MF_SEQS; wk_fish /= N_MF_SEQS
+    delta_WK = -(wk_grad / (wk_fish + 1e-4))  # natural gradient descent
+    with torch.no_grad():
+        for l in range(N_STU):
+            model.blocks[l].attn.WK.weight.add_(ETA_MF * delta_WK)
+            # W_Q gets transpose of natural gradient (matching gradient_alignment_fix)
+            wf_T = wk_fish.T
+            model.blocks[l].attn.WQ.weight.add_(ETA_MF * (-(wk_grad.T / (wf_T + 1e-4))))
+    model.te.weight.requires_grad_(True)
+    v_wk = eval_val(model, n=4)
     print(f"    iter {mf_r}: after E={v_e:.4f}  after W_K={v_wk:.4f}")
 v_mf=eval_val(model)
 print(f"  After MF{N_MF}: val={v_mf:.4f}  sheet={sheet_angles(model)}")
@@ -323,22 +355,39 @@ print()
 
 # ── J14: INJECT AFTER BASIN (MF pump completed, orbit established) ───
 if _teacher_sd is not None:
-    print("━━━ J14: TEACHER W_K INJECTION (post-basin) ━━━━━━━━━━━━")
-    print("  MF pump used random W_K — now injecting teacher geometry")
-    print("  Teacher W_K encodes Bridgeland phase structure from training")
-    _stride = _n_teacher // N_STU
+    print("━━━ J14: FULL TEACHER L14 INJECTION (post-basin) ━━━━━━━━")
+    print("  Copies ALL teacher layer 14 weights to all student layers")
+    print("  Matches gradient_alignment_fix.py build_student() exactly:")
+    print("  WK, WQ, WV, op (attn) + FF.g, FF.v, FF.o + te, pe, ln_f")
+    L14 = 14  # teacher's Jacobian fixed point layer
     with torch.no_grad():
+        # Embedding + positional + layernorm from teacher
+        if 'te.weight' in _teacher_sd and _teacher_sd['te.weight'].shape == (VOCAB,D):
+            model.te.weight.data.copy_(_teacher_sd['te.weight'].float())
+        if 'pe.weight' in _teacher_sd and _teacher_sd['pe.weight'].shape[1] == D:
+            sz = min(_teacher_sd['pe.weight'].shape[0], 512)
+            model.pe.weight.data[:sz].copy_(_teacher_sd['pe.weight'][:sz].float())
+        for w in ['ln_f.weight','ln_f.bias']:
+            if w in _teacher_sd: model.state_dict()[w].copy_(_teacher_sd[w].float())
+        # ALL attention + FF weights from teacher layer L14 → all student layers
         for sl in range(N_STU):
-            tl = min(sl * _stride, _n_teacher-1)
-            wk_key = f'blocks.{tl}.attn.WK.weight'
-            wq_key = f'blocks.{tl}.attn.WQ.weight'
-            if wk_key in _teacher_sd and _teacher_sd[wk_key].shape == (D,D):
-                model.blocks[sl].attn.WK.weight.data.copy_(_teacher_sd[wk_key].float())
-            if wq_key in _teacher_sd and _teacher_sd[wq_key].shape == (D,D):
-                model.blocks[sl].attn.WQ.weight.data.copy_(_teacher_sd[wq_key].float())
+            for tname, sname in [
+                (f'blocks.{L14}.attn.WK.weight', f'blocks.{sl}.attn.WK.weight'),
+                (f'blocks.{L14}.attn.WQ.weight', f'blocks.{sl}.attn.WQ.weight'),
+                (f'blocks.{L14}.attn.WV.weight', f'blocks.{sl}.attn.WV.weight'),
+                (f'blocks.{L14}.attn.op.weight', f'blocks.{sl}.attn.op.weight'),
+                (f'blocks.{L14}.ff.g.weight',    f'blocks.{sl}.ff.g.weight'),
+                (f'blocks.{L14}.ff.v.weight',    f'blocks.{sl}.ff.v.weight'),
+                (f'blocks.{L14}.ff.o.weight',    f'blocks.{sl}.ff.o.weight'),
+            ]:
+                if tname in _teacher_sd:
+                    tw = _teacher_sd[tname].float()
+                    sw = dict(model.named_parameters())[sname]
+                    if tw.shape == sw.shape:
+                        sw.data.copy_(tw)
     v_j14_post = eval_val(model)
     _phi_j14_post = sheet_angles(model)
-    print(f"  After J14 (post-basin): val={v_j14_post:.4f}  Φ={_phi_j14_post}")
+    print(f"  After full J14 (post-basin): val={v_j14_post:.4f}  Φ={_phi_j14_post}")
     print()
 
 # ── PHASE 5: 167 CE CONTINUATION ─────────────────────────────

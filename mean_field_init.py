@@ -327,6 +327,8 @@ vB=run("B-MF+167CE",do_mf=True,mf_iters=3,basin_steps=167)
 vC=run("C-MF+100CE",do_mf=True,mf_iters=3,basin_steps=100)
 vD=run("D-MF+50CE",do_mf=True,mf_iters=3,basin_steps=50)
 
+torch.save(teacher.state_dict(), 'teacher.pt')
+
 print(f"""
 {'='*65}
   MEAN-FIELD RESULTS

@@ -587,3 +587,143 @@ print("  At equal val:")
 print("  Higher Φ_clean = cleaner Bridgeland orbit")
 print("  Lower Sd = closer to Serre decay (correct monodromy scaling)")
 print("  τ ≈ 2: in K₀ correction regime (FF needs amplification)")
+
+
+# ══════════════════════════════════════════════════════════════
+# HESSIAN ACCUMULATOR — 2nd order curvature tracking
+# Connects Python training to Julia curved_cup_product structure
+# ══════════════════════════════════════════════════════════════
+
+class HessianAccumulator:
+    """
+    Tracks 2nd-order Hessian accumulation during training.
+    Corresponds to the m₀ curvature term in Julia's curved_cup_product:
+      curved_cup(f,g) = cup(f,g) + [m₀, cup(f,g)]
+    where m₀ = accumulated Hessian drift from the reference point.
+
+    THREE MEASUREMENTS:
+    1. kv_err(t) = ||g(t) - H(t)·Δθ(t)|| / ||g(t)||
+       = how much the Taylor expansion has drifted from reference θ₀
+       = the [m₀, f⌣g] term magnitude relative to f⌣g
+
+    2. m0_drift(t) = ||H(t)·v - H(0)·v|| / ||H(0)·v||
+       = how much the Hessian kernel has rotated
+       = the m₀ itself (Hessian change from reference)
+
+    3. mc_curv(t) = ||H(t)·g(t)|| / ||g(t)||²
+       = Maurer-Cartan curvature proxy
+       = ||[φ,φ]|| in Julia's curvature(phi_map)
+       = non-commutativity of gradient: how much H rotates g
+       GD prediction: mc_curv oscillates (chaotic regime)
+       Compiler prediction: mc_curv monotone decreasing (adiabatic)
+    """
+
+    def __init__(self, name="hessian"):
+        self.name = name
+        self.history = []
+        self._theta_ref = None   # reference point for kv_err and m0_drift
+        self._Hv_ref   = None    # H(θ₀)·v_ref for m0_drift
+
+    def set_reference(self, model, n=6):
+        """Set θ₀ reference point. Call once after init/MF pump."""
+        self._theta_ref = torch.cat([p.data.flatten() for p in model.parameters()]).clone()
+        # Compute H(θ₀)·v where v = normalized gradient
+        g = self._get_grad(model, n)
+        v = g / max(float(g.norm()), 1e-10)
+        self._Hv_ref = self._hvp(model, v, n)
+
+    def measure(self, model, step, theta_start=None, n=6):
+        """Measure all three curvature quantities at current model state."""
+        g = self._get_grad(model, n)
+        gnorm = float(g.norm())
+        if gnorm < 1e-10:
+            return dict(step=step, kv_err=0., m0_drift=0., mc_curv=0.)
+
+        # 1. kv_err: ||g - H·Δθ|| / ||g||
+        if theta_start is not None:
+            delta = torch.cat([p.data.flatten() for p in model.parameters()]) - theta_start
+            if float(delta.norm()) > 1e-8:
+                Hd = self._hvp(model, delta / delta.norm(), n) * float(delta.norm())
+                kv = float((g - Hd).norm()) / max(gnorm, 1e-10)
+            else:
+                kv = 0.
+        else:
+            kv = float('nan')
+
+        # 2. m0_drift: ||H(t)·v - H(0)·v|| / ||H(0)·v||
+        if self._Hv_ref is not None and self._theta_ref is not None:
+            v_ref = g / gnorm
+            Hv_now = self._hvp(model, v_ref, n)
+            m0 = float((Hv_now - self._Hv_ref).norm()) / max(float(self._Hv_ref.norm()), 1e-10)
+        else:
+            m0 = float('nan')
+
+        # 3. mc_curv: ||H·g|| / ||g||² (Maurer-Cartan proxy)
+        v_g = g / gnorm
+        Hg  = self._hvp(model, v_g, n)
+        mc  = float(Hg.norm()) / max(gnorm, 1e-10)
+
+        rec = dict(step=step, kv_err=kv, m0_drift=m0, mc_curv=mc, gnorm=gnorm)
+        self.history.append(rec)
+        return rec
+
+    def print_history(self):
+        print(f"\n  HESSIAN ACCUMULATOR: {self.name}")
+        print(f"  {'step':>5} {'kv_err':>10} {'m0_drift':>10} {'mc_curv':>10} {'||g||':>8}")
+        print("  "+"-"*50)
+        for r in self.history:
+            kv  = f"{r['kv_err']:>10.3f}"  if not math.isnan(r.get('kv_err',float('nan'))) else f"{'---':>10}"
+            m0  = f"{r['m0_drift']:>10.3f}" if not math.isnan(r.get('m0_drift',float('nan'))) else f"{'---':>10}"
+            mc  = f"{r['mc_curv']:>10.3f}"
+            print(f"  {r['step']:>5} {kv} {m0} {mc} {r['gnorm']:>8.4f}")
+
+    @staticmethod
+    def compare(ha_a, ha_b):
+        """Compare two accumulators at equal steps."""
+        print(f"\n  HESSIAN COMPARISON: {ha_a.name} vs {ha_b.name}")
+        print(f"  kv_err:   how much Taylor expansion has drifted (= |m₀ correction|)")
+        print(f"  m0_drift: how much Hessian kernel has rotated (= m₀ itself)")
+        print(f"  mc_curv:  Maurer-Cartan curvature ||H·g||/||g||²")
+        print(f"            = Julia's curvature(phi) = [φ,φ] in optimizer space")
+        print(f"  Prediction: GD has higher mc_curv (β₁=5 from Lyapunov exp)")
+        print()
+        print(f"  {'step':>5} {'kv_A':>8} {'kv_B':>8} {'m0_A':>8} {'m0_B':>8} "
+              f"{'mc_A':>8} {'mc_B':>8} {'winner'}")
+        print("  "+"-"*70)
+        steps_a = {r['step']:r for r in ha_a.history}
+        steps_b = {r['step']:r for r in ha_b.history}
+        all_steps = sorted(set(steps_a) | set(steps_b))
+        for s in all_steps:
+            ra = steps_a.get(s); rb = steps_b.get(s)
+            def f(r,k): return f"{r[k]:.3f}" if r and not math.isnan(r.get(k,float('nan'))) else '---'
+            mc_a = ra['mc_curv'] if ra else float('nan')
+            mc_b = rb['mc_curv'] if rb else float('nan')
+            winner = ha_a.name if mc_a < mc_b else (ha_b.name if mc_b < mc_a else '=')
+            print(f"  {s:>5} {f(ra,'kv_err'):>8} {f(rb,'kv_err'):>8} "
+                  f"{f(ra,'m0_drift'):>8} {f(rb,'m0_drift'):>8} "
+                  f"{f(ra,'mc_curv'):>8} {f(rb,'mc_curv'):>8} {winner}")
+
+    def _get_grad(self, model, n):
+        model.zero_grad()
+        ls=[model(*get_batch())[1] for _ in range(n)]
+        torch.stack(ls).mean().backward()
+        g=torch.cat([p.grad.flatten() if p.grad is not None else torch.zeros(p.numel())
+                     for p in model.parameters()]).detach()
+        model.zero_grad(); return g
+
+    def _hvp(self, model, v, n):
+        model.zero_grad()
+        ls=[model(*get_batch())[1] for _ in range(n)]
+        loss=torch.stack(ls).mean()
+        grads=torch.autograd.grad(loss,list(model.parameters()),create_graph=True)
+        gv=(torch.cat([gr.flatten() for gr in grads])*v.detach()).sum()
+        hv=torch.cat([h.flatten() for h in
+                      torch.autograd.grad(gv,list(model.parameters()),retain_graph=False)])
+        model.zero_grad(); return hv.detach()
+
+print("[HessianAccumulator added to path_characterizer.py]")
+print("Usage:")
+print("  ha = HessianAccumulator('GD-400')")
+print("  ha.set_reference(model)              # at init")
+print("  ha.measure(model, step, theta_start) # at each log step")
+print("  HessianAccumulator.compare(ha_gd, ha_comp)")
