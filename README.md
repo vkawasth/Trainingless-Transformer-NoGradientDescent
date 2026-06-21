@@ -31,6 +31,12 @@ Any violation of Sections 1 or 2 automatically terminates your rights under this
 6. Governing Law
 This license shall be interpreted under the laws of [Your Jurisdiction], without regard to conflict of law principles.
 
+Compiler mapping all paths using Kac Moody Algebra, Bridgland Chambers Phase (Phi), Spectrum(theta) and Gluing defects (tau). Run path_characterizer.py
+
+<img width="777" height="523" alt="Screenshot 2026-06-20 at 7 25 26 PM" src="https://github.com/user-attachments/assets/ba3dd211-fd14-427d-a260-c526242ae749" />
+
+
+
 
 (fact_env) (base) vaw1@VAWs-MacBook-Pro j-holomorphic-Fukaya % python serre_approximator.py 
 
