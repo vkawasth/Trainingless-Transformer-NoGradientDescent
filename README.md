@@ -36,3 +36,8 @@ python -m pytest tests/test_compiler.py -v
 | 167 plain CE | 0.999 | ✓ |
 | Compiler + 167 CE | 0.095 | ✓ |
 | Teacher (24L, 300 CE) | 0.250 | reference |
+
+Full Demo : python compiler_demo.py --no_baseline
+
+<img width="536" height="738" alt="Screenshot 2026-06-21 at 8 01 19 AM" src="https://github.com/user-attachments/assets/150d841d-b5df-4bf4-bf54-81d9ee668742" />
+
