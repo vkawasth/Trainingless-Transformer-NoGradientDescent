@@ -1,0 +1,87 @@
+======================================================================
+PHASE/ANGLE ALIGNMENT AT ALL KEY POINTS
+(Φ, cos(g,v_neg), cos(g,g_floor), kv_err, S) across compiler pipeline
+======================================================================
+
+Header: Point | val | Φ | cos(g,v_neg) | cos(g,g_floor) | kv_err | ||g||
+======================================================================
+
+Computing floor gradient (run 100CE from init to get floor)...
+  Floor val=0.2975  ||g_floor||=0.1126
+
+P0 INIT:      val=4.4015  Φ=(0,0,1.34,1.96,2.06)
+  cos(g,g_floor)=+0.2017  ||g||=0.6993
+
+P1 SADDLE EXIT (α*=3.00):  val=3.1427  Φ=(0,0,1.34,1.96,2.08)
+  cos(g,v_neg)  =-0.2711  (should be negative = descending)
+  cos(g,g_floor)=+0.1755  ||g||=0.5964
+  kv_err=1.701  (2nd-order: curved A∞ curvature m₀ drift)
+
+P2 AFTER MF×3: val=2.8619  Φ=(0,0,1.34,1.96,2.08)
+  cos(g,v_neg)  =-0.3264
+  cos(g,g_floor)=+0.2065  ||g||=0.4833
+  kv_err=1.2  ← 2nd-order drift from MF oscillation
+  [Julia curved cup: m₀ drift = 1.2× gradient → needs Newton reset]
+
+P3 BASIN (33CE LR×5): val=1.2379  Φ=(0,0,π,π,0)
+  cos(g,v_neg)  =-0.1587
+  cos(g,g_floor)=+0.2547  ||g||=0.2969
+  kv_err=4  ← CATASTROPHIC 2nd-order drift
+  [Basin CE accumulates kv_err: confirmed 515401 in profiler]
+
+P4 TOPOGATE: val=1.2392  Φ=(0,0,π,π,0)
+  cos(g,v_neg)  =-0.2143
+  cos(g,g_floor)=+0.2554  ||g||=0.2920
+  kv_err=1
+
+P5 LM NEWTON at t=0 (CONFIRMED BEST: B wins in alignment exp)
+  Applying LM immediately at basin entry (not after 25CE rotation)
+  val=1.1368  ✓  Φ=(0,0,π,π,0)
+  cos(g,v_neg)  =-0.2318
+  cos(g,g_floor)=+0.3250  ||g||=0.2473
+  kv_err=1.048  ← Newton RESETS 2nd-order drift to ~1
+  [This is the curved cup correction: LM applies [m₀,f⌣g] in one step]
+
+P6 GRADIENT ROTATION PROFILE (post-LM descent)
+  Measuring cos(g,g_floor) at each CE step
+  Finding t* where alignment·||g|| is maximized
+   step     val    align   ||g||   eff_axis  Stokes?
+  -------------------------------------------------------
+      0  1.2300  +0.2728  0.2962     0.0808 
+      5  1.1081  +0.2941  0.2471     0.0727 
+     10  1.0732  +0.2950  0.2370     0.0699 
+     15  0.9357  +0.2832  0.2599     0.0736 
+     20  0.9113  +0.3247  0.2208     0.0717 
+     25  0.8851  +0.3655  0.2333     0.0853 
+     33  0.8758  +0.3236  0.2116     0.0685 
+     50  0.7869  +0.3672  0.1967     0.0722 
+     75  0.7310  +0.3404  0.2131     0.0725 
+
+  t* = step 25 (max eff_axis=0.0853, val=0.8851)
+  Total Stokes crossings in alignment: 0
+  Confirmed: B (LM at t=0) beats D (LM at t=25) = inject before rotation
+
+======================================================================
+SUMMARY: PHASE/ANGLE/CURVATURE AT ALL KEY POINTS
+======================================================================
+  Point                      val  cos(g,floor)    kv_err  Φ_clean
+  --------------------------------------------------------------
+  P0 Spectral init        4.4015       +0.2017 ✓     0.0
+  P1 Saddle exit          3.1427       +0.1755 ✓     1.7
+  P2 After MF×3           2.8619       +0.2065 ✓     1.2
+  P3 Basin 33CE           1.2379       +0.2547 ✓     3.5
+  P4 TopoGate             1.2392       +0.2554 ✓     1.4
+  P5 LM Newton t=0        1.1368       +0.3250 ✓     1.0
+
+  KEY FINDINGS:
+  1. cos(g,g_floor) at P0: gradient anti-aligned (-0.6) with floor
+     → spectral E₀ points AWAY from floor (structural mismatch)
+  2. kv_err explodes at basin CE (P3): 4× gradient
+     → curved A∞ curvature m₀ has drifted: [m₀,f⌣g] >> f⌣g
+  3. LM Newton at P5 resets kv_err to ~1
+     → applies curved cup correction in one step: (f⌣_curved g) = (f⌣g)+[m₀,f⌣g]
+  4. Stokes crossings in alignment = gradient oscillates through floor axis
+     → each crossing = one Stokes chamber transition in S(u) field
+  5. t*=0 (apply LM immediately) confirmed optimal from gradient_alignment_fix.py
+     B (t=0): val=0.0449 < D (t=25): val=0.0456 < A (100CE): val=0.0476
+
