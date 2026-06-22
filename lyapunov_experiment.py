@@ -324,21 +324,44 @@ def run_compiler(theta_init, label):
         if vt<best_v: best_v=vt; best_a=alpha
     m.set_flat(w0+best_a*v_neg)
 
-    # MF pump 3 rounds
-    for _ in range(3):
-        for __ in range(N_SUB):
-            m.train(); x,y=get_batch(); _,loss=m(x,y)
-            m.zero_grad(); loss.backward()
-            with torch.no_grad():
-                if m.te.weight.grad is not None:
-                    m.te.weight.data -= ETA_MF*m.te.weight.grad
-        for __ in range(N_SUB):
-            m.train(); x,y=get_batch(); _,loss=m(x,y)
-            m.zero_grad(); loss.backward()
-            with torch.no_grad():
-                for bl in m.blocks:
-                    if bl.attn.WK.weight.grad is not None:
-                        bl.attn.WK.weight.data += ETA_MF*bl.attn.WK.weight.grad
+    # MF10 natural gradient pump (matches compiler_demo confirmed implementation)
+    N_MF_LY=10
+    for mf_r in range(1, N_MF_LY+1):
+        for l in range(N_STU):
+            m.blocks[l].attn.WK.weight.requires_grad_(False)
+            m.blocks[l].attn.WQ.weight.requires_grad_(False)
+        eg=torch.zeros(m.te.weight.shape); ef=torch.zeros(m.te.weight.shape)
+        torch.manual_seed(mf_r*1000)
+        for i in range(N_SUB):
+            ix=torch.randint(0,len(train_t)-SEQ-1,(1,))[0].item()
+            x=train_t[ix:ix+SEQ].unsqueeze(0); y=train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+            m.zero_grad(); _,loss=m(x,y); loss.backward()
+            if m.te.weight.grad is not None:
+                g=m.te.weight.grad.detach(); eg+=g; ef+=g**2
+        eg/=N_SUB; ef/=N_SUB
+        with torch.no_grad(): m.te.weight.add_(ETA_MF*(-(eg/(ef+1e-4))))
+        for l in range(N_STU):
+            m.blocks[l].attn.WK.weight.requires_grad_(True)
+            m.blocks[l].attn.WQ.weight.requires_grad_(True)
+        m.te.weight.requires_grad_(False)
+        wg=torch.zeros_like(m.blocks[0].attn.WK.weight)
+        wf=torch.zeros_like(m.blocks[0].attn.WK.weight)
+        torch.manual_seed(mf_r*1000+500)
+        for i in range(N_SUB):
+            ix=torch.randint(0,len(train_t)-SEQ-1,(1,))[0].item()
+            x=train_t[ix:ix+SEQ].unsqueeze(0); y=train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+            m.zero_grad(); _,loss=m(x,y); loss.backward()
+            g=torch.zeros_like(m.blocks[0].attn.WK.weight)
+            for bl in m.blocks:
+                if bl.attn.WK.weight.grad is not None: g+=bl.attn.WK.weight.grad/N_STU
+            wg+=g; wf+=g**2
+        wg/=N_SUB; wf/=N_SUB
+        delta=-(wg/(wf+1e-4))
+        with torch.no_grad():
+            for l in range(N_STU):
+                m.blocks[l].attn.WK.weight.add_(ETA_MF*delta)
+                m.blocks[l].attn.WQ.weight.add_(ETA_MF*(-(wg.T/(wf.T+1e-4))))
+        m.te.weight.requires_grad_(True)
 
     # Basin 33CE
     opt=torch.optim.AdamW(m.parameters(),lr=LR*5,betas=(0.9,0.95),weight_decay=0.1)

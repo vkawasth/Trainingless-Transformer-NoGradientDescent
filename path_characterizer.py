@@ -487,21 +487,46 @@ pc_comp.anchors['P0_saddle_exit']=len(pc_comp.records)-1
 print(f"  Saddle exit: val={rec['val']:.4f}  Φ_clean={rec['phi_clean']}/5")
 
 # MF pump 3 rounds
-ETA_MF=0.01; N_SUB=200
-for mf_r in range(1,4):
-    for _ in range(N_SUB):
-        comp.train(); x,y=get_batch(); _,loss=comp(x,y)
-        comp.zero_grad(); loss.backward()
-        with torch.no_grad():
-            if comp.te.weight.grad is not None:
-                comp.te.weight.data -= ETA_MF*comp.te.weight.grad
-    for _ in range(N_SUB):
-        comp.train(); x,y=get_batch(); _,loss=comp(x,y)
-        comp.zero_grad(); loss.backward()
-        with torch.no_grad():
-            for bl in comp.blocks:
-                if bl.attn.WK.weight.grad is not None:
-                    bl.attn.WK.weight.data += ETA_MF*bl.attn.WK.weight.grad
+ETA_MF=0.01; N_MF_PC=10; N_SUB=200  # MF10, natural gradient, matches compiler_demo
+for mf_r in range(1, N_MF_PC+1):
+    # Natural gradient E-descent, W_K frozen
+    for l in range(N_STU):
+        comp.blocks[l].attn.WK.weight.requires_grad_(False)
+        comp.blocks[l].attn.WQ.weight.requires_grad_(False)
+    emb_grad=torch.zeros(comp.te.weight.shape)
+    emb_fish=torch.zeros(comp.te.weight.shape)
+    torch.manual_seed(mf_r*1000)
+    for i in range(N_SUB):
+        ix=torch.randint(0,len(train_t)-SEQ-1,(1,))[0].item()
+        x=train_t[ix:ix+SEQ].unsqueeze(0); y=train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+        comp.zero_grad(); _,loss=comp(x,y); loss.backward()
+        if comp.te.weight.grad is not None:
+            g=comp.te.weight.grad.detach(); emb_grad+=g; emb_fish+=g**2
+    emb_grad/=N_SUB; emb_fish/=N_SUB
+    with torch.no_grad(): comp.te.weight.add_(ETA_MF*(-(emb_grad/(emb_fish+1e-4))))
+    for l in range(N_STU):
+        comp.blocks[l].attn.WK.weight.requires_grad_(True)
+        comp.blocks[l].attn.WQ.weight.requires_grad_(True)
+    # Natural gradient W_K-descent, E frozen
+    comp.te.weight.requires_grad_(False)
+    wk_grad=torch.zeros_like(comp.blocks[0].attn.WK.weight)
+    wk_fish=torch.zeros_like(comp.blocks[0].attn.WK.weight)
+    torch.manual_seed(mf_r*1000+500)
+    for i in range(N_SUB):
+        ix=torch.randint(0,len(train_t)-SEQ-1,(1,))[0].item()
+        x=train_t[ix:ix+SEQ].unsqueeze(0); y=train_t[ix+1:ix+SEQ+1].unsqueeze(0)
+        comp.zero_grad(); _,loss=comp(x,y); loss.backward()
+        g=torch.zeros_like(comp.blocks[0].attn.WK.weight)
+        for bl in comp.blocks:
+            if bl.attn.WK.weight.grad is not None: g+=bl.attn.WK.weight.grad/N_STU
+        wk_grad+=g; wk_fish+=g**2
+    wk_grad/=N_SUB; wk_fish/=N_SUB
+    delta_WK=-(wk_grad/(wk_fish+1e-4))
+    with torch.no_grad():
+        for l in range(N_STU):
+            comp.blocks[l].attn.WK.weight.add_(ETA_MF*delta_WK)
+            comp.blocks[l].attn.WQ.weight.add_(ETA_MF*(-(wk_grad.T/(wk_fish.T+1e-4))))
+    comp.te.weight.requires_grad_(True)
 rec=pc_comp.snapshot(comp, f"MF_{mf_r}", step=mf_r*2)
 print(f"  MF round {mf_r}: val={rec['val']:.4f}  Φ_clean={rec['phi_clean']}/5  "
       f"τ={rec['tau']:.2f}")
