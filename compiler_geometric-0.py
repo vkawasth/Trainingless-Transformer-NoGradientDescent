@@ -262,9 +262,7 @@ for mf_r in range(1, 16):
         model.blocks[l].attn.WQ.weight.requires_grad_(True)
     v_e=eval_val(model,n=4)
 
-    # WK step — averaged natural gradient (confirmed stable)
-    # Per-layer strips explored in mf_strip_pump.py — promising at MF1
-    # but causes more τ instability in settle — keeping averaged for now
+    # WK step
     model.te.weight.requires_grad_(False)
     wk_grad=torch.zeros_like(model.blocks[0].attn.WK.weight)
     wk_fish=torch.zeros_like(model.blocks[0].attn.WK.weight)
@@ -304,20 +302,23 @@ v_mf=eval_val(model); n_mf_used=mf_r
 print(f"  After MF{n_mf_used}: val={v_mf:.4f}  Φ={sheet_angles(model)}")
 print()
 
-# ── PHASE 3: BASIN SETTLE (flat LR×5, no τ-spike protection) ─
-# τ-spike protection REMOVED: causes LR cascade (run 14: 241CE, val=0.097)
-# τ spike at step 24 is a natural landscape feature — orbit self-heals by step 32
-# Best run (run 13: 187CE, val=0.061) had NO τ-spike interference: LR×5 throughout
-# Only plateau and val<0.15 stop conditions remain
-print("━━━ PHASE 3: BASIN SETTLE (LR×5 flat) ━━━━━━━━━━━━━━━━━━")
-print("  LR×5 flat throughout — τ spike at step 24 is natural, orbit self-heals")
+# ── PHASE 3: BASIN SETTLE (LR×5, τ-spike protection) ─────────
+# LESSON: cos(g,g_floor) only valid near floor (val<0.3)
+# At val=7-14, floor gradient comparison is noise — mislead LR
+# ONLY τ-spike protection is valid at all val levels
+# cos/MINRES signals applied AFTER basin (Phase 5), not during
+print("━━━ PHASE 3: BASIN SETTLE (LR×5 + τ-spike protection) ━━━")
+print("  LR×5 base; halve on τ spike; val<0.15 early stop")
+print("  cos/MINRES signals only valid near floor — not used here")
 
-opt_b=torch.optim.AdamW(model.parameters(),lr=LR*5,betas=(0.9,0.95),weight_decay=0.1)
+current_lr=LR*5
+opt_b=torch.optim.AdamW(model.parameters(),lr=current_lr,betas=(0.9,0.95),weight_decay=0.1)
 val_history=[v_mf]; step=0
+tau_prev=gluing_defect(model,n=4)
 
 for step in range(1, 151):
-    if step <= 10:
-        for pg in opt_b.param_groups: pg['lr']=LR*5*step/10
+    if step <= 10:  # warmup
+        for pg in opt_b.param_groups: pg['lr']=current_lr*step/10
     model.train(); x,y=get_batch(); _,l=model(x,y)
     opt_b.zero_grad(); l.backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(),1.0); opt_b.step()
@@ -326,7 +327,22 @@ for step in range(1, 151):
         v=eval_val(model,n=8); delta=abs(v-val_history[-1])/8
         val_history.append(v)
         pc=phi_clean(model); tau=gluing_defect(model,n=4)
-        print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  Φ_cl={pc}/5  τ={tau:.2f}")
+
+        # τ-spike: orbit shattering → halve LR (valid at all val)
+        if tau > tau_prev*1.4 and tau > 5 and current_lr > LR*0.5:
+            current_lr=max(current_lr*0.5, LR*0.5)
+            for pg in opt_b.param_groups: pg['lr']=current_lr
+            tag=f"τ↑{tau:.2f}→LR×{current_lr/LR:.1f}"
+        # τ recovery: restore LR toward ×5 when τ drops significantly
+        elif tau < tau_prev*0.85 and current_lr < LR*4:
+            current_lr=min(current_lr*2.0, LR*5)
+            for pg in opt_b.param_groups: pg['lr']=current_lr
+            tag=f"τ↓{tau:.2f}→LR×{current_lr/LR:.1f}"
+        else:
+            tag=f"LR×{current_lr/LR:.1f}"
+
+        print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  Φ_cl={pc}/5  τ={tau:.2f}  {tag}")
+        tau_prev=tau
 
         if delta < 0.003: print(f"  ✓ Plateau"); break
         if v < 0.15: print(f"  ✓ val={v:.4f} < 0.15"); break

@@ -262,29 +262,42 @@ for mf_r in range(1, 16):
         model.blocks[l].attn.WQ.weight.requires_grad_(True)
     v_e=eval_val(model,n=4)
 
-    # WK step — averaged natural gradient (confirmed stable)
-    # Per-layer strips explored in mf_strip_pump.py — promising at MF1
-    # but causes more τ instability in settle — keeping averaged for now
+    # WK step — RIDGE/FLOW split strip morphisms (J14 insight)
+    # Early layers (L0-L1): RIDGE/SADDLE — set Bridgeland wall structure
+    #   Low eta, structural updates, high curvature
+    # Late layers (L2-L5): FLOW — integrate corpus statistics
+    #   Standard eta, fast descent, low curvature
+    # No backprop past J14: flow layers don't need ridge-level caution
+    RIDGE_LAYERS = list(range(0, 2))         # L0, L1: structural
+    FLOW_LAYERS  = list(range(2, N_STU))     # L2-L5: statistical flow
+    ETA_RIDGE = ETA_MF * 0.5                 # slower for structural
+    ETA_FLOW  = ETA_MF                       # standard for flow
+
     model.te.weight.requires_grad_(False)
-    wk_grad=torch.zeros_like(model.blocks[0].attn.WK.weight)
-    wk_fish=torch.zeros_like(model.blocks[0].attn.WK.weight)
+    layer_grads=[torch.zeros_like(model.blocks[0].attn.WK.weight) for _ in range(N_STU)]
+    layer_fish =[torch.zeros_like(model.blocks[0].attn.WK.weight) for _ in range(N_STU)]
     torch.manual_seed((mf_r-1)*1000+500)
     for i in range(N_SUB):
         ix=torch.randint(0,len(train_t)-SEQ-1,(1,))[0].item()
         x=train_t[ix:ix+SEQ].unsqueeze(0); y=train_t[ix+1:ix+SEQ+1].unsqueeze(0)
         model.zero_grad(); _,loss=model(x,y); loss.backward()
-        g=torch.zeros_like(model.blocks[0].attn.WK.weight)
-        for bl in model.blocks:
-            if bl.attn.WK.weight.grad is not None: g+=bl.attn.WK.weight.grad/N_STU
-        wk_grad+=g; wk_fish+=g**2
-    wk_grad/=N_SUB; wk_fish/=N_SUB
-    delta_WK=-(wk_grad/(wk_fish+1e-4))
+        for l in range(N_STU):
+            if model.blocks[l].attn.WK.weight.grad is not None:
+                g=model.blocks[l].attn.WK.weight.grad.detach()
+                layer_grads[l]+=g; layer_fish[l]+=g**2
+    for l in range(N_STU): layer_grads[l]/=N_SUB; layer_fish[l]/=N_SUB
     with torch.no_grad():
         for l in range(N_STU):
-            model.blocks[l].attn.WK.weight.add_(ETA_MF*delta_WK)
-            model.blocks[l].attn.WQ.weight.add_(ETA_MF*delta_WK.T)
+            delta_WK_l=-(layer_grads[l]/(layer_fish[l]+1e-4))
+            eta_l = ETA_RIDGE if l in RIDGE_LAYERS else ETA_FLOW
+            model.blocks[l].attn.WK.weight.add_(eta_l*delta_WK_l)
+            model.blocks[l].attn.WQ.weight.add_(eta_l*delta_WK_l.T)
     model.te.weight.requires_grad_(True)
     v_wk=eval_val(model,n=4)
+    # Track ridge vs flow orbit quality
+    _all_angles = sheet_angles(model)
+    phi_ridge=[_all_angles[l] for l in RIDGE_LAYERS if l<N_STU-1]
+    phi_flow =[_all_angles[l] for l in FLOW_LAYERS  if l<N_STU-1]
 
     tau=gluing_defect(model,n=6); pc=phi_clean(model)
     tau_history.append(tau); phi_history.append(pc)
@@ -304,20 +317,23 @@ v_mf=eval_val(model); n_mf_used=mf_r
 print(f"  After MF{n_mf_used}: val={v_mf:.4f}  Φ={sheet_angles(model)}")
 print()
 
-# ── PHASE 3: BASIN SETTLE (flat LR×5, no τ-spike protection) ─
-# τ-spike protection REMOVED: causes LR cascade (run 14: 241CE, val=0.097)
-# τ spike at step 24 is a natural landscape feature — orbit self-heals by step 32
-# Best run (run 13: 187CE, val=0.061) had NO τ-spike interference: LR×5 throughout
-# Only plateau and val<0.15 stop conditions remain
-print("━━━ PHASE 3: BASIN SETTLE (LR×5 flat) ━━━━━━━━━━━━━━━━━━")
-print("  LR×5 flat throughout — τ spike at step 24 is natural, orbit self-heals")
+# ── PHASE 3: BASIN SETTLE (LR×5, τ-spike protection) ─────────
+# LESSON: cos(g,g_floor) only valid near floor (val<0.3)
+# At val=7-14, floor gradient comparison is noise — mislead LR
+# ONLY τ-spike protection is valid at all val levels
+# cos/MINRES signals applied AFTER basin (Phase 5), not during
+print("━━━ PHASE 3: BASIN SETTLE (LR×5 + τ-spike protection) ━━━")
+print("  LR×5 base; halve on τ spike; val<0.15 early stop")
+print("  cos/MINRES signals only valid near floor — not used here")
 
-opt_b=torch.optim.AdamW(model.parameters(),lr=LR*5,betas=(0.9,0.95),weight_decay=0.1)
+current_lr=LR*5
+opt_b=torch.optim.AdamW(model.parameters(),lr=current_lr,betas=(0.9,0.95),weight_decay=0.1)
 val_history=[v_mf]; step=0
+tau_prev=gluing_defect(model,n=4)
 
 for step in range(1, 151):
-    if step <= 10:
-        for pg in opt_b.param_groups: pg['lr']=LR*5*step/10
+    if step <= 10:  # warmup
+        for pg in opt_b.param_groups: pg['lr']=current_lr*step/10
     model.train(); x,y=get_batch(); _,l=model(x,y)
     opt_b.zero_grad(); l.backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(),1.0); opt_b.step()
@@ -326,7 +342,22 @@ for step in range(1, 151):
         v=eval_val(model,n=8); delta=abs(v-val_history[-1])/8
         val_history.append(v)
         pc=phi_clean(model); tau=gluing_defect(model,n=4)
-        print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  Φ_cl={pc}/5  τ={tau:.2f}")
+
+        # τ-spike: orbit shattering → halve LR (valid at all val)
+        if tau > tau_prev*1.4 and tau > 5 and current_lr > LR*0.5:
+            current_lr=max(current_lr*0.5, LR*0.5)
+            for pg in opt_b.param_groups: pg['lr']=current_lr
+            tag=f"τ↑{tau:.2f}→LR×{current_lr/LR:.1f}"
+        # τ recovery: restore LR toward ×5 when τ drops significantly
+        elif tau < tau_prev*0.85 and current_lr < LR*4:
+            current_lr=min(current_lr*2.0, LR*5)
+            for pg in opt_b.param_groups: pg['lr']=current_lr
+            tag=f"τ↓{tau:.2f}→LR×{current_lr/LR:.1f}"
+        else:
+            tag=f"LR×{current_lr/LR:.1f}"
+
+        print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  Φ_cl={pc}/5  τ={tau:.2f}  {tag}")
+        tau_prev=tau
 
         if delta < 0.003: print(f"  ✓ Plateau"); break
         if v < 0.15: print(f"  ✓ val={v:.4f} < 0.15"); break
