@@ -37,6 +37,10 @@ python -m pytest tests/test_compiler.py -v
 | Compiler + 167 CE | 0.095 | ✓ |
 | Teacher (24L, 300 CE) | 0.250 | reference |
 
+Run compiler_geometric.py 
+
+<img width="370" height="702" alt="Screenshot 2026-06-22 at 6 32 03 PM" src="https://github.com/user-attachments/assets/776af35f-a7e7-44aa-97fa-977c6fa488c3" />
+
 Full Demo : python compiler_demo_2.py --no_baseline
 
 <img width="536" height="738" alt="Screenshot 2026-06-21 at 8 01 19 AM" src="https://github.com/user-attachments/assets/150d841d-b5df-4bf4-bf54-81d9ee668742" />
