@@ -1,0 +1,45 @@
+{
+  "experiment": "K0 Split Involutivity Test",
+  "checkpoint": "basin_state.pt",
+  "config": {
+    "n_steps": 13,
+    "lr": 0.0003,
+    "w_ff_override": "auto",
+    "val_tol": 0.005,
+    "tau_tol": 0.1
+  },
+  "baseline": {
+    "val": 0.06192077475134283,
+    "tau": 1.017058442824749,
+    "w_ff": 6.268823882684668
+  },
+  "after_mu1": {
+    "val": 0.642107967287302,
+    "tau": 1.3367180644920915,
+    "w_ff2": 4.16049694187841,
+    "delta_val": 0.5801871925359592,
+    "delta_tau": 0.3196596216673424,
+    "norm_delta_theta": 11.472648620605469
+  },
+  "after_mu2": {
+    "val": 0.9538569338619709,
+    "tau": 1.39466793138759,
+    "delta_val": 0.3117489665746689,
+    "delta_tau": 0.057949866895498525,
+    "norm_delta_theta": 11.773653984069824
+  },
+  "involutivity": {
+    "val_return": 0.8919361591106281,
+    "tau_return": 0.37760948856284093,
+    "val_criterion": false,
+    "tau_criterion": false,
+    "cos_delta1_delta2": -0.1885201632976532,
+    "reversal_detected": false,
+    "norm_ratio": 1.0262367804870018,
+    "return_distance": 14.809187889099121,
+    "step_distance": 11.472648620605469
+  },
+  "verdict": "NOT_INVOLUTIVE",
+  "message": "Neither criterion satisfied: |\u0394val|=0.8919, |\u0394\u03c4|=0.3776. The K\u2080 split is not involutive at this checkpoint. Likely cause: \u03c4 changes between applications (w_FF drift), so \u03bc_k is not a fixed mutation but a \u03c4-dependent map. This is expected if \u03c4\u2081 \u2260 \u03c4\u2080 significantly (\u0394\u03c4=+0.3197).",
+  "elapsed_s": 71.5
+}

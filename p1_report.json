@@ -1,0 +1,269 @@
+{
+  "experiment": "P1 Projected Hessian vs Exchange Matrix",
+  "checkpoint": "basin_state.pt",
+  "config": {
+    "rank": 6,
+    "k_lanczos": 20,
+    "k_range": [
+      5,
+      10,
+      15,
+      20
+    ]
+  },
+  "strip_areas": [
+    8.662932395935059,
+    8.684523582458496,
+    8.805987358093262,
+    8.61479377746582,
+    8.633824348449707
+  ],
+  "strip_area_std": 0.06718299283884271,
+  "exchange_matrix_B": [
+    [
+      0.0,
+      -0.021591,
+      -0.143055,
+      0.048139,
+      0.029108
+    ],
+    [
+      0.021591,
+      0.0,
+      -0.121464,
+      0.06973,
+      0.050699
+    ],
+    [
+      0.143055,
+      0.121464,
+      0.0,
+      0.191194,
+      0.172163
+    ],
+    [
+      -0.048139,
+      -0.06973,
+      -0.191194,
+      0.0,
+      -0.019031
+    ],
+    [
+      -0.029108,
+      -0.050699,
+      -0.172163,
+      0.019031,
+      0.0
+    ]
+  ],
+  "B_norm_F": 0.4750560624894708,
+  "B_is_skew": true,
+  "basis_gram_err": 0.036325655623436995,
+  "regime": "SEARCH/TRANSVERSE (B\u22480, comparisons scale-degenerate)",
+  "k_sweep": {
+    "5": {
+      "cos_B_frobenius": 2.2965251720160568e-17,
+      "cos_B_spec_abs": 0.8991168019567202,
+      "cos_B_spec_signed": -0.8477739920186946,
+      "rel_err_scaled": 1.414213562369383,
+      "Hk_entropy": 0.8831236362457275,
+      "stability_vs_prev": 1.0,
+      "scale_diag": {
+        "norm_H_hat": 0.31801248952908284,
+        "norm_B": 0.4750560624894708,
+        "scale_ratio": 0.6694209686787481,
+        "alpha_star": 1.537342105252717e-17,
+        "scale_ok": false,
+        "diagnosis": "SCALE_MISMATCH (ratio=6.69e-01, \u03b1*=1.54e-17): use scale-normalized Frobenius cos as primary metric"
+      },
+      "top5_eigvals": [
+        -293.8563537597656,
+        76.91510009765625,
+        -70.52848052978516,
+        -0.8254619240760803,
+        0.15439733862876892
+      ],
+      "beta_first5": [
+        0.5771654844284058,
+        100.41543579101562,
+        96.63179779052734,
+        56.20183563232422
+      ]
+    },
+    "10": {
+      "cos_B_frobenius": 0.0,
+      "cos_B_spec_abs": 0.9918479636619874,
+      "cos_B_spec_signed": -0.9153720320257435,
+      "rel_err_scaled": 1.4142135623686967,
+      "Hk_entropy": 1.7685589790344238,
+      "stability_vs_prev": 0.890954939331414,
+      "scale_diag": {
+        "norm_H_hat": 0.24299417456836245,
+        "norm_B": 0.4750560624894708,
+        "scale_ratio": 0.5115063121065563,
+        "alpha_star": 0.0,
+        "scale_ok": false,
+        "diagnosis": "SCALE_MISMATCH (ratio=5.12e-01, \u03b1*=0.00e+00): use scale-normalized Frobenius cos as primary metric"
+      },
+      "top5_eigvals": [
+        -293.87615966796875,
+        -97.33988952636719,
+        92.28926849365234,
+        -68.87940216064453,
+        67.12940979003906
+      ],
+      "beta_first5": [
+        0.5771654844284058,
+        100.41543579101562,
+        96.63179779052734,
+        56.20183563232422,
+        38.7885627746582
+      ]
+    },
+    "15": {
+      "cos_B_frobenius": 0.0,
+      "cos_B_spec_abs": 0.9927732271385837,
+      "cos_B_spec_signed": -0.9140797117777001,
+      "rel_err_scaled": 1.41421356236869,
+      "Hk_entropy": 2.1606056690216064,
+      "stability_vs_prev": 0.9986357114633201,
+      "scale_diag": {
+        "norm_H_hat": 0.2424463387880764,
+        "norm_B": 0.4750560624894708,
+        "scale_ratio": 0.5103531097299483,
+        "alpha_star": 0.0,
+        "scale_ok": false,
+        "diagnosis": "SCALE_MISMATCH (ratio=5.10e-01, \u03b1*=0.00e+00): use scale-normalized Frobenius cos as primary metric"
+      },
+      "top5_eigvals": [
+        -293.87615966796875,
+        -97.35514831542969,
+        92.29454803466797,
+        -68.99305725097656,
+        67.30117797851562
+      ],
+      "beta_first5": [
+        0.5771654844284058,
+        100.41543579101562,
+        96.63179779052734,
+        56.20183563232422,
+        38.7885627746582
+      ]
+    },
+    "20": {
+      "cos_B_frobenius": 0.0,
+      "cos_B_spec_abs": 0.992766120149374,
+      "cos_B_spec_signed": -0.9140713330019501,
+      "rel_err_scaled": 1.41421356236869,
+      "Hk_entropy": 2.4522416591644287,
+      "stability_vs_prev": 0.9999999863228832,
+      "scale_diag": {
+        "norm_H_hat": 0.24244235160995078,
+        "norm_B": 0.4750560624894708,
+        "scale_ratio": 0.5103447166613393,
+        "alpha_star": 0.0,
+        "scale_ok": false,
+        "diagnosis": "SCALE_MISMATCH (ratio=5.10e-01, \u03b1*=0.00e+00): use scale-normalized Frobenius cos as primary metric"
+      },
+      "top5_eigvals": [
+        -293.87615966796875,
+        -97.35514831542969,
+        92.29454803466797,
+        -68.9930648803711,
+        67.30118560791016
+      ],
+      "beta_first5": [
+        0.5771654844284058,
+        100.41543579101562,
+        96.63179779052734,
+        56.20183563232422,
+        38.7885627746582
+      ]
+    }
+  },
+  "best_k": 20,
+  "H_hat_best": [
+    [
+      -0.056202615147121174,
+      0.008625346055687131,
+      -0.006635954503295584,
+      0.00019636733602025768,
+      -2.920308867743837e-05
+    ],
+    [
+      0.008625346055687131,
+      -0.0018485500890349854,
+      -0.0036395299210312516,
+      -0.002157394172990476,
+      3.981675397544159e-05
+    ],
+    [
+      -0.006635954503295585,
+      -0.0036395299210312516,
+      -0.09687609376002619,
+      -0.10204934919438283,
+      -0.00292576928445729
+    ],
+    [
+      0.00019636733602025768,
+      -0.0021573941729904757,
+      -0.10204934919438284,
+      -0.10127709943348961,
+      -0.029988461002736083
+    ],
+    [
+      -2.920308867743838e-05,
+      3.9816753975441624e-05,
+      -0.00292576928445729,
+      -0.029988461002736083,
+      0.11426937975496648
+    ]
+  ],
+  "H_hat_eigvals": [
+    -0.20310474657668431,
+    -0.057817357572397234,
+    -0.0019700923873952874,
+    0.0018923332552441305,
+    0.11906488460652727
+  ],
+  "B_eigvals": [
+    -0.27043736426360687,
+    -0.077698789504543,
+    -0.020022695095010857,
+    -0.013826380575107804,
+    0.3819852294382683
+  ],
+  "H_hat_sign": [
+    "-",
+    "-",
+    "-",
+    "+",
+    "+"
+  ],
+  "B_sign": [
+    "-",
+    "-",
+    "-",
+    "-",
+    "+"
+  ],
+  "P1_result": {
+    "cos_spec_abs": 0.992766120149374,
+    "cos_spec_signed": -0.9140713330019501,
+    "cos_frobenius": 0.0,
+    "rel_err_scaled": 1.41421356236869,
+    "B_is_skew": true,
+    "skew_note": "B is skew-symmetric; Frobenius cos = 0 by algebra. Primary metric is cos(|spec \u0124|, |spec B|).",
+    "scale_diagnosis": {
+      "norm_H_hat": 0.24244235160995078,
+      "norm_B": 0.4750560624894708,
+      "scale_ratio": 0.5103447166613393,
+      "alpha_star": 0.0,
+      "scale_ok": false,
+      "diagnosis": "SCALE_MISMATCH (ratio=5.10e-01, \u03b1*=0.00e+00): use scale-normalized Frobenius cos as primary metric"
+    },
+    "verdict": "SPECTRAL_CONFIRMED",
+    "message": "cos(|spec \u0124|, |spec B|) > 0.9: spectral magnitude alignment confirmed. The projected Hessian and exchange matrix share the same curvature magnitude structure in strip-angle space. Note: Frobenius comparison requires floor checkpoint where B is anisotropic and amplitude-comparable. Frobenius criterion ||\u0124 - \u03b1*B||_F/||B||_F < 0.1 pending."
+  },
+  "elapsed_s": 5.3
+}
