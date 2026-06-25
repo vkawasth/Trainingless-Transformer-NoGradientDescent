@@ -1,0 +1,64 @@
+{
+  "checkpoint": "basin_state.pt",
+  "config": {
+    "rank": 6,
+    "threshold": 0.02,
+    "n_steps": 25,
+    "lr": 0.0003
+  },
+  "strip_energy": [
+    {
+      "pair": "L0\u2192L1",
+      "area": 8.646954536437988,
+      "phase_rad": 0.0,
+      "phase_clean": true,
+      "phase_pi": false,
+      "wall_score": 0.7409144381853963,
+      "active": true
+    },
+    {
+      "pair": "L1\u2192L2",
+      "area": 8.8251314163208,
+      "phase_rad": 3.141592502593994,
+      "phase_clean": true,
+      "phase_pi": true,
+      "wall_score": 1.771226939145311,
+      "active": true
+    },
+    {
+      "pair": "L2\u2192L3",
+      "area": 8.709465026855469,
+      "phase_rad": 3.141592502593994,
+      "phase_clean": true,
+      "phase_pi": true,
+      "wall_score": 0.1404299292671593,
+      "active": true
+    },
+    {
+      "pair": "L3\u2192L4",
+      "area": 8.741233825683594,
+      "phase_rad": 3.141592502593994,
+      "phase_clean": true,
+      "phase_pi": true,
+      "wall_score": 0.5883427791089451,
+      "active": true
+    },
+    {
+      "pair": "L4\u2192L5",
+      "area": 8.574739456176758,
+      "phase_rad": 0.0,
+      "phase_clean": true,
+      "phase_pi": false,
+      "wall_score": 1.759085209336019,
+      "active": true
+    }
+  ],
+  "n_active": 6,
+  "n_frozen": 0,
+  "val_baseline": 0.06703740614466369,
+  "val_gated": 0.062166344840079546,
+  "val_full": 0.057301604421809316,
+  "delta_gated": -0.0048710613045841455,
+  "delta_full": -0.009735801722854376,
+  "elapsed_s": 72.7
+}

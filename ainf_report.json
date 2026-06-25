@@ -1,0 +1,130 @@
+{
+  "tau_spike_64.safetensors": {
+    "triangles": {
+      "L0,L1,L2": {
+        "triple": "L0,L1,L2",
+        "phi_01": 0.0,
+        "phi_12": 3.141592502593994,
+        "wall_01": false,
+        "wall_12": true,
+        "residual": 0.0021060479942307,
+        "converged": true,
+        "m2": 1
+      },
+      "L1,L2,L3": {
+        "triple": "L1,L2,L3",
+        "phi_01": 3.141592502593994,
+        "phi_12": 0.0,
+        "wall_01": true,
+        "wall_12": false,
+        "residual": 0.0021080522414126373,
+        "converged": true,
+        "m2": 1
+      },
+      "L2,L3,L4": {
+        "triple": "L2,L3,L4",
+        "phi_01": 0.0,
+        "phi_12": 0.0,
+        "wall_01": false,
+        "wall_12": false,
+        "residual": 0.0021061857594465894,
+        "converged": true,
+        "m2": 1
+      },
+      "L3,L4,L5": {
+        "triple": "L3,L4,L5",
+        "phi_01": 0.0,
+        "phi_12": 3.141592502593994,
+        "wall_01": false,
+        "wall_12": true,
+        "residual": 0.002111778958870587,
+        "converged": true,
+        "m2": 1
+      }
+    },
+    "pentagon": [
+      {
+        "pair": "L0,L1,L2 \u00d7 L1,L2,L3",
+        "product": 1,
+        "ok": false
+      },
+      {
+        "pair": "L1,L2,L3 \u00d7 L2,L3,L4",
+        "product": 1,
+        "ok": false
+      },
+      {
+        "pair": "L2,L3,L4 \u00d7 L3,L4,L5",
+        "product": 1,
+        "ok": false
+      }
+    ],
+    "pentagon_holds": false,
+    "n_converged": 4,
+    "elapsed_s": 67.4
+  },
+  "basin_state.safetensors": {
+    "triangles": {
+      "L0,L1,L2": {
+        "triple": "L0,L1,L2",
+        "phi_01": 0.0,
+        "phi_12": 3.141592502593994,
+        "wall_01": false,
+        "wall_12": true,
+        "residual": 0.002113075410885859,
+        "converged": true,
+        "m2": 1
+      },
+      "L1,L2,L3": {
+        "triple": "L1,L2,L3",
+        "phi_01": 3.141592502593994,
+        "phi_12": 3.141592502593994,
+        "wall_01": true,
+        "wall_12": true,
+        "residual": 0.002105695152619061,
+        "converged": true,
+        "m2": 1
+      },
+      "L2,L3,L4": {
+        "triple": "L2,L3,L4",
+        "phi_01": 3.141592502593994,
+        "phi_12": 3.141592502593994,
+        "wall_01": true,
+        "wall_12": true,
+        "residual": 0.0021069778488879195,
+        "converged": true,
+        "m2": 1
+      },
+      "L3,L4,L5": {
+        "triple": "L3,L4,L5",
+        "phi_01": 3.141592502593994,
+        "phi_12": 0.0,
+        "wall_01": true,
+        "wall_12": false,
+        "residual": 0.002105510495555322,
+        "converged": true,
+        "m2": 1
+      }
+    },
+    "pentagon": [
+      {
+        "pair": "L0,L1,L2 \u00d7 L1,L2,L3",
+        "product": 1,
+        "ok": false
+      },
+      {
+        "pair": "L1,L2,L3 \u00d7 L2,L3,L4",
+        "product": 1,
+        "ok": false
+      },
+      {
+        "pair": "L2,L3,L4 \u00d7 L3,L4,L5",
+        "product": 1,
+        "ok": false
+      }
+    ],
+    "pentagon_holds": false,
+    "n_converged": 4,
+    "elapsed_s": 67.5
+  }
+}

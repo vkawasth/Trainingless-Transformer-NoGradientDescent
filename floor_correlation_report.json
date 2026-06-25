@@ -1,0 +1,223 @@
+{
+  "checkpoint": "basin_state.pt",
+  "corpus": {
+    "vocab": 1017,
+    "nnz": 1347
+  },
+  "config": {
+    "rank": 6,
+    "top_k": 8,
+    "n_hvp": 20
+  },
+  "projection": {
+    "method": "shared_strip_angle_space",
+    "basis_shape": [
+      393216,
+      30
+    ],
+    "note": "Both Hessian eigenvectors and c-vectors projected onto the gradient directions of principal angles between consecutive WK layers. This is the natural mutual coarse-graining space: dim = (n_layers-1) * rank."
+  },
+  "hessian": {
+    "top_eigenvalues": [
+      -361.48394775390625,
+      -361.4582214355469,
+      -361.4509582519531,
+      -213.84324645996094,
+      -213.83514404296875,
+      197.92669677734375,
+      197.91712951660156,
+      173.74620056152344
+    ],
+    "eigvec_param_dim": [
+      393216,
+      8
+    ],
+    "eigvec_projected_shape": [
+      30,
+      8
+    ]
+  },
+  "cluster": {
+    "strip_areas": [
+      8.646954536437988,
+      8.8251314163208,
+      8.709465026855469,
+      8.741233825683594,
+      8.574739456176758
+    ],
+    "exchange_matrix_B_init": [
+      [
+        0.0,
+        -0.1782,
+        -0.0625,
+        -0.0943,
+        0.0722
+      ],
+      [
+        0.1782,
+        0.0,
+        0.1157,
+        0.0839,
+        0.2504
+      ],
+      [
+        0.0625,
+        -0.1157,
+        0.0,
+        -0.0318,
+        0.1347
+      ],
+      [
+        0.0943,
+        -0.0839,
+        0.0318,
+        0.0,
+        0.1665
+      ],
+      [
+        -0.0722,
+        -0.2504,
+        -0.1347,
+        -0.1665,
+        0.0
+      ]
+    ],
+    "mutation_sequence": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "c_vector_matrix": [
+      [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ]
+    ],
+    "c_vector_weighted_shape": [
+      30,
+      5
+    ]
+  },
+  "correlation": {
+    "cosine_matrix": [
+      [
+        -0.4549417065178857,
+        -0.021073411011073313,
+        -0.007122543129824964,
+        0.001718293574364841,
+        0.004537328404696031
+      ],
+      [
+        0.4600929307798097,
+        0.01968751893037693,
+        0.0017995707532941537,
+        -0.00044859902821107827,
+        -0.001183140750284276
+      ],
+      [
+        0.4614795208772134,
+        0.019206501318706822,
+        3.22283067839819e-05,
+        -2.7127915935865042e-05,
+        -6.97791832315659e-05
+      ],
+      [
+        -3.895789937235514e-05,
+        -0.005099832354705571,
+        -0.2404354081859756,
+        0.06908986966350343,
+        0.04195992013093938
+      ],
+      [
+        -7.79648314425376e-05,
+        0.005162812446990573,
+        0.24057947253830017,
+        -0.0691655907996172,
+        -0.04207773447567651
+      ]
+    ],
+    "best_per_cvec": [
+      0.4614795208772134,
+      0.021073411011073313,
+      0.24057947253830017,
+      0.0691655907996172,
+      0.04207773447567651
+    ],
+    "best_per_hessian_eigvec": [
+      0.4549417065178857,
+      0.4600929307798097,
+      0.4614795208772134,
+      0.2404354081859756,
+      0.24057947253830017
+    ],
+    "mean_best_match": 0.16687514594037614,
+    "greedy_pairs": [
+      {
+        "hessian_idx": 2,
+        "cvec_idx": 0,
+        "cosine": 0.4614795208772134
+      },
+      {
+        "hessian_idx": 4,
+        "cvec_idx": 2,
+        "cosine": 0.24057947253830017
+      },
+      {
+        "hessian_idx": 3,
+        "cvec_idx": 3,
+        "cosine": 0.06908986966350343
+      },
+      {
+        "hessian_idx": 0,
+        "cvec_idx": 1,
+        "cosine": 0.021073411011073313
+      },
+      {
+        "hessian_idx": 1,
+        "cvec_idx": 4,
+        "cosine": 0.001183140750284276
+      }
+    ]
+  },
+  "diagnosis": {
+    "verdict": "DIMENSIONALITY_MISMATCH",
+    "mean_cos_similarity": 0.16687514594037614,
+    "strip_area_std": 0.08479444044450458,
+    "bridgeland_wall_count": 5,
+    "message": "Low alignment (mean |cos| \u2264 0.4). The dimensionality mismatch (R^D vs root lattice R^d) dominates. A different morphism is needed \u2014 likely the Grothendieck group map K0(A\u221e) \u2192 K0(Cluster) rather than a direct vector correspondence."
+  },
+  "elapsed_s": 1.7
+}

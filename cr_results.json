@@ -1,0 +1,94 @@
+{
+  "safetensors": "tau_spike_64.safetensors",
+  "config": {
+    "N": 16,
+    "dim": 3,
+    "lam": 100.0
+  },
+  "strip_areas": [
+    4.369051933288574,
+    4.430874347686768,
+    4.392880916595459,
+    4.459959030151367,
+    4.443540573120117
+  ],
+  "strip_area_std": 0.03345909847382263,
+  "results": {
+    "0,1": {
+      "pair": "L0\u2192L1",
+      "strip_area": 4.369051933288574,
+      "phase_rad": 0.0,
+      "phase_clean": true,
+      "principal_angles": [
+        1.3643304109573364,
+        1.4860916137695312,
+        1.5186299085617065
+      ],
+      "residual_final": 0.06642945670321554,
+      "best_N": 16,
+      "converged": true,
+      "elapsed_s": 38.5
+    },
+    "1,2": {
+      "pair": "L1\u2192L2",
+      "strip_area": 4.430874347686768,
+      "phase_rad": 3.141592502593994,
+      "phase_clean": true,
+      "principal_angles": [
+        1.4068379402160645,
+        1.487727165222168,
+        1.5363092422485352
+      ],
+      "residual_final": 0.06331308674491073,
+      "best_N": 16,
+      "converged": true,
+      "elapsed_s": 38.4
+    },
+    "2,3": {
+      "pair": "L2\u2192L3",
+      "strip_area": 4.392880916595459,
+      "phase_rad": 0.0,
+      "phase_clean": true,
+      "principal_angles": [
+        1.4381520748138428,
+        1.4516534805297852,
+        1.503075361251831
+      ],
+      "residual_final": 0.06616763220003848,
+      "best_N": 16,
+      "converged": true,
+      "elapsed_s": 38.5
+    },
+    "3,4": {
+      "pair": "L3\u2192L4",
+      "strip_area": 4.459959030151367,
+      "phase_rad": 0.0,
+      "phase_clean": true,
+      "principal_angles": [
+        1.4146862030029297,
+        1.5141805410385132,
+        1.5310924053192139
+      ],
+      "residual_final": 0.07383827521690017,
+      "best_N": 16,
+      "converged": true,
+      "elapsed_s": 38.5
+    },
+    "4,5": {
+      "pair": "L4\u2192L5",
+      "strip_area": 4.443540573120117,
+      "phase_rad": 3.141592502593994,
+      "phase_clean": true,
+      "principal_angles": [
+        1.4094573259353638,
+        1.4743156433105469,
+        1.5597676038742065
+      ],
+      "residual_final": 0.07008005334884679,
+      "best_N": 16,
+      "converged": true,
+      "elapsed_s": 38.4
+    }
+  },
+  "n_converged": 5
+}
