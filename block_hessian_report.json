@@ -1,0 +1,113 @@
+{
+  "step64": {
+    "label": "step64_on_wall",
+    "k_active": 0,
+    "normal_norm": 8.670339375473603,
+    "null_evals": [
+      -0.21730978786945343,
+      4.531126976013184,
+      -46.892154693603516,
+      62.74400329589844,
+      -113.26405334472656
+    ],
+    "results": [
+      {
+        "i": 0,
+        "eigenvalue": -0.21730978786945343,
+        "dphi_active": 0.0,
+        "type": "E_tan",
+        "mixed_curvature": -13859.090860933065
+      },
+      {
+        "i": 1,
+        "eigenvalue": 4.531126976013184,
+        "dphi_active": 0.0,
+        "type": "E_tan",
+        "mixed_curvature": 3381.593618541956
+      },
+      {
+        "i": 2,
+        "eigenvalue": -46.892154693603516,
+        "dphi_active": 0.0,
+        "type": "E_tan",
+        "mixed_curvature": 12.209173291921616
+      },
+      {
+        "i": 3,
+        "eigenvalue": 62.74400329589844,
+        "dphi_active": 0.0,
+        "type": "E_tan",
+        "mixed_curvature": 15042.06657409668
+      },
+      {
+        "i": 4,
+        "eigenvalue": -113.26405334472656,
+        "dphi_active": 0.0,
+        "type": "E_tan",
+        "mixed_curvature": -4095.084499567747
+      }
+    ],
+    "mean_tan_mc": 7278.008945286274,
+    "mean_cross_mc": 0.0,
+    "ratio": 0.0,
+    "verdict": "NO_BLOCK_STRUCTURE",
+    "message": "Mixed curvature 7278.0089 not negligible. Block structure fails. Different hypothesis needed for Stage IV.",
+    "elapsed_s": 8.0
+  },
+  "step72": {
+    "label": "step72_off_wall",
+    "k_active": 0,
+    "normal_norm": 9.009562342197793,
+    "null_evals": [
+      0.4221823215484619,
+      -1.1589202880859375,
+      26.580114364624023,
+      -30.11661148071289,
+      55.18473815917969
+    ],
+    "results": [
+      {
+        "i": 0,
+        "eigenvalue": 0.4221823215484619,
+        "dphi_active": -0.4214644432067871,
+        "type": "E_cross",
+        "mixed_curvature": -7813.055999577045
+      },
+      {
+        "i": 1,
+        "eigenvalue": -1.1589202880859375,
+        "dphi_active": -0.19663572311401367,
+        "type": "E_cross",
+        "mixed_curvature": 1609.224360436201
+      },
+      {
+        "i": 2,
+        "eigenvalue": 26.580114364624023,
+        "dphi_active": -0.03445148468017578,
+        "type": "E_tan",
+        "mixed_curvature": 2832.937054336071
+      },
+      {
+        "i": 3,
+        "eigenvalue": -30.11661148071289,
+        "dphi_active": 0.051856040954589844,
+        "type": "E_tan",
+        "mixed_curvature": 14932.341175153852
+      },
+      {
+        "i": 4,
+        "eigenvalue": 55.18473815917969,
+        "dphi_active": 0.028789043426513672,
+        "type": "E_tan",
+        "mixed_curvature": 151.1438749730587
+      }
+    ],
+    "mean_tan_mc": 5972.14070148766,
+    "mean_cross_mc": 4711.140180006623,
+    "ratio": 0.7888528444792317,
+    "verdict": "NO_BLOCK_STRUCTURE",
+    "message": "Mixed curvature 5972.1407 not negligible. Block structure fails. Different hypothesis needed for Stage IV.",
+    "elapsed_s": 8.0
+  },
+  "theorem_supported": false
+}

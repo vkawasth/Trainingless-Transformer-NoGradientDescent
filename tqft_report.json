@@ -1,0 +1,116 @@
+{
+  "results": [
+    {
+      "label": "tau_spike_step0064_tau5.90",
+      "step": 64,
+      "tau": 5.895166286719385,
+      "val": 0.6522815153002739,
+      "strip_std": 0.05950923921938433,
+      "r_m2_frobenius": -0.45515634784654035,
+      "r_m2_weighted": -0.4533015476467918,
+      "ratio_w_f": -0.9959248944505046,
+      "top5_eigvals": [
+        1049.3763427734375,
+        -921.5682983398438,
+        -584.4488525390625,
+        -438.1197814941406,
+        -428.0469970703125
+      ],
+      "frobenius_residuals": {
+        "R_assoc": 0.7956698968337973,
+        "R_coassoc": 0.7032354152006682,
+        "R_frob": 1.2698233225978703,
+        "R_unit": 1.1091807593900074,
+        "R_total": 3.8779093940223435,
+        "is_frobenius": false
+      },
+      "elapsed_s": 1.9
+    },
+    {
+      "label": "tau_spike_step0072_tau5.94",
+      "step": 72,
+      "tau": 5.939148287128611,
+      "val": 0.5431484319269657,
+      "strip_std": 0.07627539360991624,
+      "r_m2_frobenius": 0.15234882990811588,
+      "r_m2_weighted": 0.14882010219781971,
+      "ratio_w_f": 0.9768377776133746,
+      "top5_eigvals": [
+        999.5300903320312,
+        -667.54833984375,
+        309.0252685546875,
+        -270.5955810546875,
+        222.46389770507812
+      ],
+      "frobenius_residuals": {
+        "R_assoc": 0.21981110886091643,
+        "R_coassoc": 0.3987447549575772,
+        "R_frob": 1.2433679234743549,
+        "R_unit": 1.4029312768259303,
+        "R_total": 3.2648550641187786,
+        "is_frobenius": false
+      },
+      "elapsed_s": 1.8
+    },
+    {
+      "label": "basin_entry_state",
+      "step": null,
+      "tau": null,
+      "val": null,
+      "strip_std": 0.07965775986158997,
+      "r_m2_frobenius": -0.4478958821275673,
+      "r_m2_weighted": -0.44981032232835744,
+      "ratio_w_f": -1.0042742749697844,
+      "top5_eigvals": [
+        863.405029296875,
+        -397.97393798828125,
+        -183.10665893554688,
+        128.56507873535156,
+        99.46994018554688
+      ],
+      "frobenius_residuals": {
+        "R_assoc": 0.6133614218478303,
+        "R_coassoc": 0.9252458536032918,
+        "R_frob": 1.340341280188182,
+        "R_unit": 1.538549662404707,
+        "R_total": 4.417498218044011,
+        "is_frobenius": false
+      },
+      "elapsed_s": 1.9
+    },
+    {
+      "label": "basin_state",
+      "step": null,
+      "tau": null,
+      "val": null,
+      "strip_std": 0.08479444044450458,
+      "r_m2_frobenius": -0.4642568544130102,
+      "r_m2_weighted": -0.46807009872911787,
+      "ratio_w_f": -1.0082136304455702,
+      "top5_eigvals": [
+        -361.455078125,
+        -213.84490966796875,
+        197.92526245117188,
+        173.75180053710938,
+        152.62437438964844
+      ],
+      "frobenius_residuals": {
+        "R_assoc": 0.6423922764525475,
+        "R_coassoc": 0.3381032548895528,
+        "R_frob": 1.1201010588953093,
+        "R_unit": 1.574139203312622,
+        "R_total": 3.6747357935500315,
+        "is_frobenius": false
+      },
+      "elapsed_s": 1.9
+    }
+  ],
+  "interpretation": {
+    "weighted_r_m2": "ratio\u22481 in uniform regime; >1 at Moran fixation",
+    "R_total": "decreasing = Frobenius crystallization; stable = free algebra",
+    "R_assoc": "associativity defect of strip composition",
+    "R_coassoc": "coassociativity defect of strip splitting",
+    "R_frob": "Frobenius relation defect (merging vs splitting)",
+    "R_unit": "unit axiom defect (trivial strip identity)"
+  }
+}
