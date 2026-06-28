@@ -1,0 +1,122 @@
+{
+  "step64 (\u03c6=0, on \u03a3_R)": {
+    "phi0": 0.0,
+    "lambda_real": true,
+    "evecs_real": true,
+    "test_A": {
+      "mean_im_dlam": 0.0,
+      "max_im_dlam": 0.0,
+      "frac_zero": 1.0,
+      "locking": "ALGEBRAIC_REAL_LOCKING",
+      "message": "Im(\u03b4\u03bb) = 0 exactly for all directions. The real-locking is algebraic: real M, real \u2113,r \u2192 Im(\u2113\u1d40\u00b7\u03b4M\u00b7r) = 0 for all real \u03b4M. \u03a3_R is preserved by ALL perturbations at this point."
+    },
+    "test_B": {
+      "null_evals": [
+        -0.21751849353313446,
+        4.527031898498535,
+        -46.89426040649414,
+        62.740962982177734,
+        -113.265625
+      ],
+      "null_results": [
+        {
+          "i": 0,
+          "eigenvalue": -0.21751849353313446,
+          "im_dlam": 0.0,
+          "re_dlam": 9.161446571350098,
+          "subspace": "real-preserving"
+        },
+        {
+          "i": 1,
+          "eigenvalue": 4.527031898498535,
+          "im_dlam": 0.0,
+          "re_dlam": 6.568113803863525,
+          "subspace": "real-preserving"
+        },
+        {
+          "i": 2,
+          "eigenvalue": -46.89426040649414,
+          "im_dlam": 0.0,
+          "re_dlam": 1.0993155241012573,
+          "subspace": "real-preserving"
+        },
+        {
+          "i": 3,
+          "eigenvalue": 62.740962982177734,
+          "im_dlam": 0.0,
+          "re_dlam": -0.37328773736953735,
+          "subspace": "real-preserving"
+        },
+        {
+          "i": 4,
+          "eigenvalue": -113.265625,
+          "im_dlam": 0.0,
+          "re_dlam": 0.5908679962158203,
+          "subspace": "real-preserving"
+        }
+      ],
+      "n_preserving": 5,
+      "n_breaking": 0
+    }
+  },
+  "step72 (\u03c6=1.02, off \u03a3_R)": {
+    "phi0": 1.0203883647918701,
+    "lambda_real": false,
+    "evecs_real": false,
+    "test_A": {
+      "mean_im_dlam": 23.254550449848175,
+      "max_im_dlam": 79.85319519042969,
+      "frac_zero": 0.0,
+      "locking": "NO_LOCKING",
+      "message": "Im(\u03b4\u03bb) \u2260 0 (mean=23.2546). Not on real locus."
+    },
+    "test_B": {
+      "null_evals": [
+        0.42270994186401367,
+        -1.1576498746871948,
+        26.58022117614746,
+        -30.115299224853516,
+        55.18462371826172
+      ],
+      "null_results": [
+        {
+          "i": 0,
+          "eigenvalue": 0.42270994186401367,
+          "im_dlam": -4.856614589691162,
+          "re_dlam": -11.386406898498535,
+          "subspace": "real-BREAKING"
+        },
+        {
+          "i": 1,
+          "eigenvalue": -1.1576498746871948,
+          "im_dlam": -2.7990939617156982,
+          "re_dlam": -4.740718364715576,
+          "subspace": "real-BREAKING"
+        },
+        {
+          "i": 2,
+          "eigenvalue": 26.58022117614746,
+          "im_dlam": -0.13733671605587006,
+          "re_dlam": -1.2189637422561646,
+          "subspace": "real-BREAKING"
+        },
+        {
+          "i": 3,
+          "eigenvalue": -30.115299224853516,
+          "im_dlam": 0.8525306582450867,
+          "re_dlam": 1.1953965425491333,
+          "subspace": "real-BREAKING"
+        },
+        {
+          "i": 4,
+          "eigenvalue": 55.18462371826172,
+          "im_dlam": 0.023626133799552917,
+          "re_dlam": 1.0862743854522705,
+          "subspace": "real-BREAKING"
+        }
+      ],
+      "n_preserving": 0,
+      "n_breaking": 5
+    }
+  }
+}
