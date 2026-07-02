@@ -1,0 +1,144 @@
+=================================================================
+GEOMETRY-DRIVEN COMPILER
+Anchored to: Φ_orbit, val_floor=0.062, τ_basin≈2, cos_align>0
+=================================================================
+
+Corpus: VOCAB=1017, nnz=1347
+Measuring floor gradient (geometric anchor)...
+Floor gradient computed: val=0.7195  ||g_floor||=0.2165
+
+Spectral E₀: val=4.4589
+
+━━━ PHASE 1: SADDLE EXIT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  α*=0.000  val=4.4931  sheet=['0', '0', '1.34', '1.96', '2.06']
+  [14.9s]
+
+━━━ PHASE 2: ADAPTIVE MF PUMP ━━━━━━━━━━━━━━━━━━━━━━━━━
+  Stop when: Φ_clean=5/5 (orbit) OR τ rises after falling
+  Geometric anchors: Φ_orbit, τ_basin≈2
+  MF 1: E=5.207 WK=4.954  Φ_cl=2/5  τ=1.82
+  MF 2: E=13.895 WK=14.222  Φ_cl=3/5  τ=1.93
+  ✓ STOP: τ rising (1.25→1.82→1.93) — orbit shattering
+  After MF2: val=13.8282  Φ=['0', 'π', 'π', '1.67', '1.86']
+
+━━━ PHASE 3: BASIN SETTLE (GEO-STOP EXPERIMENT) ━━━━━━━━
+  Geometric stopping: Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (×2 checks)
+  Hypothesis: orbit geometry converges before loss plateaus
+  step   8: val=9.8362  Δ=0.4990  Φ_cl=4/5  τ=4.43  rm2σ=+0.624
+  step  16: val=4.8897  Δ=0.6183  Φ_cl=4/5  τ=4.22  rm2σ=+0.485
+  step  24: val=3.5094  Δ=0.1725  Φ_cl=1/5  τ=7.27  rm2σ=+0.524
+  step  32: val=2.4993  Δ=0.1263  Φ_cl=4/5  τ=5.83  rm2σ=+0.451
+  step  40: val=1.7895  Δ=0.0887  Φ_cl=4/5  τ=5.65  rm2σ=+0.578
+  step  48: val=1.2534  Δ=0.0670  Φ_cl=3/5  τ=5.43  rm2σ=+0.628
+  step  56: val=0.9199  Δ=0.0417  Φ_cl=3/5  τ=5.84  rm2σ=+0.581
+  step  64: val=0.6396  Δ=0.0350  Φ_cl=5/5  τ=5.64  rm2σ=+0.694
+  ○ GEO-STOP candidate (1/2): Φ=5/5 τ=5.64 rm2σ=0.694
+  step  72: val=0.5288  Δ=0.0139  Φ_cl=4/5  τ=5.45  rm2σ=+0.576
+  step  80: val=0.3894  Δ=0.0174  Φ_cl=4/5  τ=5.58  rm2σ=+0.625
+  step  88: val=0.2804  Δ=0.0136  Φ_cl=3/5  τ=5.79  rm2σ=+0.735
+  step  96: val=0.2316  Δ=0.0061  Φ_cl=5/5  τ=5.12  rm2σ=+0.696
+  ○ GEO-STOP candidate (1/2): Φ=5/5 τ=5.12 rm2σ=0.696
+  step 104: val=0.1753  Δ=0.0070  Φ_cl=5/5  τ=5.79  rm2σ=+0.650
+  ○ GEO-STOP candidate (2/2): Φ=5/5 τ=5.79 rm2σ=0.650
+  ✓ GEO-STOP confirmed at step 104
+  After 104CE: val=0.1795  Φ_cl=5/5  τ=5.83  rm2σ=+0.650
+  Geo-stop: YES at step 104
+  Saved basin_entry_state.pt (val=0.1795)
+  ○ GEO-STOP: skipping τ-retry, running 30CE fast descent @LR×10
+  After fast descent (30CE@LR×10→2): val=0.1296  Φ_cl=3/5  τ=6.15  rm2σ=+0.546
+
+  Phase 3 total CE: 134  (GEO-STOP)
+━━━ PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton) ━━━━━━━━━
+  Before: val=0.1294  Φ=['π', '1.29', 'π', 'π', '1.02']  Φ_cl=3/5
+  k=0: φ=-3.142 clean — skip
+  k=1: φ=-3.142 clean — skip
+  k=2: φ=+3.142 clean — skip
+  k=3: φ=+3.142 clean — skip
+  k=4: φ=-1.024→0  α=0.7305  σ₁=1.402  val 0.1203 ✓
+  TopoGate time: 0.48s
+  Post-TopoGate: val=0.1310  Φ=['π', '1.29', 'π', 'π', '0']
+  Saved basin_state.pt post-TopoGate (val=0.1310)
+  basin_entry_state.pt saved pre-TopoGate at val≈0.20
+  [Analytic rank-1 Newton TopoGate — no empirical search]
+
+━━━ PHASE 5: ALIGNMENT + LM + K₀ SPLIT DESCENT ━━━━━━━━━
+  K₀ split: w_FF = 3.5×(1.5/τ)^1.5 (τ-power formula)
+  Current τ=6.37  →  w_FF=0.40
+  (τ=1.5→w_FF=3.5 algebraic; τ=5.7→w_FF≈0.47 statistical)
+  cos(g, g_floor) = +0.0400  val=0.1334
+  ✓ POSITIVE ALIGNMENT — applying LM at t=0 (gradient_alignment_fix B)
+  After LM: val=0.1102  ✓
+  K₀ split 25 steps directly after LM
+  τ=6.02 → w_FF=0.43
+  τ=6.02 > 5 → Joint CE (FF dominant, K₀ degenerates)
+  Joint 25CE: val=0.0751
+  After descent: val=0.0751  Φ=['π', '1.47', '0', 'π', '0']
+
+━━━ LANCZOS TERMINAL PROJECTION ━━━━━━━━━━━━━━━━━━━━━━━━
+  k=8 Lanczos, shared basis for 3 solves
+  Targets: val < 0.065 (entropy floor)
+    Solve 1: no gain (val=0.0793)
+  After Lanczos: val=0.0801  [5.5s]
+
+
+=================================================================
+BASELINE: GD-400 CONSTANT LR (side-by-side geometry)
+=================================================================
+   step      val   Φ_cl       τ      cos    Serre_s  chamber
+  -----------------------------------------------------------------
+     50   2.7583      3    0.69  +0.3723     0.0164  MIXED
+    100   1.8213      3    1.07  +0.4455     0.0321  MIXED
+    150   1.1770      1    1.70  +0.4509     0.0705  MIXED
+    200   0.6996      3    2.38  +0.3919     0.0656  MIXED
+    250   0.4088      3    2.81  +0.3965     0.0598  MIXED
+    300   0.2320      4    3.75  +0.2518     0.0586  MIXED
+    350   0.1449      3    3.78  +0.1861     0.0587  MIXED
+    400   0.0896      2    3.69  +0.1609     0.0558  MIXED
+  GD-400 final: val=0.0920  [21s]
+
+=================================================================
+SIDE-BY-SIDE: GEOMETRY-DRIVEN COMPILER vs GD-400
+=================================================================
+
+  COMPILER (geometry-driven, 2 MF rounds):
+  Phase                                   val  geometry
+  ------------------------------------------------------------
+  Spectral E₀                          0.0793
+  MF pump (×2)                        13.8282
+  Basin settle (134 CE@LR×5)           0.1296  Φ_cl=3/5  τ=6.15
+  TopoGate                             0.1310
+  LM at t=0                            0.1102  cos=+0.040
+  Final (159 CE total)                 0.0801
+
+  GD-400 (constant LR, 400 steps):
+    step      val   Φ_cl       τ      cos  note
+  -------------------------------------------------------
+      50   2.7583      3    0.69  +0.3723  
+     100   1.8213      3    1.07  +0.4455  
+     150   1.1770      1    1.70  +0.4509  
+     200   0.6996      3    2.38  +0.3919  
+     250   0.4088      3    2.81  +0.3965  
+     300   0.2320      4    3.75  +0.2518  ← orbit (high τ)
+     350   0.1449      3    3.78  +0.1861  
+     400   0.0896      2    3.69  +0.1609  
+
+  METRIC                             COMPILER        GD-400
+  --------------------------------------------------------
+  Final val                            0.0801        0.0920
+  CE steps (total)                        159           400
+  MF pump rounds                            2             0
+  Compiler advantage                    1.15×          1.0×
+
+  GEOMETRY at convergence:
+  Compiler Φ_clean: 4/5 (orbit established)
+  GD-400  Φ_clean: 2/5  τ=3.69
+
+  GD-400 Stokes signature: dissipative (37 crossings confirmed)
+  Compiler Stokes: adiabatic (19 crossings confirmed)
+
+  CONFIRMED: val=0.062 (mean_field_init B)
+  Compiler GAP vs floor: +0.0181 nats
+  GD-400  GAP vs floor: +0.0300 nats
+
+  MF rounds: 2 (geometry-driven — τ and Φ_clean as sensors)
+  Total compiler CE: 159 adaptive (vs 167 fixed in confirmed pipeline)

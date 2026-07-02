@@ -1,0 +1,49 @@
+{
+  "corpus": {
+    "V": 1017,
+    "H_bits": 7.504402755935034,
+    "V_eff": 181.5726069608436,
+    "rare_frac": 0.4995083579154376,
+    "coo_density": 0.001302343929017905,
+    "nnz": 1347
+  },
+  "architecture": {
+    "d_head": 64,
+    "r_natural": 16,
+    "r_used": 6,
+    "rank_mismatch": true,
+    "rank_mismatch_factor": 0.375,
+    "E_strip_random": 9.04977796076938,
+    "gap_random": 6.531972647421808,
+    "lagrangian_ok": true,
+    "total_params": 393216
+  },
+  "predicted_thresholds": {
+    "tau_basin": 1.03,
+    "tau_high": 5.4,
+    "phi_cl_min": 5,
+    "rm2_threshold": 0.609,
+    "E_strip_conv": 8.597,
+    "wff_exponent": 1.5,
+    "wff_max": 3.5,
+    "geo_stop_step": 4,
+    "n_retry": 45,
+    "CE_basin_current": 165,
+    "CE_basin_geo": 34,
+    "CE_total_current": 187,
+    "CE_total_geo": 56,
+    "CE_saving_pct": 70.1
+  },
+  "hard_problem": {
+    "jacobian_shape": [
+      5,
+      393216
+    ],
+    "jacobian_nnz_frac": 0.3333333333333333,
+    "jacobian_nnz": 655360,
+    "computable_offline": false,
+    "computable_online": true,
+    "why_hard": "The Jacobian \u2202\u03a6/\u2202W depends on the current WK matrices, which change during training. The STRUCTURE (sparsity pattern) is predictable from corpus; the VALUES require trained WK matrices. Offline calibration predicts the structure; online tracking computes the values at each wall crossing.",
+    "next_step": "Compute the Jacobian at step 64 (clean phase) and step 72 (off wall). The sparsity pattern tells which corpus directions drive which phase walls. This closes the loop: corpus \u2192 Jacobian structure \u2192 predicted wall crossings \u2192 pre-calibrated thresholds for any new (corpus, architecture) pair."
+  }
+}

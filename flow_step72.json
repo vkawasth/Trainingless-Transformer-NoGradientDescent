@@ -1,0 +1,413 @@
+{
+  "n_lagrangians": 6,
+  "rank": 6,
+  "ambient": "C^6",
+  "symplectic_form": "Im(Hermitian)",
+  "novikov_cutoff": 9.5,
+  "lagrangians": [
+    {
+      "k": 0,
+      "singular_values": [
+        1.3658629655838013,
+        1.12997305393219,
+        1.0117839574813843,
+        0.9408297538757324,
+        0.9205518364906311,
+        0.9127516150474548
+      ]
+    },
+    {
+      "k": 1,
+      "singular_values": [
+        1.762958288192749,
+        1.2874914407730103,
+        1.0091207027435303,
+        0.9542911052703857,
+        0.9265149235725403,
+        0.9123889207839966
+      ]
+    },
+    {
+      "k": 2,
+      "singular_values": [
+        1.793621301651001,
+        1.3245707750320435,
+        1.0294405221939087,
+        0.9844589233398438,
+        0.9603207111358643,
+        0.9241743683815002
+      ]
+    },
+    {
+      "k": 3,
+      "singular_values": [
+        1.899261236190796,
+        1.4243450164794922,
+        1.0309416055679321,
+        0.9756022095680237,
+        0.9654462337493896,
+        0.9150422811508179
+      ]
+    },
+    {
+      "k": 4,
+      "singular_values": [
+        1.927688479423523,
+        1.3451526165008545,
+        1.1075564622879028,
+        1.0231614112854004,
+        0.9595238566398621,
+        0.9461379647254944
+      ]
+    },
+    {
+      "k": 5,
+      "singular_values": [
+        1.8762706518173218,
+        1.4530786275863647,
+        1.0945461988449097,
+        1.0564544200897217,
+        1.029432773590088,
+        0.9454471468925476
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "k": 0,
+      "k_next": 1,
+      "strip_energy": 8.596837043762207,
+      "principal_angles": [
+        1.3232109546661377,
+        1.3443442583084106,
+        1.4221354722976685,
+        1.468911051750183,
+        1.4831087589263916,
+        1.5551265478134155
+      ],
+      "maslov_index": 0,
+      "generators": [
+        {
+          "index": 0,
+          "angle": 1.3232109546661377,
+          "singular_value": 0.24506372213363647,
+          "energy": 1.3232109546661377,
+          "maslov_grading": 1
+        },
+        {
+          "index": 1,
+          "angle": 1.3443442583084106,
+          "singular_value": 0.22452160716056824,
+          "energy": 1.3443442583084106,
+          "maslov_grading": 1
+        },
+        {
+          "index": 2,
+          "angle": 1.4221354722976685,
+          "singular_value": 0.14811384677886963,
+          "energy": 1.4221354722976685,
+          "maslov_grading": 1
+        },
+        {
+          "index": 3,
+          "angle": 1.468911051750183,
+          "singular_value": 0.10170909017324448,
+          "energy": 1.468911051750183,
+          "maslov_grading": 1
+        },
+        {
+          "index": 4,
+          "angle": 1.4831087589263916,
+          "singular_value": 0.08757522702217102,
+          "energy": 1.4831087589263916,
+          "maslov_grading": 1
+        },
+        {
+          "index": 5,
+          "angle": 1.5551265478134155,
+          "singular_value": 0.015669159591197968,
+          "energy": 1.5551265478134155,
+          "maslov_grading": 1
+        }
+      ],
+      "rigid_morphisms": [],
+      "pearl_complex": {
+        "hf_groups": {
+          "0": "Z"
+        },
+        "floer_spectrum": "S^0",
+        "maslov_shift": 0,
+        "interpretation": "HF*(L_{}, L_{}) = Z in degree 0. Floer spectrum = \u03a3^0 S^0. L_k \u2245 R^r contractible \u2192 pearl complex = Morse complex = Z."
+      }
+    },
+    {
+      "k": 1,
+      "k_next": 2,
+      "strip_energy": 8.786528587341309,
+      "principal_angles": [
+        1.3696792125701904,
+        1.4095609188079834,
+        1.437820315361023,
+        1.4810693264007568,
+        1.5252013206481934,
+        1.5631977319717407
+      ],
+      "maslov_index": 0,
+      "generators": [
+        {
+          "index": 0,
+          "angle": 1.3696792125701904,
+          "singular_value": 0.19976410269737244,
+          "energy": 1.3696792125701904,
+          "maslov_grading": 1
+        },
+        {
+          "index": 1,
+          "angle": 1.4095609188079834,
+          "singular_value": 0.1605376899242401,
+          "energy": 1.4095609188079834,
+          "maslov_grading": 1
+        },
+        {
+          "index": 2,
+          "angle": 1.437820315361023,
+          "singular_value": 0.13258446753025055,
+          "energy": 1.437820315361023,
+          "maslov_grading": 1
+        },
+        {
+          "index": 3,
+          "angle": 1.4810693264007568,
+          "singular_value": 0.0896066427230835,
+          "energy": 1.4810693264007568,
+          "maslov_grading": 1
+        },
+        {
+          "index": 4,
+          "angle": 1.5252013206481934,
+          "singular_value": 0.04557916149497032,
+          "energy": 1.5252013206481934,
+          "maslov_grading": 1
+        },
+        {
+          "index": 5,
+          "angle": 1.5631977319717407,
+          "singular_value": 0.00759852584451437,
+          "energy": 1.5631977319717407,
+          "maslov_grading": 1
+        }
+      ],
+      "rigid_morphisms": [],
+      "pearl_complex": {
+        "hf_groups": {
+          "0": "Z"
+        },
+        "floer_spectrum": "S^0",
+        "maslov_shift": 0,
+        "interpretation": "HF*(L_{}, L_{}) = Z in degree 0. Floer spectrum = \u03a3^0 S^0. L_k \u2245 R^r contractible \u2192 pearl complex = Morse complex = Z."
+      }
+    },
+    {
+      "k": 2,
+      "k_next": 3,
+      "strip_energy": 8.601250648498535,
+      "principal_angles": [
+        1.3268324136734009,
+        1.3971511125564575,
+        1.425300121307373,
+        1.452191948890686,
+        1.477170705795288,
+        1.522605061531067
+      ],
+      "maslov_index": 0,
+      "generators": [
+        {
+          "index": 0,
+          "angle": 1.3268324136734009,
+          "singular_value": 0.2415509968996048,
+          "energy": 1.3268324136734009,
+          "maslov_grading": 1
+        },
+        {
+          "index": 1,
+          "angle": 1.3971511125564575,
+          "singular_value": 0.17277394235134125,
+          "energy": 1.3971511125564575,
+          "maslov_grading": 1
+        },
+        {
+          "index": 2,
+          "angle": 1.425300121307373,
+          "singular_value": 0.14498339593410492,
+          "energy": 1.425300121307373,
+          "maslov_grading": 1
+        },
+        {
+          "index": 3,
+          "angle": 1.452191948890686,
+          "singular_value": 0.11832648515701294,
+          "energy": 1.452191948890686,
+          "maslov_grading": 1
+        },
+        {
+          "index": 4,
+          "angle": 1.477170705795288,
+          "singular_value": 0.09348884969949722,
+          "energy": 1.477170705795288,
+          "maslov_grading": 1
+        },
+        {
+          "index": 5,
+          "angle": 1.522605061531067,
+          "singular_value": 0.04817265644669533,
+          "energy": 1.522605061531067,
+          "maslov_grading": 1
+        }
+      ],
+      "rigid_morphisms": [],
+      "pearl_complex": {
+        "hf_groups": {
+          "0": "Z"
+        },
+        "floer_spectrum": "S^0",
+        "maslov_shift": 0,
+        "interpretation": "HF*(L_{}, L_{}) = Z in degree 0. Floer spectrum = \u03a3^0 S^0. L_k \u2245 R^r contractible \u2192 pearl complex = Morse complex = Z."
+      }
+    },
+    {
+      "k": 3,
+      "k_next": 4,
+      "strip_energy": 8.67603588104248,
+      "principal_angles": [
+        1.358579397201538,
+        1.3791208267211914,
+        1.4511516094207764,
+        1.4551417827606201,
+        1.4840292930603027,
+        1.5480135679244995
+      ],
+      "maslov_index": 0,
+      "generators": [
+        {
+          "index": 0,
+          "angle": 1.358579397201538,
+          "singular_value": 0.21062761545181274,
+          "energy": 1.358579397201538,
+          "maslov_grading": 1
+        },
+        {
+          "index": 1,
+          "angle": 1.3791208267211914,
+          "singular_value": 0.19050398468971252,
+          "energy": 1.3791208267211914,
+          "maslov_grading": 1
+        },
+        {
+          "index": 2,
+          "angle": 1.4511516094207764,
+          "singular_value": 0.11935952305793762,
+          "energy": 1.4511516094207764,
+          "maslov_grading": 1
+        },
+        {
+          "index": 3,
+          "angle": 1.4551417827606201,
+          "singular_value": 0.11539686471223831,
+          "energy": 1.4551417827606201,
+          "maslov_grading": 1
+        },
+        {
+          "index": 4,
+          "angle": 1.4840292930603027,
+          "singular_value": 0.08665823936462402,
+          "energy": 1.4840292930603027,
+          "maslov_grading": 1
+        },
+        {
+          "index": 5,
+          "angle": 1.5480135679244995,
+          "singular_value": 0.022780805826187134,
+          "energy": 1.5480135679244995,
+          "maslov_grading": 1
+        }
+      ],
+      "rigid_morphisms": [],
+      "pearl_complex": {
+        "hf_groups": {
+          "0": "Z"
+        },
+        "floer_spectrum": "S^0",
+        "maslov_shift": 0,
+        "interpretation": "HF*(L_{}, L_{}) = Z in degree 0. Floer spectrum = \u03a3^0 S^0. L_k \u2245 R^r contractible \u2192 pearl complex = Morse complex = Z."
+      }
+    },
+    {
+      "k": 4,
+      "k_next": 5,
+      "strip_energy": 8.747993469238281,
+      "principal_angles": [
+        1.2997238636016846,
+        1.4093083143234253,
+        1.4638983011245728,
+        1.4931066036224365,
+        1.5197327136993408,
+        1.5622246265411377
+      ],
+      "maslov_index": 0,
+      "generators": [
+        {
+          "index": 0,
+          "angle": 1.2997238636016846,
+          "singular_value": 0.2677648961544037,
+          "energy": 1.2997238636016846,
+          "maslov_grading": 1
+        },
+        {
+          "index": 1,
+          "angle": 1.4093083143234253,
+          "singular_value": 0.16078704595565796,
+          "energy": 1.4093083143234253,
+          "maslov_grading": 1
+        },
+        {
+          "index": 2,
+          "angle": 1.4638983011245728,
+          "singular_value": 0.1066945269703865,
+          "energy": 1.4638983011245728,
+          "maslov_grading": 1
+        },
+        {
+          "index": 3,
+          "angle": 1.4931066036224365,
+          "singular_value": 0.077611543238163,
+          "energy": 1.4931066036224365,
+          "maslov_grading": 1
+        },
+        {
+          "index": 4,
+          "angle": 1.5197327136993408,
+          "singular_value": 0.05104139447212219,
+          "energy": 1.5197327136993408,
+          "maslov_grading": 1
+        },
+        {
+          "index": 5,
+          "angle": 1.5622246265411377,
+          "singular_value": 0.008571569807827473,
+          "energy": 1.5622246265411377,
+          "maslov_grading": 1
+        }
+      ],
+      "rigid_morphisms": [],
+      "pearl_complex": {
+        "hf_groups": {
+          "0": "Z"
+        },
+        "floer_spectrum": "S^0",
+        "maslov_shift": 0,
+        "interpretation": "HF*(L_{}, L_{}) = Z in degree 0. Floer spectrum = \u03a3^0 S^0. L_k \u2245 R^r contractible \u2192 pearl complex = Morse complex = Z."
+      }
+    }
+  ],
+  "pontryagin_thom_data": []
+}

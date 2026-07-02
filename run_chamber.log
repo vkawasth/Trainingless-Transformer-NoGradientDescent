@@ -1,0 +1,115 @@
+=================================================================
+GEOMETRY-DRIVEN COMPILER
+Anchored to: Φ_orbit, val_floor=0.062, τ_basin≈2, cos_align>0
+=================================================================
+
+Corpus: VOCAB=1017, nnz=1347
+Measuring floor gradient (geometric anchor)...
+Floor gradient computed: val=0.7251  ||g_floor||=0.2267
+
+Spectral E₀: val=4.4667
+
+━━━ PHASE 1: SADDLE EXIT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  α*=0.000  val=4.4983  sheet=['0', '0', '1.34', '1.96', '2.06']
+  [12.4s]
+
+━━━ PHASE 2: ADAPTIVE MF PUMP ━━━━━━━━━━━━━━━━━━━━━━━━━
+  Stop when: Φ_clean=5/5 (orbit) OR τ rises after falling
+  Geometric anchors: Φ_orbit, τ_basin≈2
+  MF 1: E=5.224 WK=4.964  Φ_cl=2/5  τ=1.80
+  MF 2: E=13.839 WK=14.165  Φ_cl=4/5  τ=1.92
+  ✓ STOP: τ rising (1.24→1.80→1.92) — orbit shattering
+  After MF2: val=13.7150  Φ=['0', 'π', 'π', '2.07', 'π']
+
+━━━ PHASE 3: CHAMBER-AWARE BASIN SETTLE ━━━━━━━━━━━━━━━
+  ker(J) projection + Nesterov wall detection
+  O(log(1/ε)) convergence within chamber (Conjecture 4)
+   step      val        Δ   Φ_cl      τ  walls  proj
+  -------------------------------------------------------
+      8  13.1686   0.1009     4/5   1.89      4  0.10
+     16  10.4099   0.3448     5/5   1.76      6     -
+     24   6.2057   0.5255     4/5   0.69      6  0.12
+     32   5.9799   0.0282     3/5   2.54      8  0.00
+     40   5.4060   0.0717     4/5   0.93     12     -
+     48   5.1031   0.0379     4/5   1.39     13     -
+     56   4.7814   0.0402     4/5   0.74     14  0.01
+     64   4.6257   0.0195     4/5   0.88     19  0.00
+     72   4.5151   0.0138     4/5   1.07     24     -
+     80   4.4021   0.0141     3/5   0.58     28  0.00
+     88   4.1754   0.0283     4/5   0.60     32  0.00
+     96   4.1380   0.0047     4/5   0.32     33  0.02
+    104   4.1147   0.0029     4/5   0.36     36  0.00
+  ✓ Plateau at step 104
+
+  Total wall crossings (chamber-aware): 36
+  Wall events at steps: [2, 3, 6, 7, 12, 14, 28, 32, 34, 37, 38, 39, 43, 50, 58, 60, 62, 63, 64, 65, 66, 68, 69, 71, 74, 75, 78, 80, 82, 83, 86, 88, 92, 98, 103, 104]
+  Compare: 37 dissipative crossings in GD-400
+━━━ PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton) ━━━━━━━━━
+  k=0: φ=-3.142 clean — skip
+  k=1: φ=-0.000 clean — skip
+  k=2: φ=+0.000 clean — skip
+  k=3: φ=+3.142 clean — skip
+  k=4: φ=+1.269→0  α=-0.0043  σ₁=294.405  val 4.1004 ✓
+  WV flip l=0: det=+1 phase_clean=True val→4.1817 ✓
+  WV flip l=1: det=+1 phase_clean=True val→4.1214 ✓
+  WV flip l=2: det=+1 but val 4.1541 no gain vs 4.1214
+  WV flip l=3: det=+1 but val 4.1390 no gain vs 4.1214
+  WV flip l=4: det=+1 but val 4.1389 no gain vs 4.1214
+  WV flip l=5: det=+1 but val 4.2042 no gain vs 4.1214
+  TopoGate time: 1.35s
+  Post-TopoGate: val=4.1688  Φ=['π', '0', '0', 'π', '0']
+  Saved basin_state.pt post-TopoGate (val=4.1688)
+  basin_entry_state.pt saved pre-TopoGate at val≈0.20
+  [Analytic rank-1 Newton TopoGate — no empirical search]
+
+━━━ PHASE 5: ALIGNMENT + LM + K₀ SPLIT DESCENT ━━━━━━━━━
+  K₀ split: w_FF = 3.5×(1.5/τ)^1.5 (τ-power formula)
+  Current τ=0.40  →  w_FF=18.19
+  (τ=1.5→w_FF=3.5 algebraic; τ=5.7→w_FF≈0.47 statistical)
+  cos(g, g_floor) = +0.1270  val=4.1239
+  ✓ POSITIVE ALIGNMENT — applying LM at t=0 (gradient_alignment_fix B)
+  After LM: val=3.9726  ✓
+  K₀ split 25 steps directly after LM
+  τ=0.30 → w_FF=18.19
+  τ=0.30 < 3 → K₀ split (FF underpowered, confirmed formula)
+  K₀ 25CE (w_FF=18.19): val=6.9059
+  After descent: val=6.9059  Φ=['π', '1.63', 'π', '0', 'π']
+
+━━━ LANCZOS TERMINAL PROJECTION ━━━━━━━━━━━━━━━━━━━━━━━━
+  k=8 Lanczos, shared basis for 3 solves
+  Targets: val < 0.065 (entropy floor)
+    Solve 1: 6.8861→6.8390  Δ=0.0471
+    Solve 2: 6.8732→6.8248  Δ=0.0484
+    Solve 3: 6.8347→6.8089  Δ=0.0257
+  After Lanczos: val=6.7976  [8.5s]
+
+
+=================================================================
+BASELINE: GD-400 CONSTANT LR (side-by-side geometry)
+=================================================================
+   step      val   Φ_cl       τ      cos    Serre_s  chamber
+  -----------------------------------------------------------------
+     50   2.7606      4    0.70  +0.3526     0.0250  ORBIT
+    100   1.8192      3    1.08  +0.4313     0.0429  MIXED
+    150   1.1742      3    1.74  +0.4080     0.0647  MIXED
+    200   0.6969      3    2.15  +0.3988     0.0598  MIXED
+    250   0.4064      3    2.62  +0.3564     0.0591  MIXED
+    300   0.2314      4    3.54  +0.2485     0.0602  MIXED
+    350   0.1467      3    3.92  +0.1704     0.0605  MIXED
+    400   0.0886      3    3.96  +0.1671     0.0556  MIXED
+  GD-400 final: val=0.0893  [20s]
+
+=================================================================
+SIDE-BY-SIDE: GEOMETRY-DRIVEN COMPILER vs GD-400
+=================================================================
+
+  COMPILER (geometry-driven, 2 MF rounds):
+  Phase                                   val  geometry
+  ------------------------------------------------------------
+  Spectral E₀                          6.8347
+  MF pump (×2)                        13.7150
+Traceback (most recent call last):
+  File "/Users/vaw1/Downloads/OGB/connectome/phaseTransition_phaseTransition_complex/FukayaAUComplex/longChainHllucinationp-adic/j-holomorphic-Fukaya/compiler_analytic_topogate.py", line 1002, in <module>
+    print(f"  {'Basin settle ({} CE@LR×5)'.format(step_basin if 'step_basin' in dir() else '~100'):<35} {v_basin:>7.4f}  Φ_cl={pc_b}/5  τ={tau_b:.2f}")
+                                                                                                                               ^^^^
+NameError: name 'pc_b' is not defined

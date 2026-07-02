@@ -1,0 +1,132 @@
+=================================================================
+GEOMETRY-DRIVEN COMPILER
+Anchored to: Φ_orbit, val_floor=0.062, τ_basin≈2, cos_align>0
+=================================================================
+
+Corpus: VOCAB=1017, nnz=1347
+Measuring floor gradient (geometric anchor)...
+Floor gradient computed: val=0.7212  ||g_floor||=0.2122
+
+Spectral E₀: val=4.4639
+
+━━━ PHASE 1: SADDLE EXIT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  α*=0.000  val=4.4984  sheet=['0', '0', '1.34', '1.96', '2.06']
+  [31.5s]
+
+━━━ PHASE 2: ADAPTIVE MF PUMP ━━━━━━━━━━━━━━━━━━━━━━━━━
+  Stop when: Φ_clean=5/5 (orbit) OR τ rises after falling
+  Geometric anchors: Φ_orbit, τ_basin≈2
+  MF 1: E=5.214 WK=4.948  Φ_cl=3/5  τ=1.86
+  MF 2: E=13.827 WK=14.120  Φ_cl=4/5  τ=1.96
+  ✓ STOP: τ rising (1.26→1.86→1.96) — orbit shattering
+  After MF2: val=13.7116  Φ=['π', '0', '1.26', '0', 'π']
+
+━━━ PHASE 3: BASIN SETTLE (GEO-STOP EXPERIMENT) ━━━━━━━━
+  Geometric stopping: Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (×2 checks)
+  Hypothesis: orbit geometry converges before loss plateaus
+  step   8: val=9.5328  Δ=0.5224  Φ_cl=2/5  τ=4.40  rm2σ=+0.475
+  step  16: val=4.9354  Δ=0.5747  Φ_cl=4/5  τ=4.76  rm2σ=+0.656
+  step  24: val=3.5492  Δ=0.1733  Φ_cl=3/5  τ=4.43  rm2σ=+0.465
+  step  32: val=2.7439  Δ=0.1007  Φ_cl=2/5  τ=7.35  rm2σ=+0.671
+  step  40: val=1.8950  Δ=0.1061  Φ_cl=3/5  τ=6.10  rm2σ=+0.649
+  step  48: val=1.3478  Δ=0.0684  Φ_cl=4/5  τ=6.28  rm2σ=+0.685
+  ○ GEO-STOP candidate (1/2): Φ=4/5 τ=6.28 rm2σ=0.685
+  step  56: val=0.9408  Δ=0.0509  Φ_cl=3/5  τ=5.80  rm2σ=+0.700
+  step  64: val=0.6601  Δ=0.0351  Φ_cl=4/5  τ=5.43  rm2σ=+0.609
+  step  72: val=0.5204  Δ=0.0175  Φ_cl=5/5  τ=5.83  rm2σ=+0.768
+  ○ GEO-STOP candidate (1/2): Φ=5/5 τ=5.83 rm2σ=0.768
+  step  80: val=0.4193  Δ=0.0126  Φ_cl=3/5  τ=5.68  rm2σ=+0.629
+  step  88: val=0.2925  Δ=0.0159  Φ_cl=4/5  τ=5.68  rm2σ=+0.693
+  ○ GEO-STOP candidate (1/2): Φ=4/5 τ=5.68 rm2σ=0.693
+  step  96: val=0.2376  Δ=0.0069  Φ_cl=3/5  τ=5.38  rm2σ=+0.708
+  step 104: val=0.1721  Δ=0.0082  Φ_cl=4/5  τ=6.04  rm2σ=+0.539
+  step 112: val=0.1683  Δ=0.0005  Φ_cl=3/5  τ=5.95  rm2σ=+0.590
+  ✓ Plateau (loss)
+  After 112CE: val=0.1650  Φ_cl=3/5  τ=6.05  rm2σ=+0.590
+  Geo-stop: NO (loss plateau)
+  Saved basin_entry_state.pt (val=0.1650)
+  ⚠ HIGH τ=6.05  Φ_cl=3/5 → τ-retry 50CE@LR×2
+  After τ-retry (50CE@LR×2): val=0.0586  Φ_cl=5/5  τ=5.24
+
+  Phase 3 total CE: 162  (LOSS-PLATEAU)
+━━━ PHASE 4: TOPOGATE (geometry-checked) ━━━━━━━━━━━━━━
+  Before: val=0.0612  Φ=['0', 'π', 'π', '0', 'π']  Φ_cl=5/5
+  ✓ TopoGate [1, 4]: val 0.0612→0.0507  Φ_cl 5→5/5  score=0.0104
+  Post-TopoGate: val=0.0588  Φ=['0', 'π', 'π', '0', 'π']
+  Saved basin_state.pt post-TopoGate (val=0.0588)
+  basin_entry_state.pt saved pre-TopoGate at val≈0.20
+
+━━━ PHASE 5: ALIGNMENT + LM + K₀ SPLIT DESCENT ━━━━━━━━━
+  K₀ split: w_FF = 3.5×(1.5/τ)^1.5 (τ-power formula)
+  Current τ=5.38  →  w_FF=0.52
+  (τ=1.5→w_FF=3.5 algebraic; τ=5.7→w_FF≈0.47 statistical)
+  cos(g, g_floor) = +0.0334  val=0.0757
+  val=0.0757 < 0.10 — skipping LM (already near floor)
+  K₀ split 25 steps directly after LM
+  τ=5.11 → w_FF=0.56
+  τ=5.11 > 5 → Joint CE (FF dominant, K₀ degenerates)
+  Joint 25CE: val=0.0527
+  After descent: val=0.0527  Φ=['π', 'π', 'π', '0', '0']
+
+
+=================================================================
+BASELINE: GD-400 CONSTANT LR (side-by-side geometry)
+=================================================================
+   step      val   Φ_cl       τ      cos    Serre_s  chamber
+  -----------------------------------------------------------------
+     50   2.7600      3    0.69  +0.3770     0.0155  MIXED
+    100   1.8209      4    1.05  +0.4552     0.0394  ORBIT
+    150   1.1765      5    1.68  +0.4542     0.0704  ORBIT
+    200   0.6971      5    2.19  +0.4270     0.0604  ORBIT
+    250   0.4094      3    2.93  +0.3740     0.0541  MIXED
+    300   0.2315      1    3.56  +0.2771     0.0511  MIXED
+    350   0.1479      2    3.94  +0.1846     0.0510  MIXED
+    400   0.0934      1    3.84  +0.1510     0.0478  MIXED
+  GD-400 final: val=0.0951  [26s]
+
+=================================================================
+SIDE-BY-SIDE: GEOMETRY-DRIVEN COMPILER vs GD-400
+=================================================================
+
+  COMPILER (geometry-driven, 2 MF rounds):
+  Phase                                   val  geometry
+  ------------------------------------------------------------
+  Spectral E₀                          4.4639
+  MF pump (×2)                        13.7116
+  Basin settle (162 CE@LR×5)           0.0586  Φ_cl=5/5  τ=5.24
+  TopoGate                             0.0588
+  LM at t=0                            0.0757  cos=+0.033
+  Final (187 CE total)                 0.0527
+
+  GD-400 (constant LR, 400 steps):
+    step      val   Φ_cl       τ      cos  note
+  -------------------------------------------------------
+      50   2.7600      3    0.69  +0.3770  
+     100   1.8209      4    1.05  +0.4552  ← ORBIT
+     150   1.1765      5    1.68  +0.4542  ← ORBIT
+     200   0.6971      5    2.19  +0.4270  ← ORBIT
+     250   0.4094      3    2.93  +0.3740  
+     300   0.2315      1    3.56  +0.2771  
+     350   0.1479      2    3.94  +0.1846  
+     400   0.0934      1    3.84  +0.1510  
+
+  METRIC                             COMPILER        GD-400
+  --------------------------------------------------------
+  Final val                            0.0527        0.0951
+  CE steps (total)                        187           400
+  MF pump rounds                            2             0
+  Compiler advantage                    1.80×          1.0×
+
+  GEOMETRY at convergence:
+  Compiler Φ_clean: 5/5 (orbit established)
+  GD-400  Φ_clean: 1/5  τ=3.84
+
+  GD-400 Stokes signature: dissipative (37 crossings confirmed)
+  Compiler Stokes: adiabatic (19 crossings confirmed)
+
+  CONFIRMED: val=0.062 (mean_field_init B)
+  Compiler GAP vs floor: -0.0093 nats
+  GD-400  GAP vs floor: +0.0331 nats
+
+  MF rounds: 2 (geometry-driven — τ and Φ_clean as sensors)
+  Total compiler CE: 187 adaptive (vs 167 fixed in confirmed pipeline)
