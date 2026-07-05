@@ -37,6 +37,11 @@ python -m pytest tests/test_compiler.py -v
 | Compiler + 167 CE | 0.095 | ✓ |
 | Teacher (24L, 300 CE) | 0.250 | reference |
 
+Snappers Lemma based Jumps instead of slowly walking via Gradient Descent
+
+<img width="841" height="1873" alt="Screenshot 2026-07-05 at 4 16 02 PM" src="https://github.com/user-attachments/assets/79873d09-8e4b-4e33-bf10-5cae59246bdc" />
+
+
 Run : Uses only Geometry to decide phases --  compiler_geometric.py 
 
 <img width="370" height="702" alt="Screenshot 2026-06-22 at 6 32 03 PM" src="https://github.com/user-attachments/assets/776af35f-a7e7-44aa-97fa-977c6fa488c3" />
