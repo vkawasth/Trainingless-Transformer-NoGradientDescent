@@ -1,0 +1,148 @@
+=================================================================
+GEOMETRY-DRIVEN COMPILER
+Anchored to: Φ_orbit, val_floor=0.062, τ_basin≈2, cos_align>0
+=================================================================
+
+Corpus: VOCAB=1017, nnz=1347
+Measuring floor gradient (geometric anchor)...
+Floor gradient computed: val=0.7185  ||g_floor||=0.2336
+
+Spectral E₀: val=4.4646
+
+━━━ PHASE 1: SADDLE EXIT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  α*=0.000  val=4.4996  sheet=['0', '0', '1.34', '1.96', '2.06']
+  [15.3s]
+
+━━━ PHASE 2: ADAPTIVE MF PUMP ━━━━━━━━━━━━━━━━━━━━━━━━━
+  Stop when: Φ_clean=5/5 (orbit) OR τ rises after falling
+  Geometric anchors: Φ_orbit, τ_basin≈2
+  MF 1: E=5.233 WK=4.956  Φ_cl=4/5  τ=1.83
+  MF 2: E=13.918 WK=14.180  Φ_cl=3/5  τ=1.94
+  ✓ STOP: τ rising (1.26→1.83→1.94) — orbit shattering
+  After MF2: val=13.7418  Φ=['0', '0.67', 'π', '2.01', 'π']
+
+━━━ PHASE 3: CHAMBER-AWARE BASIN SETTLE ━━━━━━━━━━━━━━━
+  ker(J) projection + Nesterov wall detection
+  O(log(1/ε)) convergence within chamber (Conjecture 4)
+   step      val        Δ   Φ_cl      τ  walls  proj
+  -------------------------------------------------------
+      8  13.1549   0.1027     3/5   1.88      2  1.47
+     16  10.2461   0.3636     3/5   1.82      3     -
+     24   6.3579   0.4860     3/5   0.85      4     -
+     32   5.8222   0.0670     4/5   2.03      5     -
+     40   5.3763   0.0557     5/5   1.09      5  0.10
+     48   5.1403   0.0295     2/5   1.72      6     -
+     56   4.7863   0.0442     2/5   0.97      7     -
+     64   4.6206   0.0207     3/5   1.09     14  0.00
+     72   4.4821   0.0173     4/5   0.87     18  0.00
+     80   4.3666   0.0144     5/5   0.63     21  0.03
+     88   4.1480   0.0273     4/5   0.52     23  0.00
+     96   4.1497   0.0002     4/5   0.39     28     -
+  ✓ Plateau (stuck) at step 96
+
+  Total wall crossings (chamber-aware): 28
+  Wall events at steps: [6, 7, 11, 18, 27, 43, 54, 57, 58, 59, 60, 61, 62, 64, 69, 70, 71, 72, 74, 75, 77, 83, 88, 90, 91, 93, 94, 95]
+  Compare: 37 dissipative crossings in GD-400
+  Saved basin_entry_state.pt (val=4.1481)
+  Φ_cl=4/5  τ=0.48  rm2σ=+0.573
+  Wall crossings (chamber-aware): 28
+  Phase 3 total CE: 96  (CHAMBER-AWARE)
+━━━ PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton) ━━━━━━━━━
+  k=0: φ=-3.142 clean — skip
+  k=1: φ=+2.415  α=-0.0131  val 4.1689 (no gain vs 4.1083)
+  k=2: φ=-0.000 clean — skip
+  k=3: φ=+3.142 clean — skip
+  k=4: φ=-0.000 clean — skip
+  WV flip l=0: skip (det=-1)
+  WV flip l=1: skip (det=-1)
+  WV flip l=2: skip (det=-1)
+  WV flip l=3: skip (det=-1)
+  WV flip l=4: det=+1 phase_clean=True val→4.2020 ✓
+  WV flip l=5: skip (det=-1)
+  TopoGate time: 1.65s
+  Post-TopoGate: val=4.1717  Φ=['π', '2.42', '0', 'π', '0']
+  Saved basin_state.pt post-TopoGate (val=4.1717)
+  basin_entry_state.pt saved pre-TopoGate at val≈0.20
+  [Analytic rank-1 Newton TopoGate — no empirical search]
+
+━━━ PHASE 5: ALIGNMENT + LM + K₀ SPLIT DESCENT ━━━━━━━━━
+  K₀ split: w_FF = 3.5×(1.5/τ)^1.5 (τ-power formula)
+  Current τ=0.41  →  w_FF=18.19
+  (τ=1.5→w_FF=3.5 algebraic; τ=5.7→w_FF≈0.47 statistical)
+  cos(g, g_floor) = +0.0913  val=4.1747
+  ✓ POSITIVE ALIGNMENT — applying LM at t=0 (gradient_alignment_fix B)
+  After LM: val=3.9342  ✓
+  K₀ split 25 steps directly after LM
+  τ=0.37 → w_FF=18.19
+  τ=0.37 < 3 → K₀ split (FF underpowered, confirmed formula)
+  K₀ 25CE (w_FF=18.19): val=7.0228
+  After descent: val=7.0228  Φ=['0', 'π', '2.45', '2.23', '0.35']
+
+━━━ LANCZOS TERMINAL PROJECTION ━━━━━━━━━━━━━━━━━━━━━━━━
+  k=8 Lanczos, shared basis for 3 solves
+  Targets: val < 0.065 (entropy floor)
+    Solve 1: no gain (val=6.9619)
+  After Lanczos: val=7.0328  [5.6s]
+
+
+=================================================================
+BASELINE: GD-400 CONSTANT LR (side-by-side geometry)
+=================================================================
+   step      val   Φ_cl       τ      cos    Serre_s  chamber
+  -----------------------------------------------------------------
+     50   2.7642      4    0.67  +0.3279     0.0197  ORBIT
+    100   1.8216      2    1.06  +0.3904     0.0403  MIXED
+    150   1.1762      2    1.70  +0.4072     0.0651  MIXED
+    200   0.6989      2    2.12  +0.3958     0.0691  MIXED
+    250   0.4091      3    2.76  +0.3842     0.0648  MIXED
+    300   0.2318      5    3.47  +0.2450     0.0651  MIXED
+    350   0.1474      5    4.07  +0.1744     0.0684  MIXED
+    400   0.0894      4    3.69  +0.1658     0.0665  MIXED
+  GD-400 final: val=0.0914  [27s]
+
+=================================================================
+SIDE-BY-SIDE: GEOMETRY-DRIVEN COMPILER vs GD-400
+=================================================================
+
+  COMPILER (geometry-driven, 2 MF rounds):
+  Phase                                   val  geometry
+  ------------------------------------------------------------
+  Spectral E₀                          6.9619
+  MF pump (×2)                        13.7418
+  Basin settle (96 CE@LR×5)            4.1481  Φ_cl=4/5  τ=0.48
+  TopoGate                             4.1717
+  LM at t=0                            3.9342  cos=+0.091
+  Final (121 CE total)                 7.0328
+
+  GD-400 (constant LR, 400 steps):
+    step      val   Φ_cl       τ      cos  note
+  -------------------------------------------------------
+      50   2.7642      4    0.67  +0.3279  ← ORBIT
+     100   1.8216      2    1.06  +0.3904  
+     150   1.1762      2    1.70  +0.4072  
+     200   0.6989      2    2.12  +0.3958  
+     250   0.4091      3    2.76  +0.3842  
+     300   0.2318      5    3.47  +0.2450  ← orbit (high τ)
+     350   0.1474      5    4.07  +0.1744  ← orbit (high τ)
+     400   0.0894      4    3.69  +0.1658  ← orbit (high τ)
+
+  METRIC                             COMPILER        GD-400
+  --------------------------------------------------------
+  Final val                            7.0328        0.0914
+  CE steps (total)                        121           400
+  MF pump rounds                            2             0
+  Compiler advantage                    0.01×          1.0×
+
+  GEOMETRY at convergence:
+  Compiler Φ_clean: 2/5 (orbit established)
+  GD-400  Φ_clean: 4/5  τ=3.69
+
+  GD-400 Stokes signature: dissipative (37 crossings confirmed)
+  Compiler Stokes: adiabatic (19 crossings confirmed)
+
+  CONFIRMED: val=0.062 (mean_field_init B)
+  Compiler GAP vs floor: +6.9708 nats
+  GD-400  GAP vs floor: +0.0294 nats
+
+  MF rounds: 2 (geometry-driven — τ and Φ_clean as sensors)
+  Total compiler CE: 121 adaptive (vs 167 fixed in confirmed pipeline)

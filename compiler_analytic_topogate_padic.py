@@ -31,7 +31,6 @@ import numpy as np
 import scipy.sparse as sp, scipy.sparse.linalg as spla
 import copy
 import torch, torch.nn as nn, torch.nn.functional as F
-from chamber_aware_optimizer import run_phase3_chamber_aware
 
 D=256; N_HEADS=4; N_STU=6; BATCH=8; SEQ=64; LR=3e-4
 ETA_MF=0.01; N_SUB=200
@@ -305,6 +304,21 @@ v_mf=eval_val(model); n_mf_used=mf_r
 print(f"  After MF{n_mf_used}: val={v_mf:.4f}  Φ={sheet_angles(model)}")
 print()
 
+# Add to compiler after MF pump, replace Phase 3 with:
+print("━━━ FALSIFICATION TEST: LR×50 ━━━━━━━━━━━━━━━━━━━━━━")
+opt_fast = torch.optim.AdamW(model.parameters(), lr=LR*50,
+                              betas=(0.9,0.95), weight_decay=0.1)
+for step in range(1, 51):
+    model.train(); x,y=get_batch(); _,l=model(x,y)
+    opt_fast.zero_grad(); l.backward()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    opt_fast.step()
+    if step % 4 == 0:
+        v = eval_val(model, n=8)
+        pc = phi_clean(model); tau = gluing_defect(model, n=4)
+        print(f"  step {step:3d}: val={v:.4f}  Φ_cl={pc}/5  τ={tau:.2f}")
+        if v < 0.20: print(f"  ✓ Converged at step {step}"); break
+
 """
 PATCH: compiler_geometric_geo_stop.py
 Replace Phase 3 basin settle block in compiler_geometric.py with this version.
@@ -364,48 +378,17 @@ def compute_rm2_sigma_inline(model, rank=6):
 
     return float(np.mean(rm2_vals)) if rm2_vals else 0.0
 
-step_basin, v_basin, n_walls = run_phase3_chamber_aware(
-    model, get_batch, eval_val, phi_clean, gluing_defect, LR)
 
-# Set variables needed by downstream phases
-pc_b   = phi_clean(model)
-tau_b  = gluing_defect(model)
-rm2_b  = compute_rm2_sigma_inline(model)
-geo_stopped = False  # chamber-aware doesn't use geo_stop flag
-
-# Save basin entry state
-torch.save(model.state_dict(), 'basin_entry_state.pt')
-print(f"  Saved basin_entry_state.pt (val={v_basin:.4f})")
-print(f"  Φ_cl={pc_b}/5  τ={tau_b:.2f}  rm2σ={rm2_b:+.3f}")
-print(f"  Wall crossings (chamber-aware): {n_walls}")
-print(f"  Phase 3 total CE: {step_basin}  (CHAMBER-AWARE)")
-
-"""
 # ── PHASE 3: BASIN SETTLE (geometric early stopping) ─────────────────────────
 # EXPERIMENT: replace loss-plateau stop with geometric convergence stop
 # Hypothesis: stopping at Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (2 consecutive)
 # saves ~70-80 CE steps vs loss-plateau at step 120
 
-print("━━━ PHASE 3: BASIN SETTLE (ADAPTIVE LR + GEO-STOP) ━━━━━━")
+print("━━━ PHASE 3: BASIN SETTLE (ADAPTIVE LR) ━━━━━━━━━━━━━━━")
+print("  LR schedule: LR×10 (steps 1-24) → LR×5 (steps 25-96) → LR×2 (steps 97+)")
+print("  Warm restart at τ spike. Geo-stop: Φ≥4 + rm2σ≥0.65 (×2 checks)")
 
-# Basin detector: decide LR schedule before committing to 120 CE
-try:
-    from basin_detector import detect_basin
-    print("  Running basin detector...")
-    basin_type, lr_mult, confidence, _ = detect_basin(
-        model, get_batch, eval_val, LR,
-        rank=6, D=D, N_heads=N_HEADS,
-        phi_clean_fn=phi_clean,
-        gluing_defect_fn=gluing_defect,
-        use_probe=True)
-    print(f"  Basin: {basin_type} (conf={confidence:.2f}) → LR×{lr_mult}")
-except Exception as _be:
-    print(f"  [basin_detector failed: {_be}] — manual check")
-    _pc = phi_clean(model); _tau = gluing_defect(model)
-    lr_mult = 50 if (_pc >= 3 and _tau > 1.5) else 5
-    print(f"  Manual: Φ_cl={_pc}/5 τ={_tau:.2f} → LR×{lr_mult}")
-
-opt_b = torch.optim.AdamW(model.parameters(), lr=LR*lr_mult,
+opt_b = torch.optim.AdamW(model.parameters(), lr=LR*10,
                            betas=(0.9,0.95), weight_decay=0.1)
 val_history = [v_mf]
 step = 0
@@ -414,10 +397,19 @@ geo_stopped = False
 geo_stop_step = None
 
 for step in range(1, 151):
-    # Warmup first 10 steps
+    # Adaptive LR schedule: moderate early descent preserving orbit
     if step <= 10:
         for pg in opt_b.param_groups:
-            pg['lr'] = LR*5*step/10
+            pg['lr'] = LR*7*step/10    # warmup to LR×7 (not LR×10)
+    elif step <= 24:
+        for pg in opt_b.param_groups:
+            pg['lr'] = LR*7            # moderate early (was LR×10, too aggressive)
+    elif step <= 96:
+        for pg in opt_b.param_groups:
+            pg['lr'] = LR*5            # standard basin descent
+    else:
+        for pg in opt_b.param_groups:
+            pg['lr'] = LR*2            # gentle final approach
     model.train(); x, y = get_batch(); _, l = model(x, y)
     opt_b.zero_grad(); l.backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -433,6 +425,12 @@ for step in range(1, 151):
 
         print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  "
               f"Φ_cl={pc}/5  τ={tau:.2f}  rm2σ={rm2:+.3f}")
+
+        # Warm restart at τ spike (natural at step ~24, orbit self-heals)
+        if tau > 7.0 and step < 40 and delta > 0.05:
+            print(f"  ↺ τ spike detected (τ={tau:.2f}) — warm restart @LR×5")
+            opt_b = torch.optim.AdamW(model.parameters(), lr=LR*5,
+                                       betas=(0.9,0.95), weight_decay=0.1)
 
         # Original stopping conditions (kept as fallback)
         if delta < 0.003:
@@ -478,6 +476,29 @@ if pc_b < 3:
 
 torch.save(model.state_dict(), 'basin_entry_state.pt')
 print(f"  Saved basin_entry_state.pt (val={v_basin:.4f})")
+
+# ── CONJECTURE 4 VERIFICATION — run HERE before τ-retry ─────────────────────
+# At this point: val≈0.15-0.20, some phases off-wall, τ≈5-6
+# This is the correct checkpoint: J≠0, projection has something to do
+try:
+    from conjecture4_verification import run_verification
+    print(f"\n  [Pre-τ-retry state: val={v_basin:.4f} Φ_cl={pc_b}/5 τ={tau_b:.2f}]")
+    print(f"  Running A/B test from this checkpoint (phases may be off-wall)")
+    run_verification(model, get_batch, eval_val, LR, rank=6, n_steps=60)
+    # Restore state after verification (verification deepcopies, so model is in run-B state)
+    # Re-load to ensure τ-retry starts from correct state
+    ckpt_state = torch.load('basin_entry_state.pt', map_location='cpu',
+                            weights_only=False)
+    if isinstance(ckpt_state, dict) and not any('blocks' in k for k in ckpt_state):
+        model.load_state_dict(ckpt_state.get('state_dict', ckpt_state))
+    else:
+        model.load_state_dict(ckpt_state)
+    v_basin = eval_val(model); pc_b = phi_clean(model); tau_b = gluing_defect(model)
+    print(f"  [State restored for τ-retry: val={v_basin:.4f} Φ_cl={pc_b}/5 τ={tau_b:.2f}]")
+except Exception as _e:
+    print(f'  [conjecture4 skipped: {_e}]')
+# ─────────────────────────────────────────────────────────────────────────────
+
 
 # ── τ-retry: SKIP if geo-stopped, run fast descent instead ───────────────────
 if geo_stopped:
@@ -525,73 +546,7 @@ print()
 # Compare: step_basin (new) vs ~170 (original with τ-retry)
 print(f"  Phase 3 total CE: {step_basin}  "
       f"({'GEO-STOP' if geo_stopped else 'LOSS-PLATEAU'})")
-"""
 
-"""
-# ── PHASE 3: BASIN SETTLE (flat LR×5, no τ-spike protection) ─
-# τ-spike protection REMOVED: causes LR cascade (run 14: 241CE, val=0.097)
-# τ spike at step 24 is a natural landscape feature — orbit self-heals by step 32
-# Best run (run 13: 187CE, val=0.061) had NO τ-spike interference: LR×5 throughout
-# Only plateau and val<0.15 stop conditions remain
-print("━━━ PHASE 3: BASIN SETTLE (LR×5 flat) ━━━━━━━━━━━━━━━━━━")
-print("  LR×5 flat throughout — τ spike at step 24 is natural, orbit self-heals")
-
-opt_b=torch.optim.AdamW(model.parameters(),lr=LR*5,betas=(0.9,0.95),weight_decay=0.1)
-val_history=[v_mf]; step=0
-
-for step in range(1, 151):
-    if step <= 10:
-        for pg in opt_b.param_groups: pg['lr'] = LR*lr_mult*step/10
-    elif step == 9:  # after burst, switch to LR×5
-        if lr_mult > 10:
-            for pg in opt_b.param_groups: pg['lr'] = LR*5
-    model.train(); x,y=get_batch(); _,l=model(x,y)
-    opt_b.zero_grad(); l.backward()
-    torch.nn.utils.clip_grad_norm_(model.parameters(),1.0); opt_b.step()
-
-    if step % 8 == 0:
-        v=eval_val(model,n=8); delta=abs(v-val_history[-1])/8
-        val_history.append(v)
-        pc=phi_clean(model); tau=gluing_defect(model,n=4)
-        print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  Φ_cl={pc}/5  τ={tau:.2f}")
-
-        if delta < 0.003: print(f"  ✓ Plateau"); break
-        if v < 0.15: print(f"  ✓ val={v:.4f} < 0.15"); break
-
-step_basin=step
-v_basin=eval_val(model); pc_b=phi_clean(model); tau_b=gluing_defect(model)
-print(f"  After {step}CE: val={v_basin:.4f}  Φ_cl={pc_b}/5  τ={tau_b:.2f}")
-
-if pc_b < 3:
-    print(f"  ⚠ Φ_cl={pc_b}/5 — extending 16CE")
-    for _ in range(16):
-        model.train(); x,y=get_batch(); _,l=model(x,y)
-        opt_b.zero_grad(); l.backward()
-        torch.nn.utils.clip_grad_norm_(model.parameters(),1.0); opt_b.step()
-    v_basin=eval_val(model); pc_b=phi_clean(model); tau_b=gluing_defect(model)
-    step_basin+=16; print(f"  After extension: val={v_basin:.4f}  Φ_cl={pc_b}/5")
-
-# Save basin entry state BEFORE τ-retry (val≈0.15-0.20)
-torch.save(model.state_dict(),'basin_entry_state.pt')
-print(f"  Saved basin_entry_state.pt (val={v_basin:.4f})")
-
-# τ-retry: if τ>5, drain energy with 50CE@LR×2
-if tau_b > 5:
-    # Φ_cl determines retry depth: perfect orbit needs fewer steps
-    n_retry = 25 if pc_b >= 5 else 75 if pc_b <= 2 else 50
-    print(f"  ⚠ HIGH τ={tau_b:.2f}  Φ_cl={pc_b}/5 → τ-retry {n_retry}CE@LR×2")
-    opt_retry=torch.optim.AdamW(model.parameters(),lr=LR*2,betas=(0.9,0.95),weight_decay=0.1)
-    for _s in range(n_retry):
-        lr_s=LR*2*0.5*(1+math.cos(math.pi*_s/n_retry))
-        for pg in opt_retry.param_groups: pg['lr']=lr_s
-        model.train(); x,y=get_batch(); _,l=model(x,y)
-        opt_retry.zero_grad(); l.backward()
-        torch.nn.utils.clip_grad_norm_(model.parameters(),1.0); opt_retry.step()
-    v_basin=eval_val(model); pc_b=phi_clean(model); tau_b=gluing_defect(model)
-    step_basin+=n_retry
-    print(f"  After τ-retry ({n_retry}CE@LR×2): val={v_basin:.4f}  Φ_cl={pc_b}/5  τ={tau_b:.2f}")
-print()
-"""
 
 # ── PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton step) ─────────
 print("━━━ PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton) ━━━━━━━━━")

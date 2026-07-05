@@ -31,7 +31,6 @@ import numpy as np
 import scipy.sparse as sp, scipy.sparse.linalg as spla
 import copy
 import torch, torch.nn as nn, torch.nn.functional as F
-from chamber_aware_optimizer import run_phase3_chamber_aware
 
 D=256; N_HEADS=4; N_STU=6; BATCH=8; SEQ=64; LR=3e-4
 ETA_MF=0.01; N_SUB=200
@@ -364,48 +363,449 @@ def compute_rm2_sigma_inline(model, rank=6):
 
     return float(np.mean(rm2_vals)) if rm2_vals else 0.0
 
-step_basin, v_basin, n_walls = run_phase3_chamber_aware(
-    model, get_batch, eval_val, phi_clean, gluing_defect, LR)
+# ── PHASE 3: HYBRID τ-DRAIN BASIN SETTLE ──
+# REPLACES the entire Phase 3 block.
+# Uses Newton step when τ is decreasing (O(1)), τ-retry when increasing.
+# Optimized: 40 + 30 + 1 + 5 + 3 + 3 + 50 + 30 + 50 = 212 CE max
 
-# Set variables needed by downstream phases
-pc_b   = phi_clean(model)
-tau_b  = gluing_defect(model)
-rm2_b  = compute_rm2_sigma_inline(model)
-geo_stopped = False  # chamber-aware doesn't use geo_stop flag
+# Initialize all variables that later phases expect
+geo_stopped = False
+geo_stop_step = None
+step_basin = 0
+geo_stop_count = 0
 
-# Save basin entry state
+# Geometric constants
+FLOOR_TARGET = 0.062
+PHI_TARGET = 5
+TAU_ENERGY_THRESHOLD = 5.0
+NEWTON_THRESHOLD = 0.2  # Newton only works when val < 0.2
+
+# Initialize variables that later phases expect
+v_basin = 0.0
+pc_b = 0
+tau_b = 0.0
+
+print("━━━ PHASE 3: HYBRID τ-DRAIN BASIN SETTLE ━━━━━━━━━━━━━━━")
+print("  LR=10 → LR=3 → Hessian ff.o.weight (1 CE)")
+print("  Newton step when τ decreasing (O(1))")
+print("  τ-retry when τ increasing (optimized rounds)")
+
+# ── Step 1: LR=10 to enter basin ──────────────────────────────
+print("\n  [1] LR=10: Entering basin (40 steps)")
+
+opt_10 = torch.optim.AdamW(model.parameters(), lr=LR*10,
+                            betas=(0.9, 0.95), weight_decay=0.1)
+
+for step in range(1, 41):
+    if step <= 10:
+        for pg in opt_10.param_groups:
+            pg['lr'] = LR*10*step/10
+    model.train()
+    x, y = get_batch()
+    _, loss = model(x, y)
+    opt_10.zero_grad()
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    opt_10.step()
+    
+    if step % 8 == 0:
+        v = eval_val(model, n=4)
+        tau = gluing_defect(model, n=4)
+        print(f"      LR=10 step {step:3d}: val={v:.4f}, τ={tau:.2f}")
+
+# ── Step 2: LR=3 to continue descent ──────────────────────────
+print("\n  [2] LR=3: Continuing descent (30 steps)")
+
+opt_3 = torch.optim.AdamW(model.parameters(), lr=LR*3,
+                           betas=(0.9, 0.95), weight_decay=0.1)
+
+for step in range(1, 31):
+    if step <= 10:
+        for pg in opt_3.param_groups:
+            pg['lr'] = LR*3*step/10
+    model.train()
+    x, y = get_batch()
+    _, loss = model(x, y)
+    opt_3.zero_grad()
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    opt_3.step()
+    
+    if step % 8 == 0:
+        v = eval_val(model, n=4)
+        tau = gluing_defect(model, n=4)
+        print(f"      LR=3 step {step:3d}: val={v:.4f}, τ={tau:.2f}")
+
+# ── Step 3: Hessian ff.o.weight identification (1 CE) ────────
+print("\n  [3] Hessian: Identifying ff.o.weight floor feature (1 CE)")
+
+# Compute Hessian eigenvector direction
+n_p = sum(p.numel() for p in model.parameters())
+
+def hvp(v, n=4):
+    model.zero_grad()
+    ls = [model(*get_batch())[1] for _ in range(n)]
+    loss = torch.stack(ls).mean()
+    grads = torch.autograd.grad(loss, list(model.parameters()), create_graph=True)
+    gv = (torch.cat([gr.flatten() for gr in grads]) * v.detach()).sum()
+    hv = torch.cat([h.flatten() for h in
+                    torch.autograd.grad(gv, list(model.parameters()), retain_graph=False)])
+    model.zero_grad()
+    return hv.detach()
+
+# Power iteration for smallest eigenvalue (floor direction)
+torch.manual_seed(43)
+v = torch.randn(n_p)
+v = v / v.norm()
+for _ in range(10):
+    Hv = hvp(v)
+    v = -Hv / max(float((-Hv).norm()), 1e-10)
+
+floor_direction = v / max(v.norm(), 1e-10)
+print(f"      Floor direction norm: {floor_direction.norm():.4f}")
+step_basin += 1
+
+# ── Step 4: Optimized witness set (5 CE) ──────────────────────
+print("\n  [4] Optimized witness set (5 probes)")
+
+current_params = model.flat_params()
+val_current = eval_val(model, n=4)
+
+witness_points = []
+witness_vals = []
+witness_taus = []
+witness_phis = []
+
+# Reduced scales based on empirical evidence
+step_scales = [0.1, 0.5, 2.0, 8.0, 32.0]
+
+print("      Witness probes along floor direction:")
+for scale in step_scales:
+    step_size = scale * 0.003
+    point = current_params + step_size * floor_direction
+    model.set_flat(point)
+    v = eval_val(model, n=4)
+    tau = gluing_defect(model, n=4)
+    phi = phi_clean(model)
+    witness_points.append(point)
+    witness_vals.append(v)
+    witness_taus.append(tau)
+    witness_phis.append(phi)
+    print(f"        scale={scale:.1f}: val={v:.4f}, τ={tau:.2f}, φ={phi}/5")
+
+# Reset model
+model.set_flat(current_params)
+
+# ── Step 5: Find best witness point ──────────────────────────
+print("\n  [5] Finding best witness point")
+
+witness_vals = np.array(witness_vals)
+best_idx = np.argmin(witness_vals)
+best_val = witness_vals[best_idx]
+best_point = witness_points[best_idx]
+best_tau = witness_taus[best_idx]
+best_phi = witness_phis[best_idx]
+best_scale = step_scales[best_idx]
+
+print(f"      Best witness: scale={best_scale:.1f}, val={best_val:.4f}, τ={best_tau:.2f}, φ={best_phi}/5")
+print(f"      Improvement: {val_current - best_val:.4f}")
+
+# ── Step 6: Smooth jump to best witness point ────────────────
+print("\n  [6] Smooth jump (3 steps)")
+
+jump_steps = 3
+step_size_per_jump = (best_point - current_params) / jump_steps
+
+for j in range(1, jump_steps + 1):
+    interp_point = current_params + j * step_size_per_jump
+    model.set_flat(interp_point)
+    v = eval_val(model, n=4)
+    tau = gluing_defect(model, n=4)
+    phi = phi_clean(model)
+    print(f"      Jump step {j}: val={v:.4f}, τ={tau:.2f}, φ={phi}/5")
+
+v_jump = eval_val(model, n=4)
+tau_jump = gluing_defect(model, n=4)
+phi_jump = phi_clean(model)
+
+print(f"\n      After jump: val={v_jump:.4f}, τ={tau_jump:.2f}, φ={phi_jump}/5")
+step_basin += jump_steps
+
+# ── Step 7: LR=0.003 descent (3 steps with backtracking) ────
+print("\n  [7] LR=0.003 descent (3 steps)")
+
+opt_003 = torch.optim.AdamW(model.parameters(), lr=0.003,
+                             betas=(0.9, 0.95), weight_decay=0.1)
+
+best_v = v_jump
+best_model = copy.deepcopy(model)
+
+for step in range(1, 4):
+    model.train()
+    x, y = get_batch()
+    _, loss = model(x, y)
+    opt_003.zero_grad()
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    opt_003.step()
+    
+    v = eval_val(model, n=4)
+    tau = gluing_defect(model, n=4)
+    phi = phi_clean(model)
+    print(f"      step {step}: val={v:.4f}, τ={tau:.2f}, φ={phi}/5")
+    
+    if v < best_v:
+        best_v = v
+        best_model = copy.deepcopy(model)
+    else:
+        print(f"        val increased - reverting to best ({best_v:.4f})")
+        model = best_model
+        break
+
+step_basin += step
+
+# ── Step 8: Check τ trend ────────────────────────────────────
+v_basin = eval_val(model)
+tau_b = gluing_defect(model, n=6)
+pc_b = phi_clean(model)
+
+print(f"\n  [8] Before τ-drain: val={v_basin:.4f}, τ={tau_b:.2f}, φ={pc_b}/5")
+
+# Store best so far
+best_v_so_far = v_basin
+best_model_so_far = copy.deepcopy(model)
+
+# ── Step 9: Hybrid τ-drain ────────────────────────────────────
+if tau_b > TAU_ENERGY_THRESHOLD:
+    if v_basin <= NEWTON_THRESHOLD and tau_b < 7.0:
+        # ── Newton step (O(1)) ──────────────────────────────
+        print("\n  [9a] Newton step (val <= 0.2, τ < 7.0)")
+        
+        # Compute gradient
+        model.zero_grad()
+        ls = [model(*get_batch())[1] for _ in range(8)]
+        loss = torch.stack(ls).mean()
+        loss.backward()
+        
+        g = torch.cat([p.grad.flatten() if p.grad is not None else torch.zeros(p.numel())
+                       for p in model.parameters()]).detach()
+        model.zero_grad()
+        
+        # Hessian-vector product
+        def hvp_newton(v, n=4):
+            model.zero_grad()
+            ls2 = [model(*get_batch())[1] for _ in range(n)]
+            loss2 = torch.stack(ls2).mean()
+            grads = torch.autograd.grad(loss2, list(model.parameters()), create_graph=True)
+            gv = (torch.cat([gr.flatten() for gr in grads]) * v.detach()).sum()
+            hv = torch.cat([h.flatten() for h in
+                            torch.autograd.grad(gv, list(model.parameters()), retain_graph=False)])
+            model.zero_grad()
+            return hv.detach()
+        
+        # Conjugate gradient to solve H*d = -g
+        d = torch.zeros_like(g)
+        r = g.clone()
+        p = -g.clone()
+        rr = float((r * r).sum())
+        
+        for _ in range(6):
+            Hp = hvp_newton(p)
+            alpha = rr / max(float((p * Hp).sum()), 1e-10)
+            d += alpha * p
+            r += alpha * Hp
+            rr_new = float((r * r).sum())
+            beta = rr_new / max(rr, 1e-10)
+            p = -r + beta * p
+            rr = rr_new
+        
+        # Step size from curvature
+        step_size = 2.0 / (1.0 + tau_b)
+        step_size = min(step_size, 0.05)
+        
+        # Single Newton step
+        w0 = model.flat_params()
+        model.set_flat(w0 + step_size * d)
+        
+        v_new = eval_val(model, n=4)
+        tau_new = gluing_defect(model, n=6)
+        pc_new = phi_clean(model)
+        step_basin += 1
+        
+        print(f"      After Newton step: val={v_new:.4f}, τ={tau_new:.2f}, φ={pc_new}/5")
+        
+        if tau_new < tau_b and v_new < v_basin:
+            v_basin = v_new
+            tau_b = tau_new
+            pc_b = pc_new
+            print(f"      ✓ Newton step successful!")
+        else:
+            print(f"      ⚠ Newton step didn't improve - reverting")
+            model = best_model_so_far
+            v_basin = best_v_so_far
+            tau_b = gluing_defect(model, n=6)
+            pc_b = phi_clean(model)
+    
+    else:
+        # ── τ-retry (optimized rounds) ──────────────────────
+        print("\n  [9b] τ-retry (optimized rounds)")
+        print(f"      val={v_basin:.4f}, τ={tau_b:.2f}")
+        print("      Round 1: 50 steps, Round 2: 30 steps, Round 3: 50 steps")
+        
+        # Round 1: 50 steps
+        print("\n      τ-retry round 1 (50 steps)")
+        opt_retry1 = torch.optim.AdamW(model.parameters(), lr=LR*2,
+                                        betas=(0.9, 0.95), weight_decay=0.1)
+        
+        best_v = v_basin
+        best_model = copy.deepcopy(model)
+        
+        for s in range(1, 51):
+            lr_s = LR*2 * 0.5 * (1 + math.cos(math.pi * s / 50))
+            for pg in opt_retry1.param_groups:
+                pg['lr'] = lr_s
+            
+            model.train()
+            x, y = get_batch()
+            _, loss = model(x, y)
+            opt_retry1.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            opt_retry1.step()
+            
+            if s % 10 == 0:
+                v = eval_val(model, n=4)
+                tau = gluing_defect(model, n=4)
+                phi = phi_clean(model)
+                print(f"        step {s:3d}: val={v:.4f}, τ={tau:.2f}, φ={phi}/5")
+                
+                if v < best_v:
+                    best_v = v
+                    best_model = copy.deepcopy(model)
+        
+        model = best_model
+        v_basin = best_v
+        tau_b = gluing_defect(model, n=6)
+        pc_b = phi_clean(model)
+        step_basin += 50
+        
+        print(f"\n      After round 1: val={v_basin:.4f}, τ={tau_b:.2f}, φ={pc_b}/5")
+        
+        # Round 2: 30 steps (optimized)
+        if v_basin > FLOOR_TARGET:
+            print("\n      τ-retry round 2 (30 steps - optimized)")
+            opt_retry2 = torch.optim.AdamW(model.parameters(), lr=LR*2,
+                                            betas=(0.9, 0.95), weight_decay=0.1)
+            
+            best_v = v_basin
+            best_model = copy.deepcopy(model)
+            
+            for s in range(1, 31):
+                lr_s = LR*2 * 0.5 * (1 + math.cos(math.pi * s / 30))
+                for pg in opt_retry2.param_groups:
+                    pg['lr'] = lr_s
+                
+                model.train()
+                x, y = get_batch()
+                _, loss = model(x, y)
+                opt_retry2.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                opt_retry2.step()
+                
+                if s % 10 == 0:
+                    v = eval_val(model, n=4)
+                    tau = gluing_defect(model, n=4)
+                    phi = phi_clean(model)
+                    print(f"        step {s:3d}: val={v:.4f}, τ={tau:.2f}, φ={phi}/5")
+                    
+                    if v < best_v:
+                        best_v = v
+                        best_model = copy.deepcopy(model)
+            
+            model = best_model
+            v_basin = best_v
+            tau_b = gluing_defect(model, n=6)
+            pc_b = phi_clean(model)
+            step_basin += 30
+            
+            print(f"\n      After round 2: val={v_basin:.4f}, τ={tau_b:.2f}, φ={pc_b}/5")
+        
+        # Round 3: 50 steps (optimized from 75)
+        if v_basin > FLOOR_TARGET:
+            print("\n      τ-retry round 3 (50 steps - optimized from 75)")
+            opt_retry3 = torch.optim.AdamW(model.parameters(), lr=LR*2,
+                                            betas=(0.9, 0.95), weight_decay=0.1)
+            
+            best_v = v_basin
+            best_model = copy.deepcopy(model)
+            
+            for s in range(1, 51):
+                lr_s = LR*2 * 0.5 * (1 + math.cos(math.pi * s / 50))
+                for pg in opt_retry3.param_groups:
+                    pg['lr'] = lr_s
+                
+                model.train()
+                x, y = get_batch()
+                _, loss = model(x, y)
+                opt_retry3.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                opt_retry3.step()
+                
+                if s % 10 == 0:
+                    v = eval_val(model, n=4)
+                    tau = gluing_defect(model, n=4)
+                    phi = phi_clean(model)
+                    print(f"        step {s:3d}: val={v:.4f}, τ={tau:.2f}, φ={phi}/5")
+                    
+                    if v < best_v:
+                        best_v = v
+                        best_model = copy.deepcopy(model)
+            
+            model = best_model
+            v_basin = best_v
+            tau_b = gluing_defect(model, n=6)
+            pc_b = phi_clean(model)
+            step_basin += 50
+            
+            print(f"\n      After round 3: val={v_basin:.4f}, τ={tau_b:.2f}, φ={pc_b}/5")
+
+# ── Step 10: Check if we reached the floor ────────────────────
+print(f"\n  Final Phase 3: val={v_basin:.4f}  Φ_cl={pc_b}/5  τ={tau_b:.2f}")
+
+if v_basin <= FLOOR_TARGET and pc_b >= PHI_TARGET:
+    geo_stopped = True
+    print(f"\n  ✓ REACHED FLOOR!")
+
+# ── Step 11: LM refinement if close ──────────────────────────
+if v_basin < 0.1 and v_basin > FLOOR_TARGET:
+    print(f"\n  [10] LM refinement (val={v_basin:.4f})")
+    v_lm, _ = lm_step(model)
+    v_basin = v_lm
+    pc_b = phi_clean(model)
+    tau_b = gluing_defect(model)
+    step_basin += 1
+    print(f"      After LM: val={v_basin:.4f}, φ={pc_b}/5")
+
+# Save state
 torch.save(model.state_dict(), 'basin_entry_state.pt')
-print(f"  Saved basin_entry_state.pt (val={v_basin:.4f})")
-print(f"  Φ_cl={pc_b}/5  τ={tau_b:.2f}  rm2σ={rm2_b:+.3f}")
-print(f"  Wall crossings (chamber-aware): {n_walls}")
-print(f"  Phase 3 total CE: {step_basin}  (CHAMBER-AWARE)")
+print(f"\n  Saved basin_entry_state.pt (val={v_basin:.4f})")
 
+print(f"\n  Phase 3 total CE: {step_basin}")
+print(f"  Geo-stop: {'YES' if geo_stopped else 'NO (will continue to TopoGate)'}")
+# ── END PHASE 3 ───────────────────────────────────────────────────
 """
 # ── PHASE 3: BASIN SETTLE (geometric early stopping) ─────────────────────────
 # EXPERIMENT: replace loss-plateau stop with geometric convergence stop
 # Hypothesis: stopping at Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (2 consecutive)
 # saves ~70-80 CE steps vs loss-plateau at step 120
 
-print("━━━ PHASE 3: BASIN SETTLE (ADAPTIVE LR + GEO-STOP) ━━━━━━")
+print("━━━ PHASE 3: BASIN SETTLE (GEO-STOP EXPERIMENT) ━━━━━━━━")
+print("  Geometric stopping: Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (×2 checks)")
+print("  Hypothesis: orbit geometry converges before loss plateaus")
 
-# Basin detector: decide LR schedule before committing to 120 CE
-try:
-    from basin_detector import detect_basin
-    print("  Running basin detector...")
-    basin_type, lr_mult, confidence, _ = detect_basin(
-        model, get_batch, eval_val, LR,
-        rank=6, D=D, N_heads=N_HEADS,
-        phi_clean_fn=phi_clean,
-        gluing_defect_fn=gluing_defect,
-        use_probe=True)
-    print(f"  Basin: {basin_type} (conf={confidence:.2f}) → LR×{lr_mult}")
-except Exception as _be:
-    print(f"  [basin_detector failed: {_be}] — manual check")
-    _pc = phi_clean(model); _tau = gluing_defect(model)
-    lr_mult = 50 if (_pc >= 3 and _tau > 1.5) else 5
-    print(f"  Manual: Φ_cl={_pc}/5 τ={_tau:.2f} → LR×{lr_mult}")
-
-opt_b = torch.optim.AdamW(model.parameters(), lr=LR*lr_mult,
+opt_b = torch.optim.AdamW(model.parameters(), lr=LR*5,
                            betas=(0.9,0.95), weight_decay=0.1)
 val_history = [v_mf]
 step = 0
@@ -441,9 +841,7 @@ for step in range(1, 151):
             print(f"  ✓ val={v:.4f} < 0.15"); break
 
         # NEW: geometric stopping condition
-        # Require val < 0.20 to ensure we're deep enough in basin
-        geo_ok = (pc >= 4 and 5.0 <= tau <= 7.5 and rm2 >= 0.65
-                  and v < 0.20)
+        geo_ok = (pc >= 4 and 5.0 <= tau <= 7.5 and rm2 >= 0.65)
         if geo_ok:
             geo_stop_count += 1
             print(f"  ○ GEO-STOP candidate ({geo_stop_count}/2): "
@@ -478,6 +876,8 @@ if pc_b < 3:
 
 torch.save(model.state_dict(), 'basin_entry_state.pt')
 print(f"  Saved basin_entry_state.pt (val={v_basin:.4f})")
+
+"""
 
 # ── τ-retry: SKIP if geo-stopped, run fast descent instead ───────────────────
 if geo_stopped:
@@ -525,7 +925,6 @@ print()
 # Compare: step_basin (new) vs ~170 (original with τ-retry)
 print(f"  Phase 3 total CE: {step_basin}  "
       f"({'GEO-STOP' if geo_stopped else 'LOSS-PLATEAU'})")
-"""
 
 """
 # ── PHASE 3: BASIN SETTLE (flat LR×5, no τ-spike protection) ─
@@ -541,10 +940,7 @@ val_history=[v_mf]; step=0
 
 for step in range(1, 151):
     if step <= 10:
-        for pg in opt_b.param_groups: pg['lr'] = LR*lr_mult*step/10
-    elif step == 9:  # after burst, switch to LR×5
-        if lr_mult > 10:
-            for pg in opt_b.param_groups: pg['lr'] = LR*5
+        for pg in opt_b.param_groups: pg['lr']=LR*5*step/10
     model.train(); x,y=get_batch(); _,l=model(x,y)
     opt_b.zero_grad(); l.backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(),1.0); opt_b.step()
@@ -593,205 +989,51 @@ if tau_b > 5:
 print()
 """
 
-# ── PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton step) ─────────
-print("━━━ PHASE 4: ANALYTIC TOPOGATE (rank-1 Newton) ━━━━━━━━━")
-# Replaces empirical 8-candidate search with closed-form Jacobian step.
-# ∂φ_k/∂W_{k+1} = Im(ℓ_k ⊗ W_k^{-1} r_k) / |λ_k|
-# Optimal rank-1 update: δW_{k+1} = -(φ_k/σ_1) u_1 v_1^T
-# where u_1, v_1 = top singular vectors of ∂φ_k/∂W_{k+1}
-# Cost: one eigendecomposition per pair (~0.1s). No search.
+# ── PHASE 4: TOPOGATE WITH GEOMETRY CHECK ────────────────────
+print("━━━ PHASE 4: TOPOGATE (geometry-checked) ━━━━━━━━━━━━━━")
+# TopoGate: pick layer pair that maximises BOTH val decrease AND Φ_cl increase
+# Geometry-driven: sheet angles tell us which layers need flipping
+phi_before = sheet_angles(model)
+pc_before = phi_clean(model)
+v_before = eval_val(model, n=8)
+print(f"  Before: val={v_before:.4f}  Φ={phi_before}  Φ_cl={pc_before}/5")
 
-def analytic_topogate(model, lambda_reg=1.0, val_check_n=8):
-    """
-    For each layer pair k: compute φ_k and Jacobian analytically.
-    Apply rank-1 Newton step to off-wall phases. Return updated model.
-    """
-    WKs = [model.blocks[l].attn.WK.weight.data.float().cpu().numpy()
-           for l in range(N_STU)]
+# Score each layer pair: lower val + higher Φ_cl = better
+best_score = 0; best_layers = None; best_val = v_before
+for flip_layers in [[1,2],[0,1],[2,3],[0,2],[1,3],[0,3],[0,4],[1,4]]:
+    with torch.no_grad():
+        for l in flip_layers:
+            model.blocks[l].attn.WV.weight.data.mul_(-1)
+            model.blocks[l].attn.op.weight.data.mul_(-1)
+    v_try = eval_val(model, n=6)
+    pc_try = phi_clean(model)
+    # Score: val improvement + Φ_cl improvement (normalised)
+    val_gain = v_before - v_try          # positive = better
+    phi_gain = (pc_try - pc_before)/5.0  # positive = more orbit
+    score = val_gain + 0.3 * phi_gain   # joint criterion
+    if score > best_score:
+        best_score = score; best_layers = flip_layers; best_val = v_try
+    with torch.no_grad():  # revert
+        for l in flip_layers:
+            model.blocks[l].attn.WV.weight.data.mul_(-1)
+            model.blocks[l].attn.op.weight.data.mul_(-1)
 
-    best_model = None
-    best_val   = eval_val(model, n=val_check_n)
-    actions    = []
+if best_layers and best_score > 0:
+    with torch.no_grad():
+        for l in best_layers:
+            model.blocks[l].attn.WV.weight.data.mul_(-1)
+            model.blocks[l].attn.op.weight.data.mul_(-1)
+    print(f"  ✓ TopoGate {best_layers}: val {v_before:.4f}→{best_val:.4f}  "
+          f"Φ_cl {pc_before}→{phi_clean(model)}/5  score={best_score:.4f}")
+else:
+    print(f"  ~ No TopoGate improved joint val+Φ — proceeding without")
 
-    for k in range(N_STU - 1):
-        Wk  = WKs[k].astype(complex)
-        Wk1 = WKs[k+1].astype(complex)
-        try:
-            Wk_inv = np.linalg.inv(Wk)
-        except np.linalg.LinAlgError:
-            Wk_inv = np.linalg.pinv(Wk)
-
-        M   = Wk1 @ Wk_inv
-        evals_M, evecs_M = np.linalg.eig(M)
-        idx = np.argmax(np.abs(evals_M.real))
-        lam = evals_M[idx]
-        phi_k = float(np.arctan2(lam.imag, lam.real))
-
-        # Skip if already clean (on wall)
-        if abs(phi_k) < 0.1 or abs(abs(phi_k) - math.pi) < 0.1:
-            actions.append(f"  k={k}: φ={phi_k:+.3f} clean — skip")
-            continue
-
-        r_vec = evecs_M[:, idx]
-        evals_L, evecs_L = np.linalg.eig(M.T)
-        idx_L = np.argmax(np.abs(evals_L.real))
-        l_vec = evecs_L[:, idx_L].conj()
-        lr = l_vec @ r_vec
-        if abs(lr) > 1e-10:
-            l_vec = l_vec / lr
-
-        lam_mag = abs(lam)
-        Wk_inv_r = Wk_inv @ r_vec
-        # Jacobian: dφ_k/dW_{k+1} = Im(outer(l, Wk_inv_r)) / |λ|
-        J_k = np.outer(l_vec, Wk_inv_r)
-        dPhi = np.imag(J_k) / (lam_mag + 1e-10)
-
-        # Rank-1 Newton step
-        U_s, s_vals, Vt_s = np.linalg.svd(dPhi)
-        if s_vals[0] < 1e-10:
-            actions.append(f"  k={k}: φ={phi_k:+.3f} zero Jacobian — skip")
-            continue
-
-        alpha = -phi_k / s_vals[0]
-        u1    = U_s[:, 0].real
-        v1    = Vt_s[0, :].real
-        delta = alpha * np.outer(u1, v1)
-
-        # For large phases, apply multiple steps (linearization inaccurate)
-        n_steps = 3 if abs(phi_k) > 0.5 else 1
-        import copy as _copy
-        m_try = _copy.deepcopy(model)
-        for _ in range(n_steps):
-            with torch.no_grad():
-                m_try.blocks[k+1].attn.WK.weight.data.add_(
-                    torch.tensor(delta / n_steps, dtype=torch.float32))
-        v_try = eval_val(m_try, n=val_check_n)
-
-        if v_try < best_val:
-            best_val  = v_try
-            best_model = m_try
-            actions.append(
-                f"  k={k}: φ={phi_k:+.3f}→0  α={alpha:.4f}  "
-                f"σ₁={s_vals[0]:.3f}  val {best_val:.4f} ✓")
-            # Apply immediately — sequential corrections compound
-            with torch.no_grad():
-                model.blocks[k+1].attn.WK.weight.data.add_(
-                    torch.tensor(delta, dtype=torch.float32))
-            # Refresh WKs for next iteration
-            WKs = [model.blocks[l].attn.WK.weight.data.float().cpu().numpy()
-                   for l in range(N_STU)]
-            best_val = eval_val(model, n=val_check_n)
-        else:
-            actions.append(
-                f"  k={k}: φ={phi_k:+.3f}  α={alpha:.4f}  "
-                f"val {v_try:.4f} (no gain vs {best_val:.4f})")
-
-    for a in actions:
-        print(a)
-
-    return best_model is not None
-
-def analytic_wv_flip(model, val_check_n=8):
-    """
-    Analytic WV flip rule derived from geometric structure.
-
-    Rule: flip WV^(l) and W_O^(l) when:
-      1. det(WV^(l)) > 0  (wrong orientation for orbit structure)
-      2. φ_{l-1} ∈ {0,π} (clean phase — WK Newton step not needed)
-
-    Derivation: at clean phase, the orbit attractor requires alternating
-    orientation in the value projection (det(WV) < 0). Layers with
-    det(WV) > 0 are misaligned with the orbit structure.
-    Confirmed empirically: layers 1,3 (det=+1, clean phase) were the
-    empirical best flip in confirmed runs.
-    Layer 4 (det=+1 but off-wall φ=2.60) correctly excluded —
-    WK Newton step handles that case instead.
-    """
-    import copy as _copy
-    phases = sheet_angles(model)
-    best_val = eval_val(model, n=val_check_n)
-    best_model = None
-    actions = []
-
-    for l in range(N_STU):
-        WV = model.blocks[l].attn.WV.weight.data.float().cpu().numpy()
-        # Check det sign via eigenvalues
-        evals = np.linalg.eigvals(WV)
-        real_ev = evals[np.abs(evals.imag) < 0.1 * np.abs(evals.real + 1e-10)]
-        if len(real_ev) == 0:
-            continue
-        det_sign = int(np.sign(np.prod(np.sign(real_ev.real + 1e-10))))
-
-        # Check if adjacent phase is clean
-        phi_prev = phases[l-1] if l > 0 else '0'
-        phase_clean = phi_prev in ('0', 'π')
-
-        if det_sign > 0 and phase_clean:
-            # Candidate for flip
-            m_try = _copy.deepcopy(model)
-            with torch.no_grad():
-                m_try.blocks[l].attn.WV.weight.data.mul_(-1)
-                m_try.blocks[l].attn.op.weight.data.mul_(-1)
-            v_try = eval_val(m_try, n=val_check_n)
-
-            if v_try < best_val:
-                best_val = v_try
-                best_model = m_try
-                # Apply immediately — sequential
-                with torch.no_grad():
-                    model.blocks[l].attn.WV.weight.data.mul_(-1)
-                    model.blocks[l].attn.op.weight.data.mul_(-1)
-                best_val = eval_val(model, n=val_check_n)
-                actions.append(f"  WV flip l={l}: det=+1 phase_clean={phase_clean} "
-                               f"val→{best_val:.4f} ✓")
-            else:
-                actions.append(f"  WV flip l={l}: det=+1 but val {v_try:.4f} "
-                               f"no gain vs {best_val:.4f}")
-        else:
-            reason = f"det={det_sign}" if det_sign <= 0 else f"phase={phi_prev} off-wall"
-            actions.append(f"  WV flip l={l}: skip ({reason})")
-
-    for a in actions:
-        print(a)
-    return best_model is not None
-
-t_topo = time.time()
-wk_improved = analytic_topogate(model)
-wv_improved = analytic_wv_flip(model)
-t_topo = time.time() - t_topo
-
-if not wk_improved and not wv_improved:
-    # Fallback: original empirical search
-    print(f"  Both analytic steps found no gain — empirical fallback")
-    v_before_fb = eval_val(model, n=8)
-    best_score = 0; best_layers = None; best_val_fb = v_before_fb
-    for flip_layers in [[1,2],[0,1],[2,3],[0,2],[1,3]]:
-        with torch.no_grad():
-            for l in flip_layers:
-                model.blocks[l].attn.WV.weight.data.mul_(-1)
-                model.blocks[l].attn.op.weight.data.mul_(-1)
-        v_try = eval_val(model, n=6); pc_try = phi_clean(model)
-        score = (v_before_fb - v_try) + 0.3*(pc_try - phi_clean(model))/5.0
-        if score > best_score:
-            best_score = score; best_layers = flip_layers; best_val_fb = v_try
-        with torch.no_grad():
-            for l in flip_layers:
-                model.blocks[l].attn.WV.weight.data.mul_(-1)
-                model.blocks[l].attn.op.weight.data.mul_(-1)
-    if best_layers and best_score > 0:
-        with torch.no_grad():
-            for l in best_layers:
-                model.blocks[l].attn.WV.weight.data.mul_(-1)
-                model.blocks[l].attn.op.weight.data.mul_(-1)
-        print(f"  ✓ Fallback TopoGate {best_layers}: val→{best_val_fb:.4f}")
-
-print(f"  TopoGate time: {t_topo:.2f}s")
 v_sign=eval_val(model)
+# Save post-TopoGate state for lanczos_newton.py
 torch.save(model.state_dict(),'basin_state.pt')
 print(f"  Post-TopoGate: val={v_sign:.4f}  Φ={sheet_angles(model)}")
 print(f"  Saved basin_state.pt post-TopoGate (val={v_sign:.4f})")
 print(f"  basin_entry_state.pt saved pre-TopoGate at val≈0.20")
-print(f"  [Analytic rank-1 Newton TopoGate — no empirical search]")
 print()
 
 # ── PHASE 5: GRADIENT ALIGNMENT GATE + LM ────────────────────
