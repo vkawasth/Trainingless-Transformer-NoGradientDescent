@@ -41,6 +41,11 @@ Snappers Lemma based Jumps instead of slowly walking via Gradient Descent
 
 <img width="841" height="1873" alt="Screenshot 2026-07-05 at 4 16 02 PM" src="https://github.com/user-attachments/assets/79873d09-8e4b-4e33-bf10-5cae59246bdc" />
 
+Memory Saving
+
+<img width="2800" height="1200" alt="memory_viz" src="https://github.com/user-attachments/assets/55f82f29-a24b-48ff-9341-fb9ad70dbece" />
+
+
 
 Run : Uses only Geometry to decide phases --  compiler_geometric.py 
 
