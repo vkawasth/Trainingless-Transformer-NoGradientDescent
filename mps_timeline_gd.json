@@ -1,0 +1,234 @@
+{
+  "backend": "mps",
+  "peak_mb": 107.701504,
+  "peak_at": {
+    "phase": "step",
+    "label": "adam_step"
+  },
+  "events": [
+    {
+      "order": 1,
+      "phase": "init",
+      "label": "params_resident",
+      "allocated_mb": 17.32096,
+      "delta_mb": 0.0
+    },
+    {
+      "order": 2,
+      "phase": "forward",
+      "label": "embed",
+      "allocated_mb": 17.85344,
+      "delta_mb": 0.5324799999999996
+    },
+    {
+      "order": 3,
+      "phase": "forward",
+      "label": "block0.attn",
+      "allocated_mb": 21.5936,
+      "delta_mb": 3.7401599999999995
+    },
+    {
+      "order": 4,
+      "phase": "forward",
+      "label": "block0.ff",
+      "allocated_mb": 27.885056,
+      "delta_mb": 6.291456
+    },
+    {
+      "order": 5,
+      "phase": "forward",
+      "label": "block1.attn",
+      "allocated_mb": 32.097792,
+      "delta_mb": 4.212736
+    },
+    {
+      "order": 6,
+      "phase": "forward",
+      "label": "block1.ff",
+      "allocated_mb": 38.389248,
+      "delta_mb": 6.291456000000004
+    },
+    {
+      "order": 7,
+      "phase": "forward",
+      "label": "block2.attn",
+      "allocated_mb": 42.601984,
+      "delta_mb": 4.212736
+    },
+    {
+      "order": 8,
+      "phase": "forward",
+      "label": "block2.ff",
+      "allocated_mb": 48.89344,
+      "delta_mb": 6.291455999999997
+    },
+    {
+      "order": 9,
+      "phase": "forward",
+      "label": "block3.attn",
+      "allocated_mb": 53.106176,
+      "delta_mb": 4.212736
+    },
+    {
+      "order": 10,
+      "phase": "forward",
+      "label": "block3.ff",
+      "allocated_mb": 59.397632,
+      "delta_mb": 6.291456000000004
+    },
+    {
+      "order": 11,
+      "phase": "forward",
+      "label": "block4.attn",
+      "allocated_mb": 63.610368,
+      "delta_mb": 4.212736
+    },
+    {
+      "order": 12,
+      "phase": "forward",
+      "label": "block4.ff",
+      "allocated_mb": 69.901824,
+      "delta_mb": 6.291456000000004
+    },
+    {
+      "order": 13,
+      "phase": "forward",
+      "label": "block5.attn",
+      "allocated_mb": 74.11456,
+      "delta_mb": 4.2127359999999925
+    },
+    {
+      "order": 14,
+      "phase": "forward",
+      "label": "block5.ff",
+      "allocated_mb": 80.406016,
+      "delta_mb": 6.291455999999997
+    },
+    {
+      "order": 15,
+      "phase": "forward",
+      "label": "head",
+      "allocated_mb": 83.017216,
+      "delta_mb": 2.611200000000011
+    },
+    {
+      "order": 16,
+      "phase": "loss",
+      "label": "cross_entropy",
+      "allocated_mb": 85.100544,
+      "delta_mb": 2.0833279999999945
+    },
+    {
+      "order": 17,
+      "phase": "backward",
+      "label": "head",
+      "allocated_mb": 86.141952,
+      "delta_mb": 1.041408000000004
+    },
+    {
+      "order": 18,
+      "phase": "backward",
+      "label": "block5.ff",
+      "allocated_mb": 79.345664,
+      "delta_mb": -6.796288000000004
+    },
+    {
+      "order": 19,
+      "phase": "backward",
+      "label": "block5.attn",
+      "allocated_mb": 78.802944,
+      "delta_mb": -0.5427200000000028
+    },
+    {
+      "order": 20,
+      "phase": "backward",
+      "label": "block4.ff",
+      "allocated_mb": 74.102784,
+      "delta_mb": -4.700159999999997
+    },
+    {
+      "order": 21,
+      "phase": "backward",
+      "label": "block4.attn",
+      "allocated_mb": 73.035776,
+      "delta_mb": -1.0670080000000013
+    },
+    {
+      "order": 22,
+      "phase": "backward",
+      "label": "block3.ff",
+      "allocated_mb": 68.335616,
+      "delta_mb": -4.700159999999997
+    },
+    {
+      "order": 23,
+      "phase": "backward",
+      "label": "block3.attn",
+      "allocated_mb": 67.268608,
+      "delta_mb": -1.0670080000000013
+    },
+    {
+      "order": 24,
+      "phase": "backward",
+      "label": "block2.ff",
+      "allocated_mb": 62.568448,
+      "delta_mb": -4.700160000000004
+    },
+    {
+      "order": 25,
+      "phase": "backward",
+      "label": "block2.attn",
+      "allocated_mb": 61.50144,
+      "delta_mb": -1.0670079999999942
+    },
+    {
+      "order": 26,
+      "phase": "backward",
+      "label": "block1.ff",
+      "allocated_mb": 56.80128,
+      "delta_mb": -4.700160000000004
+    },
+    {
+      "order": 27,
+      "phase": "backward",
+      "label": "block1.attn",
+      "allocated_mb": 55.734272,
+      "delta_mb": -1.0670080000000013
+    },
+    {
+      "order": 28,
+      "phase": "backward",
+      "label": "block0.ff",
+      "allocated_mb": 51.034112,
+      "delta_mb": -4.700159999999997
+    },
+    {
+      "order": 29,
+      "phase": "backward",
+      "label": "block0.attn",
+      "allocated_mb": 50.440192,
+      "delta_mb": -0.5939199999999971
+    },
+    {
+      "order": 30,
+      "phase": "backward",
+      "label": "embed",
+      "allocated_mb": 50.43968,
+      "delta_mb": -0.000512000000000512
+    },
+    {
+      "order": 31,
+      "phase": "backward",
+      "label": "grads_complete",
+      "allocated_mb": 49.915136,
+      "delta_mb": -0.5245440000000059
+    },
+    {
+      "order": 32,
+      "phase": "step",
+      "label": "adam_step",
+      "allocated_mb": 107.701504,
+      "delta_mb": 57.786368
+    }
+  ]
+}
