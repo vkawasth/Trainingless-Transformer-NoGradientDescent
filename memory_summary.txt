@@ -1,0 +1,29 @@
+MEMORY VERIFICATION SUMMARY
+============================================================
+Backend: cpu   torch 2.12.1+cu130
+
+MODEL / OPTIMIZER MEMORY (same model, two optimizer regimes)
+------------------------------------------------------------
+  GD-400   optimizer state :    34.64 MB (Adam on all 4,330,240 params)
+  Compiler optimizer state :    28.35 MB (Adam on 3,543,808 params; 786,432 masked)
+  Saving                   :     6.29 MB (18.2% of Adam state)
+
+  GD-400   resident total  :    69.28 MB
+  Compiler resident total  :    59.85 MB
+  Empirical peak GD-400    :    71.54 MB
+  Empirical peak Compiler  :    62.10 MB
+
+CORPUS-OPERATOR MEMORY (the big one; grows with vocabulary)
+------------------------------------------------------------
+  Dense  O(V^2)  V=1017  :     4.14 MB
+  Sparse O(nnz)  nnz=1347 :   0.0162 MB
+  Reduction                :    767.8x
+
+PLAIN-LANGUAGE TAKEAWAY
+------------------------------------------------------------
+  Two independent memory savings, do not conflate them:
+  1) Freezing the dispensable attention weights removes their
+     Adam optimizer state (modest, scales with masked fraction).
+  2) Not storing the 99.87% zero corpus pairs turns an O(V^2)
+     operator into O(nnz): a 768x reduction here,
+     and ~1,000,000x at a 50k vocabulary.

@@ -1,0 +1,54 @@
+{
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.12.1+cu130",
+    "backend": "cpu",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39"
+  },
+  "config": {
+    "D": 256,
+    "N_STU": 6,
+    "VOCAB": 1017,
+    "NNZ": 1347,
+    "SEQ": 64,
+    "BATCH": 8
+  },
+  "gd_400": {
+    "regime": "GD-400",
+    "steps": 400,
+    "total_params": 4330240,
+    "masked_params": 0,
+    "trainable_params": 4330240,
+    "param_mb": 17.32096,
+    "grad_mb": 17.32096,
+    "optimizer_state_mb": 34.6422,
+    "empirical_peak_mb": 71.535132,
+    "analytic_resident_mb": 69.28412
+  },
+  "compiler": {
+    "regime": "Compiler",
+    "steps": 400,
+    "total_params": 4330240,
+    "masked_params": 786432,
+    "trainable_params": 3543808,
+    "param_mb": 17.32096,
+    "grad_mb": 14.175232,
+    "optimizer_state_mb": 28.350696,
+    "empirical_peak_mb": 62.0979,
+    "analytic_resident_mb": 59.846888
+  },
+  "corpus_operator": {
+    "dense_O_V2_mb": 4.137156,
+    "sparse_O_nnz_mb": 0.016164,
+    "reduction_x": 767.8463251670379,
+    "V": 1017,
+    "V2": 1034289,
+    "nnz": 1347
+  },
+  "headline": {
+    "optimizer_state_saving_mb": 6.291504000000003,
+    "optimizer_state_saving_pct": 18.16138697888703,
+    "resident_reduction_x": 1.1576896028411703,
+    "corpus_operator_reduction_x": 767.8463251670379
+  }
+}
