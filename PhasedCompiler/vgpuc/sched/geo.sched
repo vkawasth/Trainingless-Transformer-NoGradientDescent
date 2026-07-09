@@ -1,0 +1,47 @@
+# Full geometry-driven compiler, mirroring compiler_geometri_patched_86.
+# Phases are opaque ops (each runs its whole internal algorithm in Python);
+# the schedule sequences them and branches on val/tau/phi between phases.
+
+config seed=99 corpus=real
+
+log "Spectral E0 baseline"
+eval n=8
+
+log "PHASE 1: SADDLE EXIT"
+saddle
+tau
+
+log "PHASE 2: ADAPTIVE MF PUMP (stop on Phi=5 OR tau rising twice)"
+tau
+pump_until rising $tau guard $phi == 5 max 15 {
+    mfpump seed=0
+    tau
+}
+
+log "PHASE 3: BASIN SETTLE (GEO-STOP inside) + tau-retry tail"
+basin max=150
+tau_retry
+
+log "SNAPPER POLYNOMIAL JUMP"
+snapper
+
+if $val < 0.0147 {
+    log "REACHED FLOOR via snapper"
+} else {
+    log "PHASE 4: TOPOGATE"
+    topogate
+
+    log "PHASE 5: ALIGNMENT + LM + K0/JOINT (tau-branched)"
+    align_lm
+    if $tau < 3.0 {
+        k0_split
+    } elif $tau ge 5.0 {
+        joint_ce
+    } else {
+        joint_ce
+    }
+}
+
+eval n=15
+assert $val < 0.20
+log "geometry compiler complete"

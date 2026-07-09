@@ -1,0 +1,35 @@
+# Training schedule for the geometry compiler.
+# Compiles to an op stream the C++ bridge executes against PyTorch.
+#
+# Commands:
+#   config seed=<int> corpus=<synthetic|real>   # one-time setup
+#   eval  n=<int>                               # measure val loss -> $val
+#   train steps=<int>                           # run k AdamW steps -> $loss
+#   tau                                          # gluing defect     -> $tau
+#   mem                                          # allocated MiB     -> $mem
+#   log "<message>"                              # print a line
+#   repeat <int> { ... }                        # bounded loop
+#   until $val < <float> max <int> { ... }      # loop until metric or cap
+#   assert $<metric> < <float>                   # fail schedule if violated
+
+config seed=99 corpus=synthetic
+
+log "baseline"
+eval n=4
+
+# warm up, watching tau climb
+repeat 5 {
+    train steps=20
+    eval n=4
+    tau
+    mem
+}
+
+# keep training until val crosses a threshold, capped at 10 rounds
+until $val < 2.0 max 10 {
+    train steps=25
+    eval n=4
+}
+
+assert $val < 3.0
+log "done"
