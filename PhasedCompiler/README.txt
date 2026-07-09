@@ -1,1 +1,4 @@
-Original builds E_0 with k=D+1 eigenvectors and expects VOCAB > D+1. Real corpus has VOCAB=1017 and D=256, so k=257 is fine. We have added a guard k = min(D+1, VOCAB-1) — for given vocab that's still 257, so no truncation. Just flagging it: if you ever run a corpus with VOCAB < 257, the spectral embedding would be under-ranked and the phases would misbehave.
+Original builds E_0 with k=D+1 eigenvectors and expects VOCAB > D+1. Real corpus has VOCAB=1017 and D=256, 
+so k=257 is fine. We have added a guard k = min(D+1, VOCAB-1) — for given vocab that's still 257, 
+so no truncation. Just flagging it: if you ever run a corpus with VOCAB < 257, the spectral 
+embedding would be under-ranked and the phases would misbehave.
