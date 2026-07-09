@@ -6,6 +6,9 @@ Phases separately as compilers farm regions of compilation. We keep separation o
 
 # Build and Run
 Go to PhasedCompiler directory and run ./build_all.sh run
+To only run python side - python compiler_geometri_patched_86.py  # Runs 5 phases in sequential fashion
+To only run python with memory profiling as reported in paper ver 7 (latest, others are there for context) :
+       run python compiler_geometri_patched_86_memfixed.py        # (profiles fwd pass/bwd pass memory utilization)
 
 # AU-Fukaya Compiler Tests
 
