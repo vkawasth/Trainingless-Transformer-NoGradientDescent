@@ -1,0 +1,18 @@
+# Mock virtual-GPU command program
+reg CTRL     @0x00 rw 32
+reg STATUS   @0x04 ro 32
+reg DOORBELL @0x08 wo 32
+reg RING     @0x10 rw 64
+
+field CTRL.enable   [0:0]
+field CTRL.reset    [1:1]
+field CTRL.qid      [11:4]
+field STATUS.ready  [0:0]
+
+# bring the engine up
+write CTRL { reset=1 }
+write CTRL { enable=1, qid=0x2A }
+
+# wait until ready, then kick the doorbell
+poll STATUS.ready == 1
+kick DOORBELL
