@@ -1,4 +1,4 @@
-# Cxx23 Phased Compiler interfacing Pytroch and 5 Phase Geometric compiler using compiled command queue.
+# Cxx23 Phased Compiler interfacing Pytorch (Pybind11) and 5 Phase Geometric-compiler using compiled command queue.
 Since 5 phase Geometric compiler knows in advance where floor is going to be, we can separate phases and 
 only rely on Geometric indicators (unlike driving "loss" down) to conclude weight setting. We consider 
 Transformer weight setting a Gradient Flow Problem (not an optimization problem) so we can finish these
