@@ -4,6 +4,9 @@ only rely on Geometric indicators (unlike driving "loss" down) to conclude weigh
 Transformer weight setting a Gradient Flow Problem (not an optimization problem) so we can finish these
 Phases separately as compilers farm regions of compilation. We keep separation of concern at C++ level.
 
+# Build and Run
+Go to PhasedCompiler directory and run ./build_all.sh run
+
 # AU-Fukaya Compiler Tests
 
 **Patent**: 64/092,381 · 64/092,056 · 64/085,268 · 64/085,273 · 64/090,029  
