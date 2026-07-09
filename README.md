@@ -1,3 +1,9 @@
+# Cxx23 Phased Compiler interfacing Pytroch and 5 Phase Geometric compiler using compiled command queue.
+Since 5 phase Geometric compiler knows in advance where floor is going to be, we can separate phases and 
+only rely on Geometric indicators (unlike driving "loss" down) to conclude weight setting. We consider 
+Transformer weight setting a Gradient Flow Problem (not an optimization problem) so we can finish these
+Phases separately as compilers farm regions of compilation. We keep separation of concern at C++ level.
+
 # AU-Fukaya Compiler Tests
 
 **Patent**: 64/092,381 · 64/092,056 · 64/085,268 · 64/085,273 · 64/090,029  
