@@ -60,6 +60,26 @@ class GeometryPhases(GeometryCompilerFull):
                 pass
         return float(np.mean(vals)) if vals else 0.0
 
+    # ── BOUNDARY-INTERFACE COORDINATES ──────────────────────────────────────
+    # The compiler's runtime coordinate system is (Phi, sigma, tau) -- exactly
+    # the geo-stop triple, verified character-for-character against the source
+    # (sheet_angles/phi_clean, compute_rm2_sigma_inline, gluing_defect). These
+    # are the invariants that cross a checkpoint boundary: the geometric "type"
+    # of a phase's output. Two trajectories that reach the same (Phi,sigma,tau)
+    # region are in the same basin regardless of the path (or RNG) taken there.
+    #
+    #   phi   = phi_clean       count of layer pairs with W_K eigenphase in {0,pi}
+    #   sigma = rm2_sigma       strip-alignment ratio between consecutive W_K
+    #   tau   = gluing_defect   ||grad_FF|| / ||grad_Emb||
+    #   E     = strip energy    PENDING external definition -> recorded as None
+    def geometry_probe(self, tau_n: int = 6, E=None) -> dict:
+        return {
+            "phi":   int(self.phi_clean()),
+            "sigma": float(self._rm2_sigma()),
+            "tau":   float(self.gluing_defect(n=tau_n)),
+            "E":     E,   # None until the strip-energy definition is provided
+        }
+
     # ----------------------------- Phase 3 ----------------------------------
     def basin_settle(self, max_steps: int = 150) -> float:
         opt = torch.optim.AdamW(self.model.parameters(), lr=LR * 5,
@@ -88,7 +108,10 @@ class GeometryPhases(GeometryCompilerFull):
                     break
                 if v < 0.15:
                     break
-                if pc >= 4 and 5.0 <= tau <= 7.5 and rm2 >= 0.65:
+                # geo-stop only honored once loss is ALSO near the floor
+                # (val < 0.3). Prevents stopping with good geometry but high
+                # loss, which happens on some stochastic trajectories.
+                if v < 0.3 and pc >= 4 and 5.0 <= tau <= 7.5 and rm2 >= 0.65:
                     geo_stop_count += 1
                     if geo_stop_count >= 2:
                         self._geo_stopped = True

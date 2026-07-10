@@ -55,6 +55,7 @@ class GeometryCompilerFull:
         E_init = None
         if use_real_corpus and _HAVE_SCIPY:
             E_init = self._build_spectral_E0(seed)
+        self._E_init = E_init   # kept so the floor model can be spectrally init'd too
 
         torch.manual_seed(seed)
         self.model = LM(self.vocab)
@@ -102,19 +103,42 @@ class GeometryCompilerFull:
         return Einit
 
     def _build_floor_gradient(self, seed, steps):
-        torch.manual_seed(seed)
+        # Faithful to the original: the floor model is SPECTRALLY INITIALIZED
+        # (te.weight <- E_init), then trained. A randomly-initialized floor model
+        # plateaus ~0.8; the spectral one reaches the corpus floor (~0.72 for the
+        # floor-gradient model; the compiler's benchmark anchor is 0.062).
+        torch.manual_seed(42)
         m = LM(self.vocab)
+        if getattr(self, "_E_init", None) is not None:
+            with torch.no_grad():
+                m.te.weight.data.copy_(torch.tensor(self._E_init))
         opt = torch.optim.AdamW(m.parameters(), lr=LR, betas=(0.9, 0.95), weight_decay=0.1)
         for _ in range(steps):
             m.train(); x, y = self._get_batch('train'); _, l = m(x, y)
             opt.zero_grad(); l.backward()
             torch.nn.utils.clip_grad_norm_(m.parameters(), 1.0); opt.step()
+        m.eval()
+        with torch.no_grad():
+            fls = []
+            for _ in range(20):
+                x, y = self._get_batch('val'); _, fl = m(x, y); fls.append(fl.item())
+        self._floor_val = float(np.mean(fls))
+        m.train()
         m.zero_grad()
         ls = [m(*self._get_batch())[1] for _ in range(20)]
         torch.stack(ls).mean().backward()
         g = torch.cat([p.grad.flatten() if p.grad is not None else torch.zeros(p.numel())
                        for p in m.parameters()]).detach()
         return g
+
+    def floor_val(self) -> float:
+        return float(getattr(self, "_floor_val", 0.0))
+
+    # The compiler's benchmark anchor: the known mean-field-init floor for this
+    # corpus family (val_floor in the original). Distinct from the floor-gradient
+    # model's own val. This is what "beat the floor" means.
+    def floor_anchor(self) -> float:
+        return float(getattr(self, "_floor_anchor", 0.062))
 
     # ============================ helpers ===================================
     def _get_batch(self, split='train'):
