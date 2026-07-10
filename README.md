@@ -4,6 +4,12 @@ only rely on Geometric indicators (unlike driving "loss" down) to conclude weigh
 Transformer weight setting a Gradient Flow Problem (not an optimization problem) so we can finish these
 Phases separately as compilers farm regions of compilation. We keep separation of concern at C++ level.
 
+# Functioning Distributed Training
+
+<img width="585" height="449" alt="Screenshot 2026-07-09 at 6 01 20 PM" src="https://github.com/user-attachments/assets/d9a8b04b-e71d-4a1d-89b2-1a8956936020" />
+
+
+
 # Build and Run
 Go to PhasedCompiler directory and run ./build_all.sh run
 
