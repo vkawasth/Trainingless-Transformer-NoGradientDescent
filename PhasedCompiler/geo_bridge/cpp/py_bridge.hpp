@@ -62,7 +62,8 @@ public:
     explicit PyBridge(const std::string& module_name,
                       const std::string& extra_path,
                       const std::string& venv_python,
-                      bool use_real_corpus = false) {
+                      bool use_real_corpus = false,
+                      int seed = 99) {
         // ---- configure the interpreter to be venv-aware ----
         PyConfig config;
         PyConfig_InitPythonConfig(&config);
@@ -89,7 +90,7 @@ public:
             sys.attr("path").attr("insert")(0, extra_path);
             py::module_ mod = py::module_::import(module_name.c_str());
             compiler_ = mod.attr("GeometryCompiler")(
-                py::arg("seed") = 99,
+                py::arg("seed") = seed,
                 py::arg("use_real_corpus") = use_real_corpus);
         }
         // Release the GIL from the main thread so the worker can acquire it.
@@ -145,6 +146,11 @@ public:
     double phi_clean() {
         py::gil_scoped_acquire gil;
         return (double)compiler_.attr("phi_clean")().cast<long>();
+    }
+
+    double floor_val() {
+        py::gil_scoped_acquire gil;
+        return compiler_.attr("floor_val")().cast<double>();
     }
 
     double basin_settle(int max_steps = 150) {

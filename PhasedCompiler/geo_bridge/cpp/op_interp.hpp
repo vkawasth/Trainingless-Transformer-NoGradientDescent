@@ -58,6 +58,11 @@ public:
     }
 
     void run() {
+        // Seed the corpus floor once so `if $val < $floor` works. Computed by
+        // the surface from the floor-gradient model.
+        double floor = q_.submit([&]{ return py_.floor_val(); }).get();
+        metrics_["floor"] = floor;
+        std::printf("[floor] corpus floor val = %.4f\n", floor);
         std::size_t pc = 0;
         while (pc < prog_.size()) {
             auto toks = split(prog_[pc]);
@@ -207,6 +212,21 @@ public:
                 auto it = metrics_.find(m);
                 if (it != metrics_.end() && it->second >= v) pc = labels_.at(toks[3]);
                 else ++pc;
+            }
+            else if (op == "BRANCH_LT_M") {
+                // metric-vs-metric: if <m1> < <m2>, jump
+                auto a = metrics_.find(toks[1]);
+                auto b = metrics_.find(toks[2]);
+                double av = a!=metrics_.end()?a->second: 1e18;
+                double bv = b!=metrics_.end()?b->second:-1e18;
+                if (av < bv) pc = labels_.at(toks[3]); else ++pc;
+            }
+            else if (op == "BRANCH_GE_M") {
+                auto a = metrics_.find(toks[1]);
+                auto b = metrics_.find(toks[2]);
+                double av = a!=metrics_.end()?a->second:-1e18;
+                double bv = b!=metrics_.end()?b->second: 1e18;
+                if (av >= bv) pc = labels_.at(toks[3]); else ++pc;
             }
             else if (op == "RESET_RISING") {
                 history_[toks[1]].clear();

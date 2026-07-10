@@ -48,11 +48,14 @@ int main(int argc, char** argv) {
 
     // Config comes from the compiled program itself.
     auto ci = bridge::OpInterpreter::peek_config(prog);
+    // Allow a seed override via SCHED_SEED so a harness can vary runs.
+    int seed = ci.seed;
+    if (const char* s = std::getenv("SCHED_SEED"); s && *s) seed = std::atoi(s);
     std::printf("schedule config: seed=%d corpus=%s\n",
-                ci.seed, ci.real ? "real" : "synthetic");
+                seed, ci.real ? "real" : "synthetic");
 
     // Declare py before q so q (worker) is destroyed first (see teardown notes).
-    bridge::PyBridge py(module, pydir, venv_python, ci.real);
+    bridge::PyBridge py(module, pydir, venv_python, ci.real, seed);
     bridge::TaskQueue q;
 
     bridge::OpInterpreter interp(py, q, std::move(prog));
