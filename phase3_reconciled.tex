@@ -1,0 +1,139 @@
+% ======================================================================
+%  RECONCILED Phase 3  (replaces "Phase 3 Gradient Descent: Continuous
+%  Microscopic Relaxation").  amsart + booktabs.
+% ======================================================================
+\section{Phase 3, Reconciled: What the Geometry Buys and What It Does Not}
+\label{sec:phase3reconciled}
+Phase~3 is where the algebraic drop-in of Level~1 meets empirical descent, and
+it is the one place in this pipeline every claim can be put against a control.
+We report it in that spirit: three of the geometric constructs survive
+measurement in a precise, bounded form; one---the strip energy $E$---does not,
+and is retired here. The organising fact is a single measurable clock, the
+\emph{block gradient-profile drift}
+\[
+  \mathrm{drift}(t) \;=\; \bigl\| \pi(t) - \pi(t-w) \bigr\|, \qquad
+  \pi_a \;=\; \lVert \nabla_{\theta_a}\mathcal{L}\rVert \big/ \textstyle\sum_b \lVert \nabla_{\theta_b}\mathcal{L}\rVert,
+\]
+the rate at which the interaction graph of \S\ref{sec:densify} is still changing.
+Everything Phase~3 does---when to stop, when to jump, what to freeze---is timed
+off this one signal.
+
+\subsection{Crystallisation is real, as a regime: why the Snapper jump works}
+The crystal picture names a genuine phenomenon, provided it is stated as a
+property of the \emph{settled} trajectory rather than of the whole descent. Once
+$\mathrm{drift}(t)\to 0$, the parameter path becomes locally
+\emph{low-order polynomial} in the step index: a degree-$\le 2$ least-squares fit
+over a short window has relative residual $\sim 10^{-3}$. This is the operational
+content of ``crystallisation'' --- the descent has stopped searching and is now
+a deterministic, algebraically-predictable curve. It is exactly the condition
+Snapper's polynomiality (\S5) requires, and where the approach is still
+\emph{steep}, the extrapolation lands: the 1-shot jump to the fitted minimum
+recovers the descent it skips (validation $0.066 \to 0.015$ across the alignment
+approach).
+
+The bound, stated plainly because it is where the naive reading fails. On a
+\emph{flat} basin floor the same fit is just as clean ($10^{-3}$ residual) but the
+jump \emph{overshoots}: extrapolating a settled-but-flat trajectory forward moves
+the weights along a direction that no longer lowers the loss (measured $+0.4$
+validation on every attempted jump; $0\%$ of steps culled). Crystallisation
+therefore licenses the jump only on a steep, clean-basin descent; on the plateau
+the correct crystallised operator is not the jump but the \emph{stop}. The
+Snapper is a steep-regime move; $E$ was never what governed it.
+
+\subsection{The geo-stop, measured: drift replaces the $E$-based criterion}
+The geometry does converge before the loss --- but the operative signal is
+$\mathrm{drift}(t)$, not a level set of $E$. On the real corpus, drift falls
+$0.097 \to 0.013$ while the loss is still creeping down; a stop triggered on a
+sustained low-drift window ends training at $\sim\!50\%$ of the step budget for a
+few-percent validation cost. This is a strictly cheaper geo-stop than the
+$\Phi_{cl}/\tau/r_{m2}^\sigma$ stack --- one gradient-norm profile per step, no
+SVD, no Hessian-strip correlation --- and unlike $E$ it survives its control (it
+moves, monotonically, and it moves before the loss does). The gluing defect
+$\tau=\lVert\nabla_{\mathrm{FF}}\rVert/\lVert\nabla_{\mathrm{Emb}}\rVert$ is kept:
+it is a real, monotone basin coordinate. The strip energy $E$ is not kept.
+
+\subsection{What the basin is made of: the cull ledger}
+The settled basin has spatial structure, and it is the interaction graph of
+\S\ref{sec:densify}: an Emb/FF hub with attention peripheral early, densifying
+late on corpora that recruit it. This makes Phase~3's optimiser cost
+\emph{partly} reducible, and the reduction is bounded, not total.
+\begin{itemize}
+  \item \textbf{Cullable periphery.} As drift settles, the value/output
+  projections' preconditioner flattens ($\mathrm{CV}(1/\!\sqrt{v})\!:\,0.57\to0.24$),
+  and $W_V,W_O$ run on scalar SGD at $\sim$free validation cost --- $18\%$ of
+  parameters leave the second-moment state. The cullable fraction \emph{rises}
+  as drift falls: spatial and temporal cullability are the same clock.
+  \item \textbf{Irreducible core.} $\mathrm{Emb}$, $W_Q$, $W_K$, and $\mathrm{FF}$
+  keep dispersed, live preconditioners throughout; scalar-SGD on all of them
+  fails ($+103\%$), freezing the whole core diverges ($\times 10^{2}$ loss). The
+  adaptivity here is load-bearing, and no amount of settling removes it.
+  \item \textbf{Unresolved (Q/K frozen shape).} Freezing $W_Q,W_K$'s second
+  moment---keeping the dispersed diagonal but culling its update---costs between
+  $+0.7\%$ and $+8.2\%$ across two seeds, i.e.\ at the noise floor. Whether this
+  lever exists is a variance measurement we have not yet closed; it is reported
+  as open, not as a win.
+\end{itemize}
+
+\subsection{The strip energy $E$, retired}
+$E=\sum_k\sum_i \arccos\sigma_i(U_k^\top U_{k+1})$ is a property of the
+\emph{construction}, not of the trajectory. It is near-constant because it is
+built from the near-degenerate singular directions of $W_K$ (measured gaps
+$\sim\!0.008$), whose $\arccos$ is pinned by the Mean-Field pump; its automatic
+gradient is wrong by $6.4\%$ for exactly this reason. At $P\approx 4.3\times10^6$
+a random direction has $\lvert\cos(\dot\theta,\nabla E)\rvert\approx P^{-1/2}
+\approx 5\times10^{-4}$, and the trajectory's value is the same order: the
+instrument has no power to distinguish ``follows the level set'' from ``ambient.''
+We therefore make \emph{no} dynamical claim for $E$. It was a coordinate of the
+mould, not of the motion. This retirement is the price of keeping the rest
+honest.
+
+\subsection{What the ``manifold'' claim can bear}
+The manifold is real in two senses and unreal in a third, and the distinction
+matters. It is real as the \emph{constrained} geometry the descent lives on ---
+the LayerNorm hypersphere $S^{D-1}$, the Softmax simplex --- and real as the
+reproducible \emph{low-rank tangent structure} of the trajectory: five
+optimisers' local tangent spaces collapse to an effective rank $3.44/5$ in two
+near-orthogonal families, a result three independent instruments agree on. It is
+\emph{not} real as a small function-space quotient one could optimise on: the
+Jacobian $J_\theta=\partial f/\partial\theta$ is isotropic (no resolved low rank),
+so there is no visible subspace to collapse the descent onto. ``The trajectory is
+a low-rank constrained object'' holds; ``solve on the quotient'' does not.
+
+\subsection{Ledger}
+\begin{table}[H]
+\centering
+\caption{Phase~3 claims against their controls.}
+\label{tab:phase3ledger}
+\begin{tabular}{p{0.40\textwidth} p{0.20\textwidth} p{0.32\textwidth}}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Control / evidence} \\
+\midrule
+Geo-stop before loss plateau (drift$\to$0) & \textbf{holds} & drift $0.097\!\to\!0.013$ while loss creeps; real model \\
+\addlinespace
+Snapper jump, steep clean-basin approach & \textbf{holds} & val $0.066\!\to\!0.015$; fit residual $10^{-3}$ \\
+\addlinespace
+Snapper jump, flat plateau & \textbf{fails} & overshoots $+0.4$ val, $0\%$ steps culled \\
+\addlinespace
+$W_V,W_O\to$ scalar SGD (spatial cull) & \textbf{holds ($\sim$free)} & cull\% $0\!\to\!18$ as drift falls \\
+\addlinespace
+Core (Emb/$W_Q$/$W_K$/FF) reducible to SGD & \textbf{fails} & SGD-all $+103\%$; core-freeze diverges \\
+\addlinespace
+Q/K frozen-shape (cull $v$-update) & \textbf{unresolved} & $+0.7\%$ vs $+8.2\%$, two seeds \\
+\addlinespace
+Star$\to$dense interaction graph & \textbf{holds (task-dep.)} & $r:0.57\!\to\!0.97$ real corpus; $\to0.04$ Markov \\
+\addlinespace
+2-family low-rank tangent structure & \textbf{holds} & eff.\ rank $3.44/5$; three instruments \\
+\addlinespace
+$E$ as conserved dynamical invariant & \textbf{fails (artifact)} & ambient; $\lvert\cos\rvert\!\approx\!P^{-1/2}$; arccos of degenerate $\sigma$ \\
+\addlinespace
+Low-dim function quotient (``solve on it'') & \textbf{fails} & Jacobian isotropic \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+The reading that survives: Phase~3 crystallises a \emph{predictable} trajectory
+on a \emph{constrained, low-rank} basin, and that predictability is what the
+Snapper exploits and what the drift-stop detects. What does not survive is the
+claim that any single scalar ($E$) or small quotient carries the dynamics. The
+crystal is real; the mould-coordinate $E$ was mistaken for it.
