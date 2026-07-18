@@ -1,0 +1,99 @@
+{
+  "k": 3,
+  "shared_dim": 6,
+  "v0": 4.350457847118378,
+  "per_optimizer": {
+    "AdamW": {
+      "floor": 0.08127015891174476,
+      "descent": 4.269187688206633,
+      "own_basis_frac": 0.9664805337695415,
+      "path_len": 121.69083735681446,
+      "disp_len": 54.991249361675045,
+      "path_disp_ratio": 2.2129127592002305
+    },
+    "SGD": {
+      "floor": 1.7677065034707387,
+      "descent": 2.5827513436476393,
+      "own_basis_frac": 0.9571666582510948,
+      "path_len": 25.895240726431965,
+      "disp_len": 10.995783279500547,
+      "path_disp_ratio": 2.355015560801943
+    },
+    "SGD+mom": {
+      "floor": 1.2978034317493439,
+      "descent": 3.052654415369034,
+      "own_basis_frac": 0.9973636964120706,
+      "path_len": 30.689461895695725,
+      "disp_len": 16.337781686669295,
+      "path_disp_ratio": 1.87843505833688
+    },
+    "RMSprop": {
+      "floor": 0.4118230963746707,
+      "descent": 3.938634750743707,
+      "own_basis_frac": 0.9664510232745703,
+      "path_len": 80.28270741894181,
+      "disp_len": 36.17005014236605,
+      "path_disp_ratio": 2.219590713945522
+    },
+    "Adagrad": {
+      "floor": 0.09182298742234707,
+      "descent": 4.258634859696031,
+      "own_basis_frac": 0.8747835323693994,
+      "path_len": 141.24959144928093,
+      "disp_len": 51.15964619204407,
+      "path_disp_ratio": 2.7609571598492435
+    }
+  },
+  "decomposition": {
+    "AdamW": {
+      "in_shared": 0.9412509044212637,
+      "residual": 0.05874909557873631,
+      "chance": 0.00114325017738976,
+      "x_chance": 823.3113995634732,
+      "far_above_chance": true,
+      "excluded_from_basis": false,
+      "causal_val": 0.18444438527027765,
+      "causal_recovery": 0.9758328202239631
+    },
+    "SGD": {
+      "in_shared": 0.36335449107341106,
+      "residual": 0.636645508926589,
+      "chance": 0.00114325017738976,
+      "x_chance": 317.825877434095,
+      "far_above_chance": true,
+      "excluded_from_basis": true,
+      "causal_val": 3.823036233584086,
+      "causal_recovery": 0.20420921078271909
+    },
+    "SGD+mom": {
+      "in_shared": 0.3918590696628592,
+      "residual": 0.6081409303371408,
+      "chance": 0.00114325017738976,
+      "x_chance": 342.75880911279035,
+      "far_above_chance": true,
+      "excluded_from_basis": true,
+      "causal_val": 3.492517828941345,
+      "causal_recovery": 0.28104721381418357
+    },
+    "RMSprop": {
+      "in_shared": 0.9386204736878557,
+      "residual": 0.06137952631214427,
+      "chance": 0.00114325017738976,
+      "x_chance": 821.0105639431256,
+      "far_above_chance": true,
+      "excluded_from_basis": false,
+      "causal_val": 0.6402411262194315,
+      "causal_recovery": 0.9420057851767976
+    },
+    "Adagrad": {
+      "in_shared": 0.8185635880586712,
+      "residual": 0.18143641194132876,
+      "chance": 0.00114325017738976,
+      "x_chance": 715.9969038549359,
+      "far_above_chance": true,
+      "excluded_from_basis": false,
+      "causal_val": 1.1553841481606166,
+      "causal_recovery": 0.7502577244168372
+    }
+  }
+}

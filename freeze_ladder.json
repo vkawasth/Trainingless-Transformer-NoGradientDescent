@@ -1,0 +1,227 @@
+{
+  "v0": 4.46756370862325,
+  "target": 0.15,
+  "total_params": 4330240,
+  "results": {
+    "AdamW": {
+      "ladder": [
+        {
+          "rung": "L0 full model",
+          "val": 0.14608238264918327,
+          "steps": 110,
+          "reached": true,
+          "frozen": 0,
+          "trainable_frac": 1.0
+        },
+        {
+          "rung": "L1 freeze W_K",
+          "val": 0.13461601361632347,
+          "steps": 130,
+          "reached": true,
+          "frozen": 393216,
+          "trainable_frac": 0.9091930239432456
+        },
+        {
+          "rung": "L2 + W_Q",
+          "val": 0.14681794742743173,
+          "steps": 140,
+          "reached": true,
+          "frozen": 786432,
+          "trainable_frac": 0.8183860478864913
+        },
+        {
+          "rung": "L3 + all attention",
+          "val": 0.14941437231997648,
+          "steps": 390,
+          "reached": true,
+          "frozen": 1572864,
+          "trainable_frac": 0.6367720957729825
+        },
+        {
+          "rung": "L4 + LayerNorm (Emb+FF)",
+          "val": 0.14981284799675146,
+          "steps": 410,
+          "reached": true,
+          "frozen": 1579520,
+          "trainable_frac": 0.6352349985220218
+        },
+        {
+          "rung": "L5 FF only",
+          "val": 2.8139554063479104,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 1970944,
+          "trainable_frac": 0.5448418563405262
+        },
+        {
+          "rung": "L6 Emb only",
+          "val": 1.8098602294921875,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 3938816,
+          "trainable_frac": 0.09039314218149574
+        }
+      ],
+      "control": [
+        {
+          "matched_to": "L1 freeze W_K",
+          "val": 0.13018367812037468,
+          "steps": 120,
+          "reached": true,
+          "frozen": 393216,
+          "trainable_frac": 0.9091930239432456
+        },
+        {
+          "matched_to": "L2 + W_Q",
+          "val": 0.14151493397851786,
+          "steps": 120,
+          "reached": true,
+          "frozen": 786432,
+          "trainable_frac": 0.8183860478864913
+        },
+        {
+          "matched_to": "L3 + all attention",
+          "val": 0.1323862113058567,
+          "steps": 130,
+          "reached": true,
+          "frozen": 1572864,
+          "trainable_frac": 0.6367720957729825
+        },
+        {
+          "matched_to": "L4 + LayerNorm (Emb+FF)",
+          "val": 0.13418199059863886,
+          "steps": 130,
+          "reached": true,
+          "frozen": 1579520,
+          "trainable_frac": 0.6352349985220218
+        },
+        {
+          "matched_to": "L5 FF only",
+          "val": 0.13347478273014227,
+          "steps": 140,
+          "reached": true,
+          "frozen": 1970944,
+          "trainable_frac": 0.5448418563405262
+        },
+        {
+          "matched_to": "L6 Emb only",
+          "val": 0.14687342010438442,
+          "steps": 470,
+          "reached": true,
+          "frozen": 3938816,
+          "trainable_frac": 0.09039314218149574
+        }
+      ]
+    },
+    "SGD": {
+      "ladder": [
+        {
+          "rung": "L0 full model",
+          "val": 0.14887435485919318,
+          "steps": 700,
+          "reached": true,
+          "frozen": 0,
+          "trainable_frac": 1.0
+        },
+        {
+          "rung": "L1 freeze W_K",
+          "val": 0.13931659733255705,
+          "steps": 750,
+          "reached": true,
+          "frozen": 393216,
+          "trainable_frac": 0.9091930239432456
+        },
+        {
+          "rung": "L2 + W_Q",
+          "val": 0.1406496992955605,
+          "steps": 750,
+          "reached": true,
+          "frozen": 786432,
+          "trainable_frac": 0.8183860478864913
+        },
+        {
+          "rung": "L3 + all attention",
+          "val": 0.19225678344567618,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 1572864,
+          "trainable_frac": 0.6367720957729825
+        },
+        {
+          "rung": "L4 + LayerNorm (Emb+FF)",
+          "val": 0.4012468059857686,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 1579520,
+          "trainable_frac": 0.6352349985220218
+        },
+        {
+          "rung": "L5 FF only",
+          "val": 3.2276161710421243,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 1970944,
+          "trainable_frac": 0.5448418563405262
+        },
+        {
+          "rung": "L6 Emb only",
+          "val": 1.9261815249919891,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 3938816,
+          "trainable_frac": 0.09039314218149574
+        }
+      ],
+      "control": [
+        {
+          "matched_to": "L1 freeze W_K",
+          "val": 0.14863653232653937,
+          "steps": 730,
+          "reached": true,
+          "frozen": 393216,
+          "trainable_frac": 0.9091930239432456
+        },
+        {
+          "matched_to": "L2 + W_Q",
+          "val": 0.14398154616355896,
+          "steps": 760,
+          "reached": true,
+          "frozen": 786432,
+          "trainable_frac": 0.8183860478864913
+        },
+        {
+          "matched_to": "L3 + all attention",
+          "val": 0.14783218254645666,
+          "steps": 810,
+          "reached": true,
+          "frozen": 1572864,
+          "trainable_frac": 0.6367720957729825
+        },
+        {
+          "matched_to": "L4 + LayerNorm (Emb+FF)",
+          "val": 0.14017692456642786,
+          "steps": 850,
+          "reached": true,
+          "frozen": 1579520,
+          "trainable_frac": 0.6352349985220218
+        },
+        {
+          "matched_to": "L5 FF only",
+          "val": 0.14696983434259892,
+          "steps": 910,
+          "reached": true,
+          "frozen": 1970944,
+          "trainable_frac": 0.5448418563405262
+        },
+        {
+          "matched_to": "L6 Emb only",
+          "val": 2.862319906552633,
+          "steps": 1200,
+          "reached": false,
+          "frozen": 3938816,
+          "trainable_frac": 0.09039314218149574
+        }
+      ]
+    }
+  }
+}

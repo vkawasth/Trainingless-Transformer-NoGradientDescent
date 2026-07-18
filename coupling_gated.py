@@ -19,7 +19,7 @@ import numpy as np, torch
 
 # ---- load real model + prefix helpers (g_floor, phi_clean, gluing_defect,
 #      gradient_alignment, sheet_angles, eval_val, get_batch, LR) ------------
-g_={}; src=open("compiler_geometri_patched_86.py").read()
+g_={}; src=open("/mnt/user-data/uploads/compiler_geometri_patched_86.py").read()
 exec(src[:src.find("# ── PHASE 1")], g_)
 # pull compute_rm2_sigma_inline verbatim from source (defined after PHASE 1);
 # slice by indentation so we don't drag in Phase-3 top-level code

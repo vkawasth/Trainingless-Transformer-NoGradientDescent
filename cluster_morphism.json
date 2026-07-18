@@ -1,0 +1,246 @@
+{
+  "target": 0.15,
+  "v0": 4.467329263687134,
+  "k": 3,
+  "per_optimizer": {
+    "AdamW": {
+      "floor": 0.14804590369264284,
+      "steps": 110,
+      "cluster": "adaptive"
+    },
+    "RMSprop": {
+      "floor": 0.14380021641651788,
+      "steps": 270,
+      "cluster": "adaptive"
+    },
+    "Adagrad": {
+      "floor": 0.13316924621661505,
+      "steps": 120,
+      "cluster": "adaptive"
+    },
+    "SGD": {
+      "floor": 0.14583893803258738,
+      "steps": 700,
+      "cluster": "sgd-like"
+    },
+    "SGD+mom": {
+      "floor": 0.14449930128951868,
+      "steps": 430,
+      "cluster": "sgd-like"
+    }
+  },
+  "overlap": {
+    "AdamW|RMSprop": 0.8494093663458342,
+    "AdamW|Adagrad": 0.5756290803028291,
+    "AdamW|SGD": 0.3520208764545939,
+    "AdamW|SGD+mom": 0.36970411135698883,
+    "RMSprop|AdamW": 0.8494093663458342,
+    "RMSprop|Adagrad": 0.5946288816740862,
+    "RMSprop|SGD": 0.14463140390321494,
+    "RMSprop|SGD+mom": 0.14488255521278695,
+    "Adagrad|AdamW": 0.5756290803028291,
+    "Adagrad|RMSprop": 0.5946288816740862,
+    "Adagrad|SGD": 0.26059482397967365,
+    "Adagrad|SGD+mom": 0.27117637942015504,
+    "SGD|AdamW": 0.3520208764545939,
+    "SGD|RMSprop": 0.14463140390321497,
+    "SGD|Adagrad": 0.26059482397967365,
+    "SGD|SGD+mom": 0.8350593148321471,
+    "SGD+mom|AdamW": 0.36970411135698883,
+    "SGD+mom|RMSprop": 0.14488255521278698,
+    "SGD+mom|Adagrad": 0.27117637942015504,
+    "SGD+mom|SGD": 0.8350593148321473
+  },
+  "mean_within": 0.7136816607887242,
+  "mean_across": 0.25716835838790225,
+  "tests": [
+    {
+      "target": "AdamW",
+      "held": "RMSprop",
+      "kind": "WITHIN",
+      "fitted_on": [
+        "Adagrad"
+      ],
+      "val": 1.7091144522031148,
+      "recovery": 0.6335619355635871
+    },
+    {
+      "target": "AdamW",
+      "held": "Adagrad",
+      "kind": "WITHIN",
+      "fitted_on": [
+        "RMSprop"
+      ],
+      "val": 0.30292539795239765,
+      "recovery": 0.9565635579426917
+    },
+    {
+      "target": "AdamW",
+      "held": "SGD",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "SGD+mom"
+      ],
+      "val": 0.16420131052533785,
+      "recovery": 0.9884284804910162
+    },
+    {
+      "target": "AdamW",
+      "held": "SGD+mom",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "SGD"
+      ],
+      "val": 0.23905382057030997,
+      "recovery": 0.9712348591137279
+    },
+    {
+      "target": "RMSprop",
+      "held": "AdamW",
+      "kind": "WITHIN",
+      "fitted_on": [
+        "Adagrad"
+      ],
+      "val": 1.846188724040985,
+      "recovery": 0.6420922874881261
+    },
+    {
+      "target": "RMSprop",
+      "held": "Adagrad",
+      "kind": "WITHIN",
+      "fitted_on": [
+        "AdamW"
+      ],
+      "val": 1.8220742344856262,
+      "recovery": 0.6479995356978308
+    },
+    {
+      "target": "RMSprop",
+      "held": "SGD",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "SGD+mom"
+      ],
+      "val": 0.7398449182510376,
+      "recovery": 0.9131097374352726
+    },
+    {
+      "target": "RMSprop",
+      "held": "SGD+mom",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "SGD"
+      ],
+      "val": 0.17162171254555383,
+      "recovery": 1.052305531188676
+    },
+    {
+      "target": "Adagrad",
+      "held": "AdamW",
+      "kind": "WITHIN",
+      "fitted_on": [
+        "RMSprop"
+      ],
+      "val": 0.521602970858415,
+      "recovery": 0.9102482409614654
+    },
+    {
+      "target": "Adagrad",
+      "held": "RMSprop",
+      "kind": "WITHIN",
+      "fitted_on": [
+        "AdamW"
+      ],
+      "val": 0.6484220673640569,
+      "recovery": 0.8809920658120671
+    },
+    {
+      "target": "Adagrad",
+      "held": "SGD",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "SGD+mom"
+      ],
+      "val": 0.2724318082133929,
+      "recovery": 0.9677300822407687
+    },
+    {
+      "target": "Adagrad",
+      "held": "SGD+mom",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "SGD"
+      ],
+      "val": 0.1500762216746807,
+      "recovery": 0.9959565604993067
+    },
+    {
+      "target": "SGD",
+      "held": "AdamW",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "RMSprop",
+        "Adagrad"
+      ],
+      "val": 0.44720112532377243,
+      "recovery": 0.9452986602523062
+    },
+    {
+      "target": "SGD",
+      "held": "RMSprop",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "AdamW",
+        "Adagrad"
+      ],
+      "val": 1.137419452269872,
+      "recovery": 0.7829997391016583
+    },
+    {
+      "target": "SGD",
+      "held": "Adagrad",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "AdamW",
+        "RMSprop"
+      ],
+      "val": 95.97998936971028,
+      "recovery": -21.51841732825119
+    },
+    {
+      "target": "SGD+mom",
+      "held": "AdamW",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "RMSprop",
+        "Adagrad"
+      ],
+      "val": 2.404411574204763,
+      "recovery": 0.47504492905352114
+    },
+    {
+      "target": "SGD+mom",
+      "held": "RMSprop",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "AdamW",
+        "Adagrad"
+      ],
+      "val": 0.5777889788150787,
+      "recovery": 0.8956762541221341
+    },
+    {
+      "target": "SGD+mom",
+      "held": "Adagrad",
+      "kind": "ACROSS",
+      "fitted_on": [
+        "AdamW",
+        "RMSprop"
+      ],
+      "val": 116.18879954020183,
+      "recovery": -25.727016735495177
+    }
+  ],
+  "within_transport_rate": 0.5,
+  "across_transport_rate": 0.75
+}

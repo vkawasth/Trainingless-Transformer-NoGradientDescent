@@ -1,0 +1,83 @@
+{
+  "target_loss": 0.45,
+  "v0": 4.398370742797852,
+  "k": 3,
+  "per_optimizer": {
+    "AdamW": {
+      "floor": 0.42156750957171124,
+      "steps": 70,
+      "reached": true
+    },
+    "SGD": {
+      "floor": 0.4408603732784589,
+      "steps": 470,
+      "reached": true
+    },
+    "SGD+mom": {
+      "floor": 0.4496533175309499,
+      "steps": 280,
+      "reached": true
+    },
+    "RMSprop": {
+      "floor": 0.4168673927585284,
+      "steps": 150,
+      "reached": true
+    },
+    "Adagrad": {
+      "floor": 0.40276549259821576,
+      "steps": 60,
+      "reached": true
+    }
+  },
+  "morphism": {
+    "AdamW": {
+      "v_own": 0.346297691265742,
+      "v_mapped": 20.40722417831421,
+      "recovery": -4.005257750967007,
+      "own_recovery": 1.0137888426867239,
+      "morphism": false,
+      "fitted_on": [
+        "SGD",
+        "SGD+mom",
+        "RMSprop"
+      ]
+    },
+    "SGD": {
+      "v_own": 0.4975336914261182,
+      "v_mapped": 0.5988357116778692,
+      "recovery": 0.9506063126108646,
+      "own_recovery": 0.9759510822057806,
+      "morphism": false,
+      "fitted_on": [
+        "AdamW",
+        "SGD+mom",
+        "RMSprop"
+      ]
+    },
+    "SGD+mom": {
+      "v_own": 0.3954998751481374,
+      "v_mapped": 0.4047873492042224,
+      "recovery": 0.9991553052661254,
+      "own_recovery": 1.0014789399723758,
+      "morphism": false,
+      "fitted_on": [
+        "AdamW",
+        "SGD",
+        "RMSprop"
+      ]
+    },
+    "RMSprop": {
+      "v_own": 0.6337704956531525,
+      "v_mapped": 6.040582617123921,
+      "recovery": -0.4108652668267991,
+      "own_recovery": 0.9418659730944233,
+      "morphism": false,
+      "fitted_on": [
+        "AdamW",
+        "SGD",
+        "SGD+mom"
+      ]
+    }
+  },
+  "target": "Adagrad"
+}
