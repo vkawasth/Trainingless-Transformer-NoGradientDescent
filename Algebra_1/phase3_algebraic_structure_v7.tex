@@ -1,0 +1,2550 @@
+%=======================================================================
+%  Phase 3: Obstruction, Null, Alignment, and the Lie Structure
+%  Insert into au_fukaya_unified after
+%  \section{Phase 3 After the Backbone: Slow-Manifold Relaxation}
+%  Requires: amsmath, amssymb, amsthm, booktabs (already in preamble)
+%  Fig.~\ref{fig:disc-strand} also needs: \usepackage{graphicx,tikz} with
+%  \usetikzlibrary{arrows.meta,positioning,calc}
+%=======================================================================
+
+\section{Phase 3 Algebraic Structure: Obstruction, Null, Alignment}
+\label{sec:phase3-algebra}
+
+This section reports a measurement programme carried out entirely inside
+phase 3 (steps $120$--$200$ of a $200$-step run on the standard corpus,
+$P = 4{,}330{,}240$ parameters, $\mathrm{VOCAB}=1017$, $\mathrm{nnz}=1347$).
+Its purpose is to determine which algebraic structure, if any, the
+seven-node decomposition
+\[
+  \mathcal{N} = \{\mathrm{EMB},\ \mathrm{LN},\ \mathrm{FF},\
+  W_Q,\ W_K,\ W_V,\ W_O\}
+\]
+carries. The programme is organised so that every positive claim is stated
+against an explicit null, since the central methodological finding is that
+several earlier claims in this document were reported without one.
+
+\subsection{Trajectory geometry of the phase}
+
+Phase 3 begins where the block gradient-profile drift settles
+($0.130$ at steps $21$--$40$, falling to $0.038$ by step $100$ and flat
+thereafter). Within the phase the step size is constant at
+$\|d_t\|\approx 0.60$ and the discrete curvature is constant at
+$\kappa \approx 0.70$--$0.74$, giving radius of curvature $R \approx 1.35$--$1.46$
+against $\|\theta\|\approx 93$, i.e.
+\begin{equation}
+  R/\|\theta\| \;=\; 0.015 .
+\end{equation}
+The tangent autocorrelation decays with no negative lobe at any lag
+($k=1{:}\,0.863$, $k=4{:}\,0.513$, $k=8{:}\,0.271$, $k=16{:}\,0.058$,
+$k=32{:}\,0.002$, $k=64{:}\,0.002$), so the turning is diffusive, not
+rotational. There is no coherent frame precession and no $32$-step period.
+
+\begin{observation}[Chord--path dichotomy]
+The useful chord over the phase is $\|\Delta\| = 19.6 = 0.22\|\theta\|$,
+which is $\sim 14 R$. The trajectory is therefore not a stiff arc, yet the
+straight chord from $\theta_{120}$ to $\theta_{200}$ is a monotone descent
+path (recovery $40\%,\,73\%,\,93\%,\,100\%$ at chord fractions
+$0.25,\,0.5,\,0.75,\,1.0$). The basin is chord-convex while the path is
+diffusive. Consequently the base coordinate cannot be arc length; it must be
+chord fraction toward the attractor.
+\end{observation}
+
+\subsection{The random-walk law and the persistence order parameter}
+
+Let $S_n$ denote the parameter displacement accumulated over $n$ steps. For a
+driftless random walk $\cos(S_n,S_N) = \sqrt{n/N}$ identically. Measured on
+$120\to200$:
+
+\begin{center}
+\begin{tabular}{rcc}
+\toprule
+$n$ & $\cos(S_n, S_{80})$ & $\sqrt{n/80}$ \\
+\midrule
+5  & 0.2968 & 0.250 \\
+10 & 0.3807 & 0.354 \\
+20 & 0.4919 & 0.500 \\
+30 & 0.6040 & 0.612 \\
+40 & 0.7042 & 0.707 \\
+60 & 0.8829 & 0.866 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Agreement is within $0.02$ at every $n$. Phase 3 is statistically
+indistinguishable from a driftless walk at the $80$-step scale. This
+retrospectively explains every failed extrapolation experiment in this
+document: there is no persistent direction to estimate, and the ceiling on
+any local probe is set by the walk rather than by the estimator.
+
+Define the \emph{persistence excess}
+\begin{equation}
+  E(W) \;=\; \cos\!\big(S_{W/2},\,S_W\big) \;-\; \tfrac{1}{\sqrt{2}},
+  \label{eq:persistence}
+\end{equation}
+which vanishes identically for a driftless walk, giving a parameter-free null.
+
+\begin{center}
+\begin{tabular}{rccc}
+\toprule
+$W$ & $E$ on $40\to120$ & $E$ on $120\to200$ & s.e.m. \\
+\midrule
+4  & $+0.2523$ & $+0.2491$ & 0.002 \\
+8  & $+0.2103$ & $+0.2098$ & 0.002 \\
+16 & $+0.1510$ & $+0.1448$ & 0.003 \\
+32 & $+0.1325$ & $+0.0739$ & 0.003 \\
+64 & $+0.1621$ & $+0.0117$ & 0.003 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The phases are indistinguishable at short windows (that part is optimizer
+smoothing) and separate cleanly at $W=64$: $+0.162$ against $+0.012$, a
+$\sim 50\sigma$ gap. $E(64)$ is therefore an order parameter for the
+drift/walk transition, requiring three parameter snapshots and no gradient
+evaluations. It replaces the hand-calibrated \texttt{drift\_thr} of the
+compiler with a quantity whose null is analytic.
+
+\begin{observation}[Gated extrapolation]
+Applying $\theta \leftarrow \theta_t + \beta(\theta_t - \theta_{t-40})$
+followed by $k$ corrector steps: at $t=80$ ($E(64)=+0.16$), $\beta=0.5$ with
+$k=10$ reaches a value requiring $20$ ordinary steps, a net saving of $10$;
+at $t=120$ the saving is $0$; at $t=160$ ($E(64)=+0.01$) every configuration
+loses. The jump alone is uphill ($0.3274 \to 0.3485$) and finishes below
+baseline only after correction, confirming the lift-then-select mechanism.
+Optimal $\beta = 0.5$, not $1.0$; $\beta = 2$ is catastrophic throughout.
+\end{observation}
+
+\subsection{Cellular sheaf on the phase: \texorpdfstring{$H^0=0$}{H0=0}}
+
+Partition $120\to200$ into four cells of $20$ steps and let the stalk over a
+cell be the local displacement subspace. Effective ranks are
+$3.26,\,3.25,\,3.63,\,3.36$ (CV $5\%$): \emph{no rank jump occurs anywhere in
+the phase}, so there is no index event in the interior and the family
+$\{A_b\}$ is trivialisable there. Principal angles between adjacent cells at
+$k=6$ give exactly one surviving direction ($35$--$41^\circ$) with the
+remaining five at $82$--$90^\circ$, overlap $0.10$--$0.12$.
+
+\begin{proposition}[No global section]
+The intersection of all four cell subspaces is trivial: the mean projector
+$\tfrac14\sum_i P_i$ has top eigenvalue $0.43$--$0.51$ for every $k$ tested,
+so $\dim H^0 = 0$ at any tolerance above $\cos > 0.5$. The net displacement
+projects onto each individual cell at $0.48$--$0.66$ but lies in no
+intersection: it is a quasi-section, present in every stalk and exact in none.
+\end{proposition}
+
+The reduced dynamics therefore exists locally in every cell and globally
+nowhere, which is the precise sense in which phase 3 is simultaneously
+measurable and unpredictable.
+
+\subsection{Node interactions and the sign flip}
+
+Over $120\to200$, per-parameter cancellation is $62.5\%$. Single-node oracle
+jumps recover: EMB $88.4\%$, LN $21.9\%$, FF $31.8\%$, $W_Q$ $6.4\%$,
+$W_K$ $-5.3\%$, $W_V$ $23.9\%$, $W_O$ $29.0\%$, summing to $196.2\%$ against
+a joint recovery of $100\%$.
+
+\begin{observation}[Additivity sign flip]
+On $40\to120$ the skeleton is \emph{super}-additive (singles sum $26\%$,
+joint $76\%$); on $120\to200$ the nodes are \emph{sub}-additive (singles sum
+$196\%$, joint $100\%$). The sign of the additivity defect is a
+threshold-free phase discriminator.
+\end{observation}
+
+Pairwise synergies $S_{ij} = \mathrm{rec}(i,j)-\mathrm{rec}(i)-\mathrm{rec}(j)$
+reproduce the architecture: $W_V$--$W_O = -35.6$ (multiplicative composition
+in the output path, so joint motion overshoots), $W_Q$--$W_K = +9.1$
+(composition in the score, so each needs the other), and $W_K$ is a pure
+connector --- solo $-5.3\%$ but positive with every partner, edge sum $+72.5$.
+Its contribution lives on edges, not on its vertex.
+
+The Gram matrix of functional changes $\cos(\delta f_i, \delta f_j)$ exhibits
+four near-orthogonal blocks: $\{\mathrm{EMB},\mathrm{LN}\}$ (internal $0.331$),
+$\{W_Q,W_K\}$ ($0.576$), $\{W_V,W_O\}$ ($0.612$), $\{\mathrm{FF}\}$, with
+cross-block overlaps $0.02$--$0.16$ and $\mathrm{EMB}\leftrightarrow$attention
+at $0.02$. Eigenvalues $1.854,\,1.437,\,1.343,\,0.902,\,0.653,\,0.424,\,0.387$:
+the pairing is nondegenerate. Functional overlap predicts interaction sign,
+$\mathrm{corr}(\cos(\delta f_i,\delta f_j),\,S_{ij}) = -0.37$.
+
+\subsection{The null, and what it does to the closure claim}
+
+Each node acts almost exactly linearly on its own
+($\|\delta f(1.0\,d_g)\| / 2\|\delta f(0.5\,d_g)\| \in [0.916, 1.007]$), but the
+nodes do not superpose: $\|\delta f(\text{full}) - \sum_g \delta f(g)\|$ is
+$49.1\%$ of $\|\delta f(\text{full})\|$. All non-additivity is therefore
+bilinear, defining a symmetric product
+\begin{equation}
+  m(u,v) \;=\; f(\theta+u+v) - f(\theta+u) - f(\theta+v) + f(\theta).
+\end{equation}
+Since $m$ maps $P\otimes P \to F$ with $F \neq P$, closure is only meaningful
+after lowering the index with the Jacobian adjoint,
+$\tilde m = J^{*}\!\circ m : P\otimes P \to P$.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+generator set & mean in-span & vs.\ null & \\
+\midrule
+node cuts of $\Delta$ (same segment)      & $0.695\%$ & $4{,}299\times$ \\
+random directions per node, norm-matched  & $0.007\%$ & $42\times$ \\
+random directions, second seed            & $0.006\%$ & $38\times$ \\
+node cuts of an independent segment       & $1.575\%$ & $9{,}742\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The null for a random direction against a $7$-dimensional span in
+$\mathbb{R}^{4{,}330{,}240}$ is $7/P = 1.62\times10^{-6}$.
+
+\begin{observation}[Alignment without closure]
+The product is $\sim\!10^3$--$10^4$ times more aligned with its own generators
+than chance, and is \emph{more} aligned when the generators come from an
+independent segment ($9{,}742\times$) than from the segment used to build it
+($4{,}299\times$), ruling out inheritance. Random directions with identical
+node support give only $\sim\!40\times$, so the alignment is a property of
+on-trajectory directions and not of the block decomposition. Nevertheless the
+product does not close: $99.3\%$ of its energy lies outside the generator span.
+\end{observation}
+
+The verdict is scale-independent. Writing $A(t)=m_t/t^2$, the raw product at
+$t=1,\tfrac12,\tfrac14$, the two-point Richardson $H=2A(t/2)-A(t)$ and the
+three-point Richardson $H=\tfrac13A(t)-2A(t/2)+\tfrac83A(t/4)$ give in-span
+fractions $0.69\%,\,0.68\%,\,0.67\%,\,0.67\%,\,0.67\%$ respectively
+($4{,}299\times$ to $4{,}130\times$ null), with pairwise scaling ratios
+$3.29$--$3.90$ against the ideal $4$. Higher-order contamination therefore does
+not account for the escape. The connected triple obstruction
+satisfies $\|m_3\|/\|m_2\| = 0.339$ and $\|m_3\|/\|m_1\| = 0.184$ --- the
+expansion converges geometrically --- but only $20.7\%$ of $m_3$ lies in
+$\mathrm{span}(m_2)$. Effective ranks by order are
+$2.88 \to 5.75 \to 8.24$, i.e.\ $\sim\!2.5$ new directions per order: linear
+growth, far below the free bound $7^k$, but never closing.
+
+\subsection{\texorpdfstring{$m_1$}{m1} from the flow, and why the
+\texorpdfstring{$A_\infty$}{A-infinity} relations fail}
+
+Take $\Phi(\theta) = \theta - \eta\nabla L(\theta)$ with a fixed batch, and set
+\begin{align}
+  m_0 &= \Phi(\theta)-\theta, &
+  m_1(v) &= \Phi(\theta+v)-\Phi(\theta)-v, \\
+  m_2(u,v) &= \Phi(\theta{+}u{+}v)-\Phi(\theta{+}u)-\Phi(\theta{+}v)+\Phi(\theta),
+  \nonumber
+\end{align}
+with $m_3$ the connected third difference. \emph{Numerical warning:}
+differencing $\Phi$ directly cancels $\|\theta\|\approx 93$ down to $10^{-5}$
+and is pure single-precision roundoff --- diagnosed by $m_3$ scaling as $1.08$
+instead of the required $8$. Differencing the gradient (where the $\theta$
+terms cancel analytically) in double precision restores validity: $m_2$ scales
+$3.32$ (expect $4$), $m_3$ scales $12.04$ (expect $8$).
+
+With valid numerics both curved relations fail:
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+relation & scale & residual & relative \\
+\midrule
+$n{=}1$: $m_1^2x + 2m_2(m_0,x)$, $x=\mathrm{EMB}$ & $4.64{\times}10^{-7}$ & $4.46{\times}10^{-7}$ & $0.961$ \\
+$n{=}1$: $x=\mathrm{FF}$ & $1.69{\times}10^{-6}$ & $1.45{\times}10^{-6}$ & $0.856$ \\
+$n{=}3$ Stasheff, EMB-FF-$W_Q$ & --- & --- & $\cos = 0.005$ \\
+$n{=}3$ Stasheff, $W_Q$-$W_K$-$W_V$ & --- & --- & $\cos = -0.287$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[No $A_\infty$ structure in the gradient flow]
+For $\Phi$ a gradient map, every $m_k$ is a derivative of the scalar potential
+$L$: $m_1 = -\eta H$, $m_2 = -\eta\nabla^3 L$, $m_3 = -\eta\nabla^4 L$. These are
+fully symmetric tensors. A fully symmetric family admits no associativity to
+correct, so the associator is not the boundary of anything and the Stasheff
+relations cannot hold. The measured failure is a consequence of the category,
+not of the measurement.
+\end{proposition}
+
+This closes the symmetric route. Any antisymmetric structure must therefore
+arise from an operation that is not a derivative of $L$.
+
+\subsection{The Lie structure: node-restricted fields nearly close}
+
+Let $P_i$ be the coordinate projector onto node $i$ and
+\begin{equation}
+  V_i(\theta) \;=\; -\,P_i\nabla L(\theta),
+  \qquad
+  [V_i,V_j] \;=\; -P_j H V_i + P_i H V_j .
+  \label{eq:bracket}
+\end{equation}
+Although $H$ is symmetric, $P_iHP_j$ and $P_jHP_i$ occupy \emph{different}
+blocks and cannot cancel; the bracket is nonvanishing. Antisymmetry is
+structural and the Jacobi identity is automatic for vector fields, so the only
+substantive question is closure. All $21$ brackets follow from $8$ gradient
+evaluations.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+& symmetric product & Lie bracket \\
+\midrule
+mean in-span                & $0.7\%$ & $\mathbf{53.3\%}$ \\
+proper null                 & $1.62{\times}10^{-6}$ & $2.62{\times}10^{-6}$ \\
+ratio to null               & $4{,}299\times$ & $\mathbf{351{,}064\times}$ \\
+effective-rank flow         & $3.76 \to 5.50$ (expands) & $2.40 \to 1.82$ (contracts) \\
+energy outside span         & $99.3\%$ & $36.4\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Brackets are $0.469\times$ the magnitude of the generators, so this is a
+leading-order structure. The control is decisive: projecting the \emph{same}
+brackets onto random node-supported fields of matched norm collapses the
+in-span fraction to $0.0078\%$ ($28.8\times$ null), a signal-to-control ratio
+of $6{,}879$.
+
+\begin{observation}[Contraction versus expansion]
+The symmetric product expands rank and escapes almost completely; the
+antisymmetric bracket contracts rank ($1.82 < 2.40$) and retains half its
+energy in the generator span, escaping in only $\sim\!2.07$ effective
+directions. This is the behaviour of a derived subalgebra
+$[\mathfrak{g},\mathfrak{g}]\subseteq\mathfrak{g}$, missing closure by about
+two directions rather than by everything.
+\end{observation}
+
+\subsection{Level two: the tower closes better than it opens}
+
+The bracket fields $[V_i,V_j]$ are themselves vector fields, so the derived
+series is computable. Let the level-1 span be
+$\mathcal{G}_1=\mathrm{span}\{V_i\}\oplus\mathrm{span}\{P_j\,\mathrm{D}g_i\}$
+($56$ dimensions, a superset of $\mathrm{span}\{V,[V,V]\}$), and evaluate
+$[V_k,[V_i,V_j]]$ by finite differences of the bracket field.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+$[V_k,[V_i,V_j]]$ & $\|\cdot\|$ & in $\mathrm{span}\{V\}$ & in $\mathcal{G}_1$ & vs.\ null \\
+\midrule
+$[\mathrm{EMB},[W_Q,W_K]]$ & $0.02814$ & $18.4\%$ & $91.3\%$ & $70{,}561\times$ \\
+$[\mathrm{FF},[W_Q,W_K]]$  & $0.01445$ & $19.1\%$ & $91.5\%$ & $70{,}731\times$ \\
+$[W_Q,[W_Q,W_K]]$          & $0.00140$ & $16.3\%$ & $90.7\%$ & $70{,}135\times$ \\
+$[\mathrm{EMB},[W_V,W_O]]$ & $0.03162$ & $6.2\%$  & $39.5\%$ & $30{,}518\times$ \\
+$[\mathrm{FF},[W_V,W_O]]$  & $0.01980$ & $10.5\%$ & $58.1\%$ & $44{,}918\times$ \\
+$[W_Q,[W_V,W_O]]$          & $0.00121$ & $9.2\%$  & $50.2\%$ & $38{,}813\times$ \\
+\midrule
+mean                       &           & $12.8\%$ & $67.7\%$ & $52{,}342\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{observation}[Root-space behaviour of $W_Q,W_K$]
+The pair that fails hardest to close at level one closes hardest at level two.
+$[W_Q,W_K]$ retains only $34.1\%$ in its own span, but every double bracket
+$[V_k,[W_Q,W_K]]$ returns to $\mathcal{G}_1$ at $90.7$--$91.5\%$, and does so
+uniformly across $k$. Conversely $[W_V,W_O]$, the most closed pair at level
+one, generates level-two elements that escape ($39.5$--$58.1\%$). A generator
+pair whose bracket leaves the span but whose adjoint orbit returns to it is the
+behaviour of a root vector: $W_Q,W_K$ generate a new graded piece which is then
+stable under the adjoint action, while $W_V,W_O$ behave as a solvable block that
+does not.
+\end{observation}
+
+\subsection{The algebra is a stalk, not a global object}
+
+Computing the brackets at step $120$ and projecting them onto the fields
+$V_i(\theta_{c})$ at other checkpoints tests whether the closure is a property
+of the phase or of the base point.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+fields from & mean in-span & min & max & vs.\ null \\
+\midrule
+step $40$          & $0.11\%$  & $0.03$  & $0.24$  & $678\times$ \\
+step $80$          & $0.14\%$  & $0.00$  & $0.36$  & $871\times$ \\
+step $120$ (own)   & $44.97\%$ & $19.97$ & $58.08$ & $278{,}197\times$ \\
+step $160$         & $1.53\%$  & $0.35$  & $3.90$  & $9{,}471\times$ \\
+random node fields & $0.00\%$  & $0.00$  & $0.00$  & $3\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Locality of the Lie structure]
+Closure falls by a factor of $\sim\!30$ at $+40$ steps and $\sim\!300$ at
+$-40$ steps, while remaining $10^2$--$10^4$ times above the random control
+($3\times$). The Lie structure is therefore a local object with a decaying, not
+vanishing, transport between checkpoints, and it is asymmetric in time: the
+future ($9{,}471\times$) is better aligned than the past ($871\times$),
+consistent with convergence toward the attractor.
+\end{proposition}
+
+This forces the algebraic reading into the sheaf-theoretic frame already
+established in \S\ref{sec:phase3-algebra}: what exists is not one Lie algebra
+but a \emph{field of Lie algebras over the base}, one per stalk, with weak
+restriction maps. The measured transport ($0.034\times$ own over $40$ steps)
+is quantitatively consistent with the principal-angle result that adjacent
+cells share one direction out of six. The vanishing of $H^0$ for the transition
+laws and the locality of the bracket closure are two readings of the same fact.
+
+As a robustness note, the own-checkpoint closure evaluated at two independently
+reached step-$120$ states gives $44.97\%$ and $53.31\%$, so the figure is
+stable to about $\pm 8$ points across runs.
+
+\subsection{Skeleton \texorpdfstring{$\to$}{->} dense: the transition, measured}
+
+Evaluating \eqref{eq:bracket} at two checkpoints:
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+subalgebra & $\|[\cdot,\cdot]\|_{80}$ & $\|[\cdot,\cdot]\|_{160}$ & growth
+& in-span$_{80}$ & in-span$_{160}$ \\
+\midrule
+all seven                 & $0.00838$ & $0.03828$ & $4.57\times$ & $36.6\%$ & $55.9\%$ \\
+skeleton EMB,LN,FF        & $0.02456$ & $0.13420$ & $5.47\times$ & $31.8\%$ & $63.0\%$ \\
+attention $Q,K,V,O$       & $0.00152$ & $0.00490$ & $3.22\times$ & $31.8\%$ & $51.7\%$ \\
+$W_Q,W_K$ only            & $0.00047$ & $0.00100$ & $2.11\times$ & $15.6\%$ & $34.1\%$ \\
+$W_V,W_O$ only            & $0.00534$ & $0.01424$ & $2.67\times$ & $50.5\%$ & $60.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Every bracket grows and every subalgebra closes better as the run proceeds.
+This is the skeleton-to-dense transition expressed algebraically: while the
+skeleton carries the updates the Lie structure is weak and open; as attention
+comes online the brackets strengthen by $2$--$5\times$ and closure rises from
+$\sim\!32\%$ to $\sim\!63\%$.
+
+\begin{observation}[$W_Q,W_K$ generate; $W_V,W_O$ close]
+$W_V,W_O$ is the most closed pair at both checkpoints ($50.5\% \to 60.5\%$),
+consistent with their multiplicative composition and functional overlap
+$0.612$: they behave as a nearly solvable piece. $W_Q,W_K$ is the least closed
+($15.6\% \to 34.1\%$), with
+\[
+  [V_Q,V_K] = +0.0203\,V_Q - 0.0140\,V_K + r,
+  \qquad \|r\|/\|[V_Q,V_K]\| = 0.812
+\]
+at step $160$, and normalised bracket strength rising $1.263 \to 1.696$. A
+generator pair whose bracket lands overwhelmingly outside its own span, with
+opposite-sign coefficients, is the signature of a rank-2 system generating new
+root spaces rather than of a closed subalgebra.
+\end{observation}
+
+\subsection{The layer grading and the culling mechanism}
+
+Grading by depth rather than by parameter role sharpens every result. Let
+$V_\ell = -P_\ell\nabla L$ with $\ell$ ranging over $\mathrm{EMB}$ and the six
+blocks. Bracket closure rises to $62.2\%$ in-span ($384{,}812\times$ null),
+above the $53.3\%$ obtained from the role decomposition, and decays
+monotonically with depth separation:
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$|\ell-m|$ & pairs & mean in-span & mean $\|[\cdot,\cdot]\|$ \\
+\midrule
+1 & 5 & $63.7\%$ & $0.03117$ \\
+2 & 4 & $62.1\%$ & $0.03024$ \\
+3 & 3 & $59.8\%$ & $0.03099$ \\
+4 & 2 & $57.7\%$ & $0.02952$ \\
+5 & 1 & $56.8\%$ & $0.02373$ \\
+\midrule
+$\mathrm{EMB}$--$*$ & 6 & $64.6\%$ & $0.1127$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The mechanism is a rank collapse. Probing block $\ell$ with all seven
+independent directions $\widehat V_m$ and collecting the responses
+$P_\ell H\widehat V_m$:
+
+\begin{center}
+\begin{tabular}{lrrl}
+\toprule
+block & eff-rank & rank$(5\%)$ & normalised spectrum \\
+\midrule
+$\mathrm{EMB}$ & $1.07$ & $1$ & $1.00\ \ 0.02\ \ 0.01\ \ 0.00\ \ 0.00$ \\
+$L_0$ & $1.10$ & $1$ & $1.00\ \ 0.03\ \ 0.01\ \ 0.01\ \ 0.00$ \\
+$L_2$ & $1.11$ & $1$ & $1.00\ \ 0.02\ \ 0.02\ \ 0.01\ \ 0.01$ \\
+$L_5$ & $1.13$ & $1$ & $1.00\ \ 0.04\ \ 0.01\ \ 0.00\ \ 0.00$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Rank-one curvature response]\label{prop:rank-one}
+Within every block the second-order response is rank one to within
+$2$--$4\%$: $P_\ell H v \approx u_\ell\,(w_\ell\!\cdot\! v)$ for a fixed unit
+$u_\ell$. This is the Jacobian structure of LayerNorm (a projection removing
+mean and scale) composed with softmax (whose Jacobian $\mathrm{diag}(p)-pp^{\!\top}$
+annihilates the constant direction).
+\end{proposition}
+
+The proposition explains the algebraic results rather than accompanying them.
+Bracket closure is a single cosine per block, not a subspace overlap, which is
+why it sits near $60\%$ rather than near $0$ or $1$; and adjoint stability at
+level two is automatic, since once a bracket lies along $u_\ell$ every further
+bracket does too. The $90.7$--$91.5\%$ closure of the $W_Q,W_K$ orbit is the
+culling acting after the direction has been established.
+
+\subsection{The obstruction to exploiting it}
+
+Rank-one response invites a reduced Newton step: solve $g + Hd = 0$ on the
+$K$ block coefficients, at a cost of $K{+}1$ gradient evaluations. Measured
+against AdamW from the same state:
+
+\begin{center}
+\begin{tabular}{lrrrl}
+\toprule
+step & out-of-$u_\ell$ residual & $\mathrm{cond}(C)$ & equivalent AdamW steps & verdict \\
+\midrule
+$40$  & $72.0\%$ & $49.6$ & $1$ & no gain \\
+$80$  & $61.9\%$ & $1.55{\times}10^{3}$ & $1$ & no gain \\
+$120$ & $70.8\%$ & $477$ & $4$ & no gain \\
+$160$ & $58.6\%$ & $1.47{\times}10^{3}$ & $1$ & no gain \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{observation}[Fredholm obstruction, quantified]
+Rank-one response means the image of the block-restricted curvature operator
+is one-dimensional, so its cokernel is of codimension one in each block.
+Between $59\%$ and $72\%$ of the gradient lies in that cokernel. By
+Corollary~\ref{cor:fredholm} (the Fredholm alternative) the equation is
+unsolvable for that component by any block-restricted update, and the reduced
+Newton step correspondingly buys nothing. The culling that renders the algebra
+tractable is the same structure that renders the gradient unreachable.
+\end{observation}
+
+What the rank-one result does justify is the phase-2 cull already validated
+empirically: if $P_\ell H v \approx u_\ell(w_\ell\!\cdot\!v)$ to $2$--$4\%$, a
+\emph{scalar} step size per block is not an approximation but the correct
+curvature model, and maintaining a full second moment on those blocks is
+wasted state. This is the mechanism behind $W_V,W_O \to$ scalar SGD and
+$W_Q,W_K \to$ frozen diagonal being free within noise. It yields a
+generalisable test: measure the response spectrum per block and cull those
+exhibiting the $1.00 / 0.02$ gap. The depth decay above adds a second
+prediction: inter-block coupling weakens with $|\ell-m|$, so layer-local
+optimizer state and pipeline-parallel schedules are cheap exactly in
+proportion to the measured off-diagonal of the coupling matrix $C$.
+
+\subsection{Forward/backward alignment does not occur}
+
+If the forward map (inter-token meaning) and the backward map (loss-driven
+correction) came into alignment as training converged, the gradient would
+progressively enter the reachable image and the out-of-$u_\ell$ residual would
+decay to zero. Measured across a full run at $20$-step resolution:
+
+\begin{center}
+\begin{tabular}{rrrrrr}
+\toprule
+step & val & $\|g\|$ & mean residual & eff-rank & $\mathrm{cond}(C)$ \\
+\midrule
+$20$  & $2.1348$ & $0.5689$ & $76.7\%$ & $1.99$ & $44.3$ \\
+$60$  & $0.6466$ & $0.3165$ & $67.5\%$ & $1.36$ & $87.8$ \\
+$100$ & $0.1980$ & $0.1982$ & $61.9\%$ & $1.18$ & $189$ \\
+$140$ & $0.0856$ & $0.2891$ & $69.4\%$ & $1.11$ & $3.44{\times}10^{4}$ \\
+$160$ & $0.0704$ & $0.2010$ & $88.4\%$ & $1.25$ & $229$ \\
+$200$ & $0.0768$ & $0.2221$ & $53.9\%$ & $1.08$ & $778$ \\
+$220$ & $0.0985$ & $0.3717$ & $80.9\%$ & $1.09$ & $4.38{\times}10^{4}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[The obstruction is permanent]
+The mean residual over the first half of the run is $70.1\%$ and over the
+second half is $70.1\%$; a linear fit gives slope $-0.0049\%$ per step,
+extrapolating to zero at step $14{,}401$. The run attains its loss minimum at
+step $160$ with the residual at its \emph{largest} value ($88.4\%$). Forward
+image and backward demand therefore do not align, and the Fredholm obstruction
+of the previous subsection is a permanent feature rather than a transient of
+early training.
+\end{proposition}
+
+One quantity is monotone. The effective rank of the block response falls
+$1.99 \to 1.64 \to 1.36 \to 1.11$ over steps $20$--$80$ and remains in
+$[1.08, 1.25]$ thereafter. The rank-one culling is thus not a fixed property of
+the architecture but \emph{crystallises} during skeleton formation, completing
+at the skeleton-to-dense boundary. This dates the mechanism of
+Proposition~\ref{prop:rank-one} and explains why the algebraic closure results
+strengthen after step $80$.
+
+\subsection{The projection path and its resolution scale}
+
+The directions $u_\ell$ define rank-one projections $e_\ell = u_\ell u_\ell^{\!\top}$.
+Two projections at principal angle $\vartheta$ satisfy
+$\|e-f\| = \sin\vartheta$, and $\|e-f\| < 1$ is the standard criterion for
+them to determine the same $K_0$ class. Sampling every step over a window in
+phase 3:
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+lag (steps) & mean $\cos$ & $\|e-f\|$ & \\
+\midrule
+$1$  & $0.891$ & $0.454$ \\
+$2$  & $0.733$ & $0.680$ \\
+$4$  & $0.402$ & $0.916$ \\
+$8$  & $0.074$ & $0.997$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{observation}[Continuity is a matter of sampling]
+At $1$-step spacing $\|e-f\| = 0.454$, well inside the criterion, so the
+projections form a continuous path and the $K_0$ class is defined along it.
+The decorrelation time is $\approx 4$ steps; sampling at $20$-step intervals
+(as in the preceding subsection) lies far beyond it and spuriously suggests a
+discontinuous path. The second singular value satisfies $S_2/S_1 = 0.204$, so
+$u_\ell$ is separated from its successor by a factor of five and the path is
+not an artefact of a degenerate spectrum.
+\end{observation}
+
+The path is nevertheless diffusive rather than rotational. The per-step angle
+is $\arccos(0.891) = 27.1^\circ$, accumulating $\approx 434^\circ$ over sixteen
+steps, while the net displacement over the same interval is
+$\arccos(0.158) = 80.9^\circ$: a path-length to net-displacement ratio of
+$5.4$. There is therefore a well-defined path of projections but no coherent
+rotation, and a training run --- which does not close a loop --- carries no
+winding. Extracting a $K_1$ element would require constructing a loop
+deliberately, for instance by a cyclic schedule returning to the same basin,
+and measuring the holonomy of the transport around it. That construction is
+the natural next step for the operator-theoretic programme and has not been
+attempted here.
+
+\section{The Tile Complex: One Space, Two Orientations}
+\label{sec:tile-complex}
+
+The preceding sections measured algebraic structure on a decomposition by
+parameter role. This section replaces that decomposition with a refinement
+hierarchy and finds that the resulting object is operator-algebraic rather than
+Lie-theoretic, with a topology that is forced by the construction.
+
+\subsection{Construction}
+
+Each layer's parameter vector is partitioned, per group, into overlapping tiles
+along its flat index. The resolution ladder is assigned by depth,
+\[
+  \text{forward}\quad L_0{:}16,\ L_1{:}32,\ L_2{:}64,\ L_3{:}256,\ L_4{:}512,\ L_5{:}1024,
+\]
+with the backward assignment mirrored ($L_5{:}16$ through $L_0{:}1024$).
+Overlap is gated by the persistence excess of \S\ref{sec:phase3-algebra}: $10\%$
+while $E(64) > 0.05$, $25\%$ below. On a $200$-step run the gate fired
+unprompted at step $176$, where $E(64)$ crossed from $+0.060$ to $+0.043$.
+Forward tiles record the weights after each step; backward tiles record the
+applied update $\theta_t - \theta_{t-1}$, both reduced to mean and $|\max|$.
+Groups $\mathrm{LN},\mathrm{FF},\mathrm{EMB}$ are tracked from step $1$ and
+$W_Q,W_K,W_V,W_O$ from step $121$.
+
+\begin{observation}[One complex, two orientations]
+Forward and backward are not two spaces. They share the layer axis and the
+index set and differ only in the orientation of the refinement maps: forward
+branches toward the output, backward toward the input. The formal difference
+$[\mathcal{H}_f]-[\mathcal{H}_b]$ is therefore taken on a single complex.
+Ranks multiply to a constant at every depth,
+\[
+  16\cdot 1024 = 32\cdot 512 = 64\cdot 256 = 256\cdot 64
+  = 512\cdot 32 = 1024\cdot 16 = 2^{14},
+\]
+while the graded difference $\operatorname{rank}\mathcal{H}_f -
+\operatorname{rank}\mathcal{H}_b$ takes the values
+$-1008,\,-480,\,-192,\,+192,\,+480,\,+1008$: antisymmetric about the middle,
+summing to zero, and \emph{never} zero at any layer. The fixed point would be
+$\sqrt{2^{14}} = 128$, which the ladder omits. The pairing is consequently
+nondegenerate at every layer and the graded index changes sign between $L_2$
+and $L_3$ by a jump rather than through a zero.
+\end{observation}
+
+Within a layer the tiles are overlapping intervals on a line, so the nerve of
+the cover is a path graph, all intersections are contractible, and by the Nerve
+Lemma each layer is homotopy equivalent to a point. All topology therefore
+resides in the vertical direction. As a CW complex, per group and orientation:
+$1904$ zero-cells, $1898$ horizontal and $1888$ vertical one-cells, and $875$
+plaquettes, giving $\chi = -1007$.
+
+\subsection{Stalks: a log power law in the loss}
+
+Over each tile the stalk is the pair $(\alpha,\beta)$ fitted from
+\begin{equation}
+  \log\bigl|u_{\text{tile}}(t)\bigr|
+  \;=\; \alpha\,\log\bigl(L(t)-H\bigr) \;+\; \beta,
+  \qquad H = 0.062,
+  \label{eq:powerlaw}
+\end{equation}
+where $u$ is the tile's $|\max|$ channel and $H$ is the corpus entropy floor.
+Taking logarithms is what makes the stalk a vector space: addition and scalar
+multiplication are defined, so restriction maps can be linear and cellular
+sheaf cohomology is available. The metric on each stalk is supplied by the
+diagonal Fisher information, computed with labels sampled from the model,
+aggregated over the tile's index span.
+
+\begin{center}
+\begin{tabular}{lrrr|lrrr}
+\toprule
+\multicolumn{4}{c|}{FF forward (weights)} & \multicolumn{4}{c}{FF backward (updates)} \\
+layer & tiles & $\alpha$ & $R^2$ & layer & tiles & $\alpha$ & $R^2$ \\
+\midrule
+$L_0$ & 16   & $-0.052$ & $0.729$ & $L_5$ & 16   & $+0.049$ & $0.733$ \\
+$L_1$ & 32   & $-0.055$ & $0.776$ & $L_4$ & 32   & $+0.054$ & $0.697$ \\
+$L_2$ & 64   & $-0.057$ & $0.765$ & $L_3$ & 64   & $+0.058$ & $0.658$ \\
+$L_3$ & 256  & $-0.062$ & $0.774$ & $L_2$ & 256  & $+0.066$ & $0.596$ \\
+$L_4$ & 512  & $-0.065$ & $0.782$ & $L_1$ & 512  & $+0.071$ & $0.556$ \\
+$L_5$ & 1024 & $-0.068$ & $0.781$ & $L_0$ & 1024 & $+0.078$ & $0.530$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The exponents are mirror-symmetric between the two orientations, $\alpha_f
+\approx -\alpha_b$, both monotone in depth: weights contract as the loss falls
+while updates grow. $\mathrm{LN}$ and $W_K$ fit poorly ($R^2 = 0.02$--$0.32$),
+so the power law in the loss is specific to $\mathrm{FF}$.
+
+\subsection{Restriction maps as pants coproducts}
+
+A refinement rung takes one parent tile to $r$ children with $r \in \{2,4\}$:
+one input, several outputs. This is a coproduct
+$\Delta : \mathcal{S}(p) \to \bigoplus_{i}\mathcal{S}(c_i)$, and the reverse
+merge is the corresponding product. Fitting a single $2\times2$ map
+$M : \mathcal{S}(p) \to \mathcal{S}(c)$ per rung by Fisher-weighted least
+squares:
+
+\begin{center}
+\begin{tabular}{llrr}
+\toprule
+group/side & rung & $M$ & rel.\ residual \\
+\midrule
+FF bwd & $L_5\!\to\!L_4$ & $\left[\begin{smallmatrix}0.240 & -0.006\\ 0.598 & 1.008\end{smallmatrix}\right]$ & $0.001$ \\
+FF bwd & $L_4\!\to\!L_3$ & $\left[\begin{smallmatrix}0.067 & -0.008\\ -0.251 & 1.003\end{smallmatrix}\right]$ & $0.001$ \\
+FF bwd & $L_3\!\to\!L_2$ & $\left[\begin{smallmatrix}0.194 & -0.008\\ -0.470 & 1.004\end{smallmatrix}\right]$ & $0.002$ \\
+FF bwd & $L_2\!\to\!L_1$ & $\left[\begin{smallmatrix}0.262 & -0.008\\ -1.300 & 0.992\end{smallmatrix}\right]$ & $0.003$ \\
+FF bwd & $L_1\!\to\!L_0$ & $\left[\begin{smallmatrix}0.310 & -0.008\\ -1.503 & 0.990\end{smallmatrix}\right]$ & $0.003$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Residuals are $0.1$--$0.8\%$: the coproduct is essentially exact. Every map has
+the same spectral shape, one eigenvalue near unity and one strongly contracted.
+Across all rungs, groups and orientations the near-unit eigenvalue lies in
+$[0.990,\,1.045]$ and the contracted one in $[0.005,\,0.53]$.
+
+\subsection{The \texorpdfstring{$\beta$}{beta} line is a global section}
+
+Comparing the eigenvalue-one eigenvector across every group and orientation:
+
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\toprule
+ & FF/f & FF/b & LN/f & LN/b & $W_K$/f & $W_K$/b \\
+\midrule
+FF/f    & $1.0000$ & $0.9993$ & $0.9999$ & $0.9994$ & $0.9998$ & $0.9996$ \\
+FF/b    & $0.9993$ & $1.0000$ & $0.9997$ & $1.0000$ & $0.9999$ & $1.0000$ \\
+LN/f    & $0.9999$ & $0.9997$ & $1.0000$ & $0.9998$ & $1.0000$ & $0.9999$ \\
+$W_K$/b & $0.9996$ & $1.0000$ & $0.9999$ & $1.0000$ & $1.0000$ & $1.0000$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Universality of the fixed line within this cover]
+All pairwise cosines exceed $0.9993$, and within-group agreement across rungs
+exceeds $0.9985$. The eigenvalue-one eigenspace is a single line shared by
+every stalk of every group in both orientations. Within the refinement system,
+an observable is fixed by every restriction map exactly when it lies on this
+line.
+\end{proposition}
+
+This is a statement about the tile refinement and not about the network:
+\S\ref{sec:cover-dependence} shows that $\beta$ does not survive a change of
+cover, so it should not be identified with a basic observable of the
+optimisation dynamics in the sense of \S\ref{sec:phase3-algebra}.
+
+\subsection{The inductive limit selects \texorpdfstring{$\beta$}{beta}}
+
+Composing all five rungs:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+group/side & eigenvalues & $|\lambda_2|/|\lambda_1|$ & $\cos(\text{top}, \beta)$ \\
+\midrule
+FF/fwd    & $(0.0000,\ 1.1169)$ & $2\times10^{-5}$ & $1.0000$ \\
+FF/bwd    & $(0.0002,\ 1.0257)$ & $2\times10^{-4}$ & $1.0000$ \\
+LN/fwd    & $(0.0037,\ 1.2065)$ & $3\times10^{-3}$ & $1.0000$ \\
+LN/bwd    & $(0.8615,\ 1.0909)$ & $0.790$          & $0.9998$ \\
+$W_K$/fwd & $(0.0000,\ 1.0538)$ & $<10^{-5}$       & $1.0000$ \\
+$W_K$/bwd & $(0.0001,\ 1.0435)$ & $1\times10^{-4}$ & $1.0000$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[$\beta$ is the Perron--Frobenius observable]
+Five of six composites are rank one to within $10^{-5}$--$10^{-3}$, with
+surviving eigenvector equal to the $\beta$ line at cosine $1.0000$. Refinement
+discards every observable except $\beta$, which is therefore not merely basic
+but the unique attracting observable of the refinement dynamics.
+\end{proposition}
+
+Two qualifications. The dominant eigenvalue exceeds unity everywhere
+($1.026$--$1.207$), so the fixed \emph{line} is exact while the fixed
+\emph{scale} is not: $\beta$ is weakly expanding under refinement. And
+$\mathrm{LN}$ backward does not reduce, with
+$|\lambda_2|/|\lambda_1| = 0.790$; it is also the group with the strongest
+depth attenuation and the most tile-heterogeneous (CV $0.40$ against FF's
+$0.095$). \S\ref{sec:reliability} shows this is not a fitting artefact and
+identifies it as a second slow observable rather than an exception. Across two
+seeds the eigenvalue \emph{ratio} replicates ($\mathrm{LN}$ $0.31$--$0.60$,
+$\mathrm{FF}$ $0.0000$--$0.0155$) while the eigen\emph{vector} does not
+($\mathrm{LN}_w$ gives $(+0.999,+0.051)$ then $(+0.491,+0.871)$), so the stable
+object is the spectral gap and not the eigenspace. Since the stalk is
+two-dimensional, the surviving second direction is $\alpha$ itself: for
+$\mathrm{LN}$ the loss-response exponent survives refinement, for
+$\mathrm{FF}$ it is annihilated. Determinant and $\lambda_2$ are not
+independent evidence, as $\lambda_1 \approx 1.09$ throughout makes
+$\det \approx 1.09\lambda_2$; no claim of an $SL_2$ or cluster-algebraic
+structure is warranted.
+
+\subsection{Validation: the collapse is not regression attenuation}
+\label{sec:reliability}
+
+The restriction maps of the previous subsections are least-squares fits of the
+child stalk on the parent stalk. When a predictor is measured with error, the
+fitted coefficient is biased toward zero by the reliability ratio
+$\sigma^2_{\text{signal}}/(\sigma^2_{\text{signal}}+\sigma^2_{\text{noise}})$.
+Since $\beta$ is a log-magnitude intercept (precisely estimated) while $\alpha$
+is a slope fitted against $\log(L-H)$ (less so), attenuation alone would
+produce a near-unit eigenvalue along $\beta$ and an eigenvalue equal to the
+reliability of $\alpha$ along $\alpha$ --- reproducing the observed spectral
+shape without any refinement geometry. This is a complete alternative
+explanation of Propositions above and must be excluded.
+
+Fitting $(\alpha,\beta)$ independently on odd and even steps and correlating
+across tiles gives the split-half reliability, Spearman--Brown corrected.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+group/side & $\mathrm{rel}(\alpha)$ & $\mathrm{rel}(\beta)$ & mean $\lambda_\alpha$ & $\lambda_\alpha - \mathrm{rel}(\alpha)$ \\
+\midrule
+FF/fwd    & $0.999$ & $1.000$ & $0.125$ & $-0.875$ \\
+LN/fwd    & $0.999$ & $1.000$ & $0.392$ & $-0.607$ \\
+$W_K$/fwd & $0.952$ & $0.983$ & $0.095$ & $-0.857$ \\
+FF/bwd    & $0.887$ & $0.975$ & $0.208$ & $-0.680$ \\
+LN/bwd    & $0.961$ & $0.994$ & $0.915$ & $-0.045$ \\
+$W_K$/bwd & $0.584$ & $0.627$ & $0.318$ & $-0.266$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[The contraction is geometric, not statistical]
+Over $30$ rungs, mean $\mathrm{rel}(\alpha) = 0.897$ against a mean contracted
+eigenvalue of $0.342$; the correlation between reliability and eigenvalue is
+$+0.20$ and the mean absolute gap is $0.571$. Under the attenuation null these
+two quantities would coincide. In the forward bundles $\alpha$ is estimated at
+reliability $0.95$--$0.999$ and is nonetheless contracted to $0.10$--$0.39$, so
+refinement discards a well-measured coordinate. The collapse onto $\beta$ is a
+property of the refinement system.
+\end{proposition}
+
+Two consequences for the preceding results.
+
+First, $\mathrm{LN}$ backward is promoted from exception to finding. Its
+$\alpha$ is measured at reliability $0.961$ --- comparable to the forward
+bundles --- yet its restriction eigenvalue is $0.915$, and three of its five
+rungs exceed unity ($1.016$, $1.045$, $1.017$). Refinement does not contract
+$\alpha$ there; it mildly expands it. Under the attenuation null the least
+reliable branch should contract most, so this runs opposite to the null in the
+informative direction. $\mathrm{LN}$ backward therefore carries a second slow
+observable that $\beta$ does not capture, and the inductive system is not
+completely reducible on that branch.
+
+Second, $W_K$ backward must be excluded rather than interpreted. Its split-half
+reliabilities are $0.584$ and $0.627$, with one rung at $-0.02$ --- the two
+halves are uncorrelated. Its stalks are unfitted parameters. This is the same
+group whose Fisher state is worst conditioned ($\max/\min \approx 5\times10^{6}$,
+normalised entropy $0.667$), and the two facts are plausibly one: Fisher mass
+concentrated on a few tiles leaves the remainder with no signal to fit. The
+$\beta$-line consistency table above accordingly rests on five reliable columns
+rather than six, which does not affect its conclusion since those five agree at
+cosine $\geq 0.9993$.
+
+\subsection{The observable algebra is AF, and \texorpdfstring{$K_1$}{K1} vanishes by construction}
+
+The branching ratios $2,2,4,2,2$ make the ladder a Bratteli diagram
+$\mathbb{Z}^{16}\to\mathbb{Z}^{32}\to\mathbb{Z}^{64}\to\mathbb{Z}^{256}
+\to\mathbb{Z}^{512}\to\mathbb{Z}^{1024}$, each edge of multiplicity one and
+each child having a unique parent. The strand space is the path space of this
+diagram: a Cantor set carrying the $2$-adic ultrametric
+$d(s,s') = 2^{-\mathrm{lca}(s,s')}$ truncated at depth ten, with $2^{10}$
+strands. The associated algebra is commutative AF, $C(X)$ with $X$ totally
+disconnected.
+
+\begin{proposition}[Forced vanishing of $K_1$]
+For any AF algebra $K_1 = 0$. Every negative winding result reported in this
+document is therefore a consequence of the observable algebra rather than of
+the optimisation dynamics: the diffusive projection path, the absence of
+coherent rotation, and the failure to extract a $K_1$ element were determined
+before measurement. The claim is that \emph{the AF algebra generated by the
+refinement tree has trivial $K_1$}, not that optimisation has trivial $K_1$;
+enlarging the algebra, for instance by a crossed product with the optimisation
+dynamics or by adjoining time as a circle, can restore it.
+\end{proposition}
+
+What survives is $K_0$, the dimension group of locally constant integer
+functions, which is purely combinatorial, together with the state on it, which
+is geometric. This is the $\alpha$/$\beta$ separation in operator-algebraic
+form: $\alpha_f + \alpha_b \approx 0$ is virtual cancellation, visible to
+$K$-theory and equal to zero there, while $\beta$ is metric data that
+$K$-theory forgets.
+
+\subsection{Faithfulness and the weighted grading}
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+group & tiles & zero-weight & $\max/\min$ & entropy/max \\
+\midrule
+FF    & $1904$ & $0$ & $9.13\times10^{2}$ & $0.851$ \\
+LN    & $1904$ & $0$ & $1.37\times10^{3}$ & $0.833$ \\
+$W_K$ & $1904$ & $0$ & $5.39\times10^{6}$ & $0.667$ \\
+$W_V$ & $1904$ & $0$ & $1.48\times10^{2}$ & $0.890$ \\
+$W_Q$ & $1904$ & $0$ & $2.32\times10^{6}$ & $0.791$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+No tile carries zero Fisher weight in any group, so the state has full support
+and the AF algebra admits no order ideal annihilated by it. The state is
+nevertheless ill-conditioned on the score pair: $W_K$ and $W_Q$ concentrate
+their Fisher mass with condition numbers above $10^{6}$ and normalised entropy
+$0.67$--$0.79$, against $0.85$--$0.89$ for $\mathrm{FF},W_V,W_O$.
+
+Backward magnitude increases monotonically with depth in every group, with
+$L_5/L_0$ ratios $1.25$ (FF), $1.38$--$1.39$ (attention), $1.83$ (LN). The
+backward bundle is therefore attenuated toward the input, and the exchange
+$J$ between orientations satisfies $J_w^2 = w$ rather than $J^2 = 1$. Measured
+on FF the profile is $w = (0.800, 0.838, 0.875, 0.936, 0.970, 1.000)$ across
+$L_0$ to $L_5$: a mild smooth deformation, so the $\pm1$ eigenspaces remain
+nearly orthogonal and the Hodge decomposition survives with respect to the
+Fisher-weighted inner product.
+
+\subsection{$\beta$ is a magnitude field, and magnitude carries no value}
+\label{sec:magdir}
+
+$\beta$ is the intercept of $\log|u_{\text{tile}}|$: a field of magnitudes over
+tiles, with no directional content. Whether any scheme driven by such a field
+can generate useful updates is therefore bounded by how much of an update's
+value resides in its magnitude profile. Taking the true $20$-step displacement
+$d$ at a checkpoint and decomposing it:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+arm & step $80$ & step $120$ & step $160$ \\
+\midrule
+true update                                   & $100.0\%$ & $100.0\%$ & $100.0\%$ \\
+magnitude only (in-tile directions randomised) & $-21.3\%$ & $-38.0\%$ & $+17.9\%$ \\
+direction only (magnitudes flattened per layer) & $+82.9\%$ & $+154.7\%$ & $+224.3\%$ \\
+sign only (one global scale)                   & $+91.2\%$ & $+163.9\%$ & $+205.3\%$ \\
+random vector, norm matched                    & $-20.9\%$ & $-29.9\%$ & $-3.4\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Entries are the fraction of the true progress retained.
+
+\begin{proposition}[Ceiling on magnitude-driven updates]
+Preserving the exact per-tile magnitude profile while randomising directions
+within tiles performs indistinguishably from a random vector of matched norm at
+every checkpoint. Any update scheme driven by a per-tile magnitude field,
+$\beta$ included, is therefore bounded above by random.
+\end{proposition}
+
+Direction alone retains or exceeds the full progress, and sign alone suffices.
+Since $\|\operatorname{sign}(d)\cdot\overline{|d|}\|_2 = \|d\|_1/\sqrt{P} \leq
+\|d\|_2$ by Cauchy--Schwarz, the sign step has \emph{smaller} norm than the
+optimiser's own step while making more progress at two of three checkpoints.
+We record this as an observation warranting separate investigation rather than
+a claim: it is a single $20$-step application at one scale, not a training run.
+
+\subsection{$\beta$ does not survive a change of cover}
+\label{sec:cover-dependence}
+
+The preceding sections compute $\beta$ on one cover. Whether $\beta$ is
+intrinsic to the parameters or an artefact of that cover is decided by
+computing the per-parameter ground truth --- the cover by singletons --- and
+asking how well each cover's regional $\beta$ predicts it. On a
+$128\times256$ block of $\mathrm{FF}$ weights at $L_2$:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+cover & regions & $\mathrm{corr}(\beta)$ & $\mathrm{sd}(\beta_{\text{region}})$ \\
+\midrule
+rows (neurons)      & $128$ & $0.256$ & $0.056$ \\
+columns (inputs)    & $256$ & $0.188$ & $0.039$ \\
+contiguous tiles    & $64$  & $0.176$ & $0.037$ \\
+contiguous tiles    & $512$ & $0.314$ & $0.069$ \\
+random partition    & $128$ & $0.052$ & $0.011$ \\
+random partition    & $512$ & $0.121$ & $0.023$ \\
+\midrule
+\multicolumn{2}{l}{singleton ground truth} & $1$ & $0.226$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Cover dependence of $\beta$]
+Structured covers correlate with the per-parameter $\beta$ at $0.18$--$0.31$
+against $0.05$--$0.12$ for random partitions, so a structured cover resolves
+roughly three times the random baseline and the signal is not nil. But the
+best cover attains $\mathrm{sd} = 0.069$ against a singleton $\mathrm{sd}$ of
+$0.226$: approximately $9\%$ of the variance. Covers agree with one another
+only when one refines the other ($0.56$--$0.82$ among rows and contiguous
+tiles, which coincide under row-major flattening); covers partitioning along
+different axes share nothing. $\beta$ is therefore predominantly a property of
+the cover rather than of the parameters.
+\end{proposition}
+
+Reported $R^2$ values are negative ($-2.3$ to $-2.6$) for every cover, but this
+is a Jensen artefact rather than a failure of prediction: regional $\beta$ is
+fitted to $\log(\overline{|u|})$ while the ground truth averages $\log|u|$, and
+$\log \overline{x} \geq \overline{\log x}$, so regional $\beta$ is biased
+upward systematically. Correlation is the appropriate statistic.
+
+Taken with \S\ref{sec:magdir}, these results close the optimisation branch of
+the programme by two independent routes: $\beta$ carries no directional
+information, and it is not intrinsic to the parameters. What survives is
+narrower and should be kept distinct from $\beta$: the spectral gap of the
+refinement operator ($\mathrm{LN}$ $0.31$--$0.60$ against $\mathrm{FF}$
+$0.0000$--$0.0155$ across two seeds), the persistence excess $E(64)$, which is
+computed from whole-parameter displacements with no cover at all, and the
+rank-one curvature response, which is a property of the block projectors. None
+of these depends on $\beta$ being intrinsic.
+
+\subsection{Strands and the \texorpdfstring{$p$}{p}-adic metric}
+\label{sec:strands}
+
+A strand is a root-to-leaf path through the refinement ladder. With branchings
+$2,2,4,2,2$ there are $2^{10}=1024$ strands, each identified by its leaf, and
+each carrying the concatenated stalks $(\alpha,\beta)$ over six layers ---
+a point in $\mathbb{R}^{12}$, $z$-scored per layer. The leaf set carries the
+ultrametric $d(s,s') = p^{-\mathrm{lca}(s,s')}$.
+
+Two remarks are needed before the measurements. First, the forward and backward
+strand sets are not canonically paired: forward paths refine toward the output
+while backward paths refine toward the input, so a forward strand and a
+backward strand coincide at a layer only through the indexing convention. The
+$\mathcal{H}_f/\mathcal{H}_b$ pairing must therefore be taken layer-wise, as it
+is throughout. Second, $p^{-\mathrm{lca}}$ is a monotone function of the integer
+$\mathrm{lca}$, so $p=2$, $3$ and $5$ induce identical rank orderings on the
+true tree; the choice of $p$ is a labelling convention with no empirical
+content. Measured Spearman correlations for $p = 2,3,5$ agree to three decimals.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+metric (Spearman vs.\ strand distance) & FF/fwd & FF/bwd & LN/fwd & LN/bwd \\
+\midrule
+true tree ($p=2,3,5$ identical)  & $0.243$ & $0.243$ & $0.270$ & $0.307$ \\
+$2$-adic on index                & $0.109$ & $0.178$ & $0.195$ & $0.193$ \\
+$3$-adic on index                & $0.145$ & $0.239$ & $0.355$ & $0.249$ \\
+$5$-adic on index                & $0.136$ & $0.269$ & $0.175$ & $0.137$ \\
+$|i-j|$ (plain contiguity)       & $0.189$ & $0.237$ & $0.195$ & $0.092$ \\
+permuted tree (shape kept)       & $0.001$ & $-0.003$ & $0.000$ & $-0.006$ \\
+partial, tree given $\log|i-j|$  & $0.074$ & $0.061$ & $0.099$ & $0.196$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Strand distance does fall monotonically with shared-ancestor depth, with
+shallow-to-deep ratios of $1.92$--$4.86$, so strands are not independent noise
+vectors.
+
+\begin{proposition}[The strand hierarchy is contiguity]
+Retaining the tree's combinatorial shape while permuting which parameter index
+occupies which leaf reduces the correlation from $0.24$--$0.31$ to
+$0.000 \pm 0.006$ in all four branches. The hierarchy therefore contributes
+nothing independently of its alignment with contiguous parameter blocks.
+Arbitrary $p$-adic trees on the index perform comparably to the true refinement
+and in one case better ($3$-adic, LN/fwd, $0.355$ against $0.270$). The
+ultrametric structure of the strand space is inherited from the contiguity of
+the tiling, not discovered in the network.
+\end{proposition}
+
+\subsection{What distinguishes LayerNorm, and what does not}
+\label{sec:ln-status}
+
+Four measurements appeared to single out $\mathrm{LN}$ under refinement: the
+spectral gap, the near-unit determinant, the strand-distance ratio, and the
+partial correlation of \S\ref{sec:strands}. They do not survive equally.
+
+The determinant is not independent evidence: $\lambda_1 \approx 1.09$
+throughout, so $\det \approx 1.09\lambda_2$ and the two are one measurement.
+
+The strand residual fails decomposition. Combined $\mathrm{LN}$ gives partial
+correlation $0.192$ and $0.208$ on two seeds, but splitting it yields
+$\mathrm{LN}_w$ at $0.127/0.083$ and $\mathrm{LN}_b$ at $0.054/0.063$ --- both
+below the whole. A quantity exceeding both its parts locates the structure in
+the joining, and the combined group is
+$\mathtt{attn.ln.weight}\,|\,\mathtt{attn.ln.bias}\,|\,\mathtt{ff.n.weight}\,|\,\mathtt{ff.n.bias}$:
+four contiguous blocks alternating between gains near $1$ and offsets near $0$.
+The residual is the concatenation order. Moreover $W_V$ reaches $0.103/0.135$,
+matching or exceeding $\mathrm{LN}_w$, so no LayerNorm signature remains after
+the split.
+
+The spectral gap survives every control:
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+group & elements/tile & $\lambda_2/\lambda_1$ (seed 17) & (seed 23) \\
+\midrule
+$\mathrm{LN}_w$ & $0.5$ & $0.604$ & $0.516$ \\
+$\mathrm{LN}_b$ & $0.5$ & $0.526$ & $0.330$ \\
+$\mathrm{LN}$   & $1.0$ & $0.464$ & $0.313$ \\
+$\mathrm{FF}$   & $384.5$ & $0.0008$ & $0.0155$ \\
+$\mathrm{FF}1024$ & $1.0$ & $0.0000$ & $0.0001$ \\
+$W_V$           & $64.0$ & $0.0000$ & $0.0000$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$\mathrm{FF}1024$, a $1024$-element slice of $\mathrm{FF}$ tiled with the
+identical ladder, matches $\mathrm{LN}$'s occupancy exactly and behaves like
+$\mathrm{FF}$, excluding occupancy. Both $\mathrm{LN}_w$ and $\mathrm{LN}_b$
+show the gap independently, excluding concatenation. The separation is two to
+four orders of magnitude and replicates across seeds.
+
+\begin{observation}[The one surviving LayerNorm result]
+Under this refinement, LayerNorm's transfer operator retains a second
+eigenvalue of order $0.5$ while every other group annihilates it to order
+$10^{-3}$. Since the stalk is two-dimensional, the surviving direction is
+$\alpha$: the loss-response exponent survives refinement for $\mathrm{LN}$ and
+is annihilated for $\mathrm{FF}$. This is consistent with LayerNorm's Jacobian
+being a projection, $I - P_{\mathbf 1} - P_x$, and hence less dissipative than
+an unconstrained linear map, but the mechanism is inferred rather than measured.
+\end{observation}
+
+\subsection{Summary, and what the construction does not establish}
+
+The cover is the computational architecture; the latent foliation is prior to
+it and is measured only through the cover, so cohomological statements
+constrain the cover rather than the space. Stalks carry
+$(\mathcal{H}_f,\mathcal{H}_b,D_{\text{sheaf}},\beta)$ with
+$\mathcal{H}_f = \ell^2(\text{tiles}_{\text{fwd}})\otimes\mathbb{R}^2$ of
+dimension $3808$ per group, Fisher supplying the inner product, and
+$D_{\text{sheaf}} = \delta+\delta^{*}$ the Hodge--Dirac operator of the
+restriction system --- distinct from the stochastic generator
+$-G\cdot\nabla+\tfrac12\Sigma\!:\!\nabla^2$, which acts on functions over
+parameter space and not on stalks.
+
+Four of the five structural claims are theorems about the construction rather
+than measurements of training. The hierarchy exists because it was built; the
+maps form an inductive system because any nested partition does; $K_1=0$
+follows from the Bratteli diagram having unique parents and finite branching;
+and faithfulness fails only if the architecture carries structurally dead
+parameters. The fifth, the Perron--Frobenius collapse, passes its null test
+(\S\ref{sec:reliability}) and is a genuine property of the refinement system,
+but $\beta$ then fails cover-independence (\S\ref{sec:cover-dependence}) and
+carries no directional content (\S\ref{sec:magdir}). The strand ultrametric
+reduces to contiguity (\S\ref{sec:strands}).
+
+What survives controls is therefore narrow and should be stated without the
+operator-algebraic framing, on which none of it depends: the persistence excess
+$E(64)$, computed from whole-parameter displacements with no cover at all; the
+rank-one curvature response, a property of the block projectors, which derives
+the scalar-per-block preconditioner from measurement rather than convention;
+the Fredholm obstruction, which explains why block-local methods cannot close
+the gap; and the LayerNorm spectral gap of \S\ref{sec:ln-status}, which is a
+fact about the refinement operator and not about the network.
+
+The vanishing of the topological invariants is correspondingly not evidence
+about optimisation. $K_1$ vanishes because an AF algebra admits no $K_1$; the
+index is forced by dimension counting in finite dimensions; the strand
+ultrametric is the tiling's own adjacency. Establishing whether any of this
+describes training rather than the refinement requires a cover that is not a
+nested partition, where the algebra need not be AF, and that has not been
+attempted.
+
+\section{The Sign--Magnitude Decomposition of the Update}
+\label{sec:sign-magnitude}
+
+The tile programme sought a reduced observable from which updates could be
+generated. \S\ref{sec:magdir} and \S\ref{sec:cover-dependence} showed that
+$\beta$ is not that observable. This section reports what the same experimental
+apparatus finds when the question is inverted: rather than asking which reduced
+quantity predicts the update, we ask how far the update can be compressed
+before training degrades.
+
+\subsection{Necessary motion, in hindsight}
+
+Over $200$ steps the per-parameter path length exceeds the net displacement by
+a factor of $2.3$: writing $\mathrm{net}_i = |\sum_t d_t^{(i)}|$ and
+$\mathrm{path}_i = \sum_t |d_t^{(i)}|$, the aggregate ratio is
+$\sum_i \mathrm{net}_i / \sum_i \mathrm{path}_i = 0.441$, so $55.9\%$ of all
+motion cancels. Truncating the net displacement to its largest coordinates and
+applying the result to $\theta_0$ gives:
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+top $k\%$ of $|{\rm net}|$ & $\%$ of $\sum|{\rm net}|$ & val & improvement kept & random $k\%$ control \\
+\midrule
+$1\%$   & $4.1\%$  & $4.9560$ & $-11.2\%$ & $0.7\%$ \\
+$5\%$   & $16.0\%$ & $6.2832$ & $-41.5\%$ & $3.0\%$ \\
+$10\%$  & $27.8\%$ & $5.6599$ & $-27.3\%$ & $5.6\%$ \\
+$25\%$  & $53.9\%$ & $1.6289$ & $64.7\%$  & $5.3\%$ \\
+$50\%$  & $81.4\%$ & $0.0920$ & $99.8\%$  & $5.5\%$ \\
+$100\%$ & $100\%$  & $0.0754$ & $100.0\%$ & $99.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Roughly half the coordinates are required, and partial application is
+\emph{worse than doing nothing} below $25\%$: the $5\%$ arm lands at val
+$6.28$ against an initial $4.47$. Moving a LayerNorm gain without its paired
+bias, or $W_O$ without $W_V$, leaves the network in a state that is neither the
+initialisation nor the trained model --- the non-monotonicity is the signature
+of the block coupling measured in \S\ref{sec:phase3-algebra} ($S_{W_V W_O} =
+-35.6$). Combining the two factors, $0.441 \times 0.814 = 35.9\%$ of the total
+motion is necessary in hindsight.
+
+This necessary mass is not localised. Density (mass per parameter, normalised)
+ranges only over $0.87$--$1.28$ across the seven components, with the embedding
+highest; across the $1024$ strands the Gini coefficient is $0.095$ with lag-one
+autocorrelation $+0.995$, so the mass field is a smooth plateau rather than a
+concentrated chunk, and the top $10\%$ of strands carry $13.2\%$ of it. Forward
+and backward ladders agree to three decimals. Nor does the corpus predict it:
+per-token displacement in the embedding correlates with token frequency at
+$-0.103$, with log frequency at $-0.142$, and with the number of distinct
+successors at $-0.112$, varying by $5\%$ across frequency deciles.
+
+\begin{observation}[Cancellation is not removable]
+Rerunning from the same initialisation while zeroing, at every step, any update
+component opposing $\operatorname{sign}(D_i)$ discards $41.4\%$ of the motion
+and reaches val $0.0676$ against a baseline $0.0677$. But retaining
+\emph{only} the opposing components --- $42.4\%$ of the motion --- also
+converges, to val $0.0937$ ($99.4\%$). Any cull that leaves the optimiser free
+to recompute gradients is not a constraint; the trajectory re-routes. The
+$55.9\%$ cancellation is an accounting artefact of hindsight, not spendable
+waste.
+\end{observation}
+
+\subsection{One constant per strand per step}
+
+Replace the applied update $d$ at every step by a quantised version in which
+each of $T$ contiguous chunks of the parameter vector receives a single
+constant. Two schemes: retain the per-parameter sign and supply one magnitude
+per chunk, $d' = \operatorname{sign}(d)\odot c_{\text{chunk}}$ with
+$c = \overline{|d|}$; or make the chunk uniform, $d' = \bar d_{\text{chunk}}$.
+Gradients are recomputed at each new point, so the trajectory is free to
+diverge.
+
+\begin{center}
+\begin{tabular}{rrlrr}
+\toprule
+$T$ & numbers/step & scheme & val & improvement kept \\
+\midrule
+--- & $4{,}330{,}240$ & baseline (full update) & $0.0677$ & $100.0\%$ \\
+$1$    & $1$    & $\operatorname{sign}(d)\times\overline{|d|}$ & $0.0646$ & $100.1\%$ \\
+$64$   & $64$   & $\operatorname{sign}(d)\times\overline{|d|}$ & $0.0571$ & $100.2\%$ \\
+$1024$ & $1024$ & $\operatorname{sign}(d)\times\overline{|d|}$ & $0.0572$ & $100.2\%$ \\
+$1024$ & $1024$ & uniform signed constant & $4.4228$ & $0.9\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Sign carries the update; magnitude is one number]
+A single global scalar per step, applied with the per-parameter sign pattern,
+retains $100.1\%$ of the loss improvement over a full $200$-step run --- a
+$4.33\times10^{6}$ compression of the magnitude field with no degradation.
+Making the constant uniform within a chunk, thereby discarding the
+per-parameter sign, collapses training to $0.9\%$. The update therefore
+decomposes into a $4.33$\,Mbit sign pattern carrying essentially all the
+content and a magnitude field compressible to a single float.
+\end{proposition}
+
+The per-step payload falls from $139$\,Mbit to $4.33$\,Mbit plus $32$ bits, a
+$32\times$ information compression that is exact rather than approximate. This
+corroborates \S\ref{sec:magdir} from the opposite direction: there, retaining
+magnitudes while randomising directions performed indistinguishably from a
+random vector; here, retaining directions while flattening magnitudes to one
+global constant loses nothing. Both experiments locate the entire content of an
+update in its sign pattern, and the present one does so over a full training
+run rather than a single application.
+
+Two qualifications. The compression is of \emph{bandwidth}, not of computation:
+the backward pass is still required to obtain the signs, and costs the same
+whether one bit or thirty-two are retained per coordinate. The relevance is
+therefore to distributed training, where gradient exchange is the bottleneck
+and a one-bit-plus-scale payload is exactly what is transmitted; this is the
+known $1$-bit SGD and signSGD family, and what is new here is only the
+measurement that on this problem the scheme is not a lossy approximation but
+marginally superior to AdamW ($0.0572$ against $0.0677$). Second, this is one
+seed, one architecture, and a corpus consisting of a single repeated sentence,
+a regime in which sign-based methods are known to be favoured. The exportable
+claim is the decomposition, which two independent experiments establish, not
+the superiority.
+
+\subsection{Scope and limitations}
+
+All measurements are at a single corpus (one $1364$-token base sequence,
+$300$ loops), a single architecture, and one to four checkpoints per claim.
+The tile complex of \S\ref{sec:tile-complex} rests on one $200$-step run; the
+power-law stalks are fitted on the $|\max|$ channel only, and the restriction
+maps are single $2\times2$ fits per rung rather than per parent, so their
+$0.1$--$0.8\%$ residuals measure consistency of the rung, not of individual
+tiles. Per \S\ref{sec:reliability}, the $W_K$ backward branch fails split-half
+reliability and is excluded from interpretation throughout.
+
+Four of the five structural claims about the tile complex are theorems about
+the construction rather than measurements of training: the hierarchy exists
+because it was built, the maps form an inductive system because any nested
+partition does, $K_1=0$ follows from the Bratteli diagram having unique parents
+and finite branching, and faithfulness fails only if the architecture carries
+structurally dead parameters. Only the Perron--Frobenius collapse carries
+empirical weight, which is why \S\ref{sec:reliability} tests it against its
+null. Relatedly, $\beta$ and $\operatorname{tr}\Sigma$ should not be conflated:
+the former is a log-magnitude intercept of tile updates, the latter a trace of
+the gradient covariance, and the evidence for each is independent. Following
+\S\ref{sec:magdir} and \S\ref{sec:cover-dependence}, $\beta$ should be
+described as the dominant eigendirection of a particular refinement system --- a
+reproducible fact about that system --- and not as an intrinsic observable of
+the network. The cover-dependence test covers one block of one layer of one
+group; extending it to $\mathrm{LN}$, where the refinement operator behaves
+differently, is outstanding.
+
+On the question the programme originally posed, the evidence assembled here is
+negative and the negatives are independent. Phase 3 obeys the driftless-walk
+law, so no local estimator can recover a persistent direction; the
+block-restricted curvature operator leaves $59$--$72\%$ of the gradient in its
+cokernel at every checkpoint, largest at the loss minimum, so no block-local
+method can supply what is missing; and the reduced observable $\beta$ carries
+magnitude only, which \S\ref{sec:magdir} shows is worth no more than a random
+vector. Gradient descent computes direction and magnitude at the same cost, and
+direction is the component that carries the value. The single measured lever is
+the $E(64)$-gated jump, saving $+2$, $+14$ and $-2$ steps across three seeds:
+positive in mean, unreliable per run, and the correct order of magnitude for a
+regime governed by a random walk. The observation developed in \S\ref{sec:sign-magnitude} --- that the entire
+content of an update lies in its sign pattern, with the magnitude field
+compressible to a single scalar at no cost over a full run --- did not arise
+from this framework and is the lead most worth pursuing.
+The seven fields are masks of a single gradient vector and have effective rank
+$2.40$ of $7$, so their mutual independence is modest. Finite differences use
+$h=10^{-4}$ in double precision throughout; single precision is \emph{not}
+sufficient and silently returns roundoff, as diagnosed above. The gated-jump
+saving of $10$ steps is a single measurement on one seed, and validation noise
+near the entropy floor is $\pm 20\%$; seed replication remains outstanding.
+The level-two computation covers $9$ of the $147$ possible double brackets,
+chosen to contrast the $W_Q,W_K$ and $W_V,W_O$ blocks, and a full enumeration
+has not been performed.
+
+The claims we regard as established are: (i) the phase-3 trajectory obeys the
+driftless-walk law $\cos(S_n,S_N)=\sqrt{n/N}$ to within $0.02$, so no local
+estimator can recover the chord, and $E(64)$ separates the phases at
+$\sim\!50\sigma$; (ii) the symmetric product built from node displacements is
+$\sim\!4{,}200\times$ better aligned with its generators than chance yet closes
+at only $0.7\%$, a verdict stable under three-point Richardson extrapolation
+and reproduced with generators from an independent segment; and (iii) the
+node-restricted gradient fields carry a Lie structure closing at $45$--$53\%$
+in-span, $\sim\!3\times10^{5}$ times its null and $\sim\!7\times10^{3}$ times
+its matched control, which strengthens by $2$--$5\times$ and closes from
+$\sim\!32\%$ to $\sim\!63\%$ across the skeleton-to-dense transition.
+
+Three claims are refuted. The hypothesis that forward and backward maps come
+into alignment as training converges is contradicted: the out-of-image residual
+is flat at $70.1\%$ across both halves of a run and is largest at the loss
+minimum. The reduced Newton step built on the rank-one response
+gives no speedup at any checkpoint, because $59$--$72\%$ of the gradient lies
+in the cokernel of the block-restricted curvature operator; the structure is
+explanatory, not exploitable, as an optimizer. And the Lie structure is not a
+single global algebra: cross-checkpoint closure decays by $\sim\!30\times$ over $40$ steps,
+so the object is a sheaf of algebras over the base rather than one algebra,
+and any Kac--Moody presentation would have to be stalk-local.
+
+Two computations would decide the remaining structure. First, a full
+enumeration of level-two brackets, testing whether the $90\%$ closure observed
+for the $W_Q,W_K$ orbit holds generally or is specific to that pair; if it
+holds, the graded pieces are stable under the adjoint action and structure
+constants can be extracted stalk by stalk. Second, transport of the bracket
+basis along the flow, to determine whether the $0.034\times$ decay over $40$
+steps is genuine loss of structure or merely a rotating frame --- the
+distinction between a sheaf with weak restriction maps and one whose stalks are
+isomorphic under a connection that has not yet been identified.
+
+\section{The Sign Process and the Stability Field}
+\label{sec:sign-process}
+
+The magnitude-versus-direction result of \S\ref{sec:sign-magnitude} left the
+sign pattern as the carrier of the update. This section characterises that
+pattern as a dynamical object and identifies the variable that organises it.
+It is a record of experiments in the order run, including those that failed,
+because the failures are what narrowed the object.
+
+\subsection{Sign persistence and stale-sign at matched compute}
+\label{sec:stalesign}
+
+The step-to-step sign agreement of the applied update is $87.7\%$, flat across
+the run ($88.6\%$ first fifty steps, $87.5\%$ last fifty, never below
+$77.8\%$). This suggests reusing a cached sign to skip backward passes. Refreshing
+the true sign every $k$ steps and applying $\operatorname{sign}\times$ scalar in
+between:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+scheme & backward passes & val & vs.\ equal-compute baseline \\
+\midrule
+stale-sign $k=2$ & $100$ & $0.1670$ & $13\%$ better than $100$ full steps ($0.1927$) \\
+stale-sign $k=4$ & $50$  & $0.6606$ & $25\%$ better than $50$ full steps ($0.8761$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{observation}[The first compute-matched saving]
+At equal backward passes, interleaving free stale-sign updates beats honest
+AdamW by $13\%$ at $k=2$ and $25\%$ at $k=4$. This is the only lever in the
+programme that survives a compute-matched control; the earlier gated jump and
+all magnitude schemes do not. It works because it reuses a measured direction
+rather than predicting one, sidestepping the driftless-walk obstruction.
+\end{observation}
+
+The sparse-event refinement of this idea fails. Sign flips are not rare:
+$12.3\%$ of coordinates flip per step ($530{,}540$ of $4.33$M), flat across the
+run, so ``detect only boundary crossings'' has no sparsity to exploit --- the
+orthant label changes almost completely each step.
+
+\subsection{Momentum is the transport projection}
+\label{sec:momentum}
+
+The oscillatory component of the update is separable and its separator already
+exists: Adam's $\beta_1$ is a first-order low-pass filter. Sweeping it:
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+$\beta_1$ & val & cancellation & path & $\cos(d_t,d_{t+1})$ & flip rate \\
+\midrule
+$0.00$ & $0.1122$ & $91.3\%$ & $599.1$ & $-0.093$ & $51.1\%$ \\
+$0.90$ & $0.0677$ & $67.4\%$ & $160.5$ & $\phantom{-}0.906$ & $12.3\%$ \\
+$0.99$ & $0.0682$ & $41.2\%$ & $116.9$ & $\phantom{-}0.987$ & $\phantom{0}4.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Every quantity moves monotonically with $\beta_1$. At $\beta_1=0$ the dynamics
+is a genuine walk (consecutive steps \emph{anticorrelated}, half of all
+coordinates flipping per step); the $\sqrt{n/N}$ law of
+\S\ref{sec:phase3-algebra} is the filtered image of this. At $\beta_1=0.99$ the
+path shortens $27\%$, sign flips fall to a quarter, and val is unchanged within
+floor noise. Two consequences: the oscillation is real and largely removable
+but removing it buys only a shorter path to the same endpoint; and the
+$55.9\%$ cancellation figure quoted throughout is a property of Adam at
+$\beta_1=0.9$, ranging $41$--$91\%$ with the filter, not a property of the loss
+surface.
+
+\subsection{Stochasticity is the regulariser, not coverage}
+\label{sec:deterministic}
+
+Suppressing the transverse motion by making the gradient deterministic
+converges to the wrong place, and the reason is not batch coverage.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+arm & val & $\cos(d,\text{to-final})$ & $\cos(d_t,d_{t+1})$ & path \\
+\midrule
+stochastic (baseline) & $0.0677$ & $0.356$ & $0.906$ & $160.5$ \\
+fixed single batch    & $6.8069$ & $0.843$ & $0.996$ & $\phantom{0}68.2$ \\
+deterministic full coverage & $5.9505$ & $0.847$ & $0.997$ & $\phantom{0}86.8$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Full coverage ($1344$ of $1364$ base tokens) reproduces the fixed-batch
+geometry exactly and fails just as badly. Any deterministic gradient produces a
+smooth $2.4\times$-shorter path that memorises: train loss $10^{-4}$ against val
+$5.93$. The regimes separate at step $\sim\!20$. A rescue confirms the damage is
+reversible: $50$ deterministic steps (landing at val $3.30$) followed by $150$
+stochastic reach $0.0660$, \emph{beating} pure stochastic ($0.0794$). The
+transverse stochastic motion is the implicit regulariser; smoothing the flow
+removes exactly what makes the run generalise.
+
+\subsection{The flip hazard field}
+\label{sec:hazard}
+
+Sign flips are governed by a single variable already present in the optimiser
+state: $r_i = |m_i|/\sqrt{v_i}$, Adam's normalised update magnitude.
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+decile of $r$ & flip rate & vs.\ mean \\
+\midrule
+D1 (lowest)  & $32.0\%$ & $2.64\times$ \\
+D5           & $\phantom{0}9.2\%$ & $0.76\times$ \\
+D9           & $\phantom{0}0.8\%$ & $0.06\times$ \\
+D10 (highest)& $\phantom{0}0.2\%$ & $0.01\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The hazard is monotone across every decile, spans $160\times$, and has AUC
+$0.809$ as a single-variable predictor. The curve is not exponential but a
+\emph{hard threshold}: above the $\sim\!70$th percentile of $r$, flips vanish
+entirely (zero flips in the top three bins over $300$k sampled coordinates).
+The flip mass concentrates where the normalised momentum is small, so the
+dominant mechanism is low signal-to-noise near zero, not persistent opposing
+gradients overwhelming a large momentum.
+
+\begin{observation}[Aggregation destroys the signal]
+The AUC $0.809$ is per-coordinate. Aggregated to tiles it collapses to
+$0.60$--$0.64$, and lead-time prediction is flat (AUC $0.61$ at $k=1$ and at
+$k=20$) with tile activity autocorrelation $\sim\!0.66$ out to $40$ steps and no
+decay. Tiles are static ``hot regions,'' not dynamic boundary-approach regions.
+Near-boundary is a per-coordinate property; the tile mean is dominated by the
+frozen majority. The adaptive tile scheduler this was meant to enable does not
+work.
+\end{observation}
+
+\subsection{Flips cluster, by neuron and by index}
+\label{sec:cluster}
+
+Per-tile flip fractions are over-dispersed relative to binomial independence.
+A cover comparison at matched tile count and size separates the causes:
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+cover & over-dispersion vs.\ binomial \\
+\midrule
+random             & $\phantom{1}1.00\times$ \\
+input axis (column)& $1.36$--$1.57\times$ \\
+output axis (row)  & $1.95$--$2.58\times$ \\
+contiguous (large tiles) & $12.35\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Random calibrates the null at exactly $1.00\times$. Output-axis (neuron)
+clustering exceeds input-axis by $\sim\!1.7\times$ in both a feed-forward and an
+attention matrix, so flips cluster by the neuron a weight feeds, a functional
+rather than storage grouping. The large $12.35\times$ for $4228$-parameter tiles
+is mostly cross-tensor heterogeneity; within a single matrix the effect is
+$2$--$3\times$. Strided and frieze covers give $\sim\!3.5\times$, so roughly half
+the clustering is global-in-index and half is adjacency.
+
+\subsection{A periodic cover gives the first non-forced obstruction}
+\label{sec:frieze}
+
+Every earlier cohomology vanished by construction: contractible bases, path
+nerves, an AF Bratteli diagram. A frieze (periodic) cover makes the nerve a
+\emph{cycle}, which need not be trivial. Fitting each of the $256$ edge maps
+independently and transporting around the loop:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+holonomy $H$ & $\|H-I\|$ & eigenvalues $|\cdot|$ & $\det$ \\
+\midrule
+shared $M^{256}$        & $0.4498$ & $(1.000,\,0.636)$ & $0.636$ \\
+per-edge $\prod_i M_i$  & $0.3424$ & $(1.000,\,0.729)$ & $0.729$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Genuine holonomy with a preserved line]
+Independently-fitted edge maps accumulate a non-identity holonomy around the
+cycle, so it is not a shared-fit artefact. Each $M_i$ is near-unimodular
+($\overline{|\det|}=0.999$, spread $1.7\%$) yet the product has $\det=0.73$: the
+contraction accumulates from many tiny consistent deviations, the signature of a
+connection with small constant curvature. The loop map fixes one direction
+(eigenvalue $1.000$) and contracts the transverse one ($0.73$), so
+$H^0\cong\ker(H-I)$ is one-dimensional --- global sections exist in one stalk
+coordinate and fail in the other. This is the first cohomological obstruction in
+the programme that reports the data rather than the graph.
+\end{proposition}
+
+The curvature is real but localised: per-plaquette, $88.2\%$ have
+$|F_\square|<0.05$, and curvature magnitude correlates with the variation of $r$
+around the plaquette (Spearman $0.590$; $8.4\times$ split between low- and
+high-$\nabla r$ halves). The connection is flat almost everywhere with defects
+at hazard-field gradients.
+
+\subsection{The sign field is compressible; adjacency is nearly redundant}
+\label{sec:signentropy}
+
+The conditional entropy of the update sign, in bits per parameter per step:
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+conditioning & bits/param/step & vs.\ raw \\
+\midrule
+none (raw sign field) & $1.000$ & $1.000$ \\
+previous step's sign & $0.557$ & $0.557$ \\
+$+$ neuron (row) context & $0.541$ & $0.541$ \\
+$+$ Adam $r=|m|/\sqrt{v}$ & $0.428$ & $0.428$ \\
+$+$ $r$ and neuron context & $0.405$ & $0.405$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The sign field carries $0.41$ bits per parameter per step, not $1$: a
+$79\times$ compression against fp32 when combined with the single magnitude
+scalar. Temporal context does most of the work; $r$ adds $23\%$ and is free,
+already in the optimiser state; neuron adjacency adds only $3$--$5\%$. Despite
+the neuron clustering of \S\ref{sec:cluster}, the sign domains are essentially
+$r$-level sets, so adjacency carries little information beyond the hazard
+variable. This is a bandwidth result, not a compute result: the backward pass
+is still needed to learn the signs.
+
+\subsection{The residual: Fisher-large, trajectory-null}
+\label{sec:residual}
+
+Does $u\approx a\cdot\operatorname{sign}(u)$ discard anything that matters? Under
+diagonal Fisher the reconstruction retains $R=0.64$, barely improving with
+$16{,}384\times$ more magnitude parameters ($0.636\to0.697$), while training
+retains $100.1\%$. The metric escape --- that diagonal Fisher underweights the
+residual --- fails in the informative direction:
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+metric & retention of $a\cdot\operatorname{sign}(u)$ \\
+\midrule
+diagonal Fisher & $0.630 \pm 0.020$ \\
+full Fisher (finite-difference JVP) & $0.417 \pm 0.078$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The true Fisher retains \emph{less} ($0.42$), so the discarded residual
+$\varepsilon=u-a\operatorname{sign}(u)$ carries $58\%$ of the true Fisher
+energy, concentrated in the correlated directions the diagonal cannot see ---
+and training is unaffected. The resolution is geometric.
+
+\begin{proposition}[The residual is transverse to descent]
+$\cos^2(\varepsilon,g)=0.031$ (Euclidean) and $0.034$ (Fisher): the residual is
+$97\%$ perpendicular to the gradient. Fisher energy measures
+$\varepsilon^\top G\varepsilon$ and is large; first-order loss change measures
+$\langle g,\varepsilon\rangle$ and is near zero, because $\varepsilon$ points
+across the level set rather than down it. The small parallel part
+($\langle g,\varepsilon\rangle/\langle g,u\rangle=+0.38$) mildly \emph{opposes}
+descent, so $a\operatorname{sign}(u)$ retains $62\%$ of the descent pairing while
+shedding a slightly counterproductive residual. ``$58\%$ of Fisher energy
+discarded'' and ``training unchanged'' are therefore not in tension: they are
+the two faces of a transverse vector.
+\end{proposition}
+
+The residual is structured, not noise: temporal autocorrelation $0.62$ at lag
+one, decaying to noise by lag ten; it does not predict future gradients
+($\approx 0$ at all future lags); and its magnitude correlates with $r$ at
+$0.88$. The energy is bimodal in $r$ --- $45\%$ in the top decile (frozen
+coordinates, where one magnitude misfits a near-zero distribution) and $24\%$ in
+the bottom two (active coordinates, where the flipping is itself the transverse
+motion), with a near-empty middle. The strong claim ``$a\cdot\operatorname{sign}$
+is the descent projection'' is \emph{not} supported: both $u$ and its
+reconstruction are $\sim\!95\%$ transverse, and the sign step simply keeps enough
+of the descent sliver while the residual keeps almost none. What is established
+is weaker and more robust: Fisher-norm importance and gradient-alignment
+importance are different notions of importance, and the residual is large in the
+first and null in the second. Whether accumulated transverse motion has
+second-order consequences over long horizons is not settled by these
+instantaneous measurements.
+
+\subsection{Progression, and the object that survived}
+\label{sec:progression}
+
+The programme began seeking a reduced observable from which weights could be
+computed without gradient descent. It ends with that goal refuted on two
+independent grounds and a narrower object in hand. The honest sequence:
+
+\emph{Refuted, algebraic closures.} The symmetric flow product does not close
+($0.7\%$, \S\ref{sec:phase3-algebra}); no $A_\infty$ correction exists (Stasheff
+residual $1.0$); the Lie structure is local, decaying $30\times$ over $40$ steps
+(\S\ref{sec:lie}); the tile data is not a vector bundle (cocycle fails
+$5$--$80\%$, plaquette holonomy $0.04$--$1.29$); refinement and the Frobenius
+relation do not commute. Each was tested and failed, which is what excludes
+treating the surviving object as a static algebraic structure.
+
+\emph{Refuted, the reduced-observable programme.} $\beta$ is cover-dependent
+($\sim\!9\%$ of per-parameter variance, \S\ref{sec:cover-dependence}) and carries
+no directional content (\S\ref{sec:magdir}); the strand ultrametric is
+contiguity (permuted tree $\to 0.000$, \S\ref{sec:strands}); the topological
+invariants vanish by construction ($K_1=0$ by Elliott, the index by dimension
+counting, $H^\bullet$ by contractible bases). The one closed-loop holonomy test
+in parameter space returned trivial ($w_1=0$, every block $+1$).
+
+\emph{Established, and reproducible.} The driftless-walk law and $E(64)$
+($\sim\!50\sigma$, three seeds); the rank-one curvature response, which derives
+the scalar-per-block preconditioner; the Fredholm cokernel ($59$--$72\%$, flat,
+largest at the minimum), which explains why block-local methods cannot close the
+gap; the LayerNorm spectral gap, surviving occupancy and weight/bias controls;
+and the frieze holonomy (\S\ref{sec:frieze}), the sole non-forced obstruction.
+
+\emph{The surviving object.} It is not an algebra. It is a controlled
+stochastic process on the pair $(r,s)$, where $r=|m|/\sqrt v$ is a scalar
+stability field and $s\in\{\pm1\}^N$ the sign field, with the update
+reconstructed as $u_t\approx a_t\, s_t$. The dynamics live on $(r,s)$, not on
+$u$. Five independently measured phenomena organise under $r$: flip hazard
+(AUC $0.809$, \S\ref{sec:hazard}), sign entropy ($23\%$ reduction,
+\S\ref{sec:signentropy}), plaquette curvature (localised at $\nabla r$,
+\S\ref{sec:frieze}), coordinate freezing (smooth saturation of the gap
+$1-2h(r)$), and residual magnitude (correlation $0.88$, \S\ref{sec:residual}).
+Every attempt to give the object algebraic closure was measured and failed
+(Frobenius $0.7\%$, Stasheff residual $1.0$, Lie decaying $30\times$, cocycle
+$5$--$80\%$, AU coherence); it is dynamical, not algebraic.
+
+\subsection{Controlled Sign Transport: the theory, and its regime}
+\label{sec:cst}
+
+The measurements assemble into a single structure with a bounded small
+parameter. The transition law of the sign process factorises to leading order:
+\[
+  P(s_{t+1}\mid s_t, r_t) = K_{r_t}, \qquad
+  K_r = K^{(0)}_r + \varepsilon\, K^{(1)}_r,
+\]
+where $K^{(0)}_r = \bigotimes_i \left(\begin{smallmatrix} 1-h(r_i) & h(r_i) \\ h(r_i) & 1-h(r_i)\end{smallmatrix}\right)$
+is a product of independent two-state chains with hazard $h(r_i)$, and
+$K^{(1)}_r$ is a weak neuron-supported coupling. Each layer of this
+decomposition was reduced by a control, not proposed by analogy.
+
+\emph{The backbone $K^{(0)}$ is trivial and carries most of the behaviour.} Its
+spectral gap is $1-2h(r)$, which is the hazard curve rewritten, so no index-like
+transition beyond the freezing crossover exists there. The gap rises smoothly
+from $0.175$ (lowest $r$-octile) to $0.974$ (highest); freezing is a saturation,
+not a phase transition, and no critical $r_c$ appears.
+
+\emph{The coupling $K^{(1)}$ is the only non-factorised content.} Conditioning on
+both coordinates' $r$, adjacent (same-neuron) coordinates still flip together
+$27\%$ more than independence predicts, five times the residual of random distant
+pairs. Spectrally, $11$ of $128$ flip-covariance eigenvalues exceed the
+shuffled-independent null by $3\sigma$ (top mode $10.9\sigma$), and their
+magnitude ($23\%$ excess) matches the pair coupling: the collective modes
+\emph{are} the neuron coupling. The interesting operator theory is
+$\sigma(K^{(1)})$, not $\lambda_2(K)$.
+
+\emph{The holonomy is abelian.} The frieze transport maps commute to four
+decimals ($\|[M_i,M_j]\|/\|M_i\|\|M_j\| < 10^{-3}$), and the ordered loop product
+has the same eigenvalues as the order-free product of eigenvalues
+($(1.000,0.729)$ vs $(1.004,0.726)$). The holonomy is therefore a rank-one
+dissipative phase --- one fixed direction, one contraction to $0.73$, one scalar
+per loop --- and $F = dA$ with $A\wedge A \approx 0$: curvature comes from
+spatial variation of the scalar control, not from non-commutativity. Geometric
+language is available but optional; the object is one number attached to a loop.
+
+\begin{proposition}[The perturbative regime is the computational parameters]
+The coupling $\varepsilon$ (relative joint-flip excess after conditioning on $r$)
+is small and stable across the transformer blocks and large in the embedding:
+\end{proposition}
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+tensor & $\varepsilon$ early (steps 1--100) & $\varepsilon$ late (101--200) \\
+\midrule
+FF gate, $L_2$      & $24\%$ & $25\%$ \\
+FF out, $L_2$       & $11\%$ & $\phantom{0}6\%$ \\
+$W_Q$, $L_2$        & $24\%$ & $27\%$ \\
+$W_V$, $L_2$        & $14\%$ & $12\%$ \\
+$W_O$, $L_2$        & $14\%$ & $12\%$ \\
+FF gate, $L_0$      & $24\%$ & $27\%$ \\
+FF gate, $L_5$      & $27\%$ & $31\%$ \\
+embedding           & $211\%$ & $267\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For the block parameters --- the parameters implementing the function ---
+$\varepsilon \in [0.06, 0.31]$, flat between early and late training, so the
+decomposition is genuinely perturbative and the sign process is dominated by
+$r$-controlled independent flips. For the embedding --- the lookup table storing
+the single repeated corpus --- $\varepsilon > 2$ and grows with training, so the
+coupling dominates and the independent-flip backbone does not describe the
+dynamics. The boundary was not imposed; it fell out of the sweep, and it
+separates distributed computation (perturbative) from associative memory
+(non-perturbative). Controlled Sign Transport holds in the former regime.
+
+\emph{Generation versus transport.} The representation $(a,r,s)$ reconstructs the
+update but cannot be produced without the backward pass: $r$ and $s$ are outputs
+of backprop, not substitutes for it. This is the terminal statement of the
+programme. Computation separates into generation --- which requires the
+gradient and remains the irreducible cost --- and transport --- which requires
+only $(a,r,s)$ and is therefore cheap to store, transmit, and partially reuse.
+The two levers that survive a compute or bandwidth accounting are transport-side:
+stale-sign at matched backward passes (\S\ref{sec:stalesign}) and the $79\times$
+sign-field compression (\S\ref{sec:signentropy}). Neither reduces the cost of
+generation. The programme began seeking to replace gradient descent and ends
+having characterised, rather than removed, the one operation that cannot be
+replaced.
+
+\begin{figure*}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  box/.style={draw, rounded corners=1pt, align=center, inner sep=4pt, minimum height=7mm},
+  disc/.style={draw, double, rounded corners=1pt, align=center, inner sep=4pt, fill=black!4},
+  strand/.style={draw, align=center, inner sep=3pt},
+  small/.style={draw, rounded corners=1pt, align=center, inner sep=2pt, font=\scriptsize},
+  flow/.style={-{Latex[length=2mm]}, thick},
+  el/.style={font=\footnotesize\itshape, text=black!60}
+]
+% ===== LEFT COLUMN: pipeline =====
+\node (corpus) [box] {CORPUS \\ \footnotesize batch / tokens};
+\node (force)  [box, below=4mm of corpus] {FORCING FIELD \\ {\footnotesize\itshape what is presented}};
+\node (discL)  [disc, below=4mm of force, text width=52mm]
+  {DISC\; (slow variables) \\ {\footnotesize\itshape geometry of possible motion} \\[1pt] $r,\;m,\;v$ history coupling};
+\node (bwd)    [below=4mm of discL, align=center] {\textbf{BACKWARD PASS} \\ \footnotesize measurement (irreducible)};
+\node (strand) [strand, below=4mm of bwd, text width=56mm]
+  {\textbf{STRAND}\;\; $S_t=\operatorname{sign}(\text{gradient})$ \\[3pt]
+   \begin{tabular}{@{}p{22mm}p{26mm}@{}}
+   \scriptsize persistent core & \scriptsize moving frontier\\
+   \tiny$\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare$ &
+   \tiny$\square\,\cdot\,\square\;\cdot\,\square\,\cdot$\\
+   \tiny$\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare$ &
+   \tiny$\cdot\,\square\,\cdot\;\square\,\cdot\,\square$\\
+   \end{tabular}};
+\node (transL) [box, below=5mm of strand, text width=50mm]
+  {TRANSPORT \\ \footnotesize stale sign \;\textbullet\; entropy compression \;\textbullet\; communication};
+\node (theta)  [below=3mm of transL] {$\theta(t{+}1)$ \;\footnotesize next state};
+\draw[flow] (corpus)--(force);
+\draw[flow] (force)--(discL);
+\draw[flow] (discL)--(bwd);
+\draw[flow] (bwd)--(strand);
+\draw[flow] (strand.240) to[out=-90,in=90] node[left,el,pos=0.9]{stable} (transL.140);
+\draw[flow] (strand.300) to[out=-90,in=90] node[right,el,pos=0.9]{churn} (transL.40);
+\draw[flow] (transL)--(theta);
+
+% ===== MIDDLE COLUMN: the dynamic loop =====
+\begin{scope}[shift={(66mm,0)}]
+  \node (l0) {\footnotesize\textsc{dynamic loop}};
+  \node (l1) [below=3mm of l0] {next batch};
+  \node (l2) [below=3mm of l1] {corpus};
+  \node (l3) [below=3mm of l2] {perturbation};
+  \node (l4) [below=3mm of l3] {backward};
+  \node (l5) [below=3mm of l4] {strand};
+  \node (l6) [below=3mm of l5] {parameter update};
+  \node (l7) [below=3mm of l6] {new geometry};
+  \foreach \i/\j in {l1/l2,l2/l3,l3/l4,l4/l5,l5/l6,l6/l7}
+    \draw[flow] (\i)--(\j);
+  \draw[flow] (l7.east) to[out=0,in=0,looseness=1.6] (l1.east);
+\end{scope}
+
+% ===== RIGHT COLUMN: disc manifold + strand fields =====
+\begin{scope}[shift={(112mm,-4mm)}]
+  \node (ef) [align=center] {\footnotesize external forcing};
+  \draw[thick, fill=black!5]
+    (-16mm,-6mm) .. controls (-6mm,4mm) and (6mm,-2mm) .. (16mm,4mm)
+    -- (18mm,-11mm) .. controls (6mm,-9mm) and (-6mm,-15mm) .. (-14mm,-17mm) -- cycle;
+  \node[align=center] at (1mm,-5mm) {DISC \\ \scriptsize high-dim.\ smooth};
+  \node[font=\scriptsize, align=center] at (1mm,-14mm) {$\rho(\text{batch dist},\text{sim}){=}0.62$};
+  \foreach \d in {2,1,0}
+    \node[strand, fill=white, text width=40mm, minimum height=12mm] (sf) at ($(0,-32mm)+(\d mm,\d mm)$) {};
+  \node[align=center] at (1mm,-29mm) {\footnotesize STRAND FIELD};
+  \node[font=\tiny] at (1mm,-34mm) {$\blacksquare$ core \quad $\square$ frontier};
+  \draw[flow] (ef) -- (1mm,-3mm);
+  \draw[flow] (1mm,-16mm) -- (1mm,-25mm);
+\end{scope}
+
+% ===== BOTTOM ROW: the batch->strand manifold result =====
+\node (bes) [box, below=13mm of transL, text width=46mm, xshift=6mm]
+  {BATCH EMBEDDING SPACE \\ {\footnotesize\itshape smooth, high-rank map}};
+\node (lin) [small, left=10mm of bes]  {linear \\ $0.699$};
+\node (knn) [small, above left=4mm and 10mm of bes] {kNN $k{=}15$ \\ $0.704$ (plateaus)};
+\node (nl)  [small, right=10mm of bes] {nonlinear (rand.\ feat.) \\ $0.535$ \;\textbf{overfits}};
+\node (verdict) [below=4mm of bes, text width=72mm, align=center, font=\footnotesize]
+  {low-dimensional curved manifold \textbf{disproven} (trivial corpus): nonlinear
+   does \emph{not} beat linear.\; Residual $\approx\!0.30$ is high-dimensional
+   noise in $\delta$.\; \textsc{proven:} high-dimensional continuous field,
+   compressible only in transport (linear baseline $0.699$).};
+\draw[flow] (lin)--(bes); \draw[flow] (knn)--(bes); \draw[flow] (nl)--(bes);
+\draw[flow] (bes)--(verdict);
+\end{tikzpicture}%
+}
+\caption{The disc--strand picture as measured. \textbf{Left:} the pipeline ---
+a smooth, high-dimensional corpus \emph{forcing field} selects the strand's
+\emph{identity} (not its magnitude); the \textbf{disc} $(r,m,v)$ is the slow
+manifold (geometry of possible motion, not a controller: it sets persistence and
+the fixed $\sim\!55\%$/step churn velocity but cannot generate or gate the
+strand); the irreducible \textbf{backward pass} produces
+$S_t=\operatorname{sign}(g_t)$, split into a persistent core ($\sim\!115$k
+coordinates) and a frontier sweeping $99.6\%$ of the network; only
+\emph{transport} downstream compresses (stale-sign, $79\times$ sign entropy).
+\textbf{Middle:} the training loop --- corpus perturbation, measurement, strand,
+update, new geometry. \textbf{Right:} the disc as a high-dimensional smooth
+manifold; nearby batches give nearby strands (batch-distance/similarity
+$\rho{=}0.62$), strand fields orbiting it with the core/frontier split.
+\textbf{Bottom:} the batch$\rightarrow$strand map is smooth but high-rank ---
+linear predicts strand sign at $0.699$, kNN plateaus at $0.704$, and a nonlinear
+model \emph{fails} to beat linear ($0.535$, overfits), disproving a
+low-dimensional curved manifold for this corpus. The corpus signal is real and
+continuous but high-dimensional, with a $\approx\!0.30$ residual living in the
+backward error $\delta$; whether a structured corpus yields a low-dimensional map
+is the one open question (\S\ref{sec:backward}).}
+\label{fig:disc-strand}
+\end{figure*}
+
+\subsection{The backward pass: what is irreducible, and why}
+\label{sec:backward}
+
+The generation--transport split of \S\ref{sec:cst} leaves one question: can the
+generation step --- the backward pass --- itself be made cheaper? Eight
+experiments attack it from independent directions and return one wall.
+
+\emph{Prediction and pruning fail.} The next active frontier (coordinates whose
+sign is about to change) is predictable from pre-backward optimiser state only
+to AUC-equivalent recall $0.62$ at $20\%$ selection, and a linear model on
+$(r,\Delta r,|m|,v)$ adds nothing over $r$ alone. Adding the current batch's
+forward activations --- the most direct encoding of the incoming sample ---
+leaves recall at chance for the batch feature, because a weight's gradient is
+$\delta_{\text{out}}\!\cdot\!\text{act}_{\text{in}}$ and the forward pass
+supplies only the second factor; the first is the backward pass itself.
+
+\emph{Sketching fails on structured error.} The update sign is invariant to
+i.i.d.\ gradient noise up to $25\%$ ($100\%$ agreement) but breaks under
+rank-$25\%$ SVD truncation ($82\%$ agreement, $1.6\times$ val cost) and under any
+low-rank surrogate. The enemy is correlated error, which is exactly what every
+compute-saving spatial approximation introduces. Neither a per-neuron
+mean-removal nor the graph-Laplacian basis of the flip-coupling graph recovers
+the signs, because that graph is dense and non-modular (degree $140$ of $512$,
+no spectral gap): there is no privileged basis to find.
+
+\emph{Gating fails worse than random.} Training under a rule that computes the
+exact gradient on a selected $20\%$ and persists the strand elsewhere:
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+gate & granularity & val vs.\ full \\
+\midrule
+random    & coordinate & $3.4\times$ \\
+$r$-gated & coordinate & $6.9\times$ \\
+random    & neuron-tile & $3.4\times$ \\
+$r$-gated & neuron-tile & $23\times$ \\
+momentum  & neuron-tile & $24\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Coupling-aligned gating is anti-optimal]
+Random selection is the floor; every principled gate does strictly worse, and
+the damage scales with how tightly the gate concentrates the computed/persisted
+boundary onto the coupling structure. Neuron-tile gating, which aligns the cut
+with the between-neuron couplings, is worse than coordinate gating; both are
+worse than random, which has zero coupling-alignment. A coordinate's importance
+is non-local --- set by its coupling to the coordinates one would skip --- so
+any selection rule correlated with that coupling cuts precisely what must be
+preserved.
+\end{proposition}
+
+The mechanism is the absence of scale separation. Multigrid and adaptive-mesh
+methods reduce cost when error is smooth with local corrections; the sign field
+is a densely coupled field with no hierarchy (no modularity, no spectral gap, no
+low-rank structure), which is exactly the regime where hierarchical and sparse
+methods provably do not apply.
+
+\begin{observation}[Terminal statement]
+The strand --- a temporally coherent, $r$-organised sign field --- is the
+irreducible object of the optimisation. Backpropagation is the only known
+mechanism that generates it. Its cost cannot be reduced by sparsity in any form
+(coordinate, tile, predicted, or sketched), because importance is non-local:
+dense, non-hierarchical coupling without scale separation. What remains
+compressible is transport, not generation: stale-sign across steps
+(\S\ref{sec:stalesign}) and sign entropy across coordinates
+(\S\ref{sec:signentropy}), both operating on the already-measured field. Whether
+a different \emph{dense} mechanism --- feedback alignment through the recursion,
+forward-gradient, or a synthetic backward field --- can generate the strand more
+cheaply while preserving weighted sign agreement above $\sim\!0.95$ through
+network depth under correlated error is the single question this programme
+leaves open. Sparsity-based economy is refuted; substitution is untested.
+\end{observation}
+
+The programme set out to ask whether the disc--strand decomposition could
+replace gradient descent. The answer is more precise than a refusal: disc and
+strand are a complete, compressible, transportable description of what gradient
+descent \emph{produces}, and the reason they cannot replace what produces it is
+a measurable structural fact about the loss geometry --- non-locality without
+scale separation --- rather than a limitation of the representation.
+
+\section{Phase 4: Corpus Generality of the High-Dimensionality Result}
+\label{sec:corpus-generality}
+
+Every measurement to \S\ref{sec:backward} was taken on one corpus: a single
+sentence looped roughly $300$ times. The central negative finding --- that the
+strand field is high-dimensional and therefore does not compress across corpus
+states --- was therefore open to the objection that it is an artefact of that
+triviality. A structured corpus might make the batch~$\to$~strand map
+low-dimensional, which would reopen dictionary compression and make the
+sparsity refutation corpus-specific rather than general. This section settles
+that objection.
+
+\subsection{The structure axis and its confound}
+\label{sec:axis}
+
+Six corpora at $V=256$, $60{,}000$ tokens each, spanning a structure axis
+validated two ways: gzip compression ratio, and the block-entropy gap at
+$L=6$ against each corpus's own token shuffle. The shuffle controls are the
+only confound-free comparison available, since they hold vocabulary and
+unigram statistics fixed and vary order alone.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\hline
+corpus & live vocab & gzip ratio & blockH gap \\
+\hline
+\texttt{iid}          & $256$ & $1.001$ & $0.000$ \\
+\texttt{english\_shuf}& $27$  & $0.631$ & $-0.000$ \\
+\texttt{english}      & $27$  & $0.282$ & $0.362$ \\
+\texttt{code\_shuf}   & $95$  & $0.663$ & $-0.000$ \\
+\texttt{code}         & $95$  & $0.259$ & $0.436$ \\
+\texttt{repeat}       & $97$  & $0.007$ & $1.494$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The live-vocabulary column carries a confound that governs how the results may
+be read. Vocabulary size is not constant along the axis --- it runs
+$256, 27, 95, 97$ --- so the cross-corpus ordering conflates structure with
+alphabet size and unigram entropy. Only the paired contrasts
+(\texttt{english} versus \texttt{english\_shuf}, \texttt{code} versus
+\texttt{code\_shuf}) isolate structure. The cross-corpus trend is reported
+below but is not load-bearing.
+
+\subsection{Protocol, and two corrections to it}
+\label{sec:idprobe-protocol}
+
+For each corpus: train to a checkpoint at $80$ steps, freeze $\theta$, sweep
+$N_B$ batches, and record $s_B=\operatorname{sign}(g_B)$ on a fixed random
+subset of $20{,}000$ block-parameter coordinates together with a batch
+embedding $z_B$ (mean token embedding concatenated with the normalised token
+histogram). Predict $s_B$ from $z_B$ linearly, nonlinearly by random cosine
+features, and by $k$-nearest neighbours; report the participation ratio of the
+strand spectrum and the correlation between batch distance and strand
+dissimilarity.
+
+Two corrections were necessary, and both change what the numbers mean.
+
+\emph{First, the original comparison was between two interpolators.} With
+$z_B$ of dimension $D+V=512$ and $N_B=200$ giving $150$ training rows, both the
+linear least-squares fit and the $800$-dimensional random-feature fit are
+underdetermined minimum-norm solutions. The earlier reading --- nonlinear
+$0.535$, ``overfits,'' against linear $0.699$ --- is therefore substantially a
+statement about minimum-norm behaviour at $p \gg n$, not about the intrinsic
+dimension of the map. Here $N_B=600$, giving $360$ training rows, and both
+model classes are placed on a ridge path with the penalty selected on a
+held-out split, so each is given its best available fit. Untuned numbers are
+reported alongside for continuity.
+
+\emph{Second, the initialisation must not depend on the corpus.} The
+compiler prefix constructs the embedding from the corpus bigram Laplacian via
+$\operatorname{eigsh}(L_{\mathrm{sym}},k=D{+}1)$. At $V\le 256$ this is not
+merely inadvisable but impossible, since $k=257$ exceeds the matrix dimension;
+more importantly it would make $\theta_0$ a function of the corpus, and
+differentially so --- \texttt{english} has $27$ live tokens against
+\texttt{iid}'s $256$, so the graph is degenerate to different degrees along the
+axis. A probe asking whether corpus structure lowers the dimension of the
+batch~$\to$~strand map cannot have corpus structure pre-loaded into the
+initialisation at corpus-dependent strength. All runs therefore use $V=256$
+fixed and a plain seeded initialisation, identical across corpora. This
+forfeits comparability with the historical $V=1017$ numbers, which is the
+correct trade for a cross-corpus comparison and the wrong one for continuity
+with earlier phases.
+
+\subsection{Result: the wall holds}
+\label{sec:idprobe-result}
+
+Block parameters, $N_B=600$, split $360/90/150$, single seed.
+
+\begin{center}
+\begin{tabular}{lrrrrrrr}
+\hline
+corpus & lin (raw) & nl (raw) & lin (ridge) & nl (ridge) & gain & kNN$_{15}$ & PR \\
+\hline
+\texttt{iid}          & $0.587$ & $0.527$ & $0.729$ & $0.597$ & $-0.133$ & $0.646$ & $208.0$ \\
+\texttt{english\_shuf}& $0.719$ & $0.579$ & $0.842$ & $0.663$ & $-0.180$ & $0.751$ & $69.9$ \\
+\texttt{english}      & $0.748$ & $0.639$ & $0.849$ & $0.716$ & $-0.134$ & $0.787$ & $65.1$ \\
+\texttt{code\_shuf}   & $0.670$ & $0.590$ & $0.817$ & $0.672$ & $-0.145$ & $0.736$ & $80.4$ \\
+\texttt{code}         & $0.572$ & $0.557$ & $0.691$ & $0.652$ & $-0.039$ & $0.663$ & $243.6$ \\
+\texttt{repeat}       & $0.745$ & $0.661$ & $0.865$ & $0.756$ & $-0.109$ & $0.769$ & $57.3$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[The discriminator returns \emph{no}]
+\label{obs:no-manifold}
+The nonlinear model does not beat the linear model on any corpus on the axis.
+The gain is negative throughout, from $-0.039$ to $-0.180$, and $k$-nearest
+neighbours --- which requires no regularisation choice and is therefore the
+independent check --- tracks the linear model from below everywhere. Two
+structurally different non-parametric estimators both fail to beat a linear
+map. The high-dimensionality of the batch~$\to$~strand map is not an artefact
+of the degenerate corpus, and dictionary compression does not reopen.
+\end{observation}
+
+Ridge tuning raised the linear model substantially ($0.748\to0.849$ on
+\texttt{english}) and raised the nonlinear model too, without closing the gap:
+the earlier ``nonlinear overfits'' reading was partly an artefact of the
+minimum-norm fit, and the conclusion survives correcting it.
+
+The paired contrasts are where caution is required.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\hline
+pair & lin (ridge) & nl (ridge) $\to$ gain & PR \\
+\hline
+\texttt{english\_shuf}$\to$\texttt{english} & $0.842\to0.849$ & $-0.180\to-0.134$ & $69.9\to65.1$ \\
+\texttt{code\_shuf}$\to$\texttt{code}       & $0.817\to0.691$ & $-0.145\to-0.039$ & $80.4\to243.6$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Structure moves the gain toward compressibility in both pairs ($+0.046$,
+$+0.106$), so this is not a flat null; but the sign never reverses, and the two
+pairs disagree on the dimension measure. On \texttt{english} the participation
+ratio falls slightly with structure, as the dictionary hypothesis predicts. On
+\texttt{code} it triples, while linear predictability falls from $0.817$ to
+$0.691$ and the distance--dissimilarity correlation falls from $0.561$ to
+$0.318$. Real code structure makes the strand field \emph{less} predictable and
+\emph{higher}-dimensional --- the opposite of a low-dimensional curved
+manifold, and the single most informative number in the table.
+
+\begin{observation}[Structured but not manifold-structured]
+\label{obs:structured-not-manifold}
+Participation ratios of $57$--$244$ against a ceiling of $600$ are well below
+what independent sign vectors would give. The strand field carries real
+redundancy, consistent with the $0.405$ bits/parameter/step of
+\S\ref{sec:signentropy}; it is simply not organised as a low-dimensional curved
+base. High-dimensional and compressible are not in tension --- this is the
+transport/generation split of \S\ref{sec:backward} seen from the corpus side.
+\end{observation}
+
+\subsection{Replication}
+\label{sec:idprobe-repl}
+
+The four corpora entering the paired contrasts were rerun at a second seed.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+pair & $\Delta$gain (s17) & $\Delta$gain (s23) & $\Delta$PR (s17) & $\Delta$PR (s23) \\
+\hline
+\texttt{english\_shuf}$\to$\texttt{english} & $+0.046$ & $+0.016$ & $-4.8$ & $-6.3$ \\
+\texttt{code\_shuf}$\to$\texttt{code}       & $+0.106$ & $+0.097$ & $+163.3$ & $+179.7$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The sign of every gain replicates and no gain approaches zero, so
+Observation~\ref{obs:no-manifold} is not seed-dependent. The two paired deltas
+behave differently under replication: the \texttt{code} delta is stable
+($+0.106$, $+0.097$) while the \texttt{english} delta is not ($+0.046$,
+$+0.016$), so only the former should be treated as a measured effect. The
+divergence of the two pairs on the dimension measure replicates cleanly and is
+the more robust finding: \texttt{english} loses a few units of participation
+ratio with structure, \texttt{code} gains over $160$.
+
+\emph{Limitations.} Two seeds, one checkpoint at $80$ steps, one architecture. The negative result is a statement
+about one nonlinear family --- $800$ random cosine features --- and the
+agreement of $k$NN is what licenses the broader reading. The embedding arm was
+measured separately and is reported nowhere in this section, because
+$\texttt{head.weight}$ is tied to $\texttt{te.weight}$ and its gradient is
+dominated by a nearly batch-independent softmax term: that arm measures weight
+tying, not associative memory, and testing the $\varepsilon$-table confound
+would require an untied model.
+
+\section{Phase 5: Symmetry, and the Stabilizer of the Strand}
+\label{sec:symmetry}
+
+If no low-dimensional manifold organises the strand, a weaker and more robust
+object may still exist: a group of transformations under which the strand is
+approximately invariant. Invariance does not require low-dimensional
+coordinates, and a stabilizer subgroup would induce equivalence classes on
+batch space that are cheaper to specify than the strands themselves. This
+section constructs the apparatus to test that and reports what it returns.
+
+\subsection{Synthetic corpora with exact symmetries}
+\label{sec:synth}
+
+Symmetry can only be tested where it is exact by construction, so the corpora
+are generated from an explicit parse tree over a byte-level expression
+grammar,
+\[
+S\to E\,;\qquad E\to T \mid E{+}T \mid E{-}T \qquad T\to F\mid T{*}F
+\qquad F\to V\mid D\mid (E)
+\]
+with $V\in\{a..h\}$ and $D\in\{0..9\}$. Three exact symmetries of the
+generator are available, with deliberately different statistical profiles:
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+transform & parse tree & token statistics & surface altered \\
+\hline
+\texttt{rename} & identical & identical      & $85\%$ \\
+\texttt{comm}   & mirrored  & $\approx$ identical & $78\%$ \\
+\texttt{ws}     & identical & \emph{changed} (gzip $0.503\to0.336$) & $84\%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\texttt{rename} applies a bijection to the variable alphabet; \texttt{comm}
+swaps the operands of the commutative operators; \texttt{ws} inserts
+whitespace around binary operators, leaving the parse tree untouched while
+altering the byte statistics substantially. Both \texttt{rename} and
+\texttt{comm} preserve length exactly, so paired batches align token for
+token. A structural ladder of known distance (one terminal, one operator, one
+subtree, full resample) and two controls complete the suite: \texttt{shuf}
+destroys structure while preserving the histogram, and \texttt{lexctl} carries
+\texttt{rename}'s histogram with its structure destroyed.
+
+\texttt{lexctl} is the control that makes the experiment mean anything. Without
+it, statistical similarity is indistinguishable from symmetry.
+
+\subsection{The stratification, and why the prediction failed}
+\label{sec:rstrat}
+
+The intended discriminator was stratification by the disc. Under the reading of
+\S\ref{sec:hazard}, coordinates above the hazard threshold should have
+disc-determined sign and therefore agree between \emph{any} two batches, while
+coordinates below it should agree at chance; only the middle band is
+batch-conditioned. A genuine symmetry invariance would then have to show its
+excess agreement in the middle band, and excess in the top band would indicate
+disc-determined agreement being misread as invariance.
+
+Measured, the independent-batch floor is flat across $r$ deciles:
+$0.587,\,0.591,\,0.588,\,0.585,\,0.582,\,0.591,\,0.595,\,0.606,\,0.606,\,0.610$.
+The excess for every condition is largest in the \emph{top} band, which is the
+signature the prediction identified as spurious.
+
+The diagnostic explains this, and the explanation is a statement about regime
+rather than a rescue. On block parameters at this checkpoint the disc field has
+median $r=0.001$, $r_{90}=0.061$, $r_{99}=0.247$, maximum $0.879$, with
+$r>0.5$ holding for $0.09\%$ of coordinates. Since $r\to1$ is the
+consistent-gradient limit, essentially every coordinate is noise-dominated:
+there is no deterministic regime for the top decile to occupy. The $p_{90}/p_{10}$
+spread is $159\times$, consistent with the $160\times$ monotone range of
+\S\ref{sec:hazard}, and agreement does rise monotonically with decile
+($0.587\to0.610$).
+
+\begin{observation}[Assumptions unsatisfied, not prediction falsified]
+\label{obs:regime}
+The experiment sampled one asymptotic regime of the theory. The two-phase
+prediction presupposes a deterministic population that this operating point
+does not contain, so it is untested rather than confirmed or refuted. What the
+data do show is that
+$\partial_r\,P\!\left(s_i^{(A)}=s_i^{(B)}\right)>0$ already holds \emph{inside}
+the purely stochastic regime --- a weak monotone law, and the kind of
+quantitative statement a theory of the disc ought eventually to derive.
+\end{observation}
+
+\subsection{Result: the stabilizer is trivial at this operating point}
+\label{sec:stabilizer-result}
+
+Twenty-four trials, each comparing a base batch against matched variants.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+condition & agreement & excess & positional identity & histogram cosine \\
+\hline
+\texttt{comm}   & $0.887$ & $+0.293$ & $0.444$ & $1.000$ \\
+\texttt{pert1}  & $0.814$ & $+0.220$ & $0.901$ & $0.997$ \\
+\texttt{rename} & $0.770$ & $+0.176$ & $0.778$ & $0.995$ \\
+\texttt{pert2}  & $0.767$ & $+0.173$ & $0.907$ & $0.990$ \\
+\texttt{lexctl} & $0.747$ & $+0.153$ & $0.074$ & $0.995$ \\
+\texttt{pert3}  & $0.692$ & $+0.098$ & $0.150$ & $0.990$ \\
+\texttt{pert4}  & $0.607$ & $+0.013$ & $0.140$ & $0.982$ \\
+\texttt{indep}  & $0.594$ & $0$      & $0.133$ & $0.981$ \\
+\texttt{ws}     & $0.506$ & $-0.088$ & $0.037$ & $0.361$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Three readings, which agree with each other.
+
+\begin{observation}[Alpha-renaming is not a symmetry of the strand]
+\label{obs:lexctl}
+\texttt{rename} preserves the parse tree exactly and changes $85\%$ of the
+surface, giving agreement $0.770$. Its structure-destroyed control at the same
+histogram gives $0.747$. The apparent invariance decomposes into $0.153$ of
+histogram effect and $0.023$ of structure effect. What looked like structural
+invariance is low-order statistical similarity, which shuffling preserves.
+\end{observation}
+
+\begin{observation}[The strand follows surface statistics, not syntax]
+\label{obs:ws}
+\texttt{ws} leaves the parse tree identical and alters only surface statistics.
+Its agreement is $0.506$, which is $0.088$ \emph{below} the unrelated-batch
+floor: a transformation that does not touch the grammar destroys strand
+agreement more thoroughly than an unrelated batch does.
+\end{observation}
+
+\begin{observation}[The structural ladder is a surface-distance ladder]
+\label{obs:ladder}
+Across the nine conditions, agreement correlates $+0.66$ with positional
+identity and $+0.66$ with histogram cosine. The monotone decay along the
+perturbation ladder ($0.814,0.767,0.692,0.607$ against a floor of $0.594$)
+coincides with positional identity falling from $0.90$ to $0.15$. Once
+\texttt{comm} ($0.887$ at positional identity $0.444$, histogram cosine
+$1.000$) and \texttt{ws} ($0.506$ at $0.037$, $0.361$) are included, the
+pattern resolves without a residual structural term: histogram similarity
+dominates and positional identity modulates.
+\end{observation}
+
+\subsection{Does the stabilizer grow with training? Inconclusive, and why}
+\label{sec:stabilizer-evolution}
+
+A stabilizer measured at one checkpoint is a snapshot of a possibly moving
+object. The natural follow-up is to hold the symmetry suite fixed and sweep it
+along a training trajectory, watching the gap
+$\texttt{rename}-\texttt{lexctl}$ --- structural invariance net of histogram
+--- as a function of step. One run, checkpoints at
+$20,40,80,160,320,640,1280$, twelve trials each, measurement never calling an
+optimiser step.
+
+\begin{center}
+\begin{tabular}{rrrrrrr}
+\hline
+step & val loss & $r_{90}$ & $\Pr[r>0.5]$ & \texttt{rename} & \texttt{lexctl} & gap \\
+\hline
+$20$   & $2.934$ & $0.187$ & $0.0053$ & $0.817$ & $0.775$ & $+0.042$ \\
+$40$   & $2.926$ & $0.057$ & $0.0013$ & $0.790$ & $0.772$ & $+0.018$ \\
+$80$   & $2.928$ & $0.040$ & $0.0004$ & $0.797$ & $0.775$ & $+0.022$ \\
+$160$  & $2.917$ & $0.056$ & $0.0006$ & $0.743$ & $0.736$ & $+0.007$ \\
+$320$  & $2.922$ & $0.148$ & $0.0072$ & $0.739$ & $0.725$ & $+0.014$ \\
+$640$  & $2.913$ & $0.085$ & $0.0006$ & $0.749$ & $0.711$ & $+0.039$ \\
+$1280$ & $2.917$ & $0.270$ & $0.0240$ & $0.762$ & $0.695$ & $+0.066$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[The sweep is inconclusive by construction]
+\label{obs:sweep-null}
+The unigram entropy of the corpus is $2.914$ nats and the validation loss sits
+at $2.913$--$2.934$ for the entire run. The model learned the token frequencies
+and nothing further; it never acquired the grammar. A measurement of whether
+the stabilizer acquires grammatical invariance therefore had no opportunity to
+register one, and the apparent upward drift of the gap
+($+0.042\to+0.066$) sits within noise at twelve trials, where the per-condition
+standard deviation is approximately $0.05$.
+\end{observation}
+
+The cause is a design fault in the grammar rather than a property of strand
+generation: terminals are drawn uniformly, so the syntax carries almost no
+predictive mass relative to the random leaves, and a model at the unigram
+entropy is already optimal against everything except the operator skeleton. The
+fix is a generator whose structure is load-bearing for the loss --- skewed
+terminal distributions, or dependencies between leaves --- so that val loss
+falls materially below unigram entropy and there exists a learned
+representation for a stabilizer to be a stabilizer of. Until that is run, the
+question of \S\ref{sec:stabilizer-programme} is open.
+
+\emph{Scope.} All Phase~5 statements are conditioned on an operating point at
+which the model has demonstrably not learned the grammar. The correct reading
+of \S\ref{sec:stabilizer-result} is therefore not that the symmetry group of
+the strand is trivial, but that \emph{at this operating point strand similarity
+is governed by low-order statistical similarity rather than grammatical
+equivalence}. Whether a model that had learned the grammar would exhibit
+grammatical invariance is untested. The methodological result ---
+that without a histogram control one will mistake statistical similarity for
+symmetry --- is not conditioned on the operating point and is the more portable
+finding.
+
+\section{Toward a Theory: What the Measurements Constrain}
+\label{sec:theory}
+
+What follows is reformulation, not evidence. It reorganises measurements
+already reported and adds no independent confirmation of any of them. Its
+purpose is to record which mathematical descriptions are consistent with the
+measurements, which are excluded by them, and --- for the parts that remain
+conjectural --- what would decide them. Status is marked throughout.
+
+\subsection{Two retractions}
+\label{sec:retractions}
+
+Two claims made in the course of this programme's discussion were stronger than
+the evidence and are withdrawn.
+
+\emph{``There is no geometry.''} Dense coupling without a spectral gap
+(\S\ref{sec:backward}) excludes \emph{spatial locality in the parameter index}.
+It does not exclude geometry. Spin glasses, kernel methods, Gaussian processes
+and random matrix ensembles all combine dense interaction with rich spectral,
+statistical or information-geometric structure. The defensible statement is the
+narrow one: there is no useful metric on the parameter index.
+
+\emph{``The correspondence with kinetic Ising is exact.''} Glauber dynamics is
+defined by an energy function, and no Gibbs form for $K_r$ has been exhibited.
+The dictionary --- strand to spin configuration, $r$ to quenched site disorder,
+$\varepsilon$ to weak coupling, the trivial product backbone to the
+non-interacting limit --- is an \emph{effective model}, useful for the
+predictions it generates and not an identification. Demonstrating that the
+measured transition probabilities admit an effective Hamiltonian is a specific
+open task, not a formality.
+
+\subsection{The state space}
+\label{sec:statespace}
+
+The measurements do not support a geometry on parameters alone. The strand
+depends jointly on model state, optimiser state and batch, so the object to be
+given structure is
+\[
+\mathcal{X}\times\Theta\times\mathcal{O}
+\;\longrightarrow\;\{\pm1\}^P ,
+\]
+with $\mathcal{X}$ the batch space, $\Theta$ the parameters and $\mathcal{O}$
+the optimiser moments. In this factorisation the disc is a slowly varying field
+over $\Theta\times\mathcal{O}$, the corpus selects a trajectory through
+$\mathcal{X}$, and the strand is the response field. This accommodates directly
+what \S\ref{sec:corpus-generality} and \S\ref{sec:symmetry} measured: corpus
+identity strongly conditions strand identity, while the optimiser state governs
+churn.
+
+\subsection{The parameter index is a partition with a gauge group}
+\label{sec:gauge}
+
+\emph{Status: argued from architecture, with one testable consequence
+outstanding.} The architecture carries exact permutation symmetries --- the
+feed-forward hidden units, the attention heads, and the residual-stream
+coordinates may be relabelled with matched relabelling of the matrices that
+read and write them, leaving the represented function unchanged, and LayerNorm
+does not break this. Any statement of the form ``index $i$ neighbours index
+$j$'' is therefore a property of the labelling and not of the network, and no
+observable may depend on it.
+
+The sign map is equivariant under the group $\mathcal{D}$ generated by positive
+diagonal rescalings and signed permutations, and under no larger subgroup of
+$GL(P)$. This gives a compact reading of three results already recorded: sign
+survives $25\%$ i.i.d.\ noise (a within-chart perturbation) while breaking under
+rank truncation (which leaves $\mathcal{D}$), and the permuted refinement
+ladder collapses to $0.000$ (\S\ref{sec:strands}) because the permutation was
+not a signed permutation of the disc chart.
+
+What replaces the lattice is a set with a nested architectural partition ---
+network, layer, matrix, row, parameter --- carrying a permutation gauge group
+acting within each cell. Nesting is gauge-invariant; adjacency within a level is
+not. The consequent reinterpretation of the contiguity result is that
+contiguity in the flat parameter vector is largely co-membership in a matrix
+and row, so that the $0.000$ of the permuted ladder records the gauge symmetry
+appearing as a null rather than the destruction of a metric. \emph{This is a
+prediction and it is untested}: conditioning on same-matrix and same-row
+membership should remove the residual contiguity effect. If it does not, the
+reinterpretation is wrong and there is genuine within-row geometry.
+
+\subsection{Disc Riemannian, strand Finsler}
+\label{sec:finsler}
+
+\emph{Status: derivation from the measured update law; consistent with all
+reported measurements, independently confirmed by none.} Steepest descent under
+a norm constraint,
+$u=\arg\min_{\|u\|\le a}\langle g,u\rangle$, gives $u\propto -g$ under
+$\ell^2$, $u\propto -G^{-1}g$ under a Riemannian metric $G$, and
+$u_i=-a\operatorname{sign}(g_i)$ under $\ell^\infty$, whose unit ball is the
+hypercube and whose extreme points are exactly the sign vectors. The measured
+law $u_t\approx a_t s_t$ of \S\ref{sec:sign-magnitude} is the third of these.
+
+This is the reason a Riemannian formulation of the \emph{strand} cannot be
+correct: a metric predicts a dense real-valued natural-gradient update, which is
+measurably not what the optimiser produces. It also explains why the strand is
+not a tensor --- gradients are covectors, and
+$\operatorname{sign}((D\varphi)^{-T}g)\ne\operatorname{sign}(g)$ in general, so
+the object that survived the programme is precisely the object that does not
+transform covariantly.
+
+The Fisher metric belongs instead to the disc, where it is already present
+implicitly: $v_i$ estimates the diagonal empirical Fisher $\mathbb{E}_B[g_i^2]$,
+so $G_\theta=\operatorname{diag}(\sqrt{v}+\epsilon)$ is a metric on $\Theta$
+and $r_i=|m_i|/\sqrt{v_i}$ is the drift-to-noise ratio of coordinate $i$
+measured in it. The hazard law of \S\ref{sec:hazard} then reads as a statement
+about signal-to-noise: flips occur where Fisher-normalised drift is dominated
+by Fisher-normalised noise, which predicts both the monotone flip rate and a
+threshold. The disc is not a companion to the strand but the structure that
+makes the strand well defined: $\mathcal{D}$ is the group preserving diagonal
+Fisher structure, and without it there is no sign field to speak of.
+
+\subsection{Frameworks excluded, and by which measurement}
+\label{sec:excluded}
+
+\emph{Status: exclusions, each traced to a specific measurement.} Recording
+these prevents their recurrence.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+framework & requires & excluded by \\
+\hline
+multigrid / refinement transport & scale separation & no spectral gap (\S\ref{sec:backward}) \\
+persistent homology & filtration with separated scales & no spectral gap \\
+lattice field theory & metric on the index & permutation gauge (\S\ref{sec:gauge}) \\
+trajectory homology & non-contractible complex & trajectory is a path \\
+index theory & stability under compact perturbation & rank truncation breaks sign \\
+$K$-theory & additive or exact category & free category on a path \\
+\hline
+\end{tabular}
+\end{center}
+
+Three of these fail for one reason. The index-theoretic case is worth stating
+separately: an index is invariant under compact perturbation, rank truncation is
+finite-rank hence compact, and \S\ref{sec:backward} measured that the sign field
+breaks under rank truncation while surviving i.i.d.\ noise --- so the
+persistent/frontier decomposition has the opposite stability property to an
+index. On $K$-theory, strands do not compose within strands, so the trajectory
+generates a free category with no additive structure and $K_0$ is undefined;
+passing to representations of the trajectory quiver gives
+$K_0(\operatorname{rep}A_n)\cong\mathbb{Z}^n$, which counts steps. The honest
+position is not that $K$-theory is dead but that no canonical object has
+appeared to which it applies.
+
+The cohomological content that does exist is already computed. The sign process
+lives on $\{\pm1\}^P=(\mathbb{Z}/2)^P$, which is abelian, so abelian holonomy
+is forced; the natural home for the non-forced part is
+$H^1(\cdot\,;\mathbb{Z}/2)$, and the frieze cover of \S\ref{sec:frieze} is the
+one non-forced class in it.
+
+\subsection{The stabilizer programme}
+\label{sec:stabilizer-programme}
+
+\emph{Status: conjectural, and the one experiment attempted was inconclusive
+(\S\ref{sec:stabilizer-evolution}).}
+
+Phase~5 sought a fixed symmetry group of the data generator and found none.
+The more defensible object is not fixed. The strand is a function of gradients,
+gradients are functions of activations, and activations depend on whatever
+statistics the representation has actually learned; so any invariance of the
+strand is an invariance of the \emph{learned representation}, not of the
+generator. Early in training that is token statistics, which is exactly what
+\S\ref{sec:stabilizer-result} measured. Whether it later becomes syntax is
+undetermined.
+
+This reframes the question. Rather than asking which transformations preserve
+the strand, ask how the stabilizer subgroup
+\[
+\operatorname{Stab}_t=\{\sigma:\ s_{\sigma(B)}\approx s_B \text{ at }
+(\theta_t,\mathcal{O}_t)\}
+\]
+evolves along the trajectory. This is a geometric object that changes with
+training, and it connects the observations without assuming a fixed group: early
+training dominated by low-order statistical invariants, later training possibly
+acquiring higher-level ones. It also carries an immediate falsifier --- if
+$\operatorname{Stab}_t$ never grows on a corpus whose structure the model
+demonstrably learns, then something stronger holds about strand generation than
+any statement in this programme so far.
+
+The prerequisite is a corpus on which the model learns structure at all. The
+sweep of \S\ref{sec:stabilizer-evolution} failed that prerequisite, and the
+suite --- symmetries exact by construction, histogram control, structural
+ladder, $r$-stratification --- is in hand and unchanged for the rerun.
+
+\subsection{What the programme now claims}
+\label{sec:claims}
+
+The disc is the slow state: optimiser memory, a diagonal Fisher metric,
+accumulated statistics over $\Theta\times\mathcal{O}$. The strand is the fast
+binary response field generated from the current batch, living on the vertices
+of an $\ell^\infty$ ball, well defined only relative to the chart the disc
+supplies. The dynamics respect the permutation gauge group of the
+parameterisation, so the parameter index is a partition rather than a space.
+The corpus acts on the strand through whatever invariants the current
+representation has learned, and the symmetry structure is therefore a function
+of training time rather than a property of the data.
+
+Two things are established across corpora rather than on one: that the
+batch~$\to$~strand map is high-dimensional (\S\ref{sec:corpus-generality}), and
+that sparsity-based economy is refuted in consequence. The remaining
+mathematical target is the smallest symmetry-respecting state space on which
+disc and strand evolve --- and the remaining empirical question is unchanged
+from \S\ref{sec:backward}: whether a dense substitution mechanism can generate
+the strand more cheaply. Sparsity-based economy is refuted; substitution is
+untested.

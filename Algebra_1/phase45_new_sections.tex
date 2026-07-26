@@ -1,0 +1,591 @@
+
+\section{Phase 4: Corpus Generality of the High-Dimensionality Result}
+\label{sec:corpus-generality}
+
+Every measurement to \S\ref{sec:backward} was taken on one corpus: a single
+sentence looped roughly $300$ times. The central negative finding --- that the
+strand field is high-dimensional and therefore does not compress across corpus
+states --- was therefore open to the objection that it is an artefact of that
+triviality. A structured corpus might make the batch~$\to$~strand map
+low-dimensional, which would reopen dictionary compression and make the
+sparsity refutation corpus-specific rather than general. This section settles
+that objection.
+
+\subsection{The structure axis and its confound}
+\label{sec:axis}
+
+Six corpora at $V=256$, $60{,}000$ tokens each, spanning a structure axis
+validated two ways: gzip compression ratio, and the block-entropy gap at
+$L=6$ against each corpus's own token shuffle. The shuffle controls are the
+only confound-free comparison available, since they hold vocabulary and
+unigram statistics fixed and vary order alone.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\hline
+corpus & live vocab & gzip ratio & blockH gap \\
+\hline
+\texttt{iid}          & $256$ & $1.001$ & $0.000$ \\
+\texttt{english\_shuf}& $27$  & $0.631$ & $-0.000$ \\
+\texttt{english}      & $27$  & $0.282$ & $0.362$ \\
+\texttt{code\_shuf}   & $95$  & $0.663$ & $-0.000$ \\
+\texttt{code}         & $95$  & $0.259$ & $0.436$ \\
+\texttt{repeat}       & $97$  & $0.007$ & $1.494$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The live-vocabulary column carries a confound that governs how the results may
+be read. Vocabulary size is not constant along the axis --- it runs
+$256, 27, 95, 97$ --- so the cross-corpus ordering conflates structure with
+alphabet size and unigram entropy. Only the paired contrasts
+(\texttt{english} versus \texttt{english\_shuf}, \texttt{code} versus
+\texttt{code\_shuf}) isolate structure. The cross-corpus trend is reported
+below but is not load-bearing.
+
+\subsection{Protocol, and two corrections to it}
+\label{sec:idprobe-protocol}
+
+For each corpus: train to a checkpoint at $80$ steps, freeze $\theta$, sweep
+$N_B$ batches, and record $s_B=\operatorname{sign}(g_B)$ on a fixed random
+subset of $20{,}000$ block-parameter coordinates together with a batch
+embedding $z_B$ (mean token embedding concatenated with the normalised token
+histogram). Predict $s_B$ from $z_B$ linearly, nonlinearly by random cosine
+features, and by $k$-nearest neighbours; report the participation ratio of the
+strand spectrum and the correlation between batch distance and strand
+dissimilarity.
+
+Two corrections were necessary, and both change what the numbers mean.
+
+\emph{First, the original comparison was between two interpolators.} With
+$z_B$ of dimension $D+V=512$ and $N_B=200$ giving $150$ training rows, both the
+linear least-squares fit and the $800$-dimensional random-feature fit are
+underdetermined minimum-norm solutions. The earlier reading --- nonlinear
+$0.535$, ``overfits,'' against linear $0.699$ --- is therefore substantially a
+statement about minimum-norm behaviour at $p \gg n$, not about the intrinsic
+dimension of the map. Here $N_B=600$, giving $360$ training rows, and both
+model classes are placed on a ridge path with the penalty selected on a
+held-out split, so each is given its best available fit. Untuned numbers are
+reported alongside for continuity.
+
+\emph{Second, the initialisation must not depend on the corpus.} The
+compiler prefix constructs the embedding from the corpus bigram Laplacian via
+$\operatorname{eigsh}(L_{\mathrm{sym}},k=D{+}1)$. At $V\le 256$ this is not
+merely inadvisable but impossible, since $k=257$ exceeds the matrix dimension;
+more importantly it would make $\theta_0$ a function of the corpus, and
+differentially so --- \texttt{english} has $27$ live tokens against
+\texttt{iid}'s $256$, so the graph is degenerate to different degrees along the
+axis. A probe asking whether corpus structure lowers the dimension of the
+batch~$\to$~strand map cannot have corpus structure pre-loaded into the
+initialisation at corpus-dependent strength. All runs therefore use $V=256$
+fixed and a plain seeded initialisation, identical across corpora. This
+forfeits comparability with the historical $V=1017$ numbers, which is the
+correct trade for a cross-corpus comparison and the wrong one for continuity
+with earlier phases.
+
+\subsection{Result: the wall holds}
+\label{sec:idprobe-result}
+
+Block parameters, $N_B=600$, split $360/90/150$, single seed.
+
+\begin{center}
+\begin{tabular}{lrrrrrrr}
+\hline
+corpus & lin (raw) & nl (raw) & lin (ridge) & nl (ridge) & gain & kNN$_{15}$ & PR \\
+\hline
+\texttt{iid}          & $0.587$ & $0.527$ & $0.729$ & $0.597$ & $-0.133$ & $0.646$ & $208.0$ \\
+\texttt{english\_shuf}& $0.719$ & $0.579$ & $0.842$ & $0.663$ & $-0.180$ & $0.751$ & $69.9$ \\
+\texttt{english}      & $0.748$ & $0.639$ & $0.849$ & $0.716$ & $-0.134$ & $0.787$ & $65.1$ \\
+\texttt{code\_shuf}   & $0.670$ & $0.590$ & $0.817$ & $0.672$ & $-0.145$ & $0.736$ & $80.4$ \\
+\texttt{code}         & $0.572$ & $0.557$ & $0.691$ & $0.652$ & $-0.039$ & $0.663$ & $243.6$ \\
+\texttt{repeat}       & $0.745$ & $0.661$ & $0.865$ & $0.756$ & $-0.109$ & $0.769$ & $57.3$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[The discriminator returns \emph{no}]
+\label{obs:no-manifold}
+The nonlinear model does not beat the linear model on any corpus on the axis.
+The gain is negative throughout, from $-0.039$ to $-0.180$, and $k$-nearest
+neighbours --- which requires no regularisation choice and is therefore the
+independent check --- tracks the linear model from below everywhere. Two
+structurally different non-parametric estimators both fail to beat a linear
+map. The high-dimensionality of the batch~$\to$~strand map is not an artefact
+of the degenerate corpus, and dictionary compression does not reopen.
+\end{observation}
+
+Ridge tuning raised the linear model substantially ($0.748\to0.849$ on
+\texttt{english}) and raised the nonlinear model too, without closing the gap:
+the earlier ``nonlinear overfits'' reading was partly an artefact of the
+minimum-norm fit, and the conclusion survives correcting it.
+
+The paired contrasts are where caution is required.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\hline
+pair & lin (ridge) & nl (ridge) $\to$ gain & PR \\
+\hline
+\texttt{english\_shuf}$\to$\texttt{english} & $0.842\to0.849$ & $-0.180\to-0.134$ & $69.9\to65.1$ \\
+\texttt{code\_shuf}$\to$\texttt{code}       & $0.817\to0.691$ & $-0.145\to-0.039$ & $80.4\to243.6$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Structure moves the gain toward compressibility in both pairs ($+0.046$,
+$+0.106$), so this is not a flat null; but the sign never reverses, and the two
+pairs disagree on the dimension measure. On \texttt{english} the participation
+ratio falls slightly with structure, as the dictionary hypothesis predicts. On
+\texttt{code} it triples, while linear predictability falls from $0.817$ to
+$0.691$ and the distance--dissimilarity correlation falls from $0.561$ to
+$0.318$. Real code structure makes the strand field \emph{less} predictable and
+\emph{higher}-dimensional --- the opposite of a low-dimensional curved
+manifold, and the single most informative number in the table.
+
+\begin{observation}[Structured but not manifold-structured]
+\label{obs:structured-not-manifold}
+Participation ratios of $57$--$244$ against a ceiling of $600$ are well below
+what independent sign vectors would give. The strand field carries real
+redundancy, consistent with the $0.405$ bits/parameter/step of
+\S\ref{sec:signentropy}; it is simply not organised as a low-dimensional curved
+base. High-dimensional and compressible are not in tension --- this is the
+transport/generation split of \S\ref{sec:backward} seen from the corpus side.
+\end{observation}
+
+\subsection{Replication}
+\label{sec:idprobe-repl}
+
+The four corpora entering the paired contrasts were rerun at a second seed.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+pair & $\Delta$gain (s17) & $\Delta$gain (s23) & $\Delta$PR (s17) & $\Delta$PR (s23) \\
+\hline
+\texttt{english\_shuf}$\to$\texttt{english} & $+0.046$ & $+0.016$ & $-4.8$ & $-6.3$ \\
+\texttt{code\_shuf}$\to$\texttt{code}       & $+0.106$ & $+0.097$ & $+163.3$ & $+179.7$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The sign of every gain replicates and no gain approaches zero, so
+Observation~\ref{obs:no-manifold} is not seed-dependent. The two paired deltas
+behave differently under replication: the \texttt{code} delta is stable
+($+0.106$, $+0.097$) while the \texttt{english} delta is not ($+0.046$,
+$+0.016$), so only the former should be treated as a measured effect. The
+divergence of the two pairs on the dimension measure replicates cleanly and is
+the more robust finding: \texttt{english} loses a few units of participation
+ratio with structure, \texttt{code} gains over $160$.
+
+\emph{Limitations.} Two seeds, one checkpoint at $80$ steps, one architecture. The negative result is a statement
+about one nonlinear family --- $800$ random cosine features --- and the
+agreement of $k$NN is what licenses the broader reading. The embedding arm was
+measured separately and is reported nowhere in this section, because
+$\texttt{head.weight}$ is tied to $\texttt{te.weight}$ and its gradient is
+dominated by a nearly batch-independent softmax term: that arm measures weight
+tying, not associative memory, and testing the $\varepsilon$-table confound
+would require an untied model.
+
+\section{Phase 5: Symmetry, and the Stabilizer of the Strand}
+\label{sec:symmetry}
+
+If no low-dimensional manifold organises the strand, a weaker and more robust
+object may still exist: a group of transformations under which the strand is
+approximately invariant. Invariance does not require low-dimensional
+coordinates, and a stabilizer subgroup would induce equivalence classes on
+batch space that are cheaper to specify than the strands themselves. This
+section constructs the apparatus to test that and reports what it returns.
+
+\subsection{Synthetic corpora with exact symmetries}
+\label{sec:synth}
+
+Symmetry can only be tested where it is exact by construction, so the corpora
+are generated from an explicit parse tree over a byte-level expression
+grammar,
+\[
+S\to E\,;\qquad E\to T \mid E{+}T \mid E{-}T \qquad T\to F\mid T{*}F
+\qquad F\to V\mid D\mid (E)
+\]
+with $V\in\{a..h\}$ and $D\in\{0..9\}$. Three exact symmetries of the
+generator are available, with deliberately different statistical profiles:
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+transform & parse tree & token statistics & surface altered \\
+\hline
+\texttt{rename} & identical & identical      & $85\%$ \\
+\texttt{comm}   & mirrored  & $\approx$ identical & $78\%$ \\
+\texttt{ws}     & identical & \emph{changed} (gzip $0.503\to0.336$) & $84\%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\texttt{rename} applies a bijection to the variable alphabet; \texttt{comm}
+swaps the operands of the commutative operators; \texttt{ws} inserts
+whitespace around binary operators, leaving the parse tree untouched while
+altering the byte statistics substantially. Both \texttt{rename} and
+\texttt{comm} preserve length exactly, so paired batches align token for
+token. A structural ladder of known distance (one terminal, one operator, one
+subtree, full resample) and two controls complete the suite: \texttt{shuf}
+destroys structure while preserving the histogram, and \texttt{lexctl} carries
+\texttt{rename}'s histogram with its structure destroyed.
+
+\texttt{lexctl} is the control that makes the experiment mean anything. Without
+it, statistical similarity is indistinguishable from symmetry.
+
+\subsection{The stratification, and why the prediction failed}
+\label{sec:rstrat}
+
+The intended discriminator was stratification by the disc. Under the reading of
+\S\ref{sec:hazard}, coordinates above the hazard threshold should have
+disc-determined sign and therefore agree between \emph{any} two batches, while
+coordinates below it should agree at chance; only the middle band is
+batch-conditioned. A genuine symmetry invariance would then have to show its
+excess agreement in the middle band, and excess in the top band would indicate
+disc-determined agreement being misread as invariance.
+
+Measured, the independent-batch floor is flat across $r$ deciles:
+$0.587,\,0.591,\,0.588,\,0.585,\,0.582,\,0.591,\,0.595,\,0.606,\,0.606,\,0.610$.
+The excess for every condition is largest in the \emph{top} band, which is the
+signature the prediction identified as spurious.
+
+The diagnostic explains this, and the explanation is a statement about regime
+rather than a rescue. On block parameters at this checkpoint the disc field has
+median $r=0.001$, $r_{90}=0.061$, $r_{99}=0.247$, maximum $0.879$, with
+$r>0.5$ holding for $0.09\%$ of coordinates. Since $r\to1$ is the
+consistent-gradient limit, essentially every coordinate is noise-dominated:
+there is no deterministic regime for the top decile to occupy. The $p_{90}/p_{10}$
+spread is $159\times$, consistent with the $160\times$ monotone range of
+\S\ref{sec:hazard}, and agreement does rise monotonically with decile
+($0.587\to0.610$).
+
+\begin{observation}[Assumptions unsatisfied, not prediction falsified]
+\label{obs:regime}
+The experiment sampled one asymptotic regime of the theory. The two-phase
+prediction presupposes a deterministic population that this operating point
+does not contain, so it is untested rather than confirmed or refuted. What the
+data do show is that
+$\partial_r\,P\!\left(s_i^{(A)}=s_i^{(B)}\right)>0$ already holds \emph{inside}
+the purely stochastic regime --- a weak monotone law, and the kind of
+quantitative statement a theory of the disc ought eventually to derive.
+\end{observation}
+
+\subsection{Result: the stabilizer is trivial at this operating point}
+\label{sec:stabilizer-result}
+
+Twenty-four trials, each comparing a base batch against matched variants.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+condition & agreement & excess & positional identity & histogram cosine \\
+\hline
+\texttt{comm}   & $0.887$ & $+0.293$ & $0.444$ & $1.000$ \\
+\texttt{pert1}  & $0.814$ & $+0.220$ & $0.901$ & $0.997$ \\
+\texttt{rename} & $0.770$ & $+0.176$ & $0.778$ & $0.995$ \\
+\texttt{pert2}  & $0.767$ & $+0.173$ & $0.907$ & $0.990$ \\
+\texttt{lexctl} & $0.747$ & $+0.153$ & $0.074$ & $0.995$ \\
+\texttt{pert3}  & $0.692$ & $+0.098$ & $0.150$ & $0.990$ \\
+\texttt{pert4}  & $0.607$ & $+0.013$ & $0.140$ & $0.982$ \\
+\texttt{indep}  & $0.594$ & $0$      & $0.133$ & $0.981$ \\
+\texttt{ws}     & $0.506$ & $-0.088$ & $0.037$ & $0.361$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Three readings, which agree with each other.
+
+\begin{observation}[Alpha-renaming is not a symmetry of the strand]
+\label{obs:lexctl}
+\texttt{rename} preserves the parse tree exactly and changes $85\%$ of the
+surface, giving agreement $0.770$. Its structure-destroyed control at the same
+histogram gives $0.747$. The apparent invariance decomposes into $0.153$ of
+histogram effect and $0.023$ of structure effect. What looked like structural
+invariance is low-order statistical similarity, which shuffling preserves.
+\end{observation}
+
+\begin{observation}[The strand follows surface statistics, not syntax]
+\label{obs:ws}
+\texttt{ws} leaves the parse tree identical and alters only surface statistics.
+Its agreement is $0.506$, which is $0.088$ \emph{below} the unrelated-batch
+floor: a transformation that does not touch the grammar destroys strand
+agreement more thoroughly than an unrelated batch does.
+\end{observation}
+
+\begin{observation}[The structural ladder is a surface-distance ladder]
+\label{obs:ladder}
+Across the nine conditions, agreement correlates $+0.66$ with positional
+identity and $+0.66$ with histogram cosine. The monotone decay along the
+perturbation ladder ($0.814,0.767,0.692,0.607$ against a floor of $0.594$)
+coincides with positional identity falling from $0.90$ to $0.15$. Once
+\texttt{comm} ($0.887$ at positional identity $0.444$, histogram cosine
+$1.000$) and \texttt{ws} ($0.506$ at $0.037$, $0.361$) are included, the
+pattern resolves without a residual structural term: histogram similarity
+dominates and positional identity modulates.
+\end{observation}
+
+\subsection{Does the stabilizer grow with training? Inconclusive, and why}
+\label{sec:stabilizer-evolution}
+
+A stabilizer measured at one checkpoint is a snapshot of a possibly moving
+object. The natural follow-up is to hold the symmetry suite fixed and sweep it
+along a training trajectory, watching the gap
+$\texttt{rename}-\texttt{lexctl}$ --- structural invariance net of histogram
+--- as a function of step. One run, checkpoints at
+$20,40,80,160,320,640,1280$, twelve trials each, measurement never calling an
+optimiser step.
+
+\begin{center}
+\begin{tabular}{rrrrrrr}
+\hline
+step & val loss & $r_{90}$ & $\Pr[r>0.5]$ & \texttt{rename} & \texttt{lexctl} & gap \\
+\hline
+$20$   & $2.934$ & $0.187$ & $0.0053$ & $0.817$ & $0.775$ & $+0.042$ \\
+$40$   & $2.926$ & $0.057$ & $0.0013$ & $0.790$ & $0.772$ & $+0.018$ \\
+$80$   & $2.928$ & $0.040$ & $0.0004$ & $0.797$ & $0.775$ & $+0.022$ \\
+$160$  & $2.917$ & $0.056$ & $0.0006$ & $0.743$ & $0.736$ & $+0.007$ \\
+$320$  & $2.922$ & $0.148$ & $0.0072$ & $0.739$ & $0.725$ & $+0.014$ \\
+$640$  & $2.913$ & $0.085$ & $0.0006$ & $0.749$ & $0.711$ & $+0.039$ \\
+$1280$ & $2.917$ & $0.270$ & $0.0240$ & $0.762$ & $0.695$ & $+0.066$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[The sweep is inconclusive by construction]
+\label{obs:sweep-null}
+The unigram entropy of the corpus is $2.914$ nats and the validation loss sits
+at $2.913$--$2.934$ for the entire run. The model learned the token frequencies
+and nothing further; it never acquired the grammar. A measurement of whether
+the stabilizer acquires grammatical invariance therefore had no opportunity to
+register one, and the apparent upward drift of the gap
+($+0.042\to+0.066$) sits within noise at twelve trials, where the per-condition
+standard deviation is approximately $0.05$.
+\end{observation}
+
+The cause is a design fault in the grammar rather than a property of strand
+generation: terminals are drawn uniformly, so the syntax carries almost no
+predictive mass relative to the random leaves, and a model at the unigram
+entropy is already optimal against everything except the operator skeleton. The
+fix is a generator whose structure is load-bearing for the loss --- skewed
+terminal distributions, or dependencies between leaves --- so that val loss
+falls materially below unigram entropy and there exists a learned
+representation for a stabilizer to be a stabilizer of. Until that is run, the
+question of \S\ref{sec:stabilizer-programme} is open.
+
+\emph{Scope.} All Phase~5 statements are conditioned on an operating point at
+which the model has demonstrably not learned the grammar. The correct reading
+of \S\ref{sec:stabilizer-result} is therefore not that the symmetry group of
+the strand is trivial, but that \emph{at this operating point strand similarity
+is governed by low-order statistical similarity rather than grammatical
+equivalence}. Whether a model that had learned the grammar would exhibit
+grammatical invariance is untested. The methodological result ---
+that without a histogram control one will mistake statistical similarity for
+symmetry --- is not conditioned on the operating point and is the more portable
+finding.
+
+\section{Toward a Theory: What the Measurements Constrain}
+\label{sec:theory}
+
+What follows is reformulation, not evidence. It reorganises measurements
+already reported and adds no independent confirmation of any of them. Its
+purpose is to record which mathematical descriptions are consistent with the
+measurements, which are excluded by them, and --- for the parts that remain
+conjectural --- what would decide them. Status is marked throughout.
+
+\subsection{Two retractions}
+\label{sec:retractions}
+
+Two claims made in the course of this programme's discussion were stronger than
+the evidence and are withdrawn.
+
+\emph{``There is no geometry.''} Dense coupling without a spectral gap
+(\S\ref{sec:backward}) excludes \emph{spatial locality in the parameter index}.
+It does not exclude geometry. Spin glasses, kernel methods, Gaussian processes
+and random matrix ensembles all combine dense interaction with rich spectral,
+statistical or information-geometric structure. The defensible statement is the
+narrow one: there is no useful metric on the parameter index.
+
+\emph{``The correspondence with kinetic Ising is exact.''} Glauber dynamics is
+defined by an energy function, and no Gibbs form for $K_r$ has been exhibited.
+The dictionary --- strand to spin configuration, $r$ to quenched site disorder,
+$\varepsilon$ to weak coupling, the trivial product backbone to the
+non-interacting limit --- is an \emph{effective model}, useful for the
+predictions it generates and not an identification. Demonstrating that the
+measured transition probabilities admit an effective Hamiltonian is a specific
+open task, not a formality.
+
+\subsection{The state space}
+\label{sec:statespace}
+
+The measurements do not support a geometry on parameters alone. The strand
+depends jointly on model state, optimiser state and batch, so the object to be
+given structure is
+\[
+\mathcal{X}\times\Theta\times\mathcal{O}
+\;\longrightarrow\;\{\pm1\}^P ,
+\]
+with $\mathcal{X}$ the batch space, $\Theta$ the parameters and $\mathcal{O}$
+the optimiser moments. In this factorisation the disc is a slowly varying field
+over $\Theta\times\mathcal{O}$, the corpus selects a trajectory through
+$\mathcal{X}$, and the strand is the response field. This accommodates directly
+what \S\ref{sec:corpus-generality} and \S\ref{sec:symmetry} measured: corpus
+identity strongly conditions strand identity, while the optimiser state governs
+churn.
+
+\subsection{The parameter index is a partition with a gauge group}
+\label{sec:gauge}
+
+\emph{Status: argued from architecture, with one testable consequence
+outstanding.} The architecture carries exact permutation symmetries --- the
+feed-forward hidden units, the attention heads, and the residual-stream
+coordinates may be relabelled with matched relabelling of the matrices that
+read and write them, leaving the represented function unchanged, and LayerNorm
+does not break this. Any statement of the form ``index $i$ neighbours index
+$j$'' is therefore a property of the labelling and not of the network, and no
+observable may depend on it.
+
+The sign map is equivariant under the group $\mathcal{D}$ generated by positive
+diagonal rescalings and signed permutations, and under no larger subgroup of
+$GL(P)$. This gives a compact reading of three results already recorded: sign
+survives $25\%$ i.i.d.\ noise (a within-chart perturbation) while breaking under
+rank truncation (which leaves $\mathcal{D}$), and the permuted refinement
+ladder collapses to $0.000$ (\S\ref{sec:strands}) because the permutation was
+not a signed permutation of the disc chart.
+
+What replaces the lattice is a set with a nested architectural partition ---
+network, layer, matrix, row, parameter --- carrying a permutation gauge group
+acting within each cell. Nesting is gauge-invariant; adjacency within a level is
+not. The consequent reinterpretation of the contiguity result is that
+contiguity in the flat parameter vector is largely co-membership in a matrix
+and row, so that the $0.000$ of the permuted ladder records the gauge symmetry
+appearing as a null rather than the destruction of a metric. \emph{This is a
+prediction and it is untested}: conditioning on same-matrix and same-row
+membership should remove the residual contiguity effect. If it does not, the
+reinterpretation is wrong and there is genuine within-row geometry.
+
+\subsection{Disc Riemannian, strand Finsler}
+\label{sec:finsler}
+
+\emph{Status: derivation from the measured update law; consistent with all
+reported measurements, independently confirmed by none.} Steepest descent under
+a norm constraint,
+$u=\arg\min_{\|u\|\le a}\langle g,u\rangle$, gives $u\propto -g$ under
+$\ell^2$, $u\propto -G^{-1}g$ under a Riemannian metric $G$, and
+$u_i=-a\operatorname{sign}(g_i)$ under $\ell^\infty$, whose unit ball is the
+hypercube and whose extreme points are exactly the sign vectors. The measured
+law $u_t\approx a_t s_t$ of \S\ref{sec:sign-magnitude} is the third of these.
+
+This is the reason a Riemannian formulation of the \emph{strand} cannot be
+correct: a metric predicts a dense real-valued natural-gradient update, which is
+measurably not what the optimiser produces. It also explains why the strand is
+not a tensor --- gradients are covectors, and
+$\operatorname{sign}((D\varphi)^{-T}g)\ne\operatorname{sign}(g)$ in general, so
+the object that survived the programme is precisely the object that does not
+transform covariantly.
+
+The Fisher metric belongs instead to the disc, where it is already present
+implicitly: $v_i$ estimates the diagonal empirical Fisher $\mathbb{E}_B[g_i^2]$,
+so $G_\theta=\operatorname{diag}(\sqrt{v}+\epsilon)$ is a metric on $\Theta$
+and $r_i=|m_i|/\sqrt{v_i}$ is the drift-to-noise ratio of coordinate $i$
+measured in it. The hazard law of \S\ref{sec:hazard} then reads as a statement
+about signal-to-noise: flips occur where Fisher-normalised drift is dominated
+by Fisher-normalised noise, which predicts both the monotone flip rate and a
+threshold. The disc is not a companion to the strand but the structure that
+makes the strand well defined: $\mathcal{D}$ is the group preserving diagonal
+Fisher structure, and without it there is no sign field to speak of.
+
+\subsection{Frameworks excluded, and by which measurement}
+\label{sec:excluded}
+
+\emph{Status: exclusions, each traced to a specific measurement.} Recording
+these prevents their recurrence.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+framework & requires & excluded by \\
+\hline
+multigrid / refinement transport & scale separation & no spectral gap (\S\ref{sec:backward}) \\
+persistent homology & filtration with separated scales & no spectral gap \\
+lattice field theory & metric on the index & permutation gauge (\S\ref{sec:gauge}) \\
+trajectory homology & non-contractible complex & trajectory is a path \\
+index theory & stability under compact perturbation & rank truncation breaks sign \\
+$K$-theory & additive or exact category & free category on a path \\
+\hline
+\end{tabular}
+\end{center}
+
+Three of these fail for one reason. The index-theoretic case is worth stating
+separately: an index is invariant under compact perturbation, rank truncation is
+finite-rank hence compact, and \S\ref{sec:backward} measured that the sign field
+breaks under rank truncation while surviving i.i.d.\ noise --- so the
+persistent/frontier decomposition has the opposite stability property to an
+index. On $K$-theory, strands do not compose within strands, so the trajectory
+generates a free category with no additive structure and $K_0$ is undefined;
+passing to representations of the trajectory quiver gives
+$K_0(\operatorname{rep}A_n)\cong\mathbb{Z}^n$, which counts steps. The honest
+position is not that $K$-theory is dead but that no canonical object has
+appeared to which it applies.
+
+The cohomological content that does exist is already computed. The sign process
+lives on $\{\pm1\}^P=(\mathbb{Z}/2)^P$, which is abelian, so abelian holonomy
+is forced; the natural home for the non-forced part is
+$H^1(\cdot\,;\mathbb{Z}/2)$, and the frieze cover of \S\ref{sec:frieze} is the
+one non-forced class in it.
+
+\subsection{The stabilizer programme}
+\label{sec:stabilizer-programme}
+
+\emph{Status: conjectural, and the one experiment attempted was inconclusive
+(\S\ref{sec:stabilizer-evolution}).}
+
+Phase~5 sought a fixed symmetry group of the data generator and found none.
+The more defensible object is not fixed. The strand is a function of gradients,
+gradients are functions of activations, and activations depend on whatever
+statistics the representation has actually learned; so any invariance of the
+strand is an invariance of the \emph{learned representation}, not of the
+generator. Early in training that is token statistics, which is exactly what
+\S\ref{sec:stabilizer-result} measured. Whether it later becomes syntax is
+undetermined.
+
+This reframes the question. Rather than asking which transformations preserve
+the strand, ask how the stabilizer subgroup
+\[
+\operatorname{Stab}_t=\{\sigma:\ s_{\sigma(B)}\approx s_B \text{ at }
+(\theta_t,\mathcal{O}_t)\}
+\]
+evolves along the trajectory. This is a geometric object that changes with
+training, and it connects the observations without assuming a fixed group: early
+training dominated by low-order statistical invariants, later training possibly
+acquiring higher-level ones. It also carries an immediate falsifier --- if
+$\operatorname{Stab}_t$ never grows on a corpus whose structure the model
+demonstrably learns, then something stronger holds about strand generation than
+any statement in this programme so far.
+
+The prerequisite is a corpus on which the model learns structure at all. The
+sweep of \S\ref{sec:stabilizer-evolution} failed that prerequisite, and the
+suite --- symmetries exact by construction, histogram control, structural
+ladder, $r$-stratification --- is in hand and unchanged for the rerun.
+
+\subsection{What the programme now claims}
+\label{sec:claims}
+
+The disc is the slow state: optimiser memory, a diagonal Fisher metric,
+accumulated statistics over $\Theta\times\mathcal{O}$. The strand is the fast
+binary response field generated from the current batch, living on the vertices
+of an $\ell^\infty$ ball, well defined only relative to the chart the disc
+supplies. The dynamics respect the permutation gauge group of the
+parameterisation, so the parameter index is a partition rather than a space.
+The corpus acts on the strand through whatever invariants the current
+representation has learned, and the symmetry structure is therefore a function
+of training time rather than a property of the data.
+
+Two things are established across corpora rather than on one: that the
+batch~$\to$~strand map is high-dimensional (\S\ref{sec:corpus-generality}), and
+that sparsity-based economy is refuted in consequence. The remaining
+mathematical target is the smallest symmetry-respecting state space on which
+disc and strand evolve --- and the remaining empirical question is unchanged
+from \S\ref{sec:backward}: whether a dense substitution mechanism can generate
+the strand more cheaply. Sparsity-based economy is refuted; substitution is
+untested.
