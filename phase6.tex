@@ -1,0 +1,348 @@
+
+\section{Phase 6: Training Adequacy, the Disc Regime, and a Surface-Matched Stabilizer}
+\label{sec:phase6}
+
+Three experiments were run to test the load-bearing conjectures of
+\S\ref{sec:theory}: the contiguity reinterpretation of \S\ref{sec:gauge}, the
+stabilizer programme of \S\ref{sec:stabilizer-programme}, and the two-phase
+reading of the disc that \S\ref{sec:rstrat} left unresolved. One returned a
+null on its own premise, one returned a decisive methodological correction with
+a first positive signal, and one returned a negative result that constrains
+\S\ref{sec:finsler}.
+
+\subsection{An audit that reframes Phases 4 and 5}
+\label{sec:adequacy}
+
+Achieved loss at the $80$-step checkpoint, compared against the context-entropy
+floors of each corpus:
+
+\begin{center}
+\begin{tabular}{lrrrl}
+\hline
+corpus & $H_0$ & $H_1$ & achieved & status \\
+\hline
+\texttt{repeat}  & $4.513$ & $0.274$ & $0.089$ & learned \\
+\texttt{code}    & $3.267$ & $2.380$ & $2.233$ & learned \\
+\texttt{english} & $3.151$ & $2.775$ & $3.157$ & \emph{at unigram entropy} \\
+\texttt{cfg}     & $2.914$ & $2.208$ & $2.917$ & \emph{at unigram entropy} \\
+\texttt{iid}, shuffles & --- & --- & $\approx H_0$ & correct; no structure \\
+\hline
+\end{tabular}
+\end{center}
+
+Training is not defective --- \texttt{repeat} and \texttt{code} are learned,
+the latter below its own bigram floor --- but on \texttt{english} and
+\texttt{cfg} the model at $80$ steps has learned token frequencies and nothing
+more. \emph{Four of the six corpora entering \S\ref{sec:corpus-generality} were
+therefore probed on a model that had not learned them.} This was not known when
+that section was written and it conditions
+Observation~\ref{obs:no-manifold}: the high-dimensionality of the
+batch~$\to$~strand map is established across corpora, but at an operating point
+where the representation is close to unigram on most of them. The result may
+well be robust to training --- \texttt{code} and \texttt{repeat} were learned
+and behave no differently --- but that is an inference, not a measurement.
+
+\subsection{Experiment 1: contiguity has nothing to condition}
+\label{sec:contig}
+
+\S\ref{sec:gauge} predicted that conditioning on same-row membership would
+remove the residual distance effect underlying the contiguity result. At a
+trained checkpoint on \texttt{bind} (val $0.791$, $2000$ steps), across-batch
+sign correlation on \texttt{blocks.0.ff.v.weight} ($512\times256$) as a
+function of flat-index distance:
+
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\hline
+$d$ & $1$ & $2$ & $4$ & $8$ & $16$ & $32$ & $64$ & $128$ \\
+corr & $0.003$ & $0.009$ & $0.007$ & $0.016$ & $0.010$ & $-0.008$ & $0.001$ & $-0.010$ \\
+\hline
+\end{tabular}
+\end{center}
+
+against a random-pair baseline of $+0.0009$. Within-row correlation over
+$d=1\ldots256$ spans $-0.018$ to $+0.016$; same-column pairs at row-distance
+$1,2,4,16,64$ give $+0.002,+0.009,+0.005,-0.003,-0.006$. Everything is
+indistinguishable from zero.
+
+\begin{observation}[Null on the premise, and on the wrong quantity]
+\label{obs:contig-null}
+There is no contiguity effect in the batch-conditioned sign field at this
+checkpoint, so the prediction of \S\ref{sec:gauge} is neither confirmed nor
+refuted. Separately, the experiment measures across-batch sign correlation at
+frozen $\theta$, whereas \S\ref{sec:cluster} measured \emph{flip} clustering
+between consecutive training steps. These are different objects, and the
+correct test of the contiguity claim is the latter. \S\ref{sec:gauge} remains
+untested.
+\end{observation}
+
+\subsection{Experiment 2: the surface-matched control}
+\label{sec:matched}
+
+Three separate results --- the perturbation ladder of \S\ref{sec:stabilizer-result},
+the \texttt{rename}/\texttt{lexctl} gap, and the \texttt{break} ordering on
+\texttt{bind} --- were governed by surface distance rather than structure. The
+defect is common to all three: the structure-preserving and
+structure-destroying conditions perturb different numbers of bytes, so
+agreement orderings track positional identity. The correction holds the
+perturbation exactly fixed.
+
+On the \texttt{bind} grammar, records \texttt{let a=4;let f=6;a+f;} carry four
+variable slots. \texttt{rename} applies a fixed-point-free bijection to all
+four, changing four bytes and \emph{preserving} the binding.
+\texttt{scramble} replaces each slot by an independent draw excluding the
+original letter, changing four bytes and \emph{destroying} the binding.
+Positional identity is matched by construction; measured, it is $0.803$ for
+both at every checkpoint. Their difference is structure with surface held
+fixed.
+
+\begin{center}
+\begin{tabular}{rrrrrrrrr}
+\hline
+step & val & \texttt{rename} & \texttt{rename2} & \texttt{scramble} & \texttt{break} & \texttt{ws} & \texttt{indep} & gap \\
+\hline
+$200$  & $0.756$ & $0.911$ & $0.914$ & $0.924$ & $0.939$ & $0.652$ & $0.897$ & $-0.013$ \\
+$800$  & $0.737$ & $0.840$ & $0.836$ & $0.840$ & $0.851$ & $0.531$ & $0.836$ & $-0.000$ \\
+$3200$ & $0.723$ & $0.755$ & $0.737$ & $0.699$ & $0.686$ & $0.492$ & $0.594$ & $+0.056$ \\
+\hline
+positional identity & & $0.803$ & $0.803$ & $0.803$ & $0.902$ & $0.179$ & $0.706$ & \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[The earlier gaps were surface artefacts]
+\label{obs:gap-retracted}
+At $200$ and $800$ steps the matched gap is $-0.013\ (z=-1.60)$ and
+$-0.000\ (z=-0.01)$: with surface distance held fixed, preserving the binding
+confers no advantage whatever. The large gaps reported for \texttt{bind} under
+the unmatched protocol ($+0.21$ to $+0.44$) do not survive the control, and
+neither does the \texttt{rename}/\texttt{lexctl} construction that produced
+them. \texttt{lexctl} is in any case the wrong baseline on a structured
+corpus, where shuffling drops agreement \emph{below} the unrelated-batch floor
+($0.456$ against $0.811$).
+\end{observation}
+
+\begin{observation}[A first positive signal for the stabilizer, at $3200$ steps]
+\label{obs:stabilizer-signal}
+The gap is monotone in training --- $-0.013,\ -0.000,\ +0.056$ --- reaching
+$+0.056\pm0.026$ ($z=+2.13$) at $3200$ steps. The stronger evidence is
+qualitative and independent of that $z$: at $3200$ the ordering inverts against
+surface distance. \texttt{break} has \emph{higher} positional identity
+($0.902$ against $0.803$) yet \emph{lower} agreement ($0.686$ against
+$0.755$), which no surface-distance account can produce. The second bijection
+\texttt{rename2} tracks \texttt{rename} ($0.737$ against $0.755$), as a
+structural effect requires and an idiosyncratic one would not.
+\end{observation}
+
+This is the first measurement in the programme favouring
+\S\ref{sec:stabilizer-programme}: an invariance that is absent early, appears
+as the representation improves, and survives a surface-matched control. It
+should be held lightly. Three checkpoints, one seed, twenty trials, and
+marginal significance at the single point where the effect appears; the
+independent floor also moves sharply over the same interval ($0.897\to0.594$),
+so the excesses over floor ($+0.161$ for \texttt{rename}, $+0.104$ for
+\texttt{scramble}) rest on a shifting baseline. Replication at further seeds
+and checkpoints beyond $3200$ is the obvious next step, and the prediction is
+specific: the gap should continue to grow as val loss falls below the
+binding-free floor of $0.695$.
+
+\subsection{Experiment 3: the disc regime is a function of training progress}
+\label{sec:regime-negative}
+
+The two-phase reading of the disc requires a population of coordinates with
+$r$ near unity. Measured along a training run on \texttt{bind} that does learn
+(val $2.776\to0.716$, passing $H_1=1.066$ by step $100$):
+
+\begin{center}
+\begin{tabular}{rrrrr}
+\hline
+step & val & $r_{90}$ & $\Pr[r>0.5]$ & $\Pr[r>0.9]$ \\
+\hline
+$50$   & $1.002$ & $0.252$ & $0.0049$ & $0.00000$ \\
+$100$  & $0.809$ & $0.255$ & $0.0031$ & $0.00000$ \\
+$200$  & $0.763$ & $0.308$ & $0.0103$ & $0.00005$ \\
+$400$  & $0.753$ & $0.277$ & $0.0025$ & $0.00000$ \\
+$800$  & $0.731$ & $0.312$ & $0.0062$ & $0.00000$ \\
+$1600$ & $0.766$ & $0.402$ & $0.0307$ & $0.00000$ \\
+$3200$ & $0.716$ & $0.153$ & $0.0029$ & $0.00000$ \\
+\hline
+\end{tabular}
+\end{center}
+
+On this evidence alone the deterministic regime appears unreachable. That
+reading was published in an earlier draft and is \emph{withdrawn}. It is an
+artefact of where on the trajectory these checkpoints sit.
+
+Reconstructing the programme's own corpus from \texttt{build\_corpus.py}
+(\textsc{vocab} $=1017$, base sequence $1364$ tokens $\times\,300$ reps) and
+running the authentic prefix --- at $\textsc{vocab}=1017$ the spectral $E_0$
+initialisation is well posed, since $k=D{+}1=257<1017$ --- reproduces the
+reported operating point exactly: val $0.0652$ at step $200$ against the
+compiler's own anchor \texttt{val\_floor}$=0.062$. Along that trajectory:
+
+\begin{center}
+\begin{tabular}{rrrrrrr}
+\hline
+step & val & $r_{50}$ & $r_{90}$ & $r_{\max}$ & $\Pr[r>0.5]$ & $\Pr[r>0.9]$ \\
+\hline
+$10$  & $2.992$ & $0.379$ & $0.757$ & $1.025$ & $0.3547$ & $0.0177$ \\
+$20$  & $2.122$ & $0.303$ & $0.671$ & $1.074$ & $0.2469$ & $0.0085$ \\
+$50$  & $0.809$ & $0.207$ & $0.492$ & $1.042$ & $0.0943$ & $0.0007$ \\
+$100$ & $0.180$ & $0.145$ & $0.350$ & $0.808$ & $0.0156$ & $0.0000$ \\
+$150$ & $0.092$ & $0.147$ & $0.353$ & $0.756$ & $0.0173$ & $0.0000$ \\
+$200$ & $0.065$ & $0.134$ & $0.323$ & $0.837$ & $0.0086$ & $0.0000$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[The deterministic population exists, and is early]
+\label{obs:regime-negative}
+$r$ decreases monotonically as the model learns. At step $10$, $35.5\%$ of
+block coordinates lie above $r=0.5$, $1.8\%$ above $0.9$, and $r_{\max}$
+exceeds unity; by step $200$ these are $0.9\%$, zero, and $0.84$. Pooling all
+thirteen checkpoints across both corpora, $\mathrm{corr}(\text{val},r_{90})
+= +0.749$: the disc regime is a function of training progress and not of
+corpus. The mechanism is immediate --- at a minimum the systematic gradient
+component vanishes while batch noise does not, so $m\to0$ with $v$ held at the
+noise floor and $r=|m|/\sqrt{v}\to0$. High $r$ means strong consistent drift,
+which is a property of early training.
+\end{observation}
+
+The \texttt{bind} table above therefore samples the depleted end: on that
+corpus val collapses from $2.776$ to $1.002$ within fifty steps, so the
+drift-dominated phase had already passed before the first measurement. The
+correct statement is that the deterministic population exists transiently early
+in optimisation and does not induce a low-dimensional update manifold ---
+regime-dependence, not absence. Observation~\ref{obs:wall-general} establishes
+the second half: the drift-dominated checkpoints are no more compressible than
+the noise-dominated ones.
+
+The consequence for \S\ref{sec:finsler} is specific and should be recorded.
+Reading the hazard law as a drift-versus-noise threshold in the
+Fisher-normalised ratio predicts a threshold at $r\sim1$; the measured
+threshold of \S\ref{sec:hazard} sits at the $70$th percentile of the $r$
+distribution, and that percentile moves by more than a factor of two along the
+trajectory ($r_{70}$ falls with $r_{50}$ and $r_{90}$ throughout). The
+derivation is therefore consistent with the measured monotonicity, and the
+threshold is well posed only relative to a checkpoint. Any statement of the
+hazard law that quotes a fixed percentile without quoting the checkpoint is
+under-specified; this applies to \S\ref{sec:hazard} as written.
+
+\subsubsection*{$r$ is a bounded coherence coordinate}
+
+One definitional point governs how $r$ may be read, and it corrects
+\S\ref{sec:finsler} as well. Writing $D_\mu=|\mathbb{E}[g]|$ for the drift
+field and taking $D_\sigma=\sqrt{\mathbb{E}[g^2]}\approx\sqrt{v}$ for the noise
+field is not right: $\mathbb{E}[g^2]=\mathrm{Var}[g]+\mathbb{E}[g]^2$, so
+$\sqrt{v}$ is the second moment. By Jensen,
+\[
+r_i \;=\; \frac{|m_i|}{\sqrt{v_i}} \;\le\; 1
+\]
+identically. Measured on the authentic corpus, $r>1$ holds for $0.018\%$ of
+block coordinates at step $10$, $0.058\%$ at step $20$, and $0\%$ from step
+$50$ onward, the small excess being EMA bias ($m$ and $v$ use different
+$\beta$).
+
+\begin{observation}[$r$ is an order parameter, not a ratio]
+\label{obs:r-bounded}
+$r$ is a bounded coherence coordinate on $[0,1]$, so ``the deterministic regime
+at $r\approx1$'' names the boundary of the coordinate rather than a region
+within it --- which is why the stratification prediction of
+\S\ref{sec:rstrat} had no purchase. The unbounded drift-to-noise ratio is
+$\rho_i=|m_i|/\sqrt{v_i-m_i^2}$. For the bulk the two coincide, since $r\ll1$
+makes $m^2\ll v$: $\rho_{50}=0.412,\,0.316,\,0.209,\,0.156,\,0.144$ against
+$r_{50}=0.381,\,0.302,\,0.205,\,0.154,\,0.142$ at steps
+$10,20,50,100,200$. They diverge only in the tail the two-phase reading
+concerns. In $\rho$ the statement is clean: a genuinely drift-dominated
+population ($\rho>1$) exists at steps $10$--$20$ ($\rho_{99}=2.44,\,1.86$) and
+is gone by step $100$ ($\rho_{99}=0.679$).
+\end{observation}
+
+\subsection{Experiment 4: the regime test}
+\label{sec:regime-test}
+
+Observation~\ref{obs:regime-negative} raises a direct threat to
+\S\ref{sec:corpus-generality}. If the disc field is at its minimum at the
+programme's operating point --- $r_{50}=0.134$, drift-to-noise about $1{:}7$
+--- then every Phase 1--3 measurement was taken on the sign of a
+predominantly noise-driven gradient at a memorised minimum, and the
+high-dimensionality of a noise sign-field would be a much weaker finding than
+the high-dimensionality of a learning signal.
+
+The test holds everything fixed except the checkpoint: same corpus, same
+trajectory, same coordinate subset, same $N_B=500$, same ridge-tuned
+estimators, probed at five points spanning the drift-to-noise transition.
+
+\begin{center}
+\begin{tabular}{rrrrrrrrrr}
+\hline
+step & val & $r_{90}$ & $\Pr[r>.5]$ & lin & nl & gain & kNN$_{15}$ & PR & corr \\
+\hline
+$10$  & $2.996$ & $0.759$ & $0.3650$ & $0.768$ & $0.646$ & $-0.122$ & $0.706$ & $181.9$ & $+0.805$ \\
+$20$  & $2.117$ & $0.675$ & $0.2562$ & $0.804$ & $0.633$ & $-0.171$ & $0.721$ & $122.8$ & $+0.761$ \\
+$50$  & $0.802$ & $0.492$ & $0.0940$ & $0.805$ & $0.652$ & $-0.153$ & $0.725$ & $125.4$ & $+0.734$ \\
+$100$ & $0.205$ & $0.351$ & $0.0167$ & $0.764$ & $0.642$ & $-0.122$ & $0.700$ & $125.2$ & $+0.511$ \\
+$200$ & $0.072$ & $0.350$ & $0.0137$ & $0.704$ & $0.611$ & $-0.092$ & $0.653$ & $114.4$ & $+0.358$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{observation}[No nonlinear improvement at any measured checkpoint]
+\label{obs:wall-general}
+Across a $27\times$ swing in the drift-dominated population
+($\Pr[r>0.5]$ from $0.365$ to $0.014$) and a $40\times$ swing in val loss, the
+gain never approaches zero: it stays within $[-0.171,-0.092]$, and $k$NN tracks
+the linear model from below at every checkpoint. The noise-artefact hypothesis
+is refuted. At step $10$ the field is genuinely drift-dominated and the
+batch~$\to$~strand map is no more compressible there;
+$\mathrm{corr}(r_{90},\text{gain})=-0.501$, so the weak trend runs against the
+manifold hypothesis rather than for it. The scope is the measured trajectory:
+one corpus, one seed, one architecture, five checkpoints, and one nonlinear
+family. The claim is that no nonlinear probe improved on linear anywhere along
+it --- not that compression is impossible in general.
+\end{observation}
+
+Two quantities do move with regime, and they move together. The participation
+ratio falls monotonically $181.9\to114.4$, and the correlation between batch
+distance and strand dissimilarity falls sharply $0.805\to0.358$: the strand
+field becomes somewhat lower-dimensional and progressively decoupled from
+batch geometry as the model converges, without at any point becoming
+low-dimensional or nonlinearly predictable. This is the same signature as the
+\texttt{code} result of \S\ref{sec:idprobe-result} --- structure changes the
+dimension without opening the manifold. Linear predictability itself peaks
+mid-transition ($0.768,0.804,0.805,0.764,0.704$), so the map is most linearly
+predictable while the model is actively learning and degrades as it memorises.
+
+This supersedes the adequacy concern of \S\ref{sec:adequacy}. That concern was
+real --- four of six corpora in \S\ref{sec:corpus-generality} were probed near
+unigram --- but on the authentic corpus, at five checkpoints spanning val
+$3.0\to0.07$, the result is invariant. Observation~\ref{obs:no-manifold} now
+holds across corpora and across regimes.
+
+\subsection{Status after Phase 6}
+\label{sec:phase6-status}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+claim & status & basis \\
+\hline
+batch~$\to$~strand is high-dimensional & holds & \S\ref{sec:corpus-generality}, two seeds \\
+\quad --- at trained operating points & holds & \S\ref{sec:regime-test} \\
+sparsity-based economy refuted & holds & inherited, corpus-general \\
+\quad --- across regimes & holds & \S\ref{sec:regime-test}, one corpus \\
+contiguity is row membership & untested & \S\ref{sec:contig} \\
+symmetry results before Phase 6 & retracted & \S\ref{sec:matched} \\
+stabilizer grows with learning & first evidence & \S\ref{sec:matched}, marginal \\
+disc has a deterministic phase & holds, early only & \S\ref{sec:regime-negative} \\
+substitution mechanism & untested & \S\ref{sec:backward} \\
+\hline
+\end{tabular}
+\end{center}
+
+The methodological result of Phase 6 is the portable one, and it is now
+established three times over: \emph{an invariance claim is meaningless unless
+the structure-preserving and structure-destroying conditions are matched on
+surface perturbation.} Every symmetry measurement in this programme prior to
+\S\ref{sec:matched} failed that requirement, and every one of them reversed or
+vanished when it was imposed.
