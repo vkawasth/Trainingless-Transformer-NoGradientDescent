@@ -192,6 +192,7 @@ def evaluate(model):
 # BENCHMARK
 # ==============================================================================
 STEPS = 400
+STEPS = 3000
 EVAL_EVERY = 100
 
 base = CIFARConvNet().to(device)
