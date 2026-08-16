@@ -1,0 +1,166 @@
+(base) vaw1@VAWs-MacBook-Pro j-holomorphic-Fukaya % python3 patch_3456.py --no-trigger --geoval 0.6 --fisher --run           
+wrote compiler_phase3456.py
+  (3) compression : rank 8/role x 7 = 56 dims, window 24, rebuild every 2
+      alpha {'EMB': 0.05, 'LN': 0.05, 'W_Q': 0.1, 'W_K': 0.1, 'FF': 0.15, 'W_O': 0.15, 'W_V': 0.15}
+  (4) leakage     : OFF
+  (5) sign coast  : ON
+  (6) fisher      : ON  beta 1.0, rank 3, refresh 8
+  (R) accumulate  : OFF
+  (N) rescale     : OFF (honest)
+  geo-stop val    : also requires val <= 0.6
+  phases 1, 2, 4, 5 unchanged
+
+=================================================================
+GEOMETRY-DRIVEN COMPILER
+Anchored to: Φ_orbit, val_floor=0.062, τ_basin≈2, cos_align>0
+=================================================================
+
+Corpus: VOCAB=1017, nnz=1347
+Measuring floor gradient (geometric anchor)...
+Floor gradient computed: val=0.7185  ||g_floor||=0.2336
+
+Spectral E₀: val=4.4646
+
+━━━ PHASE 1: SADDLE EXIT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  α*=0.000  val=4.4996  sheet=['0', '0', '1.34', '1.96', '2.06']
+  [16.3s]
+
+━━━ PHASE 2: ADAPTIVE MF PUMP ━━━━━━━━━━━━━━━━━━━━━━━━━
+  Stop when: Φ_clean=5/5 (orbit) OR τ rises after falling
+  Geometric anchors: Φ_orbit, τ_basin≈2
+  MF 1: E=5.233 WK=4.956  Φ_cl=4/5  τ=1.83
+  MF 2: E=13.918 WK=14.180  Φ_cl=3/5  τ=1.94
+  ✓ STOP: τ rising (1.26→1.83→1.94) — orbit shattering
+  After MF2: val=13.7418  Φ=['0', '0.67', 'π', '2.01', 'π']
+
+━━━ PHASE 3: BASIN SETTLE (GEO-STOP) ━━━━━━━━━━━━━━━━━━
+  Geometric stopping: Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (×2 checks)
+  Hypothesis: orbit geometry converges before loss plateaus
+  step   8: val=9.9970  Δ=0.4681  Φ_cl=3/5  τ=4.70  rm2σ=+0.529
+  step  16: val=5.3776  Δ=0.5774  Φ_cl=5/5  τ=3.81  rm2σ=+0.698
+  step  24: val=3.7882  Δ=0.1987  Φ_cl=5/5  τ=5.41  rm2σ=+0.690
+  step  32: val=2.9640  Δ=0.1030  Φ_cl=4/5  τ=8.69  rm2σ=+0.635
+  step  40: val=2.1494  Δ=0.1018  Φ_cl=4/5  τ=7.02  rm2σ=+0.644
+  step  48: val=1.7202  Δ=0.0537  Φ_cl=5/5  τ=5.90  rm2σ=+0.689
+  step  56: val=1.2055  Δ=0.0643  Φ_cl=3/5  τ=5.60  rm2σ=+0.689
+  step  64: val=0.9714  Δ=0.0293  Φ_cl=4/5  τ=5.29  rm2σ=+0.736
+  step  72: val=0.7636  Δ=0.0260  Φ_cl=2/5  τ=5.40  rm2σ=+0.718
+  step  80: val=0.5585  Δ=0.0256  Φ_cl=3/5  τ=5.01  rm2σ=+0.537
+  step  88: val=0.4431  Δ=0.0144  Φ_cl=3/5  τ=5.44  rm2σ=+0.590
+  step  96: val=0.3929  Δ=0.0063  Φ_cl=4/5  τ=5.57  rm2σ=+0.607
+  step 104: val=0.3012  Δ=0.0115  Φ_cl=4/5  τ=5.21  rm2σ=+0.677
+  ○ GEO-STOP candidate (1/2): Φ=4/5 τ=5.21 rm2σ=0.677
+  step 112: val=0.2225  Δ=0.0098  Φ_cl=4/5  τ=4.91  rm2σ=+0.625
+  step 120: val=0.1938  Δ=0.0036  Φ_cl=4/5  τ=5.28  rm2σ=+0.565
+  step 128: val=0.1590  Δ=0.0043  Φ_cl=2/5  τ=5.66  rm2σ=+0.588
+  step 136: val=0.1408  Δ=0.0023  Φ_cl=5/5  τ=5.58  rm2σ=+0.553
+  ✓ Plateau (loss)
+  [3456] dims 56 (asked 56)/4330240  coast:off  backward 136  coasted 0  skip 0%  capture 0.899  gamma 0.953  fisher-share 0.031
+  After 136CE: val=0.1294  Φ_cl=5/5  τ=5.19  rm2σ=+0.553
+  Geo-stop: NO (loss plateau)
+  Saved basin_entry_state.pt (val=0.1294)
+  ⚠ HIGH τ=5.19  Φ_cl=5/5 → τ-retry 25CE@LR×2
+  After τ-retry (25CE@LR×2): val=0.0831  Φ_cl=3/5  τ=5.36
+
+  Phase 3 total CE: 161
+  Geo-stopped: False
+━━━ SNAPPER POLYNOMIAL JUMP ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  One jump to the floor using Snapper's theorem
+  [1] Computing Hessian direction...
+      Direction norm: 1.0000
+  [2] Fitting Snapper polynomial...
+      Snapper polynomial points:
+        t=0.000: val=0.0753
+        t=0.100: val=0.0572
+        t=0.200: val=0.0966
+        t=0.300: val=0.0708
+        t=0.400: val=0.0726
+
+      L(t) = 0.075329 + -1.415678t + 18.875129t² + -74.269331t³ + 89.719070t⁴
+  [3] Finding polynomial minimum...
+      t* = 0.0523, L* = 0.042965
+  [4] Jumping to t* = 0.0523
+
+  After Snapper jump: val=0.0632, Φ_cl=3/5, τ=5.70
+  ⚠ Snapper jump to 0.0632 - continuing to TopoGate
+━━━ PHASE 4: TOPOGATE (geometry-checked) ━━━━━━━━━━━━━━
+  Before: val=0.0921  Φ=['0', 'π', '0.42', 'π', '0.94']  Φ_cl=3/5
+  ✓ TopoGate [2, 3]: val 0.0921→0.0633  Φ_cl 3→3/5  score=0.0288
+  Post-TopoGate: val=0.0783  Φ=['0', 'π', '0.42', 'π', '0.94']
+
+━━━ PHASE 5: ALIGNMENT + LM + K₀ SPLIT DESCENT ━━━━━━━━━
+  Current τ=5.45  →  w_FF=0.51
+  cos(g, g_floor) = +0.0331  val=0.0817
+  val=0.0817 < 0.10 — skipping LM (already near floor)
+  K₀ split 25 steps directly after LM
+  τ=5.47 → w_FF=0.50
+  τ=5.47 > 5 → Joint CE
+  Joint 25CE: val=0.0577
+  After descent: val=0.0577  Φ=['1.67', '0', '0', '0', '0.66']
+
+━━━ LANCZOS TERMINAL PROJECTION ━━━━━━━━━━━━━━━━━━━━━━━━
+  k=8 Lanczos, shared basis for 3 solves
+    Solve 1: 0.0601→0.0598  Δ=0.0004
+    Solve 2: 0.0570→0.0524  Δ=0.0046
+    Solve 3: no gain (val=0.0520)
+  After Lanczos: val=0.0540  [9.2s]
+
+
+=================================================================
+BASELINE: GD-400 CONSTANT LR
+=================================================================
+   step      val   Φ_cl       τ      cos    Serre_s  chamber
+  -----------------------------------------------------------------
+     50   2.7642      4    0.67  +0.3279     0.0197  ORBIT
+    100   1.8216      2    1.06  +0.3904     0.0403  MIXED
+    150   1.1762      2    1.70  +0.4072     0.0651  MIXED
+    200   0.6989      2    2.12  +0.3958     0.0691  MIXED
+    250   0.4091      3    2.76  +0.3842     0.0648  MIXED
+    300   0.2318      5    3.47  +0.2450     0.0651  MIXED
+    350   0.1474      5    4.07  +0.1744     0.0684  MIXED
+    400   0.0894      4    3.69  +0.1658     0.0665  MIXED
+  GD-400 final: val=0.0914  [20s]
+
+=================================================================
+SIDE-BY-SIDE: GEOMETRY-DRIVEN COMPILER vs GD-400
+=================================================================
+
+  COMPILER (geometry-driven, 2 MF rounds):
+  Phase                                   val  geometry
+  ------------------------------------------------------------
+  Spectral E₀                          0.0520
+  MF pump (×2)                        13.7418
+  Basin settle (161 CE@LR×5)           0.0831  Φ_cl=3/5  τ=5.36
+  TopoGate                             0.0783
+  LM at t=0                            0.0817  cos=+0.033
+  Final (186 CE total)                 0.0540
+
+  GD-400 (constant LR, 400 steps):
+    step      val   Φ_cl       τ      cos  note
+  -------------------------------------------------------
+      50   2.7642      4    0.67  +0.3279  ← ORBIT
+     100   1.8216      2    1.06  +0.3904  
+     150   1.1762      2    1.70  +0.4072  
+     200   0.6989      2    2.12  +0.3958  
+     250   0.4091      3    2.76  +0.3842  
+     300   0.2318      5    3.47  +0.2450  ← orbit (high τ)
+     350   0.1474      5    4.07  +0.1744  ← orbit (high τ)
+     400   0.0894      4    3.69  +0.1658  ← orbit (high τ)
+
+  METRIC                             COMPILER        GD-400
+  --------------------------------------------------------
+  Final val                            0.0540        0.0914
+  CE steps (total)                        186           400
+  MF pump rounds                            2             0
+  Compiler advantage                    1.69×          1.0×
+
+  GEOMETRY at convergence:
+  Compiler Φ_clean: 3/5 (orbit established)
+  GD-400  Φ_clean: 4/5  τ=3.69
+
+  CONFIRMED: val=0.062 (mean_field_init B)
+  Compiler GAP vs floor: -0.0080 nats
+  GD-400  GAP vs floor: +0.0294 nats
+
+  MF rounds: 2 (geometry-driven — τ and Φ_clean as sensors)
+  Total compiler CE: 186 adaptive
