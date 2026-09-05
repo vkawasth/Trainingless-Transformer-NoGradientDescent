@@ -66,7 +66,7 @@ class CompressedAdam:
         self.mbits=mbits; self.vbits=vbits; self.vrow=vrow; self.reduced=reduced
         self.m=[torch.zeros_like(q) for q in self.p]
         self.v=[torch.zeros_like(q) for q in self.p]
-        self.t=0; self.cum=0.0
+        self.t=0; self.cum=0.0; self._vfrozen=None
         self._pg=[{"lr":lr}]
     @staticmethod
     def _q(x,bits):
@@ -75,6 +75,21 @@ class CompressedAdam:
         s=(hi-lo)/(2**bits-1)
         return torch.exp(torch.round((lv-lo)/s).clamp(0,2**bits-1)*s+lo)
     def fire(self): self.reduced=True
+    def freeze_v(self):
+        """Latch vhat at its current value. From here the second moment is a
+        stored constant: no EMA update is applied to it and no bias correction.
+
+        Evidence: freezing vhat at step k and running to 120 gives val
+        6.956, 1.417, 0.543, 0.404, 0.419, 0.411, 0.418 for k = 5,10,20,30,40,
+        60,80 against a live-vhat reference of 0.4118. Loss is finished by
+        k=30. Direction keeps improving well past it (cos to the true chord
+        0.494 -> 0.960 over k=20..80) and scale lags furthest (overshoot ratio
+        2.04 -> 1.17), so what is finished at k=30 is what the LOSS needs, not
+        the geometry. Below k=20 the denominator is not usable at all: at k=10
+        the chord overshoots 37x.
+        """
+        b2=1-self.b2**max(self.t,1)
+        self._vfrozen=[(x/b2).clone() for x in self.v]
     @property
     def param_groups(self): return self._pg
     def zero_grad(self, set_to_none=False):
@@ -90,7 +105,9 @@ class CompressedAdam:
             g=q.grad if q.grad is not None else torch.zeros_like(q)
             self.m[i].mul_(self.b1).add_(g,alpha=1-self.b1)
             self.v[i].mul_(self.b2).addcmul_(g,g,value=1-self.b2)
-            vh=self.v[i]/b2; mh=self.m[i]/b1
+            vh=(self._vfrozen[i] if getattr(self,'_vfrozen',None) is not None
+                else self.v[i]/b2)
+            mh=self.m[i]/b1
             if q.dim()==2 and q.shape[0]>1:
                 if self.vrow:
                     vh=vh.mean(dim=-1,keepdim=True).expand_as(vh).contiguous()
@@ -127,8 +144,8 @@ class StabDetector:
 
 P3_OLD = """opt_b = torch.optim.AdamW(model.parameters(), lr=LR*5,
                            betas=(0.9,0.95), weight_decay=0.1)"""
-P3_NEW = """ZONE1_BOOST = __Z1B__
-ZONE1_END   = __Z1E__
+P3_NEW = """VFREEZE_AT   = __VFA__
+VFREEZE_GATE = None
 opt_b = CompressedAdam(list(model.parameters()), lr=LR*5,
                        betas=(0.9,0.95), weight_decay=0.1)
 _stab = StabDetector(model, layer=3)
@@ -136,7 +153,8 @@ print("  [zoneadam] Phase 3: CompressedAdam  m 4b/coord, v 4b/row, "
       "refresh every step")
 print("  [zoneadam] Sstab monitor armed (reports only; Phase 3 is "
       "assimilation-regime)")
-print(f"  [zoneadam] Zone-I boost {ZONE1_BOOST}x -> 1x by step {ZONE1_END}")"""
+print(f"  [zoneadam] vhat freeze scheduled at step {VFREEZE_AT}"
+      if VFREEZE_AT else "  [zoneadam] vhat freeze: off")"""
 
 PROBE_OLD = """        rm2 = compute_rm2_sigma_inline(model)
 """
@@ -144,8 +162,21 @@ PROBE_NEW = """        rm2 = compute_rm2_sigma_inline(model)
         _ss = _stab.check(step)
         if _ss is not None:
             print(f"  [zoneadam] Sstab={_ss:.4f} at step {step}")
+        # vhat freeze, evaluated at the existing probe so it costs nothing.
+        # NOTE: the trigger is a STEP COUNT, not a geometric sensor. No sensor
+        # in this compiler has been shown to detect vhat convergence -- around
+        # the relevant window Phi_cl and tau show no distinctive signature --
+        # so gating on one would be a step count in disguise. VFREEZE_GATE is
+        # provided for when a validated sensor exists.
+        if VFREEZE_AT and opt_b._vfrozen is None and step >= VFREEZE_AT \
+           and (VFREEZE_GATE is None or VFREEZE_GATE(locals())):
+            opt_b.freeze_v()
+            print(f"  [zoneadam] vhat FROZEN at step {step}"
+                  + (f" (Sstab={_ss:.4f})" if _ss is not None else "")
+                  + " -- second moment is now a stored constant, no EMA update")
 """
 
+Z1_CONST = "ZONE1_BOOST = __Z1B__\nZONE1_END   = __Z1E__\n"
 Z1_OLD = """    if step <= 10:
         for pg in opt_b.param_groups:
             pg['lr'] = LR*5*step/10"""
@@ -153,6 +184,8 @@ Z1_NEW = """    # ZONE-I BOOST (patched). Standalone: 20 Adam steps at 4x LR rea
     # val 1.960 where 40 steps at 1x reached 2.226; 20 steps at 1x gave 3.707,
     # so the gain is the larger step, not the shorter walk. Composed with the
     # existing warmup ramp; decays linearly to 1x by ZONE1_END.
+    if step == 1:
+        print(f"  [zoneadam] Zone-I boost {ZONE1_BOOST}x -> 1x by step {ZONE1_END}")
     _z1 = 1.0 + (ZONE1_BOOST-1.0)*max(0.0, 1.0-(step-1)/max(ZONE1_END-1,1))
     for pg in opt_b.param_groups:
         pg['lr'] = (LR*5*step/10 if step <= 10 else LR*5) * _z1"""
@@ -173,12 +206,17 @@ def main():
     ap.add_argument("--no-zone1",action="store_true")
     ap.add_argument("--zone1-boost",type=float,default=4.0)
     ap.add_argument("--zone1-end",type=int,default=20)
+    ap.add_argument("--vfreeze",type=int,default=40,
+                    help="freeze vhat at this step; 0 disables")
     ap.add_argument("--run",action="store_true")
     a=ap.parse_args()
     s=open(a.src).read()
 
     edits=[("phase3 optimiser",P3_OLD,P3_NEW),("phase3 probe",PROBE_OLD,PROBE_NEW)]
-    if not a.no_zone1: edits.append(("zone1 boost",Z1_OLD,Z1_NEW))
+    if not a.no_zone1:
+        edits.append(("zone1 boost",Z1_OLD,Z1_NEW))
+        edits.append(("zone1 const","opt_b = CompressedAdam",
+                      Z1_CONST+"opt_b = CompressedAdam"))
     if a.phase5:
         edits+=[("phase5 k0 embff",P5_OLD_1,P5_NEW_1),
                 ("phase5 k0 attn", P5_OLD_2,P5_NEW_2)]
@@ -192,6 +230,7 @@ def main():
     if s.count(marker)!=1: sys.exit("PHASE 3 marker not unique -- ABORT")
     s=s.replace(marker,OPT_CLASS+marker,1)
     for _,pat,rep in edits: s=s.replace(pat,rep,1)
+    s=s.replace("__VFA__",repr(int(a.vfreeze)))
     s=s.replace("__Z1B__",repr(float(a.zone1_boost))).replace("__Z1E__",repr(int(a.zone1_end)))
     for probe in ("class CompressedAdam","_stab.check","CompressedAdam(list(model"):
         if probe not in s: sys.exit(f"patch did not land ({probe}) -- ABORT")

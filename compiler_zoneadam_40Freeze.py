@@ -339,7 +339,7 @@ class CompressedAdam:
         self.mbits=mbits; self.vbits=vbits; self.vrow=vrow; self.reduced=reduced
         self.m=[torch.zeros_like(q) for q in self.p]
         self.v=[torch.zeros_like(q) for q in self.p]
-        self.t=0; self.cum=0.0
+        self.t=0; self.cum=0.0; self._vfrozen=None
         self._pg=[{"lr":lr}]
     @staticmethod
     def _q(x,bits):
@@ -348,6 +348,21 @@ class CompressedAdam:
         s=(hi-lo)/(2**bits-1)
         return torch.exp(torch.round((lv-lo)/s).clamp(0,2**bits-1)*s+lo)
     def fire(self): self.reduced=True
+    def freeze_v(self):
+        """Latch vhat at its current value. From here the second moment is a
+        stored constant: no EMA update is applied to it and no bias correction.
+
+        Evidence: freezing vhat at step k and running to 120 gives val
+        6.956, 1.417, 0.543, 0.404, 0.419, 0.411, 0.418 for k = 5,10,20,30,40,
+        60,80 against a live-vhat reference of 0.4118. Loss is finished by
+        k=30. Direction keeps improving well past it (cos to the true chord
+        0.494 -> 0.960 over k=20..80) and scale lags furthest (overshoot ratio
+        2.04 -> 1.17), so what is finished at k=30 is what the LOSS needs, not
+        the geometry. Below k=20 the denominator is not usable at all: at k=10
+        the chord overshoots 37x.
+        """
+        b2=1-self.b2**max(self.t,1)
+        self._vfrozen=[(x/b2).clone() for x in self.v]
     @property
     def param_groups(self): return self._pg
     def zero_grad(self, set_to_none=False):
@@ -363,7 +378,9 @@ class CompressedAdam:
             g=q.grad if q.grad is not None else torch.zeros_like(q)
             self.m[i].mul_(self.b1).add_(g,alpha=1-self.b1)
             self.v[i].mul_(self.b2).addcmul_(g,g,value=1-self.b2)
-            vh=self.v[i]/b2; mh=self.m[i]/b1
+            vh=(self._vfrozen[i] if getattr(self,'_vfrozen',None) is not None
+                else self.v[i]/b2)
+            mh=self.m[i]/b1
             if q.dim()==2 and q.shape[0]>1:
                 if self.vrow:
                     vh=vh.mean(dim=-1,keepdim=True).expand_as(vh).contiguous()
@@ -410,8 +427,8 @@ print("━━━ PHASE 3: BASIN SETTLE (GEO-STOP) ━━━━━━━━━━
 print("  Geometric stopping: Φ_cl≥4 + τ∈[5,7] + rm2σ≥0.65 (×2 checks)")
 print("  Hypothesis: orbit geometry converges before loss plateaus")
 
-ZONE1_BOOST = 4.0
-ZONE1_END   = 20
+VFREEZE_AT   = 40
+VFREEZE_GATE = None
 opt_b = CompressedAdam(list(model.parameters()), lr=LR*5,
                        betas=(0.9,0.95), weight_decay=0.1)
 _stab = StabDetector(model, layer=3)
@@ -419,7 +436,8 @@ print("  [zoneadam] Phase 3: CompressedAdam  m 4b/coord, v 4b/row, "
       "refresh every step")
 print("  [zoneadam] Sstab monitor armed (reports only; Phase 3 is "
       "assimilation-regime)")
-print(f"  [zoneadam] Zone-I boost {ZONE1_BOOST}x -> 1x by step {ZONE1_END}")
+print(f"  [zoneadam] vhat freeze scheduled at step {VFREEZE_AT}"
+      if VFREEZE_AT else "  [zoneadam] vhat freeze: off")
 val_history = [v_mf]
 step = 0
 geo_stop_count = 0
@@ -445,6 +463,17 @@ for step in range(1, 151):
         _ss = _stab.check(step)
         if _ss is not None:
             print(f"  [zoneadam] Sstab={_ss:.4f} at step {step}")
+        # vhat freeze, evaluated at the existing probe so it costs nothing.
+        # NOTE: the trigger is a STEP COUNT, not a geometric sensor. No sensor
+        # in this compiler has been shown to detect vhat convergence -- around
+        # the relevant window Phi_cl and tau show no distinctive signature --
+        # so gating on one would be a step count in disguise. VFREEZE_GATE is
+        # provided for when a validated sensor exists.
+        if VFREEZE_AT and opt_b._vfrozen is None and step >= VFREEZE_AT            and (VFREEZE_GATE is None or VFREEZE_GATE(locals())):
+            opt_b.freeze_v()
+            print(f"  [zoneadam] vhat FROZEN at step {step}"
+                  + (f" (Sstab={_ss:.4f})" if _ss is not None else "")
+                  + " -- second moment is now a stored constant, no EMA update")
 
         print(f"  step {step:3d}: val={v:.4f}  Δ={delta:.4f}  "
               f"Φ_cl={pc}/5  τ={tau:.2f}  rm2σ={rm2:+.3f}")
