@@ -60,13 +60,26 @@ class CompressedAdam:
     the 4-bit codes and dequantise on read.
     """
     def __init__(self, params, lr, betas=(0.9,0.95), eps=1e-8,
-                 weight_decay=0.1, mbits=4, vbits=4, vrow=False, reduced=False):
-        self.p=[q for q in params if q.requires_grad]
+                 weight_decay=0.1, mbits=4, vbits=4, vrow=False, reduced=False,
+                 names=None):
+        if names is not None:
+            pn=[(n,q) for n,q in zip(names,params) if q.requires_grad]
+            self.names=[n for n,_ in pn]; self.p=[q for _,q in pn]
+        else:
+            self.p=[q for q in params if q.requires_grad]
+            self.names=[f"p{i}" for i in range(len(self.p))]
         self.lr=lr; self.b1,self.b2=betas; self.eps=eps; self.wd=weight_decay
         self.mbits=mbits; self.vbits=vbits; self.vrow=vrow; self.reduced=reduced
         self.m=[torch.zeros_like(q) for q in self.p]
         self.v=[torch.zeros_like(q) for q in self.p]
-        self.t=0; self.cum=0.0
+        self.t=0; self.cum=0.0; self._vfrozen=None
+        self.bidx={}
+        for _i,_nm in enumerate(self.names):
+            self.bidx.setdefault(self.bucket_of(_nm),[]).append(_i)
+        self.buckets=sorted(self.bidx)
+        self.hist={k:[] for k in self.buckets}
+        self.sub={k:None for k in self.buckets}
+        self.track=True
         self._pg=[{"lr":lr}]
     @staticmethod
     def _q(x,bits):
@@ -75,6 +88,43 @@ class CompressedAdam:
         s=(hi-lo)/(2**bits-1)
         return torch.exp(torch.round((lv-lo)/s).clamp(0,2**bits-1)*s+lo)
     def fire(self): self.reduced=True
+    @staticmethod
+    def bucket_of(name):
+        """K=6 buckets. Measured freeze-readiness differs sharply between them:
+        attention-only freeze at 40 gave 0.3890 against 0.4126 for no freeze and
+        0.4261 for skeleton-only, i.e. freezing the skeleton is WORSE than not
+        freezing at all. A coherence gate built to discover this schedule lost
+        to its own reversed control (0.4245 vs 0.3966), so the schedule below is
+        a fixed step, not a detected one."""
+        if name.startswith("te"): return "EMB_tok"
+        if name.startswith("pe"): return "EMB_pos"
+        if "ln" in name.lower():  return "LN"
+        if ".ff." in name:        return "FF"
+        if ".WQ." in name or ".WK." in name: return "ATT_QK"
+        return "ATT_VO"
+    def freeze_buckets(self, buckets):
+        """Latch vhat for the named buckets only; the rest stay live."""
+        b2=1-self.b2**max(self.t,1); n=0
+        if self._vfrozen is None: self._vfrozen=[None]*len(self.p)
+        for i,nm in enumerate(self.names):
+            if self.bucket_of(nm) in buckets and self._vfrozen[i] is None:
+                self._vfrozen[i]=(self.v[i]/b2).clone(); n+=self.p[i].numel()
+        return n
+    def freeze_v(self):
+        """Latch vhat at its current value. From here the second moment is a
+        stored constant: no EMA update is applied to it and no bias correction.
+
+        Evidence: freezing vhat at step k and running to 120 gives val
+        6.956, 1.417, 0.543, 0.404, 0.419, 0.411, 0.418 for k = 5,10,20,30,40,
+        60,80 against a live-vhat reference of 0.4118. Loss is finished by
+        k=30. Direction keeps improving well past it (cos to the true chord
+        0.494 -> 0.960 over k=20..80) and scale lags furthest (overshoot ratio
+        2.04 -> 1.17), so what is finished at k=30 is what the LOSS needs, not
+        the geometry. Below k=20 the denominator is not usable at all: at k=10
+        the chord overshoots 37x.
+        """
+        b2=1-self.b2**max(self.t,1)
+        self._vfrozen=[(x/b2).clone() for x in self.v]
     @property
     def param_groups(self): return self._pg
     def zero_grad(self, set_to_none=False):
@@ -84,22 +134,77 @@ class CompressedAdam:
                 else: q.grad.detach_(); q.grad.zero_()
     @torch.no_grad()
     def step(self):
+        """Explicit bucket form.
+
+            g^(k)     = grad restricted to bucket k
+            m^(k)     = b1 m + (1-b1) g
+            v^(k)     = b2 v + (1-b2) g^2
+            alpha_t   = lr * sqrt(1-b2^t)/(1-b1^t)     ONE global scalar
+            eps_t     = eps * sqrt(1-b2^t)             exactness of the
+                                                       absorbed form
+            theta^(k) -= alpha_t * m^(k)/(sqrt(v^(k)) + eps_t)
+
+        The absorbed correction replaces two per-coordinate divisions with one
+        scalar per step. It equals the standard form only with eps_t as given:
+        with a constant eps the effective epsilon differs 4.5x at t=1 and 1.07x
+        at t=40. Measured difference on this pipeline: 0.4126 vs 0.4124.
+        """
         lr=self._pg[0]["lr"]; self.t+=1
-        b1=1-self.b1**self.t; b2=1-self.b2**self.t; tot=0.0
-        for i,q in enumerate(self.p):
-            g=q.grad if q.grad is not None else torch.zeros_like(q)
-            self.m[i].mul_(self.b1).add_(g,alpha=1-self.b1)
-            self.v[i].mul_(self.b2).addcmul_(g,g,value=1-self.b2)
-            vh=self.v[i]/b2; mh=self.m[i]/b1
-            if q.dim()==2 and q.shape[0]>1:
-                if self.vrow:
-                    vh=vh.mean(dim=-1,keepdim=True).expand_as(vh).contiguous()
-                vh=self._q(vh,self.vbits)
-                mh=(torch.sign(mh)*float(mh.abs().mean())) if self.reduced \\
-                   else torch.sign(mh)*self._q(mh.abs(),self.mbits)
-            u=-lr*(mh/(vh.sqrt()+self.eps)+self.wd*q.data)
-            tot+=float((u*u).sum()); q.data.add_(u)
+        b1=1-self.b1**self.t; b2=1-self.b2**self.t
+        alpha=lr*math.sqrt(b2)/b1; eps_t=self.eps*math.sqrt(b2)
+        tot=0.0
+        for k in self.buckets:
+            acc=[]
+            for i in self.bidx[k]:
+                q=self.p[i]
+                g=q.grad if q.grad is not None else torch.zeros_like(q)
+                self.m[i].mul_(self.b1).add_(g,alpha=1-self.b1)
+                self.v[i].mul_(self.b2).addcmul_(g,g,value=1-self.b2)
+                _f=self._vfrozen
+                vk=(_f[i] if (_f is not None and _f[i] is not None) else self.v[i])
+                mk=self.m[i]
+                if q.dim()==2 and q.shape[0]>1:
+                    if self.vrow:
+                        vk=vk.mean(dim=-1,keepdim=True).expand_as(vk).contiguous()
+                    vk=self._q(vk,self.vbits)
+                    mk=(torch.sign(mk)*float(mk.abs().mean())) if self.reduced \\
+                       else torch.sign(mk)*self._q(mk.abs(),self.mbits)
+                uk=mk/(vk.sqrt()+eps_t)
+                if self.track: acc.append(uk.reshape(-1))
+                d=-alpha*uk - lr*self.wd*q.data
+                tot+=float((d*d).sum()); q.data.add_(d)
+            if self.track and acc: self._push(k,torch.cat(acc))
         self.cum+=tot**0.5
+
+    def _push(self,k,u):
+        if self.sub[k] is None:
+            g=torch.Generator().manual_seed(9)
+            self.sub[k]=torch.randperm(u.numel(),generator=g)[:min(4000,u.numel())]
+        h=self.hist[k]; h.append(u[self.sub[k]].clone())
+        if len(h)>16: h.pop(0)
+
+    def geometry(self):
+        """Per-bucket trajectory coordinates: coherence, step angle, top-4 share.
+
+        Measured at step 120 on this pipeline the buckets are geometrically
+        distinct -- LN 0.87/13.3/0.973 moves nearly straight, EMB_pos
+        0.63/45.3/0.727 turns 45 deg per step. REPORTED, NOT ACTED ON: a
+        coherence gate built from these lost to its own reversed control
+        (0.4245 vs 0.3966), and a gradient-norm gate tied its random-matched
+        control (0.4226 vs 0.4221 +- 0.0019).
+        """
+        out={}
+        for k in self.buckets:
+            h=self.hist[k]
+            if len(h)<3: continue
+            H=torch.stack(h,1)
+            coh=float(H.sum(1).norm())/max(float(sum(x.norm() for x in h)),1e-30)
+            sv=torch.linalg.svdvals(H); e=sv**2
+            R4=float(e[:4].sum())/max(float(e.sum()),1e-30)
+            th=float(np.degrees(np.arccos(np.clip(float(
+                (h[-1]@h[-2])/(h[-1].norm()*h[-2].norm()+1e-30)),-1,1))))
+            out[k]=(coh,th,R4)
+        return out
 
 class StabDetector:
     """MONITOR ONLY. Sstab = agree(sgn(W_t-W_0), sgn(W_{t-D}-W_0)) on a
@@ -127,24 +232,57 @@ class StabDetector:
 
 P3_OLD = """opt_b = torch.optim.AdamW(model.parameters(), lr=LR*5,
                            betas=(0.9,0.95), weight_decay=0.1)"""
-P3_NEW = """ZONE1_BOOST = __Z1B__
-ZONE1_END   = __Z1E__
+P3_NEW = """NO_GEOSTOP      = __NGS__
+VFREEZE_AT      = __VFA__
+VFREEZE_BUCKETS = __VFB__
+_vfroz_done     = False
 opt_b = CompressedAdam(list(model.parameters()), lr=LR*5,
-                       betas=(0.9,0.95), weight_decay=0.1)
+                       betas=(0.9,0.95), weight_decay=0.1,
+                       names=[n for n,_ in model.named_parameters()])
 _stab = StabDetector(model, layer=3)
 print("  [zoneadam] Phase 3: CompressedAdam  m 4b/coord, v 4b/row, "
       "refresh every step")
 print("  [zoneadam] Sstab monitor armed (reports only; Phase 3 is "
       "assimilation-regime)")
-print(f"  [zoneadam] Zone-I boost {ZONE1_BOOST}x -> 1x by step {ZONE1_END}")"""
+print(f"  [zoneadam] vhat freeze: {sorted(VFREEZE_BUCKETS)} at step {VFREEZE_AT}"
+      if VFREEZE_AT else "  [zoneadam] vhat freeze: off")"""
 
 PROBE_OLD = """        rm2 = compute_rm2_sigma_inline(model)
 """
 PROBE_NEW = """        rm2 = compute_rm2_sigma_inline(model)
         _ss = _stab.check(step)
         if _ss is not None:
-            print(f"  [zoneadam] Sstab={_ss:.4f} at step {step}")
+            _g=opt_b.geometry()
+            print(f"  [zoneadam] Sstab={_ss:.4f}  bucket coh/theta/R4: "
+                  + "  ".join(f"{k}={c:.2f}/{t_:.0f}/{r:.2f}"
+                              for k,(c,t_,r) in sorted(_g.items())))
+        # vhat freeze, evaluated at the existing probe so it costs nothing.
+        # NOTE: the trigger is a STEP COUNT, not a geometric sensor. No sensor
+        # in this compiler has been shown to detect vhat convergence -- around
+        # the relevant window Phi_cl and tau show no distinctive signature --
+        # so gating on one would be a step count in disguise. VFREEZE_GATE is
+        # provided for when a validated sensor exists.
+        if VFREEZE_AT and not _vfroz_done and step >= VFREEZE_AT:
+            _n=opt_b.freeze_buckets(VFREEZE_BUCKETS); _vfroz_done=True
+            print(f"  [zoneadam] vhat FROZEN at step {step} for "
+                  f"{sorted(VFREEZE_BUCKETS)} ({_n:,} params)"
+                  + (f"  Sstab={_ss:.4f}" if _ss is not None else ""))
 """
+
+Z1_CONST = "ZONE1_BOOST = __Z1B__\nZONE1_END   = __Z1E__\n"
+GEO_OLD = "        geo_ok = (pc >= 4 and 5.0 <= tau <= 7.5 and rm2 >= 0.65)"
+GEO_NEW = GEO_OLD + """
+        if NO_GEOSTOP:
+            # Geo-stop disabled for controlled comparison. In a single
+            # smoothly converging run (val 3.65 -> 0.41) Phi_clean reads
+            # 3,4,3,4,4,5 and rm2sigma swings 0.740,0.731,0.706,0.789,
+            # 0.692,0.682, so this condition flips on and off while
+            # nothing is converging or diverging. Identical settings
+            # geo-stopped at 64, at 96, and not at all -- a 2x swing in
+            # the final value sitting on top of any optimiser change.
+            # With it off Phase 3 always exits on the loss plateau into
+            # the tau-retry, so arms differ only in the optimiser.
+            geo_ok = False"""
 
 Z1_OLD = """    if step <= 10:
         for pg in opt_b.param_groups:
@@ -153,6 +291,8 @@ Z1_NEW = """    # ZONE-I BOOST (patched). Standalone: 20 Adam steps at 4x LR rea
     # val 1.960 where 40 steps at 1x reached 2.226; 20 steps at 1x gave 3.707,
     # so the gain is the larger step, not the shorter walk. Composed with the
     # existing warmup ramp; decays linearly to 1x by ZONE1_END.
+    if step == 1:
+        print(f"  [zoneadam] Zone-I boost {ZONE1_BOOST}x -> 1x by step {ZONE1_END}")
     _z1 = 1.0 + (ZONE1_BOOST-1.0)*max(0.0, 1.0-(step-1)/max(ZONE1_END-1,1))
     for pg in opt_b.param_groups:
         pg['lr'] = (LR*5*step/10 if step <= 10 else LR*5) * _z1"""
@@ -173,12 +313,21 @@ def main():
     ap.add_argument("--no-zone1",action="store_true")
     ap.add_argument("--zone1-boost",type=float,default=4.0)
     ap.add_argument("--zone1-end",type=int,default=20)
+    ap.add_argument("--no-geostop",action="store_true")
+    ap.add_argument("--vbuckets",default="ATT_QK,ATT_VO",
+                    help="buckets to freeze; measured best is attention-only")
+    ap.add_argument("--vfreeze",type=int,default=40,
+                    help="freeze vhat at this step; 0 disables")
     ap.add_argument("--run",action="store_true")
     a=ap.parse_args()
     s=open(a.src).read()
 
     edits=[("phase3 optimiser",P3_OLD,P3_NEW),("phase3 probe",PROBE_OLD,PROBE_NEW)]
-    if not a.no_zone1: edits.append(("zone1 boost",Z1_OLD,Z1_NEW))
+    if a.no_geostop: edits.append(("geostop",GEO_OLD,GEO_NEW))
+    if not a.no_zone1:
+        edits.append(("zone1 boost",Z1_OLD,Z1_NEW))
+        edits.append(("zone1 const","opt_b = CompressedAdam",
+                      Z1_CONST+"opt_b = CompressedAdam"))
     if a.phase5:
         edits+=[("phase5 k0 embff",P5_OLD_1,P5_NEW_1),
                 ("phase5 k0 attn", P5_OLD_2,P5_NEW_2)]
@@ -192,6 +341,9 @@ def main():
     if s.count(marker)!=1: sys.exit("PHASE 3 marker not unique -- ABORT")
     s=s.replace(marker,OPT_CLASS+marker,1)
     for _,pat,rep in edits: s=s.replace(pat,rep,1)
+    s=s.replace("__NGS__",repr(bool(a.no_geostop)))
+    s=s.replace("__VFA__",repr(int(a.vfreeze)))
+    s=s.replace("__VFB__",repr(set(x for x in a.vbuckets.split(",") if x)))
     s=s.replace("__Z1B__",repr(float(a.zone1_boost))).replace("__Z1E__",repr(int(a.zone1_end)))
     for probe in ("class CompressedAdam","_stab.check","CompressedAdam(list(model"):
         if probe not in s: sys.exit(f"patch did not land ({probe}) -- ABORT")
