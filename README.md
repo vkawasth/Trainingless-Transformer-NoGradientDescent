@@ -1,3 +1,13 @@
+# Geometric Invariance Theory & More structured corpus.
+
+<img width="1408" height="768" alt="Gemini_Generated_Image_ckosfuckosfuckos" src="https://github.com/user-attachments/assets/970ad1f7-4820-498c-bcde-dd840438d5e8" />
+
+
+<img width="1408" height="768" alt="Gemini_Generated_Image_gqn0uygqn0uygqn0" src="https://github.com/user-attachments/assets/d03c41ae-f121-4fb8-ae76-9768f99905ab" />
+
+
+
+
 # Cxx23 Phased Geometric Compiler with ops.
 Since 5 phase Geometric compiler knows in advance where floor is going to be, we can separate phases and 
 only rely on Geometric indicators (unlike driving "loss" down) to conclude weight setting. We consider 
