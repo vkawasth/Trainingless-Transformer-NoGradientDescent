@@ -246,20 +246,9 @@ PLAT_NEW = """        _small = delta < P3PLAT
         _prev_small = _small
         if P3VALSTOP > 0 and v < P3VALSTOP:
             print(f"  \u2713 val={v:.4f} < {P3VALSTOP}"); break"""
-SNAP_OLD = 'direction = hessian_smallest_eigenvector(model)'
-SNAP_NEW = """# SNAPPER DISABLED. Measured over 1200 Adam steps on a decorrelated
-# corpus (val 4.81 -> 2.92, floor 2.238) the top Hessian direction is UPHILL
-# at every probe distance 0.25-4.0 and every checkpoint; the quadratic
-# coefficient decays 0.445 -> 0.168 rather than turning positive. There is no
-# convex basin to jump into. On the degenerate corpus it was +15.5 with a real
-# minimum, which is what the method was built for.
-#
-# It is skipped outright rather than no-opped, because the power iteration
-# calls autograd.grad over all parameters and fails once --prune-attn has set
-# requires_grad=False on a block's W_Q/W_K.
-print("  [zoneadam] SNAPPER SKIPPED -- no convex basin on this corpus")
-SNAPPER_SKIPPED = True
-direction = torch.zeros(model.flat_params().numel())"""
+SNAP_OLD = "print(\"  One jump to the floor using Snapper's theorem\")"
+SNAP_NEW = """print("  [zoneadam] SNAPPER DISABLED -- no convex basin")
+SNAPPER_STEP_OVERRIDE = True"""
 
 P3_NEW = """P3MIN           = __P3MIN__
 P3PLAT          = __P3PLAT__
@@ -327,19 +316,11 @@ if PRUNE_ATTN:
         if _mp < 0.10 and _mr < 1.0: _pruned.append(_bi)
     model.zero_grad()
     if _pruned:
-        # Zero the gradient with a hook rather than setting requires_grad=False.
-        # The parameter stays differentiable, so autograd.grad over
-        # list(model.parameters()) still works -- the Snapper HVP, the Phase 5
-        # LM step and the Lanczos projection all do that, and requires_grad=False
-        # makes every one of them raise "One of the differentiated Tensors does
-        # not require grad". With a zero gradient, m and v stay at zero and
-        # Adam's m/(sqrt(v)+eps) is exactly zero, so the weight never moves.
         _np_ = 0
         for _bi in _pruned:
             for _W in (model.blocks[_bi].attn.WQ.weight,
                        model.blocks[_bi].attn.WK.weight):
-                _np_ += _W.numel()
-                _W.register_hook(lambda g: torch.zeros_like(g))
+                _np_ += _W.numel(); _W.requires_grad_(False)
         print(f"  [zoneadam] PRUNED attention QK in blocks {_pruned} "
               f"({_np_:,} params frozen; floor p_max={_floor:.4f})")
     else:
