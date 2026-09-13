@@ -8,6 +8,15 @@
 
 <img width="456" height="398" alt="Screenshot 2026-09-13 at 6 50 07 AM" src="https://github.com/user-attachments/assets/537b2a27-ff99-4ae4-8c4b-9d1959c93b11" />
 
+# Morse-Smale Witness complex
+
+<img width="703" height="577" alt="Screenshot 2026-09-13 at 11 44 22 AM" src="https://github.com/user-attachments/assets/b3bf0398-5d27-47bc-8e60-8bea9be58a8a" />
+
+<img width="3300" height="2550" alt="zone3_witness_final_clean" src="https://github.com/user-attachments/assets/47351fd4-fa7f-43bb-a033-83a5058b4dad" />
+
+
+
+
 
 # Cxx23 Phased Geometric Compiler with ops.
 Since 5 phase Geometric compiler knows in advance where floor is going to be, we can separate phases and 
