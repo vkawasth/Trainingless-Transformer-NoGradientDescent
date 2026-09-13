@@ -14,6 +14,17 @@
 
 <img width="3300" height="2550" alt="zone3_witness_final_clean" src="https://github.com/user-attachments/assets/47351fd4-fa7f-43bb-a033-83a5058b4dad" />
 
+# Drastic reduction in Geometric compiler steps using Smale-Morse Loss complex.
+
+<img width="597" height="275" alt="Screenshot 2026-09-13 at 1 51 41 PM" src="https://github.com/user-attachments/assets/58917ee1-facb-4401-b0d7-96ba786bbe62" />
+
+
+<img width="377" height="590" alt="Screenshot 2026-09-13 at 1 52 17 PM" src="https://github.com/user-attachments/assets/84c06f94-7f61-4ae3-be4c-0f2f174baf57" />
+
+
+<img width="369" height="169" alt="Screenshot 2026-09-13 at 1 52 51 PM" src="https://github.com/user-attachments/assets/b4f1584c-6bf1-427c-a25c-35bd82c73391" />
+
+
 
 
 
