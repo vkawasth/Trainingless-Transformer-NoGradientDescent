@@ -6,6 +6,7 @@
 <img width="1408" height="768" alt="Gemini_Generated_Image_gqn0uygqn0uygqn0" src="https://github.com/user-attachments/assets/d03c41ae-f121-4fb8-ae76-9768f99905ab" />
 
 
+<img width="456" height="398" alt="Screenshot 2026-09-13 at 6 50 07 AM" src="https://github.com/user-attachments/assets/537b2a27-ff99-4ae4-8c4b-9d1959c93b11" />
 
 
 # Cxx23 Phased Geometric Compiler with ops.
