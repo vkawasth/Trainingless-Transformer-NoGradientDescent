@@ -25,7 +25,13 @@
 <img width="369" height="169" alt="Screenshot 2026-09-13 at 1 52 51 PM" src="https://github.com/user-attachments/assets/b4f1584c-6bf1-427c-a25c-35bd82c73391" />
 
 
+# Using H1 based ejection
 
+
+<img width="546" height="358" alt="Screenshot 2026-09-13 at 8 36 31 PM" src="https://github.com/user-attachments/assets/5026731c-7740-4533-9400-08c873760053" />
+
+
+6.67x speedup.
 
 
 
