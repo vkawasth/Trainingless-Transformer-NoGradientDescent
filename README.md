@@ -1,3 +1,9 @@
+# EM replacing backprop
+
+<img width="747" height="458" alt="Screenshot 2026-09-20 at 8 17 59 AM" src="https://github.com/user-attachments/assets/3d92b537-9b21-4743-ac4e-6b3d2537eae8" />
+
+NO amount of training and data decoration will allow transformer to learn deep recurrent structures. EM will enable it, deterministically, replacing entire backprop and gradient descent collapsing ranks based weight assignments.
+
 # Geometric Invariance Theory & More structured corpus.
 
 <img width="1408" height="768" alt="Gemini_Generated_Image_ckosfuckosfuckos" src="https://github.com/user-attachments/assets/970ad1f7-4820-498c-bcde-dd840438d5e8" />
