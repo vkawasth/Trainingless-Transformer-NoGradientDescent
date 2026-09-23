@@ -1,0 +1,1343 @@
+% =====================================================================
+%  STANDALONE PAPER.  Compile with:  pdflatex hierarchy_paper.tex  (x2)
+%  The body is identical to hierarchy_body.tex, which can instead be
+%  \input into the existing Phase 3 write-up.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+%\usepackage{microtype}  % disabled: needs scalable fonts
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+
+\title{Recovering latent hierarchy without gradient descent:\\
+a negative result for transformers, a verified estimator,\\
+and calibrated instruments for detection}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study recovery of the latent symbols of a depth-$4$ probabilistic
+context-free grammar from its leaf strings. Three results. First, across twelve
+transformer configurations---varying depth, width, input representation, output
+factorisation, architecture family, auxiliary supervision and
+curriculum---a linear probe for the level-3 latent symbol never leaves its
+shuffled-label floor, although an exact computation shows $1.87$ nats of
+level-3 information are present in the observed prefix. Second, a gradient-free
+estimator recovers the grammar to $0.001$ nats per sequence of the true model
+in $131$ seconds, once two things are fixed: the regime must be identifiable
+(we give the observations-per-parameter arithmetic separating $0.15$ from
+$781$), and the clustering must happen \emph{inside} EM rather than being
+imposed beforehand. A hard partition of observed child pairs cannot represent a
+grammar in which pairs are shared across parents, which $4$ of $16$ level-1
+pairs are here; split-merge moves scored by Bregman information close the
+remaining gap. Third, we build and validate instruments for detecting
+hierarchy and its failure: a parametric-bootstrap obstruction test with a
+planted positive ($z=+220$ against $+6.5$ elsewhere), a block-level dependence
+measure, and a $\beta_1$ test for non-tree structure that fires on a
+local-optimum fit ($6$ of $25$ thresholds), is silent on the recovered one
+($0$ of $25$), and catches planted couplings in both cases ($9$ of $25$).
+Every structural identity used is verified numerically to $10^{-14}$. We also
+record what does not work, including a probe result we withdraw, the vacuity of
+the cohomological gluing obstruction on a single tree, and a proof that the
+proposed $p$-adic lattice quasi-morphism is constant.
+\end{abstract}
+
+\tableofcontents
+\bigskip
+
+% =====================================================================
+%  Hierarchy recovery: transformer failure, constructed estimator,
+%  and verified detection instruments.
+%
+%  INSERTABLE BODY.  Drop into an existing document with
+%      \input{hierarchy_body}
+%  Requires in the host preamble: amsmath, amssymb, booktabs, hyperref.
+%  Uses \section as top level; change to \subsection if inserting under
+%  an existing Phase 3 section.
+% =====================================================================
+
+% =====================================================================
+%  Hierarchy recovery: transformer failure, constructed estimator,
+%  and verified detection instruments.
+%
+%  INSERTABLE BODY.  Drop into an existing document with
+%      \input{hierarchy_body}
+%  Requires in the host preamble: amsmath, amssymb, booktabs, hyperref.
+%  Uses \section as top level; change to \subsection if inserting under
+%  an existing Phase 3 section.
+% =====================================================================
+
+% =====================================================================
+%  Hierarchy recovery: transformer failure, constructed estimator,
+%  and verified detection instruments.
+%
+%  INSERTABLE BODY.  Drop into an existing document with
+%      \input{hierarchy_body}
+%  Requires in the host preamble: amsmath, amssymb, booktabs, hyperref.
+%  Uses \section as top level; change to \subsection if inserting under
+%  an existing Phase 3 section.
+% =====================================================================
+
+% =====================================================================
+%  Hierarchy recovery: transformer failure, constructed estimator,
+%  and verified detection instruments.
+%
+%  INSERTABLE BODY.  Drop into an existing document with
+%      \input{hierarchy_body}
+%  Requires in the host preamble: amsmath, amssymb, booktabs, hyperref.
+%  Uses \section as top level; change to \subsection if inserting under
+%  an existing Phase 3 section.
+% =====================================================================
+
+% =====================================================================
+%  Hierarchy recovery: transformer failure, constructed estimator,
+%  and verified detection instruments.
+%
+%  INSERTABLE BODY.  Drop into an existing document with
+%      \input{hierarchy_body}
+%  Requires in the host preamble: amsmath, amssymb, booktabs, hyperref.
+%  Uses \section as top level; change to \subsection if inserting under
+%  an existing Phase 3 section.
+% =====================================================================
+
+% =====================================================================
+%  Hierarchy recovery: transformer failure, constructed estimator,
+%  and verified detection instruments.
+%
+%  INSERTABLE BODY.  Drop into an existing document with
+%      \input{hierarchy_body}
+%  Requires in the host preamble: amsmath, amssymb, booktabs, hyperref.
+%  Uses \section as top level; change to \subsection if inserting under
+%  an existing Phase 3 section.
+% =====================================================================
+
+\section{Setup: the generative model and its exact floors}
+\label{sec:hier-setup}
+
+All experiments use the Random Hierarchy Model (RHM) of
+Cagnetta et al.~\cite{cagnetta2024}: a probabilistic context-free grammar on a
+fixed complete binary tree of depth $L$, with $V$ symbols per internal level,
+$m$ productions per symbol, and a leaf alphabet of size $A$. A sequence is the
+string of $2^L$ leaves obtained by sampling a root symbol uniformly and then
+one production per node. Because the tree shape is fixed and positional, the
+latent structure is a Markov chain
+\begin{equation}
+  \text{leaves} \;\to\; \text{level }1 \;\to\; \cdots \;\to\; \text{root},
+  \label{eq:markov}
+\end{equation}
+and every conditional independence we use below is an instance of the tree
+Markov property.
+
+Two corpora appear. Corpus~A ($L=4$, $V=64$, $A=48$, $m=12$, $2\times10^5$
+sequences of length $16$) is the configuration inherited from earlier phases.
+Corpus~B ($L=4$, $V=8$, $A=12$, $m=3$, $2\times10^5$ sequences) was built for
+this study; Section~\ref{sec:hier-regime} explains why.
+
+Positions are labelled \emph{local} (odd indices, determined by the sibling)
+and \emph{higher} (even indices, which open a new subtree). We compute the
+\emph{exact} per-position conditional entropy $H(x_t \mid x_{<t})$ from the
+grammar by the inside--outside algorithm (Theorem~\ref{thm:inside}), rather
+than estimating it. For Corpus~A the means are
+\begin{equation}
+  H_{\mathrm{local}} = 1.6034 \ \text{nats}, \qquad
+  H_{\mathrm{higher}} = 3.5527 \ \text{nats},
+  \label{eq:floorsA}
+\end{equation}
+with $H(x_0)=3.8161$ alone (the first token of a fresh tree is nearly
+unpredictable), and $3.5150$ for the higher positions excluding $t=0$. These
+are floors: no predictor of any kind can go below them.
+
+We also compute, exactly, the conditional entropy of each \emph{latent} symbol
+given the observed prefix. Over the higher positions of Corpus~A, against a
+chance value of $\ln V = 4.1589$:
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+level & 1 & 2 & 3 & 4 \\
+\midrule
+$H(\text{symbol} \mid x_{<t})$ & 2.7835 & 2.2923 & 2.2900 & 2.7910 \\
+fraction of chance & 67\% & 55\% & 55\% & 67\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+At individual positions the level-3 symbol is nearly determined ($0.427$ nats
+at $t=14$, $1.126$ at $t=12$). This matters for what follows: roughly $1.87$
+nats of level-3 information are recoverable from the prefix, so a model that
+fails to represent it is failing at something the data support, not attempting
+the impossible.
+
+
+\section{Part I: transformers do not recover levels 3--4}
+\label{sec:hier-transformer}
+
+\subsection{Protocol}
+
+Decoder-only transformers were trained on Corpus~A with next-token
+cross-entropy for $48{,}000$ steps. After training, a linear probe was fitted
+from the residual stream $h[t]$ to the level-$\ell$ symbol above position $t$,
+with a $70/30$ split over sequences and two controls: shuffled labels, and an
+untrained network of identical shape. Chance is $1/V = 0.0156$.
+
+\subsection{Result}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+configuration & \texttt{local} & \texttt{higher} & level-3 probe \\
+\midrule
+2 layers, $d=64$ (baseline)      & 2.173 & 3.831 & 0.028 \\
+4 layers                         & 2.078 & 3.797 & --- \\
+8 layers, frozen embedding       & 2.037 & 3.755 & --- \\
+8 layers, frozen emb., fresh sampling & 2.022 & 3.772 & 0.027 \\
+$d=128$, 4 layers                & 2.039 & 3.770 & --- \\
+frozen random embedding (2 layers) & 2.186 & 3.824 & --- \\
+constructed order coordinate     & 2.162 & 3.815 & --- \\
+auxiliary supervision, levels 3--4 & 2.088 & 3.777 & 0.056 \\
+latent marginalising head (stopped at 34k) & 3.227 & 3.835 & --- \\
+dilated causal CNN (tree receptive fields) & 2.104 & 3.827 & 0.032 \\
+curriculum over tree depth       & 2.085 & 3.803 & 0.034 \\
+curriculum control (no easy cases) & 2.043 & 3.789 & 0.033 \\
+\midrule
+exact floor                      & \textbf{1.603} & \textbf{3.553} & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Shuffled-label controls ran at $0.021$--$0.034$; the level-3 probe is
+indistinguishable from them in every configuration. Level~4 read $0.016$--$0.020$
+against chance $0.0156$. The auxiliary arm is the strongest test: its head was
+trained jointly for $48{,}000$ steps on \emph{ground-truth} level-3 and level-4
+labels and reached $0.056$ and $0.019$.
+
+Three additional controls sharpen the claim.
+
+\paragraph{The embedding is not the site.}
+With the token embedding frozen at random initialisation and never updated,
+final loss is unchanged ($2.185/3.824$ versus $2.163/3.831$), and the
+sublayer readout shows the order structure being constructed entirely in the
+blocks: the embedding tap reads exactly $0.0000$, then $+0.0430$ (attn$_0$),
+$+0.0508$ (mlp$_0$), $+0.0410$ (attn$_1$), $+0.1272$ (mlp$_1$).
+
+\paragraph{A linear probe on the embedding was not evidence.}
+An earlier phase reported a linear probe reading comparability off the
+embedding matrix at $0.98$--$1.00$ on held-out multi-hop pairs. Running the
+identical probe on (i) a fresh random initialisation, (ii) an exactly
+orthonormal matrix, and (iii) the trained matrix with its \emph{rows permuted}
+gives $1.000$, $0.984$ and $1.000$. With $A+1$ near-orthogonal vectors in
+$d=64$, any scalar ranking of tokens is linearly realisable, so the probe
+carries the order in its own weights. That result is withdrawn; the
+hidden-state measurements, which use no probe, are unaffected.
+
+\paragraph{The one direction that is causal is causal for \texttt{local}.}
+Projecting the fitted order direction out of the embedding, against a
+random-direction control at matched rank, costs an excess of
+$+0.079$ to $+0.100$ nats on the overall loss ($4.3$--$6.2$ control standard
+deviations) --- of which \texttt{local} absorbs $+0.279$ and \texttt{higher}
+$+0.0035$.
+
+\subsection{Statement}
+
+Across twelve configurations spanning depth, width, input representation,
+output factorisation, architecture family, objective and curriculum, the
+level-3 probe never leaves the shuffled-label floor, while $1.87$ nats of
+level-3 information are present in the prefix. We do not claim impossibility;
+recurrent-depth architectures were tried only briefly, and the mechanistic
+account below is a hypothesis.
+
+\paragraph{Hypothesis (not established).}
+Recovering the level-$\ell$ symbol requires marginalising over parses
+consistent with the prefix. Inside--outside does this with an upward
+\emph{and} a downward pass whose messages are coupled; a feedforward stack has
+only the upward one and must approximate the composite in a fixed number of
+layers. Consistently, depth from 2 to 8 buys $0.06$ nats and no change in
+level-3 decodability.
+
+
+\section{Part II: the constructed estimator and its verification}
+\label{sec:hier-estimator}
+
+\subsection{Construction}
+
+No gradients are used. The rule tables $P_\ell[p,x,y]$ are estimated by:
+
+\begin{enumerate}
+\item \textbf{Spectral initialisation.} At level $\ell$, two observed child
+pairs belong to the same parent if they occur in the same contexts. We build
+the pair--context co-occurrence matrix, take its leading singular directions,
+and $k$-means the pairs into $V$ groups. Where a level has fewer than four
+nodes per sequence there is no horizontal context and we fall back to grouping
+by shared child identity.
+
+\item \textbf{Soft hand-off.} The posterior over parent symbols, not a hard
+label, is propagated to the next level:
+$q_\ell \propto \sum_{x,y} P_\ell[\cdot,x,y]\, q_{\ell-1}^{\mathrm{lo}}(x)\,
+q_{\ell-1}^{\mathrm{hi}}(y)$.
+
+\item \textbf{EM.} Inside--outside E-step, normalise-expected-counts M-step,
+iterated; the sweep with the best held-out likelihood is kept.
+\end{enumerate}
+
+\subsection{Verification suite}
+
+Each item below is an identity of the tree model class. Passing verifies the
+implementation and that the fitted object is a genuine section; it does
+\emph{not} test whether the data are tree-generated. Errors are maxima over
+$256$ held-out sequences of Corpus~A.
+
+\begin{center}
+\begin{tabular}{llc}
+\toprule
+check & statement & max error \\
+\midrule
+V0 & EM never decreases the training log-likelihood & $+1.8\times10^{-2}$ (min step) \\
+V1a & a free subtree has inside value exactly $1$ & $1.8\times10^{-15}$ \\
+V1b & restriction $=$ marginalisation & $8.9\times10^{-16}$ \\
+V1c & gluing $=$ independence join & $1.0\times10^{-14}$ \\
+V2 & the hand-off is a sufficient statistic & $6.7\times10^{-16}$ \\
+V4a & merge cost $= N\,I(\text{children};B \mid q(B))$ & $1.2\times10^{-14}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+V1c is the concrete content of Theorem~\ref{thm:simpson-pullback} and
+Construction~\ref{con:join}: with $\mu(u,v)$ the joint prior on the two top
+children,
+\begin{equation}
+  P(x_{0:16}) \;=\; \sum_{u,v} \mu(u,v)\, \beta_L(u)\, \beta_R(v),
+  \label{eq:glue}
+\end{equation}
+which we verify numerically rather than assume. Note $\mu$ is the \emph{joint},
+not a product: the two halves are dependent through the root, and factorising
+them breaks the identity.
+
+V2 is the operational form of Definition~\ref{def:supports}: replacing each
+completed subtree by its normalised inside vector and deleting its leaves
+changes the predictive distribution by $<10^{-15}$.
+
+V4a is Construction~\ref{con:merge}: merging symbols into their mixture row
+costs exactly $\sum_s n_s\,\mathrm{KL}(R_s \Vert R_{\mathrm{class}})$, which is
+the Bregman information of the merge and equals $N\,I(\text{children};B\mid
+q(B))$ --- zero precisely when the merge is lossless.
+
+\subsection{Estimator variants}
+
+On Corpus~A, $2\times10^4$ training sequences:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+variant & \texttt{local} & \texttt{higher} & held-out $\log p$/seq \\
+\midrule
+joint EM from random init      & 2.566 & 3.831 & $-51.18$ \\
+bottom-up, frequency-rank clusters & 2.598 & 3.833 & $-51.45$ \\
+spectral $+$ soft hand-off $+$ EM (10 sweeps) & 2.227 & 3.802 & $-48.23$ \\
+spectral $+$ soft hand-off $+$ EM (50 sweeps) & 2.162 & 3.807 & $-47.75$ \\
+stagewise $+$ vertical re-clustering & 2.240 & 3.802 & $-48.34$ \\
+\midrule
+transformer, $48$k steps        & 2.022 & 3.772 & --- \\
+true grammar                    & 1.599 & 3.553 & $-41.21$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Initialisation dominates. On Corpus~A the constructed estimator does not beat
+the trained transformer; Section~\ref{sec:hier-regime} shows why, and
+Section~\ref{sec:hier-splitmerge} closes the gap entirely on an identifiable
+corpus.
+
+\section{Part III: instruments for detecting hierarchy}
+\label{sec:hier-instruments}
+
+Three measurements, each with a calibration control and, where possible, a
+planted positive.
+
+\subsection{V6: where does the tree fail (token resolution)}
+
+For each pair of leaf positions we compare empirical mutual information in the
+data against the same statistic computed on datasets \emph{sampled from the
+fitted model} at equal size (parametric bootstrap, $20$ replicates). Because
+the same estimator is applied to both sides, plug-in bias cancels. Controls:
+the true grammar against its own samples (calibration), and the true grammar
+against the data (which also verifies that the exported rule tables are the
+actual generator).
+
+\paragraph{Planted positive.}
+Copying leaf $7$ into leaf $8$ with probability $0.3$ creates a dependence
+across the root that no tree of this shape carries. The detector reports
+$z=+220$ at the planted pair against a largest other $z$ of $+6.5$; even the
+true grammar is refuted there ($z=+390$). During training, the data-minus-model
+gap at the planted pair stays at $+0.600$ across every sweep, while the
+sibling gap closes from $+0.161$ to $+0.028$: training absorbs structure the
+tree can hold and never touches structure it cannot.
+
+\paragraph{Limitation.}
+On Corpus~A, pairwise leaf MI across level-2 and root boundaries is $\approx
+10^{-4}$ \emph{even under the true grammar}, while the plug-in bias floor at
+$4\times10^4$ sequences is $\approx 0.055$. V6 therefore has no power above
+level~1 there; the $0.3$ copy was detectable only because it was gross.
+
+\subsection{V7: dependence between hierarchy units}
+
+The fix is to test blocks, not tokens. Each block of $2^\ell$ leaves is decoded
+to the level-$\ell$ symbol given by the argmax of \emph{that block's own}
+inside vector, and mutual information is measured between adjacent decoded
+blocks, with the same parametric bootstrap.
+
+\paragraph{Disjointness invariant.}
+Every statistic compares functions of disjoint leaf sets. Blocks share no
+leaves, and decoding uses inside messages only: outside messages would import
+the neighbour's evidence and make adjacent blocks appear dependent under any
+model. Outside messages remain legitimate for \emph{fitting}; they are excluded
+only from the test decoder.
+
+\paragraph{Result (Corpus~A, $2\times10^4$ sequences).}
+Decoded with the true grammar, blocks sharing a parent carry $\approx 1.0$ nat
+at levels 1, 2 and 3, and blocks not sharing one carry $0.002$--$0.014$. The
+fitted model captures $0.866/1.102 = 79\%$ at level 1, $0.014/0.994 = 1.4\%$ at
+level 2 and $0.038/0.965 = 3.9\%$ at level 3. All calibration controls pass
+($|z| \le 2.6$).
+
+\subsection{$\beta_1$: is the block structure a tree at all}
+
+Decode blocks as in V7 and build the graph on blocks whose pairwise MI exceeds
+a threshold. Under a tree the dependency structure is nested: every threshold
+cuts the graph into cliques (the blocks under one ancestor), and a clique
+complex of cliques has no holes. Hence the prediction
+\begin{equation}
+  \text{tree} \;\Longrightarrow\; \beta_1 = 0 \ \text{at every threshold},
+  \label{eq:betti}
+\end{equation}
+with $\beta_1 = \dim\ker\partial_1 - \operatorname{rank}\partial_2 =
+(E-V+C) - \operatorname{rank}\partial_2$ computed exactly over $\mathrm{GF}(2)$
+on the $2$-skeleton. A null band is obtained from datasets sampled from the
+fitted tree.
+
+\paragraph{Result and planted positive (Corpus~B).}
+Unplanted: $\beta_1 = 0$ at all $25$ thresholds, null band $0$--$1$. Copying
+block $0$ onto block $7$ and block $3$ onto block $4$, each with probability
+$0.5$: $\beta_1 = 1$ at five thresholds with the null at $0$.
+
+\paragraph{Two facts about the test.}
+First, a \emph{single} extra coupling produces no cycle: it is a bridge between
+two cliques, and $\beta_1$ counts independent loops, so at least two couplings
+between distinct clique pairs are required. Second, planting must be done at
+block level. Copying a single leaf creates ungrammatical pairs whose inside
+vector is numerically zero, the decoded symbol degenerates, and the coupling
+disappears; copying whole blocks keeps every production valid.
+
+
+\section{Part IV: the regime determines whether anything is learnable}
+\label{sec:hier-regime}
+
+The failure of the estimator at levels 2--4 on Corpus~A is an identifiability
+problem, not an algorithmic one. Level $\ell$ has $2^{L-\ell}$ nodes per
+sequence and a table of $V\cdot c_\ell^2$ entries:
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+ & level 1 & level 2 & level 3 & level 4 \\
+\midrule
+Corpus~A: observations per parameter & 1.4 & 0.31 & 0.15 & 0.08 \\
+Corpus~B: observations per parameter & 1389 & 1563 & 781 & 391 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Corpus~B ($V=8$, $A=12$, $m=3$) was constructed so that every level is
+estimable. On it the same estimator, with no algorithmic change, recovers the
+hierarchy. Writing $c$ for the block dependence the fitted model's own symbols
+capture and $g$ for the dependence its samples generate, and $z$ for the
+bootstrap discrepancy:
+
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{$30$ sweeps} & \multicolumn{3}{c}{$200$ sweeps} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+level & $c$ & $g$ & $z$ & $c$ & $g$ & $z$ \\
+\midrule
+1 & 0.4568 & 0.4574 & $-0.0$ & 0.4568 & 0.4530 & $+1.7$ \\
+2 & 0.3582 & 0.3595 & $-0.2$ & 0.3804 & 0.3818 & $-0.2$ \\
+3 & 0.0854 & 0.0507 & $+20.2$ & 0.1827 & 0.1715 & $+5.4$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Level 3 more than doubles between $30$ and $200$ sweeps and its discrepancy
+falls from $+20.2$ to $+5.4$; held-out log-likelihood improves from $-17.97$ to
+$-17.51$ (floor $-15.32$) and was still descending at sweep $200$. The earlier
+failure was therefore (i) an unestimable regime and (ii) undertraining, in that
+order.
+
+\paragraph{The symbols are not redundant.}
+The merge sweep (V4) on Corpus~B: at levels 1--3 every merge costs real
+conditional MI ($0.142$, $0.071$, $0.128$ nats/node at the first step) and
+held-out likelihood falls monotonically. Level~4 is the exception: $8\to6$
+costs $0.058$ nats/node with held-out change $+0.0000$, and $8\to2$ gives
+$+0.0039$. The root alphabet is genuinely redundant; the others are not.
+
+\paragraph{A defect, later resolved.}
+At token resolution the fitted model still under-produced cross-boundary
+dependence: $0.174$ against a true $0.282$ at the level-1 boundary, $0.0006$
+against $0.0035$ at the root, unchanged from $30$ to $200$ sweeps and unchanged
+when the training set was quadrupled from $5\times10^4$ to $2\times10^5$
+sequences ($-17.5094$ against $-17.5113$ held-out). It is resolved in
+Section~\ref{sec:hier-splitmerge}.
+
+\section{Part V: what is not established}
+\label{sec:hier-negative}
+
+We record failed constructions, because several are attractive and the reasons
+they fail are cheap to check.
+
+\paragraph{The embedding probe (withdrawn).}
+See Section~\ref{sec:hier-transformer}: a random matrix supports the same
+probe accuracy.
+
+\paragraph{Cohomological obstruction to gluing is vacuous here.}
+For a single joint distribution on a fixed tree, every family of marginals
+extends, by Theorem~\ref{thm:vorobev}. The \v{C}ech obstruction of
+Abramsky--Mansfield--Barbosa~\cite{amb2011} is therefore identically zero. It
+becomes meaningful only for genuinely overlapping contexts --- several parse
+shapes over the same tokens, or models fitted on different corpora sharing
+variables. The $\beta_1$ test of Section~\ref{sec:hier-instruments} is the
+non-vacuous substitute.
+
+\paragraph{Information cohomology computes entropy, not obstructions.}
+Vigneaux~\cite{vigneaux2019}, following Baudot--Bennequin~\cite{bb2015}, shows
+$H^1$ of the information site is generated by Shannon entropy. This
+characterises which functionals exist; it does not measure failure to glue. A
+proposed test --- verify the chain rule $H(X,Y)=H(X)+H(Y\mid X)$ at each node
+--- cannot fail when all three terms are computed from the same empirical
+joint: it is an algebraic identity.
+
+\paragraph{The lattice quasi-morphism does not exist.}
+
+\begin{proposition}\label{prop:padic}
+Let $\rho:\mathbb{Q}\to L$ be order-preserving for the real order and constant
+on each $p$-adic ball. Then $\rho$ is constant.
+\end{proposition}
+
+\begin{proof}
+A $p$-adic ball $B(a,p^{-n}) \cap \mathbb{Q}$ contains $a + p^n m/k$ for all
+$m \in \mathbb{Z}$ and all $k$ coprime to $p$, hence is dense in $\mathbb{R}$.
+Let $B_1, B_2$ be disjoint balls with $\rho(B_1)=c_1$, $\rho(B_2)=c_2$. By
+density choose $x<y<z$ with $x,z\in B_1$ and $y\in B_2$. Monotonicity gives
+$c_1 \le c_2 \le c_1$, so $c_1=c_2$.
+\end{proof}
+
+\noindent
+The underlying obstruction is Theorem~\ref{thm:ostrowski}: $\mathbb{R}$ and
+$\mathbb{Q}_p$ are inequivalent completions of $\mathbb{Q}$, and the $p$-adic
+norm of a probability measures divisibility, not magnitude ($|0.3|_3 = 1/3 <
+|0.5|_3 = 1$). Real-valued rounding to the grid $p^{-n}\mathbb{Z}$ is a genuine
+quasi-morphism with defect $\le p^{-n}$, but retains nothing $p$-adic.
+
+\paragraph{Posterior entropy is the wrong confidence criterion.}
+After stagewise fitting on Corpus~A the per-level posterior entropies are
+$0.198$, $0.353$, $0.541$, $1.003$ nats against a maximum of $4.159$ --- all
+low --- while V7 shows those levels capturing under $4\%$ of the available
+dependence. The model is confident about labels that carry no structure. The
+criterion that does separate them is $I(\text{parent};\text{children})$
+computed from the rule table, which needs no ground truth and reads
+$10.1, 8.1, 4.5, 5.3$ against true values $8.9, 9.0, 9.0, 9.0$.
+
+\paragraph{Curriculum does not transfer.}
+The curriculum result of Qiu et al.~\cite{qiu2024} (their ablation: $0.0\%$
+baseline, $1.6\%$ with depth, $8.7\%$ with depth and reversal, $99.9\%$ with
+sample weighting) does not reproduce here. A matched control with no easy
+cases is marginally \emph{better} on both components
+($2.043/3.789$ versus $2.085/3.803$), and level-3 decoding is unchanged.
+Their failure mode was a broken easy component; ours is not.
+
+
+
+
+\section{Closing the gap: the failure was basin selection}
+\label{sec:hier-splitmerge}
+
+\subsection{Diagnosis: start EM at the truth}
+
+The shortfall of Section~\ref{sec:hier-regime} admits three explanations: the
+model class is wrong, the data are insufficient, or the optimiser is in a bad
+basin. The third is testable directly. Initialise EM at the true rule tables,
+optionally blended with uniform at weight $\varepsilon$, and run it.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+start & held-out $\log p$/seq & \texttt{local} / \texttt{higher} \\
+\midrule
+exact truth ($\varepsilon=0$)          & $-15.324$ & $0.3322 / 1.5833$ \\
+truth $+\ 50\%$ uniform                & $-15.325$ & $0.3322 / 1.5834$ \\
+truth $+\ 80\%$ uniform                & $-15.325$ & $0.3322 / 1.5834$ \\
+truth $+\ 90\%$ uniform                & $-15.330$ & --- \\
+truth $+\ 95\%$ uniform                & $-15.775$ & --- \\
+truth $+\ 99\%$ uniform                & $-18.113$ & --- \\
+uniform ($\varepsilon=1$)              & $-20.706$ & $0.5091 / 2.0791$ \\
+\midrule
+spectral init (ours)                   & $-17.511$ & $0.3952 / 1.7937$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Three conclusions. The truth is a fixed point, so the model class is right and
+the corpus is what we believe it to be. The basin is very wide: a start
+carrying only $10\%$ of the truth, whose likelihood ($-31.2$) is worse than
+uniform, climbs all the way back. And our spectral initialisation performs like
+a $1\%$ admixture --- it fails to clear a low bar.
+
+\subsection{Why the hard clustering cannot work}
+
+The initialisation assigns each observed child pair to exactly one parent
+cluster. Real grammars share pairs across parents: in Corpus~B, $4$ of the $16$
+distinct level-1 pairs are generated by two different symbols ($2$ of $18$ at
+level 2, $4$ of $16$ at levels 3 and 4). A hard partition therefore cannot
+represent a quarter of the grammar however good the clustering is. Two
+predictions follow, and both hold: sharpening the clustering makes matters
+worse (using the sibling co-parent as context instead of linear adjacency gives
+$-18.06$), and blurring it helps (blending with uniform at weight $0.9$ gives
+$-15.87$).
+
+\subsection{Split-merge: letting EM do the clustering}
+
+The remaining gap is closed by moving the clustering \emph{inside} EM. For each
+level in turn:
+
+\begin{enumerate}
+\item \textbf{Split}: duplicate every level-$\ell$ symbol with a multiplicative
+perturbation, doubling that level's alphabet; the child axes of level $\ell+1$
+double with it.
+\item \textbf{EM}: re-fit the enlarged model.
+\item \textbf{Merge}: greedily collapse back to $V$ symbols, cheapest first,
+where the cost of a merge is the Bregman information of
+Construction~\ref{con:merge}. The merge ranges over all $2V$ symbols, so it can
+recombine across the split rather than undo it. This is the escape mechanism.
+\item Accept the round only if held-out likelihood improves.
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+stage & held-out $\log p$/seq & merge cost (nats/seq) \\
+\midrule
+warmup, $40$ EM sweeps        & $-17.187$ & --- \\
+round 1, levels 1--4          & $-15.491$ & $0.160, 0.113, 0.008, 0.003$ \\
+round 2, levels 1--4          & $-15.325$ & $0.042, 0.011, 0.007, 0.005$ \\
+round 3, levels 1--4          & $-15.3253$ & $0.052, 0.020, 0.007, 0.004$ \\
+\midrule
+true grammar                  & $\mathbf{-15.3243}$ & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Total time $131$\,s. The final model is $0.001$ nats per sequence from the
+truth, and \texttt{local}/\texttt{higher} read $0.3322/1.5835$ against the true
+$0.3322/1.5833$. One round was rejected (round~2, level~4), so the accept test
+is doing work.
+
+\subsection{Verification of the recovered model}
+
+Likelihood agreement is not by itself recovery of structure. All four
+instruments confirm it independently.
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+ & before split-merge & after & true \\
+\midrule
+V3, sibling MI               & $1.5445$ & $1.5507$ & $1.5523$ \\
+V3, level-1 boundary         & $0.1739$ & $0.2783$ & $0.2819$ \\
+V3, level-2 boundary         & $0.0153$ & $0.0334$ & $0.0331$ \\
+V3, root boundary            & $0.0006$ & $0.0034$ & $0.0035$ \\
+V6, boundaries flagged       & $11$ of $18$ & $\mathbf{0}$ of $18$ & --- \\
+V6, largest $|z|$            & $+58.6$ & $+1.7$ & --- \\
+V7, level 3 ($c$ vs $g$)     & $0.1798/0.1720$ & $0.5863/0.5882$ & $0.6140$ \\
+$\beta_1$ vs fitted null     & $6$ of $25$ & $\mathbf{0}$ of $25$ & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The $\beta_1$ result is the sharpest. Section~\ref{sec:hier-instruments}
+reported $6$ of $25$ thresholds flagged against a null sampled from the fitted
+model, all in the weak-edge window where the fit under-produced dependence,
+while the same test against a null sampled from the \emph{true} grammar gave
+$0$ of $25$ and still caught a planted violation at $9$ of $25$. The diagnosis
+was therefore that $\beta_1$ was measuring the basin, not the data. With the
+recovered model the flags vanish. The instrument fires on a bad fit, is silent
+on a good one, and detects planted non-tree structure in both cases.
+
+\subsection{The gap to the transformer}
+
+On Corpus~A the exact floors are $\texttt{local}=1.599$, $\texttt{higher}=3.553$
+and the best transformer of Section~\ref{sec:hier-transformer} reaches
+$2.022/3.772$, with the level-3 latent symbol never decodable above the
+shuffled-label floor. On Corpus~B, where every level is identifiable, the
+gradient-free estimator reaches $0.3322/1.5835$ against floors of
+$0.3322/1.5833$ --- that is, the floor to three decimal places --- in $131$
+seconds without computing a single gradient. We emphasise that these are
+different corpora and the comparison is therefore about \emph{kind}, not a
+head-to-head benchmark: the transformer fails to represent the upper levels at
+all under twelve configurations, whereas the estimator recovers them exactly
+when the regime is identifiable, and its remaining failures are diagnosable
+(basin selection) and curable (split-merge) rather than opaque.
+
+
+\section{Why clustering is necessary at scale}
+\label{sec:hier-scaling}
+
+Sections~\ref{sec:hier-estimator}--\ref{sec:hier-regime} used $V=8$, where a
+dense rule tensor is trivial. The motivation for cluster primes is what happens
+at $V=10^3$.
+
+\subsection{Cost of the dense recursion}
+
+Let $N$ be the total number of leaf tokens in the corpus. A complete binary
+tree over $N$ leaves has $N-1$ internal nodes \emph{in total}: the levels
+partition the nodes, they do not replicate them. Each node evaluates
+\begin{equation}
+  T_\ell(b,n,p) \;=\; \sum_{x,y} P_\ell(p\to x,y)\,
+  T_{\ell-1}(b,2n,x)\, T_{\ell-1}(b,2n{+}1,y),
+  \label{eq:inside-cost}
+\end{equation}
+at a cost of $2V^3$ operations, so one inside pass costs $\approx 2NV^3$. With
+outside and the M-step, a sweep is $\approx 4NV^3$. At $N=10^6$ and $V=1024$:
+\begin{equation}
+  C^{\text{dense}}_{\text{sweep}} \approx 4.3\times 10^{15},
+  \qquad
+  C^{\text{dense}}_{50\ \text{sweeps}} \approx 2.1\times 10^{17}.
+\end{equation}
+Memory splits into two parts that scale differently. The inside table is
+$\approx 2NV$ floats, $8$~GB, which is large but not fatal; the rule tensors
+are $V^3$ entries \emph{per level}, $4.3$~GB each and $69$~GB over $L=16$,
+which is. Replacing $V$ by $K$ gives $4NK^3$ per sweep,
+$\approx 8\times10^{11}$ over $50$ sweeps at $K=16$, with rule tensors of
+$16$~KB per level, and a speedup of
+\begin{equation}
+  \left(\frac{V}{K}\right)^{3} = 64^3 = 262{,}144.
+\end{equation}
+
+\subsection{Cost ladder for $m$-ary grammars}
+
+For an $m$-ary grammar the rule tensor has order $m+1$ and the per-node cost is
+$V^{m+1}$ dense, $K^{m+1}$ compressed. Each extra tensor order multiplies the
+compressed cost by $K$ and the dense cost by $V$, so the compression buys
+$\log_K V$ orders of headroom --- at $V/K = 64$, about $2.5$ orders.
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+arity $m$ & tensor order & dense ($V=1024$) & compressed ($K=16$) \\
+\midrule
+2 (binary)  & 3 & $2.1\times10^{17}$ & $8\times10^{11}$ \\
+3 (ternary) & 4 & $2.2\times10^{20}$ & $1.3\times10^{13}$ \\
+4           & 5 & $2.2\times10^{23}$ & $2.1\times10^{14}$ \\
+5           & 6 & $2.3\times10^{26}$ & $3.4\times10^{15}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clustering belongs inside EM, not before it}
+
+Section~\ref{sec:hier-splitmerge} revises what the initial clustering is for.
+An externally imposed partition supplies a seed and nothing more: sharpening it
+hurts, blurring it helps, and the symbols that finally matter are produced by
+merge moves \emph{inside} EM, scored by the conditional mutual information of
+Construction~\ref{con:merge} on expected counts from the E-step. The scaling
+argument above is unaffected --- at $V=10^3$ the $V^3$ contraction must be
+compressed --- but the compression should be discovered by split-merge rather
+than fixed in advance.
+
+\subsection{Compression is not free: the measured trade-off}
+
+The scaling argument alone would suggest taking $K$ as small as convenient.
+The merge sweep of Section~\ref{sec:hier-regime} measures what that costs. On
+Corpus~B, per level, $I/\text{node}$ is the conditional mutual information paid
+(Construction~\ref{con:merge}) and $\Delta$ is the change in held-out
+log-likelihood per sequence:
+
+\begin{center}
+\begin{tabular}{lcccccccc}
+\toprule
+ & \multicolumn{2}{c}{level 1} & \multicolumn{2}{c}{level 2}
+ & \multicolumn{2}{c}{level 3} & \multicolumn{2}{c}{level 4} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+$K$ & $I/\text{node}$ & $\Delta$ & $I/\text{node}$ & $\Delta$
+    & $I/\text{node}$ & $\Delta$ & $I/\text{node}$ & $\Delta$ \\
+\midrule
+8 & 0.000 & $+0.000$ & 0.000 & $+0.000$ & 0.000 & $+0.000$ & 0.000 & $+0.000$ \\
+6 & 0.142 & $+0.000$ & 0.071 & $-0.222$ & 0.128 & $-0.018$ & 0.058 & $+0.000$ \\
+4 & 0.397 & $-0.970$ & 0.321 & $-0.716$ & 0.430 & $-0.121$ & 0.326 & $+0.003$ \\
+3 & 0.626 & $-1.502$ & 0.559 & $-0.838$ & 0.663 & $-0.122$ & 0.489 & $+0.003$ \\
+2 & 0.983 & $-1.957$ & 0.941 & $-0.880$ & 1.063 & $-0.124$ & 0.723 & $+0.004$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Levels 1--3 pay for every merge in both currencies. Level~4 does not: $8\to2$
+costs $0.72$ nats per node of conditional MI and \emph{improves} held-out
+likelihood by $0.004$, because the root alphabet is redundant at this depth.
+So the right $K$ is level-dependent and must be measured, not assumed; the
+merge identity V4a supplies the measurement.
+
+\subsection{What is projected and what is demonstrated}
+
+The recovery results of Section~\ref{sec:hier-regime} are at $L=4$, $V=8$,
+$2\times10^5$ sequences. The costs above are arithmetic, not measurements: we
+have not run $L=16$, $V=1024$. One caveat is worth stating in advance. At
+$L=16$ a sequence has $2^{16}=65{,}536$ leaves, so $N=10^6$ tokens is about
+$15$ sequences, and the root level would be observed $15$ times. The
+compression removes the compute barrier; it does not remove the
+observations-per-parameter barrier of Section~\ref{sec:hier-regime}, which at
+the top of a deep tree is governed by the number of \emph{sequences}, not
+tokens.
+
+\paragraph{A proposed argument we do not use.}
+It is tempting to argue that attention is architecturally incapable of
+representing a rank-$m$ rule tensor because each head is a rank-2 bilinear form
+and CP rank $\Theta(V^{m-1})$ would require $V^{m-1}$ heads. We do not make
+this claim. The network computes a predictive function, not the rule tensor;
+the MLP sublayers, which our own readout shows carrying most of the order
+construction ($+0.127$ at $\mathrm{mlp}_1$ against $+0.041$ at
+$\mathrm{attn}_1$), are absent from the argument; and depth composes heads
+nonlinearly. The transformer result of Section~\ref{sec:hier-transformer} is an
+empirical negative over twelve configurations and does not need it.
+
+
+
+\section{Open problems}
+\label{sec:hier-open}
+
+All of these concern the estimator or the instruments. None concerns
+cohomology: Section~\ref{sec:hier-negative} records why the gluing obstruction
+is vacuous for a single distribution on a fixed tree, and nothing since has
+changed that.
+
+\paragraph{O0. The cross-boundary defect, and why it is no longer open.}
+Until Section~\ref{sec:hier-splitmerge} the binding problem was that the fitted
+model under-produced leaf-pair dependence at the level-1 and level-2
+boundaries ($0.174$ against a true $0.282$), and the natural reading was that
+the many-to-one block decoder cannot force the induced leaf marginals to match.
+That reading was wrong: the defect was an artefact of the basin, and it
+disappears entirely once split-merge finds the right optimum. We record it
+because the wrong reading was plausible and survived several rounds of
+measurement. It remains untested on Corpus~A, where split-merge has not been
+run.
+
+\paragraph{O1. A regime-identifiability threshold.}
+We measure that levels fail at $0.15$ observations per rule-table parameter and
+succeed at $781$, but we have no threshold $\theta(V, L, \ell, m)$ separating
+them. What is wanted is a statement of the form: with $n$ sequences of a
+depth-$L$, $V$-symbol, $m$-rule grammar, the level-$\ell$ table is identifiable
+up to relabelling with probability $1-\delta$ provided
+$n \cdot 2^{L-\ell} \ge \theta$. The sample complexity of latent-tree models is
+known in the spectral setting~\cite{choi2011}; the EM setting with our
+initialisation is not covered.
+
+\paragraph{O2. When does redundancy justify collapsing a level?}
+Construction~\ref{con:merge} gives the exact cost of a merge, and
+Section~\ref{sec:hier-regime} shows level~4 collapsing from $8$ to $2$ symbols
+at a held-out \emph{gain}. What is missing is a rule: given the merge cost
+$N\,I(\text{children};B\mid q(B))$ and the parameter count released, predict the
+sign of the held-out change without measuring it. This is a model-selection
+statement---the natural form is a comparison of the merge cost against the
+effective number of parameters removed---and would turn the $K$-sweep from a
+search into a calculation.
+
+\paragraph{O3. Why rule-table mutual information beats posterior entropy.}
+Section~\ref{sec:hier-negative} shows posterior entropy $H(q_\ell)$ is low
+($0.20$--$1.00$ nats against a maximum of $4.16$) at levels that capture under
+$4\%$ of the available dependence, while $I(\text{parent};\text{children})$
+computed from the rule table separates them ($10.1, 8.1, 4.5, 5.3$ against true
+$8.9, 9.0, 9.0, 9.0$). The observation is that a model can be certain about
+labels that carry no structure. We have no theorem saying when the two
+diverge, nor a threshold on $I(\text{parent};\text{children})$ that certifies a
+level as determined --- which is what a stopping rule for stagewise fitting
+needs.
+
+\paragraph{O4. Power of the $\beta_1$ test.}
+The detector finds two planted block couplings at $9$ of $25$ thresholds with
+the null at $0$, and a single coupling never, because one extra edge is a
+bridge rather than a loop. What is the detection threshold as a function of the
+number of couplings $m$, their strength, the number of blocks and the sample
+size? At minimum, $m \ge 2$ is necessary; the sufficient condition and the
+power curve in coupling strength are unmeasured.
+
+\paragraph{O5. A genuinely non-tree corpus.}
+Every positive control here is a \emph{planted} coupling made by copying one
+block onto another, which is destructive: it adds a dependence and removes the
+one it overwrites. At level~2, with only four blocks, this makes a $4$-cycle
+unreachable --- every plant we tried broke one of the four edges it needed. The
+clean test is a corpus \emph{generated} from a non-tree structure, so that the
+detector can be scored against a known ground truth rather than a perturbation.
+This is a corpus-builder change, not a detector change.
+
+\paragraph{O6. Split-merge at scale.}
+The recovery result is at $L=4$, $V=8$, $2\times10^4$ sequences, in $131$
+seconds. Section~\ref{sec:hier-scaling} gives the arithmetic for $L=16$,
+$V=10^3$ but no measurement. The specific risk named there is that compression
+removes the compute barrier and not the identifiability barrier: at $L=16$ a
+sequence has $65{,}536$ leaves, so $10^6$ tokens is about $15$ sequences and the
+root level is observed $15$ times. Whether split-merge tolerates that, and
+whether the split/merge cycle stays stable when the alphabet is large enough
+that the doubled model does not fit in memory, are untested.
+
+\paragraph{O7. Recurrent-depth transformers.}
+Section~\ref{sec:hier-transformer} covers twelve configurations, all with
+distinct weights per layer. Weight sharing across depth --- a single block
+applied $L$ times --- is the one architecture family in which iterated message
+passing is representable at fixed parameter count, and it was tried only
+briefly. A negative there would considerably strengthen the claim; a positive
+would locate what the feedforward stack is missing.
+
+
+\section{Inventory of theorems and constructions used}
+\label{sec:hier-inventory}
+
+\subsection*{Used and load-bearing}
+
+\begin{theorem}[Inside--outside; Baker~\cite{baker1979}, Lari--Young~\cite{lari1990}]
+\label{thm:inside}
+For a PCFG on a fixed tree, the inside values $\beta$ and outside values
+$\alpha$ computed by the two recursions give exact marginals: the posterior at
+a node is $\propto \alpha\beta$, and the marginal likelihood is the root inside
+value against the prior.
+\end{theorem}
+
+\begin{theorem}[EM ascent; Dempster--Laird--Rubin~\cite{dlr1977}]
+\label{thm:em}
+Each EM iteration does not decrease the observed-data log-likelihood. The proof
+is Jensen's inequality on the $Q$-function; no geometric hypothesis is needed.
+\end{theorem}
+
+\begin{theorem}[Convergence; Wu~\cite{wu1983}]
+\label{thm:wu}
+Under regularity conditions the EM sequence converges to a stationary point of
+the likelihood; the limit depends on the initialisation.
+\end{theorem}
+
+\begin{theorem}[Extension; Vorob'ev~\cite{vorobev1962}]
+\label{thm:vorobev}
+A family of consistent marginals on a hypergraph extends to a global
+distribution for every consistent family if and only if the hypergraph is
+acyclic. A fixed tree is acyclic.
+\end{theorem}
+
+\begin{theorem}[Independent pullback; Simpson~\cite{simpson2024}, Thm.~6.4 and Prop.~8.5]
+\label{thm:simpson-pullback}
+A presheaf on standard Borel probability spaces is an atomic sheaf if and only
+if it maps independent squares to pullbacks; the independent pullback of a
+cospan is the conditional product $\int P(\cdot\mid r{=}\omega)\otimes
+P(\cdot\mid s{=}\omega)\,dP(\omega)$.
+\end{theorem}
+
+\begin{definition}[Supports; Simpson~\cite{simpson2024}, Def.~7.1]
+\label{def:supports}
+A support of a random variable is the terminal factorisation of it through a
+sample space: the smallest randomness it depends on. $\mathrm{RV}(A)$ has
+supports.
+\end{definition}
+
+\begin{construction}[Independence join; Wright~\cite{wright2023}, \S7.1]
+\label{con:join}
+For tables agreeing on a shared marginal, $(p\bowtie q)_{ijk} = p_{ij}q_{jk}/r_j$
+is a weak pullback and is the maximum-entropy distribution with those
+marginals. This is the same object as Theorem~\ref{thm:simpson-pullback} and is
+the content of \eqref{eq:glue}.
+\end{construction}
+
+\begin{construction}[Merging as convex combination; Wright~\cite{wright2023}, \S7.2]
+\label{con:merge-giry}
+Conflicting categorical tables are merged by averaging distributions in the
+Giry monad. The merged rule row is the mixture of the rows merged.
+\end{construction}
+
+\begin{theorem}[Bregman information; Bregman~\cite{bregman1967},
+Banerjee et al.~\cite{banerjee2005}]
+\label{thm:bregman}
+For the Bregman divergence generated by negative entropy --- that is, for KL ---
+the optimal representative of a cluster is its mean, and the clustering loss is
+the Bregman information, which equals the mutual information between the data
+and the cluster assignment.
+\end{theorem}
+
+\begin{construction}[Merge criterion]
+\label{con:merge}
+Merging latent symbols into their mixture row costs
+$\sum_s n_s\,\mathrm{KL}(R_s\Vert R_{\mathrm{class}}) = N\,I(\text{children};B
+\mid q(B))$, zero exactly when the merge is lossless. Losslessness is strong
+lumpability in the sense of Kemeny--Snell~\cite{kemeny1960}: the merged rows
+must be identical.
+\end{construction}
+
+\begin{construction}[Agglomerative merging; Slonim--Tishby~\cite{slonim1999}]
+\label{con:aib}
+Greedy merging of the pair with least information loss is the agglomerative
+information bottleneck; the split-merge PCFG estimator of Petrov et
+al.~\cite{petrov2006} is the grammar-specific analogue.
+\end{construction}
+
+\begin{theorem}[Ostrowski~\cite{ostrowski1916}]
+\label{thm:ostrowski}
+Every nontrivial absolute value on $\mathbb{Q}$ is equivalent either to the
+real absolute value or to a $p$-adic one, and the resulting completions
+$\mathbb{R}, \mathbb{Q}_2, \mathbb{Q}_3, \dots$ are pairwise inequivalent.
+\end{theorem}
+
+\begin{construction}[Bias correction]
+\label{con:mm}
+Plug-in mutual information on a $K\times L$ table from $N$ samples is biased
+upward by $\approx (K-1)(L-1)/2N$ (Miller--Madow~\cite{miller1955}). The
+tracker applies the correction; the bootstrap does not need it, because the
+same estimator is applied to data and to model samples.
+\end{construction}
+
+\begin{construction}[$\beta_1$ of the clique complex]
+\label{con:betti}
+$\beta_1 = \dim\ker\partial_1 - \operatorname{rank}\partial_2$, with
+$\dim\ker\partial_1 = E - V + C$ the cycle rank, computed over
+$\mathrm{GF}(2)$. See \eqref{eq:betti}.
+\end{construction}
+
+\subsection*{Consulted, with the reason they are not used}
+
+\begin{itemize}
+\item \textbf{Abramsky--Brandenburger~\cite{ab2011}, Abramsky--Mansfield--Barbosa~\cite{amb2011}}:
+      sheaf-theoretic contextuality and its \v{C}ech obstruction. Vacuous for a
+      single distribution on one fixed tree
+      (Theorem~\ref{thm:vorobev}); relevant only for overlapping contexts.
+\item \textbf{Vigneaux~\cite{vigneaux2019}, Baudot--Bennequin~\cite{bb2015}}:
+      information cohomology. $H^1$ is generated by entropy; this is a
+      characterisation, not an obstruction theory.
+\item \textbf{Four-point condition / latent-tree distances
+      (Buneman~\cite{buneman1971}; Choi et al.~\cite{choi2011})}: the additive
+      information distance assumes equal state counts and full-rank joints.
+      With $A=48$ leaves and $V=64$ latents neither holds, so additivity is not
+      guaranteed and the test would not be trustworthy. The parametric
+      bootstrap is valid regardless of state counts.
+\item \textbf{Chow--Liu~\cite{chowliu1968}}: gives the best tree over
+      \emph{observed} variables; our structure is latent.
+\item \textbf{Amari~\cite{amari2016}}: $e$- and $m$-projections. The E-step is
+      the $e$-projection and the M-step the $m$-projection; EM monotonicity
+      follows from Theorem~\ref{thm:em} and does not require the Pythagorean
+      identity.
+\item \textbf{Tucker~\cite{tucker1966} / non-negative Tucker}: replacing
+      $P_\ell$ by a rank-$R$ core reduces $V^3$ parameters to $R^3+3VR$. Not
+      needed at $V=8$; becomes necessary at $V=10^3$, where a dense table is
+      $10^9$ entries. Proposed, not implemented.
+\item \textbf{Ili\'c-Stepi\'c et al.~\cite{ilic2014}}: conditional $p$-adic
+      probability logic. Establishes that Monna--Springer boundedness needs the
+      range restricted to $\mathbb{Z}_p$ or the propositional alphabet kept
+      finite, and states explicitly that $\mathbb{Q}_p$ admits no compatible
+      order --- which is why Assumption~3 (monotone along the tree, a statement
+      about the real order) and $p$-adic valuation cannot be imposed together.
+\item \textbf{Gauthier~\cite{gauthier2014}}: recasts probability spaces as
+      Grothendieck sites and then removes time and probability, so the absence
+      of uncertainty is definitional rather than derived. No algorithm; nothing
+      bearing on estimation.
+\item \textbf{Rute~\cite{rute2019}}: computable measure theory and algorithmic
+      randomness. Relevant only if a \emph{constructive} convergence statement
+      for EM were wanted in place of Theorem~\ref{thm:wu}.
+\item \textbf{Ostrowski~\cite{ostrowski1916}, Monna--Springer~\cite{ms1963}}:
+      used only to establish Proposition~\ref{prop:padic} and the
+      incompatibility of $p$-adic valuation with the real ordering of
+      probabilities.
+\end{itemize}
+
+
+\section{Reproduction: commands and the result each produced}
+\label{sec:hier-repro}
+
+Every number in this section came from the commands below, in this order.
+Corpus~A is the inherited configuration ($V=64$, $A=48$); Corpus~B is the
+identifiable one ($V=8$, $A=12$).
+
+\subsection*{Corpora}
+
+\begin{verbatim}
+python3 build_corpus_syn.py --out /tmp --synonym --reverse-valid \
+        --nleaf 48 --syn-frac 0.35 --nsym 64 --nrules 12 \
+        --poset-density 0.25 --n-train 200000
+\end{verbatim}
+Corpus~A. Observations per rule-table parameter: $1.4, 0.31, 0.15, 0.08$ at
+levels 1--4. Held-out bigram $3.534$.
+
+\begin{verbatim}
+python3 build_corpus_syn.py --out /tmp/cH --depth 4 --nsym 8 --nrules 3 \
+        --nleaf 12 --reverse-valid --n-train 200000 --n-val 5000
+\end{verbatim}
+Corpus~B. Observations per parameter: $1389, 1563, 781, 391$. Exact entropy
+$1.160$ nats/token.
+
+\subsection*{Exact floors and latent-parse entropies}
+
+\begin{verbatim}
+python3 floor_exact.py --data /tmp --samples 500
+\end{verbatim}
+Corpus~A: $H_{\mathrm{local}}=1.6034$, $H_{\mathrm{higher}}=3.5527$,
+$H(x_0)=3.8161$. Latent-symbol entropy given the prefix, averaged over higher
+positions: $2.784, 2.292, 2.290, 2.791$ against chance $4.159$ --- so $1.87$
+nats of level-3 information are recoverable.
+
+\subsection*{Transformer arms (Corpus~A, $48{,}000$ steps each)}
+
+\begin{verbatim}
+python3 rhm16.py --mlp --layers 2 --freeze-emb --steps 48000 --seed 1 --save L2.pt
+python3 rhm16.py --mlp --layers 4 --freeze-emb --steps 48000 --seed 1 --save L4.pt
+python3 rhm16.py --mlp --layers 8 --freeze-emb --steps 48000 --seed 1 --save L8.pt
+python3 rhm16.py --mlp --layers 4 --d-model 128 --freeze-emb --steps 48000 \
+        --seed 1 --save W128.pt
+python3 rhm17.py --mlp --layers 8 --freeze-emb --steps 48000 --seed 1 --save A0.pt
+python3 rhm17.py --mlp --layers 8 --freeze-emb --steps 48000 --seed 1 \
+        --fresh-sample --save A1.pt
+python3 rhm17.py --mlp --layers 8 --freeze-emb --steps 48000 --seed 1 \
+        --aux-levels 3,4 --save A2.pt
+python3 tree_cnn2.py --steps 48000 --seed 1 --save C2.pt
+python3 curriculum.py --steps 48000 --seed 1 --save K1.pt
+python3 curriculum.py --steps 48000 --seed 1 --simple-frac 0 --save K0.pt
+python3 latent_head.py --steps 48000 --seed 1 --save M1.pt
+python3 looped.py --loops 4 --steps 48000 --seed 1 --save P4.pt
+\end{verbatim}
+\texttt{local}/\texttt{higher} at step $48{,}000$, floors $1.603/3.553$:
+$2.173/3.831$ (2 layers), $2.078/3.797$ (4), $2.037/3.755$ (8 frozen),
+$2.022/3.772$ (8 frozen, fresh sampling), $2.039/3.770$ ($d{=}128$),
+$2.088/3.777$ (auxiliary supervision), $2.104/3.827$ (dilated CNN),
+$2.085/3.803$ and $2.043/3.789$ (curriculum and its control),
+$3.227/3.835$ (latent head, stopped at $34$k).
+
+\subsection*{Probes and controls (Corpus~A)}
+
+\begin{verbatim}
+python3 parse_state.py --load A1.pt --layers 8
+python3 parse_state.py --load A2.pt --layers 8
+python3 null_probe.py --load s1.pt
+python3 ablate_w.py --load s1.pt
+\end{verbatim}
+Level-$\ell$ decoding from $h[t]$: $0.479/0.213$ (level 1),
+$0.072/0.064$ (2), $0.028/0.024$ (3), $0.020/0.018$ (4), against shuffled
+$0.021$--$0.034$ and chance $0.0156$. The auxiliary head trained on
+ground-truth labels reaches $0.056$ (level 3) and $0.019$ (level 4).
+\texttt{null\_probe} returns $1.000$ on a random matrix, $0.984$ on an
+orthonormal one and $1.000$ on the trained matrix with rows permuted: the
+embedding probe is retired. \texttt{ablate\_w} gives an excess of
+$+0.079$--$+0.100$ nats over a matched random-direction control
+($4.3$--$6.2$\,sd), of which \texttt{local} absorbs $+0.279$ and
+\texttt{higher} $+0.0035$.
+
+\subsection*{Estimator and verification suite}
+
+\begin{verbatim}
+python3 estimator2.py --data /tmp --n-train 20000 --polish 50
+
+python3 estimator4.py --data /tmp --n-train 20000 --polish 50 --skip-v4 \
+        --boot 20 --boot-n 40000 --save fit20k.npz
+
+python3 estimator4.py --data /tmp/cH --n-train 200000 --polish 200 \
+        --boot 20 --boot-n 40000 --skip-v4 --save /tmp/cH/fit200k.npz
+\end{verbatim}
+Corpus~A: $2.162/3.807$, held-out $-47.75$ (the numpy port of
+\texttt{estimator4} reproduces \texttt{estimator2} to $10^{-3}$).
+Corpus~B at $2\times10^5$ sequences: $0.3952/1.7937$, held-out $-17.511$ ---
+identical to the $5\times10^4$ run ($-17.509$), so the residual gap is not
+sample-limited. Verification: V1a $1.8\times10^{-15}$, V1b $8.9\times10^{-16}$,
+V1c $1.0\times10^{-14}$, V2 $6.7\times10^{-16}$, V4a $1.2\times10^{-14}$.
+
+\begin{verbatim}
+python3 estimator4.py --data /tmp/cH --n-train 50000 --polish 30 \
+        --boot 4 --boot-n 40000 --ks 8,6,4,3,2
+\end{verbatim}
+Merge sweep: levels 1--3 pay in both currencies (first-merge $I/\text{node}$
+$0.142, 0.071, 0.128$; held-out falls monotonically to $-1.96, -0.88, -0.12$ at
+$K=2$). Level~4 is redundant: $8\to2$ costs $0.72$ nats/node and \emph{improves}
+held-out by $+0.004$.
+
+\subsection*{Diagnosis of the local optimum}
+
+\begin{verbatim}
+python3 estimator4.py --data /tmp/cH --n-train 20000 --polish 15 --init-true 0.0 \
+        --boot 3 --boot-n 4000 --skip-v4
+python3 estimator4.py --data /tmp/cH --n-train 20000 --polish 40 --init-true 0.9 \
+        --boot 3 --boot-n 4000 --skip-v4
+python3 estimator4.py --data /tmp/cH --n-train 20000 --polish 60 --anneal 5 \
+        --boot 3 --boot-n 4000 --skip-v4
+python3 estimator4.py --data /tmp/cH --n-train 20000 --polish 60 --sib-ctx \
+        --boot 3 --boot-n 4000 --skip-v4
+python3 estimator4.py --data /tmp/cH --n-train 20000 --polish 300 --init-mix 0.9 \
+        --boot 3 --boot-n 4000 --skip-v4
+\end{verbatim}
+Truth is a fixed point ($-15.324$, unchanged over $15$ sweeps). Truth blended
+with $90\%$ uniform recovers ($-15.330$); with $99\%$ it does not ($-18.113$).
+Annealing at $T_0\in\{2,5,20\}$ all give $-17.632$. Sibling context is
+\emph{worse} ($-18.06$). Blending the init with uniform at $0.9$ gives
+$-15.865$.
+
+\subsection*{Split-merge}
+
+\begin{verbatim}
+python3 splitmerge.py --data /tmp/cH --n-train 20000 --warmup 40 --rounds 3 \
+        --split-sweeps 20 --post-sweeps 20 --save /tmp/cH/sm.npz
+
+python3 estimator4.py --data /tmp/cH --load-P /tmp/cH/sm.npz \
+        --n-train 20000 --boot 20 --boot-n 40000 --skip-v4
+\end{verbatim}
+Held-out $-15.3253$ against the true grammar's $-15.3243$, in $131$\,s.
+\texttt{local}/\texttt{higher} $=0.3322/1.5835$ against $0.3322/1.5833$.
+Verification of the recovered model: V3 matches the true column at every
+boundary, V6 flags $0$ of $18$ with largest $|z|=1.7$, V7 tracks at all three
+levels with $|z|\le1.6$.
+
+\subsection*{Obstruction and $\beta_1$ detectors}
+
+\begin{verbatim}
+python3 estimator4.py --data /tmp/cH --n-train 50000 --polish 30 \
+        --plant 7,8,0.3 --boot 20 --boot-n 40000 --skip-v4
+
+python3 betti.py --data /tmp/cH --load-P /tmp/cH/fit.npz --level 1 \
+        --n 40000 --boot 20 --null true --show-mi
+python3 betti.py --data /tmp/cH --load-P /tmp/cH/fit.npz --level 1 \
+        --n 40000 --boot 20 --null true --plant-block "0,7,0.5;3,4,0.5"
+python3 betti.py --data /tmp/cH --load-P /tmp/cH/fit.npz --level 1 \
+        --n 40000 --boot 20 --null fitted
+python3 betti.py --data /tmp/cH --load-P /tmp/cH/sm.npz --level 1 \
+        --n 40000 --boot 20 --null fitted
+\end{verbatim}
+Planted leaf copy: $z=+220$ at the planted boundary against $+6.5$ elsewhere;
+the true grammar is refuted there at $z=+390$. $\beta_1$ against a true-grammar
+null: $0$ of $25$ unplanted, $9$ of $25$ with two planted block couplings.
+Against a fitted null: $6$ of $25$ for the local-optimum fit, $0$ of $25$ for
+the split-merge fit.
+
+\paragraph{Note on settings.} \texttt{--boot} below about $10$ makes the
+bootstrap standard deviation unreliable and the control checks will fail
+spuriously; \texttt{--boot-n} below about $4\times10^4$ makes the Miller--Madow
+correction dominate the $64\times64$ block statistics. The small values above
+appear only in diagnostic runs where V6/V7 are not being read.
+
+\begin{thebibliography}{99}
+
+\bibitem{ab2011} S.~Abramsky and A.~Brandenburger.
+  The sheaf-theoretic structure of non-locality and contextuality.
+  \emph{New J. Phys.} 13:113036, 2011.
+
+\bibitem{amb2011} S.~Abramsky, S.~Mansfield, and R.~S.~Barbosa.
+  The cohomology of non-locality and contextuality.
+  \emph{EPTCS} 95:1--14, 2012.
+
+\bibitem{amari2016} S.~Amari. \emph{Information Geometry and Its
+  Applications}. Springer, 2016.
+
+\bibitem{baker1979} J.~K.~Baker. Trainable grammars for speech recognition.
+  \emph{Speech Communication Papers, 97th Meeting of the ASA}, 1979.
+
+\bibitem{banerjee2005} A.~Banerjee, S.~Merugu, I.~S.~Dhillon, and J.~Ghosh.
+  Clustering with Bregman divergences. \emph{JMLR} 6:1705--1749, 2005.
+
+\bibitem{bb2015} P.~Baudot and D.~Bennequin. The homological nature of entropy.
+  \emph{Entropy} 17(5):3253--3318, 2015.
+
+\bibitem{bregman1967} L.~M.~Bregman. The relaxation method of finding the
+  common point of convex sets. \emph{USSR Comput. Math. Math. Phys.}
+  7(3):200--217, 1967.
+
+\bibitem{buneman1971} P.~Buneman. The recovery of trees from measures of
+  dissimilarity. In \emph{Mathematics in the Archaeological and Historical
+  Sciences}, 387--395, 1971.
+
+\bibitem{cagnetta2024} F.~Cagnetta, L.~Petrini, U.~M.~Tomasini, A.~Favero, and
+  M.~Wyart. How deep neural networks learn compositional data: the Random
+  Hierarchy Model. \emph{Phys. Rev. X} 14:031001, 2024.
+
+\bibitem{choi2011} M.~J.~Choi, V.~Y.~F.~Tan, A.~Anandkumar, and A.~S.~Willsky.
+  Learning latent tree graphical models. \emph{JMLR} 12:1771--1812, 2011.
+
+\bibitem{chowliu1968} C.~K.~Chow and C.~N.~Liu. Approximating discrete
+  probability distributions with dependence trees. \emph{IEEE Trans. Inform.
+  Theory} 14(3):462--467, 1968.
+
+\bibitem{dlr1977} A.~P.~Dempster, N.~M.~Laird, and D.~B.~Rubin. Maximum
+  likelihood from incomplete data via the EM algorithm. \emph{JRSS B}
+  39(1):1--38, 1977.
+
+\bibitem{gauthier2014} R. Gauthier. Algebraic stochastic calculus.
+  \texttt{arXiv:1407.6784}, 2014.
+
+\bibitem{ilic2014} A. Ili\'c-Stepi\'c, Z. Ognjanovi\'c, and N. Ikodinovi\'c.
+  Conditional $p$-adic probability logic. \emph{Int. J. Approx. Reasoning}
+  55:1843--1865, 2014.
+
+\bibitem{kemeny1960} J.~G.~Kemeny and J.~L.~Snell. \emph{Finite Markov Chains}.
+  Van Nostrand, 1960.
+
+\bibitem{lari1990} K.~Lari and S.~J.~Young. The estimation of stochastic
+  context-free grammars using the inside--outside algorithm.
+  \emph{Computer Speech and Language} 4(1):35--56, 1990.
+
+\bibitem{miller1955} G.~A.~Miller. Note on the bias of information estimates.
+  In \emph{Information Theory in Psychology}, 95--100, 1955.
+
+\bibitem{ms1963} A.~Monna and T.~Springer. Int\'egration non-archim\'edienne.
+  \emph{Indag. Math.} 25:634--653, 1963.
+
+\bibitem{ostrowski1916} A.~Ostrowski. \"Uber einige L\"osungen der
+  Funktionalgleichung $\varphi(x)\varphi(y)=\varphi(xy)$.
+  \emph{Acta Math.} 41:271--284, 1916.
+
+\bibitem{petrov2006} S.~Petrov, L.~Barrett, R.~Thibaux, and D.~Klein. Learning
+  accurate, compact, and interpretable tree annotation. \emph{ACL}, 2006.
+
+\bibitem{qiu2024} X.~Qiu et al. Dissecting multiplication in transformers.
+  \texttt{arXiv:2407.15360}, 2024.
+
+\bibitem{rute2019} J. Rute. On the close interaction between algorithmic
+  randomness and constructive/computable measure theory.
+  \texttt{arXiv:1812.03375}, 2019.
+
+\bibitem{simpson2024} A.~Simpson. Equivalence and conditional independence in
+  atomic sheaf logic. \texttt{arXiv:2405.11073}, 2024.
+
+\bibitem{slonim1999} N.~Slonim and N.~Tishby. Agglomerative information
+  bottleneck. \emph{NIPS}, 1999.
+
+\bibitem{tucker1966} L.~R.~Tucker. Some mathematical notes on three-mode factor
+  analysis. \emph{Psychometrika} 31:279--311, 1966.
+
+\bibitem{vigneaux2019} J.~P.~Vigneaux. \emph{Topology of Statistical Systems: A
+  Cohomological Approach to Information Theory}. PhD thesis, Universit\'e Paris
+  Diderot, 2019.
+
+\bibitem{vorobev1962} N.~N.~Vorob'ev. Consistent families of measures and their
+  extensions. \emph{Theory Probab. Appl.} 7(2):147--163, 1962.
+
+\bibitem{wright2023} G.~Wright. An algebraic perspective on computing with
+  data. PhD thesis, 2023.
+
+\bibitem{wu1983} C.~F.~J.~Wu. On the convergence properties of the EM
+  algorithm. \emph{Ann. Statist.} 11(1):95--103, 1983.
+
+\end{thebibliography}
+
+\end{document}
