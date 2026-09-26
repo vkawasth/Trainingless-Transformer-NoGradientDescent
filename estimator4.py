@@ -56,7 +56,35 @@ ap.add_argument("--refit", type=int, default=0, help="EM sweeps after tying")
 ap.add_argument("--n-check", type=int, default=256)
 ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--chunk", type=int, default=4096)
-ap.add_argument("--save", default="")
+ap.add_argument("--save", default="", help="npz to write the fitted rule tables to")
+ap.add_argument("--load-P", default="", help="npz from --save: skip init+EM entirely")
+ap.add_argument("--sib-ctx", action="store_true",
+                help="cluster on the SIBLING (co-parent) context instead of "
+                     "linear adjacency. Two child pairs share a parent iff they "
+                     "are siblings; adjacency conflates siblings with "
+                     "non-siblings and is the wrong context for this grammar.")
+ap.add_argument("--rank", type=int, default=0,
+                help="SVD rank for the spectral embedding; 0 = choose from the "
+                     "spectrum (smallest k holding 90%% of the energy).")
+ap.add_argument("--init-mix", type=float, default=0.0, metavar="EPS",
+                help="blend the clustered init with uniform: "
+                     "P = (1-EPS)*clustered + EPS*uniform. The hard clustering "
+                     "assigns each observed child pair to exactly ONE parent, "
+                     "but real grammars share pairs across parents (4 of 16 at "
+                     "level 1 here), so a hard partition cannot represent the "
+                     "truth. The blend restores mass on the missing cells.")
+ap.add_argument("--anneal", type=float, default=0.0, metavar="T0",
+                help="deterministic annealing (Ueda-Nakano): run the E-step "
+                     "with rule tables raised to 1/T and renormalised, with T "
+                     "falling geometrically from T0 to 1 over the first half of "
+                     "the sweeps. T>1 flattens the tables, which is what lets a "
+                     "weak start leave a bad basin. 0 = off.")
+ap.add_argument("--init-true", type=float, default=-1.0, metavar="EPS",
+                help="DIAGNOSTIC: start EM at the TRUE grammar, perturbed by "
+                     "mixing weight EPS with uniform (0 = exact truth). If EM "
+                     "stays put, the truth is a fixed point and any worse "
+                     "solution is a local optimum; if it drifts away, the model "
+                     "class or corpus is not what we think it is.")
 ap.add_argument("--plant", default="", help="i,j,q: copy leaf i into leaf j w.p. q")
 ap.add_argument("--boot", type=int, default=20, help="bootstrap replicates for V6")
 ap.add_argument("--boot-n", type=int, default=40000, help="sequences per replicate")
@@ -183,7 +211,23 @@ def mstep(C, cls=None):
 t0 = time.time()
 soft = onehot(TR)
 P = {}
-for l in range(1, L+1):
+if a.init_true >= 0.0:
+    PT0 = {}
+    for _l in range(1, L+1):
+        _t = np.zeros((V, card(_l), card(_l)))
+        for _s, _r in M["rules_all"][str(_l)].items():
+            for (_x, _y) in _r: _t[int(_s), _x, _y] += 1.0 / len(_r)
+        PT0[_l] = _t
+    e = a.init_true
+    for _l in range(1, L+1):
+        c = card(_l)
+        P[_l] = (1 - e) * PT0[_l] + e * np.full((V, c, c), 1.0 / (c * c))
+    print(f"  INIT AT TRUTH, perturbation eps={e}: "
+          f"train loglik {loglik(TR, P):.5f}, held-out {loglik(VA, P):.5f}")
+if a.load_P:
+    _z = np.load(a.load_P); P = {l: _z[f"P{l}"] for l in range(1, L+1)}
+    print(f"  loaded fitted model from {a.load_P}; skipping init and EM")
+for l in ([] if (a.load_P or a.init_true >= 0.0) else range(1, L+1)):
     c = card(l)
     hard = soft.argmax(-1)
     lo, hi = hard[:, 0::2], hard[:, 1::2]
@@ -192,8 +236,14 @@ for l in range(1, L+1):
     ctx = collections.defaultdict(collections.Counter)
     for row in pid.tolist():
         for i, p_ in enumerate(row):
-            if i > 0: ctx[p_][row[i-1]] += 1
-            if i + 1 < len(row): ctx[p_][row[i+1]] += 1
+            if a.sib_ctx:
+                # the informative neighbour is the CO-PARENT: nodes 2k and 2k+1
+                # share a level-(l+1) parent, nodes 2k+1 and 2k+2 do not.
+                j = i ^ 1
+                if j < len(row): ctx[p_][row[j]] += 1
+            else:
+                if i > 0: ctx[p_][row[i-1]] += 1
+                if i + 1 < len(row): ctx[p_][row[i+1]] += 1
     cnt_all = collections.Counter(pid.reshape(-1).tolist())
     pairs = sorted(cnt_all); idx = {p_: i for i, p_ in enumerate(pairs)}
     use_ctx = nn_ >= 4 and len(ctx) >= 2
@@ -204,8 +254,16 @@ for l in range(1, L+1):
                 if q in idx: Cm[idx[p_], idx[q]] = n
         rs = Cm.sum(1, keepdims=True); rs[rs == 0] = 1
         U, S, _ = np.linalg.svd(Cm / rs, full_matrices=False)
-        k = max(2, min(V, min(Cm.shape) - 1))
+        if a.rank > 0:
+            k = max(2, min(a.rank, len(S)))
+        else:
+            # rank from the spectrum, not from the matrix shape: the old
+            # min(shape)-1 gave 13 dimensions for 14 points at V=8.
+            cum = np.cumsum(S) / max(S.sum(), 1e-300)
+            k = int(np.searchsorted(cum, 0.90) + 1)
+            k = max(2, min(k, len(S)))
         emb = U[:, :k] * S[:k]
+        kk = k
     else:
         emb = np.zeros((len(pairs), 2 * c))
         for p_ in pairs:
@@ -222,8 +280,11 @@ for l in range(1, L+1):
     for p_ in pairs: tab[lab[idx[p_]] % V, p_ // c, p_ % c] += cnt_all[p_]
     tab += 1e-6
     P[l] = tab / tab.sum((1, 2), keepdims=True)
+    if a.init_mix > 0:
+        P[l] = (1 - a.init_mix) * P[l] + a.init_mix / (c * c)
     print(f"    init level {l}: {len(pairs)} distinct pairs "
-          f"[{'context' if use_ctx else 'child-identity'}]")
+          f"[{('sibling-context' if a.sib_ctx else 'adjacency-context') if use_ctx else 'child-identity'}"
+          f"{f', rank {kk}' if use_ctx else ''}]")
     soft = up(P[l], soft[:, 0::2], soft[:, 1::2])
     soft = soft / np.maximum(soft.sum(-1, keepdims=True), 1e-300)
 
@@ -252,8 +313,9 @@ EMP_TRACK = {pq: emp_mi_mm(TRALL, *pq) for pq in TRACK}
 # ============================================================ V0: EM ascent
 print("\n  V0  EM ASCENT (train loglik must never decrease)")
 hist = []
+if a.load_P: print("    (skipped: model loaded)")
 best_P, best_va, best_it = {l: P[l].copy() for l in P}, loglik(VA, P), 0
-for it in range(a.polish):
+for it in ([] if a.load_P else range(a.polish)):
     C, ll_tr = estep(TR, P)
     P = mstep(C)
     hist.append(ll_tr)
@@ -264,17 +326,21 @@ for it in range(a.polish):
                          for pq in TRACK)
         print(f"    sweep {it+1:3d}: train {ll_tr:.5f}   held-out {loglik(VA, P):.5f}"
               f"   data-model MI gap  {gaps}")
+if not a.load_P:
+    C, ll_final = estep(TR, P)
+    hist.append(ll_final)
+    P = best_P                                   # as estimator2: best held-out sweep
+    print(f"    keeping sweep {best_it} (best held-out {best_va:.5f}), as estimator2 does")
 C, ll_final = estep(TR, P)
-hist.append(ll_final)
-d = np.diff(hist)
-P = best_P                                       # as estimator2: best held-out sweep
-C, ll_final = estep(TR, P)
-print(f"    keeping sweep {best_it} (best held-out {best_va:.5f}), as estimator2 does")
+d = np.diff(hist) if len(hist) > 1 else np.array([0.0])
 worst = float(d.min()) if len(d) else 0.0
-verdict["V0 EM ascent"] = worst > -1e-8
-print(f"    smallest step {worst:+.2e}  over {len(d)} sweeps  "
-      f"-> {'PASS' if verdict['V0 EM ascent'] else 'FAIL'}")
+if not a.load_P: verdict["V0 EM ascent"] = worst > -1e-8
+if not a.load_P:
+    print(f"    smallest step {worst:+.2e}  over {len(d)} sweeps  "
+          f"-> {'PASS' if verdict['V0 EM ascent'] else 'FAIL'}")
 t_fit = time.time() - t0
+if a.save and not a.load_P:
+    np.savez(a.save, **{f"P{l}": P[l] for l in P}); print(f"    saved {a.save}")
 
 # ============================================================ scoring
 def score(P, X):
