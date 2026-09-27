@@ -118,3 +118,16 @@ def single_source(model_or_law, scenario: Scenario, n: int, rng: np.random.Gener
     X = scenario.measurements
     counts = rng.multinomial(n, p / p.sum()).astype(float)
     return EmpiricalModel(scenario, {C: scenario.restriction_matrix(X, C) @ counts for C in scenario.contexts})
+
+
+def operation_system_model(graph, g, n: int) -> EmpiricalModel:
+    """Layer 1 -> Layer 3 construction.  Measurements are vertex colours c_v ∈ Z/n,
+    contexts are edges {a, b}, and e_{ab} is uniform on {(x, x + g_ab)}.
+    A global section is exactly a global field, so the model is strongly
+    contextual iff [g] ≠ 0.  Every context has I(c_a; c_b) = log n whatever g
+    is, so the Layer 2 invariant carries no trace of the class."""
+    outs = {f"c{v}": tuple(range(n)) for v in range(graph.n_vertices)}
+    ctx = tuple((f"c{a}", f"c{b}") for a, b in graph.edges)
+    gk = {C: int(v) % n for C, v in zip(ctx, g)}
+    sc = Scenario(outs, ctx)
+    return EmpiricalModel.from_function(sc, lambda C, s: 1.0 if (s[1] - s[0]) % n == gk[C] else 0.0)
