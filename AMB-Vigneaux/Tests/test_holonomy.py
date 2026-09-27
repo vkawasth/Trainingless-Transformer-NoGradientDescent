@@ -106,3 +106,28 @@ def test_chernoff_bound_holds():
         err = np.mean([np.any(ROOM.holonomy(estimate_edges(observe_edges(
             _flat(ROOM, rng, 5), m, 5, 0.7, rng), 5).g, 5) != 0) for _ in range(1500)])
         assert err <= chernoff_class_error(ROOM, 5, 0.7, m)
+
+
+def test_operation_system_model_layer1_to_layer3():
+    """[g] ≠ 0  ⇔  strongly contextual  ⇔  γ ≠ 0 (over Z, Z/n, Q and Z/2 alike),
+    while I(c_a; c_b) = log n on every edge for flat and non-flat g."""
+    from amb_vigneaux.models import operation_system_model
+    from amb_vigneaux.outcome import analyse_outcomes, cohomological_obstruction
+    from amb_vigneaux.information import context_joint, mutual_information
+    rng = np.random.default_rng(7)
+    n = 5
+    for trial in range(8):
+        g = _flat(ROOM, rng, n)
+        if trial % 2:
+            g = g.copy(); g[ROOM.cotree[0]] = (g[ROOM.cotree[0]] + 1 + trial % (n - 1)) % n
+        nonflat = bool(np.any(ROOM.holonomy(g, n) != 0))
+        m = operation_system_model(ROOM, g, n)
+        r = analyse_outcomes(m)
+        assert r.strongly_contextual == nonflat
+        sc, S = m.scenario, m.support()
+        for ring in ("Z", n, "Q", 2):
+            obstructed = [not cohomological_obstruction(sc, S, sc.contexts[0], s, ring).obstruction_vanishes
+                          for s in S[sc.contexts[0]]]
+            assert all(obstructed) == nonflat and any(obstructed) == nonflat
+        for C in sc.contexts:
+            assert mutual_information(context_joint(m, C), (C[0],), (C[1],)) == pytest.approx(np.log2(n))
