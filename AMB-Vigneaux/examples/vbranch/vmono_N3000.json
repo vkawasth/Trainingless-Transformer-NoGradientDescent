@@ -1,0 +1,262 @@
+{
+ "eps=0.1,null": {
+  "pooled": {
+   "detect": 0.0,
+   "active": 8.0,
+   "moved": 0.0,
+   "trace_per_label": 0.5817522402549037,
+   "second_modulus": 0.5725198875094428
+  },
+  "even k": {
+   "detect": 0.0,
+   "active": 8.0,
+   "moved": 0.0,
+   "trace_per_label": 0.5568944946904116,
+   "second_modulus": 0.6121090168687541
+  },
+  "odd k": {
+   "detect": 0.0,
+   "active": 7.0,
+   "moved": 0.0,
+   "trace_per_label": 0.5879074245835205,
+   "second_modulus": 0.6021645440190282
+  },
+  "k=0": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.7377264490149225,
+   "second_modulus": 0.6537392632255816
+  },
+  "k=1": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.73944322365893,
+   "second_modulus": 0.6528519910709916
+  },
+  "k=2": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.7213419490045764,
+   "second_modulus": 0.6539113656136462
+  },
+  "k=3": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.7397379494514584,
+   "second_modulus": 0.6528721843913734
+  },
+  "k=4": {
+   "detect": 0.0,
+   "active": 5.0,
+   "moved": 0.0,
+   "trace_per_label": 0.6615454921520436,
+   "second_modulus": 0.6212592291293328
+  },
+  "k=5": {
+   "detect": 0.0,
+   "active": 5.0,
+   "moved": 0.0,
+   "trace_per_label": 0.6625030618726688,
+   "second_modulus": 0.6230273392711603
+  }
+ },
+ "eps=0.1,twist": {
+  "pooled": {
+   "detect": 0.85,
+   "active": 8.0,
+   "moved": 3.65,
+   "trace_per_label": 0.3506794734298183,
+   "second_modulus": 0.4248627569067212
+  },
+  "even k": {
+   "detect": 0.0,
+   "active": 8.0,
+   "moved": 0.0,
+   "trace_per_label": 0.5582686951370925,
+   "second_modulus": 0.6130549116303927
+  },
+  "odd k": {
+   "detect": 1.0,
+   "active": 7.0,
+   "moved": 7.0,
+   "trace_per_label": 0.07821118697264147,
+   "second_modulus": 0.4026710984793304
+  },
+  "k=0": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.7400397625948226,
+   "second_modulus": 0.6540523772341607
+  },
+  "k=1": {
+   "detect": 1.0,
+   "active": 3.0,
+   "moved": 3.0,
+   "trace_per_label": 0.2543716343079171,
+   "second_modulus": 0.21226495160188463
+  },
+  "k=2": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.7224650245611396,
+   "second_modulus": 0.6549237207494362
+  },
+  "k=3": {
+   "detect": 1.0,
+   "active": 3.0,
+   "moved": 3.0,
+   "trace_per_label": 0.2489055039499163,
+   "second_modulus": 0.22029500818480008
+  },
+  "k=4": {
+   "detect": 0.0,
+   "active": 5.0,
+   "moved": 0.0,
+   "trace_per_label": 0.6612192392755578,
+   "second_modulus": 0.6205469806214305
+  },
+  "k=5": {
+   "detect": 1.0,
+   "active": 5.0,
+   "moved": 5.0,
+   "trace_per_label": 0.12724382202966203,
+   "second_modulus": 0.3216730473582187
+  }
+ },
+ "eps=0.3,null": {
+  "pooled": {
+   "detect": 0.0,
+   "active": 8.0,
+   "moved": 0.0,
+   "trace_per_label": 0.2248726235719587,
+   "second_modulus": 0.14794818073836052
+  },
+  "even k": {
+   "detect": 0.0,
+   "active": 8.0,
+   "moved": 0.0,
+   "trace_per_label": 0.21421948226079418,
+   "second_modulus": 0.18447966825718434
+  },
+  "odd k": {
+   "detect": 0.0,
+   "active": 6.9,
+   "moved": 0.0,
+   "trace_per_label": 0.24237645707399644,
+   "second_modulus": 0.1759668256960923
+  },
+  "k=0": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.41121881390284265,
+   "second_modulus": 0.23032845365153296
+  },
+  "k=1": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.41381343376895874,
+   "second_modulus": 0.22941201507067915
+  },
+  "k=2": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.3975504241670517,
+   "second_modulus": 0.22937564122351467
+  },
+  "k=3": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.41524735196554785,
+   "second_modulus": 0.2274158398184445
+  },
+  "k=4": {
+   "detect": 0.0,
+   "active": 5.0,
+   "moved": 0.0,
+   "trace_per_label": 0.3066442688315325,
+   "second_modulus": 0.1910299520371005
+  },
+  "k=5": {
+   "detect": 0.0,
+   "active": 5.0,
+   "moved": 0.0,
+   "trace_per_label": 0.3075515478469727,
+   "second_modulus": 0.19102434411404978
+  }
+ },
+ "eps=0.3,twist": {
+  "pooled": {
+   "detect": 1.0,
+   "active": 8.0,
+   "moved": 4.375,
+   "trace_per_label": 0.1728033234462975,
+   "second_modulus": 0.10086411426465476
+  },
+  "even k": {
+   "detect": 0.0,
+   "active": 8.0,
+   "moved": 0.0,
+   "trace_per_label": 0.21448697138000342,
+   "second_modulus": 0.184218945330215
+  },
+  "odd k": {
+   "detect": 1.0,
+   "active": 6.975,
+   "moved": 6.975,
+   "trace_per_label": 0.1219754505682554,
+   "second_modulus": 0.09313801965084574
+  },
+  "k=0": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.41247522866562497,
+   "second_modulus": 0.22982450356750275
+  },
+  "k=1": {
+   "detect": 1.0,
+   "active": 3.0,
+   "moved": 3.0,
+   "trace_per_label": 0.24970068391696804,
+   "second_modulus": 0.068076029723076
+  },
+  "k=2": {
+   "detect": 0.0,
+   "active": 3.0,
+   "moved": 0.0,
+   "trace_per_label": 0.3984708665173501,
+   "second_modulus": 0.22729799226973252
+  },
+  "k=3": {
+   "detect": 1.0,
+   "active": 3.0,
+   "moved": 3.0,
+   "trace_per_label": 0.24680606921454737,
+   "second_modulus": 0.07318650063970349
+  },
+  "k=4": {
+   "detect": 0.0,
+   "active": 5.0,
+   "moved": 0.0,
+   "trace_per_label": 0.30803207055671206,
+   "second_modulus": 0.19133008514921215
+  },
+  "k=5": {
+   "detect": 1.0,
+   "active": 5.0,
+   "moved": 5.0,
+   "trace_per_label": 0.15871445845408666,
+   "second_modulus": 0.08773903564225502
+  }
+ }
+}

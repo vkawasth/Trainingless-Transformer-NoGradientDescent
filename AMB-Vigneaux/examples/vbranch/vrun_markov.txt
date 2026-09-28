@@ -1,0 +1,5 @@
+truth -30.872 | unigram -189.226 | bigram -151.918 | head+chain from gold trees -82.556  [27s]
+  EM from gold, sweep 1: train -84.195  val -82.273  [162s]
+  EM from gold, sweep 2: train -83.860  val -82.225  [253s]
+  EM from gold, sweep 3: train -83.785  val -82.188  [345s]
+  EM seed 0, sweep 1: train -208.485  [425s]
