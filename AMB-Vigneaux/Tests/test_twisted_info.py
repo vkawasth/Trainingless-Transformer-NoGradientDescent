@@ -59,3 +59,33 @@ def test_pointwise_soft_signal_near_stratum():
         sv = pointwise_cocycles(4, 3, g, "graph+eps", eps=3e-4, samples=12, spectrum=True)
         assert _exact(sv) == 1
         assert int(((sv >= 1e-7) & (sv < 20 * 3e-4)).sum()) == orbits
+
+
+def test_tsallis_derivative_at_one_is_second_moment_of_surprisal():
+    rng = np.random.default_rng(1)
+    for _ in range(5):
+        p = rng.dirichlet(np.ones(5)); h = 1e-3
+        S = lambda a: (1 - (p ** a).sum()) / (a - 1)
+        d = (S(1 + h) - S(1 - h)) / (2 * h)
+        assert abs(d - (-0.5 * (p * np.log(p) ** 2).sum())) < 1e-5
+
+
+def test_escort_monoid():
+    p = np.random.default_rng(2).dirichlet(np.ones(6))
+    E = lambda a, q: q ** a / (q ** a).sum()
+    assert np.allclose(E(1.7, E(0.6, p)), E(1.7 * 0.6, p))
+
+
+def test_loop_complex_and_comparison_map():
+    """V0 = free R[Z/n]-module of rank r; h = shift.  ker(h-1) = coker(h-1) (loop complex, Euler char 0);
+    the non-admissible part coker(V0^h -> V0) = im(h-1) has dim dim V0 (1 - 1/ord h)."""
+    from math import gcd
+    n, r = 6, 3
+    for hh in range(n):
+        S = np.roll(np.eye(n), hh, axis=1)
+        H = np.kron(np.eye(r), S)
+        rk = np.linalg.matrix_rank(H - np.eye(n * r))
+        ker, coker, im = n * r - rk, n * r - rk, rk
+        order = n // gcd(n, hh) if hh else 1
+        assert ker == coker == (n * r) // order
+        assert im * order == n * r * (order - 1)
