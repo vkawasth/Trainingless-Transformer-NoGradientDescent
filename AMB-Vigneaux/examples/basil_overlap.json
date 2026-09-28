@@ -1,0 +1,58 @@
+{
+ "A: article-level author feeling": {
+  "n_props": 150,
+  "n_claims": 208,
+  "eps_hat": null,
+  "shared": {
+   "fox-nyt": 26,
+   "fox-hpo": 17,
+   "nyt-hpo": 27
+  },
+  "disagreements": {
+   "fox-nyt": 12,
+   "fox-hpo": 6,
+   "nyt-hpo": 1
+  },
+  "rate": {
+   "fox-nyt": 0.462,
+   "fox-hpo": 0.353,
+   "nyt-hpo": 0.037
+  },
+  "separation": 0.37,
+  "perm_p": 0.002,
+  "stance_of_disagreeing_pairs": {
+   "different stance": 19
+  }
+ },
+ "B: phrase-level biased spans": {
+  "n_props": 217,
+  "n_claims": 1693,
+  "eps_hat": 0.11350185253392656,
+  "shared": {
+   "fox-nyt": 112,
+   "fox-hpo": 115,
+   "nyt-hpo": 113
+  },
+  "disagreements": {
+   "fox-nyt": 11,
+   "fox-hpo": 9,
+   "nyt-hpo": 7
+  },
+  "rate": {
+   "fox-nyt": 0.098,
+   "fox-hpo": 0.078,
+   "nyt-hpo": 0.062
+  },
+  "separation": 0.026,
+  "perm_p": 0.2118,
+  "stance_of_disagreeing_pairs": {
+   "different stance": 26,
+   "same stance": 1
+  }
+ },
+ "baseline_pairs": {
+  "different stance": 240,
+  "same stance": 51
+ },
+ "n_events": 97
+}

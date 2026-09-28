@@ -1,0 +1,566 @@
+{
+ "pooled": {
+  "real": 4,
+  "null_mean": 0.0,
+  "null_max": 0,
+  "planted": 4,
+  "real_unexplained": [],
+  "planted_unexplained": [],
+  "real_detail": [
+   [
+    "newsgroup",
+    "answers",
+    "WP",
+    "WDT",
+    0.603,
+    0.392
+   ],
+   [
+    "newsgroup",
+    "email",
+    "WP",
+    "WDT",
+    0.63,
+    0.365
+   ],
+   [
+    "reviews",
+    "answers",
+    "SYM",
+    "NFP",
+    0.395,
+    0.263
+   ],
+   [
+    "weblog",
+    "email",
+    "WP",
+    "WDT",
+    0.561,
+    0.434
+   ]
+  ],
+  "planted_detail": [
+   [
+    "newsgroup",
+    "answers",
+    "WP",
+    "WDT",
+    0.603,
+    0.392
+   ],
+   [
+    "newsgroup",
+    "email",
+    "WP",
+    "WDT",
+    0.63,
+    0.365
+   ],
+   [
+    "reviews",
+    "answers",
+    "SYM",
+    "NFP",
+    0.395,
+    0.263
+   ],
+   [
+    "weblog",
+    "email",
+    "WP",
+    "WDT",
+    0.561,
+    0.434
+   ]
+  ]
+ },
+ "k even": {
+  "real": 6,
+  "null_mean": 0.0,
+  "null_max": 0,
+  "planted": 6,
+  "real_unexplained": [],
+  "planted_unexplained": [],
+  "real_detail": [
+   [
+    "newsgroup",
+    "answers",
+    "WP",
+    "WDT",
+    0.681,
+    0.313
+   ],
+   [
+    "newsgroup",
+    "email",
+    "WP",
+    "WDT",
+    0.672,
+    0.322
+   ],
+   [
+    "newsgroup",
+    "reviews",
+    "WP",
+    "WDT",
+    0.606,
+    0.387
+   ],
+   [
+    "reviews",
+    "answers",
+    "SYM",
+    "NFP",
+    0.412,
+    0.303
+   ],
+   [
+    "weblog",
+    "answers",
+    "WP",
+    "WDT",
+    0.599,
+    0.401
+   ],
+   [
+    "weblog",
+    "email",
+    "WP",
+    "WDT",
+    0.591,
+    0.409
+   ]
+  ],
+  "planted_detail": [
+   [
+    "newsgroup",
+    "answers",
+    "WP",
+    "WDT",
+    0.681,
+    0.313
+   ],
+   [
+    "newsgroup",
+    "email",
+    "WP",
+    "WDT",
+    0.672,
+    0.322
+   ],
+   [
+    "newsgroup",
+    "reviews",
+    "WP",
+    "WDT",
+    0.606,
+    0.387
+   ],
+   [
+    "reviews",
+    "answers",
+    "SYM",
+    "NFP",
+    0.412,
+    0.303
+   ],
+   [
+    "weblog",
+    "answers",
+    "WP",
+    "WDT",
+    0.599,
+    0.401
+   ],
+   [
+    "weblog",
+    "email",
+    "WP",
+    "WDT",
+    0.591,
+    0.409
+   ]
+  ]
+ },
+ "k odd": {
+  "real": 0,
+  "null_mean": 0.0,
+  "null_max": 0,
+  "planted": 4,
+  "real_unexplained": [],
+  "planted_unexplained": [
+   [
+    "email",
+    "answers",
+    "NNP",
+    "NN",
+    0.657,
+    0.341
+   ],
+   [
+    "email",
+    "newsgroup",
+    "NNP",
+    "NN",
+    0.658,
+    0.341
+   ],
+   [
+    "email",
+    "reviews",
+    "NNP",
+    "NN",
+    0.658,
+    0.339
+   ],
+   [
+    "email",
+    "weblog",
+    "NNP",
+    "NN",
+    0.656,
+    0.339
+   ]
+  ],
+  "real_detail": [],
+  "planted_detail": [
+   [
+    "email",
+    "answers",
+    "NNP",
+    "NN",
+    0.657,
+    0.341
+   ],
+   [
+    "email",
+    "newsgroup",
+    "NNP",
+    "NN",
+    0.658,
+    0.341
+   ],
+   [
+    "email",
+    "reviews",
+    "NNP",
+    "NN",
+    0.658,
+    0.339
+   ],
+   [
+    "email",
+    "weblog",
+    "NNP",
+    "NN",
+    0.656,
+    0.339
+   ]
+  ]
+ },
+ "k=0": {
+  "real": 7,
+  "null_mean": 0.1,
+  "null_max": 1,
+  "planted": 7,
+  "real_unexplained": [
+   [
+    "weblog",
+    "reviews",
+    "WP",
+    "WDT",
+    0.57,
+    0.43
+   ]
+  ],
+  "planted_unexplained": [
+   [
+    "weblog",
+    "reviews",
+    "WP",
+    "WDT",
+    0.57,
+    0.43
+   ]
+  ],
+  "real_detail": [
+   [
+    "newsgroup",
+    "answers",
+    "WP",
+    "WDT",
+    0.71,
+    0.283
+   ],
+   [
+    "newsgroup",
+    "email",
+    "WP",
+    "WDT",
+    0.703,
+    0.291
+   ],
+   [
+    "newsgroup",
+    "reviews",
+    "WP",
+    "WDT",
+    0.633,
+    0.36
+   ],
+   [
+    "reviews",
+    "answers",
+    "SYM",
+    "NFP",
+    0.421,
+    0.317
+   ],
+   [
+    "weblog",
+    "answers",
+    "WP",
+    "WDT",
+    0.629,
+    0.371
+   ],
+   [
+    "weblog",
+    "email",
+    "WP",
+    "WDT",
+    0.621,
+    0.379
+   ],
+   [
+    "weblog",
+    "reviews",
+    "WP",
+    "WDT",
+    0.57,
+    0.43
+   ]
+  ],
+  "planted_detail": [
+   [
+    "newsgroup",
+    "answers",
+    "WP",
+    "WDT",
+    0.71,
+    0.283
+   ],
+   [
+    "newsgroup",
+    "email",
+    "WP",
+    "WDT",
+    0.703,
+    0.291
+   ],
+   [
+    "newsgroup",
+    "reviews",
+    "WP",
+    "WDT",
+    0.633,
+    0.36
+   ],
+   [
+    "reviews",
+    "answers",
+    "SYM",
+    "NFP",
+    0.421,
+    0.317
+   ],
+   [
+    "weblog",
+    "answers",
+    "WP",
+    "WDT",
+    0.629,
+    0.371
+   ],
+   [
+    "weblog",
+    "email",
+    "WP",
+    "WDT",
+    0.621,
+    0.379
+   ],
+   [
+    "weblog",
+    "reviews",
+    "WP",
+    "WDT",
+    0.57,
+    0.43
+   ]
+  ]
+ },
+ "k=1": {
+  "real": 0,
+  "null_mean": 0.0,
+  "null_max": 0,
+  "planted": 4,
+  "real_unexplained": [],
+  "planted_unexplained": [
+   [
+    "email",
+    "answers",
+    "NNP",
+    "NN",
+    0.669,
+    0.329
+   ],
+   [
+    "email",
+    "newsgroup",
+    "NNP",
+    "NN",
+    0.669,
+    0.329
+   ],
+   [
+    "email",
+    "reviews",
+    "NNP",
+    "NN",
+    0.67,
+    0.328
+   ],
+   [
+    "email",
+    "weblog",
+    "NNP",
+    "NN",
+    0.667,
+    0.328
+   ]
+  ],
+  "real_detail": [],
+  "planted_detail": [
+   [
+    "email",
+    "answers",
+    "NNP",
+    "NN",
+    0.669,
+    0.329
+   ],
+   [
+    "email",
+    "newsgroup",
+    "NNP",
+    "NN",
+    0.669,
+    0.329
+   ],
+   [
+    "email",
+    "reviews",
+    "NNP",
+    "NN",
+    0.67,
+    0.328
+   ],
+   [
+    "email",
+    "weblog",
+    "NNP",
+    "NN",
+    0.667,
+    0.328
+   ]
+  ]
+ },
+ "k=2": {
+  "real": 0,
+  "null_mean": 0.0,
+  "null_max": 0,
+  "planted": 0,
+  "real_unexplained": [],
+  "planted_unexplained": [],
+  "real_detail": [],
+  "planted_detail": []
+ },
+ "k>=3": {
+  "real": 0,
+  "null_mean": 0.0,
+  "null_max": 0,
+  "planted": 4,
+  "real_unexplained": [],
+  "planted_unexplained": [
+   [
+    "answers",
+    "email",
+    "NN",
+    "NNP",
+    0.755,
+    0.238
+   ],
+   [
+    "newsgroup",
+    "email",
+    "NN",
+    "NNP",
+    0.75,
+    0.236
+   ],
+   [
+    "reviews",
+    "email",
+    "NN",
+    "NNP",
+    0.741,
+    0.23
+   ],
+   [
+    "weblog",
+    "email",
+    "NN",
+    "NNP",
+    0.766,
+    0.234
+   ]
+  ],
+  "real_detail": [],
+  "planted_detail": [
+   [
+    "answers",
+    "email",
+    "NN",
+    "NNP",
+    0.755,
+    0.238
+   ],
+   [
+    "newsgroup",
+    "email",
+    "NN",
+    "NNP",
+    0.75,
+    0.236
+   ],
+   [
+    "reviews",
+    "email",
+    "NN",
+    "NNP",
+    0.741,
+    0.23
+   ],
+   [
+    "weblog",
+    "email",
+    "NN",
+    "NNP",
+    0.766,
+    0.234
+   ]
+  ]
+ }
+}

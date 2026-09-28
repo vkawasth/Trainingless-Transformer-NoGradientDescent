@@ -1,0 +1,59 @@
+{
+ "n_events": 100,
+ "claims": {
+  "fox:said": 533,
+  "fox:cause": 57,
+  "hpo:said": 472,
+  "hpo:cause": 35,
+  "nyt:said": 662,
+  "nyt:cause": 57
+ },
+ "conflicts": {
+  "speaker": 1
+ },
+ "overlap": {
+  "said_shared": 43,
+  "said_total": 1605,
+  "cause_shared": 3,
+  "cause_total": 146
+ },
+ "flagged": [
+  {
+   "event": "2f3e86b6-8443-47bd-9cd3-491c90a59fe9",
+   "kind": "speaker",
+   "sources": [
+    "nyt",
+    "fox"
+   ],
+   "claims": [
+    {
+     "source": "nyt",
+     "kind": "said",
+     "a": "representative zoe lofgren",
+     "b": [
+      "american",
+      "grab",
+      "people",
+      "power"
+     ],
+     "polarity": true,
+     "sentence": "\u201cIt\u2019s a power grab for the American people,\u201d said Representative Zoe Lofgren of California, who leads the House administration committee that shepherded the legislation."
+    },
+    {
+     "source": "fox",
+     "kind": "said",
+     "a": "pelosi",
+     "b": [
+      "behalf",
+      "grab",
+      "people",
+      "power",
+      "yes"
+     ],
+     "polarity": true,
+     "sentence": "Trying to turn Republicans' words against them, Pelosi said, \"Yes it is a power grab -- a power grab on behalf of the people.\""
+    }
+   ]
+  }
+ ]
+}

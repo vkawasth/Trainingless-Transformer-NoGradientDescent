@@ -1,0 +1,317 @@
+{
+ "m=1,eps=0.0,pooled,honest": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.0,
+  "bad_involved": 0.0
+ },
+ "m=1,eps=0.0,pooled,self": {
+  "n": 200,
+  "self": 1.0,
+  "overlap": 0.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 1.0,
+  "bad_involved": 1.0
+ },
+ "m=1,eps=0.0,pooled,overlap": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 1.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 1.0,
+  "bad_involved": 1.0
+ },
+ "m=1,eps=0.0,pooled,cross": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 1.0,
+  "blamed_right": 1.0,
+  "any_fire": 1.0,
+  "bad_involved": 1.0
+ },
+ "m=1,eps=0.0,pooled,fabrication": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.0,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.1,worst,honest": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.0,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.1,worst,self": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.005,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.005,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.1,worst,overlap": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.745,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.745,
+  "bad_involved": 0.745
+ },
+ "m=5,eps=0.1,worst,cross": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.01,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.01,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.1,worst,fabrication": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.005,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.005,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.1,pooled,honest": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.01,
+  "blamed_right": 0.0,
+  "any_fire": 0.01,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.1,pooled,self": {
+  "n": 200,
+  "self": 0.78,
+  "overlap": 0.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.78,
+  "bad_involved": 0.78
+ },
+ "m=5,eps=0.1,pooled,overlap": {
+  "n": 200,
+  "self": 0.005,
+  "overlap": 0.86,
+  "cross": 0.035,
+  "blamed_right": 0.0,
+  "any_fire": 0.89,
+  "bad_involved": 0.89
+ },
+ "m=5,eps=0.1,pooled,cross": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.01,
+  "cross": 0.84,
+  "blamed_right": 0.84,
+  "any_fire": 0.84,
+  "bad_involved": 0.84
+ },
+ "m=5,eps=0.1,pooled,fabrication": {
+  "n": 200,
+  "self": 0.005,
+  "overlap": 0.0,
+  "cross": 0.005,
+  "blamed_right": 0.0,
+  "any_fire": 0.005,
+  "bad_involved": 0.0
+ },
+ "m=3,eps=0.1,pooled,honest": {
+  "n": 200,
+  "self": 0.01,
+  "overlap": 0.03,
+  "cross": 0.01,
+  "blamed_right": 0.0,
+  "any_fire": 0.04,
+  "bad_involved": 0.0
+ },
+ "m=3,eps=0.1,pooled,self": {
+  "n": 200,
+  "self": 0.37,
+  "overlap": 0.015,
+  "cross": 0.005,
+  "blamed_right": 0.0,
+  "any_fire": 0.39,
+  "bad_involved": 0.37
+ },
+ "m=3,eps=0.1,pooled,overlap": {
+  "n": 200,
+  "self": 0.01,
+  "overlap": 0.615,
+  "cross": 0.035,
+  "blamed_right": 0.0,
+  "any_fire": 0.645,
+  "bad_involved": 0.64
+ },
+ "m=3,eps=0.1,pooled,cross": {
+  "n": 200,
+  "self": 0.005,
+  "overlap": 0.01,
+  "cross": 0.55,
+  "blamed_right": 0.545,
+  "any_fire": 0.56,
+  "bad_involved": 0.545
+ },
+ "m=3,eps=0.1,pooled,fabrication": {
+  "n": 200,
+  "self": 0.005,
+  "overlap": 0.02,
+  "cross": 0.015,
+  "blamed_right": 0.0,
+  "any_fire": 0.035,
+  "bad_involved": 0.0
+ },
+ "m=15,eps=0.2,worst,honest": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.005,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.005,
+  "bad_involved": 0.0
+ },
+ "m=15,eps=0.2,worst,self": {
+  "n": 200,
+  "self": 0.565,
+  "overlap": 0.01,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.57,
+  "bad_involved": 0.565
+ },
+ "m=15,eps=0.2,worst,overlap": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.82,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.82,
+  "bad_involved": 0.82
+ },
+ "m=15,eps=0.2,worst,cross": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.6,
+  "blamed_right": 0.6,
+  "any_fire": 0.6,
+  "bad_involved": 0.6
+ },
+ "m=15,eps=0.2,worst,fabrication": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.005,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.005,
+  "bad_involved": 0.0
+ },
+ "m=15,eps=0.2,pooled,honest": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.01,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.01,
+  "bad_involved": 0.0
+ },
+ "m=15,eps=0.2,pooled,self": {
+  "n": 200,
+  "self": 0.955,
+  "overlap": 0.005,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.955,
+  "bad_involved": 0.955
+ },
+ "m=15,eps=0.2,pooled,overlap": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.985,
+  "cross": 0.01,
+  "blamed_right": 0.0,
+  "any_fire": 0.995,
+  "bad_involved": 0.995
+ },
+ "m=15,eps=0.2,pooled,cross": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.935,
+  "blamed_right": 0.935,
+  "any_fire": 0.935,
+  "bad_involved": 0.935
+ },
+ "m=15,eps=0.2,pooled,fabrication": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.0,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.0,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.2,pooled,honest": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.03,
+  "cross": 0.01,
+  "blamed_right": 0.0,
+  "any_fire": 0.04,
+  "bad_involved": 0.0
+ },
+ "m=5,eps=0.2,pooled,self": {
+  "n": 200,
+  "self": 0.21,
+  "overlap": 0.03,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.235,
+  "bad_involved": 0.21
+ },
+ "m=5,eps=0.2,pooled,overlap": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.555,
+  "cross": 0.02,
+  "blamed_right": 0.0,
+  "any_fire": 0.575,
+  "bad_involved": 0.565
+ },
+ "m=5,eps=0.2,pooled,cross": {
+  "n": 200,
+  "self": 0.0,
+  "overlap": 0.045,
+  "cross": 0.19,
+  "blamed_right": 0.19,
+  "any_fire": 0.23,
+  "bad_involved": 0.19
+ },
+ "m=5,eps=0.2,pooled,fabrication": {
+  "n": 200,
+  "self": 0.005,
+  "overlap": 0.03,
+  "cross": 0.0,
+  "blamed_right": 0.0,
+  "any_fire": 0.035,
+  "bad_involved": 0.005
+ }
+}

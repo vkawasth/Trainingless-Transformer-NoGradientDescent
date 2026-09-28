@@ -1,0 +1,35 @@
+m= 1 eps=0.0 pooled       honest: fire 0.00 | self 0.00 overlap 0.00 cross 0.00 | bad unit implicated 0.00
+m= 1 eps=0.0 pooled         self: fire 1.00 | self 1.00 overlap 0.00 cross 0.00 | bad unit implicated 1.00
+m= 1 eps=0.0 pooled      overlap: fire 1.00 | self 0.00 overlap 1.00 cross 0.00 | bad unit implicated 1.00
+m= 1 eps=0.0 pooled        cross: fire 1.00 | self 0.00 overlap 0.00 cross 1.00 | bad unit implicated 1.00 | blamed correct edge 1.00
+m= 1 eps=0.0 pooled  fabrication: fire 0.00 | self 0.00 overlap 0.00 cross 0.00 | bad unit implicated 0.00
+m= 5 eps=0.1  worst       honest: fire 0.00 | self 0.00 overlap 0.00 cross 0.00 | bad unit implicated 0.00
+m= 5 eps=0.1  worst         self: fire 0.01 | self 0.00 overlap 0.01 cross 0.00 | bad unit implicated 0.00
+m= 5 eps=0.1  worst      overlap: fire 0.74 | self 0.00 overlap 0.74 cross 0.00 | bad unit implicated 0.74
+m= 5 eps=0.1  worst        cross: fire 0.01 | self 0.00 overlap 0.01 cross 0.00 | bad unit implicated 0.00 | blamed correct edge 0.00
+m= 5 eps=0.1  worst  fabrication: fire 0.01 | self 0.00 overlap 0.01 cross 0.00 | bad unit implicated 0.00
+m= 5 eps=0.1 pooled       honest: fire 0.01 | self 0.00 overlap 0.00 cross 0.01 | bad unit implicated 0.00
+m= 5 eps=0.1 pooled         self: fire 0.78 | self 0.78 overlap 0.00 cross 0.00 | bad unit implicated 0.78
+m= 5 eps=0.1 pooled      overlap: fire 0.89 | self 0.01 overlap 0.86 cross 0.04 | bad unit implicated 0.89
+m= 5 eps=0.1 pooled        cross: fire 0.84 | self 0.00 overlap 0.01 cross 0.84 | bad unit implicated 0.84 | blamed correct edge 0.84
+m= 5 eps=0.1 pooled  fabrication: fire 0.01 | self 0.01 overlap 0.00 cross 0.01 | bad unit implicated 0.00
+m= 3 eps=0.1 pooled       honest: fire 0.04 | self 0.01 overlap 0.03 cross 0.01 | bad unit implicated 0.00
+m= 3 eps=0.1 pooled         self: fire 0.39 | self 0.37 overlap 0.01 cross 0.01 | bad unit implicated 0.37
+m= 3 eps=0.1 pooled      overlap: fire 0.65 | self 0.01 overlap 0.61 cross 0.04 | bad unit implicated 0.64
+m= 3 eps=0.1 pooled        cross: fire 0.56 | self 0.01 overlap 0.01 cross 0.55 | bad unit implicated 0.55 | blamed correct edge 0.55
+m= 3 eps=0.1 pooled  fabrication: fire 0.04 | self 0.01 overlap 0.02 cross 0.01 | bad unit implicated 0.00
+m=15 eps=0.2  worst       honest: fire 0.01 | self 0.00 overlap 0.01 cross 0.00 | bad unit implicated 0.00
+m=15 eps=0.2  worst         self: fire 0.57 | self 0.56 overlap 0.01 cross 0.00 | bad unit implicated 0.56
+m=15 eps=0.2  worst      overlap: fire 0.82 | self 0.00 overlap 0.82 cross 0.00 | bad unit implicated 0.82
+m=15 eps=0.2  worst        cross: fire 0.60 | self 0.00 overlap 0.00 cross 0.60 | bad unit implicated 0.60 | blamed correct edge 0.60
+m=15 eps=0.2  worst  fabrication: fire 0.01 | self 0.00 overlap 0.01 cross 0.00 | bad unit implicated 0.00
+m=15 eps=0.2 pooled       honest: fire 0.01 | self 0.00 overlap 0.01 cross 0.00 | bad unit implicated 0.00
+m=15 eps=0.2 pooled         self: fire 0.95 | self 0.95 overlap 0.01 cross 0.00 | bad unit implicated 0.95
+m=15 eps=0.2 pooled      overlap: fire 0.99 | self 0.00 overlap 0.98 cross 0.01 | bad unit implicated 0.99
+m=15 eps=0.2 pooled        cross: fire 0.94 | self 0.00 overlap 0.00 cross 0.94 | bad unit implicated 0.94 | blamed correct edge 0.94
+m=15 eps=0.2 pooled  fabrication: fire 0.00 | self 0.00 overlap 0.00 cross 0.00 | bad unit implicated 0.00
+m= 5 eps=0.2 pooled       honest: fire 0.04 | self 0.00 overlap 0.03 cross 0.01 | bad unit implicated 0.00
+m= 5 eps=0.2 pooled         self: fire 0.23 | self 0.21 overlap 0.03 cross 0.00 | bad unit implicated 0.21
+m= 5 eps=0.2 pooled      overlap: fire 0.57 | self 0.00 overlap 0.56 cross 0.02 | bad unit implicated 0.56
+m= 5 eps=0.2 pooled        cross: fire 0.23 | self 0.00 overlap 0.04 cross 0.19 | bad unit implicated 0.19 | blamed correct edge 0.19
+m= 5 eps=0.2 pooled  fabrication: fire 0.04 | self 0.01 overlap 0.03 cross 0.00 | bad unit implicated 0.01

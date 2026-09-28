@@ -1,0 +1,14 @@
+invertible XPOS tags (36): ['$', '.', 'ADD', 'CC', 'CD', 'DT', 'EX', 'FW', 'GW', 'IN', 'JJ', 'JJR', 'JJS', 'MD', 'NN', 'NNP', 'NNPS', 'NNS', 'PRP', 'PRP$', 'RB', 'RBR', 'RBS', 'SYM', 'TO', 'UH', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'WDT', 'WP', 'WP$', 'WRB']
+EWT: 16622 sentences, genres ['answers', 'email', 'newsgroup', 'reviews', 'weblog']
+  grade |  real | null mean null max | planted   (moved XPOS tags summed over 20 ordered genre pairs)
+ pooled |     4 |      0.00        0 |       4 | not explained by composition: real 0, planted 0
+ k even |     6 |      0.00        0 |       6 | not explained by composition: real 0, planted 0
+  k odd |     0 |      0.00        0 |       4 | not explained by composition: real 0, planted 4
+    k=0 |     7 |      0.10        1 |       7 | not explained by composition: real 1, planted 1
+    k=1 |     0 |      0.00        0 |       4 | not explained by composition: real 0, planted 4
+    k=2 |     0 |      0.00        0 |       0 | not explained by composition: real 0, planted 0
+   k>=3 |     0 |      0.00        0 |       4 | not explained by composition: real 0, planted 4
+
+real moves NOT explained by composition, grade k=0: [('weblog', 'reviews', 'WP', 'WDT', 0.57, 0.43)]
+
+planted moves, grade 'k odd': [('email', 'answers', 'NNP', 'NN', 0.657, 0.341), ('email', 'newsgroup', 'NNP', 'NN', 0.658, 0.341), ('email', 'reviews', 'NNP', 'NN', 0.658, 0.339), ('email', 'weblog', 'NNP', 'NN', 0.656, 0.339)]
