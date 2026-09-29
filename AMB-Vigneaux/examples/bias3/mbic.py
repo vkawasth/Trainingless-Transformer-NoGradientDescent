@@ -21,7 +21,8 @@ import numpy as np
 import pandas as pd
 
 rng = np.random.default_rng(0)
-RAW = "/tmp/claude-0/BABE/data/raw_labels_MBIC.xlsx"
+import os
+RAW = os.environ.get("MBIC_XLSX", "data/BABE/data/raw_labels_MBIC.xlsx")
 
 
 def load():

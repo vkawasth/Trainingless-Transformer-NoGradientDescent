@@ -106,9 +106,10 @@ L = {
 }
 
 
-def triplet_labels(basil="/tmp/claude-0/BASIL"):
+def triplet_labels(basil=None):
     """triplet-uuid -> (theme, camp, canonical event string), using whichever article's main-event is labelled"""
-    import glob, json
+    import glob, json, os
+    basil = basil or os.environ.get("BASIL_DIR", "data/BASIL")
     out = {}
     for f in glob.glob(f"{basil}/articles/*/*.json"):
         d = json.load(open(f))

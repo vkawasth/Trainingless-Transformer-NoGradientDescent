@@ -20,7 +20,8 @@ from scipy.stats import beta as beta_dist
 import bias3
 from event_labels import triplet_labels
 
-BASIL = "/tmp/claude-0/BASIL"
+import os
+BASIL = os.environ.get("BASIL_DIR", "data/BASIL")
 T = {"Donald_Trump", "Trump"}
 TL = triplet_labels()
 

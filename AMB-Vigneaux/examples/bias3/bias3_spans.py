@@ -16,7 +16,8 @@ from event_labels import L, triplet_labels
 TL = triplet_labels()
 from target_party import party
 
-BASIL = "/tmp/claude-0/BASIL"
+import os
+BASIL = os.environ.get("BASIL_DIR", "data/BASIL")
 WIN = lambda y: "2010-13" if y <= 2013 else ("2014-16" if y <= 2016 else "2017-19")
 rng = np.random.default_rng(0)
 

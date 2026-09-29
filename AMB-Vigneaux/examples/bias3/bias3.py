@@ -24,7 +24,8 @@ from scipy.stats import hypergeom
 from event_labels import L, triplet_labels
 TL = triplet_labels()
 
-BASIL = "/tmp/claude-0/BASIL"
+import os
+BASIL = os.environ.get("BASIL_DIR", "data/BASIL")
 STANCE = {"left": -2, "liberal": -1, "center": 0, "conservative": 1, "right": 2}
 WIN = lambda y: "2010-13" if y <= 2013 else ("2014-16" if y <= 2016 else "2017-19")
 rng = np.random.default_rng(0)
