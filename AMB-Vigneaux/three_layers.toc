@@ -1,0 +1,57 @@
+\contentsline {section}{\numberline {1}The standing constraint}{4}{section.1}%
+\contentsline {section}{\numberline {2}The three layers}{4}{section.2}%
+\contentsline {part}{I\hspace {1em}Hierarchy recovery \textsf {\small [H]}}{4}{part.1}%
+\contentsline {section}{\numberline {3}Setup and exact floors}{5}{section.3}%
+\contentsline {section}{\numberline {4}Transformers do not recover levels 3--4}{5}{section.4}%
+\contentsline {section}{\numberline {5}The estimator and its verification}{6}{section.5}%
+\contentsline {section}{\numberline {6}Instruments for detecting hierarchy}{6}{section.6}%
+\contentsline {section}{\numberline {7}The regime determines learnability}{7}{section.7}%
+\contentsline {section}{\numberline {8}Closing the gap: basin selection and split--merge}{7}{section.8}%
+\contentsline {section}{\numberline {9}Why clustering is necessary at scale}{8}{section.9}%
+\contentsline {section}{\numberline {10}O6 baseline: where split--merge breaks}{8}{section.10}%
+\contentsline {section}{\numberline {11}Theorems and constructions used \textsf {\small [H]}}{9}{section.11}%
+\contentsline {part}{II\hspace {1em}Holonomy and the separation of sites \textsf {\small [O]}}{11}{part.2}%
+\contentsline {section}{\numberline {12}The holonomy obstruction}{11}{section.12}%
+\contentsline {section}{\numberline {13}The two coboundary operators}{12}{section.13}%
+\contentsline {section}{\numberline {14}Non-unification and vanishing}{12}{section.14}%
+\contentsline {part}{III\hspace {1em}Results of the present work \textsf {\small [S]}}{13}{part.3}%
+\contentsline {section}{\numberline {15}Engine and verification of the outcome layer}{13}{section.15}%
+\contentsline {section}{\numberline {16}Problem 26: holonomy from estimated operations}{14}{section.16}%
+\contentsline {section}{\numberline {17}From operations to outcomes, around the probability layer}{15}{section.17}%
+\contentsline {section}{\numberline {18}Lossy operations}{16}{section.18}%
+\contentsline {section}{\numberline {19}The support dial: Tsallis entropies}{18}{section.19}%
+\contentsline {section}{\numberline {20}Support strata: where each lens can see anything}{18}{section.20}%
+\contentsline {section}{\numberline {21}Magnitude and phase: what Layer 2 reads}{20}{section.21}%
+\contentsline {paragraph}{Dimension deficit from estimated supports.}{22}{section*.2}%
+\contentsline {paragraph}{Estimation: $S_2$ versus Shannon.}{23}{section*.3}%
+\contentsline {section}{\numberline {22}A contradiction meter with provenance}{23}{section.22}%
+\contentsline {paragraph}{Relational claims: ``A said X'' and ``C caused D''.}{24}{section*.4}%
+\contentsline {paragraph}{General binary claims.}{25}{section*.5}%
+\contentsline {paragraph}{Gaussian fast path over $\mathbb {F}_2$.}{25}{section*.6}%
+\contentsline {paragraph}{First real run: BASIL, overlap channel.}{26}{section*.7}%
+\contentsline {section}{\numberline {23}The decorated Bregman--\v {C}ech nerve}{27}{section.23}%
+\contentsline {section}{\numberline {24}Two facets: restriction and extension}{27}{section.24}%
+\contentsline {section}{\numberline {25}Not-applicable entries: the gated test}{28}{section.25}%
+\contentsline {section}{\numberline {26}O2: when is a merged model minimal sufficient?}{29}{section.26}%
+\contentsline {paragraph}{Corpus B, true grammar.}{30}{section*.8}%
+\contentsline {paragraph}{Status of O2.}{31}{section*.9}%
+\contentsline {section}{\numberline {27}Experiment: grammar-guided transformers on Corpus B}{31}{section.27}%
+\contentsline {section}{\numberline {28}Experiment: recursive training (model collapse) on Corpus B}{32}{section.28}%
+\contentsline {section}{\numberline {29}Experiment: unknown branching (Corpus V)}{33}{section.29}%
+\contentsline {section}{\numberline {30}Monodromy: representations of $\pi _1$ and twisted cohomology}{35}{section.30}%
+\contentsline {paragraph}{Experiment: arity-graded monodromy with three sources.}{38}{section*.10}%
+\contentsline {paragraph}{Real data: Universal Dependencies English-EWT \cite {ud}.}{38}{section*.11}%
+\contentsline {section}{\numberline {31}Bridges between $\mathcal F_{\mathbb {Z}}$ and $\mathcal F_\alpha $: the options}{39}{section.31}%
+\contentsline {paragraph}{Probability complex $\to \mathcal F_{\mathbb {Z}}$.}{39}{section*.12}%
+\contentsline {paragraph}{Both directions from one object: repair hints.}{40}{section*.13}%
+\contentsline {paragraph}{$\mathcal F_{\mathbb {Z}}\to $ shadows in $\mathcal F_\alpha $.}{41}{section*.14}%
+\contentsline {section}{\numberline {32}The operation-twisted Vigneaux complex: a finite test}{41}{section.32}%
+\contentsline {section}{\numberline {33}Contextuality without holonomy: the weak edge}{46}{section.33}%
+\contentsline {section}{\numberline {34}Which coefficients can see contextuality}{47}{section.34}%
+\contentsline {section}{\numberline {35}Three-level bias: house lean, selective loops and global gluing}{48}{section.35}%
+\contentsline {section}{\numberline {36}Massey products, and the $p$-adic and hierarchy loop tests}{52}{section.36}%
+\contentsline {section}{\numberline {37}Detection: a map of the ideas and theorems}{53}{section.37}%
+\contentsline {part}{IV\hspace {1em}Status}{54}{part.4}%
+\contentsline {section}{\numberline {38}Status of every claim}{54}{section.38}%
+\contentsline {section}{\numberline {39}Method notes}{56}{section.39}%
+\contentsline {section}{\numberline {40}Reproduction}{56}{section.40}%
