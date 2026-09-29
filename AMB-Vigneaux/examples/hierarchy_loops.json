@@ -1,0 +1,136 @@
+{
+ "node_shift_violations": 0,
+ "eps=0.0": {
+  "claims=100,level=1": {
+   "detect": 0.1,
+   "localise": 1.0,
+   "frac_odd_grade": 1.0,
+   "null_95": 0.0,
+   "precision_top": 0.024725274725274724
+  },
+  "claims=100,level=3": {
+   "detect": 0.0,
+   "localise": NaN,
+   "frac_odd_grade": 0.0,
+   "null_95": 0.0,
+   "precision_top": 0.0
+  },
+  "claims=200,level=1": {
+   "detect": 0.33,
+   "localise": 1.0,
+   "frac_odd_grade": 1.0,
+   "null_95": 0.0,
+   "precision_top": 0.09615384615384616
+  },
+  "claims=200,level=3": {
+   "detect": 0.01,
+   "localise": 1.0,
+   "frac_odd_grade": 1.0,
+   "null_95": 0.0,
+   "precision_top": 0.0
+  },
+  "claims=400,level=1": {
+   "detect": 0.82,
+   "localise": 1.0,
+   "frac_odd_grade": 1.0,
+   "null_95": 0.0,
+   "precision_top": 0.25824175824175827
+  },
+  "claims=400,level=3": {
+   "detect": 0.03,
+   "localise": 1.0,
+   "frac_odd_grade": 1.0,
+   "null_95": 0.0,
+   "precision_top": 0.005
+  }
+ },
+ "eps=0.05": {
+  "claims=100,level=1": {
+   "detect": 0.06,
+   "localise": 0.2637299225861821,
+   "frac_odd_grade": 0.31401151631477925,
+   "null_95": 76.14999999999999,
+   "precision_top": 0.03571428571428571
+  },
+  "claims=100,level=3": {
+   "detect": 0.09,
+   "localise": 0.3202893343305064,
+   "frac_odd_grade": 0.3180428134556575,
+   "null_95": 76.14999999999999,
+   "precision_top": 0.035
+  },
+  "claims=200,level=1": {
+   "detect": 0.01,
+   "localise": 0.29449076026016924,
+   "frac_odd_grade": 0.3853130805376462,
+   "null_95": 257.05,
+   "precision_top": 0.046703296703296704
+  },
+  "claims=200,level=3": {
+   "detect": 0.04,
+   "localise": 0.28946035224825434,
+   "frac_odd_grade": 0.41531776208582294,
+   "null_95": 257.05,
+   "precision_top": 0.045
+  },
+  "claims=400,level=1": {
+   "detect": 0.08,
+   "localise": 0.27480343370281174,
+   "frac_odd_grade": 0.4726216130285795,
+   "null_95": 618.05,
+   "precision_top": 0.08516483516483517
+  },
+  "claims=400,level=3": {
+   "detect": 0.05,
+   "localise": 0.23147684862975332,
+   "frac_odd_grade": 0.4640292935094773,
+   "null_95": 618.05,
+   "precision_top": 0.0525
+  }
+ },
+ "eps=0.1": {
+  "claims=100,level=1": {
+   "detect": 0.05,
+   "localise": 0.29840815471543836,
+   "frac_odd_grade": 0.3652774090788426,
+   "null_95": 85.05,
+   "precision_top": 0.057692307692307696
+  },
+  "claims=100,level=3": {
+   "detect": 0.04,
+   "localise": 0.30593209101265945,
+   "frac_odd_grade": 0.3715229964197191,
+   "null_95": 85.05,
+   "precision_top": 0.0575
+  },
+  "claims=200,level=1": {
+   "detect": 0.1,
+   "localise": 0.2825015988984125,
+   "frac_odd_grade": 0.4462784040078726,
+   "null_95": 257.2,
+   "precision_top": 0.04945054945054945
+  },
+  "claims=200,level=3": {
+   "detect": 0.04,
+   "localise": 0.26207737963025385,
+   "frac_odd_grade": 0.44014310613705165,
+   "null_95": 257.2,
+   "precision_top": 0.0525
+  },
+  "claims=400,level=1": {
+   "detect": 0.13,
+   "localise": 0.22416531649145424,
+   "frac_odd_grade": 0.48578763047839246,
+   "null_95": 626.1,
+   "precision_top": 0.06593406593406594
+  },
+  "claims=400,level=3": {
+   "detect": 0.06,
+   "localise": 0.21683939012404324,
+   "frac_odd_grade": 0.4821029273704873,
+   "null_95": 626.1,
+   "precision_top": 0.05
+  }
+ },
+ "odd_node_fraction": 0.5097402597402597
+}

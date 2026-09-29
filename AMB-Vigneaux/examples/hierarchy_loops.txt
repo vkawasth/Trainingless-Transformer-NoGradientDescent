@@ -1,0 +1,36 @@
+THEOREM CHECK node-wise distortion (odd-arity meeting nodes shifted): violations = 0
+
+eps = 0.0
+   claims/source 100: null violations mean 0.0, 95th pct 0
+      misplacement level 1: detect 0.10  top-ranked leaves = misplaced 0.02  witness touches misplaced 1.00  violations in odd grade 1.00
+      misplacement level 3: detect 0.00  top-ranked leaves = misplaced 0.00  witness touches misplaced nan  violations in odd grade 0.00
+   claims/source 200: null violations mean 0.0, 95th pct 0
+      misplacement level 1: detect 0.33  top-ranked leaves = misplaced 0.10  witness touches misplaced 1.00  violations in odd grade 1.00
+      misplacement level 3: detect 0.01  top-ranked leaves = misplaced 0.00  witness touches misplaced 1.00  violations in odd grade 1.00
+   claims/source 400: null violations mean 0.0, 95th pct 0
+      misplacement level 1: detect 0.82  top-ranked leaves = misplaced 0.26  witness touches misplaced 1.00  violations in odd grade 1.00
+      misplacement level 3: detect 0.03  top-ranked leaves = misplaced 0.01  witness touches misplaced 1.00  violations in odd grade 1.00
+
+eps = 0.05
+   claims/source 100: null violations mean 23.3, 95th pct 76
+      misplacement level 1: detect 0.06  top-ranked leaves = misplaced 0.04  witness touches misplaced 0.26  violations in odd grade 0.31
+      misplacement level 3: detect 0.09  top-ranked leaves = misplaced 0.04  witness touches misplaced 0.32  violations in odd grade 0.32
+   claims/source 200: null violations mean 174.2, 95th pct 257
+      misplacement level 1: detect 0.01  top-ranked leaves = misplaced 0.05  witness touches misplaced 0.29  violations in odd grade 0.39
+      misplacement level 3: detect 0.04  top-ranked leaves = misplaced 0.04  witness touches misplaced 0.29  violations in odd grade 0.42
+   claims/source 400: null violations mean 558.4, 95th pct 618
+      misplacement level 1: detect 0.08  top-ranked leaves = misplaced 0.09  witness touches misplaced 0.27  violations in odd grade 0.47
+      misplacement level 3: detect 0.05  top-ranked leaves = misplaced 0.05  witness touches misplaced 0.23  violations in odd grade 0.46
+
+eps = 0.1
+   claims/source 100: null violations mean 38.1, 95th pct 85
+      misplacement level 1: detect 0.05  top-ranked leaves = misplaced 0.06  witness touches misplaced 0.30  violations in odd grade 0.37
+      misplacement level 3: detect 0.04  top-ranked leaves = misplaced 0.06  witness touches misplaced 0.31  violations in odd grade 0.37
+   claims/source 200: null violations mean 214.9, 95th pct 257
+      misplacement level 1: detect 0.10  top-ranked leaves = misplaced 0.05  witness touches misplaced 0.28  violations in odd grade 0.45
+      misplacement level 3: detect 0.04  top-ranked leaves = misplaced 0.05  witness touches misplaced 0.26  violations in odd grade 0.44
+   claims/source 400: null violations mean 585.1, 95th pct 626
+      misplacement level 1: detect 0.13  top-ranked leaves = misplaced 0.07  witness touches misplaced 0.22  violations in odd grade 0.49
+      misplacement level 3: detect 0.06  top-ranked leaves = misplaced 0.05  witness touches misplaced 0.22  violations in odd grade 0.48
+
+baseline: fraction of internal nodes with odd arity = 0.51
