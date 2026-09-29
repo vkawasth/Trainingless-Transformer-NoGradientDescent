@@ -1,0 +1,34 @@
+933 direct spans at R/D targets
+
+== fox vs nyt: counts [src][R,D][pos,neg] = [[[22, 96], [20, 168]], [[36, 142], [32, 130]]]
+   favourability log-odds(pos)  fox: R -1.46  D -2.11   |   nyt: R -1.36  D -1.39
+   loop Phi = +0.62   exact no-3-way p = 0.1934 (fiber size 43)   event-bootstrap 95% CI [-0.45, +1.75]
+     2010-13: Phi = +1.08  exact p = 0.1575  CI [-0.72, +3.24]   n = 286
+     2014-16: Phi = +0.74  exact p = 0.3293  CI [-0.95, +2.65]   n = 213
+     2017-19: Phi = -1.04  exact p = 0.5823  CI [-3.43, +1.84]   n = 147
+     ELECT : Phi = +0.75  exact p = 0.3289   n = 221
+     INVEST: Phi = +2.22  exact p = 0.04363   n = 202
+     POLICY: Phi = -0.23  exact p = 1   n = 142
+     SOCIAL: Phi = -0.67  exact p = 1   n = 81
+
+== fox vs hpo: counts [src][R,D][pos,neg] = [[[22, 96], [20, 168]], [[27, 115], [39, 106]]]
+   favourability log-odds(pos)  fox: R -1.46  D -2.11   |   hpo: R -1.44  D -0.99
+   loop Phi = +1.09   exact no-3-way p = 0.0153 (fiber size 43)   event-bootstrap 95% CI [+0.10, +2.18]
+     2010-13: Phi = +1.74  exact p = 0.0153  CI [+0.08, +4.25]   n = 295
+     2014-16: Phi = +0.42  exact p = 0.739  CI [-0.81, +1.75]   n = 201
+     2017-19: Phi = +2.48  exact p = 0.2484  CI [-0.70, +4.64]   n = 97
+     ELECT : Phi = +0.54  exact p = 0.3819   n = 235
+     INVEST: Phi = +1.27  exact p = 0.5104   n = 158
+     POLICY: Phi = +1.27  exact p = 0.272   n = 141
+     SOCIAL: Phi = +1.02  exact p = 0.545   n = 59
+
+== hpo vs nyt: counts [src][R,D][pos,neg] = [[[27, 115], [39, 106]], [[36, 142], [32, 130]]]
+   favourability log-odds(pos)  hpo: R -1.44  D -0.99   |   nyt: R -1.36  D -1.39
+   loop Phi = -0.47   exact no-3-way p = 0.2455 (fiber size 64)   event-bootstrap 95% CI [-1.45, +0.47]
+     2010-13: Phi = -0.65  exact p = 0.3404  CI [-2.66, +0.94]   n = 287
+     2014-16: Phi = +0.31  exact p = 0.7694  CI [-1.13, +1.79]   n = 212
+     2017-19: Phi = -3.52  exact p = 0.009826  CI [-5.61, -0.12]   n = 128
+     ELECT : Phi = +0.21  exact p = 0.7751   n = 246
+     INVEST: Phi = +0.95  exact p = 0.5647   n = 174
+     POLICY: Phi = -1.50  exact p = 0.1015   n = 129
+     SOCIAL: Phi = -1.69  exact p = 0.2285   n = 78

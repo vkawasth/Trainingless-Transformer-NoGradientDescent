@@ -1,0 +1,28 @@
+
+== (A) BASIL stance, rolling origin 2013-2019, topic = focal party  (210 test predictions)
+   M1 lean        log loss 1.3892   Brier 0.6954
+   M2 +topic      log loss 1.4526   Brier 0.7176
+   M3 +loop       log loss 1.4727   Brier 0.7264
+   M4 +trend      log loss 1.5793   Brier 0.7502
+   gain      M1 lean -> M2 +topic   : -0.0633 nats/pred  95% CI [-0.0924, -0.0370]
+   gain    M2 +topic -> M3 +loop    : -0.0201 nats/pred  95% CI [-0.0468, +0.0040]
+   gain     M3 +loop -> M4 +trend   : -0.1066 nats/pred  95% CI [-0.1813, -0.0379]
+
+== (B) BASIL span favourability, rolling origin 2013-2019, topic = target party  (911 test predictions)
+   M1 lean        log loss 0.4619   Brier 0.2832
+   M2 +topic      log loss 0.4646   Brier 0.2849
+   M3 +loop       log loss 0.4633   Brier 0.2838
+   M4 +trend      log loss 0.4913   Brier 0.3098
+   gain      M1 lean -> M2 +topic   : -0.0027 nats/pred  95% CI [-0.0058, +0.0002]
+   gain    M2 +topic -> M3 +loop    : +0.0013 nats/pred  95% CI [-0.0050, +0.0079]
+   gain     M3 +loop -> M4 +trend   : -0.0280 nats/pred  95% CI [-0.0421, -0.0142]
+  sents = Cdf["sent"].unique(); rng.shuffle(sents); folds = np.array_split(sents, 10)
+
+== (C) MBIC outlet x topic, 10-fold CV over sentences  (17775 test predictions)
+   M0 base        log loss 0.6736   Brier 0.4805
+   M1 lean        log loss 0.6395   Brier 0.4483
+   M2 +topic      log loss 0.6354   Brier 0.4447
+   M3 +loop       log loss 0.6367   Brier 0.4455
+   gain      M0 base -> M1 lean     : +0.0340 nats/pred  95% CI [+0.0301, +0.0377]
+   gain      M1 lean -> M2 +topic   : +0.0041 nats/pred  95% CI [+0.0025, +0.0058]
+   gain    M2 +topic -> M3 +loop    : -0.0013 nats/pred  95% CI [-0.0033, +0.0007]

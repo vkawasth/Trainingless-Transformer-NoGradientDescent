@@ -1,0 +1,35 @@
+THEOREM CHECK: 1600 sentences rated by L, C and R annotators.
+   loop L-C-R-L on the same sentences: max |sum| = 1.11e-16  (identically 0)
+   the same loop on disjoint sentence thirds: +0.009  (free to be non-zero)
+
+TEST A outlet x topic (1700 sentences): outlet bias propensity {'alternet': 0.736, 'breitbart': 0.606, 'federalist': 0.767, 'fox-news': 0.518, 'huffpost': 0.635, 'msnbc': 0.555, 'reuters': 0.359, 'usa-today': 0.411}
+   GLOBAL interaction (loops over the whole outlet-topic graph): F = 0.0815, Freedman-Lane p = 0.0005
+   LOCAL regions (each pair of topics, 91 regions): fraction with p < 0.05 = 0.35, min p = 0.0033
+   worst local regions: [('coronavirus', 'vaccines', 0.003), ('environment', 'white-nationalism', 0.003), ('gender', 'vaccines', 0.003), ('gun-control', 'student-debt', 0.003), ('gun-control', 'vaccines', 0.003)]
+   strongest single loops of 1048 (outlet pair x topic pair: Phi, z):
+       breitbart/reuters    x            coronavirus/white-nationalism      Phi = +0.467  z = +6.26
+        alternet/reuters    x       trump-presidency/white-nationalism      Phi = +0.512  z = +5.90
+           msnbc/reuters    x            environment/white-nationalism      Phi = +0.452  z = +5.41
+       breitbart/reuters    x            environment/white-nationalism      Phi = +0.420  z = +5.31
+       breitbart/reuters    x            gun-control/white-nationalism      Phi = +0.435  z = +5.28
+        alternet/reuters    x               abortion/white-nationalism      Phi = +0.349  z = +5.06
+       breitbart/reuters    x                  sport/white-nationalism      Phi = +0.344  z = +4.98
+           msnbc/reuters    x            gun-control/white-nationalism      Phi = +0.454  z = +4.89
+
+TEST B annotator ideology x outlet type (L <= -4, R > 3; 1660 sentences):
+   bias rate  L-annotators: {'left': 0.636, 'center': 0.341, 'right': 0.646}
+              R-annotators: {'left': 0.669, 'center': 0.499, 'right': 0.624}
+   d = L - R by outlet type: {'left': -0.033, 'center': -0.158, 'right': 0.022}
+   hostile-media loop Phi = d(right outlets) - d(left outlets) = +0.056   exact permutation p = 0.0106
+
+TEST B annotator ideology x outlet type (L <= -1, R > 0; 1700 sentences):
+   bias rate  L-annotators: {'left': 0.643, 'center': 0.339, 'right': 0.648}
+              R-annotators: {'left': 0.673, 'center': 0.483, 'right': 0.609}
+   d = L - R by outlet type: {'left': -0.031, 'center': -0.144, 'right': 0.039}
+   hostile-media loop Phi = d(right outlets) - d(left outlets) = +0.070   exact permutation p = 0.0003
+
+TEST B annotator ideology x outlet type (L <= -6, R > 5; 1520 sentences):
+   bias rate  L-annotators: {'left': 0.631, 'center': 0.327, 'right': 0.638}
+              R-annotators: {'left': 0.689, 'center': 0.517, 'right': 0.643}
+   d = L - R by outlet type: {'left': -0.058, 'center': -0.189, 'right': -0.005}
+   hostile-media loop Phi = d(right outlets) - d(left outlets) = +0.053   exact permutation p = 0.0298

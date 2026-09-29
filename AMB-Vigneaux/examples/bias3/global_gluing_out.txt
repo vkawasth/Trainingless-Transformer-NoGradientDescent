@@ -1,0 +1,15 @@
+(1) BASIL, three disjoint regions (Fox-NYT | NYT-HPO | HPO-Fox), planted HPO scale shift in region 3
+    delta | detect (|z|>1.96) | mean Phi | sd Phi
+     0.0  |  0.052            | +0.01    | 0.50
+     0.5  |  0.165            | +0.48    | 0.48
+     1.0  |  0.483            | +0.93    | 0.49
+     1.5  |  0.826            | +1.39    | 0.49
+     2.0  |  0.976            | +1.84    | 0.47
+
+(2) ring of K outlets, n events per edge, BASIL noise, holonomy h spread over the ring
+    K=3 n= 10: h=0.0: 0.05  h=0.5: 0.13  h=1.0: 0.23  h=2.0: 0.61  h=3.0: 0.90
+    K=3 n= 33: h=0.0: 0.05  h=0.5: 0.18  h=1.0: 0.55  h=2.0: 0.98  h=3.0: 1.00
+    K=3 n=100: h=0.0: 0.05  h=0.5: 0.43  h=1.0: 0.94  h=2.0: 1.00  h=3.0: 1.00
+    K=6 n= 10: h=0.0: 0.05  h=0.5: 0.08  h=1.0: 0.12  h=2.0: 0.36  h=3.0: 0.64
+    K=6 n= 33: h=0.0: 0.04  h=0.5: 0.11  h=1.0: 0.31  h=2.0: 0.81  h=3.0: 0.98
+    K=6 n=100: h=0.0: 0.06  h=0.5: 0.25  h=1.0: 0.70  h=2.0: 1.00  h=3.0: 1.00

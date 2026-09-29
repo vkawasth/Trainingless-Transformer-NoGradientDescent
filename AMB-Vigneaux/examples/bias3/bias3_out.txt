@@ -1,0 +1,114 @@
+100 events; mean stance fox +0.58, nyt -0.23, hpo -0.29
+
+== fox vs nyt, topic = camp:  house lean +0.81  omnibus p = 0.0460
+     D        n= 29  mean d = +0.97
+     N        n= 10  mean d = -0.50
+     R        n= 61  mean d = +0.95
+     loop D-N: Phi = +1.47  p_perm = 0.0248   toric exact p = 0.0526 (discordant 25)
+     loop D-R: Phi = +0.01  p_perm = 0.9663   toric exact p = 1.0000 (discordant 61)
+     loop N-R: Phi = -1.45  p_perm = 0.0147   toric exact p = 0.0425 (discordant 44)
+
+== fox vs nyt, topic = theme:  house lean +0.81  omnibus p = 0.8899
+     ELECT    n= 27  mean d = +0.59
+     INVEST   n= 30  mean d = +0.93
+     POLICY   n= 27  mean d = +0.81
+     SOCIAL   n= 16  mean d = +0.94
+     loop ELECT-INVEST: Phi = -0.34  p_perm = 0.4609   toric exact p = 1.0000 (discordant 38)
+     loop ELECT-POLICY: Phi = -0.22  p_perm = 0.6813   toric exact p = 0.6741 (discordant 33)
+     loop ELECT-SOCIAL: Phi = -0.34  p_perm = 0.5323   toric exact p = 1.0000 (discordant 24)
+     loop INVEST-POLICY: Phi = +0.12  p_perm = 0.8036   toric exact p = 0.7061 (discordant 41)
+     loop INVEST-SOCIAL: Phi = -0.00  p_perm = 0.9973   toric exact p = 1.0000 (discordant 32)
+     loop POLICY-SOCIAL: Phi = -0.12  p_perm = 0.8263   toric exact p = 1.0000 (discordant 27)
+
+== fox vs nyt, topic = win:  house lean +0.81  omnibus p = 0.1556
+     2010-13  n= 40  mean d = +0.40
+     2014-16  n= 30  mean d = +1.00
+     2017-19  n= 30  mean d = +1.17
+     loop 2010-13-2014-16: Phi = -0.60  p_perm = 0.1662   toric exact p = 0.3334 (discordant 42)
+     loop 2010-13-2017-19: Phi = -0.77  p_perm = 0.0714   toric exact p = 0.0363 (discordant 47)
+     loop 2014-16-2017-19: Phi = -0.17  p_perm = 0.7453   toric exact p = 0.3773 (discordant 41)
+   gluing map (fox vs nyt):
+     theme ELECT across windows       n= 27 lean +0.59  p=0.250  glues
+     theme INVEST across windows      n= 30 lean +0.93  p=0.763  glues
+     theme POLICY across windows      n= 27 lean +0.81  p=0.578  glues
+     theme SOCIAL across windows      n= 16 lean +0.94  p=1.000  glues
+     window 2010-13 across themes     n= 40 lean +0.40  p=0.802  glues
+     window 2014-16 across themes     n= 30 lean +1.00  p=0.996  glues
+     window 2017-19 across themes     n= 30 lean +1.17  p=0.466  glues
+     whole cover                      n=100 lean +0.81  p=0.880  glues
+
+== fox vs hpo, topic = camp:  house lean +0.87  omnibus p = 0.0925
+     D        n= 29  mean d = +1.24
+     N        n= 10  mean d = +0.00
+     R        n= 61  mean d = +0.84
+     loop D-N: Phi = +1.24  p_perm = 0.0371   toric exact p = 0.2714 (discordant 21)
+     loop D-R: Phi = +0.41  p_perm = 0.2529   toric exact p = 0.7031 (discordant 58)
+     loop N-R: Phi = -0.84  p_perm = 0.1224   toric exact p = 0.3561 (discordant 41)
+
+== fox vs hpo, topic = theme:  house lean +0.87  omnibus p = 0.3344
+     ELECT    n= 27  mean d = +0.41
+     INVEST   n= 30  mean d = +1.07
+     POLICY   n= 27  mean d = +1.11
+     SOCIAL   n= 16  mean d = +0.88
+     loop ELECT-INVEST: Phi = -0.66  p_perm = 0.1202   toric exact p = 0.4217 (discordant 36)
+     loop ELECT-POLICY: Phi = -0.70  p_perm = 0.1145   toric exact p = 0.1719 (discordant 32)
+     loop ELECT-SOCIAL: Phi = -0.47  p_perm = 0.3522   toric exact p = 0.6214 (discordant 24)
+     loop INVEST-POLICY: Phi = -0.04  p_perm = 0.9169   toric exact p = 0.6129 (discordant 36)
+     loop INVEST-SOCIAL: Phi = +0.19  p_perm = 0.7015   toric exact p = 1.0000 (discordant 28)
+     loop POLICY-SOCIAL: Phi = +0.24  p_perm = 0.6290   toric exact p = 1.0000 (discordant 24)
+
+== fox vs hpo, topic = win:  house lean +0.87  omnibus p = 0.1605
+     2010-13  n= 40  mean d = +0.65
+     2014-16  n= 30  mean d = +0.70
+     2017-19  n= 30  mean d = +1.33
+     loop 2010-13-2014-16: Phi = -0.05  p_perm = 0.9038   toric exact p = 1.0000 (discordant 37)
+     loop 2010-13-2017-19: Phi = -0.68  p_perm = 0.0776   toric exact p = 0.3842 (discordant 42)
+     loop 2014-16-2017-19: Phi = -0.63  p_perm = 0.1267   toric exact p = 0.3773 (discordant 41)
+   gluing map (fox vs hpo):
+     theme ELECT across windows       n= 27 lean +0.41  p=0.552  glues
+     theme INVEST across windows      n= 30 lean +1.07  p=0.802  glues
+     theme POLICY across windows      n= 27 lean +1.11  p=0.083  glues
+     theme SOCIAL across windows      n= 16 lean +0.88  p=0.551  glues
+     window 2010-13 across themes     n= 40 lean +0.65  p=0.166  glues
+     window 2014-16 across themes     n= 30 lean +0.70  p=0.892  glues
+     window 2017-19 across themes     n= 30 lean +1.33  p=0.268  glues
+     whole cover                      n=100 lean +0.87  p=0.410  glues
+
+== hpo vs nyt, topic = camp:  house lean -0.06  omnibus p = 0.3635
+     D        n= 29  mean d = -0.28
+     N        n= 10  mean d = -0.50
+     R        n= 61  mean d = +0.11
+     loop D-N: Phi = +0.22  p_perm = 0.7062   toric exact p = 1.0000 (discordant 10)
+     loop D-R: Phi = -0.39  p_perm = 0.2837   toric exact p = 0.6594 (discordant 21)
+     loop N-R: Phi = -0.61  p_perm = 0.2701   toric exact p = 0.6027 (discordant 19)
+
+== hpo vs nyt, topic = theme:  house lean -0.06  omnibus p = 0.7131
+     ELECT    n= 27  mean d = +0.19
+     INVEST   n= 30  mean d = -0.13
+     POLICY   n= 27  mean d = -0.30
+     SOCIAL   n= 16  mean d = +0.06
+     loop ELECT-INVEST: Phi = +0.32  p_perm = 0.4687   toric exact p = 0.6372 (discordant 18)
+     loop ELECT-POLICY: Phi = +0.48  p_perm = 0.2864   toric exact p = 0.5594 (discordant 13)
+     loop ELECT-SOCIAL: Phi = +0.12  p_perm = 0.8190   toric exact p = 1.0000 (discordant 12)
+     loop INVEST-POLICY: Phi = +0.16  p_perm = 0.7056   toric exact p = 1.0000 (discordant 13)
+     loop INVEST-SOCIAL: Phi = -0.20  p_perm = 0.6980   toric exact p = 1.0000 (discordant 12)
+     loop POLICY-SOCIAL: Phi = -0.36  p_perm = 0.4913   toric exact p = 1.0000 (discordant 7)
+
+== hpo vs nyt, topic = win:  house lean -0.06  omnibus p = 0.3384
+     2010-13  n= 40  mean d = -0.25
+     2014-16  n= 30  mean d = +0.30
+     2017-19  n= 30  mean d = -0.17
+     loop 2010-13-2014-16: Phi = -0.55  p_perm = 0.1612   toric exact p = 0.6458 (discordant 21)
+     loop 2010-13-2017-19: Phi = -0.08  p_perm = 0.8388   toric exact p = 0.5840 (discordant 17)
+     loop 2014-16-2017-19: Phi = +0.47  p_perm = 0.2758   toric exact p = 1.0000 (discordant 12)
+   gluing map (hpo vs nyt):
+     theme ELECT across windows       n= 27 lean +0.19  p=0.818  glues
+     theme INVEST across windows      n= 30 lean -0.13  p=0.378  glues
+     theme POLICY across windows      n= 27 lean -0.30  p=0.563  glues
+     theme SOCIAL across windows      n= 16 lean +0.06  p=0.564  glues
+     window 2010-13 across themes     n= 40 lean -0.25  p=0.640  glues
+     window 2014-16 across themes     n= 30 lean +0.30  p=0.890  glues
+     window 2017-19 across themes     n= 30 lean -0.17  p=0.249  glues
+     whole cover                      n=100 lean -0.06  p=0.823  glues
+
+  toric exact vs Markov-basis MCMC: 0.008880894308943066 max |difference|
