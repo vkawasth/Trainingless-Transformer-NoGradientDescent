@@ -45,6 +45,17 @@ alphabet size. It reports, on the test split:
 0.02 nats at V = 16 while its level-4 recovery is 0.55 NMI against a ceiling of 0.88. Near-truth likelihood does
 not certify that the hierarchy was recovered.
 
+**Correction (identifiability of the root level).** The likelihood depends on the root level only through the mixture
+Σ_s π_s P_L[s]. Merging any two root symbols, weighted by usage, leaves log p(x) *exactly* unchanged. It is 0 for all
+28 root pairs at V = 8, L = 6 and all 40 sampled pairs at V = 16, L = 4 (`merge_strata.py`). Root-symbol recovery is
+therefore not identifiable from data by any method. The "Bayes ceiling" at the root uses the true grammar and is not
+attainable. **Score structure on levels 1 … L−1.** The scorer marks the root level `identifiable: false`; report it only
+for reference. The baseline's level-4 shortfall at V = 16, L = 4 and its level-6 shortfall at L = 6 are root levels.
+
+The level below the root *is* identifiable, but it is weakly curved. The likelihood cost of merging two of its symbols
+has a median of 0.13 nats/seq at V = 8, L = 6, against 2.3 at level 2 (`merge_strata.py`). EM therefore moves slowly
+there.
+
 Report as well: wall-clock time, hardware, peak memory, and number of passes over the data.
 
 ## Baseline (gradient-free)

@@ -42,6 +42,7 @@ ap.add_argument("--init-mix", type=float, default=0.9)
 ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--chunk", type=int, default=4096)
 ap.add_argument("--save", default="")
+ap.add_argument("--init-npz", default="", help="start from a saved model (e.g. local_em.py output) instead of the clustered init")
 ap.add_argument("--json", default="")
 a = ap.parse_args()
 
@@ -173,6 +174,15 @@ for l in range(1, L+1):
     soft = up(P[l], soft[:, 0::2], soft[:, 1::2])
     soft = soft / np.maximum(soft.sum(-1, keepdims=True), 1e-300)
 
+if a.init_npz:                                   # e.g. the local-EM solution; a 1-symbol root is replicated to V
+    Z = np.load(a.init_npz)
+    for l in range(1, L+1):
+        t = Z[f"P{l}"]
+        if t.shape[0] < V:
+            reps = np.repeat(t, int(np.ceil(V / t.shape[0])), axis=0)[:V]
+            t = reps * (1.0 + 0.05 * np.random.RandomState(a.seed).uniform(-1, 1, size=reps.shape))
+        P[l] = t / t.sum((1, 2), keepdims=True)
+    print(f"  init from {a.init_npz}")
 PT = {}
 for l in range(1, L+1):
     t = np.zeros((V, card0(l), card0(l)))

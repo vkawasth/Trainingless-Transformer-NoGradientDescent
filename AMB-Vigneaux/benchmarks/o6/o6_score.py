@@ -77,7 +77,8 @@ def score(data, P, batch=256):
         true = np.array([lat[l - 1] for lat in LAT]).ravel()
         v, C = nmi(pred, true)
         r, c = linear_sum_assignment(-C)
-        out["levels"][l] = dict(nmi=round(v, 4), acc_matched=round(float(C[r, c].sum()), 4))
+        out["levels"][l] = dict(nmi=round(v, 4), acc_matched=round(float(C[r, c].sum()), 4),
+                                identifiable=(l < L))   # the root level is not identifiable (see merge_strata.py)
     return out
 
 
