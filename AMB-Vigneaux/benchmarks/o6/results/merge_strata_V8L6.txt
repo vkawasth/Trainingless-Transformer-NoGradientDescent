@@ -1,0 +1,8 @@
+L=6 V=8 leaves=12  held-out n=4000  true log-lik -59.0204 nats/seq
+level | median Delta |  min Delta | median se | resolvable pairs (Delta > 2 se)
+    1 |       2.9496 |    -0.0000 |    0.0213 | 0.75 of 28   (exactly 0: 7; unused symbols [2]; used pairs: median 5.0701, min 1.3707, resolvable 1.00)
+    2 |       2.2817 |     0.9325 |    0.0153 | 1.00 of 28   (exactly 0: 0; unused symbols []; used pairs: median 2.2817, min 0.9325, resolvable 1.00)
+    3 |       0.9880 |     0.4256 |    0.0111 | 1.00 of 28   (exactly 0: 0; unused symbols []; used pairs: median 0.9880, min 0.4256, resolvable 1.00)
+    4 |       0.3672 |     0.0732 |    0.0075 | 1.00 of 28   (exactly 0: 0; unused symbols []; used pairs: median 0.3672, min 0.0732, resolvable 1.00)
+    5 |       0.1061 |    -0.0000 |    0.0045 | 0.75 of 28   (exactly 0: 7; unused symbols [7]; used pairs: median 0.1330, min 0.0351, resolvable 1.00)
+    6 |       0.0000 |    -0.0000 |    0.0000 | 0.00 of 28   (exactly 0: 28; unused symbols []; used pairs: median 0.0000, min -0.0000, resolvable 0.00)

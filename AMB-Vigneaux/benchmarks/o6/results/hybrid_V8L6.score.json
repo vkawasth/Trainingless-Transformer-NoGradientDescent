@@ -1,0 +1,69 @@
+{
+ "ll_per_seq": -59.00287642795058,
+ "levels": {
+  "1": {
+   "nmi": 0.9634,
+   "acc_matched": 0.9181,
+   "identifiable": true
+  },
+  "2": {
+   "nmi": 0.9703,
+   "acc_matched": 0.9875,
+   "identifiable": true
+  },
+  "3": {
+   "nmi": 0.957,
+   "acc_matched": 0.9828,
+   "identifiable": true
+  },
+  "4": {
+   "nmi": 0.7675,
+   "acc_matched": 0.7715,
+   "identifiable": true
+  },
+  "5": {
+   "nmi": 0.6677,
+   "acc_matched": 0.733,
+   "identifiable": true
+  },
+  "6": {
+   "nmi": 0.2332,
+   "acc_matched": 0.306,
+   "identifiable": false
+  }
+ },
+ "ll_true": -58.95437396826438,
+ "gap": 0.0485024596862047,
+ "levels_truth": {
+  "1": {
+   "nmi": 0.9928,
+   "acc_matched": 0.9979,
+   "identifiable": true
+  },
+  "2": {
+   "nmi": 0.9698,
+   "acc_matched": 0.9864,
+   "identifiable": true
+  },
+  "3": {
+   "nmi": 0.9558,
+   "acc_matched": 0.9828,
+   "identifiable": true
+  },
+  "4": {
+   "nmi": 0.8655,
+   "acc_matched": 0.9345,
+   "identifiable": true
+  },
+  "5": {
+   "nmi": 0.8717,
+   "acc_matched": 0.938,
+   "identifiable": true
+  },
+  "6": {
+   "nmi": 0.7388,
+   "acc_matched": 0.818,
+   "identifiable": false
+  }
+ }
+}

@@ -1,0 +1,143 @@
+=== V8L4_full 22:45:45
+  L=4 V=8 leaves=12   init-mix=0.9   true grammar held-out -15.2822
+  one EM sweep 0.50s   obs/param by level 139, 156, 78.1, 39.1
+  warmup 60 sweeps: held-out -16.5380
+  round 1 level 1: split->16 EM merge->8 (paid 0.159 nats/seq)   held-out -15.8071   ACCEPT
+  round 1 level 2: split->16 EM merge->8 (paid 0.026 nats/seq)   held-out -15.4623   ACCEPT
+  round 1 level 3: split->16 EM merge->8 (paid 0.056 nats/seq)   held-out -15.4215   ACCEPT
+  round 1 level 4: split->16 EM merge->8 (paid 0.004 nats/seq)   held-out -15.4214   ACCEPT
+  round 2 level 1: split->16 EM merge->8 (paid 0.450 nats/seq)   held-out -15.4214   reject
+  round 2 level 2: split->16 EM merge->8 (paid 0.017 nats/seq)   held-out -15.4214   reject
+  round 2 level 3: split->16 EM merge->8 (paid 0.077 nats/seq)   held-out -15.4214   reject
+  round 2 level 4: split->16 EM merge->8 (paid 0.005 nats/seq)   held-out -15.4214   reject
+  round 3 level 1: split->16 EM merge->8 (paid 0.458 nats/seq)   held-out -15.4214   reject
+  round 3 level 2: split->16 EM merge->8 (paid 0.008 nats/seq)   held-out -15.4214   ACCEPT
+  round 3 level 3: split->16 EM merge->8 (paid 0.057 nats/seq)   held-out -15.4214   reject
+  round 3 level 4: split->16 EM merge->8 (paid 0.005 nats/seq)   held-out -15.4214   reject
+  round 4 level 1: split->16 EM merge->8 (paid 0.442 nats/seq)   held-out -15.4214   ACCEPT
+  round 4 level 2: split->16 EM merge->8 (paid 0.030 nats/seq)   held-out -15.4214   reject
+  round 4 level 3: split->16 EM merge->8 (paid 0.076 nats/seq)   held-out -15.4214   reject
+  round 4 level 4: split->16 EM merge->8 (paid 0.005 nats/seq)   held-out -15.4214   reject
+  best held-out -15.4214   (true grammar -15.2822, plain EM from this init reaches about -15.87)   [484s]
+=== V16L4_full 22:53:50
+  L=4 V=16 leaves=24   init-mix=0.9   true grammar held-out -15.9618
+  one EM sweep 1.37s   obs/param by level 17.4, 19.5, 9.77, 4.88
+  warmup 60 sweeps: held-out -16.6120
+  round 1 level 1: split->32 EM merge->16 (paid 0.021 nats/seq)   held-out -16.6076   ACCEPT
+  round 1 level 2: split->32 EM merge->16 (paid 0.080 nats/seq)   held-out -15.9931   ACCEPT
+  round 1 level 3: split->32 EM merge->16 (paid 0.008 nats/seq)   held-out -15.9928   ACCEPT
+  round 1 level 4: split->32 EM merge->16 (paid 0.004 nats/seq)   held-out -15.9925   ACCEPT
+  round 2 level 1: split->32 EM merge->16 (paid 0.013 nats/seq)   held-out -15.9924   ACCEPT
+  round 2 level 2: split->32 EM merge->16 (paid 0.022 nats/seq)   held-out -15.9923   ACCEPT
+  round 2 level 3: split->32 EM merge->16 (paid 0.010 nats/seq)   held-out -15.9923   ACCEPT
+  round 2 level 4: split->32 EM merge->16 (paid 0.004 nats/seq)   held-out -15.9922   ACCEPT
+  round 3 level 1: split->32 EM merge->16 (paid 0.040 nats/seq)   held-out -15.9922   ACCEPT
+  round 3 level 2: split->32 EM merge->16 (paid 0.029 nats/seq)   held-out -15.9922   ACCEPT
+  round 3 level 3: split->32 EM merge->16 (paid 0.007 nats/seq)   held-out -15.9921   ACCEPT
+  round 3 level 4: split->32 EM merge->16 (paid 0.005 nats/seq)   held-out -15.9921   ACCEPT
+  round 4 level 1: split->32 EM merge->16 (paid 0.022 nats/seq)   held-out -15.9921   reject
+  round 4 level 2: split->32 EM merge->16 (paid 0.044 nats/seq)   held-out -15.9921   reject
+  round 4 level 3: split->32 EM merge->16 (paid 0.009 nats/seq)   held-out -15.9922   reject
+  round 4 level 4: split->32 EM merge->16 (paid 0.005 nats/seq)   held-out -15.9921   reject
+  best held-out -15.9921   (true grammar -15.9618, plain EM from this init reaches about -15.87)   [1451s]
+=== V8L4_p2 23:18:03
+  L=4 V=8 leaves=12   init-mix=0.9   true grammar held-out -15.2822
+  one EM sweep 0.48s   obs/param by level 139, 156, 78.1, 39.1
+  warmup 30 sweeps: held-out -17.7532
+  round 1 level 1: split->16 EM merge->8 (paid 0.058 nats/seq)   held-out -16.8162   ACCEPT
+  round 1 level 2: split->16 EM merge->8 (paid 0.026 nats/seq)   held-out -16.2989   ACCEPT
+  round 1 level 3: split->16 EM merge->8 (paid 0.006 nats/seq)   held-out -15.9428   ACCEPT
+  round 1 level 4: split->16 EM merge->8 (paid 0.004 nats/seq)   held-out -15.8762   ACCEPT
+  best held-out -15.8762   (true grammar -15.2822, plain EM from this init reaches about -15.87)   [61s]
+=== V16L4_p2 23:19:05
+  L=4 V=16 leaves=24   init-mix=0.9   true grammar held-out -15.9618
+  one EM sweep 1.62s   obs/param by level 17.4, 19.5, 9.77, 4.88
+  warmup 30 sweeps: held-out -16.6768
+  round 1 level 1: split->32 EM merge->16 (paid 0.017 nats/seq)   held-out -16.6249   ACCEPT
+  round 1 level 2: split->32 EM merge->16 (paid 0.078 nats/seq)   held-out -15.9949   ACCEPT
+  round 1 level 3: split->32 EM merge->16 (paid 0.006 nats/seq)   held-out -15.9941   ACCEPT
+  round 1 level 4: split->32 EM merge->16 (paid 0.004 nats/seq)   held-out -15.9935   ACCEPT
+  best held-out -15.9935   (true grammar -15.9618, plain EM from this init reaches about -15.87)   [188s]
+=== V8L6N5000_p2 23:22:15
+  L=6 V=8 leaves=12   init-mix=0.9   true grammar held-out -59.0222
+  one EM sweep 0.52s   obs/param by level 139, 156, 78.1, 39.1, 19.5, 9.77
+  warmup 30 sweeps: held-out -70.8211
+  round 1 level 1: split->16 EM merge->8 (paid 0.179 nats/seq)   held-out -67.8937   ACCEPT
+  round 1 level 2: split->16 EM merge->8 (paid 0.094 nats/seq)   held-out -66.1950   ACCEPT
+  round 1 level 3: split->16 EM merge->8 (paid 0.042 nats/seq)   held-out -63.5492   ACCEPT
+  round 1 level 4: split->16 EM merge->8 (paid 0.018 nats/seq)   held-out -62.7627   ACCEPT
+  round 1 level 5: split->16 EM merge->8 (paid 0.009 nats/seq)   held-out -62.4451   ACCEPT
+  round 1 level 6: split->16 EM merge->8 (paid 0.005 nats/seq)   held-out -62.3192   ACCEPT
+  best held-out -62.3192   (true grammar -59.0222, plain EM from this init reaches about -15.87)   [83s]
+=== V8L6N20000_p2 23:23:39
+  L=6 V=8 leaves=12   init-mix=0.9   true grammar held-out -59.0168
+  one EM sweep 1.97s   obs/param by level 556, 625, 312, 156, 78.1, 39.1
+  warmup 30 sweeps: held-out -70.6072
+  round 1 level 1: split->16 EM merge->8 (paid 0.248 nats/seq)   held-out -65.6524   ACCEPT
+  round 1 level 2: split->16 EM merge->8 (paid 0.115 nats/seq)   held-out -64.1774   ACCEPT
+  round 1 level 3: split->16 EM merge->8 (paid 0.014 nats/seq)   held-out -63.5109   ACCEPT
+  round 1 level 4: split->16 EM merge->8 (paid 0.017 nats/seq)   held-out -63.4714   ACCEPT
+  round 1 level 5: split->16 EM merge->8 (paid 0.010 nats/seq)   held-out -63.3254   ACCEPT
+  round 1 level 6: split->16 EM merge->8 (paid 0.005 nats/seq)   held-out -63.1217   ACCEPT
+  best held-out -63.1217   (true grammar -59.0168, plain EM from this init reaches about -15.87)   [337s]
+=== V8L8N1250_p2 23:29:19
+  L=8 V=8 leaves=12   init-mix=0.9   true grammar held-out -233.2473
+  one EM sweep 0.53s   obs/param by level 139, 156, 78.1, 39.1, 19.5, 9.77, 4.88, 2.44
+  warmup 30 sweeps: held-out -283.7064
+  round 1 level 1: split->16 EM merge->8 (paid 0.595 nats/seq)   held-out -263.3936   ACCEPT
+  round 1 level 2: split->16 EM merge->8 (paid 0.395 nats/seq)   held-out -255.7989   ACCEPT
+  round 1 level 3: split->16 EM merge->8 (paid 0.079 nats/seq)   held-out -252.4902   ACCEPT
+  round 1 level 4: split->16 EM merge->8 (paid 0.073 nats/seq)   held-out -250.3718   ACCEPT
+  round 1 level 5: split->16 EM merge->8 (paid 0.031 nats/seq)   held-out -249.8686   ACCEPT
+  round 1 level 6: split->16 EM merge->8 (paid 0.020 nats/seq)   held-out -248.9494   ACCEPT
+  round 1 level 7: split->16 EM merge->8 (paid 0.011 nats/seq)   held-out -248.7592   ACCEPT
+  round 1 level 8: split->16 EM merge->8 (paid 0.006 nats/seq)   held-out -248.2814   ACCEPT
+  best held-out -248.2814   (true grammar -233.2473, plain EM from this init reaches about -15.87)   [105s]
+=== V8L10N312_p2 23:31:06
+  L=10 V=8 leaves=12   init-mix=0.9   true grammar held-out -690.7755
+  one EM sweep 0.55s   obs/param by level 139, 156, 78, 39, 19.5, 9.75, 4.88, 2.44, 1.22, 0.609
+  warmup 30 sweeps: held-out -690.7755
+  round 1 level 1: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 2: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 3: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 4: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 5: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 6: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 7: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 8: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 9: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  round 1 level 10: split->16 EM merge->8 (paid -0.000 nats/seq)   held-out -690.7755   reject
+  best held-out -690.7755   (true grammar -690.7755, plain EM from this init reaches about -15.87)   [130s]
+=== V32L4_p2 23:33:17
+  L=4 V=32 leaves=48   init-mix=0.9   true grammar held-out -17.2853
+  one EM sweep 8.27s   obs/param by level 2.17, 2.44, 1.22, 0.61
+  warmup 30 sweeps: held-out -19.7009
+  round 1 level 1: split->64 EM merge->32 (paid 0.383 nats/seq)   held-out -17.9079   ACCEPT
+  round 1 level 2: split->64 EM merge->32 (paid 0.033 nats/seq)   held-out -17.5406   ACCEPT
+  round 1 level 3: split->64 EM merge->32 (paid 0.012 nats/seq)   held-out -17.4221   ACCEPT
+  round 1 level 4: split->64 EM merge->32 (paid 0.005 nats/seq)   held-out -17.4219   ACCEPT
+  best held-out -17.4219   (true grammar -17.2853, plain EM from this init reaches about -15.87)   [1051s]
+=== V128L4_probe 23:50:59
+  L=4 V=128 leaves=192   init-mix=0.9   true grammar held-out -18.2455
+  one EM sweep 179.84s   obs/param by level 0.0339, 0.0381, 0.0191, 0.00954
+  warmup 1 sweeps: held-out -26.9712
+  best held-out -26.9712   (true grammar -18.2455, plain EM from this init reaches about -15.87)   [194s]
+=== V64L4_p2 23:58:18
+  L=4 V=64 leaves=96   init-mix=0.9   true grammar held-out -17.5628
+  one EM sweep 39.71s   obs/param by level 0.271, 0.305, 0.153, 0.0763
+  warmup 30 sweeps: held-out -21.4010
+  round 1 level 1: split->128 EM merge->64 (paid 0.173 nats/seq)   held-out -19.6690   ACCEPT
+  round 1 level 2: split->128 EM merge->64 (paid 0.032 nats/seq)   held-out -19.0816   ACCEPT
+  round 1 level 3: split->128 EM merge->64 (paid 0.019 nats/seq)   held-out -18.9977   ACCEPT
+  round 1 level 4: split->128 EM merge->64 (paid 0.004 nats/seq)   held-out -18.9832   ACCEPT
+  best held-out -18.9832   (true grammar -17.5628, plain EM from this init reaches about -15.87)   [5375s]
+=== V32L4N80000_p2 01:28:47
+  L=4 V=32 leaves=48   init-mix=0.9   true grammar held-out -17.2649
+  one EM sweep 34.28s   obs/param by level 8.68, 9.77, 4.88, 2.44
+  warmup 30 sweeps: held-out -20.2959
+  round 1 level 1: split->64 EM merge->32 (paid 0.387 nats/seq)   held-out -18.7244   ACCEPT
+  round 1 level 2: split->64 EM merge->32 (paid 0.062 nats/seq)   held-out -17.9470   ACCEPT
+  round 1 level 3: split->64 EM merge->32 (paid 0.010 nats/seq)   held-out -17.5134   ACCEPT
+  round 1 level 4: split->64 EM merge->32 (paid 0.005 nats/seq)   held-out -17.5015   ACCEPT
+  best held-out -17.5015   (true grammar -17.2649, plain EM from this init reaches about -15.87)   [4273s]
+=== done 02:40:45

@@ -1,0 +1,91 @@
+{
+ "L": 6,
+ "V": 8,
+ "nleaf": 12,
+ "n_val": 4000,
+ "ll_true": -59.020378073003435,
+ "levels": {
+  "1": {
+   "median": 2.949596399992255,
+   "min": -5.861977570020827e-17,
+   "max": 8.886421486061623,
+   "median_used": 5.07012212878013,
+   "min_used": 1.3707126588637515,
+   "frac_resolvable_used": 1.0,
+   "median_se": 0.021292249669570038,
+   "frac_resolvable": 0.75,
+   "n_pairs": 28,
+   "exactly_zero": 7,
+   "unused_symbols": [
+    2
+   ]
+  },
+  "2": {
+   "median": 2.2816748302636203,
+   "min": 0.9325252806414317,
+   "max": 3.6136459759486637,
+   "median_used": 2.2816748302636203,
+   "min_used": 0.9325252806414317,
+   "frac_resolvable_used": 1.0,
+   "median_se": 0.015269480938326476,
+   "frac_resolvable": 1.0,
+   "n_pairs": 28,
+   "exactly_zero": 0,
+   "unused_symbols": []
+  },
+  "3": {
+   "median": 0.9880148654796885,
+   "min": 0.4256440620457542,
+   "max": 1.7374220905371804,
+   "median_used": 0.9880148654796885,
+   "min_used": 0.4256440620457542,
+   "frac_resolvable_used": 1.0,
+   "median_se": 0.011074513231191109,
+   "frac_resolvable": 1.0,
+   "n_pairs": 28,
+   "exactly_zero": 0,
+   "unused_symbols": []
+  },
+  "4": {
+   "median": 0.36724209928976476,
+   "min": 0.07318248697736235,
+   "max": 0.7725516135214645,
+   "median_used": 0.36724209928976476,
+   "min_used": 0.07318248697736235,
+   "frac_resolvable_used": 1.0,
+   "median_se": 0.007508663388768232,
+   "frac_resolvable": 1.0,
+   "n_pairs": 28,
+   "exactly_zero": 0,
+   "unused_symbols": []
+  },
+  "5": {
+   "median": 0.10605273231764414,
+   "min": -6.039613253960852e-17,
+   "max": 0.22947476427365193,
+   "median_used": 0.1329629849704628,
+   "min_used": 0.03507712944027077,
+   "frac_resolvable_used": 1.0,
+   "median_se": 0.004501582035039071,
+   "frac_resolvable": 0.75,
+   "n_pairs": 28,
+   "exactly_zero": 7,
+   "unused_symbols": [
+    7
+   ]
+  },
+  "6": {
+   "median": 2.184918912462308e-16,
+   "min": -8.419931418757187e-16,
+   "max": 1.3145040611561853e-15,
+   "median_used": 2.184918912462308e-16,
+   "min_used": -8.419931418757187e-16,
+   "frac_resolvable_used": 0.0,
+   "median_se": 4.2441280403804274e-17,
+   "frac_resolvable": 0.0,
+   "n_pairs": 28,
+   "exactly_zero": 28,
+   "unused_symbols": []
+  }
+ }
+}

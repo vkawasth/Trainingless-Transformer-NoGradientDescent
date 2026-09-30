@@ -1,0 +1,221 @@
+{
+ "L": 4,
+ "V": 16,
+ "n_train": 20000,
+ "levels_fit": {
+  "1": {
+   "K": 16,
+   "window_ll_per_seq": -20.671655035916327,
+   "best_restart": 2,
+   "sec": 1547.620088815689,
+   "split_merge": [
+    {
+     "round": 0,
+     "merged": [
+      8,
+      13
+     ],
+     "merge_cost": -0.0004188740751139286,
+     "split": 13,
+     "val_gain": 2.4063415306809475,
+     "accepted": true
+    },
+    {
+     "round": 1,
+     "merged": [
+      13,
+      15
+     ],
+     "merge_cost": 1.5737386023643384e-05,
+     "split": 13,
+     "val_gain": 0.6382578403281514,
+     "accepted": true
+    },
+    {
+     "round": 2,
+     "merged": [
+      13,
+      15
+     ],
+     "merge_cost": 2.2806411887331013e-05,
+     "split": 13,
+     "val_gain": 0.4786203813346219,
+     "accepted": true
+    }
+   ],
+   "min_merge": 0.00015946087201700097,
+   "se": 8.597608969042812e-05,
+   "resolvable": false,
+   "median_merge": 0.5058915837477598
+  },
+  "2": {
+   "K": 16,
+   "window_ll_per_seq": -12.173448780430906,
+   "best_restart": 1,
+   "sec": 594.6351680755615,
+   "split_merge": [
+    {
+     "round": 0,
+     "merged": [
+      3,
+      13
+     ],
+     "merge_cost": 2.547602874713828e-05,
+     "split": 5,
+     "val_gain": 2.7048329086246667,
+     "accepted": true
+    },
+    {
+     "round": 1,
+     "stop": "no redundant pair",
+     "min_merge": 0.0003115040146245382
+    }
+   ],
+   "min_merge": 0.0003115040146245382,
+   "se": 0.00013336582850255062,
+   "resolvable": true,
+   "median_merge": 0.24763884359412905
+  },
+  "3": {
+   "K": 16,
+   "window_ll_per_seq": -7.111641006864858,
+   "best_restart": 2,
+   "sec": 36.70529842376709,
+   "split_merge": [
+    {
+     "round": 0,
+     "merged": [
+      0,
+      4
+     ],
+     "merge_cost": -0.0007213586303209847,
+     "split": 0,
+     "val_gain": 10.708474011789804,
+     "accepted": true
+    },
+    {
+     "round": 1,
+     "merged": [
+      0,
+      15
+     ],
+     "merge_cost": -6.966973751093342e-06,
+     "split": 3,
+     "val_gain": 13.145418596239324,
+     "accepted": true
+    },
+    {
+     "round": 2,
+     "merged": [
+      3,
+      15
+     ],
+     "merge_cost": 6.484510976165758e-07,
+     "split": 3,
+     "val_gain": 13.52234475244586,
+     "accepted": true
+    }
+   ],
+   "min_merge": 6.671936792783661e-07,
+   "se": 1.1489477954135244e-06,
+   "resolvable": false,
+   "median_merge": 0.07154621618498819
+  }
+ },
+ "sec_local": 2179.826725244522,
+ "local": {
+  "gap": 0.7923813708114977,
+  "levels": {
+   "1": {
+    "nmi": 0.9782,
+    "acc_matched": 0.9455,
+    "identifiable": true
+   },
+   "2": {
+    "nmi": 0.9343,
+    "acc_matched": 0.9,
+    "identifiable": true
+   },
+   "3": {
+    "nmi": 0.7484,
+    "acc_matched": 0.65,
+    "identifiable": true
+   },
+   "4": {
+    "nmi": 1.0,
+    "acc_matched": 0.084,
+    "identifiable": false
+   }
+  },
+  "ceiling": {
+   "1": {
+    "nmi": 1.0,
+    "acc_matched": 1.0,
+    "identifiable": true
+   },
+   "2": {
+    "nmi": 1.0,
+    "acc_matched": 1.0,
+    "identifiable": true
+   },
+   "3": {
+    "nmi": 0.9829,
+    "acc_matched": 0.982,
+    "identifiable": true
+   },
+   "4": {
+    "nmi": 0.8848,
+    "acc_matched": 0.854,
+    "identifiable": false
+   }
+  }
+ },
+ "polished": {
+  "gap": 0.2806737386160947,
+  "levels": {
+   "1": {
+    "nmi": 0.9871,
+    "acc_matched": 0.9795,
+    "identifiable": true
+   },
+   "2": {
+    "nmi": 0.9805,
+    "acc_matched": 0.956,
+    "identifiable": true
+   },
+   "3": {
+    "nmi": 0.8147,
+    "acc_matched": 0.688,
+    "identifiable": true
+   },
+   "4": {
+    "nmi": 1.0,
+    "acc_matched": 0.084,
+    "identifiable": false
+   }
+  },
+  "ceiling": {
+   "1": {
+    "nmi": 1.0,
+    "acc_matched": 1.0,
+    "identifiable": true
+   },
+   "2": {
+    "nmi": 1.0,
+    "acc_matched": 1.0,
+    "identifiable": true
+   },
+   "3": {
+    "nmi": 0.9829,
+    "acc_matched": 0.982,
+    "identifiable": true
+   },
+   "4": {
+    "nmi": 0.8848,
+    "acc_matched": 0.854,
+    "identifiable": false
+   }
+  }
+ },
+ "sec_polish": 286.5816287994385
+}
