@@ -1,0 +1,13 @@
+approval: 5920 'All polls' polls, 2017-01-22 .. 2020-08-31; weekly points 190
+2016 margin: 562 national LV/RV polls, 2015-05-26 .. 2016-11-07; weekly points 68
+   centre alignment f           vs net approval 2017-20          : n 183 weeks; strongest lag +6 wk (+ = coverage leads), r -0.191, max-over-lags p 0.328
+   centre alignment f           vs Trump-Clinton margin 2015-16  : n  70 weeks; strongest lag -2 wk (+ = coverage leads), r +0.199, max-over-lags p 0.843
+   left-right adversarial gap   vs net approval 2017-20          : n 183 weeks; strongest lag -7 wk (+ = coverage leads), r -0.205, max-over-lags p 0.253
+   left-right adversarial gap   vs Trump-Clinton margin 2015-16  : n  70 weeks; strongest lag +2 wk (+ = coverage leads), r -0.152, max-over-lags p 1.000
+   inauguration          : outcome +nan -> -10.0  (change +nan points, z +nan)
+   Charlottesville       : outcome -12.1 -> -16.9  (change -4.9 points, z -5.1)
+   Mueller report        : outcome -11.4 -> -11.2  (change +0.2 points, z +0.4)
+   impeachment inquiry   : outcome -11.1 -> -10.3  (change +0.8 points, z +1.5)
+   COVID emergency       : outcome -10.7 -> -9.7  (change +1.0 points, z +1.0)
+   Access Hollywood tape : outcome -3.0 -> -6.1  (change -3.1 points, z -3.0)
+   Comey letter          : outcome -5.8 -> -4.4  (change +1.4 points, z +1.1)

@@ -1,0 +1,8 @@
+95 windows; gamma != 0 in 0;  CF range 0.010-0.104;  signalling range 0.005-0.050;  corr(CF, signalling) 0.85
+perturbation RMS: natural median 0.0610, non-natural median 0.0542
+   corr(window CF, window mean net approval) = +0.33  (n 87 overlapping windows)
+   corr(window signalling, window mean net approval) = +0.25  (n 87 overlapping windows)
+   corr(window glue_defect, window mean net approval) = +0.19  (n 87 overlapping windows)
+   corr(window glue_p, window mean net approval) = +0.09  (n 87 overlapping windows)
+   corr(window natural, window mean net approval) = +0.26  (n 87 overlapping windows)
+   corr(window non_natural, window mean net approval) = +0.21  (n 87 overlapping windows)
