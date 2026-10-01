@@ -3,6 +3,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs,tabularx,array}
 \usepackage{graphicx}
+\usepackage[section]{placeins}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{xcolor}
@@ -67,7 +68,7 @@ The organising statement is that the three layers (operations, probability and o
 \begin{itemize}
   \item \src{H}: \emph{Recovering latent hierarchy without gradient descent} (hierarchy paper and handoff).
   \item \src{O}: \emph{Holonomy obstructions for composed local operations} (holonomy paper).
-  \item \src{S}: this work, implemented in the \texttt{amb\_vigneaux} package. It has 218 tests, and every numerical claim tagged \src{S} is produced by that code.
+  \item \src{S}: this work, implemented in the \texttt{amb\_vigneaux} package. It has 258 tests, and every numerical claim tagged \src{S} is produced by that code.
 \end{itemize}
 \noindent\textbf{Status tags:} \st{proved}, \st{computed} (exact computation or verified identity), \st{measured} (empirical, no proof), \st{open}, \st{closed} (settled by theorem, not to be reopened).
 
@@ -98,7 +99,7 @@ Restriction $R$ from global laws to context families (Section~\ref{sec:functors}
 %=====================================================================
 \section{The three layers}
 
-\begin{table}[h]\centering
+\begin{table}[!htbp]\centering
 \begin{tabularx}{\linewidth}{@{}l>{\raggedright}X>{\raggedright\arraybackslash}X@{}}
 \toprule
 Layer & Invariant & Condition for non-triviality\\
@@ -192,12 +193,12 @@ For readers who meet it here first: the \emph{Giry monad} \cite{giry} sends a me
 \begin{itemize}
   \item Its unit sends a point to its Dirac measure, and its multiplication averages a measure of measures.
   \item A map $X\to\mathcal G(Y)$ is a Markov kernel, and these form the \emph{Kleisli category}, whose composition is the Chapman--Kolmogorov formula.
-  \item On finite sets the Giry monad becomes the finite distribution monad $\mathcal D$. Its Kleisli category is $\mathbf{FinStoch}$: finite sets as objects, stochastic matrices as morphisms, matrix product as composition \cite{fritz}.
+  \item On finite sets the Giry monad becomes the finite distribution monad $\mathcal D$. Its Kleisli category is $\mathbf{FinStoch}$: finite sets as objects, stochastic matrices as morphisms, matrix product as composition \cite{fritz}. The Kleisli category as the home of ``information transformers'' goes back to Golubtsov \cite{golubtsov02}; representable Markov categories \cite{fgpr20} make the passage between a Markov category and the Kleisli category of its distribution monad precise.
 \end{itemize}
 All our data are finite, so this finite version is all the paper needs, and it uses it in four places:
 \begin{itemize}
   \item \emph{$\mathbf{FinStoch}$ as a Markov category} in Fritz's sense (previous subsection), which gives conditional independence and sufficiency their categorical meaning.
-  \item \emph{Sufficiency of the soft hand-off.} Identity V2 (Table~\ref{tab:identities}) checks it to $6.7\times10^{-16}$, and Fritz's Fisher--Neyman theorem is the statement being checked.
+  \item \emph{Sufficiency of the soft hand-off.} Identity V2 (Table~\ref{tab:identities}) checks it to $6.7\times10^{-16}$, and Fritz's Fisher--Neyman theorem is the statement being checked. Comparison of experiments (Blackwell--Sherman--Stein, in its categorical form \cite{fgpr20}) is the general statement behind the data-processing monotonicity used in Proposition~\ref{prop:mipers}.
   \item \emph{Merging as averaging in the monad.} A merged symbol's rule row is the usage-weighted convex mixture of the two rows, the multiplication of $\mathcal D$ (Construction ``merging as convex combination'', Sections~\ref{sec:o6}, \ref{sec:gram-strata}).
   \item \emph{Transports as Kleisli morphisms.} The source-to-source transports $T_{ab}$ are stochastic matrices, and the loop operator $M=T_{AB}T_{BC}T_{CA}$ is the monodromy of the functor $\Pi_1(\Gamma)\to\mathbf{FinStoch}$ (Section~\ref{sec:mono}).
 \end{itemize}
@@ -217,7 +218,7 @@ decode a block (posterior) & Bayesian inversion in $\mathbf{FinStoch}$ (needs a 
 \bottomrule
 \end{tabular}
 \end{center}
-Contextuality lives in the limit, not in $\mu$. The obstruction ($\gamma_{\rm AMB}$, the loop sums) is the failure of the limit of the presheaf $C\mapsto\mathcal G(X_C)$ over the cover to have an element: the local laws agree on every overlap but admit no joint. The multiplication enters only after a way of gluing has been \emph{chosen} (the conditional product), and it then produces one candidate global section. A re-implementation should therefore keep three things apart:
+Contextuality lives in the limit, not in $\mu$. (Bohinen and Perrone \cite{bohinenperrone25} show that, for a Markov category with conditionals, the multiplication of the associated monad is \emph{weakly} cartesian. Conditional products are weak pullbacks: they exist for every compatible pair but are not unique. Proposition~\ref{prop:condprod} is the finite, cover-level consequence: pairs always glue, and cycles need not.) The obstruction ($\gamma_{\rm AMB}$, the loop sums) is the failure of the limit of the presheaf $C\mapsto\mathcal G(X_C)$ over the cover to have an element: the local laws agree on every overlap but admit no joint. The multiplication enters only after a way of gluing has been \emph{chosen} (the conditional product), and it then produces one candidate global section. A re-implementation should therefore keep three things apart:
 \begin{itemize}
   \item restriction and compatibility, which are functorial and need no $\mu$;
   \item composition and mixing, which are Kleisli operations and need $\mu$;
@@ -248,6 +249,83 @@ For a joint law of $X_1,\dots,X_k$, let $K(t)$ be the graph (or its flag complex
 Data processing gives the entrywise inequality, which gives the inclusions of filtered complexes, and homology is functorial. The HSIC example is computed in \texttt{tests/test\_giry.py}. The inclusion is checked on random joint laws over 20 draws and 25 thresholds each.
 \end{proof}
 \noindent A thresholded single $H^1(K_\ell,\mathbb F_2)$ is not a coefficient morphism, because the step function is not additive. The persistence module of Proposition~\ref{prop:mipers} is the functorial replacement, provided the dependence weight satisfies data processing.
+
+\subsection{The presheaf of Markov kernels on the cover}\label{sec:kernelpresheaf}
+A proposal that recurs in discussions of this engine is to treat the local laws as a \emph{presheaf of Markov kernels} on the measurement cover, to compute its (non-abelian) cohomology, and to relate kernels and cochains by an adjunction. This subsection checks which parts are viable (\texttt{amb\_vigneaux/kernel\_presheaf.py}, \texttt{examples/kernel\_presheaf/run.py}, \texttt{tests/test\_kernel\_presheaf.py}).
+
+\textbf{The presheaf.} For a context $C$ put $K(C)=\mathcal D(E(C))$, and let restriction along $C'\subseteq C$ be marginalisation. This is a functor $K:\mathcal C^{\rm op}\to\mathbf{Set}$ (even to convex sets), and it is exactly the distribution presheaf $\mathcal D_R\circ E$ of Abramsky--Brandenburger \cite{ab11}, on which the whole engine already runs. With explicit settings, $K(C)$ is the set of boxes $p(o_C\mid x_C)$, and restriction marginalises the \emph{outputs} with the settings held fixed. It is well defined exactly on the no-signalling boxes. Summing over the settings $x_{C\setminus C'}$ as well, as in the proposal, does not give a kernel: the total mass becomes $|X_{C\setminus C'}|$.
+
+\textbf{Descent.} A family $(e_C)$ is compatible iff it agrees on every overlap (no-signalling), and it glues iff some global law restricts to every $e_C$. Compatibility is decided by a finite set of equalities. Gluing is decided by the linear programme for $\CF$ \cite{abm17}, whose dual optimum is a Bell inequality separating $e$ from the image of the global laws.
+
+\begin{proposition}[Conditional products glue trees, not cycles]\label{prop:condprod}\st{proved; checked}
+\leavevmode
+\begin{enumerate}
+  \item In $\mathbf{FinStoch}$ the conditional product $p_U\otimes p_{V\mid U\cap V}$ exists for \emph{every} compatible pair. Iterated along an order of the contexts, starting from the uniform law, it is one sweep of iterative proportional fitting.
+  \item If the order has the running-intersection property (an order exists iff the cover is acyclic; GYO \cite{bfmy}), one sweep glues every compatible family exactly. This is a constructive form of Vorob'ev's theorem (Theorem~\ref{thm:vorobev}).
+  \item On a cyclic cover one sweep along a spanning chain reproduces every context of the chain, but not the closing one. For the CHSH family $e_\lambda=\lambda\,\mathrm{PR}+(1-\lambda)\,\mathrm{noise}$ the closing defect is exactly
+  \[ \mathrm{TV}=\tfrac12(\lambda+\lambda^3), \]
+  because correlations compose along the chain (a Kleisli composite: $\lambda\cdot\lambda\cdot\lambda$) while the closing context has correlation $-\lambda$. It is positive for all $\lambda\in(0,\tfrac12]$, where a global law exists ($\CF=0$).
+\end{enumerate}
+Hence the existence of conditional products is not the gluing criterion: they always exist, and the obstruction is carried by the cycle.
+\end{proposition}
+\begin{proof}
+(1) The conditional product is $p_U(x_U)\,p_V(x_V)/p_{U\cap V}(x_{U\cap V})$, defined whenever the two restrictions to $U\cap V$ agree. Multiplying a law that is uniform on the unseen variables by $e_C/(\text{current } C\text{-marginal})$ is exactly this product, which is the IPF update. (2) In a running-intersection order each new context meets the glued part inside one earlier context, whose marginal is already exact. So the update fixes $C$ without disturbing earlier marginals (induction). (3) Along the chain the glued law is a Markov chain, so the end-to-end correlator is the product of the three link correlators, $\lambda^3$; the closing context needs $-\lambda$, and the TV distance between the two binary symmetric tables is half the difference of the correlators. The formula is checked to $10^{-12}$ in the tests.
+\end{proof}
+\noindent Computed (\texttt{run.py}):
+\begin{itemize}
+  \item One sweep in a running-intersection order glues $200/200$ random compatible families on random acyclic covers (worst TV $6\times10^{-16}$). The families are built from arbitrary kernels along the join tree, not from a global law.
+  \item On the 4-cycle a single sweep glues $0/200$ random \emph{non-contextual} families (median closing TV $0.013$), although a global law exists for all of them.
+  \item The best of all $24$ context orders still leaves a defect ($0.060$ at $\lambda=\tfrac12$, where $\CF=0$).
+\end{itemize}
+When $\CF=0$, full IPF (sweeps repeated to convergence) does glue (Section~\ref{sec:gldyn}).
+
+\begin{proposition}[The adjunction, and why a linear one sees nothing]\label{prop:kerneladj}\st{proved; checked}
+Let $R:\mathcal D(E(X))\to\mathrm{Fam}(\mathcal U)$, $P\mapsto(P|_C)_C$.
+\begin{enumerate}
+  \item Direct image and preimage form an adjunction on subsets (a Galois connection): $R_!S\subseteq T$ iff $S\subseteq R^\ast T$. The unit $S\subseteq R^\ast R_!S$ always holds. The counit $R_!R^\ast T\subseteq T$ is an equality iff $T$ lies in the image of $R$, i.e.\ consists of non-contextual families. The failure of the counit is the obstruction, and its size for a single family is $\CF$ (the $\ell_1$-type distance to the image).
+  \item On the image, the maximum-entropy extension is a section of $R$ (the fixed point of IPF \cite{csiszar}). It is a right inverse, not an inverse, because the fibre $R^{-1}(e)$ is a polytope.
+  \item After linearisation (signed measures, or cochains with coefficients in a ring), $R$ maps onto the compatible families \cite{ab11}, and the counit becomes an isomorphism. Every no-signalling family, the PR box included, has a signed global extension (residual $2.5\times10^{-16}$; Proposition~\ref{prop:twoside}).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) is the general fact that image is left adjoint to preimage for any map of sets. The counit is an equality on $T$ iff every element of $T$ has a preimage. (2) IPF converges to the $I$-projection of the uniform law onto the fibre whenever the fibre is non-empty. (3) is the Abramsky--Brandenburger quasi-probability theorem, checked numerically in the tests.
+\end{proof}
+\noindent So an adjunction ``kernels $\rightleftarrows$ cochain complexes'' whose right adjoint is linear loses exactly the positivity that carries probabilistic contextuality. A useful version has to keep the cone. The Farkas dual of the $\CF$ programme is that version: a functional on $\bigoplus_C\mathbb R^{E(C)}$ (a $0$-cochain on the nerve) that is non-negative on the image of $R$ and negative on $e$.
+
+\begin{remark}[Which non-abelian cohomology is well posed]\label{rem:nonabelian}
+\leavevmode
+\begin{itemize}
+  \item Stochastic matrices form a monoid under composition, not a group; only the permutation matrices are invertible in $\mathbf{FinStoch}$. So the kernel presheaf is neither a presheaf of groups nor a 2-group in the sense of Baez--Lauda (which requires invertible objects and morphisms). Moreover $K(C)$ is not closed under composition, since its elements have different domains and codomains. Giraud's $H^1$ and $H^2$ \cite{giraud} and Breen's 2-group cohomology \cite{breen} therefore do not apply to $K$ as it stands.
+  \item The well-posed non-abelian piece is the presheaf of \emph{invertible} (bijective, deterministic) transports. On a cover whose nerve is a graph the cocycle condition is vacuous, and $H^1=\mathrm{Hom}(\pi_1,G)/G$ is the monodromy representation of Section~\ref{sec:mono}, which the engine already computes, lossy edges included.
+  \item Deterministic compatible families always glue, because the event presheaf $E$ is a sheaf. So the statement that the non-abelian class ``reduces to $\gamma$ on deterministic kernels'' is vacuous there: both vanish.
+  \item That lossy families can be obstructed while $\gamma=0$ is true (Section~\ref{sec:gldyn}: $\CF>0$ with $\gamma=0$ on $\lambda\in(\tfrac12,0.92)$). But its complete invariant is already $\CF$ together with its dual Bell inequality. A loop transport composed from lossy kernels (Proposition~\ref{prop:condprod}(3)) depends on the chosen gluing and is non-zero on non-contextual families, so it is not an invariant of the class.
+  \item The homotopical frameworks in which non-abelian and higher structure are genuinely present are group cohomology for Mermin-type proofs \cite{orbr17} and simplicial distributions \cite{kharoofokay}. That is where a derived or non-abelian extension of this engine should attach. We do not claim a bridge across the non-unification theorem at this level: that theorem concerns coefficient systems, and nothing above provides a morphism of the kind it excludes.
+\end{itemize}
+\end{remark}
+
+\begin{remark}[An arithmetic universe as the constructive home of the discrete layer]\label{rem:au}
+An \emph{arithmetic universe} (AU) \cite{joyal73,maietti10} is a list-arithmetic pretopos: a category with finite limits, stable effective quotients, disjoint coproducts, a parametrised natural numbers object and list objects. It has no power objects and no real numbers. It suggests a reframing of the engine, and one popular version of it is wrong.
+\begin{itemize}
+  \item \emph{A transformer is not an AU.} The category whose objects are token contexts and whose morphisms are derivations has no finite limits: derivations only lengthen contexts, so the empty context is not terminal. Concatenation is a monoidal product, not a coproduct. Iterating a forward pass does not give a natural numbers object, which is defined by a universal property. That softmax identifies logits modulo constant shifts is a quotient in $\mathbf{Set}$, not a structure of the transformer.
+  \item \emph{The correct direction.} A fixed transformer at finite precision is a finite function. It is therefore an \emph{interpretation}, into an AU such as $\mathbf{Set}$, of a finite theory whose free AU is Maietti's syntactic category. The universal property is the definition of ``free''; it is not a theorem about transformers.
+  \item \emph{What the AU does give.} It marks which parts of the engine are finitary and constructive, and which need analysis. The finitely supported distribution monad with \emph{rational} weights can be built inside an AU, from lists modulo permutation and with $\mathbb Q$ from the natural numbers object (proved in Section~\ref{sec:constructive}). So the probability layer of everything computed from counts lives there too.
+\end{itemize}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}}
+\toprule
+finitary (definable in an AU: exact, rational, decidable) & analytic (needs a geometric or analytic model)\\
+\midrule
+count tables and rational laws; support patterns; AMB classes over $\mathbb Z/n$ & Hodge split, Fiedler and Weyl certificates (eigenvalues)\\
+LP feasibility, contextual fraction, Bell and Farkas certificates over $\mathbb Q$ (the simplex method is finite) & IPF and maximum-entropy limits; the Birch point\\
+inside--outside recursion over trees (list and tree recursion) & Fisher information, statistical curvature, jets\\
+quotients by relabelling symmetries: grammar space modulo symbol permutations, merge strata & learning coefficients, WBIC, thermodynamic integration, MCMC\\
+toric binomials, facial sets and exact toggle radii (MILP over $\mathbb Q$) & $p$-adic and Berkovich radii as real-valued functions; spectral tests\\
+a fixed finite-precision transformer, as a finite function & training dynamics of a transformer\\
+\bottomrule
+\end{tabular}
+\end{center}
+For a reader re-implementing the engine, the left column can be computed exactly and checked symbolically. The right column carries numerical tolerances, and its results are statements about a real-valued model of the left column.
+\end{remark}
 
 \subsection{Functors, natural transformations and higher structure}
 \begin{itemize}
@@ -309,7 +387,7 @@ All experiments use the Random Hierarchy Model of Cagnetta et al.~\cite{cagnetta
 The exact conditional entropy $H(x_t\mid x_{<t})$ is computed by inside--outside (Theorem~\ref{thm:io}). For Corpus A: $H_{\text{local}}=1.6034$, $H_{\text{higher}}=3.5527$, $H(x_0)=3.8161$ nats. The latent-symbol entropies given the prefix, for levels 1--4, are $2.7835,2.2923,2.2900,2.7910$ against chance $\ln V=4.1589$. About $1.87$ nats of level-3 information are recoverable from the prefix.
 
 \section{Transformers do not recover levels 3--4}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lccc}
 \toprule
 configuration & local & higher & level-3 probe\\
@@ -346,7 +424,7 @@ exact floor & \textbf{1.603} & \textbf{3.553} & ---\\
 \end{enumerate}
 \end{construction}
 
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{llc}
 \toprule
 check & statement & max error\\
@@ -363,7 +441,7 @@ V4a & merge cost $=N\,I(\text{children};B\mid q(B))$ & $1.2\times10^{-14}$\\
 \label{tab:identities}
 \end{table}
 
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lccc}
 \toprule
 variant (Corpus A, $2\times10^4$ sequences) & local & higher & held-out $\log p$/seq\\
@@ -402,7 +480,7 @@ true grammar & 1.599 & 3.553 & $-41.21$\\
 \end{itemize}
 
 \section{The regime determines learnability}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcccc}
 \toprule
  & level 1 & level 2 & level 3 & level 4\\
@@ -411,12 +489,12 @@ Corpus A: observations per parameter & 1.4 & 0.31 & 0.15 & 0.08\\
 Corpus B: observations per parameter & 1389 & 1563 & 781 & 391\\
 \bottomrule
 \end{tabular}
-\caption{Identifiability regime \src{H}. Levels fail at 0.15 observations per parameter and succeed at 781.}
+\caption{Identifiability regime \src{H}. Levels fail at 0.15 observations per parameter and succeed at 781.}\label{tab:regime}
 \end{table}
 On Corpus B at 200 sweeps, the level-3 block dependence captured rises from $0.0854$ to $0.1827$, and its discrepancy falls from $z=+20.2$ to $+5.4$. The earlier failure was therefore an unestimable regime, then undertraining. Merges at levels 1--3 cost real conditional MI; the root alphabet is redundant, with $8\to2$ improving held-out likelihood by $0.004$.
 
 \section{Closing the gap: basin selection and split--merge}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcc}
 \toprule
 start & held-out $\log p$/seq & local / higher\\
@@ -446,7 +524,7 @@ For each level:
   \item accept only if held-out likelihood improves.
 \end{enumerate}
 \end{construction}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcc}
 \toprule
 stage & held-out $\log p$/seq & merge cost (nats/seq), levels 1--4\\
@@ -506,30 +584,30 @@ Findings:
 \end{itemize}
 The baseline, the generator and the scorer are released so that other methods can be run on the same footing.
 
-\section{Theorems and constructions used \src{H}}
+\section{Theorems and constructions used \src{H}}\label{sec:theoremsused}
 \begin{theorem}[Inside--outside; Baker, Lari--Young]\label{thm:io}\st{used}
 For a PCFG on a fixed tree, the inside values $\beta$ and outside values $\alpha$ give exact marginals: the posterior at a node is $\propto\alpha\beta$.
 \end{theorem}
 \begin{theorem}[EM ascent; Dempster--Laird--Rubin]\label{thm:em}\st{used}
 Each EM iteration does not decrease the observed-data log-likelihood.
 \end{theorem}
-\begin{theorem}[Convergence; Wu]\st{used}
+\begin{theorem}[Convergence; Wu]\label{res:auto1}\st{used}
 Under regularity conditions, EM converges to a stationary point, and the limit depends on the initialisation.
 \end{theorem}
 \begin{theorem}[Extension; Vorob'ev]\label{thm:vorobev}\st{used}
 Every consistent family of marginals on a hypergraph extends to a global distribution if and only if the hypergraph is acyclic. A fixed tree is acyclic.
 \end{theorem}
-\begin{theorem}[Independent pullback; Simpson Thm 6.4, Prop.~8.5]\st{used}
+\begin{theorem}[Independent pullback; Simpson Thm 6.4, Prop.~8.5]\label{res:auto2}\st{used}
 A presheaf on standard Borel probability spaces is an atomic sheaf iff it maps independent squares to pullbacks. The independent pullback is the conditional product.
 \end{theorem}
 \begin{definition}[Supports; Simpson Def.~7.1] A support of a random variable is its terminal factorisation through a sample space.\end{definition}
-\begin{theorem}[Conditional products; Fritz \S12]\st{used}
+\begin{theorem}[Conditional products; Fritz \S12]\label{res:auto3}\st{used}
 In a Markov category with conditionals, conditional products exist and satisfy the Dawid--Studen\'y axioms. $\mathsf{FinStoch}$ is such a category.
 \end{theorem}
-\begin{theorem}[Sufficient statistics; Fritz Def.~14.3, Thm~14.5]\st{used}
+\begin{theorem}[Sufficient statistics; Fritz Def.~14.3, Thm~14.5]\label{res:auto4}\st{used}
 A statistic is a deterministic morphism, and the abstract Fisher--Neyman factorisation holds. The soft hand-off is a statistic, and V2 verifies its sufficiency.
 \end{theorem}
-\begin{theorem}[Minimal sufficiency; Fritz Def.~16.2, Bahadur]\st{used}
+\begin{theorem}[Minimal sufficiency; Fritz Def.~16.2, Bahadur]\label{res:auto5}\st{used}
 A minimal sufficient statistic is least informative among the sufficient ones; a complete sufficient statistic is minimal.
 \end{theorem}
 \begin{remark}[Fritz and cohomology]
@@ -595,14 +673,14 @@ Consider the exponential sequence $0\to\Z_M\to\R_M\to\mathcal S^1_M\to0$ on a ma
 $\delta_M[g]$ lies in $H^1(M,\Z)$, not in $\mathrm{Ext}^1(\mathcal S^1_M,\Z_M)$. It is not the AMB obstruction: the ``support reduction'' $\mathcal F_{\text{prob}}\to\Z$ is not additive, so it is not a morphism of sheaves.
 \end{remark}
 
-\begin{proposition}[T0 does not apply to operation systems]\src{O, Prop.~8} An operation system has no sample; a witness would be a global field, which is the object in question.\end{proposition}
-\begin{proposition}[Vorob'ev does not apply]\src{O, Prop.~9} Here the relevant structure is the cycle space of $\Gamma$: $\beta_1=0$ makes $H^1$ trivial, while $\beta_1>0$ leaves it free.\end{proposition}
+\begin{proposition}[T0 does not apply to operation systems]\label{res:auto6}\src{O, Prop.~8} An operation system has no sample; a witness would be a global field, which is the object in question.\end{proposition}
+\begin{proposition}[Vorob'ev does not apply]\label{res:auto7}\src{O, Prop.~9} Here the relevant structure is the cycle space of $\Gamma$: $\beta_1=0$ makes $H^1$ trivial, while $\beta_1>0$ leaves it free.\end{proposition}
 \begin{proposition}[Possibilistic fragility does not apply]\label{prop:frag}
 \src{O, Prop.~10} \st{computed}
 The AMB obstruction is a functional of the support, so smoothing kills it. Measured: $\gamma$ falls from $9/9$ to $0/27$ at $\varepsilon=10^{-9}$, while $\CF=1-3\varepsilon$ survives to $\varepsilon=1/3$. The holonomy class is a sum of the operations themselves and has no support to blur.
 \end{proposition}
 
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabularx}{\linewidth}{@{}l>{\raggedright}X l@{}}
 \toprule
 attempted coefficients & why it failed & verified\\
@@ -654,7 +732,7 @@ Let $\mathcal S$ be an information structure whose observables form a monoid und
 With trivial action the cochains are constants, and the complex is the bar complex of a monoid with an absorbing element, whose classifying space is contractible.
 \end{proof}
 \noindent Verified for the join-semilattices of two and three binary variables: $H^0=\Z$ and $H^1=H^2=0$ over $\Q$, and over $\Z$ by Smith normal form, with no torsion.
-\begin{corollary}[Extensions do not help]\src{O, Cor.~28} \st{proved, closed}
+\begin{corollary}[Extensions do not help]\label{res:auto8}\src{O, Cor.~28} \st{proved, closed}
 The connecting map of any extension of $\mathcal F_\alpha$ by a trivially-acting $\mathcal F_\Z$ lands in $H^{k+1}(\mathcal F_\Z)=0$.
 \end{corollary}
 \begin{remark}[The dichotomy]\src{O, Rem.~29}
@@ -711,14 +789,14 @@ If $\ell_L=\sum\lambda_ka_k$, then $h=\sum\lambda_k(a_k\cdot g)$. Conversely, $A
 \end{proof}
 \noindent Observing only each loop traversed twice identifies $h$ over $\Q$ and over $\Z/\text{odd}$, but not over $\R/\Z$ or $\Z/\text{even}$. Witness pairs are constructed in the tests.
 
-\begin{corollary}[T0 for operations]\st{proved}
+\begin{corollary}[T0 for operations]\label{res:auto9}\st{proved}
 \begin{itemize}
   \item A design that reads each vertex through one route (a spanning-tree section) spans no cycle, so no loop is identifiable.
   \item An estimator that fits a field and sets $\hat g=\delta\hat c$ returns $\hat h\equiv0$. Measured: $10^{-17}$ on a world with $h=0.2$, while edge-local estimates give $0.205$.
 \end{itemize}
 \end{corollary}
 
-\begin{proposition}[Calibrated test and sample cost]\st{measured; large-sample}
+\begin{proposition}[Calibrated test and sample cost]\label{res:auto10}\st{measured; large-sample}
 The Wald statistic $T=\hat h^\top\Sigma^{-1}\hat h$, with $\Sigma=C\operatorname{diag}(\mathrm{se}^2)C^\top$, is $\chi^2_{\beta_1}$ under $[g]=0$ when the circular-mean standard error is the delta-method one, $\mathrm{var}=(1-\rho_2)/(2m\rho_1^2)$.
 \begin{itemize}
   \item Calibration: 4.2--6.4\% false positives at nominal 5\% for $\sigma\in[0.05,0.35]$ turn ($m=30$, 500 replicates). The naive standard error reaches 74\%.
@@ -731,11 +809,11 @@ The Wald statistic $T=\hat h^\top\Sigma^{-1}\hat h$, with $\Sigma=C\operatorname
   \item The Cram\'er--Rao bound equals $e^{4\pi^2\sigma^2}/(8\pi^2)$ asymptotically, and the circular mean is 89--100\% efficient, so the exponent is intrinsic.
 \end{itemize}
 \end{proposition}
-\begin{proposition}[Discrete groups]\st{proved; measured looseness}
+\begin{proposition}[Discrete groups]\label{res:auto11}\st{proved; measured looseness}
 For $\Z/n$ with a symmetric channel, the mode estimator is exact with probability at least $1-|E|(|A|-1)(1-(\sqrt{p_t}-\sqrt{p_w})^2)^m$. The bound holds but is about $10\times$ loose ($0.018$ against a measured $0.001$ at $m=80$).
 \end{proposition}
 
-\begin{figure}[h]\centering\includegraphics[width=\linewidth]{holonomy.png}
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{holonomy.png}
 \caption{Problem 26 \src{S}. (A) calibration; (B) power against theory; (C) sample cost; (D) discrete class error against the Chernoff bound.}\end{figure}
 
 %---------------------------------------------------------------------
@@ -765,10 +843,10 @@ Each edge carries a doubly stochastic channel $K$. Colours are uniform, so the B
 \begin{proposition}[Character eigenvalues]\label{prop:eig}\st{proved}
 For covariant channels $C_{\mu_e}S_{g_e}$ on a finite abelian $A$, every character $\chi$ is an eigenvector of $M_L$ with $\lambda_\chi=\big(\prod_e\hat\mu_e(\chi)\big)\chi(h)$. For the noisy shift $K=(1-\varepsilon)S_g+\varepsilon U$, $M_L=(1-\varepsilon)^{|L|}S_h+[1-(1-\varepsilon)^{|L|}]U$ and $\lambda_\chi=(1-\varepsilon)^{|L|}\chi(h)$.
 \end{proposition}
-\begin{corollary}
+\begin{corollary}\label{res:auto12}
 The labelled eigenvalue is base-point free, and its phase is $\chi(h)$ when every $\hat\mu_e(\chi)$ is real and positive. The unlabelled multiset is base-point free for \emph{any} channels, since $AB$ and $BA$ share their nonzero spectrum, but on $\Z/p$ it sees only the order of $h$. Asymmetric noise adds its own phase: the readout is $2.285$ instead of $2$.
 \end{corollary}
-\begin{proposition}[Information closed forms]\st{proved}
+\begin{proposition}[Information closed forms]\label{res:auto13}\st{proved}
 $I(c_a;c_b)=\log_2n+(1-\varepsilon+\tfrac\varepsilon n)\log_2(1-\varepsilon+\tfrac\varepsilon n)+(n-1)\tfrac\varepsilon n\log_2\tfrac\varepsilon n$. The loop-composite information is the same with $\varepsilon_L=1-(1-\varepsilon)^{|L|}$. Both are independent of $h$.
 \end{proposition}
 
@@ -789,7 +867,7 @@ independent of $|A|$ and of $h$.
 \begin{theorem}[Any graph, lower bound]\label{thm:girth}\st{proved}
 $\CF(e_K)\ge\max(0,1-\lmin\varepsilon/2)$, where $\lmin$ is the shortest simple cycle with nonzero holonomy.
 \end{theorem}
-\begin{observation}\st{measured}
+\begin{observation}\label{res:auto14}\st{measured}
 Equality holds in 44 configurations: $\theta$-graphs, $K_4$, shared edges, shared vertices, disjoint non-flat loops, and $\varepsilon\le0.8$. Only $\lmin$ matters, not the cycle basis. The general packing is \st{open}.
 \end{observation}
 \begin{counterexample}[What does not hold]\label{ce:info}\st{computed}
@@ -800,7 +878,7 @@ Equality holds in 44 configurations: $\theta$-graphs, $K_4$, shared edges, share
 \end{itemize}
 \end{counterexample}
 
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{llll}
 \toprule
 layer & invariant & response to $\varepsilon$ & detects $h$ until\\
@@ -814,10 +892,10 @@ layer & invariant & response to $\varepsilon$ & detects $h$ until\\
 \caption{The same noise acting on four invariants \src{S}.}
 \end{table}
 
-\begin{figure}[h]\centering\includegraphics[width=\linewidth]{channels.png}
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{channels.png}
 \caption{Noisy operations on a 4-cycle over $\Z/5$, with $h=2$ against a flat system \src{S}.}\end{figure}
 
-\begin{proposition}[Orientation for $\Z/3$ and $\Z/5$]\st{proved, computed}
+\begin{proposition}[Orientation for $\Z/3$ and $\Z/5$]\label{res:auto15}\st{proved, computed}
 For odd primes, $h\ne-h$ whenever $h\ne0$, so the labelled phase always detects orientation. Reversing the loop inverts the readout ($1\leftrightarrow4$ and $2\leftrightarrow3$ on $\Z/5$). The unlabelled multiset and $\CF$ do not detect orientation.
 \begin{itemize}
   \item On $\Z/3$ a non-flat holonomy is exactly a chirality, read from the sign of $\operatorname{Im}\lambda_1$.
@@ -828,7 +906,7 @@ For odd primes, $h\ne-h$ whenever $h\ne0$, so the labelled phase always detects 
 
 %---------------------------------------------------------------------
 \section{The support dial: Tsallis entropies}\label{sec:tsallis}
-\begin{proposition}\st{computed; the cocycle property is Vigneaux's}
+\begin{proposition}\label{res:auto16}\st{computed; the cocycle property is Vigneaux's}
 Let $S_\alpha=(1-\sum p^\alpha)/(\alpha-1)$ with the deformed action $(X\cdot_\alpha F)(P)=\sum_xP(X{=}x)^\alpha F(P\mid X{=}x)$.
 \begin{itemize}
   \item $S_\alpha$ is a $\delta_\alpha$-cocycle (defect below $3\times10^{-15}$), but not a cocycle for Shannon's action (defect up to $1.8$).
@@ -868,7 +946,7 @@ An empirical model $e=(e_C)_C$ lies in a product of simplices $\prod_C\Delta(O^C
 \end{enumerate}
 \end{proof}
 
-\begin{corollary}\st{proved}
+\begin{corollary}\label{res:auto17}\st{proved}
 A nonzero $\gamma$ and logical contextuality occur only on \emph{intermediate} strata: neither full support nor single outcomes.
 \begin{itemize}
   \item The PR box has no global section and 8 cohomological witnesses.
@@ -1042,7 +1120,7 @@ Coherent fabrications are invisible by construction.
   \item \emph{Limits}: at $\varepsilon=0.2$ with $m\le5$, power is low.
   \item \emph{Validation}: \texttt{tests/test\_meter.py} checks the CF lower bound against the LP on 3- and 5-cycles.
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lccccc}
 \toprule
 $m$, $\varepsilon$, noise model & honest & self & overlap & cross (correct edge blamed) & fabrication\\
@@ -1117,7 +1195,7 @@ Weights of Gaussian type are closed under gluing, and gluing them is matrix alge
   \item Literals are encoded as parity edges to an anchor proposition, so cycles cannot arise and only the overlap channel is exercised.
   \item Null: outlet labels permuted within events, 1000 permutations.
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcccc}
 \toprule
 reading & Fox--NYT & Fox--HPO & NYT--HPO & separation ($p$)\\
@@ -1147,7 +1225,7 @@ One example in \texttt{tests/test\_meter\_general.py} matters for the attention 
 \section{The decorated Bregman--\v{C}ech nerve}
 Tokens are points $p_i\in\Delta(\text{states})$ with a time $\tau_i$. The radius of a simplex is $\min_c\max_i\KL(p_i\|c)$.
 
-\begin{lemma}\st{proved, computed}
+\begin{lemma}\label{res:auto18}\st{proved, computed}
 The balls $\{p:\KL(p\|c)\le r\}$ are convex, since KL is convex in its first argument, so the nerve lemma applies. For a pair, the optimum lies on the segment between the two points; it is found by bisection and certified by the minimax dual $\max_\lambda[\lambda\KL(p\|m)+(1-\lambda)\KL(q\|m)]$ to $10^{-9}$.
 \end{lemma}
 \begin{construction}[Decoration]
@@ -1157,13 +1235,13 @@ The balls $\{p:\KL(p\|c)\le r\}$ are convex, since KL is convex in its first arg
   \item Each $H_1$ bar is labelled by the holonomy of its birth cycle.
 \end{itemize}
 \end{construction}
-\begin{proposition}[Invariants for $\Aff(\Z/p)$]\st{proved}
+\begin{proposition}[Invariants for $\Aff(\Z/p)$]\label{res:auto19}\st{proved}
 Loop labels depend on the base point only by conjugation. The conjugacy classes are: the identity; all nontrivial translations, as one class; and one class per multiplier $u\ne1$. For odd $p$, $\Aff(\Z/p)^{ab}=(\Z/p)^\times$, so only $u$ is a function of the $H_1$ class. Relabelling tokens preserves the class and not the element (tested).
 \end{proposition}
 \begin{proposition}[Walls]\label{prop:walls}\st{proved; consequence measured}
 A permutation $\sigma$ of $n$ states fixes a face of codimension $n-\#\text{cycles}(\sigma)$. In $\Aff(\Z/3)\cong S_3$ the reflections are transpositions, fixing codimension-1 walls. The quotient is a Coxeter chamber, and every planted holonomy is absorbed into a flat labelling (0/100 recovered). Every non-identity element of $\Aff(\Z/5)$ has codimension $\ge2$.
 \end{proposition}
-\begin{observation}\st{measured}
+\begin{observation}\label{res:auto20}\st{measured}
 On $\Aff(\Z/5)$, rings with every edge margin $\ge10^{-3}$ are recovered in 254/255 cases; rings with an ambiguous edge are wrong in 57/145. On $\Z/3$ translations, both orientations are recovered and reversing time inverts the label.
 \end{observation}
 \noindent\textbf{Limits} \st{measured}:
@@ -1177,7 +1255,7 @@ On $\Aff(\Z/5)$, rings with every edge margin $\ge10^{-3}$ are recovered in 254/
 %---------------------------------------------------------------------
 \section{Two facets: restriction and extension}\label{sec:functors}
 Let $i:\Sigma\to\mathcal S$ include the cover into the information site.
-\begin{proposition}\st{proved, computed}
+\begin{proposition}\label{res:auto21}\st{proved, computed}
 \begin{enumerate}
   \item \emph{Restriction} $R$: $P\mapsto(\pi_C P)_C$ has image exactly the non-contextual models.
   \item \emph{Extension} $E$: $e\mapsto\mathrm{Ext}(e)=\{P:R(P)=e\}$ is a convex polytope, nonempty iff $\CF(e)=0$. If $\CF=0$, there is $b\ge0$ with $\sum b=1$ and $R(b)\le e$, and equal context totals force $R(b)=e$.
@@ -1185,7 +1263,7 @@ Let $i:\Sigma\to\mathcal S$ include the cover into the information site.
   \item The canonical member of $E(e)$ is the maximum-entropy extension, found by iterative proportional fitting (Csisz\'ar). IPF fails to converge on contextual models.
 \end{enumerate}
 \end{proposition}
-\begin{observation}[Graded extension]\st{measured}
+\begin{observation}[Graded extension]\label{res:auto22}\st{measured}
 The optimal non-contextual parts, of mass $1-\CF$, form a face. In CHSH it is a single point for every contextual model tested (39/39); in the three-party GHZ scenario it never is (0/10). The maximum-entropy point of the face gives a unique representative.
 \end{observation}
 \noindent These maps act on models, not on cohomology, so they are consistent with Theorem~\ref{thm:nonunif}. The attached drafts' forward map, which sent $\gamma/\CF$ to the spectral modulus, is not a functor.
@@ -1202,7 +1280,7 @@ Records are windows of labels (T, F, could-T, could-F, U, n/a), with a \emph{mas
   \item Null: each record keeps its mask, and its values are redrawn from the maximum-likelihood consistent law. That law is found by missing-data EM (Theorem~\ref{thm:em}) and pinned to maximum entropy.
 \end{enumerate}
 \end{construction}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{llll}
 \toprule
 stream & gate & $\CF$ & verdict\\
@@ -1215,7 +1293,7 @@ structured, negation with U$\to$n/a & cyclic & 0.859 & above the null, but signa
 \end{tabular}
 \caption{The gated test on 9{,}000-record streams \src{S}.}
 \end{table}
-\begin{proposition}[The deficit]\st{proved (zero set); measured (the rest)}
+\begin{proposition}[The deficit]\label{res:auto23}\st{proved (zero set); measured (the rest)}
 The \emph{deficit} is the per-record log-likelihood lost by the best consistent law, $\min_P\sum_C w_C\KL(e_C\|P_C)$.
 \begin{itemize}
   \item \emph{Zero set.} For no-signalling tables it vanishes iff $\CF=0$: the minimum is attained, and KL is zero iff the tables coincide.
@@ -1225,10 +1303,10 @@ The \emph{deficit} is the per-record log-likelihood lost by the best consistent 
   \item \emph{Bootstrap intervals:} $[0.270,0.287]$ for the shift twist and $[0.291,0.309]$ for the negation twist.
 \end{itemize}
 \end{proposition}
-\begin{observation}[The ridge]\st{measured}
+\begin{observation}[The ridge]\label{res:auto24}\st{measured}
 When contexts are pairs, the three-way interaction is unidentified. EM from different starts reaches the same likelihood with laws $0.005$--$0.023$ apart in $L_1$. This is the upper-level identifiability failure of Part~I in three variables. The maximum-entropy pin removes the start dependence (tested); without it, a null on larger contexts would measure ridge drift.
 \end{observation}
-\begin{observation}[Thresholded $\gamma$]\st{measured}
+\begin{observation}[Thresholded $\gamma$]\label{res:auto25}\st{measured}
 Near a cell's expected mass, sampling flips cells in and out of the support and manufactures logical witnesses. The null fires in 20/20 replicates at threshold $0.005$ on honest data, and at $0.1$ on the contextual streams' null. $\gamma$ is admissible only where the null band is near zero: at $0.02$ and $0.15$, both structured streams give $\gamma\ne0$ at $5/5$ against a null of $0/20$. Report the full sweep.
 \end{observation}
 
@@ -1289,12 +1367,12 @@ The split--merge cost of merging a block $S$ is $\sum_{b\in S}n_b\,\mathrm{KL}(R
 The identity is the Bregman-information form of the mutual information, as in Banerjee et al.\ \cite{banerjee}. Zero-loss under (ii) is Proposition~\ref{prop:o2a}.
 \end{proof}
 
-\begin{corollary}[The root collapses]\st{proved}
+\begin{corollary}[The root collapses]\label{res:auto26}\st{proved}
 The root has an empty outside, so $U$ has rank 1 and every root partition is exact. The root can always be replaced by one symbol with coupling $\mu(u,v)=\sum_b\pi_bR_L[b,u,v]$, since $P(x)=\sum_{u,v}\mu(u,v)\beta_u\beta_v$. The complete-data cost of this collapse is $I(B_{\mathrm{root}};\text{children})>0$.
 \end{corollary}
 
 \paragraph{Corpus B, true grammar.}\st{computed}\ Corpus B was regenerated with the builder's flags. The rules are identical, because they are drawn before sampling.
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lccccc}
 \toprule
 level & reachable $V$ & distinct child rows & $\operatorname{rank}D$ & distinct upward rows & $r^*$\\
@@ -1350,7 +1428,7 @@ By Theorem~\ref{thm:o2c}:
   \item \emph{Oracle} rows use posteriors from the true grammar.
   \item The metric is held-out excess NLL over the true grammar, in nats per sequence. It is split by the level of the lowest common ancestor of leaves $t-1$ and $t$.
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcccccc}
 \toprule
 model & total excess & lvl 1 & lvl 2 & lvl 3 & lvl 4\\
@@ -1404,7 +1482,7 @@ oracle aux / oracle feed, 2 layers & 0.269 / 0.132 & --- & --- & --- & ---\\
     \item held-out log-likelihood of \emph{real} data.
   \end{itemize}
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcccc}
 \toprule
 $N=1000$, generation 20 & $\log p$ (real) & $S_0$ of 8-blocks & Shannon $H$ & tail recall\\
@@ -1448,7 +1526,7 @@ fresh (null, generation 19) & $-15.451$ & 4185 & 8.058 & 0.974\\
   \item \emph{Markov}: $k\sim K[b]$, $c_0\sim H[b]$, $c_t\sim R[b,c_{t-1}]$.
   \item \emph{Positional}: $k\sim K[b]$, $c_0\sim H[b,k]$, $c_t\sim R[b,k,t]$. It contains the true grammar except where a symbol has two productions with the same $k$; there are 13 such collisions over the three levels.
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lc}
 \toprule
 model (1000 training sentences) & held-out $\log p$ / sentence\\
@@ -1477,7 +1555,7 @@ bigram / unigram & $-151.9$ / $-189.2$\\
   \item \emph{Split--merge}: splits and merges of symbol assignments, accepted only when exact held-out likelihood improves. Three moves bring it to $-30.91$, against the truth's $-30.87$.
   \item \emph{Residual error}: every final cluster is pure, but one true symbol stays split in two. At 500 held-out sentences, likelihood does not separate this nearly lossless split, as Section~\ref{sec:o2} would predict. A parsimony tie-break would settle it.
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lc}
 \toprule
 learner (1000 training sentences) & held-out $\log p$ / sentence\\
@@ -1587,7 +1665,7 @@ The new content is part~2 of Proposition~\ref{prop:mono}, the twisted-Betti iden
   \item \emph{Positive}: on documents shared with $A$, source $C$ applies a cyclic shift $\tau$ of its alphabet to odd-arity chunks only. \emph{Null}: no twist.
   \item \emph{Estimator}: each edge alignment is a one-to-one assignment on co-label counts (Hungarian), and the holonomy is their composition. It is read on labels whose grade count exceeds twice the estimated noise floor. The arity grades are pooled, $k$ even or odd, and each single $k$.
 \end{itemize}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{lcccc}
 \toprule
 grade & null, $\varepsilon=.1$ & twist, $\varepsilon=.1$ & null, $\varepsilon=.3$ & twist, $\varepsilon=.3$\\
@@ -1662,7 +1740,7 @@ Let $\Delta_\alpha(e)=\min_q\sum_Cw_C\,D_\alpha(e_C\,\|\,q_C)$, the minimum take
   \item[(iv)] By Jensen, $\frac1n\sum_C-\log q_C(\operatorname{supp}e_C)\ge-\log\frac1n\sum_Cq_C(\operatorname{supp}e_C)$. The sum is the $q$-expected number of satisfied supports, which is at most $n-1$ when no global assignment satisfies them all. This is the logical Bell inequality.
 \end{enumerate}
 \end{proof}
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 {\setlength\tabcolsep{3pt}\begin{tabular}{lcccccc}
 \toprule
 model & strong & $\CF$ & $\Delta_0$ & $\Delta_{0.5}$ & $\Delta_1$ (KL)\\
@@ -2303,6 +2381,683 @@ This states precisely the picture that the corpora carry information underneath,
 \end{itemize}
 These data describe media alignment, not votes. They end in July 2020 and contain no electoral outcome. A single election observed in hindsight cannot validate a forecast. The claim ``COVID set the stage for the election loss'' therefore needs an outcome series in the same framework, such as approval or polling, and a toggle radius committed to in advance. The present data show a move of the centre toward the left on fact-checking Trump that is real in direction but within normal variation.
 
+\textbf{Gluability to outcome, on a stream} (\texttt{examples/allsides/stream\_outcome.py}, Figure~\ref{fig:stream}). We treat the corpus as a stream of 26-week windows, stepped every 2 weeks from 2016 to 2020, with corpus~1 and corpus~2 the windows before and after an event. Each window records four things:
+\begin{itemize}
+  \item the \emph{outcome}, $O=[f\ge0]$, where $f=2P_C-P_L-P_R$ on directed fact-checks of Trump: ``yes'' means the centre sits with the left;
+  \item its confidence $P(\text{yes})=\Phi(f/\mathrm{se})$;
+  \item the window's \emph{gluability}: a parametric-bootstrap test of the loop-free (no-three-way) model on side $\times$ topic $\times$ outcome;
+  \item the \emph{counterfactual}: the fewest centre articles whose relabelling, or whose addition, would flip $O$.
+\end{itemize}
+For each event, $\Delta f$ is split into a \emph{rate} part (topic-specific rates change, topic mix fixed) and a \emph{mix} part (the topics covered change). The possibilistic (AMB) outcome ``a directed fact-check is possible for the centre on topic $t$'' is tracked with its exact toggle radius (Proposition~\ref{prop:ambtoggle}).
+\begin{center}\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+\toprule
+event & $O$ & $P(\text{yes})$ & glue $p$ & $\Delta f$ (rate, mix) & flip cost & AMB\\
+\midrule
+election & yes$\to$yes & $0.81\to0.57$ & $0.04\to0.33$ & $-0.017$ ($-0.026$, $+0.010$) & 3 of 294 & 4 topics\\
+inauguration & yes$\to$\textbf{no} & $0.66\to0.28$ & $0.46\to0.14$ & $-0.016$ ($-0.020$, $+0.003$) & 2 of 330 & 3 topics\\
+COVID & no$\to$\textbf{yes} & $0.03\to0.72$ & $0.21\to0.48$ & $+0.036$ ($+0.044$, $-0.009$) & 7 of 560 & none\\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent (Flip cost: centre articles relabelled, or added before COVID, in the window before the event, out of all centre articles; AMB: topics whose possibilistic outcome toggled.)
+\begin{itemize}
+  \item \emph{How yes became no, or no became yes.} At the inauguration the outcome flipped to ``no'', and at COVID it flipped to ``yes''. Both changes are driven by \emph{rates} within topics, not by which topics were covered: the rate parts are $-0.020$ and $+0.044$, the mix parts only $+0.003$ and $-0.009$. At the 2016 election the outcome stayed ``yes'' but weakened ($P(\text{yes})$ $0.81\to0.57$).
+  \item \emph{What more could have been done.} Before COVID the outcome was one of the few decided ones ($P(\text{yes})=0.03$). Seven more directed fact-checks by centre outlets, out of 560 centre articles over 26 weeks, would have flipped it. After the inauguration, 2 relabelled or 2 added centre articles would have restored ``yes''. Across the stream the cost to flip a ``no'' never exceeds 7 articles (Figure~\ref{fig:stream}, bottom). The outcome is decided ($|f|>1.96$ se) in only $3\%$ of windows, and its window-to-window standard deviation is $0.023$. \emph{This binary outcome sits on its own boundary almost all the time}, so its flips are cheap and mostly within noise. The COVID flip ($z=1.54$) is the largest move but not significant.
+  \item \emph{Gluability and outcome.} The loop-free model holds in $92\%$ of windows. There the pooled outcome reads only the natural part of the bias table (Proposition~\ref{prop:toggle}), so a uniform shift of the centre's rate flips it, and the flip costs above are exact. The windows that fail to glue (before the 2016 election, early and mid 2019) are those where topic-specific loops exist. There the same pooled $f$ can also be moved by changing the topic mix.
+  \item \emph{The AMB layer moves independently.} Around the election and the inauguration the set of topics where the centre fact-checks Trump at all changed in 3--4 topics, while the probability-layer outcome barely moved. Around COVID the support did not change while the outcome flipped. The nearest AMB toggles after an event need only 2--5 articles to vanish under the glued model, against about 1--3 for the cell alone. The possibilistic outcome is fragile at these counts.
+\end{itemize}
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{stream_outcome.pdf}
+\caption{Streaming gluability-to-outcome map. Top: $f$ with 95\% band, shaded where the outcome is ``yes''. Middle: gluability $p$ of the loop-free model, with the $0.05$ line. Bottom: centre articles that would have to be added to flip ``no'' to ``yes''. Windows are 26 weeks long, plotted at their midpoint, with events as dotted lines.}\label{fig:stream}
+\end{figure}
+
+\subsection{Gluing-lattice dynamics: what jumps and what moves continuously}\label{sec:gldyn}
+A natural picture ties three things together: the gluing lattice, the possibilistic class $\gamma$, and the contextual fraction CF. In that picture an ``obstructed'' region has $\mathrm{CF}>0$ and $\gamma\ne0$, a ``glueable'' region has $\mathrm{CF}=0$ and $\gamma=0$, and crossing between them is a sharp phase transition. Part of this is right.
+\begin{itemize}
+  \item \emph{The two layers behave differently.} Support-level (AMB) invariants jump when a support changes, while probabilities move continuously inside a face. This matches Propositions~\ref{prop:toggle} and~\ref{prop:ambtoggle}.
+  \item \emph{Gluing, extension and IPF.} When the marginals of a region have a joint, the extension set is a non-empty convex polytope, and IPF from the uniform law converges to its maximum-entropy member, the I-projection \cite{csiszar}. When no joint exists, IPF does not settle.
+  \item \emph{A face function and continuous entropies.} $S_0$, the log of the support size, is a face function and registers support changes. $S_\alpha$ for $\alpha>0$ varies continuously inside a face.
+\end{itemize}
+The three objects nevertheless come apart:
+\begin{enumerate}
+  \item \emph{$\gamma=0$ is not gluing.} AMB cohomology is sound but incomplete: $\gamma\ne0$ certifies contextuality, but $\gamma=0$ does not certify a global section.
+  \item \emph{$\mathrm{CF}>0$ is not $\gamma\ne0$.} A full-support contextual model has $\mathrm{CF}>0$ and $\gamma=0$, because its possibilistic collapse is non-contextual. The two-box picture leaves out this whole region.
+  \item \emph{Obstruction does not pin probabilities.} Marginals locked at $1/2$ is the special result for two-outcome non-flat cycles (Proposition~\ref{prop:two}), not a property of obstructed regions. In MBIC and NewsWCL50 the obstructed regions have freely varying probabilities.
+  \item \emph{CF has no jump.} CF is the value of a linear program, continuous and convex in the model, and it leaves $0$ continuously at the boundary of the non-contextual polytope. The discontinuities are only in support-level quantities.
+  \item \emph{The data gluing lattice is statistical.} Its verdicts come from a hypothesis test, so they depend on $N$ (Section~\ref{sec:certificate}). It computes neither CF nor $\gamma$.
+\end{enumerate}
+\begin{center}\small
+\begin{tabular}{p{0.16\linewidth}p{0.3\linewidth}p{0.2\linewidth}p{0.2\linewidth}}
+\toprule
+quantity & what it measures & at a support change & inside a face\\
+\midrule
+$\gamma$ (AMB) & possibilistic obstruction; sound, not complete & jumps & constant\\
+$S_0$ & log support size & jumps & constant\\
+CF & probabilistic contextuality (LP) & continuous & continuous, piecewise linear along mixtures\\
+$S_\alpha$, $\alpha>0$ & entropies & continuous & continuous\\
+IPF & converges iff a joint exists ($\mathrm{CF}=0$) & -- & --\\
+gluing lattice (data) & statistical fit of the loop-free model on sub-covers & depends on $N$ & depends on $N$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{The path experiment} (\texttt{examples/dynamics/gluing\_lattice\_dynamics.py}, Figure~\ref{fig:gldyn}). On the CHSH scenario (a 4-cycle of contexts) take $e(\lambda)=\lambda\,\mathrm{PR}+(1-\lambda)\,\text{white noise}$. The empirical support uses a tolerance $\tau=0.02$: a cell with $p<\tau$ counts as impossible. Along $\lambda$:
+\begin{itemize}
+  \item \emph{CF.} CF is $0$ up to $\lambda=1/2$, then exactly linear, $\mathrm{CF}=2\lambda-1$. There is no jump.
+  \item \emph{$\gamma$ and $S_0$.} Both change once, at the support collapse $\lambda=1-4\tau=0.92$. There $S_0$ falls from $\log4$ to $\log2$ and $\gamma\ne0$ switches on (strong contextuality).
+  \item \emph{The stretch the two-box picture misses.} On $\lambda\in(0.5,0.92)$, $\mathrm{CF}>0$ but $\gamma=0$: the model is probabilistically contextual and possibilistically clean.
+  \item \emph{IPF.} IPF converges exactly where $\mathrm{CF}=0$ (checked at every grid point). Beyond $\lambda=1/2$ its residual stays bounded away from $0$ and grows with CF.
+  \item \emph{The statistical verdict.} With $N$ samples per context, a one-sided CHSH test flags the full cover as obstructed. At $\lambda=0.52$ ($\mathrm{CF}=0.04$) its power is $0.11$, $0.15$, $0.45$ and $0.93$ for $N=50$, $200$, $1000$, $5000$. It tracks CF only when $N$ is large.
+  \item \emph{The lattice.} Every proper sub-cover (3 of the 4 contexts) is a tree and always glues (Theorem~\ref{thm:vorobev}), so the full cycle is the only possible minimal obstruction.
+\end{itemize}
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{gluing_lattice_dynamics.pdf}
+\caption{Along $e(\lambda)=\lambda\,\mathrm{PR}+(1-\lambda)\,$noise: CF is continuous and piecewise linear; $S_0$ and $\gamma$ jump only at the support collapse (dashed, $\lambda=0.92$, support tolerance $0.02$); IPF converges exactly where $\mathrm{CF}=0$ (dotted, $\lambda=1/2$); the statistical verdict sharpens toward the CF boundary as $N$ grows.}\label{fig:gldyn}
+\end{figure}
+
+\subsection{An outcome series, and all layers on one time axis}\label{sec:outcomeseries}
+All the preceding AllSides results concern media alignment. To attach perturbations to an \emph{outcome}, we use two poll series that cover the whole coverage window (\texttt{examples/outcomes/outcome\_series.py}); neither is redistributed.
+\begin{itemize}
+  \item \emph{2017 to August 2020: net approval of Trump.} FiveThirtyEight's presidential approval poll list, 5{,}920 ``All polls'' polls, using their adjusted approve $-$ disapprove and poll weights (CC BY 4.0; mirrored on GitHub \cite{fte}).
+  \item \emph{May 2015 to November 2016: the Trump $-$ Clinton margin.} 562 national likely- and registered-voter polls from HuffPost Pollster, as distributed with the Economist's 2020 forecast model \cite{econpolls}.
+\end{itemize}
+This gives 190 weekly approval points and 68 weekly margin points.
+
+\emph{Coverage does not lead the outcome.} We correlated the week-to-week changes of coverage with those of the outcome at lags of $-8$ to $+8$ weeks. The null shifts the coverage series circularly, which keeps its autocorrelation. No lag is significant:
+\begin{itemize}
+  \item centre alignment $f$ against net approval: $r=-0.19$ at $+6$ weeks, max-over-lags $p=0.33$;
+  \item left--right adversarial gap against net approval: $r=-0.21$ at $-7$ weeks, $p=0.25$;
+  \item for the 2016 margin, $p\ge0.84$.
+\end{itemize}
+This agrees with the early-warning result: coverage describes, it does not anticipate.
+
+\emph{The outcome moves at some events.} Net approval (or the 2016 margin), before versus after:
+\begin{itemize}
+  \item Access Hollywood tape: margin $-3.0\to-6.1$;
+  \item Comey letter: margin $-5.8\to-4.4$;
+  \item Charlottesville: approval $-12.1\to-16.9$;
+  \item Mueller report: approval $-11.4\to-11.2$;
+  \item impeachment inquiry: approval $-11.1\to-10.3$;
+  \item COVID emergency: approval $-10.7\to-9.7$, a small rally.
+\end{itemize}
+The 2016 events compare 4 weeks before with 2 weeks after; the others compare 26 weeks either side. Charlottesville and Access Hollywood are the large moves. The approval series is strongly autocorrelated, so nominal $z$ values overstate the evidence. Charlottesville is a clean case of the \emph{outcome moving while the coverage layers do not}: it showed no non-natural change and no step (Section~\ref{sec:slepian}).
+
+\textbf{All layers on one axis} (\texttt{examples/outcomes/layers\_chart.py}, Figure~\ref{fig:layers}). For 26-week windows stepped every 2 weeks, the figure stacks six panels:
+\begin{enumerate}
+  \item the outcome;
+  \item the probability layer ($P_L$, $P_C$, $P_R$);
+  \item the perturbation relative to 26 weeks earlier, split by Proposition~\ref{prop:natural} into its natural (re-calibration) and non-natural (loop) parts;
+  \item contextuality on the \emph{triangle scenario}, detailed below;
+  \item the gluing defect, the KL distance to the nearest consistent global law;
+  \item gluability.
+\end{enumerate}
+The triangle scenario has measurements L, C, R $\in\{$adversarial, not$\}$ and contexts $\{L,C\}$, $\{C,R\}$, $\{L,R\}$. The table of each context counts the stories covered by both sides. Different stories feed different contexts, so the family can fail to glue: by the single-source theorem, only different units can.
+\begin{itemize}
+  \item \emph{$\gamma=0$ in all 95 windows}, because the support is full. CF ranges over $0.01$--$0.10$. \emph{The data sit in the region the two-box picture leaves out} (Section~\ref{sec:gldyn}): probabilistically non-glueable, possibilistically clean.
+  \item \emph{CF here is mostly signalling.} CF is highly correlated with the between-context disagreement of each side's marginal ($r=0.85$), which arises because different stories feed different pairs. It is a gluing defect of the cover, not Bell-type contextuality.
+  \item \emph{CF and the gluing defect peak in mid-2019, after the Mueller report.} This is the same period in which the naturality test found the only non-natural change (Section~\ref{sec:slepian}).
+  \item \emph{Natural and non-natural perturbations are of similar size} (median RMS $0.061$ and $0.054$ per cell over 26 weeks).
+  \item \emph{The window-level layers correlate weakly with mean approval}: $r=+0.33$ for CF, $+0.26$ for the natural part, $+0.21$ for the non-natural part, $+0.09$ for gluability $p$. The 87 overlapping windows amount to about 7 independent ones, so none of this is significant.
+\end{itemize}
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{layers_chart.pdf}
+\caption{All layers on one time axis (AllSides coverage of Trump, with the approval and 2016-margin outcome). Panels: outcome; the three sides' probability of adversarial framing; perturbation relative to 26 weeks earlier, natural against non-natural; contextuality on the L--C--R triangle over shared stories (CF and signalling; $\gamma=0$ throughout); gluing defect; gluability. Events are dotted.}\label{fig:layers}
+\end{figure}
+
+\subsection{Paths over the gluing lattice: raising the probability of an outcome}\label{sec:latticepath}
+Can one raise the probability of an outcome by gluing the right regions? Take a binary label on source $\times$ topic cells, and a \emph{region}, meaning a set of topics. On a region the glued (loop-free) model is additive in log-odds, $\operatorname{logit}p(s,t)=\alpha_s+\beta_t$, fitted in closed form by weighted least squares. The region glues if its weighted loop residual passes $\chi^2$. A held-out target cell $(s^*,t^*)$ is predicted by $\hat p=\operatorname{expit}(\alpha_{s^*}+\beta_{t^*})$, and the outcome is $[\hat p>1/2]$. A \emph{path} is a chain of glueable regions along which $\hat p$ rises, or falls (\texttt{amb\_vigneaux/lattice\_path.py}).
+
+\begin{proposition}[Region dependence is loop content]\label{prop:regioninv}\st{proved; checked}
+If the true log-odds are additive (no loops), every region that contains $t^*$ and the source $s^*$ gives the same prediction, up to sampling noise. The spread of $\hat p$ across glueable regions is therefore produced only by loops and noise. A path that raises $\hat p$ moves the estimate along the loop part of the data, not along anything the loop-free model says about the target.
+\end{proposition}
+\begin{proof}
+With additive truth the weighted least-squares fit on any such region recovers $\alpha_{s^*}+\beta_{t^*}$ exactly in the noiseless limit, because the design is identified on the region. Differences between regions come from residuals, which are loops plus noise. It is checked in \texttt{tests/test\_lattice\_path.py}: the spread is below $10^{-3}$ for additive data, and positive with planted loops.
+\end{proof}
+
+\textbf{MBIC} (\texttt{examples/lattice\_path/mbic\_paths.py}; 82 held-out outlet $\times$ topic cells; glueable regions of 5--7 topics containing $t^*$, about 5{,}000 per target):
+\begin{itemize}
+  \item \emph{Paths exist and are long.} For HuffPost $\times$ sport (true share $0.65$), dropping topics from the full cover raises $\hat p$ from $0.60$ to $0.94$ in nine glueable steps, and a different sequence lowers it to $0.35$. The median width of the envelope $[\min\hat p,\max\hat p]$ is $0.34$.
+  \item \emph{The binary outcome can be flipped by region choice for 36 of 82 targets (44\%).} The held-out truth lies inside the envelope for 53 of 82.
+  \item \emph{Choosing regions for the desired outcome is cherry-picking.} Mean absolute error against the held-out truth is $0.112$ for the full cover, $0.112$ for the median over glueable regions and $0.112$ for the glue-$p$-weighted average. It rises to $0.172$ at the end of the raise path and $0.185$ at the end of the lower path, 55--65\% worse.
+  \item \emph{Small regions are the danger.} Regions of 2 topics always pass the glue test, because such a test has no power, and they spread $\hat p$ over $0.05$--$0.9$. A minimum region size is essential.
+\end{itemize}
+
+\textbf{When gluing the right regions helps} (\texttt{examples/lattice\_path/synthetic\_paths.py}). We use 8 sources $\times$ 12 topics with additive log-odds, plus loops planted in 3 contaminated topics, 30 units per cell, and targets in clean topics, over 640 cases. The full cover never glues.
+\begin{itemize}
+  \item Pruning by \emph{consistency}, dropping the topic whose removal most improves the glue $p$ until the region glues, reduces the error from $0.045$ (full cover) to $0.039$, 13\% better.
+  \item Pruning toward a \emph{desired outcome} increases it to $0.073$ (raise) and $0.078$ (lower).
+\end{itemize}
+
+\textbf{Feedback, and paths versus surfaces} (\texttt{examples/lattice\_path/landscape.py}). Suppose a step that raised $\hat p$ is taken as evidence that nearby regions also raise it (and a step that lowered it as a reason to move away). This feedback is justified exactly when the landscape $\eta(U)=\operatorname{logit}\hat p(U)$ has low-order structure on the lattice. For 12 MBIC targets we evaluated every glueable region of at least 5 topics containing $t^*$ (7{,}000--7{,}800 regions each).
+
+\begin{proposition}[The landscape is first order, with the loop residuals as its slopes]\label{prop:landscape}\st{proved to first order; checked}
+To first order in the leverages, $\eta(U)\approx c+\sum_{x\in U}w_x$. The influence $w_x$ of topic $x$ is proportional to the weighted loop residual of the target's source on $x$ in the full fit, $w_{s^*x}\bigl(y_{s^*x}-\hat\alpha_{s^*}-\hat\beta_x\bigr)$. The region that maximises $\hat p$ is, to this order, obtained by keeping the topics where the target source sits above its additive fit and dropping those where it sits below. Every walk that moves along these signs raises $\hat p$ until the second-order terms, the shared estimation of the other effects, bend it.
+\end{proposition}
+\begin{proof}[Sketch]
+Removing the block of cells of topic $x$ changes the weighted least-squares estimate by $-(X^\top WX)^{-1}X_x^\top W_xr_x+O(h^2)$ (the block version of Sherman--Morrison, i.e.\ DFBETA). Its component along $\alpha_{s^*}+\beta_{t^*}$ is proportional to the source-$s^*$ residual on $x$ when the design is balanced, and the effects of removing several blocks add at first order. It is checked in \texttt{tests/test\_lattice\_path.py} ($R^2>0.8$ and correlation $>0.8$ on a synthetic grid).
+\end{proof}
+\noindent On the 12 MBIC targets:
+\begin{itemize}
+  \item \emph{The landscape is first order.} Per-topic influences explain a median $R^2=0.89$ of $\eta$ over the lattice, and adding pairwise terms explains $0.98$.
+  \item \emph{The slopes are the loop residuals.} The fitted influences correlate $0.86$--$0.99$ (median $0.97$) with the weighted loop residuals of the target outlet on each topic.
+  \item \emph{Surfaces, not only paths.} We call a move \emph{aligned} if it adds a topic with positive influence or drops one with negative influence. Aligned moves raise $\hat p$ in a median $86\%$ of cases. The ascending set is an \emph{interval of the lattice}: keep the raisers, drop the lowerers. Almost any walk inside it climbs, so it is a surface rather than a single path. It is not a variety in the algebraic sense, but a nearly linear set function on the Boolean lattice.
+  \item \emph{Feedback works, up to local optima.} Hill-climbing that accepts only raising steps reaches the global maximum from $59\%$ of random starts, in about 6 steps. The failures are the pairwise terms, which create local optima, so feedback with a few restarts is enough.
+\end{itemize}
+\noindent The feedback rule (``a step that helped points to neighbours that help'') therefore has a precise meaning: the sign of a topic's influence is stable across the lattice, because it is the sign of the target source's loop residual on that topic. The surface it climbs is the \emph{loop content} of the target source (Proposition~\ref{prop:regioninv}). Climbing it selects the topics where the source happens to be more biased than its additive fit. As a \emph{diagnostic} this is valuable, because it names the topics carrying the source-specific interaction that bears on the target. As a \emph{procedure} for raising the probability of an outcome it is evidence selection, and the accuracy costs above apply.
+
+\textbf{How gluing lifts the probability: one target} (\texttt{examples/lattice\_path/surface\_chart.py}, Figure~\ref{fig:surface}). For Breitbart $\times$ gender (held-out share $0.67$, $n=43$) the full cover predicts $0.53$. Figure~\ref{fig:surface} shows the mechanism in three panels.
+\begin{enumerate}
+  \item[(a)] Each topic's influence on the prediction (bars) coincides with the outlet's loop residual on that topic (dots; correlation $0.98$). Coronavirus, sport and gun control pull $\hat p$ up. Vaccines, student debt and international politics pull it down.
+  \item[(b)] Over all 7{,}691 glueable regions, $\hat p$ is almost a function of the first-order loop-content score $\sum_{x\in U}w_x$ ($R^2=0.94$). This is the surface. The raise and lower paths run along its two edges, bending where second-order terms act.
+  \item[(c)] Un-gluing vaccines, student debt and international politics first lifts $\hat p$ from $0.53$ to $0.72$. The mirror path lowers it to $0.32$, across the $1/2$ line.
+\end{enumerate}
+In this target the raise path passes the held-out truth, but that is luck, not method. Over all 82 targets, outcome-driven paths are 55--65\% worse than the full cover. What the figure explains is \emph{why} gluing moves the probability: each glued region adds or removes a slice of the target outlet's loop content.
+
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{surface_chart.pdf}
+\caption{How gluing regions lifts or lowers a predicted probability (MBIC, Breitbart $\times$ gender held out). (a) Loop content: each topic's first-order influence on $\operatorname{logit}\hat p$ when glued in (bars), against the outlet's weighted loop residual on the topic (dots, rescaled). (b) The surface: every glueable region placed by its loop-content score against its $\hat p$, with the raise and lower paths, the full cover, the held-out truth (dashed) and the outcome threshold (dotted). (c) The paths step by step, labelled by the topic un-glued; every step stays glueable. In this target the raise path happens to reach the truth; over 82 targets such paths are 55--65\% less accurate than the full cover.}\label{fig:surface}
+\end{figure}
+
+\textbf{Relation to the literature.} The negative result is not a new phenomenon.
+\begin{itemize}
+  \item \emph{Selection bias.} Choosing a region by how it moves the prediction is selection on the outcome. The end of a raise path is the maximum over thousands of noisy estimates (about 5{,}000 regions per target), so it suffers the winner's curse. The standard remedies are data splitting \cite{cox75} and selective inference \cite{posi,fithian}, and the bias of model selection evaluated on the same data is well documented \cite{varma06,cawley10}. Our leave-one-cell-out design is what exposes it.
+  \item \emph{Small regions.} The danger of low-power selection among many candidates is the standard overfitting-in-model-selection result \cite{cawley10}.
+  \item \emph{The form of the bias.} The first-order form of Proposition~\ref{prop:landscape}, where un-gluing a block shifts the estimate by its weighted residual, is the block version of the classical influence diagnostics DFBETA and Cook's distance \cite{cook77,bkw80}.
+  \item \emph{The consistency path} is direction-blind, since it drops the worst-fitting topics whichever way they push. It therefore adds no directional bias to point predictions. It still selects on the same data, so standard errors reported after pruning are too small, and honest intervals need data splitting or selective inference \cite{cox75,fithian}. This section reports point errors only.
+\end{itemize}
+What is specific to this paper is narrower. It identifies these influence blocks with the loop ($H^1$) coordinates of the gluing complex, and draws two consequences:
+\begin{itemize}
+  \item the spread of predictions across regions is exactly the loop content bearing on the target (Proposition~\ref{prop:regioninv});
+  \item the ascending set is an interval of the lattice, so feedback search is justified by the stability of the residual signs (Proposition~\ref{prop:landscape}).
+\end{itemize}
+This translates standard influence diagnostics into the language of gluing, which is what connects region choice to the rest of the paper. It is not a new statistical phenomenon.
+
+\noindent\emph{Conclusion.} The lattice supports both kinds of path, and they must not be confused.
+\begin{itemize}
+  \item A \emph{consistency path} (glue the regions that fit together, drop the obstructed ones) is estimation. It improves prediction when some regions are contaminated.
+  \item An \emph{outcome path} (glue the regions that push $\hat p$ where one wants it) is selection on the loop part. It can flip the conclusion for almost half the targets and it degrades accuracy.
+  \item The honest report of ``raising the probability by gluing'' is therefore the envelope together with the consistency path. The envelope's width is the sensitivity of the conclusion to the choice of regions, and by Proposition~\ref{prop:regioninv} it measures the loop content that bears on the target.
+  \item A \emph{real} rise in the outcome's probability needs a change in the world: a perturbation of the data, with the costs of Propositions~\ref{prop:toggle} and~\ref{prop:ambtoggle}. It cannot come from a change in which data are glued.
+\end{itemize}
+
+\subsection{Hull covers on the lattice: discs without direction}\label{sec:hullcover}
+The outcome paths above select on the outcome. A proposed direction-blind alternative is to let a hull choose the regions. Build the Berkovich hull of the cell values (for arithmetic data) or the single-linkage dendrogram (for rates); its discs at radius $r$ form a cover. Take the largest radius whose discs glue as the canonical region, and read the spread of predictions along the radius as a canonical sensitivity report. The radius is a scale, not an outcome, so the choice is direction-blind. We tested this on every corpus (\texttt{examples/lattice\_path/hull\_experiment.py}, \texttt{tests/test\_hull\_direction.py}).
+
+\textbf{Construction.} Each cell $(s,t)$ with at least $10$ units is held out in turn. Every feature is computed without it. The topics are clustered by single linkage with the Euclidean metric. Its merge heights form an ultrametric, so the discs of one radius partition the topics. We used three features per topic:
+\begin{itemize}
+  \item \emph{value}: the pooled rate (one number);
+  \item \emph{profile}: the column of empirical logits over sources;
+  \item \emph{loop}: the column of weighted loop residuals $\sqrt{w}\,(y-a_s-b_t)$ of the full-cover additive fit, i.e.\ the Hodge loop part.
+\end{itemize}
+Along the chain of discs containing the target topic, the canonical region is the largest disc with at least $m$ topics that glues ($\chi^2$ loop test, as in Section~\ref{sec:latticepath}); if none glues, it is the smallest disc with at least $m$ topics. We take $m=5$ on MBIC and $m=2$ elsewhere, since a region must contain another topic of the target's source. The p-adic hull does not apply: the data are rates, and the p-adic distance on them is arbitrary (Section~\ref{sec:hull}).
+
+\begin{table}[!htbp]\centering\small
+\caption{Hull covers against the full cover and against models of the loop (mean $|\hat p-\text{truth}|$ over held-out cells). ``Sub'' is the number of targets for which the hull chose a proper sub-region. ``Chain'' is the median spread of $\hat p$ along the hull's discs, and ``lattice'' the median spread over all glueable regions. The oracle picks the best glueable region using the truth. The last two model columns fit the loop: rank-1 interaction $a_s+b_t+u_sv_t$, and tropical rank~2 ($\min$ or $\max$ of two additive regimes, i.e.\ columns on a tropical line, which is a tree). Both are fitted by alternating closed-form weighted least squares. In brackets: the number of targets beaten against the full cover.}\label{tab:hullcover}
+\resizebox{\linewidth}{!}{\begin{tabular}{lcccccccccc}
+\toprule
+corpus ($S\times T$, targets) & full glues & full & hull & sub & chain & lattice & oracle & rank-1 & trop.\ min & trop.\ max\\
+\midrule
+MBIC ($8\times14$, 82) & 82 & .112 & .112 & 0 & .02--.06 & .336 & .021 & .150 (33) & .177 (23) & .129 (35)\\
+NewsWCL50 ($5\times5$, 23) & 15 & .128 & .138--.139 & 8 & .03--.07 & .230 & .056 & .076 (16) & .090 (16) & .238 (4)\\
+AllSides adv.\ ($3\times9$, 27) & 27 & .020 & .020 & 0 & .005--.010 & .082 & .005 & .077 (4) & .036 (10) & .110 (5)\\
+AllSides dir.\ ($3\times9$, 27) & 27 & .006 & .006 & 0 & .002--.003 & .024 & .002 & .016 (14) & .007 (13) & .050 (2)\\
+BASIL ($3\times2$, 6) & 4 & .087 & .087 & 0 & 0 & -- & -- & .097 (1) & .112 (2) & .237 (0)\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\textbf{Findings} (Table~\ref{tab:hullcover}).
+\begin{itemize}
+  \item \emph{The hull chooses nothing where the corpus glues.} On MBIC and AllSides the root disc glues, so under every feature the canonical region is the full cover. BASIL has only two topics: dropping either one isolates the target's source, so there is nothing to choose.
+  \item \emph{Where the corpus tears, the hull does not help.} On NewsWCL50 the full cover fails for 8 of 23 held-out cells. For exactly those cells the hull chose a sub-region, and the error rose slightly ($0.138$ against $0.128$; noise at $n=8$).
+  \item \emph{As a sensitivity report the chain is misleading.} Its spread is $\tfrac14$ to $\tfrac16$ of the spread over all glueable regions, so reporting it would understate the dependence on region choice several-fold.
+  \item \emph{Better regions exist, but no target-blind metric stitches them.} The oracle reaches $0.021$ (MBIC) and $0.056$ (NewsWCL50), but it chooses with the answer. The one target-blind signal is how the \emph{other} sources' loops co-vary across topics. A region stitched from the topics positively correlated with the target topic on that signal did worse than the full cover ($0.130$ MBIC, $0.141$ NewsWCL50; not computable with three sources).
+  \item \emph{The information is in the loop pattern, and it is used by modelling the loop, not by choosing regions.} On the one corpus that tears (NewsWCL50) both loop models beat the full cover ($0.076$ and $0.090$ against $0.128$, 16 of 23 targets, sign test $p=0.09$). Where the corpus glues, the loops are noise and the additive full cover is best. The switch has to be made per corpus, by the robustness certificate. It cannot be made per cell: the cells whose removal leaves the rest gluing are the ones carrying the loop. This result is suggestive and needs a second corpus that tears.
+\end{itemize}
+
+\begin{proposition}[Hulls are blind to direction]\label{prop:hulldirection}\st{proved; checked}
+Relabel the outcome, $k\mapsto n-k$ in every cell. Then:
+\begin{enumerate}
+  \item the empirical logits change sign, $y\mapsto-y$, so every value, profile and loop feature above changes sign (or, for rates, $r\mapsto1-r$);
+  \item every hull distance (Euclidean, ultrametric, or $p$-adic, since $|{-x}|_p=|x|_p$), and hence every disc, merge height, radius profile and gluing verdict, is unchanged;
+  \item the signed loop residual of the target source on each topic, which is the first-order influence of that topic on $\operatorname{logit}\hat p$ (Proposition~\ref{prop:landscape}), changes sign.
+\end{enumerate}
+So a hull, the AMB class $\gamma$ (valued in a group without order) and $\CF$ (a distance) can say \emph{whether} and \emph{at what scale} an outcome is fragile, but never \emph{which way} it tips. Direction needs ordered (real) coefficients and a target functional: the signed Hodge loop part on the lattice, and the probabilities it moves.
+\end{proposition}
+\begin{proof}
+(1) The smoothed logit satisfies $\operatorname{logit}\frac{n-k+1/2}{n+1}=-\operatorname{logit}\frac{k+1/2}{n+1}$, and the weights $n\,p(1-p)$ are unchanged. The additive fit is linear in $y$, so its coefficients and residuals change sign. (2) Every distance used is a norm or an absolute value, and $\|{-v}\|=\|v\|$. The $\chi^2$ loop statistic is quadratic in the residuals. (3) This is (1) applied to the target row. Checked on all five corpora: the hull chains and merge heights are identical in all $495$ (target, feature) cases, and the target's loop residuals flip sign in $165/165$ targets. \texttt{tests/test\_hull\_direction.py} checks the same on a synthetic table.
+\end{proof}
+\noindent The tropical columns of Table~\ref{tab:hullcover} show the same thing from the model side. The tree-shaped model (a tropical line) needs a choice of $\min$ or $\max$. Relabelling swaps them, and the better choice differs by corpus ($\min$ on NewsWCL50, $\max$ on MBIC). The discs of a hull may locate where gluing fails and at what scale, but they do not carry the dimension along which a favourable outcome is favourable. For that the engine needs the lattice and the probabilities.
+
+\subsection{Bounds on an outcome over all gluings}\label{sec:bounds}
+The lattice envelope ranges over choices of \emph{region}. The adjunction of Proposition~\ref{prop:kerneladj} gives the complementary range: over \emph{global laws}, with the cover held fixed. Let $R:\mathcal D(E(X))\to\mathrm{Fam}(\mathcal U)$ be restriction. For a family $e$, the preimage $R^\ast e=R^{-1}(e)$ is the polytope of global laws consistent with every local table. For an outcome $f$ on global sections (an event that may involve measurements never observed together, or any real score), put
+\[ \mathrm{lo}(f)=\min_{P\in R^{-1}(e)}\langle f,P\rangle,\qquad \mathrm{hi}(f)=\max_{P\in R^{-1}(e)}\langle f,P\rangle, \]
+two linear programmes (\texttt{amb\_vigneaux/bounds.py}, \texttt{examples/bounds/run.py}, \texttt{tests/test\_bounds.py}). In statistics these are partial-identification (Fr\'echet) bounds \cite{frechet51,manski03}. What the gluing language adds is where the width comes from, and what an empty preimage means.
+
+\begin{proposition}[Bounds over all gluings]\label{prop:bounds}\st{proved; checked}
+\leavevmode
+\begin{enumerate}
+  \item \emph{Order, not a lever.} Relabelling the outcome maps $[\mathrm{lo},\mathrm{hi}]$ to $[1-\mathrm{hi},1-\mathrm{lo}]$. So the interval is ordered, unlike $\gamma$, $\CF$ and every hull quantity (Proposition~\ref{prop:hulldirection}). It says how far the data pin the outcome down, not what would move it or which way: the levers are the signed loop influences on the lattice (Proposition~\ref{prop:landscape}).
+  \item \emph{No selection.} The interval ranges over every gluing, so there is nothing to cherry-pick. The maximum-entropy member (IPF) is a point inside it.
+  \item \emph{Width is loop content.} The preimage is $P_0+\ker R$ intersected with the simplex. So $f$ is \emph{identified} (width $0$ for every $e$) iff $f\perp\ker R$ modulo constants, and otherwise the width is set by the component of $f$ along $\ker R$. On the triangle cover $\{L,C\},\{C,R\},\{L,R\}$ with binary outcomes, $\ker R$ is spanned by the three-way parity $\chi=(-1)^{L+C+R}$. Unanimity $P(L=C=R)$ has $\langle f,\chi\rangle=0$ and is identified: indeed $P(\text{not unanimous})=\tfrac12\sum_{\text{pairs}}P(x_i\ne x_j)$. ``All three'' ($\langle f,\chi\rangle=-1$) and ``majority'' ($+2$) are not.
+  \item \emph{Empty preimage is the counit failure.} $R^{-1}(e)=\emptyset$ iff $e$ is contextual or signalling. Then two honest fallbacks are reported together with the size of the failure: the preimage of the nearest consistent family $R(q^\ast)$, with its gluing defect; or the normalised non-contextual parts of mass $1-\CF$, with $\CF$.
+  \item \emph{The CHSH chain.} For $e_\lambda=\lambda\,\mathrm{PR}+(1-\lambda)\,\mathrm{noise}$, bounding the correlator of the closing context from the other three gives $[\max(-1,3\lambda-2),\,1]$. Its truth, $-\lambda$, lies inside iff $\lambda\le\tfrac12$, i.e.\ iff $\CF=0$: the held-out bound \emph{is} the CHSH inequality. The maximum-entropy point $\lambda^3$ (Proposition~\ref{prop:condprod}) lies inside the interval but is far from the truth.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) The relabelling permutes global sections and sends $f$ to $1-f$ on the relabelled law, so the two programmes exchange. (2) The preimage contains every global law consistent with $e$, and IPF converges to one of them when the preimage is non-empty \cite{csiszar}. (3) $\langle f,P_0+v\rangle$ is constant on the preimage iff $\langle f,v\rangle=0$ for every feasible direction $v\in\ker R$. For the triangle, $R$ has rank $7$ on $\mathbb R^8$, and $R\chi=0$ because $\chi$ sums to zero over every pair-marginal fibre. The unanimity identity is the count that a non-constant triple disagrees on exactly two of its three pairs. (4) is Proposition~\ref{prop:kerneladj}(1). (5) Along the chain the three link correlators are $\lambda$, and the extreme points of the preimage give the closing correlator $\ge\lambda+\lambda+\lambda-2$, which is the CHSH bound. Checked exactly for $11$ values of $\lambda$ in the tests.
+\end{proof}
+
+\textbf{Validation on real triangles.} We use units on which all three of $L,C,R$ are observed, so the truth of every functional is known. Each context's table is taken from its own disjoint quarter of the units, and the truth from the fourth quarter (200 random splits). Coverage is reported for three intervals:
+\begin{itemize}
+  \item the plug-in bounds;
+  \item the bounds widened by a bootstrap of each quarter ($2.5\%$ of lo, $97.5\%$ of hi);
+  \item the bootstrap bounds also widened by the sampling error of the fourth-quarter truth.
+\end{itemize}
+The sample tables signal slightly, so the preimage is empty in almost every split and the projected fallback is used. The units are:
+\begin{itemize}
+  \item MBIC: annotator groups by political ideology, each group's outcome the group majority on a sentence ($1{,}600$ sentences);
+  \item AllSides: sides on a story, outcome ``any adversarial article'' ($736$ stories covered by all three).
+\end{itemize}
+\begin{center}\small
+\resizebox{\linewidth}{!}{\begin{tabular}{llcccc}
+\toprule
+corpus & outcome & width (plug-in / boot.) & coverage plug-in & boot. & boot.\,+\,truth noise\\
+\midrule
+MBIC & all three biased & .117 / .176 & .90 & .97 & 1.00\\
+ & majority & .235 / .289 & 1.00 & 1.00 & 1.00\\
+ & unanimous (identified) & 0 / .068 & .00 & .68 & .98\\
+ & $P(L{=}R{=}1)$, $\{L,R\}$ held out & .263 / .340 & 1.00 & 1.00 & 1.00\\
+AllSides & all three adversarial & .042 / .057 & .88 & .98 & 1.00\\
+ & majority & .085 / .150 & .83 & .97 & 1.00\\
+ & unanimous (identified) & 0 / .096 & .00 & .68 & .98\\
+ & $P(L{=}R{=}1)$, $\{L,R\}$ held out & .135 / .170 & .99 & 1.00 & 1.00\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\begin{itemize}
+  \item Bootstrap-widened bounds cover at $0.97$--$1.00$ for every non-identified outcome.
+  \item The identified outcome has width $0$. So its plug-in ``interval'' is a point estimate, and its coverage is a matter of sampling error, restored to $0.98$ once that is included.
+  \item The maximum-entropy point is close in every case (mean error $0.012$--$0.049$), but it is one gluing among many. The interval says how far the data, and not the choice of gluing, pins the outcome down.
+\end{itemize}
+In AllSides there is also a natural design. The pair tables come from stories covered by \emph{exactly} that pair ($566$, $612$, $607$), which are disjoint by construction, and the truth from the $736$ triple stories.
+\begin{itemize}
+  \item The bounds contain the triple-story value for ``all three'' ($[0,.028]\ni.023$), ``majority'' ($[.052,.108]\ni.105$) and the held-out pair ($[0,.084]\ni.052$).
+  \item They miss the identified unanimity ($.670$ against $.626$). Triple-covered stories are a different population, and an identified outcome has no width to absorb the shift.
+\end{itemize}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{bounds_chart.pdf}
+\caption{Bounds over all gluings. (a) CHSH chain: the bound on the dropped context's correlator from the other three. The truth leaves the bound exactly when $\CF>0$. The maximum-entropy point ($\lambda^3$) stays inside but far from the truth. (b, c) AllSides stream (26-week windows, step 2 weeks): bounds on $P$(all three sides adversarial) and $P$(majority adversarial) from the three pair tables (all stories covered by each pair), with the max-ent point and the value observed on stories covered by all three sides. Plug-in bounds, no sampling widening.}\label{fig:bounds}
+\end{figure}
+
+\textbf{The stream} (Figure~\ref{fig:bounds}b,c; 115 windows). The plug-in bounds are narrow:
+\begin{itemize}
+  \item median width $0.030$ for ``all three'' and $0.059$ for ``majority'';
+  \item they contain the observed triple value in $75\%$ and $70\%$ of windows. The misses are where the triple-covered stories differ from the pair-covered ones, as in the natural design.
+\end{itemize}
+
+\textbf{The population assumption, and a test for it.} The bounds are valid for the population whose marginals the local tables estimate. Every local table must therefore sample the \emph{same} population as the target. Signalling between tables detects some violations, which is the source of the gluing defect $0.024$ above. It cannot detect a shift that only affects units seen by all three measurements, because no local table contains those units. When the populations differ the bounds can miss, and a fully identified outcome (zero width) has nothing to absorb the shift. The test is to compare, for each pair, the pair's table from pair-only units with the same pair's table from the triple-covered units. On AllSides (\texttt{examples/grey/run.py}, part 4):
+\begin{itemize}
+  \item $L$--$R$: TV $0.014$, $\chi^2$ $p=0.94$;
+  \item $L$--$C$: TV $0.031$, $p=0.53$;
+  \item $C$--$R$: TV $0.097$, $p=2\times10^{-4}$. On triple-covered stories the centre is adversarial at $0.174$ against $0.101$, and the right at $0.130$ against $0.080$.
+\end{itemize}
+The shift is real and located in the centre--right pair. It accounts for the unanimity miss and for the stream windows where the observed triple value falls outside the bounds. A report should run this test before quoting the bounds, and state the shift when it fails.
+
+\textbf{How the bounds sit with the other tools.} An outcome report now has three parts:
+\begin{itemize}
+  \item the gluing radius, $\gamma$ and $\CF$: whether and at what scale the outcome is fragile (no direction);
+  \item the lattice envelope with the signed loop influences: which regions push the outcome which way (direction, over regions);
+  \item the bounds over all gluings: how far the data pin the outcome down for a fixed cover (ordered, over global laws, no selection; not a lever), and an empty preimage when the counit fails. They hold for the population the tables sample, so they come with the population test above.
+\end{itemize}
+
+\subsection{Grey contexts: what-if filters}\label{sec:grey}
+A \emph{grey} context is a filter that is never observed together with the outcome. For example, ``annotators aged $55$ or over'' does not appear jointly with the bias label, but its distribution over shared covariates is known from elsewhere (a census, a panel). We may also want to ask what follows from a hypothesis about the filter. The grey context enters the cover in one of two ways, each a set of linear constraints on the global law:
+\begin{itemize}
+  \item \emph{population}: a known table on some variables, such as the filter's distribution within each covariate stratum. It is entered as equalities, exactly like an observed context.
+  \item \emph{hypothesis}: a range for a conditional probability, $a\le P(E\mid G)\le b$. This is $P(E,G)-a\,P(G)\ge0$ and $P(E,G)-b\,P(G)\le0$, linear in $P$.
+\end{itemize}
+The same programmes as in Section~\ref{sec:bounds} then give three answers (\texttt{bounds.grey\_bounds}, \texttt{examples/grey/run.py}, \texttt{tests/test\_grey.py}):
+\begin{enumerate}
+  \item \emph{Consistency}: is there a global law fitting data and grey context? If not, the what-if is ruled out by the data. The minimal total slack on the hypothesis rows (an $L^1$ distance in probability units) says by how much.
+  \item \emph{Bounds} on a target, possibly a conditional $P(E\mid G)$. This is a linear-fractional programme, solved exactly after the Charnes--Cooper substitution $y=tP$, $t=1/\langle g,P\rangle$ \cite{charnescooper}. It is also the conditional, kernel-valued version of the bounds asked for in Section~\ref{sec:kernelpresheaf}.
+  \item \emph{What-if curves}: sweep the hypothesis and track the bounds on the target, marking the values the data rule out.
+\end{enumerate}
+The usual shortcut is to assume the filter independent of the outcome within each covariate stratum (the conditional-independence assumption of statistical matching \cite{dorazio06}). It is exactly the maximum-entropy gluing of this star-shaped cover. The bounds drop that assumption, so they show how much of the answer the assumption supplies. Without covariates they reduce to the Fr\'echet and Duncan--Davis bounds of ecological inference \cite{frechet51,duncandavis53}.
+
+\begin{proposition}[Grey contexts]\label{prop:grey}\st{proved; checked}
+\leavevmode
+\begin{enumerate}
+  \item With no shared covariate, the bounds on $P(Y{=}1\mid A{=}1)$ from the margins $p_Y,p_A$ are $[\max(0,(p_Y+p_A-1)/p_A),\,\min(1,p_Y/p_A)]$.
+  \item A hypothesis lies outside the bounds iff it is ruled out (positive slack). Every value inside is consistent with the data.
+  \item On the triangle cover a single hypothesis on the triple, such as $P(R{=}1\mid L{=}1,C{=}1)=s$, closes the one-dimensional loop direction $\ker R$ (Proposition~\ref{prop:bounds}(3)). Every outcome is then identified, so the what-if curve is a curve, not a band.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) This is the classical two-margin Fr\'echet bound, divided by the fixed $p_A$. (2) The hypothesis is a hyperplane in the space of conditionals, and the feasible conditionals form exactly the interval of (1) and its stratified analogue. (3) For $s$ inside the feasible range, the hypothesis row $\langle e_{LCR}-s\,e_{LC},P\rangle=0$ has a non-zero component along $\chi$. It therefore fixes the coordinate of $P$ on $\ker R$, and the preimage is a single point. All three parts are checked in \texttt{tests/test\_grey.py}, (1) against the closed form.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{grey_chart.pdf}
+\caption{Grey contexts. (a) MBIC: $P(\text{biased}\mid\text{filter})$ bounded from $\{X,Y\}$ and $\{X,\text{filter}\}$, observed on different halves of the annotators (median over 50 splits), against the hidden truth and the independence (max-ent) point. $X$ is ideology, or ideology with gender and degree. (b) MBIC what-if: if $P(\text{biased}\mid55{+})=s$, the bounds on $P(\text{biased}\mid55{+},\text{right-leaning})$; the data rule out no value of $s$. (c) AllSides what-if: if $P(R\text{ adversarial}\mid L,C\text{ adversarial})=s$, the identified $P(\text{majority adversarial})$; the data rule out $s>0.70$ (grey). Dashed: the value on triple-covered stories.}\label{fig:grey}
+\end{figure}
+
+\textbf{MBIC validation} (Figure~\ref{fig:grey}a). The joint of an annotator filter with the bias label is hidden. The engine sees $\{X,Y\}$ from one random half of the annotators and $\{X,\text{filter}\}$ from the other, as if the filter's distribution came from a census. The filters are age $\ge55$, age $\ge45$, female, graduate work, and no bachelor's degree; the covariates are ideology, then ideology with gender and degree. Over 50 splits:
+\begin{itemize}
+  \item The bounds contain the hidden truth every time (coverage $1.00$ for all 11 filter--covariate settings).
+  \item They are nearly vacuous: widths $0.95$--$1.00$. The filters are small groups (9\% of annotators are $55{+}$), and the shared covariates hardly predict either the filter or the label. So the data leave $P(Y\mid A)$ almost free.
+  \item The independence point is close to the truth (error $0.009$--$0.037$). But that closeness comes from the assumption: age is in fact nearly unrelated to the label here, and the data cannot show it.
+\end{itemize}
+The honest reading is that this ``what-if colour'' is supplied almost entirely by the stitching assumption. A report should show the band together with the point.
+
+\textbf{What-if curves.}
+\begin{itemize}
+  \item \emph{MBIC} (Figure~\ref{fig:grey}b). Every hypothesis $P(\text{biased}\mid55{+})=s$ is consistent with the data. Each still constrains the right-leaning subgroup: at $s=0.875$ that subgroup's rate must be at least $0.60$, and at $s=0.125$ at most $0.40$.
+  \item \emph{AllSides} (Figure~\ref{fig:grey}c). The hypothesis on the triple closes the loop (Proposition~\ref{prop:grey}(3)), so each $s$ gives one value of $P(\text{majority adversarial})$, falling linearly from $0.108$ at $s=0$ to $0.052$ at $s=0.70$. Values $s>0.70$ are ruled out (slack $0.002$--$0.012$). The triple-covered stories show $s=0.415$, which is consistent, and there the identified majority is $0.077$. The observed majority on those stories is $0.105$. This is the centre--right population shift of Section~\ref{sec:bounds}, seen again.
+\end{itemize}
+
+\subsection{Several conditionals at once: monad, adjunction, and why not cup products}\label{sec:multicond}
+A natural next request is a \emph{multi-conditional} what-if: impose several conditions at once and ask which combinations are possible and what they imply. One proposal assigns a categorical tool to each step:
+\begin{itemize}
+  \item build the space of candidate predictions by the extension adjoint;
+  \item prune it by restriction to the observed tables (the counit condition);
+  \item mask contradictory combinations of conditions by the cup product of their cocycles, declaring them compatible iff the product class vanishes.
+\end{itemize}
+The first two steps are what Sections~\ref{sec:bounds}--\ref{sec:grey} already do. The candidate space is the preimage $R^{-1}(e)$, the polytope of global laws. It belongs to the right-adjoint side (preimage) of the Galois connection of Proposition~\ref{prop:kerneladj}; it is not a free extension. Pruning by restriction is the equality constraints. The third step fails (\texttt{examples/multi\_conditional/run.py}, \texttt{tests/test\_multi\_conditional.py}).
+
+\begin{proposition}[Several conditionals]\label{prop:multicond}\st{proved; checked}
+\leavevmode
+\begin{enumerate}
+  \item \emph{Cup products cannot mask.} On every cover in this paper the Čech nerve has $H^2=0$:
+  \begin{itemize}
+    \item triangle and CHSH cycle: Betti numbers $(1,1)$;
+    \item star covers of grey contexts: $(1,0)$.
+  \end{itemize}
+  So the cup product of any two degree-one classes is zero, and the mask would declare every combination of conditions compatible.
+  \item \emph{The right count.} The data leave free exactly the directions of $\ker R$ (signed measures with vanishing restrictions). At most $\dim\ker R$ conditionals can be imposed independently. Their independence is the rank of the hypothesis rows restricted to $\ker R$. Any further condition is either implied by the others or contradicts them.
+  \item \emph{The right mask.} A set of conditions is jointly possible iff the linear system (data equalities plus hypothesis rows) is feasible. When it is not, the minimal $L^1$ slack measures how far apart the conditions are. Two conditions can each be possible alone and jointly impossible.
+  \item \emph{The monad's part.} Chaining conditionals, e.g.\ $P(Y\mid A)=\sum_xP(Y\mid x)P(x\mid A)$, is the Kleisli composite of the kernels $A\to X\to Y$, i.e.\ the multiplication $\mu$. It is exact only under conditional independence (the maximum-entropy gluing). The bounds are the range over all composites consistent with the data.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) The Betti numbers are computed by \texttt{bounds.nerve\_betti}; no cover here has a non-empty triple overlap of contexts that also bounds a 2-cycle. (2) The feasible set is $(P_0+\ker R)\cap\Delta$. A hypothesis row $\langle a,P\rangle=0$ constrains only its component along $\ker R$, so the number of independent constraints is the rank of the matrix $(a_i^\top K)$, where $K$ is a basis of $\ker R$. (3) Feasibility of a linear system is decided by the LP; the slack programme is Section~\ref{sec:grey}'s. (4) The sum over $x$ is the matrix product of the two stochastic matrices, which is $\mu\circ\mathcal G(g)\circ f$. Replacing $P(Y\mid x,A)$ by $P(Y\mid x)$ is the conditional-independence assumption.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{multi_conditional.pdf}
+\caption{Several conditionals. (a) AllSides triangle: two conditions on the never-observed triple. Each alone allows the grey box. Jointly they lie on a line, since $\dim\ker R=1$. The cross is a pair allowed by each condition alone but jointly ruled out. The dot is the triple-covered stories, off the line by the centre--right population shift. (b) MBIC, filters $55{+}$ and female: the jointly possible region of $(P(\text{biased}\mid55{+}),P(\text{biased}\mid\text{female}))$ is two-dimensional. (c) Width of the bounds on $P(\text{biased}\mid55{+},\text{female})$ at each jointly possible pair; dot: the hidden truth.}\label{fig:multicond}
+\end{figure}
+
+\textbf{AllSides} (Figure~\ref{fig:multicond}a). We impose two conditions on the never-observed triple, $s_1=P(R\mid L,C)$ and $s_2=P(L\mid C,R)$, both for ``adversarial''.
+\begin{itemize}
+  \item Each alone is possible on a range ($s_1\in[0,0.707]$, $s_2\in[0,1]$). But $\dim\ker R=1$ and the rank of the two conditions is $1$, so jointly $s_2$ is a \emph{function} of $s_1$ (the $s_2$-range has width $2\times10^{-7}$): $0.177\mapsto0.250$, $0.530\mapsto0.750$.
+  \item The pair $(0.177,0.750)$ is allowed by each condition alone but jointly ruled out (slack $0.014$), while the cup-product mask would call it compatible.
+  \item The triple-covered stories give $(0.415,0.531)$. The line predicts $0.587$ for $s_2$ at that $s_1$, so these stories are off it: the population shift of Section~\ref{sec:bounds}, detected a third way.
+\end{itemize}
+
+\textbf{MBIC} (Figure~\ref{fig:multicond}b,c). Two annotator filters, $55{+}$ and female. The data are $\{I,Y\}$ from one half of the annotators and the population table $\{I,A,F\}$ from the other. Now $\dim\ker R=9$ and the two conditions are independent (rank $2$):
+\begin{itemize}
+  \item $81\%$ of the $21\times21$ grid of $(s_1,s_2)$ is jointly possible.
+  \item Imposing both at their true values narrows the bounds on $P(\text{biased}\mid55{+},\text{female})$ from $[0,1]$ to $[0.412,0.937]$, which contains the hidden truth $0.608$.
+  \item It narrows $P(\text{biased}\mid\text{neither})$ from $[0.239,1]$ to $[0.550,0.625]$, which contains $0.576$.
+\end{itemize}
+The Kleisli composite under conditional independence gives $0.591$ for the first, close to the truth but again by assumption.
+
+\noindent So the multi-conditional algebra the engine needs has three parts:
+\begin{itemize}
+  \item the preimage polytope (adjunction);
+  \item linear feasibility, with slack, as the compatibility mask, and the count $\dim\ker R$ of independent conditions (loop space);
+  \item Kleisli composition for chaining conditionals under an explicit independence assumption (monad).
+\end{itemize}
+Cup products enter only when a cover has a two-dimensional nerve with $H^2\ne0$, for example contexts with genuine triple overlaps in a three-way design. None of our corpora has one.
+
+\subsection{Second-order holonomy: covers whose nerve is a sphere}\label{sec:higher}
+Second-order holonomy needs 2-cells. One proposal fits ``intertwiner'' matrices between alternative chains of kernels and reads a trace as a class in $H^2$. That fails on four counts:
+\begin{itemize}
+  \item comparing two paths with the same ends is first-order, since one path followed by the reverse of the other is a loop;
+  \item stochastic matrices are invertible only when they are permutations;
+  \item kernels do not form a 2-group;
+  \item a trace is not a cohomology class.
+\end{itemize}
+In fact the 2-cells come with the cover. In the nerve, a set of contexts spans a simplex iff they share a measurement. The \emph{path 2-groupoid} of the nerve then has the contexts as objects, overlaps as 1-cells, and triple overlaps as 2-cells, i.e.\ homotopies between paths of overlaps (\texttt{amb\_vigneaux/higher.py}, \texttt{examples/higher/run.py}, \texttt{tests/test\_higher.py}). A loop of the context graph that bounds 2-cells is filled: any obstruction around it is pushed up to $H^2$.
+
+\begin{proposition}[Covers whose nerve is a sphere]\label{prop:higher}\st{proved; checked}
+Let $n$ binary measurements be observed $n-1$ at a time and never all together, i.e.\ the contexts are all $(n-1)$-subsets.
+\begin{enumerate}
+  \item The nerve is the boundary of the $(n-1)$-simplex, the sphere $S^{n-2}$. Any $k\le n-1$ contexts share $n-k\ge1$ measurements and all $n$ share none. Its Betti numbers are $(1,0,\dots,0,1)$. For $n=4$ (contexts $abc,abd,acd,bcd$) the context graph has $3$ loops, and all $3$ are filled by 2-cells.
+  \item $\ker R$ is spanned by the top parity $\chi_n=(-1)^{x_1+\dots+x_n}$. So an outcome $f$ is identified iff $\langle f,\chi_n\rangle=0$, and otherwise its bounds have width along $\chi_n$. For $n=3$ this is the triangle of Proposition~\ref{prop:bounds}(3).
+  \item \emph{The obstruction can live entirely at second order.} Take the \emph{higher PR box} on $n=4$: every triple uniform on even parity. Mix it with noise at weight $\lambda$:
+  \begin{itemize}
+    \item every pair marginal is uniform for every $\lambda$, so the pair cover glues and any pairwise or loop-based (first-order) method sees nothing;
+    \item the triple cover has $\CF=\tfrac98(\lambda-\tfrac13)_+$, contextual for every $\lambda>\tfrac13$;
+    \item $\gamma\ne0$ only at $\lambda=1$, the same probabilistic-but-not-cohomological gap as for CHSH, one dimension up.
+  \end{itemize}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) This is the nerve computation stated, followed by the homology of the boundary of a simplex. The filled loops are computed by checking that each spanning-tree cycle lies in the image of $\partial_2$. (2) The $(n-1)$-marginals fix every log-linear interaction except the top one. A signed measure with all $(n-1)$-marginals zero is therefore a multiple of $\chi_n$ for binary measurements: $\dim\ker R=1$, checked for $n=3,4,5$. (3) Restricting a triple uniform on even parity to a pair gives the uniform law, and noise is uniform. The $\CF$ formula is checked at several $\lambda$ in the tests; the threshold $\tfrac13$ is exact to $10^{-4}$.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{higher_chart.pdf}
+\caption{Second-order holonomy. (a--c) Representational drawings of the nerve (\texttt{higher.plot\_complex}). Vertices are contexts, sized by their share of the Bell certificate. Edges are overlaps, with width proportional to signalling. Shaded triangles are 2-cells, labelled by the shared measurement; in the tetrahedral drawings the outer face is the fourth 2-cell.
+(a) Triangle cover with contradictory pairs: hollow, Betti $(1,1)$, the loop is open.
+(b) Tetrahedral cover with the higher PR box: Betti $(1,0,1)$, all three graph loops filled, $\CF=0.75$.
+(c) The same cover on MBIC four ideology groups, one split; the thick edges are sampling signalling.
+(d) Contextual fraction of the higher PR box mixed with noise, in the first-order view (pair contexts) and the second-order view (triple contexts).
+(e) MBIC four-group outcomes: bootstrap width of the bounds and coverage of the held-out truth (including its sampling noise).}\label{fig:higher}
+\end{figure}
+
+\textbf{MBIC with four ideology groups} (Figure~\ref{fig:higher}c,e). The groups are political-ideology bins $[-10,-5]$, $[-4,0]$, $[1,5]$, $[6,10]$, and each group's outcome is the group majority ``biased''. 1,200 sentences are rated by all four groups. In each of 100 random five-way splits, each triple context comes from its own fifth of the sentences and the four-way truth from the last fifth.
+\begin{itemize}
+  \item None of the four outcomes is identified: $\langle f,\chi_4\rangle=+1,-3,+2,+8$ for ``all four'', ``at least three'', ``unanimous'' and ``even parity''.
+  \item Bootstrap widths are $0.095$, $0.175$, $0.137$ and $0.406$.
+  \item Coverage of the held-out truth, including its sampling noise, is $0.99$--$1.00$. The plug-in intervals are much narrower and cover poorly (``all four'': $0.27$), so the bootstrap widening is needed.
+  \item The split tables show $\CF$ with median $0.11$ and $\gamma=0$ in every split. Built from the same sentences, the four tables give $\CF=0$. So the $0.11$ is the sampling floor for about $240$ sentences per context, not a four-way obstruction.
+\end{itemize}
+This is the instrument for a corpus whose sources are observed three at a time and never all together. Such a corpus is the only place a second-order obstruction can hide from every loop-based test.
+
+\subsection{The toric geometry of the sphere covers, component by component}\label{sec:toricsphere}
+On a sphere cover the data leave one coordinate free (Proposition~\ref{prop:higher}). It is linear: the fibre is a flat segment, its jets are trivial, and ``second order'' there refers to the topological degree of the nerve, not to jet order. Genuine nonlinear geometry enters through the log-linear (toric) description of the same coordinate. We keep four components separate, so that the effect of each can be read on its own (\texttt{amb\_vigneaux/toric.py}, \texttt{examples/toric/run.py}, \texttt{tests/test\_toric.py}):
+\begin{itemize}
+  \item[\textbf{[F]}] \emph{Fibre} (mixture coordinate, linear). The consistent global laws form the segment $P_0+t\chi_n$ inside the simplex, with coordinate $m=\langle\chi_n,P\rangle$. The $(n-1)$-way data fix the segment and prefer no point on it. Its image under an outcome is the bounds of Section~\ref{sec:bounds}.
+  \item[\textbf{[T]}] \emph{Toric variety} (exponential coordinate). The top log-linear interaction is $\theta=2^{-n}\sum_x\chi_n(x)\log P(x)$. The model without it is $\theta=0$: the single binomial $\prod_{\chi=+1}p=\prod_{\chi=-1}p$, of degree $2^{n-1}$ \cite{gms06}. This is the curved object.
+  \item[\textbf{[I]}] \emph{Interaction} (needs the full joint). $\hat\theta$ from units on which all $n$ measurements are observed, with delta-method standard error $2^{-n}(\sum_x1/n_x)^{1/2}$. It also locates the observed law on the segment.
+  \item[\textbf{[S]}] \emph{Strata} (support). The faces of the closure of the toric model, and the exact AMB toggle radius of each cell (Proposition~\ref{prop:ambtoggle}, solved by MILP), compared with the saturated radius $-\log(1-p_c)$.
+\end{itemize}
+
+\begin{proposition}[Fibre meets variety once]\label{prop:birch}\st{proved; checked}
+Along the segment, $\theta$ is strictly increasing from $-\infty$ to $+\infty$, because $d\theta/dt=2^{-n}\sum_x1/P(x)>0$. So the segment meets the toric variety in exactly one point. That point is the maximum-entropy member of the fibre (Birch's theorem \cite{birch63}), which IPF finds. If the segment misses the simplex, the family is contextual: [F] is empty, and so are its intersections with [T] and [S].
+\end{proposition}
+\begin{proof}
+$\theta(P_0+t\chi)=2^{-n}\sum_x\chi(x)\log(P_0(x)+t\chi(x))$, whose derivative is $2^{-n}\sum_x\chi(x)^2/P(x)$. At the ends of the segment some cell with $\chi=\pm1$ vanishes, sending $\theta$ to $\pm\infty$. Maximum entropy on the fibre is attained where the gradient of entropy, $-\log P$, is orthogonal to $\chi$, i.e.\ at $\theta=0$. Checked on 50 random laws each for $n=3,4,5$:
+\begin{itemize}
+  \item $|\text{Birch}-\text{IPF}|\le5\times10^{-15}$, binomial residual $\le2\times10^{-14}$, monotone in every case;
+  \item the higher PR box has a signed law with its 3-margins, but positivity needs $t\in[0.1875,-0.0625]$, which is empty.
+\end{itemize}
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{toric_chart.pdf}
+\caption{The four components.
+(a) MBIC four groups: $\theta$ along the fibre [F] (mixture coordinate on the horizontal axis); the Birch point, equal to IPF [T]; the observed $\hat\theta$ with its 95\% interval [I].
+(b) $\hat\theta$ with 95\% intervals for the three tables with full joints.
+(c) One outcome, $P$(all positive), through the components: [F] bounds (band), [F]+[T] maximum-entropy point (tick), [I] observed (dot with interval).
+(d) [S] Exact toggle radius of each cell in the no-top-interaction model against the saturated radius (MBIC four groups).}\label{fig:toricsphere}
+\end{figure}
+
+\textbf{Real tables with the full joint observed} (Figure~\ref{fig:toricsphere}). The tables are MBIC with three ideology groups (1,600 sentences), AllSides with three sides (736 triple-covered stories) and MBIC with four groups (1,200 sentences).
+\begin{center}\small
+\resizebox{\linewidth}{!}{\begin{tabular}{lccccc}
+\toprule
+table & [F] segment in $m$ & [I] $\hat\theta$ (95\% CI) & TV(observed, Birch) & [S] radius / saturated (median, range) & $P$(all): [F] / [F]+[T] / [I]\\
+\midrule
+MBIC 3 groups & $[-0.923,0.060]$ & $-0.050$ $[-0.111,0.011]$ & $0.016$ & $1.46$ ($1.28$--$3.38$) & $[.407,.530]$ / $.445$ / $.449$\\
+AllSides 3 sides & $[0.200,0.557]$ & $-0.053$ $[-0.177,0.071]$ & $0.009$ & $1.53$ ($1.06$--$2.11$) & $[0,.045]$ / $.021$ / $.024$\\
+MBIC 4 groups & $[-0.121,0.528]$ & $-0.015$ $[-0.087,0.058]$ & $0.004$ & $1.50$ ($1.07$--$2.05$) & $[.329,.369]$ / $.349$ / $.348$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\begin{itemize}
+  \item \emph{[I]: no top-order interaction is detected.} Every interval contains $0$; the closest is MBIC with three groups, $z=-1.61$. Each observed law lies within TV $0.016$ of the Birch point.
+  \item \emph{[T] is therefore an accurate gluing here}, and the components separate cleanly on the outcome ``all positive''. [F] alone gives a band of width $0.04$--$0.12$. Adding [T] picks a point in it. [I] confirms the point to within $0.004$, which is the effect of $\theta$ on this outcome.
+  \item \emph{[S]: no single cell can be made impossible inside the toric model.} Every minimal forced set has two cells, so the toggle radius exceeds the saturated one by a median factor of about $1.5$ (up to $3.4$). Gluing raises the cost of making an outcome impossible.
+\end{itemize}
+The pieces are now in place to add curvature as a fifth component: a one-parameter family bent by an external variable (such as poll sponsorship), measured against these four.
+
+\subsection{Curvature: the fifth component}\label{sec:curvature}
+The four components above are flat ([F], linear) or flat in natural coordinates ([T], log-linear). Curvature enters when an external variable bends the reported law nonlinearly. We measure it where the data exist: the 2016 presidential polls with sponsor affiliation \cite{econpolls}. These are 2,075 polls from 2016 of likely voters, registered voters or adults, from 252 pollsters; 156 are Democratic-affiliated and 102 Republican-affiliated, each either through the pollster or through the commissioning sponsor (\texttt{amb\_vigneaux/curvature.py}, \texttt{examples/curvature/run.py}, \texttt{tests/test\_curvature.py}).
+
+\textbf{Two geometries of a bend.} Each poll reports a two-party share with natural parameter $\eta_i=\operatorname{logit}p_i$ and Fisher weight $I_i=n_ip_i(1-p_i)$. A sponsorship of intensity $w$ moves the whole vector $\eta(w)$, in one of two ways:
+\begin{itemize}
+  \item \emph{Shift} ($e$-flat): $\eta_i(w)=\eta_i+w\delta$. This is a straight line in natural coordinates and is exactly how the log-linear component [T] represents any covariate. Its curvature is $0$.
+  \item \emph{Pull} ($m$-flat): $p_i(w)=(1-w)p_i+wq$, toward a target $q$. This is straight in probability coordinates and curved in natural ones.
+\end{itemize}
+The jets are meaningful here: $\eta'(0)$ is the first-order house effect, and $\eta''(0)=-(q-p)^2(1-2p)/(p(1-p))^2$ is its acceleration. Efron's statistical curvature \cite{efron75} at $w=0$,
+\[ \gamma^2=\frac{(\eta''^\top I\eta'')(\eta'^\top I\eta')-(\eta'^\top I\eta'')^2}{(\eta'^\top I\eta')^3}, \]
+is $0$ for the shift and positive for the pull. Values $\gamma^2\ge\tfrac18$ mean first-order inference about $w$ is unreliable. The two are told apart in data because a shift moves every race by the same logit amount, while a pull moves a race by $w(q-p)/(p(1-p))$, which depends on its baseline.
+
+\textbf{Three sub-components}, each estimated by closed-form weighted least squares or by EM with closed-form steps. The baseline is race (state or national) + two-week period + mode + population, with over-dispersion $\tau^2=0.0027$ estimated from nonpartisan polls. Standard errors are bootstrapped over pollster clusters.
+\begin{itemize}
+  \item[\textbf{[C1]}] \emph{Velocity} (the first-order bend).
+  \begin{itemize}
+    \item Democratic-affiliated polls are $\delta_D=-0.050$ logit (SE $0.016$), i.e.\ $2.5$ margin points toward Clinton.
+    \item Republican-affiliated polls are $\delta_R=+0.013$ (SE $0.015$, $+0.6$ points), not significant.
+    \item The bend is larger when the sponsor commissions the poll ($\delta_D=-0.065$, $\delta_R=+0.028$) than when the pollster itself is affiliated ($-0.039$, $+0.002$).
+  \end{itemize}
+  \item[\textbf{[C2]}] \emph{Curvature.}
+  \begin{itemize}
+    \item The slope $\kappa$ of sponsored residuals on the race baseline, which is $0$ under a shift, is $+0.050$ (cluster SE $0.062$) for Democratic and $-0.111$ ($0.083$) for Republican affiliation. Neither differs from $0$.
+    \item The pull model, with its extra target parameter, barely improves the weighted fit: $98.1\to97.4$ and $89.3\to86.8$.
+    \item The whole-sample curvature of the fitted pull family is $\gamma^2\approx5\times10^{-7}$, far below $\tfrac18$.
+  \end{itemize}
+  The sponsorship bend is therefore an $e$-flat shift: the log-linear description is adequate, and first-order inference about it is reliable.
+  \item[\textbf{[C3]}] \emph{The singular point.} Treating sponsorship among the 1,817 nonpartisan polls as hidden gives the mixture $(1-\pi_D-\pi_R)\,\text{honest}+\pi_D\,\text{bent}_D+\pi_R\,\text{bent}_R$. At $\pi=0$ the tangent space collapses, and the likelihood ratio has a boundary null: in $19\%$ of parametric-bootstrap draws it is exactly $0$, and its 95\% point is $3.47$ instead of the $\chi^2$ value. The observed LR is $1.34$ ($p=0.27$): no hidden sponsorship is detectable.
+\end{itemize}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{curvature_chart.pdf}
+\caption{Curvature on the 2016 polls.
+(a) [C1] House effects of Democratic- and Republican-affiliated polls on the logit Trump share (95\% pollster-cluster intervals), split by pollster-affiliated and sponsor-commissioned.
+(b) [C2] Sponsored residuals against the race baseline. Dashed: the shift (constant in logit); solid: the fitted pull. The data do not separate them.
+(c) [C3] The likelihood ratio for hidden sponsorship among nonpartisan polls against its parametric-bootstrap null at the singular point $\pi=0$.}\label{fig:curvature}
+\end{figure}
+
+\noindent\emph{Where curvature fits.} The five components now answer separate questions:
+\begin{itemize}
+  \item[\textbf{[F]}] what the lower-order data allow;
+  \item[\textbf{[T]}] the log-linear (toric) gluing;
+  \item[\textbf{[I]}] whether the top interaction is there;
+  \item[\textbf{[S]}] what it costs to make a cell impossible;
+  \item[\textbf{[C]}] whether an external modulation is a straight line in the natural coordinates of [T].
+\end{itemize}
+On these data every answer is the simple one: no top interaction, and a flat, first-order sponsorship bend. The instruments do respond when the structure is present: the tests check that a pull has positive $\gamma^2$ (matching finite-difference jets) while a shift has $\gamma^2=0$, and they recover the weight of a planted hidden mixture.
+
+\subsection{Deformations at the boundary: $T^1$, $T^2$ and the flop}\label{sec:deform}
+Deformation theory gives the honest meaning of an ``$\mathrm{Ext}^2$ obstruction''. For a variety $X$ the first-order deformations form $T^1$ and their obstructions lie in $T^2$; for a hypersurface these are $\mathrm{Ext}^1$ and $\mathrm{Ext}^2$ of the cotangent complex. The toric model [T] of a sphere cover is the hypersurface $X=V(f)$, $f=\prod_{\chi=+1}p-\prod_{\chi=-1}p$. It is smooth in the interior of the simplex, so $T^1$ and $T^2$ say something only on the boundary, where the support of the law changes. That is exactly where the AMB (possibilistic) outcome lives (\texttt{amb\_vigneaux/deform.py}, \texttt{examples/deform/run.py}, \texttt{tests/test\_deform.py}).
+
+\begin{proposition}[Deformations of the toric model]\label{prop:deform}\st{proved; checked}
+Write $a$ and $b$ for the numbers of even- and odd-parity cells that vanish at a boundary point.
+\begin{enumerate}
+  \item \emph{Boundary supports.} A set of cells occurs as the zero set of a point in the closure of the model iff it meets both parity classes (checked on all $2^8$ sets for $n=3$ and on all sets of at most four cells for $n=4$). So every support toggle zeros at least one even and one odd cell, which is why every minimal forced set in [S] has two cells.
+  \item \emph{Singular locus.} Locally $f\sim x_1\cdots x_a-y_1\cdots y_b$. The model is smooth at the point iff $\min(a,b)=1$, and singular iff $a,b\ge2$; the singular locus inside the local slice has dimension $(a-2)+(b-2)$.
+  \item \emph{$T^2=0$.} $X$ is a hypersurface, hence a complete intersection, so every first-order deformation is unobstructed. The ``$\mathrm{Ext}^2$ obstruction'' vanishes identically for these models.
+  \item \emph{$T^1$.} The Tjurina number of $x_1\cdots x_a=y_1\cdots y_b$ (computed by a Gr\"obner basis) is:
+  \begin{itemize}
+    \item $0$ for $\min(a,b)=1$ (smooth);
+    \item $1$ for $(2,2)$: the 3-fold node (conifold) $x_1x_2=y_1y_2$, with $T^1$ spanned by the smoothing $x_1x_2-y_1y_2=\varepsilon$;
+    \item infinite (non-isolated) for $a+b>4$, but transversally a node at a generic point of the singular locus.
+  \end{itemize}
+  \item \emph{The flop.} The node has two small resolutions, one for each matching of the two vanishing even cells with the two vanishing odd cells. Statistically, near such a support the model does not determine \emph{which} odd cell is forced together with a given even cell. The AMB toggle (Proposition~\ref{prop:ambtoggle}) picks the cheaper partner, and that choice flips under perturbations as small as the difference of the two partners' masses.
+  \item \emph{The top interaction does not smooth.} The level sets $\prod_+p=e^{c}\prod_-p$ of $\theta$ are related by the torus action (rescaling one coordinate), so they are equisingular: the Tjurina number of $x_1x_2=e^cy_1y_2$ is $1$ for every $c$. Changing $\theta$ ([I]) never resolves a node, and the $T^1$ direction (an additive relaxation of the binomial) is not a log-linear deformation.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) $f$ vanishes with some cell zero iff both monomials vanish, i.e.\ the zero set meets both classes. Facial sets are characterised by the LP of Section~\ref{sec:toricstrata}, and the enumeration is in the tests. (2) $\partial f/\partial p_i$ is the monomial with $p_i$ removed, so all partials vanish iff at least two cells of each class vanish. (3) A hypersurface is a local complete intersection, for which $T^2=0$ \cite{hartshorne10}. (4) The Gr\"obner computations are in \texttt{deform.tjurina}. Localising at a point of the singular locus where exactly two cells of each class vanish turns the remaining factors into units and leaves the node. (5) The conifold's two small resolutions blow up the planes $\{x_1=y_1=0\}$ or $\{x_1=y_2=0\}$, i.e.\ the two matchings \cite{atiyah58}. (6) Rescaling $y_1\mapsto e^{c}y_1$ maps one level set to another.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{deform_chart.pdf}
+\caption{Deformations at the boundary.
+(a) The boundary of the toric model for $n=3$, indexed by the numbers of vanishing even and odd cells: $\times$ does not occur, s is smooth, node is the conifold (Tjurina number $1$), and $k$ is the dimension of the singular locus (transversally a node).
+(b) The flop: how often the toggle's forced odd partner changes under multiplicative perturbations, near a smooth boundary point and near a node.
+(c) Real tables: the distance to the smooth boundary (toggle radius) and to the nearest node, and how often the toggle's forced pair changes under multinomial resampling of the table.}\label{fig:deform}
+\end{figure}
+
+\textbf{The flop, computed} (Figure~\ref{fig:deform}b). Near a smooth boundary point (one even and one odd cell small) the exact MILP toggle returns the cheapest even--odd pair, and its partner never changes under perturbations of $1$--$20\%$. Near a node (two even and two odd cells small, partner margin $0.002$) the partner changes in $38$--$54\%$ of perturbations.
+
+\textbf{Real tables} (Figure~\ref{fig:deform}c).
+\begin{center}\small
+\begin{tabular}{lcccc}
+\toprule
+table & toggle radius & node radius & partner margin & forced pair changes under resampling\\
+\midrule
+MBIC 3 groups & $0.131$ & $0.313$ & $0.16$ & $37\%$\\
+AllSides 3 sides & $0.046$ & $0.142$ & $0.43$ & $18\%$\\
+MBIC 4 groups & $0.041$ & $0.092$ & $0.11$ & $55\%$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item All three laws are interior points, where the model is smooth and $T^1=T^2=0$.
+  \item The node is only two to three times farther away than the smooth boundary, and the cheapest pairs are close in mass. So \emph{which} pair of outcomes the support toggle would make impossible is not determined by the data: it changes in $18$--$55\%$ of multinomial resamples.
+  \item The cost of a toggle (its radius) is stable. Its \emph{identity} is not: a node is close, and the two matchings compete.
+\end{itemize}
+
+\noindent So the deformation theory of the model has three contents:
+\begin{itemize}
+  \item $T^2=0$: no obstructions anywhere;
+  \item $T^1$ at the nodes: one smoothing direction, which is not statistical;
+  \item the flop at the nodes, which is statistical: an ambiguity in which outcomes become impossible together.
+\end{itemize}
+A report of a support toggle should therefore give its forced pair together with its resampling stability.
+
+\subsection{Singular statistics and optimal learning: what changes in the outcomes}\label{sec:singular}
+Several of our models are singular: the Fisher information degenerates on a set of true parameters. Examples are the hidden-sponsorship mixture at $\pi=0$, latent-class (secant) models, the merge strata of the hierarchy, and the nodes of [T]. There the Bayes free energy is
+\[ F_n=nS_n+\lambda\log n-(m-1)\log\log n+O_p(1), \]
+where $\lambda\le d/2$ is the real log canonical threshold (learning coefficient) and $m$ its multiplicity. The Bayes generalisation error is $\lambda/n$, and posterior averaging is the optimal learner; plug-in maximum likelihood is not asymptotically normal \cite{watanabe,watanabe18,wbic}. The RLCT is the largest pole $-\lambda$ of the zeta function $\zeta(z)=\int K(w)^z\varphi(w)\,dw$ of the Kullback--Leibler divergence $K$ under the prior $\varphi$, and $m$ is the order of that pole \cite{watanabe}. We measure the \emph{net difference} this makes to each outcome by computing the regular (plug-in) answer and the singular-aware (Bayes) answer on the same data. Everything is done with random-walk Metropolis at inverse temperatures $\beta$, with no gradient steps (\texttt{amb\_vigneaux/singular.py}, \texttt{examples/singular/run.py}, \texttt{tests/test\_singular.py}). The tools are:
+\begin{itemize}
+  \item WBIC $=\mathrm{E}_{\beta_1}[nL_n]$ at $\beta_1=1/\log n$;
+  \item Watanabe's estimate $\hat\lambda=(\mathrm{E}_{\beta_1}-\mathrm{E}_{\beta_2})[nL_n]/(1/\beta_1-1/\beta_2)$, with $\beta_2=1.5/\log n$, averaged over six chains for Monte-Carlo errors;
+  \item log marginal likelihoods by thermodynamic integration \cite{gelmanmeng};
+  \item a Dirichlet posterior for the flop. Treating the units of a table as exchangeable, de Finetti's theorem (in its categorical form \cite{fgp21}) is what licenses a single latent law with a prior over it.
+\end{itemize}
+
+\textbf{Calibration.} We use the shift mixture $(1-a)N(0,1)+aN(b,1)$ with $n=2000$:
+\begin{itemize}
+  \item at a singular truth ($ab=0$), where $K\sim a^2b^2$ gives $\lambda=\tfrac12$ with $m=2$, the estimate is $\hat\lambda=0.35\pm0.07$ over 10 data sets; the downward bias is the $\log\log n$ term of $m=2$;
+  \item at a regular truth ($a=0.3$, $b=1$; $\lambda=d/2=1$) it is $0.95\pm0.09$.
+\end{itemize}
+So the estimator separates singular from regular, as the tests check.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{singular_chart.pdf}
+\caption{Singular statistics.
+(a) $\hat\lambda$ on synthetic singular and regular truths (bars: theory) and on the polls mixture.
+(b) Certainty of the support toggle's forced pair: plug-in argmin (implicitly $1$) against the Dirichlet posterior.
+(c) Latent-class models on MBIC four groups: the regular penalty $d/2$ against $\hat\lambda$ (95\% Monte-Carlo intervals). $\hat\lambda$ plateaus near $5$ while $d/2$ keeps growing.
+(d) Held-out log-loss per sentence of the Bayes predictive minus ML plug-in (40 random halves; 95\% intervals).}\label{fig:singular}
+\end{figure}
+
+\begin{center}\small
+\resizebox{\linewidth}{!}{\begin{tabular}{>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.3\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}}
+\toprule
+outcome & regular / plug-in & singular-aware / Bayes & net difference\\
+\midrule
+support toggle: which pair becomes impossible (MBIC 3 / AllSides / MBIC 4) & one pair, implicitly certain & posterior probability $0.61$ / $0.81$ / $0.48$; $3$, $3$, $4$ pairs with $>5\%$ & certainty overstated by $19$--$52$ points\\
+support toggle: its radius & $0.131$ / $0.046$ / $0.041$ & $0.128\,[0.113,0.143]$ / $0.045\,[0.031,0.060]$ / $0.039\,[0.030,0.049]$ & negligible: the cost is stable\\
+hidden component among 1,817 nonpartisan polls (shift free) & LR $23.2$; regular BIC: present & $\hat\lambda=0.96$; bootstrap of the max-over-$b$ LR (Davies-type null \cite{davies87}, 95\% point $5.35$): $p<0.005$; log Bayes factor (TI) $+4.9$: present; WBIC: a tie within Monte-Carlo error & the component is real but is about $0.3$--$0.8\%$ of polls at $b=-0.275$ logit (about $14$ margin points), $5\times$ the sponsor shift: outlying polls, not hidden sponsorship\\
+number of latent classes (MBIC 4 groups) & BIC: $K=2$ decisively (gaps $14$ and $31$ to $K=3,4$) & $\hat\lambda=1.96,\ 5.0,\ 4.9,\ 4.9$ for $K=1..4$ (against $d/2=2,\ 4.5,\ 7,\ 9.5$); WBIC ties $K=2,3,4$ within Monte-Carlo error & BIC over-penalises extra classes by about $2$--$4.6\log n$; $P$(all four) is $0.347$--$0.350$ either way (observed $0.350$)\\
+held-out prediction (log-loss per sentence) & ML plug-in & Bayes predictive (posterior average) & $K=2$: $+0.0001\pm0.0002$ (no difference); $K=3$: $-0.0018\pm0.0004$, Bayes better in $72\%$ of splits\\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\begin{itemize}
+  \item \emph{Where singularity changes the outcome.} It changes the \emph{identity} of a support toggle: the plug-in pair is the posterior favourite only $48$--$81\%$ of the time. It changes the \emph{model choice}: extra latent classes cost about $\lambda\approx5$ in total, not $d/2$ each, so BIC's decisive $K=2$ becomes a tie. And it changes \emph{held-out prediction} in the over-parameterised model, where posterior averaging beats the plug-in, as the theory predicts.
+  \item \emph{Where it does not.} Toggle costs, the predicted $P$(all four), and the regular-like $K=2$ predictions are unchanged.
+  \item \emph{An instructive disagreement.} On the polls, WBIC ties while the Bayes factor and the bootstrap favour a component. WBIC's $\log n$ asymptotics are worst when the signal sits next to the singular set (a tiny weight $a$ with a large shift $b$). The posterior on that ridge also mixes poorly: the posterior mean of $ab$ changes sign between runs. In this regime thermodynamic integration, not WBIC, is the reliable criterion.
+\end{itemize}
+
 \section{Probing inside arity: hull trees and the $p$-adic radius profile}\label{sec:hull}
 The arity grading records how many sources cover a unit, but not how those sources relate on it. Proposition~\ref{prop:filled} explains why holonomy cannot help. Inside a filled cell every loop of differences on the same unit sums to zero. What survives is the \emph{configuration} of the $k$ values modulo translation, a point of $\R^k/\R\mathbf 1$, and its combinatorial shadow is a tree.
 
@@ -2331,6 +3086,13 @@ Let a unit be covered by $k$ sources with values $x_1,\dots,x_k$.
   \item \emph{AllSides, sides inside a story.} In the 736 story groups covered by left, centre and right, using the tone of Trump sentences, coalition counts equal the additive null ($258/251$, $236/240$, $242/246$). They do not shift at the 2016 election or at COVID ($p\ge0.20$). Tone carries no structure inside arity here.
   \item \emph{NewsWCL50.} Only 6 event $\times$ target cells have at least 3 codes from all five outlets, which is too few to test.
   \item \emph{BASIL.} Stance is coded as a relative ranking within each triplet, for example $(1,0,-1)$, so equal spacing is built in: 68 of 100 triplets are ties against about 30 under the additive null. The probe needs a continuous value for each source.
+  \item \emph{Arity grading, $p$-adically} (synthetic; \texttt{examples/arity\_probe/padic\_arity.py}). Units of arity $k$ measure integer source values with errors divisible by $p^{a_k}$ ($a_2=1$, $a_3=2$, $a_4=4$), and each unit contributes sum claims for the pairs it covers.
+    \begin{itemize}
+      \item The claims of any \emph{single} unit glue at full precision (24 of 24 units): a filled cell is flat, the $p$-adic form of Proposition~\ref{prop:filled}.
+      \item Keeping the units of arity $\ge K$, the claims glue to radius $3^{-1}$, $3^{-2}$ and $3^{-4}$ for $K=2,3,4$. The order profiles are $e=(0,0,1,2,\dots)$, $(0,0,0,1,\dots)$ and $(0,0,0,0,0,1,\dots)$.
+      \item The arity filtration therefore gives \emph{nested gluing radii}, each set by the precision of its grade, with integer slopes above each radius.
+      \item Real bias scores are not arithmetic, so this check is synthetic. On data the real dendrogram of Proposition~\ref{prop:hull}(2) plays this role.
+    \end{itemize}
   \item \emph{$p$-adic profile} ($p=3$, two independent even loops on $K_{2,3}$). Errors of $3^4$ on one edge give $e=(0,0,0,0,0,1,2)$, so $m^*=4$. Adding an error of $3^2$ on the other loop gives $e=(0,0,0,1,2,3,4)$, so $m^*=2$. An error of $18=2\cdot3^2$ gives the same profile as $9$, because only the valuation matters. The breakpoint is the gluing radius and the slope is an integer.
 \end{itemize}
 
@@ -2455,6 +3217,37 @@ $V=16$, $L=4$ & $0.69$ ($0.17$) & $0.27$ ($0.13$) & $0.14$ ($0.0016$) & $\mathbf
   \item Below the root, generic identifiability of latent tree models up to relabelling \cite{amr09} agrees with the positive merge distances measured here.
 \end{itemize}
 
+\subsection{Split--merge and the learning coefficient}\label{sec:splitmerge-rlct}
+Singular learning theory makes the merge-strata picture quantitative \cite{watanabe,watanabe18}. The RLCT $\lambda$ is the largest pole $-\lambda$ of $\zeta(z)=\int K(w)^z\varphi(w)\,dw$, where $K$ is the Kullback--Leibler divergence to the truth and $\varphi$ the prior. The Bayes free energy is $F_n=nS_n+\lambda\log n-(m-1)\log\log n+O_p(1)$, and the Bayes generalisation error is $\lambda/n$. A merge stratum is part of the singular set of the split model. We test what this implies for split--merge on a single grammar node: a parent symbol emits $d$ children independently, each categorical on $V$ symbols, i.e.\ a latent-class model (\texttt{singular.cat\_lca\_*}, \texttt{examples/splitmerge/run.py}). $\hat\lambda$ is Watanabe's two-temperature estimate over four Metropolis chains (Section~\ref{sec:singular}).
+
+\begin{proposition}[Learning coefficients at merge strata]\label{prop:splitrlct}\st{(1) proved; (2)--(3) computed}
+\leavevmode
+\begin{enumerate}
+  \item \emph{A lone node contributes nothing.} If a node's children are a single categorical draw on $V^2$ cells, every $K$ gives the same family (a mixture of categoricals is a categorical). Extra symbols therefore leave $K(w)$ unchanged along whole fibres, and $\lambda$ is that of the saturated categorical, $(V^2-1)/2$, for every $K$. This is Proposition~\ref{prop:root} in learning-coefficient form: the root's symbol structure adds $0$ to $\lambda$, and no amount of data resolves it. On $V^2=16$, $n=3000$: $\hat\lambda=7.37,\ 7.20,\ 8.28,\ 7.72$ for $K=1..4$ (theory $7.5$; $d/2=7.5,\ 15.5,\ 23.5,\ 31.5$), with identical maximal likelihood for every $K$.
+  \item \emph{Spurious splits are cheap but not free in a window.} With $d=3$ children on $V=4$ (the identifying two-level window) and true $K_0=2$, $\hat\lambda=4.86,\ 7.57,\ 8.55,\ 8.39$ for $K=1..4$, against $d/2=4.5,\ 9.5,\ 14.5,\ 19.5$ (Monte-Carlo SE about $1$). Splitting beyond the truth raises $\lambda$ by about $1$ per symbol, not the $5$ that a parameter count charges.
+  \item \emph{The criterion is the free energy, not the RLCT.} A merge always lowers $\lambda$. It should be accepted iff it lowers $F_n$, i.e.\ iff $n\,\Delta K<(\lambda_{\rm split}-\lambda_{\rm merged})\log n$ to leading order, where $\Delta K$ is the per-unit likelihood cost of the merge (the merge distance of Section~\ref{sec:gram-strata}). Merge distances that are positive but small are resolvable only once $n$ exceeds this threshold. The regular thresholds (observations per parameter, Table~\ref{tab:regime}) use $d/2$ instead of $\lambda$ and are conservative.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) $\sum_k w_kq_k$ ranges over the whole simplex already for $K=1$; the parameter-to-law map has positive-dimensional fibres on which $K$ is constant, and they add nothing to the pole of $\zeta$. The equality of the maximal likelihoods is checked in \texttt{tests/test\_singular.py}. (2) The values are computed. (3) Compare the two expansions of $F_n$.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{splitmerge_chart.pdf}
+\caption{Split--merge and the learning coefficient.
+(a) $\hat\lambda$ (solid, 95\% Monte-Carlo intervals) against $d/2$ (dotted) by the number of parent symbols, for a lone node (one child on 16 cells) and an identifying window (three children on 4); true $K_0=2$.
+(b, c) How often each criterion accepts the merge back to $K_0$ for a spurious split (b) and a weak real split (c), over $n$ (4 data sets per point).}\label{fig:splitmerge}
+\end{figure}
+
+\textbf{Merge decisions in practice} (Figure~\ref{fig:splitmerge}b,c). We compare held-out likelihood, BIC, WBIC and the thermodynamic-integration Bayes factor, with four data sets per sample size.
+\begin{itemize}
+  \item For a \emph{spurious} split (truth $K_0=2$, candidate $K=3$), held-out likelihood and BIC reject the split at every $n$ from $300$ to $10^4$: the split loses $0.03$ to $0.0004$ nats per unit on held-out data.
+  \item At our Monte-Carlo budget, WBIC and the Bayes factor are noisier and accept the merge in only $25$--$100\%$ of data sets. Their asymptotic advantage is offset by the error in estimating free energies in $30$--$40$ dimensions.
+  \item A \emph{weak real} split (two of three true symbols $25\%$ apart) is not detectable by any criterion up to $n=10^4$: its held-out gain is $\approx0$.
+  \item So the learning coefficient explains \emph{why} extra symbols are cheap and why the root is unlearnable, and it names the right criterion, the free energy. It does not, at feasible sample sizes and sampling budgets, beat held-out likelihood as a merge test.
+\end{itemize}
+An earlier suggestion to ``accept a merge iff it reduces the RLCT'' is not a criterion, since every merge does. Estimating per-level RLCTs on the O6 grammars themselves would require sampling hundreds of rule parameters per level; we leave that, with the caveat that WBIC is asymptotic and noisy for small corpora.
+
 \subsection{Local window EM: learning one level at a time}\label{sec:localem}
 The strata above suggest a gradient-free strategy that avoids global coupling: fit the hierarchy bottom up, one level at a time, from random starts, looking only at a local neighbourhood (\texttt{benchmarks/o6/local\_em.py}).
 \begin{itemize}
@@ -2549,6 +3342,46 @@ If every claim's depth is changed by a function of its true meeting node only, n
   \item With $5$--$10\%$ depth noise the violation count is dominated by noise: detection is $\le0.13$, and witness localisation falls to about $0.25$. A noise-robust version (for example an EM noise model, as in the contradiction meter) is open.
 \end{itemize}
 
+\section{Representations and perturbations: a summary}\label{sec:reppert}
+This section collects what the paper now knows about how states are \emph{represented} in each layer, and how \emph{perturbations} act on them.
+
+\textbf{Representations.}
+\begin{itemize}
+  \item \emph{Outcome layer (AMB):} a point's stratum, its support pattern, a face of the toric model (Section~\ref{sec:toricstrata}).
+  \item \emph{Probability layer:} the position inside the stratum, a point of the toric model and of $\mathbf{FinStoch}$. It splits into a natural part (per-source and per-topic calibrations) and a loop part in $H^1$ (Section~\ref{sec:dynamics}).
+  \item \emph{Operations:} representations of the fundamental groupoid of the cover. They land in $\R$ for bias loops, in permutation groups for label monodromy, and in $U(1)$ for phases (Sections~\ref{sec:mono}, \ref{sec:bias3}).
+  \item \emph{Inside a filled cell:} the configuration of the $k$ values up to translation. Its shadow is the hull tree, or the variogram tree after leans are removed. For arithmetic data it is the Berkovich disc tree (Section~\ref{sec:hull}).
+  \item \emph{Hierarchy:} a Kleisli morphism, a composite of rule kernels. It is defined up to relabelling, and the root is identifiable only as a mixture (Sections~\ref{sec:giry}, \ref{sec:gram-strata}).
+\end{itemize}
+
+\textbf{Perturbations and what they can move.}
+\begin{itemize}
+  \item \emph{Natural perturbations} (re-calibrations $u_s+v_t$) move only the natural part. They cannot change loops, variogram trees, or any outcome that reads only loops (Propositions~\ref{prop:natural}, \ref{prop:toggle}, \ref{prop:variogram}).
+  \item \emph{Loop perturbations} move $H^1$ and can flip only outcomes that read loops (Proposition~\ref{prop:toggle}).
+  \item \emph{Support perturbations} make the AMB layer jump ($\gamma$, $S_0$, the possibilistic outcome). Their exact cost is the mass of a co-facial set, and under gluing a single context never toggles alone (Proposition~\ref{prop:ambtoggle}).
+  \item \emph{Second-order perturbations} change who agrees with whom while leaving every mean fixed. They can flip majority and AMB outcomes, and holonomy cannot see them (Proposition~\ref{prop:majority}).
+  \item \emph{Continuity.} CF and the entropies move continuously through all of these, and only support-level quantities jump (Section~\ref{sec:gldyn}).
+  \item \emph{Robustness.} The Weyl certificate bounds the perturbation a cover survives without tearing, and refinement tests separate obstructions from artefacts of the cover (Section~\ref{sec:certificate}).
+  \item \emph{Invisible directions.} In grammar space, root merges are exactly invisible to the likelihood and upper-level merges almost so. These are the singular strata (Proposition~\ref{prop:root}).
+\end{itemize}
+
+\textbf{Measured on data.}
+\begin{itemize}
+  \item Flip costs in articles on a stream, and what drove each flip: rates, not topic mix (Section~\ref{sec:certificate}).
+  \item Exact toggle radii (MBIC, AllSides).
+  \item Paths over the gluing lattice: region choice alone can flip a held-out outcome for 44\% of MBIC targets, but outcome-driven region choice degrades accuracy by 55--65\%, while consistency-driven pruning improves it when regions are contaminated (Section~\ref{sec:latticepath}).
+  \item Which layer moved at which event, and the outcome series against all layers (Section~\ref{sec:outcomeseries}).
+  \item The outcome moves at some events (Charlottesville, Access Hollywood) without a corresponding change in coverage structure. Coverage does not lead the outcome at any lag up to 8 weeks.
+\end{itemize}
+
+\textbf{Not yet known.}
+\begin{itemize}
+  \item A causal or predictive link from coverage perturbations to the outcome. The present outcome series shows none.
+  \item Perturbations of long-tailed rule probabilities (the tropical layer), which the current uniform-rule grammars cannot test.
+  \item Non-abelian transports, where the character-variety picture would carry content.
+  \item The perturbation theory of the local learner near the singular strata of grammar space.
+\end{itemize}
+
 \section{Detection: a map of the ideas and theorems}\label{sec:detmap}
 \textbf{One idea.} A contradiction is a failure to glue locally consistent data. The meter keeps three failures apart:
 \begin{itemize}
@@ -2571,7 +3404,7 @@ Let $g$ be an operation system with values in an abelian group $A$.
 \end{enumerate}
 \end{proof}
 
-\begin{table}[h]\centering\small
+\begin{table}[!htbp]\centering\small
 \begin{tabular}{p{3.9cm}p{6.6cm}p{2.9cm}}
 \toprule
 role & result & where\\
@@ -2619,6 +3452,65 @@ real data & permutation null (BASIL) & \S\ref{sec:meter}\\
 \end{enumerate}
 
 %=====================================================================
+\section{Net assessment: what the machinery adds, and what standard methods already give}\label{sec:net}
+Almost every number in Sections~\ref{sec:giry}--\ref{sec:singular} can be reproduced with standard tools: linear programmes, log-linear models, regression and the bootstrap. The machinery adds three things:
+\begin{itemize}
+  \item which computation answers which question;
+  \item proofs that some popular constructions cannot work;
+  \item a short list of practical findings.
+\end{itemize}
+The second-order geometry mostly \emph{certified} that first-order models suffice on our data.
+
+\begin{center}\small
+\resizebox{\linewidth}{!}{\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.3\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}}
+\toprule
+piece & key outcome & reproducible by a standard method? & net gain\\
+\midrule
+Giry monad, $\mu$ vs adjunction (\ref{sec:giry}, \ref{sec:kernelpresheaf}) & gluing is a limit; $\mu$ enters only once a gluing is chosen & n/a & design guidance; corrects ``kernel presheaf / 2-group'' proposals\\
+hull covers (\ref{sec:hullcover}) & useless for region choice; blind to direction & n/a & a negative result that stops a dead end\\
+bounds over gluings (\ref{sec:bounds}) & coverage $0.97$--$1.00$; unanimity identified, ``all'' and ``majority'' not & yes: Fr\'echet / partial-identification LP & the identification rule ($f\perp\ker R$) and its link to loop content\\
+grey contexts (\ref{sec:grey}) & MBIC age/gender stitching gives bounds $0.95$--$1$ wide; the independence point is right only by assumption & yes: statistical matching, ecological inference & shows how much of a what-if answer the assumption supplies\\
+multi-conditionals (\ref{sec:multicond}) & number of independent conditions $=\dim\ker R$; pairs possible singly but not jointly & yes: LP feasibility & refutes the cup-product mask\\
+population test (\ref{sec:bounds}) & AllSides centre--right shift ($p=2\times10^{-4}$), found three ways & yes: a $\chi^2$ test, once one knows to run it & \textbf{practical finding}; the machinery said where to look\\
+sphere covers (\ref{sec:higher}) & a higher-order obstruction invisible to every pairwise or loop method; none in MBIC & partly: log-linear and Bell-inequality literature & instrumentation; a precise statement of the blind spot\\
+toric [F][T][I][S] (\ref{sec:toricsphere}) & no top-order interaction in any corpus; max-ent accurate to $\le0.004$ & yes: log-linear interaction tests, Birch, IPF & certifies the standard gluing\\
+curvature [C] (\ref{sec:curvature}) & Dem-affiliated house effect $-2.5$ points; the bend is $e$-flat & yes: the house effect is regression & certifies the linear model and first-order inference\\
+deformations [D] (\ref{sec:deform}) & $T^2=0$; a flop at nodes; the toggle's pair flips in $18$--$55\%$ of resamples & the instability, yes, by bootstrap & explains it; shows the ``$\mathrm{Ext}^2$ obstruction'' does not exist\\
+singular statistics [L] (\ref{sec:singular}) & toggle certainty overstated by $19$--$52$ points; BIC over-penalises latent classes; the polls' ``hidden component'' is $0.5\%$ outlying polls & partly: bootstrap, Bayes factors & correct penalties; a data-quality finding\\
+split--merge and RLCT (\ref{sec:splitmerge-rlct}) & lone node and root contribute $0$; spurious splits cost about $1$, not $d/2$ & held-out likelihood already rejects spurious splits & explanation, not a better test at feasible $n$\\
+arithmetic universe (Remark~\ref{rem:au}) & finitary vs analytic split of the engine & n/a & re-implementation guide; corrects ``a transformer is an AU''\\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\textbf{First- versus second-order extraction.}
+\begin{itemize}
+  \item \emph{First order} (loop content, $H^1$) carries the signal in our data: region influence ($R^2=0.89$), the population shift, the toggles.
+  \item \emph{Second order} (top-order interaction, curvature, the $H^2$ of sphere covers, singular penalties) came back null or ``simple model adequate'' on every real table. The exceptions are the flop instability and singular model selection, where it changed the decision. Its value is certification.
+\end{itemize}
+
+\textbf{Cost.} Everything runs on CPU in seconds to minutes, with no gradient steps:
+\begin{itemize}
+  \item LP bounds take milliseconds per outcome, and their bootstrap validation about $9$ minutes;
+  \item the toric and deformation components take about $10$ seconds each, curvature about $2$ minutes;
+  \item the singular statistics take about $2$ minutes and split--merge about $15$ minutes of MCMC.
+\end{itemize}
+Exact programmes grow as $2^n$ global outcomes, so they are practical up to about $15$--$20$ binary measurements. Everything runs on count tables, which are sufficient statistics.
+
+\textbf{Against transformer learning.} This comparison is structural; no transformer was trained on these tasks.
+\begin{itemize}
+  \item A transformer gives one prediction, i.e.\ one gluing with learned biases. By design it does not output bounds over all consistent joint laws, identification status, contextuality certificates, population-shift tests or curvature diagnostics.
+  \item Section~\ref{sec:gram-strata} explains why the upper hierarchy levels are hard for \emph{any} learner: merge distances shrink toward $0$, and the root is unidentifiable.
+  \item The two are complementary. A transformer is the natural upstream labeller (text to labels and features). The engine then checks consistency, bounds outcomes, locates obstructions, and certifies which simple model suffices.
+\end{itemize}
+
+\textbf{Where the novelty is.}
+\begin{itemize}
+  \item Practical findings: the centre--right population shift, the instability of toggle identity, and the outlying polls.
+  \item Negative results: hull region choice, the cup-product mask, and $\mathrm{Ext}^2$ obstructions.
+  \item The identifications: bound width is loop content; nodes produce flops; top-order structure is invisible to pairwise views. Each tells a reader when a standard method suffices and when it cannot.
+\end{itemize}
+
 \part{Status}
 \section{Status of every claim}
 \begin{itemize}
@@ -2636,7 +3528,7 @@ real data & permutation null (BASIL) & \S\ref{sec:meter}\\
     \item support stratification (Proposition~\ref{prop:strata}); localisation (Proposition~\ref{prop:local}), its corollary, and two-outcome supports (Proposition~\ref{prop:two});
     \item the logical Bell bound (Proposition~\ref{prop:lbell}); the lower bound in Proposition~\ref{prop:modphase}; the identities in Remark~\ref{rem:grass}; dimension as a cocycle on affine supports over $\F_p$ (Proposition~\ref{prop:ffdim});
     \item O2 for the true grammar: Propositions~\ref{prop:o2a}, \ref{prop:o2b}, \ref{prop:o2d}, Theorem~\ref{thm:o2c}, and the root collapse;
-    \item the band proposition (Proposition~\ref{prop:band}) and twist-invariance for symmetric local solutions (Proposition~\ref{prop:twistinv}); holonomy on the graph stratum with $\R^\Omega$ coefficients (Proposition~\ref{prop:pwgraph}), non-exact under Vigneaux locality; weak-edge contextuality without holonomy (Proposition~\ref{prop:weakedge}); the admissibility criterion (Corollary~\ref{cor:admiss}); two-sided acyclicity (Proposition~\ref{prop:twoside}); single-source consistency (Proposition~\ref{prop:singlesource}); formality of the surprisal (Proposition~\ref{prop:massey}); the $p$-adic gluing radius and sign twist (Proposition~\ref{prop:padicradius}); invisibility of node-wise distortions (Proposition~\ref{prop:nodewise}); filled cells are flat (Proposition~\ref{prop:filled}); naturality of phase changes (Proposition~\ref{prop:natural}); descent (Lemma~\ref{lem:descent}); toggle directions (Proposition~\ref{prop:toggle}); hull invariants of a filled cell and the $p$-adic order profile (Proposition~\ref{prop:hull}); the variogram tree (Proposition~\ref{prop:variogram}); majority reads the tree (Proposition~\ref{prop:majority}); the AMB toggle radius and Markov-move closure of co-facial sets (Proposition~\ref{prop:ambtoggle}); non-identifiability of the root level (Proposition~\ref{prop:root}); decoding as Bayesian inversion (Proposition~\ref{prop:bayesinv}); functoriality of mutual-information persistence (Proposition~\ref{prop:mipers}).
+    \item the band proposition (Proposition~\ref{prop:band}) and twist-invariance for symmetric local solutions (Proposition~\ref{prop:twistinv}); holonomy on the graph stratum with $\R^\Omega$ coefficients (Proposition~\ref{prop:pwgraph}), non-exact under Vigneaux locality; weak-edge contextuality without holonomy (Proposition~\ref{prop:weakedge}); the admissibility criterion (Corollary~\ref{cor:admiss}); two-sided acyclicity (Proposition~\ref{prop:twoside}); single-source consistency (Proposition~\ref{prop:singlesource}); formality of the surprisal (Proposition~\ref{prop:massey}); the $p$-adic gluing radius and sign twist (Proposition~\ref{prop:padicradius}); invisibility of node-wise distortions (Proposition~\ref{prop:nodewise}); filled cells are flat (Proposition~\ref{prop:filled}); naturality of phase changes (Proposition~\ref{prop:natural}); descent (Lemma~\ref{lem:descent}); toggle directions (Proposition~\ref{prop:toggle}); hull invariants of a filled cell and the $p$-adic order profile (Proposition~\ref{prop:hull}); the variogram tree (Proposition~\ref{prop:variogram}); majority reads the tree (Proposition~\ref{prop:majority}); the AMB toggle radius and Markov-move closure of co-facial sets (Proposition~\ref{prop:ambtoggle}); non-identifiability of the root level (Proposition~\ref{prop:root}); decoding as Bayesian inversion (Proposition~\ref{prop:bayesinv}); functoriality of mutual-information persistence (Proposition~\ref{prop:mipers}); region dependence is loop content (Proposition~\ref{prop:regioninv}); the first-order landscape (Proposition~\ref{prop:landscape}).
   \end{itemize}
   \item \textbf{Computed:}
   \begin{itemize}
@@ -2682,6 +3574,351 @@ real data & permutation null (BASIL) & \S\ref{sec:meter}\\
   \end{itemize}
 \end{itemize}
 
+\section{The constructive core: the rational distribution monad in an arithmetic universe}\label{sec:constructive}
+This section proves the construction sketched in Remark~\ref{rem:au}. Throughout, $\mathcal A$ is an arithmetic universe: a list-arithmetic pretopos \cite{joyal73,maietti10}, for example $\mathbf{Set}$ or the initial one. In $\mathcal A$ we have finite limits, disjoint and stable coproducts, effective quotients of equivalence relations, a natural numbers object $\mathbb N$, and a list object $L(Y)$ for every $Y$, with $\mathrm{nil}$, $\mathrm{cons}$ and its recursion principle. From $\mathbb N$ one builds $\mathbb Z$ and $\mathbb Q$ with decidable equality and order, and $\mathbb Q_{>0}$ is a decidable subobject of $\mathbb Q$. A transformer plays no role here (Remark~\ref{rem:au}). Statements marked \texttt{[exec]} are also checked in exact rational arithmetic in \texttt{amb\_vigneaux/constructive.py} and \texttt{tests/test\_constructive.py}.
+
+\subsection*{Construction}
+\begin{definition}[Finitely supported rational distributions]\label{def:dq}
+For an object $X$ of $\mathcal A$, let $\sim$ be the equivalence relation on $L(X\times\mathbb Q_{>0})$ \emph{generated} by three moves:
+\begin{itemize}
+  \item[(P)] \emph{permutation}: swapping two adjacent entries;
+  \item[(M)] \emph{merging}: $\ell_1\,(x,q)\,(x,r)\,\ell_2\sim\ell_1\,(x,q+r)\,\ell_2$;
+  \item[(S)] \emph{scaling}: $(x_i,q_i)_i\sim(x_i,cq_i)_i$ for every $c\in\mathbb Q_{>0}$.
+\end{itemize}
+Put $\mathcal D(X)=L(X\times\mathbb Q_{>0})/{\sim}$, and write $[\![(x_1,q_1),\dots,(x_n,q_n)]\!]$ for a class, read as $\sum_iq_i\delta_{x_i}/\sum_iq_i$.
+\end{definition}
+\noindent The generated relation exists in $\mathcal A$, because transitive closures can be built with list objects \cite{maietti10}, and its quotient exists because quotients are effective. Two remarks on the choice of $\sim$:
+\begin{itemize}
+  \item A tempting alternative asks for a bijection between the entries of two lists with equal normalised weights. That is wrong: it separates $[(x,1),(x,1)]$ from $[(x,1)]$, which are the same distribution.
+  \item Repairing it by comparing aggregated weight functions needs decidable equality on $X$, which a general AU does not provide. The generated relation needs no decidability.
+\end{itemize}
+
+\begin{lemma}[Normal form]\label{lem:nf}\st{proved; [exec]}
+If $X$ has decidable equality, two lists are equivalent iff their normalised weight functions $x\mapsto\sum_{x_i=x}q_i/\sum_iq_i$ agree. So $\sim$ is decidable for finite $X$.
+\end{lemma}
+\begin{proof}
+Each generator preserves the normalised weight function. Conversely, with decidable equality, (P) brings equal points together and (M) merges them, leaving one entry per point. Two such lists with the same normalised weight function list the same points, so they differ by a permutation (P) and a scaling (S).
+\end{proof}
+
+\begin{definition}[Functor, unit, multiplication]\label{def:dmonad}
+For $f:X\to Y$ let $\mathcal D(f)[\![(x_i,q_i)]\!]=[\![(f(x_i),q_i)]\!]$ (map $f$ over the list). Let $\eta_X(x)=[\![(x,1)]\!]$. For a list $(\ell_i,q_i)_i$ of lists $\ell_i=(x_{ij},r_{ij})_j$, let
+\[ \mu_X\big[\![([\![\ell_i]\!],q_i)_i]\!\big]=\big[\!\big[\big(x_{ij},\tfrac{q_i\,r_{ij}}{W\,V_i}\big)_{i,j}\big]\!\big],\qquad W=\textstyle\sum_iq_i,\ V_i=\sum_jr_{ij}. \]
+All three are defined by list recursion (map, fold for the sums, concatenation), so they are morphisms of $\mathcal A$ once they are shown to respect $\sim$.
+\end{definition}
+
+\begin{lemma}[Lifting lists of classes]\label{lem:lift}\st{proved}
+For an effective quotient $\pi:Y\to Y/E$, the map $L(\pi):L(Y)\to L(Y/E)$ is a regular epimorphism: every list of classes has a list of representatives.
+\end{lemma}
+\begin{proof}
+Let $S\subseteq L(Y/E)$ be the image of $L(\pi)$.
+\begin{itemize}
+  \item $S$ contains $\mathrm{nil}$.
+  \item $S$ is closed under $\mathrm{cons}$. The map $\pi\times L(\pi):Y\times L(Y)\to(Y/E)\times S$ is a regular epimorphism, since products of regular epis are regular epis in a regular category. And $\mathrm{cons}(\pi y,L(\pi)\ell)=L(\pi)(\mathrm{cons}(y,\ell))$ lies in $S$.
+\end{itemize}
+So $S$ is a sub-algebra of the initial $(1+(Y/E)\times-)$-algebra $L(Y/E)$, hence all of it.
+\end{proof}
+
+\begin{proposition}[Well defined]\label{prop:dwelldef}\st{proved; [exec]}
+$\mathcal D(f)$ and $\mu_X$ respect $\sim$, and $\mu_X$ descends to $\mathcal D(\mathcal D(X))$. Hence $\mathcal D$ is an endofunctor of $\mathcal A$, and $\eta$ and $\mu$ are natural.
+\end{proposition}
+\begin{proof}
+It suffices to check the generators.
+\begin{itemize}
+  \item $\mathcal D(f)$ commutes with (P) and (S), and sends (M) to (M) with the merged point $f(x)$.
+  \item For $\mu_X$, on an inner list: (P) permutes the output, (M) merges two output entries, and (S) multiplies $r_{ij}$ and $V_i$ by the same $c$, so it leaves $r_{ij}/V_i$ unchanged.
+  \item On the outer list: (P) permutes blocks; (S) cancels between $q_i$ and $W$; (M) merges two equal inner classes $[\![\ell_i]\!]=[\![\ell_k]\!]$, whose blocks are then equivalent after normalisation and merge by (M) entry by entry.
+\end{itemize}
+By Lemma~\ref{lem:lift}, the map from $L(L(X\times\mathbb Q_{>0})\times\mathbb Q_{>0})$ onto $\mathcal D(\mathcal D(X))$ is a composite of regular epimorphisms. A map constant on its fibres therefore factors through it. Naturality is $f(x_{ij})$ commuting with the formula.
+\end{proof}
+
+\begin{proposition}[Monad laws]\label{prop:dmonadlaws}\st{proved; [exec]}
+\[ \mu_X\circ\eta_{\mathcal D X}=\mathrm{id},\qquad \mu_X\circ\mathcal D(\eta_X)=\mathrm{id},\qquad \mu_X\circ\mu_{\mathcal D X}=\mu_X\circ\mathcal D(\mu_X). \]
+These are finitary equational identities over $\mathbb Q$.
+\end{proposition}
+\begin{proof}
+On representatives:
+\begin{itemize}
+  \item $\mu(\eta(\ell))=(x_i,q_i/W)_i\sim\ell$ by (S).
+  \item $\mu(\mathcal D(\eta)\ell)=(x_i,q_i\cdot1/(W\cdot1))_i\sim\ell$ by (S).
+  \item For a three-level list with weights $p_i,q_{ij},r_{ijk}$ and sums $P,Q_i,R_{ij}$, both sides give the entries $\big(x_{ijk},\ p_iq_{ij}r_{ijk}/(P\,Q_iR_{ij})\big)$.
+\end{itemize}
+The check is executed on $200$ random nested lists in exact arithmetic.
+\end{proof}
+
+\begin{proposition}[Commutative and affine]\label{prop:dcommaff}\st{proved; [exec]}
+With the strength $X\times\mathcal D(Y)\to\mathcal D(X\times Y)$, $(x,[\![(y_j,r_j)]\!])\mapsto[\![((x,y_j),r_j)]\!]$, the monad $\mathcal D$ is \emph{commutative}: both orders of forming the product law give $[\![((x_i,y_j),q_ir_j)]\!]$. It is also \emph{affine}: $\mathcal D(1)\cong1$.
+\end{proposition}
+\begin{proof}
+The two double strengths list the same entries $((x_i,y_j),q_ir_j)$ in different orders, which (P) identifies. On $1\times\mathbb Q_{>0}$, (M) merges any list into $[(\ast,w)]$, and (S) sends it to $[(\ast,1)]$.
+\end{proof}
+
+\begin{theorem}[The probability layer is constructive]\label{thm:klmarkov}\st{proved}
+$\mathrm{Kl}(\mathcal D)$, whose morphisms $X\to\mathcal D(Y)$ are finitely supported Markov kernels with rational weights, is a Markov category in Fritz's sense.
+\end{theorem}
+\begin{proof}
+The Kleisli category of a commutative monad on a cartesian category is symmetric monoidal, with the product law of Proposition~\ref{prop:dcommaff} as tensor. Copy is $\eta\circ\Delta$ and discard is the unique map to $1$. Affineness makes discard natural, so the Kleisli category is a Markov category \cite{fritz}. The Kleisli category is not cartesian: the tensor is not a categorical product, and the unit is the terminal object of $\mathcal A$.
+\end{proof}
+
+\begin{definition}[Conditioning and the information action]\label{def:dcond}
+For a decidable predicate $A$ on $X$ and $P=[\![(x_i,q_i)]\!]$ with $P(A)>0$ (decidable), let $P|_A=[\![(x_i,q_i)_{A(x_i)}]\!]$, i.e.\ filter and renormalise. For an observable $Z:X\to V$ with $V$ of decidable equality, Vigneaux's action on $F:\mathcal D(X)\to\mathbb Q$ is $(Z\cdot F)(P)=\sum_{v}P(Z=v)\,F(P|_{Z=v})$, the sum over the finitely many values in the support. Both are morphisms of $\mathcal A$. [exec: the Tsallis-$2$ cocycle identity $S_2(Z,Y)=S_2(Z)+\sum_vP(Z=v)^2S_2(Y\mid Z=v)$ holds exactly in $\mathbb Q$.]
+\end{definition}
+
+\subsection*{The boundary}
+\begin{corollary}[What is finitary]\label{cor:finitary}
+The following live in $\mathcal A$ and are computed exactly:
+\begin{itemize}
+  \item $\mathbb Q$, $\mathcal D$ and $\mathrm{Kl}(\mathcal D)$, conditioning and Vigneaux's action for observables with decidable equality;
+  \item sufficient statistics, as deterministic maps with the Fisher--Neyman factorisation as an equation over $\mathbb Q$;
+  \item the AMB support presheaf of a finite scenario and its \v{C}ech cohomology over $\mathbb Z$ and $\mathbb Z/n$ (Smith normal form);
+  \item the contextual fraction of a \emph{rational} table and its Bell certificate (an LP over $\mathbb Q$ has a rational optimum, found by the finite simplex method);
+  \item the toric ideal of a finite table and its Markov basis; facial sets, and the comparison of toggle costs through the forced masses;
+  \item Tsallis entropies of integer order;
+  \item $p$-adic valuations of rationals, hence the radius profile $e(m)$.
+\end{itemize}
+\end{corollary}
+
+\begin{corollary}[What needs analysis]\label{cor:analytic}
+The following do not live in $\mathcal A$:
+\begin{itemize}
+  \item $\mathbb R$, the Giry monad on measurable spaces, and continuous laws;
+  \item Shannon entropy and the KL and R\'enyi divergences, even of rational laws, because they involve logarithms; hence toggle \emph{radii} $-\log(1-m)$, though not their order;
+  \item the real points of a toric variety, IPF limits and the Birch point;
+  \item eigenvalue certificates (Fiedler, Weyl), Slepian and multitaper methods;
+  \item Berkovich spaces, which are completions;
+  \item the estimation of curvature, learning coefficients and MCMC.
+\end{itemize}
+Some of these are real-algebraic: the Birch point solves polynomial equations over $\mathbb Q$, and eigenvalues are algebraic. They are decidable by real algebraic geometry, but they do not lie in $\mathbb Q$.
+\end{corollary}
+
+\begin{remark}[The boundary]\label{rem:boundary}
+$\mathcal A$ carries the finitely supported, rational, count-based part of the engine: the outcome layer, the exact LP and MILP certificates, and the rational probability layer. Analysis enters at three points:
+\begin{itemize}
+  \item \emph{completion}: $\mathbb R$ and $\mathbb Q_p$;
+  \item \emph{limits}: IPF, maximum entropy, asymptotic expansions;
+  \item \emph{spectral data}: eigenvalues, tapers, curvature.
+\end{itemize}
+This is the left/right split of Remark~\ref{rem:au}, now with proofs.
+\end{remark}
+
+\section{Index of theorems and results}\label{sec:theoremindex}
+This index lists every theorem-like statement in the paper, generated from the source, so the numbers are those of the statements themselves. The bracket gives each statement's status tag. Part A is the external results the work relies on: first those stated as theorems in Section~\ref{sec:theoremsused} and elsewhere, then those invoked in the text without a separate statement. Part B is the paper's own results, grouped by section.
+
+\subsection*{A. External results used}
+\noindent\emph{Stated in the paper:}
+\begin{itemize}[itemsep=0pt]
+  \item Thm.~\ref{thm:io} \emph{Inside--outside; Baker, Lari--Young} [used]
+  \item Thm.~\ref{thm:em} \emph{EM ascent; Dempster--Laird--Rubin} [used]
+  \item Thm.~\ref{res:auto1} \emph{Convergence; Wu} [used]
+  \item Thm.~\ref{thm:vorobev} \emph{Extension; Vorob'ev} [used]
+  \item Thm.~\ref{res:auto2} \emph{Independent pullback; Simpson Thm 6.4, Prop.~8.5} [used]
+  \item Thm.~\ref{res:auto3} \emph{Conditional products; Fritz \S12} [used]
+  \item Thm.~\ref{res:auto4} \emph{Sufficient statistics; Fritz Def.~14.3, Thm~14.5} [used]
+  \item Thm.~\ref{res:auto5} \emph{Minimal sufficiency; Fritz Def.~16.2, Bahadur} [used]
+  \item Thm.~\ref{thm:breg} \emph{Bregman information; Bregman, Banerjee et al.} [used]
+  \item Thm.~\ref{thm:ostrowski} \emph{Ostrowski} [used]
+  \item Thm.~\ref{thm:ew} \emph{Bregman TDA; Edelsbrunner--Wagner} [used]
+  \item Thm.~\ref{thm:bb} \emph{Baudot--Bennequin} [used; verified numerically \src{S}]
+\end{itemize}
+\noindent\emph{Invoked in the text} (source; where used):
+\begin{itemize}[itemsep=0pt]
+  \item Abramsky--Brandenburger: no-signalling families are exactly the images of signed global measures; the sheaf-theoretic formulation \cite{ab11} (Proposition~\ref{prop:twoside}, Sections~\ref{sec:kernelpresheaf}, \ref{sec:bounds}).
+  \item Contextual fraction as a linear programme, with its Bell-inequality dual \cite{abm17} (throughout; Section~\ref{sec:bounds}).
+  \item Csisz\'ar: IPF converges to the $I$-projection when the fibre is non-empty \cite{csiszar} (Sections~\ref{sec:gldyn}, \ref{sec:bounds}, \ref{sec:toricsphere}).
+  \item Fr\'echet bounds and partial identification \cite{frechet51,manski03}; Duncan--Davis ecological bounds \cite{duncandavis53} (Sections~\ref{sec:bounds}, \ref{sec:grey}).
+  \item Charnes--Cooper linear-fractional programming \cite{charnescooper}; the conditional-independence assumption of statistical matching \cite{dorazio06} (Section~\ref{sec:grey}).
+  \item Birch: the maximum-likelihood / maximum-entropy point of a log-linear model matches the margins \cite{birch63}; toric models and their facial sets \cite{gms06,fr12,efrs06} (Sections~\ref{sec:toricstrata}, \ref{sec:toricsphere}).
+  \item Weyl's inequality for the Fiedler margin; Slepian and Thomson tapers \cite{slepian,thomson} (Sections~\ref{sec:certificate}, \ref{sec:slepian}).
+  \item Cohen-Steiner--Edelsbrunner--Harer stability of persistence \cite{ceh}; data processing (Proposition~\ref{prop:mipers}). Comparison of experiments (Blackwell--Sherman--Stein) in categorical form \cite{fgpr20} (Section~\ref{sec:giry}).
+  \item Weakly cartesian multiplication of the monad of a Markov category with conditionals \cite{bohinenperrone25} (Section~\ref{sec:giry}); de Finetti's theorem in categorical form \cite{fgp21} (Section~\ref{sec:singular}).
+  \item Post-selection inference \cite{cox75,posi,fithian}; selection bias in model evaluation \cite{varma06,cawley10}; influence diagnostics \cite{cook77,bkw80} (Section~\ref{sec:latticepath}).
+  \item Tree space, sticky means and energy tests \cite{bhv,hotz,szekely} (Section~\ref{sec:bhv}); identifiability of latent tree models \cite{amr09} (Section~\ref{sec:gram-strata}).
+  \item Continuity of radius functions on Berkovich curves (only the elementary part) \cite{pulita} (Section~\ref{sec:hull}).
+  \item Efron's statistical curvature \cite{efron75} (Section~\ref{sec:curvature}).
+  \item Complete intersections are unobstructed ($T^2=0$) \cite{hartshorne10}; the conifold and its two small resolutions \cite{atiyah58} (Section~\ref{sec:deform}).
+  \item Watanabe: RLCT as the pole of the zeta function, the free-energy expansion, Bayes generalisation error $\lambda/n$, WBIC \cite{watanabe,watanabe18,wbic}; thermodynamic integration \cite{gelmanmeng}; nuisance parameters present only under the alternative \cite{davies87} (Sections~\ref{sec:gram-strata}, \ref{sec:singular}, \ref{sec:splitmerge-rlct}).
+  \item Frameworks shown \emph{not} to apply as proposed: non-abelian cohomology \cite{giraud,breen} (Remark~\ref{rem:nonabelian}); arithmetic universes as a model of a transformer \cite{joyal73,maietti10} (Remark~\ref{rem:au}). Higher and homotopical contextuality \cite{orbr17,kharoofokay} is where such extensions should attach.
+\end{itemize}
+
+
+
+\subsection*{B. Results of this paper, by section}
+\noindent\textbf{The standing constraint}
+\begin{itemize}[itemsep=0pt]
+  \item Thm.~\ref{thm:T0} \emph{T0: single-source global section} [proved]
+  \item Cor.~\ref{cor:T0} [proved]
+\end{itemize}
+\noindent\textbf{Framework: sites, presheaves, categories and schemes} (Section~\ref{sec:framework})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:bayesinv} \emph{Decoding is Bayesian inversion} [proved; checked]
+  \item Prop.~\ref{prop:mipers} \emph{Mutual-information persistence is functorial; HSIC persistence is not} [proved; checked]
+  \item Prop.~\ref{prop:condprod} \emph{Conditional products glue trees, not cycles} [proved; checked]
+  \item Prop.~\ref{prop:kerneladj} \emph{The adjunction, and why a linear one sees nothing} [proved; checked]
+\end{itemize}
+\noindent\textbf{Theorems and constructions used} (Section~\ref{sec:theoremsused})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:padic} \emph{The lattice quasi-morphism does not exist} [proved, closed]
+\end{itemize}
+\noindent\textbf{The holonomy obstruction}
+\begin{itemize}[itemsep=0pt]
+  \item Thm.~\ref{thm:hol} \emph{Holonomy obstruction} [proved, computed]
+  \item Thm.~\ref{thm:smooth} \emph{Holonomy as a connecting class} [proved]
+  \item Prop.~\ref{res:auto6} \emph{T0 does not apply to operation systems}
+  \item Prop.~\ref{res:auto7} \emph{Vorob'ev does not apply}
+  \item Prop.~\ref{prop:frag} \emph{Possibilistic fragility does not apply} [computed]
+\end{itemize}
+\noindent\textbf{Non-unification and vanishing}
+\begin{itemize}[itemsep=0pt]
+  \item Thm.~\ref{thm:nonunif} \emph{Non-unification} [proved]
+  \item Thm.~\ref{thm:vanish} \emph{Vanishing on the trivially-acting complex} [proved, computed]
+  \item Cor.~\ref{res:auto8} \emph{Extensions do not help} [proved, closed]
+\end{itemize}
+\noindent\textbf{Problem 26: holonomy from estimated operations} (Section~\ref{sec:p26})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:ident} \emph{Ring-theoretic identifiability} [proved, computed]
+  \item Cor.~\ref{res:auto9} \emph{T0 for operations} [proved]
+  \item Prop.~\ref{res:auto10} \emph{Calibrated test and sample cost} [measured; large-sample]
+  \item Prop.~\ref{res:auto11} \emph{Discrete groups} [proved; measured looseness]
+\end{itemize}
+\noindent\textbf{From operations to outcomes, around the probability layer}
+\begin{itemize}[itemsep=0pt]
+  \item Thm.~\ref{thm:eg} \emph{The operation-system model $e_g$} [proved, computed]
+  \item Prop.~\ref{prop:blind-eg} \emph{Layer 2 is blind to {$[g]$}} [proved]
+\end{itemize}
+\noindent\textbf{Lossy operations}
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:eig} \emph{Character eigenvalues} [proved]
+  \item Cor.~\ref{res:auto12}
+  \item Prop.~\ref{res:auto13} \emph{Information closed forms} [proved]
+  \item Thm.~\ref{thm:cfcycle} \emph{Contextual fraction on a cycle} [proved]
+  \item Thm.~\ref{thm:girth} \emph{Any graph, lower bound} [proved]
+  \item Obs.~\ref{res:auto14} [measured]
+  \item Prop.~\ref{res:auto15} \emph{Orientation for $\Z/3$ and $\Z/5$} [proved, computed]
+\end{itemize}
+\noindent\textbf{The support dial: Tsallis entropies} (Section~\ref{sec:tsallis})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{res:auto16} [computed; the cocycle property is Vigneaux's]
+\end{itemize}
+\noindent\textbf{Support strata: where each lens can see anything} (Section~\ref{sec:strata})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:strata} \emph{Support stratification} [proved]
+  \item Cor.~\ref{res:auto17} [proved]
+  \item Prop.~\ref{prop:two} \emph{Two-outcome supports are all-or-nothing} [proved]
+\end{itemize}
+\noindent\textbf{Magnitude and phase: what Layer 2 reads} (Section~\ref{sec:magphase})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:lbell} \emph{Logical Bell bound} [proved]
+  \item Prop.~\ref{prop:modphase} \emph{$\CF$ from moduli and one bit} [lower bound proved; equality computed for $n=3,\dots,6$]
+  \item Prop.~\ref{prop:ffdim} \emph{Dimension over $\F_p$} [proved; computed]
+\end{itemize}
+\noindent\textbf{The decorated Bregman--\v{C}ech nerve}
+\begin{itemize}[itemsep=0pt]
+  \item Lemma~\ref{res:auto18} [proved, computed]
+  \item Prop.~\ref{res:auto19} \emph{Invariants for $\Aff(\Z/p)$} [proved]
+  \item Prop.~\ref{prop:walls} \emph{Walls} [proved; consequence measured]
+  \item Obs.~\ref{res:auto20} [measured]
+\end{itemize}
+\noindent\textbf{Two facets: restriction and extension} (Section~\ref{sec:functors})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{res:auto21} [proved, computed]
+  \item Obs.~\ref{res:auto22} \emph{Graded extension} [measured]
+\end{itemize}
+\noindent\textbf{Not-applicable entries: the gated test} (Section~\ref{sec:na})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{res:auto23} \emph{The deficit} [proved (zero set); measured (the rest)]
+  \item Obs.~\ref{res:auto24} \emph{The ridge} [measured]
+  \item Obs.~\ref{res:auto25} \emph{Thresholded $\gamma$} [measured]
+\end{itemize}
+\noindent\textbf{O2: when is a merged model minimal sufficient?} (Section~\ref{sec:o2})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:o2a} \emph{Lossless merges} [proved]
+  \item Prop.~\ref{prop:o2b} \emph{The minimal sufficient statistic is a rank object} [proved]
+  \item Thm.~\ref{thm:o2c} \emph{When a partition reaches the minimum} [proved]
+  \item Prop.~\ref{prop:o2d} \emph{Bregman cost is a complete-data quantity} [proved]
+  \item Cor.~\ref{res:auto26} \emph{The root collapses} [proved]
+\end{itemize}
+\noindent\textbf{Monodromy: representations of $\pi_1$ and twisted cohomology} (Section~\ref{sec:mono})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:mono} \emph{What the representation adds} [proved; computed]
+  \item Obs.~\ref{obs:grid} \emph{The mod-3 grid is not a loop-holonomy system} [computed]
+  \item Prop.~\ref{prop:certphase} \emph{The local shadow: certificate phase} [proved; computed]
+  \item Thm.~\ref{thm:split} \emph{Covariant perturbation split} [proved (1--4); 5 as stated]
+\end{itemize}
+\noindent\textbf{Bridges between $\mathcal F_{\Z}$ and $\mathcal F_\alpha$: the options} (Section~\ref{sec:bridges})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:renyi} \emph{The R\'enyi deficit dial} [proved (i--iv); computed]
+\end{itemize}
+\noindent\textbf{The operation-twisted Vigneaux complex: a finite test} (Section~\ref{sec:twisted})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:band} \emph{Band}
+  \item Prop.~\ref{prop:twistinv} \emph{Coefficient twists are invisible}
+  \item Prop.~\ref{prop:pwgraph} \emph{The probability layer reads the holonomy on the graph stratum}
+  \item Cor.~\ref{cor:admiss} \emph{Fontaine-type reading; admissibility} [proved]
+\end{itemize}
+\noindent\textbf{Contextuality without holonomy: the weak edge} (Section~\ref{sec:weakedge})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:weakedge} \emph{Weak-edge contextuality} [proved]
+\end{itemize}
+\noindent\textbf{Which coefficients can see contextuality} (Section~\ref{sec:coeffs})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:twoside} \emph{Two-sided acyclicity} [(1)--(2) proved; (3) computed]
+  \item Prop.~\ref{prop:singlesource} \emph{A single source always glues} [proved; checked on MBIC]
+\end{itemize}
+\noindent\textbf{Three-level bias: house lean, selective loops and global gluing} (Section~\ref{sec:bias3})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:filled} \emph{Filled cells are flat} [proved; checked]
+\end{itemize}
+\noindent\textbf{Dynamics: phase changes as natural and non-natural transformations} (Section~\ref{sec:dynamics})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:natural} \emph{Naturality of a phase change} [proved; module \texttt{dynamics}]
+\end{itemize}
+\noindent\textbf{Is the topology tearing? Descent, a spectral certificate, and outcome toggling} (Section~\ref{sec:certificate})
+\begin{itemize}[itemsep=0pt]
+  \item Lemma~\ref{lem:descent} \emph{Descent} [proved]
+  \item Prop.~\ref{prop:toggle} \emph{Toggle directions}
+  \item Prop.~\ref{prop:regioninv} \emph{Region dependence is loop content} [proved; checked]
+  \item Prop.~\ref{prop:landscape} \emph{The landscape is first order, with the loop residuals as its slopes} [proved to first order; checked]
+  \item Prop.~\ref{prop:hulldirection} \emph{Hulls are blind to direction} [proved; checked]
+  \item Prop.~\ref{prop:bounds} \emph{Bounds over all gluings} [proved; checked]
+  \item Prop.~\ref{prop:grey} \emph{Grey contexts} [proved; checked]
+  \item Prop.~\ref{prop:multicond} \emph{Several conditionals} [proved; checked]
+  \item Prop.~\ref{prop:higher} \emph{Covers whose nerve is a sphere} [proved; checked]
+  \item Prop.~\ref{prop:birch} \emph{Fibre meets variety once} [proved; checked]
+  \item Prop.~\ref{prop:deform} \emph{Deformations of the toric model} [proved; checked]
+\end{itemize}
+\noindent\textbf{Probing inside arity: hull trees and the $p$-adic radius profile} (Section~\ref{sec:hull})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:hull} \emph{Hull invariants of a filled cell} [proved; checked]
+  \item Prop.~\ref{prop:variogram} \emph{Variogram tree} [proved; checked]
+  \item Prop.~\ref{prop:majority} \emph{Majority reads the tree} [proved; checked]
+\end{itemize}
+\noindent\textbf{Moduli: toric strata, tree space, and the singular strata of grammars} (Section~\ref{sec:moduli})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:ambtoggle} \emph{AMB toggle radius} [proved; checked]
+  \item Prop.~\ref{prop:root} \emph{The root level is not identifiable} [proved; checked]
+  \item Prop.~\ref{prop:splitrlct} \emph{Learning coefficients at merge strata} [(1) proved; (2)--(3) computed]
+\end{itemize}
+\noindent\textbf{Massey products, and the $p$-adic and hierarchy loop tests} (Section~\ref{sec:massey})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:massey} \emph{Surprisal is formal} [proved; checked numerically]
+  \item Prop.~\ref{prop:padicradius} \emph{Sign twist and gluing radius} [proved; checked]
+  \item Prop.~\ref{prop:nodewise} \emph{Node-wise distortions are invisible} [proved; checked]
+\end{itemize}
+\noindent\textbf{Detection: a map of the ideas and theorems} (Section~\ref{sec:detmap})
+\begin{itemize}[itemsep=0pt]
+  \item Prop.~\ref{prop:local} \emph{Localisation} [proved]
+\end{itemize}
+\noindent\textbf{The constructive core: the rational distribution monad in an arithmetic universe} (Section~\ref{sec:constructive})
+\begin{itemize}[itemsep=0pt]
+  \item Lemma~\ref{lem:nf} \emph{Normal form} [proved; [exec]]
+  \item Lemma~\ref{lem:lift} \emph{Lifting lists of classes} [proved]
+  \item Prop.~\ref{prop:dwelldef} \emph{Well defined} [proved; [exec]]
+  \item Prop.~\ref{prop:dmonadlaws} \emph{Monad laws} [proved; [exec]]
+  \item Prop.~\ref{prop:dcommaff} \emph{Commutative and affine} [proved; [exec]]
+  \item Thm.~\ref{thm:klmarkov} \emph{The probability layer is constructive} [proved]
+  \item Cor.~\ref{cor:finitary} \emph{What is finitary}
+  \item Cor.~\ref{cor:analytic} \emph{What needs analysis}
+\end{itemize}
+
 \section{Method notes}
 \begin{itemize}
   \item Every detector needs a planted positive and a null. The engine's T0 bug and the thresholded-$\gamma$ false positives were caught this way.
@@ -2696,7 +3933,7 @@ real data & permutation null (BASIL) & \S\ref{sec:meter}\\
   \item \src{H}: the command appendix of the hierarchy paper (\texttt{build\_corpus\_syn.py}, \texttt{splitmerge.py}, \texttt{estimator4.py}, \texttt{estimator6.py}).
   \item \src{O}: \texttt{holonomy.py}, \texttt{amb\_gamma.py}, \texttt{parity\_glue.py}, \texttt{h2\_rational.py}, \texttt{h2\_integral.py}.
   \item O6: \texttt{benchmarks/o6} (\texttt{o6\_generate.py}, \texttt{baseline\_splitmerge.py}, \texttt{o6\_score.py}; results and logs in \texttt{results/}, summary in \texttt{BASELINE.md}).
-  \item \src{S}: \texttt{python -m pytest} (218 tests), \texttt{examples/holonomy\_estimated.py}, \texttt{examples/channels.py}, \texttt{examples/o2\_ranks.py}, \texttt{examples/o2\_verify.py}, \texttt{examples/train\_tf.py} with \texttt{grid.sh} (JAX), and modules \texttt{outcome}, \texttt{holonomy}, \texttt{channels}, \texttt{nerve}, \texttt{functors}, \texttt{na\_contexts}, \texttt{magphase}, \texttt{meter}, \texttt{meter\_general}, \texttt{monodromy}, \texttt{deficits}, \texttt{relclaims}, \texttt{twisted\_info}, \texttt{dynamics}, \texttt{spectral}, \texttt{certificate}, \texttt{toggle}, \texttt{hull}, \texttt{strata}, \texttt{treespace}, \texttt{giry}.
+  \item \src{S}: \texttt{python -m pytest} (258 tests), \texttt{examples/holonomy\_estimated.py}, \texttt{examples/channels.py}, \texttt{examples/o2\_ranks.py}, \texttt{examples/o2\_verify.py}, \texttt{examples/train\_tf.py} with \texttt{grid.sh} (JAX), and modules \texttt{outcome}, \texttt{holonomy}, \texttt{channels}, \texttt{nerve}, \texttt{functors}, \texttt{na\_contexts}, \texttt{magphase}, \texttt{meter}, \texttt{meter\_general}, \texttt{monodromy}, \texttt{deficits}, \texttt{relclaims}, \texttt{twisted\_info}, \texttt{dynamics}, \texttt{spectral}, \texttt{certificate}, \texttt{toggle}, \texttt{hull}, \texttt{strata}, \texttt{treespace}, \texttt{giry}, \texttt{lattice\_path}, \texttt{kernel\_presheaf}, \texttt{bounds}, \texttt{higher}, \texttt{toric}, \texttt{curvature}, \texttt{deform}, \texttt{singular}.
 \end{itemize}
 
 \begin{thebibliography}{99}\small
@@ -2713,6 +3950,15 @@ real data & permutation null (BASIL) & \S\ref{sec:meter}\\
 \bibitem{wu} C.~F.~J.~Wu. On the convergence properties of the EM algorithm. \emph{Ann.\ Statist.} 11(1):95--103, 1983.
 \bibitem{baker} J.~K.~Baker. Trainable grammars for speech recognition. 1979. \quad K.~Lari, S.~J.~Young. \emph{Comp.\ Speech Lang.} 4(1):35--56, 1990.
 \bibitem{simpson} A.~Simpson. Equivalence and conditional independence in atomic sheaf logic. arXiv:2405.11073, 2024.
+\bibitem{fte} FiveThirtyEight. How popular is Donald Trump? Presidential approval poll list (approval\_polllist.csv, model date 2020-08-31), CC BY 4.0. Mirror: \url{https://github.com/kiranrangaraj/Trump-Tweets-and-Approval-Rating-ETL}.
+\bibitem{econpolls} The Economist. 2020 US presidential forecast model, data/all\_polls.csv (2016 national polls from HuffPost Pollster). \url{https://github.com/TheEconomist/us-potus-model}.
+\bibitem{cox75} D.~R.~Cox. A note on data-splitting for the evaluation of significance levels. \emph{Biometrika} 62(2):441--444, 1975.
+\bibitem{cook77} R.~D.~Cook. Detection of influential observation in linear regression. \emph{Technometrics} 19(1):15--18, 1977.
+\bibitem{bkw80} D.~A.~Belsley, E.~Kuh, R.~E.~Welsch. \emph{Regression Diagnostics: Identifying Influential Data and Sources of Collinearity}. Wiley, 1980.
+\bibitem{varma06} S.~Varma, R.~Simon. Bias in error estimation when using cross-validation for model selection. \emph{BMC Bioinformatics} 7:91, 2006.
+\bibitem{cawley10} G.~C.~Cawley, N.~L.~C.~Talbot. On over-fitting in model selection and subsequent selection bias in performance evaluation. \emph{J.\ Mach.\ Learn.\ Res.} 11:2079--2107, 2010.
+\bibitem{posi} R.~Berk, L.~Brown, A.~Buja, K.~Zhang, L.~Zhao. Valid post-selection inference. \emph{Ann.\ Statist.} 41(2):802--837, 2013.
+\bibitem{fithian} W.~Fithian, D.~Sun, J.~Taylor. Optimal inference after model selection. arXiv:1410.2597, 2014.
 \bibitem{giry} M.~Giry. A categorical approach to probability theory. In \emph{Categorical Aspects of Topology and Analysis}, Lecture Notes in Math.\ 915, 68--85, Springer, 1982.
 \bibitem{ceh} D.~Cohen-Steiner, H.~Edelsbrunner, J.~Harer. Stability of persistence diagrams. \emph{Discrete Comput.\ Geom.} 37(1):103--120, 2007.
 \bibitem{fritz} T.~Fritz. A synthetic approach to Markov kernels, conditional independence and theorems on sufficient statistics. \emph{Adv.\ Math.} 370:107239, 2020.
@@ -2754,8 +4000,30 @@ real data & permutation null (BASIL) & \S\ref{sec:meter}\\
 \bibitem{hotz} T.~Hotz, S.~Huckemann, H.~Le, J.~S.~Marron, J.~C.~Mattingly, E.~Miller, J.~Nolen, M.~Owen, V.~Patrangenaru, S.~Skwerer. Sticky central limit theorems on open books. \emph{Ann.\ Appl.\ Probab.} 23(6):2238--2258, 2013.
 \bibitem{szekely} G.~J.~Sz\'ekely, M.~L.~Rizzo. Energy statistics: a class of statistics based on distances. \emph{J.\ Statist.\ Plann.\ Inference} 143(8):1249--1272, 2013.
 \bibitem{watanabe} S.~Watanabe. \emph{Algebraic Geometry and Statistical Learning Theory}. Cambridge University Press, 2009.
+\bibitem{watanabe18} S.~Watanabe. \emph{Mathematical Theory of Bayesian Statistics}. CRC Press, 2018.
+\bibitem{golubtsov02} P.~V.~Golubtsov. Monoidal Kleisli category as a background for information transformers theory. \emph{Information Processes} 2(1):62--84, 2002.
+\bibitem{fgpr20} T.~Fritz, T.~Gonda, P.~Perrone, E.~F.~Rischel. Representable Markov categories and comparison of statistical experiments in categorical probability. arXiv:2010.07416, 2020.
+\bibitem{fgp21} T.~Fritz, T.~Gonda, P.~Perrone. De Finetti's theorem in categorical probability. arXiv:2105.02639, 2021.
+\bibitem{bohinenperrone25} M.~Bohinen, P.~Perrone. Categorical algebra of conditional probability. arXiv:2502.14941, 2025.
 \bibitem{wbic} S.~Watanabe. A widely applicable Bayesian information criterion. \emph{J.\ Mach.\ Learn.\ Res.} 14:867--897, 2013.
 \bibitem{amr09} E.~S.~Allman, C.~Matias, J.~A.~Rhodes. Identifiability of parameters in latent structure models with many observed variables. \emph{Ann.\ Statist.} 37(6A):3099--3132, 2009.
+\bibitem{giraud} J.~Giraud. \emph{Cohomologie non ab\'elienne}. Grundlehren 179, Springer, 1971.
+\bibitem{breen} L.~Breen. On the classification of 2-gerbes and 2-stacks. \emph{Ast\'erisque} 225, 1994.
+\bibitem{orbr17} C.~Okay, S.~Roberts, S.~D.~Bartlett, R.~Raussendorf. Topological proofs of contextuality in quantum mechanics. \emph{Quantum Inf.\ Comput.} 17(13--14):1135--1166, 2017.
+\bibitem{kharoofokay} C.~Okay, A.~Kharoof, S.~Ipek. Simplicial quantum contextuality. \emph{Quantum} 7:1009, 2023.
+\bibitem{frechet51} M.~Fr\'echet. Sur les tableaux de corr\'elation dont les marges sont donn\'ees. \emph{Ann.\ Univ.\ Lyon, Sect.\ A} 14:53--77, 1951.
+\bibitem{manski03} C.~F.~Manski. \emph{Partial Identification of Probability Distributions}. Springer, 2003.
+\bibitem{charnescooper} A.~Charnes, W.~W.~Cooper. Programming with linear fractional functionals. \emph{Naval Res.\ Logist.\ Q.} 9(3--4):181--186, 1962.
+\bibitem{dorazio06} M.~D'Orazio, M.~Di~Zio, M.~Scanu. \emph{Statistical Matching: Theory and Practice}. Wiley, 2006.
+\bibitem{duncandavis53} O.~D.~Duncan, B.~Davis. An alternative to ecological correlation. \emph{Amer.\ Sociol.\ Rev.} 18(6):665--666, 1953.
+\bibitem{birch63} M.~W.~Birch. Maximum likelihood in three-way contingency tables. \emph{J.\ R.\ Stat.\ Soc.\ B} 25(1):220--233, 1963.
+\bibitem{efron75} B.~Efron. Defining the curvature of a statistical problem (with applications to second order efficiency). \emph{Ann.\ Statist.} 3(6):1189--1242, 1975.
+\bibitem{hartshorne10} R.~Hartshorne. \emph{Deformation Theory}. Graduate Texts in Mathematics 257, Springer, 2010.
+\bibitem{atiyah58} M.~F.~Atiyah. On analytic surfaces with double points. \emph{Proc.\ R.\ Soc.\ Lond.\ A} 247:237--244, 1958.
+\bibitem{gelmanmeng} A.~Gelman, X.-L.~Meng. Simulating normalizing constants: from importance sampling to bridge sampling to path sampling. \emph{Statist.\ Sci.} 13(2):163--185, 1998.
+\bibitem{davies87} R.~B.~Davies. Hypothesis testing when a nuisance parameter is present only under the alternative. \emph{Biometrika} 74(1):33--43, 1987.
+\bibitem{joyal73} A.~Joyal. Arithmetic universes. Unpublished lectures, 1973.
+\bibitem{maietti10} M.~E.~Maietti. Joyal's arithmetic universe as list-arithmetic pretopos. \emph{Theory Appl.\ Categ.} 24(3):39--83, 2010.
 \bibitem{csiszar} I.~Csisz\'ar. $I$-divergence geometry of probability distributions and minimization problems. \emph{Ann.\ Probab.} 3(1):146--158, 1975.
 \end{thebibliography}
 \end{document}
