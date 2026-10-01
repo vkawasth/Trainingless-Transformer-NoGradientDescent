@@ -18,6 +18,7 @@ The maximum-entropy member of the fibre (IPF) is returned as the point estimate;
 """
 from __future__ import annotations
 
+import itertools
 from typing import Callable, Dict, Mapping, Optional
 
 import numpy as np
@@ -178,3 +179,42 @@ def grey_slack(A, b, G, gl, gu):
     Aeq = np.vstack([np.hstack([A, np.zeros((len(b), m))]), np.concatenate([np.ones(n), np.zeros(m)])[None]])
     r = linprog(c, A_ub=np.array(Aub), b_ub=np.array(bub), A_eq=Aeq, b_eq=np.concatenate([b, [1.0]]), bounds=(0, None), method="highs")
     return float(r.fun) if r.status == 0 else np.nan
+
+
+# ------------------------------------------------------------------------------------------- several conditionals
+def loop_space(sc: Scenario) -> np.ndarray:
+    """basis (columns) of ker R restricted to sum-zero signed measures: the directions the data leave free"""
+    X = sc.measurements
+    A = np.vstack([sc.restriction_matrix(X, C) for C in sc.contexts] + [np.ones((1, len(sc.global_sections())))])
+    u, s, vt = np.linalg.svd(A)
+    r = int((s > 1e-10).sum())
+    return vt[r:].T
+
+
+def condition_rank(sc: Scenario, conds, values) -> int:
+    """how many of the conditionals P(E_i | G_i) = s_i are independent constraints on the free (loop) directions:
+    rank of the hypothesis rows restricted to ker R. At most dim ker R conditions can be imposed independently; any
+    further one is implied by them or contradicts them."""
+    K = loop_space(sc)
+    if K.shape[1] == 0:
+        return 0
+    rows = [(event(sc, lambda g, E=E, G=G: E(g) and G(g)) - s * event(sc, G)) @ K for (E, G), s in zip(conds, values)]
+    return int(np.linalg.matrix_rank(np.array(rows), tol=1e-9))
+
+
+def nerve_betti(contexts) -> list:
+    """Betti numbers (over Q) of the Cech nerve of the cover: simplices = sets of contexts with a common measurement.
+    Cup products of degree-1 classes land in H^2, so they vanish whenever b_2 = 0."""
+    C = [set(c) for c in contexts]; n = len(C)
+    simp = {k: [s for s in itertools.combinations(range(n), k + 1) if set.intersection(*[C[i] for i in s])] for k in range(n)}
+    ranks = {}
+    for k in range(1, n):
+        if not simp[k] or not simp[k - 1]:
+            ranks[k] = 0; continue
+        idx = {s: i for i, s in enumerate(simp[k - 1])}
+        D = np.zeros((len(simp[k - 1]), len(simp[k])))
+        for j, s in enumerate(simp[k]):
+            for t in range(len(s)):
+                D[idx[s[:t] + s[t + 1:]], j] = (-1) ** t
+        ranks[k] = int(np.linalg.matrix_rank(D))
+    return [len(simp[k]) - ranks.get(k, 0) - ranks.get(k + 1, 0) for k in range(n) if simp[k]]
