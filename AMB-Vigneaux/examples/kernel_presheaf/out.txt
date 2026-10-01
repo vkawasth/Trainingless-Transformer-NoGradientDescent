@@ -1,0 +1,24 @@
+(A) calibration of lambda_hat (n = 2000, 10 data sets each)
+    singular : lambda_hat 0.35 +/- 0.07 (theory 0.5; regular d/2 = 1)
+    regular  : lambda_hat 0.95 +/- 0.09 (theory 1.0; regular d/2 = 1)
+
+(B) hidden sponsorship (1817 nonpartisan polls; single bent component, shift free)
+    MLE a 0.008, b -0.275 (a b -0.0021); LR 23.17; lambda_hat 0.96 (regular d/2 = 1)
+    bootstrap null of max-over-b LR: 95% point 5.35 (chi2_2: 5.99); p = 0.000
+    decision: regular BIC -> mixture; singular BIC (lambda 1/2, m 2) -> mixture; WBIC -> none (WBIC -1714.6 +/- 0.2 MC vs none -1714.9)
+    thermodynamic-integration log Bayes factor (mixture vs none) +4.93 -> mixture
+    posterior mean a 0.003 (95% [0.001, 0.008]); posterior mean a b +0.0014 vs MLE -0.0021
+
+(C) the flop: plug-in forced pair vs its posterior probability
+    MBIC 3 groups: plug-in pair [(1, 0, 1), (1, 0, 0)] -> posterior probability 0.61; pairs with > 5% mass 3; radius plug-in 0.131, posterior mean 0.128 [0.113, 0.143]
+    AllSides 3 sides: plug-in pair [(0, 1, 1), (1, 1, 1)] -> posterior probability 0.81; pairs with > 5% mass 3; radius plug-in 0.046, posterior mean 0.045 [0.031, 0.060]
+    MBIC 4 groups: plug-in pair [(1, 0, 1, 0), (1, 0, 0, 0)] -> posterior probability 0.48; pairs with > 5% mass 4; radius plug-in 0.041, posterior mean 0.039 [0.030, 0.049]
+
+(D) latent class models on the MBIC four-group table (1200 sentences)
+    K=1: d  4, d/2  2.0, lambda_hat  1.96 (MC se 0.03) | BIC   3005.4 | WBIC   3005.4 (MC se 0.07) | ML P(all four) 0.217
+    K=2: d  9, d/2  4.5, lambda_hat  5.02 (MC se 0.21) | BIC   2856.0 | WBIC   2858.2 (MC se 0.36) | ML P(all four) 0.347
+    K=3: d 14, d/2  7.0, lambda_hat  4.89 (MC se 0.45) | BIC   2869.9 | WBIC   2858.4 (MC se 0.54) | ML P(all four) 0.350
+    K=4: d 19, d/2  9.5, lambda_hat  4.92 (MC se 0.37) | BIC   2887.5 | WBIC   2858.7 (MC se 0.77) | ML P(all four) 0.350
+    BIC picks K=2, WBIC picks K=2; observed P(all four) 0.350
+    held-out log-loss per sentence, K=2: ML plug-in 2.3762, Bayes predictive 2.3762; Bayes - ML +0.00007 (se 0.00019); Bayes better in 42% of splits
+    held-out log-loss per sentence, K=3: ML plug-in 2.3786, Bayes predictive 2.3768; Bayes - ML -0.00184 (se 0.00041); Bayes better in 72% of splits
