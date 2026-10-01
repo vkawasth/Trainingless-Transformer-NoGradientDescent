@@ -1,0 +1,22 @@
+(0) covers
+    triangle {LC,CR,LR}              nerve Betti [1, 1]; context-graph loops 1, filled by 2-cells 0; dim ker R 1 (the top parity)
+    CHSH 4-cycle                     nerve Betti [1, 1]; context-graph loops 1, filled by 2-cells 0; dim ker R 7
+    tetrahedral {abc,abd,acd,bcd}    nerve Betti [1, 0, 1]; context-graph loops 3, filled by 2-cells 3; dim ker R 1 (the top parity)
+
+(1) higher PR box (each triple uniform on even parity) + noise
+    lambda 0.00: first-order (pairs) CF 0.000 | second-order (triples) CF 0.000, gamma False, P(even parity) in [-0.000, 1.000] (exact)
+    lambda 0.20: first-order (pairs) CF 0.000 | second-order (triples) CF 0.000, gamma False, P(even parity) in [0.400, 0.800] (exact)
+    lambda 0.40: first-order (pairs) CF 0.000 | second-order (triples) CF 0.075, gamma False, P(even parity) in [0.648, 0.648] (projected)
+    lambda 0.60: first-order (pairs) CF 0.000 | second-order (triples) CF 0.300, gamma False, P(even parity) in [0.566, 0.566] (projected)
+    lambda 0.80: first-order (pairs) CF 0.000 | second-order (triples) CF 0.525, gamma False, P(even parity) in [0.432, 0.432] (projected)
+    lambda 1.00: first-order (pairs) CF 0.000 | second-order (triples) CF 0.750, gamma True, P(even parity) in [0.250, 0.250] (projected)
+    lambda 1.00: first-order (pairs) CF 0.000 | second-order (triples) CF 0.750, gamma True, P(even parity) in [0.250, 0.250] (projected)
+    second-order CF > 0 from lambda = 0.35; gamma from 1.00; first-order CF = 0 at every lambda: True
+
+(2) MBIC four ideology groups: 1200 sentences rated by all four; 100 random 5-way splits
+    identification <f, chi_4>: all four +1, at least three -3, unanimous +2, even parity +8
+    all four        free        width 0.035 (boot 0.095)  coverage plug-in 0.27, boot 0.84, + truth noise 0.99  max-ent error 0.028
+    at least three  free        width 0.104 (boot 0.175)  coverage plug-in 0.78, boot 0.95, + truth noise 1.00  max-ent error 0.032
+    unanimous       free        width 0.069 (boot 0.137)  coverage plug-in 0.66, boot 0.92, + truth noise 1.00  max-ent error 0.028
+    even parity     free        width 0.277 (boot 0.406)  coverage plug-in 0.99, boot 1.00, + truth noise 1.00  max-ent error 0.026
+    CF of the split tables: median 0.111 (max 0.217); gamma != 0 in 0.00 of splits;  same sentences for every context: CF 0.000, pairs-only CF 0.000

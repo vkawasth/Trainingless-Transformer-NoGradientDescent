@@ -1,0 +1,444 @@
+{
+ "covers": {
+  "triangle {LC,CR,LR}": {
+   "betti": [
+    1,
+    1
+   ],
+   "graph_loops": 1,
+   "filled": 0,
+   "two_cells": 0,
+   "dim_kerR": 1,
+   "top_parity": true
+  },
+  "CHSH 4-cycle": {
+   "betti": [
+    1,
+    1
+   ],
+   "graph_loops": 1,
+   "filled": 0,
+   "two_cells": 0,
+   "dim_kerR": 7,
+   "top_parity": false
+  },
+  "tetrahedral {abc,abd,acd,bcd}": {
+   "betti": [
+    1,
+    0,
+    1
+   ],
+   "graph_loops": 3,
+   "filled": 3,
+   "two_cells": 4,
+   "dim_kerR": 1,
+   "top_parity": true
+  }
+ },
+ "higher_pr": [
+  {
+   "lam": 0.0,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.0,
+   "gamma": false,
+   "parity_lo": -3.199999998315661e-08,
+   "parity_hi": 1.000000026,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.05,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.0,
+   "gamma": false,
+   "parity_lo": 0.0999999680000001,
+   "parity_hi": 0.950000016,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.1,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.0,
+   "gamma": false,
+   "parity_lo": 0.19999996800000008,
+   "parity_hi": 0.9000000160000001,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.15,
+   "CF_pairs": 0.0,
+   "CF_triples": 1.1102230246251565e-16,
+   "gamma": false,
+   "parity_lo": 0.2999999679999999,
+   "parity_hi": 0.8500000160000001,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.2,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.0,
+   "gamma": false,
+   "parity_lo": 0.39999996800000015,
+   "parity_hi": 0.8000000159999999,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.25,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.0,
+   "gamma": false,
+   "parity_lo": 0.499999968,
+   "parity_hi": 0.750000016,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.3,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.0,
+   "gamma": false,
+   "parity_lo": 0.599999968,
+   "parity_hi": 0.700000016,
+   "mode": "exact"
+  },
+  {
+   "lam": 0.35,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.018749999999999822,
+   "gamma": false,
+   "parity_lo": 0.6623924829438488,
+   "parity_hi": 0.6623948830275528,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.4,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.07500000000000018,
+   "gamma": false,
+   "parity_lo": 0.6482172179970968,
+   "parity_hi": 0.6482196180166592,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.45,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.1312500000000002,
+   "gamma": false,
+   "parity_lo": 0.6317696358225193,
+   "parity_hi": 0.6317720358333544,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.5,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.1875,
+   "gamma": false,
+   "parity_lo": 0.6127388735737875,
+   "parity_hi": 0.6127412735808345,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.55,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.2437499999999998,
+   "gamma": false,
+   "parity_lo": 0.590824577971257,
+   "parity_hi": 0.5908269779757802,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.6,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.29999999999999993,
+   "gamma": false,
+   "parity_lo": 0.5657654780744947,
+   "parity_hi": 0.5657678780777258,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.65,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.35625000000000007,
+   "gamma": false,
+   "parity_lo": 0.5373708755275672,
+   "parity_hi": 0.5373732755295831,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.7,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.4125000000000002,
+   "gamma": false,
+   "parity_lo": 0.5055476710523971,
+   "parity_hi": 0.5055500710537553,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.75,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.46875,
+   "gamma": false,
+   "parity_lo": 0.4703148259022729,
+   "parity_hi": 0.47031722590320424,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.8,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.5249999999999998,
+   "gamma": false,
+   "parity_lo": 0.4318003484643243,
+   "parity_hi": 0.43180274846505684,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.85,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.58125,
+   "gamma": false,
+   "parity_lo": 0.3902218599748287,
+   "parity_hi": 0.3902242599753505,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.9,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.6375,
+   "gamma": false,
+   "parity_lo": 0.34585714078051266,
+   "parity_hi": 0.3458595407810558,
+   "mode": "projected"
+  },
+  {
+   "lam": 0.95,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.6937500000000002,
+   "gamma": false,
+   "parity_lo": 0.2990129209373969,
+   "parity_hi": 0.2990153209378994,
+   "mode": "projected"
+  },
+  {
+   "lam": 1.0,
+   "CF_pairs": 0.0,
+   "CF_triples": 0.75,
+   "gamma": true,
+   "parity_lo": 0.2499997999998674,
+   "parity_hi": 0.25000080000079583,
+   "mode": "projected"
+  }
+ ],
+ "mbic": {
+  "results": {
+   "all four": {
+    "identified": false,
+    "coverage": 0.27,
+    "coverage_boot": 0.84,
+    "coverage_pred": 0.99,
+    "width": 0.03457980808928465,
+    "width_boot": 0.09488143670168978,
+    "maxent_err": 0.02841790432131443
+   },
+   "at least three": {
+    "identified": false,
+    "coverage": 0.78,
+    "coverage_boot": 0.95,
+    "coverage_pred": 1.0,
+    "width": 0.10373922426785404,
+    "width_boot": 0.1752262947377537,
+    "maxent_err": 0.03187082891841651
+   },
+   "unanimous": {
+    "identified": false,
+    "coverage": 0.66,
+    "coverage_boot": 0.92,
+    "coverage_pred": 1.0,
+    "width": 0.06915941617856936,
+    "width_boot": 0.13747489135986354,
+    "maxent_err": 0.027779394545743265
+   },
+   "even parity": {
+    "identified": false,
+    "coverage": 0.99,
+    "coverage_boot": 1.0,
+    "coverage_pred": 1.0,
+    "width": 0.2766376647142774,
+    "width_boot": 0.4060663033849338,
+    "maxent_err": 0.02560216579150893
+   }
+  },
+  "cf_median": 0.1106557377049181,
+  "cf_max": 0.21721311475409832,
+  "gamma_frac": 0.0,
+  "instrument": {
+   "vertices": [
+    {
+     "id": 0,
+     "context": [
+      "a",
+      "b",
+      "c"
+     ],
+     "label": "abc",
+     "pos": [
+      6.123233995736766e-17,
+      1.0
+     ],
+     "bell_weight": 0.25
+    },
+    {
+     "id": 1,
+     "context": [
+      "a",
+      "b",
+      "d"
+     ],
+     "label": "abd",
+     "pos": [
+      -0.8660254037844388,
+      -0.4999999999999997
+     ],
+     "bell_weight": 0.25
+    },
+    {
+     "id": 2,
+     "context": [
+      "a",
+      "c",
+      "d"
+     ],
+     "label": "acd",
+     "pos": [
+      0.8660254037844384,
+      -0.5000000000000004
+     ],
+     "bell_weight": 0.25
+    },
+    {
+     "id": 3,
+     "context": [
+      "b",
+      "c",
+      "d"
+     ],
+     "label": "bcd",
+     "pos": [
+      0.0,
+      0.0
+     ],
+     "bell_weight": 0.25
+    }
+   ],
+   "edges": [
+    {
+     "u": 0,
+     "v": 1,
+     "overlap": [
+      "a",
+      "b"
+     ],
+     "signalling": 0.08196721311475413
+    },
+    {
+     "u": 0,
+     "v": 2,
+     "overlap": [
+      "a",
+      "c"
+     ],
+     "signalling": 0.06557377049180328
+    },
+    {
+     "u": 0,
+     "v": 3,
+     "overlap": [
+      "b",
+      "c"
+     ],
+     "signalling": 0.08606557377049177
+    },
+    {
+     "u": 1,
+     "v": 2,
+     "overlap": [
+      "a",
+      "d"
+     ],
+     "signalling": 0.07377049180327866
+    },
+    {
+     "u": 1,
+     "v": 3,
+     "overlap": [
+      "b",
+      "d"
+     ],
+     "signalling": 0.05327868852459014
+    },
+    {
+     "u": 2,
+     "v": 3,
+     "overlap": [
+      "c",
+      "d"
+     ],
+     "signalling": 0.028688524590163952
+    }
+   ],
+   "faces": [
+    {
+     "vertices": [
+      0,
+      1,
+      2
+     ],
+     "common": [
+      "a"
+     ],
+     "agreement": 0.9262295081967213
+    },
+    {
+     "vertices": [
+      0,
+      1,
+      3
+     ],
+     "common": [
+      "b"
+     ],
+     "agreement": 0.9754098360655739
+    },
+    {
+     "vertices": [
+      0,
+      2,
+      3
+     ],
+     "common": [
+      "c"
+     ],
+     "agreement": 0.9754098360655739
+    },
+    {
+     "vertices": [
+      1,
+      2,
+      3
+     ],
+     "common": [
+      "d"
+     ],
+     "agreement": 0.9549180327868853
+    }
+   ],
+   "betti": [
+    1,
+    0,
+    1
+   ],
+   "graph_beta1": 3,
+   "filled_loops": 3,
+   "CF": 0.15163934426229497,
+   "outer_face_filled": true
+  },
+  "n": 1200
+ }
+}
