@@ -1,0 +1,61 @@
+{
+ "n_per_period": 150,
+ "projection_none": {
+  "pooled": 0.9724208633137807,
+  "change_point": 1.002954336554424
+ },
+ "projection_A": {
+  "pooled": 1.064703866928909,
+  "change_point": 0.9882289894733134
+ },
+ "detection": {
+  "none": {
+   "d1 outcomes": 0.05,
+   "d2 lean": 0.035,
+   "d3 naturality": 0.06,
+   "d4 monodromy (odd)": 0.0,
+   "d4 monodromy (even)": 0.0,
+   "d5 coverage-graded": 0.03
+  },
+  "A": {
+   "d1 outcomes": 1.0,
+   "d2 lean": 0.065,
+   "d3 naturality": 0.06,
+   "d4 monodromy (odd)": 0.0,
+   "d4 monodromy (even)": 0.0,
+   "d5 coverage-graded": 0.05
+  },
+  "B": {
+   "d1 outcomes": 0.075,
+   "d2 lean": 1.0,
+   "d3 naturality": 0.04,
+   "d4 monodromy (odd)": 0.0,
+   "d4 monodromy (even)": 0.0,
+   "d5 coverage-graded": 0.06
+  },
+  "C": {
+   "d1 outcomes": 0.06,
+   "d2 lean": 0.315,
+   "d3 naturality": 0.52,
+   "d4 monodromy (odd)": 0.0,
+   "d4 monodromy (even)": 0.0,
+   "d5 coverage-graded": 0.035
+  },
+  "D": {
+   "d1 outcomes": 0.05,
+   "d2 lean": 0.04,
+   "d3 naturality": 0.055,
+   "d4 monodromy (odd)": 1.0,
+   "d4 monodromy (even)": 0.0,
+   "d5 coverage-graded": 0.035
+  },
+  "E": {
+   "d1 outcomes": 0.055,
+   "d2 lean": 0.05,
+   "d3 naturality": 0.045,
+   "d4 monodromy (odd)": 0.0,
+   "d4 monodromy (even)": 0.0,
+   "d5 coverage-graded": 0.4
+  }
+ }
+}

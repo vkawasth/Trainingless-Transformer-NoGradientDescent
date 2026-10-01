@@ -1,0 +1,668 @@
+[
+ {
+  "lam": 0.0,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.75,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 0.0,
+  "chsh": 0.0,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.04,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7496,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 4.214806281765959e-11,
+  "chsh": 0.16000000000000014,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.08,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7484,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 5.864224217333458e-09,
+  "chsh": 0.32000000000000006,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.12,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7464,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 3.3053515480219176e-10,
+  "chsh": 0.4800000000000002,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.16,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7436,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 8.913980414915201e-09,
+  "chsh": 0.6399999999999999,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.2,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.74,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 3.5934361042322394e-09,
+  "chsh": 0.8000000000000003,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.24,
+  "CF": 1.1102230246251565e-16,
+  "S0": 1.3862943611198906,
+  "S2": 0.7356,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 2.7269074220903633e-09,
+  "chsh": 0.96,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.28,
+  "CF": 1.1102230246251565e-16,
+  "S0": 1.3862943611198906,
+  "S2": 0.7303999999999999,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 4.5074212140505665e-09,
+  "chsh": 1.12,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.32,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7243999999999999,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 2.0760870245162266e-09,
+  "chsh": 1.2799999999999998,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.36,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7176,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 4.774489137382432e-09,
+  "chsh": 1.4399999999999997,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.4,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.71,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 5.8677109282534445e-09,
+  "chsh": 1.5999999999999999,
+  "detect": {
+   "50": 0.0,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.44,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.7016,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 6.894916138033835e-09,
+  "chsh": 1.7599999999999998,
+  "detect": {
+   "50": 0.006666666666666667,
+   "200": 0.0,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.48,
+  "CF": 0.0,
+  "S0": 1.3862943611198906,
+  "S2": 0.6924,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": true,
+  "ipf_residual": 9.83486603267636e-09,
+  "chsh": 1.92,
+  "detect": {
+   "50": 0.03333333333333333,
+   "200": 0.0033333333333333335,
+   "1000": 0.0,
+   "5000": 0.0
+  }
+ },
+ {
+  "lam": 0.52,
+  "CF": 0.040000000000000036,
+  "S0": 1.3862943611198906,
+  "S2": 0.6824,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.010090510711275757,
+  "chsh": 2.08,
+  "detect": {
+   "50": 0.11,
+   "200": 0.14666666666666667,
+   "1000": 0.44666666666666666,
+   "5000": 0.9333333333333333
+  }
+ },
+ {
+  "lam": 0.56,
+  "CF": 0.1200000000000001,
+  "S0": 1.3862943611198906,
+  "S2": 0.6716,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.03084624688319354,
+  "chsh": 2.24,
+  "detect": {
+   "50": 0.2866666666666667,
+   "200": 0.6666666666666666,
+   "1000": 0.9966666666666667,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.58,
+  "CF": 0.15999999999999992,
+  "S0": 1.3862943611198906,
+  "S2": 0.6658999999999999,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.04153504480414663,
+  "chsh": 2.3200000000000003,
+  "detect": {
+   "50": 0.4066666666666667,
+   "200": 0.8933333333333333,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.6,
+  "CF": 0.20000000000000007,
+  "S0": 1.3862943611198906,
+  "S2": 0.6599999999999999,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.05244925916167223,
+  "chsh": 2.4000000000000004,
+  "detect": {
+   "50": 0.5133333333333333,
+   "200": 0.98,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.62,
+  "CF": 0.2400000000000001,
+  "S0": 1.3862943611198906,
+  "S2": 0.6538999999999999,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.06360469210915887,
+  "chsh": 2.4800000000000004,
+  "detect": {
+   "50": 0.6833333333333333,
+   "200": 0.9933333333333333,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.64,
+  "CF": 0.28000000000000014,
+  "S0": 1.3862943611198906,
+  "S2": 0.6476,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.07501931450603905,
+  "chsh": 2.5600000000000005,
+  "detect": {
+   "50": 0.8066666666666666,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.66,
+  "CF": 0.3200000000000002,
+  "S0": 1.3862943611198906,
+  "S2": 0.6411,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.08671370555272584,
+  "chsh": 2.6400000000000006,
+  "detect": {
+   "50": 0.8733333333333333,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.68,
+  "CF": 0.3600000000000002,
+  "S0": 1.3862943611198906,
+  "S2": 0.6344,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.09871161369247827,
+  "chsh": 2.7200000000000006,
+  "detect": {
+   "50": 0.9566666666666667,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.7,
+  "CF": 0.3999999999999999,
+  "S0": 1.3862943611198906,
+  "S2": 0.6275000000000001,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.111040682223184,
+  "chsh": 2.8,
+  "detect": {
+   "50": 0.9833333333333333,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.72,
+  "CF": 0.43999999999999995,
+  "S0": 1.3862943611198906,
+  "S2": 0.6204000000000001,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.12373340268603134,
+  "chsh": 2.88,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.74,
+  "CF": 0.48,
+  "S0": 1.3862943611198906,
+  "S2": 0.6131,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.1368283896908447,
+  "chsh": 2.96,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.76,
+  "CF": 0.52,
+  "S0": 1.3862943611198906,
+  "S2": 0.6056,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.1503721198941707,
+  "chsh": 3.04,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.78,
+  "CF": 0.56,
+  "S0": 1.3862943611198906,
+  "S2": 0.5979,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.1644213590752794,
+  "chsh": 3.12,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.8,
+  "CF": 0.6000000000000001,
+  "S0": 1.3862943611198906,
+  "S2": 0.59,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.1790466408140816,
+  "chsh": 3.2,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.82,
+  "CF": 0.6399999999999999,
+  "S0": 1.3862943611198906,
+  "S2": 0.5819000000000001,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.1943374105653044,
+  "chsh": 3.2799999999999994,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.84,
+  "CF": 0.6799999999999999,
+  "S0": 1.3862943611198906,
+  "S2": 0.5736000000000001,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.21040992110119594,
+  "chsh": 3.3599999999999994,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.86,
+  "CF": 0.72,
+  "S0": 1.3862943611198906,
+  "S2": 0.5651,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.2274199117589055,
+  "chsh": 3.4399999999999995,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.88,
+  "CF": 0.76,
+  "S0": 1.3862943611198906,
+  "S2": 0.5564,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.24558414719531438,
+  "chsh": 3.5199999999999996,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.9,
+  "CF": 0.8,
+  "S0": 1.3862943611198906,
+  "S2": 0.5475000000000001,
+  "gamma": false,
+  "level": "noncontextual",
+  "strong": false,
+  "ipf_converged": false,
+  "ipf_residual": 0.26521973345899863,
+  "chsh": 3.5999999999999996,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.92,
+  "CF": 0.8400000000000001,
+  "S0": 0.6931471805599453,
+  "S2": 0.5384,
+  "gamma": true,
+  "level": "strong",
+  "strong": true,
+  "ipf_converged": false,
+  "ipf_residual": 0.28682308557423564,
+  "chsh": 3.6799999999999997,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.94,
+  "CF": 0.8799999999999999,
+  "S0": 0.6931471805599453,
+  "S2": 0.5291,
+  "gamma": true,
+  "level": "strong",
+  "strong": true,
+  "ipf_converged": false,
+  "ipf_residual": 0.31125137581023554,
+  "chsh": 3.76,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.96,
+  "CF": 0.9199999999999999,
+  "S0": 0.6931471805599453,
+  "S2": 0.5196000000000001,
+  "gamma": true,
+  "level": "strong",
+  "strong": true,
+  "ipf_converged": false,
+  "ipf_residual": 0.34023530788057815,
+  "chsh": 3.84,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 0.98,
+  "CF": 0.96,
+  "S0": 0.6931471805599453,
+  "S2": 0.5099,
+  "gamma": true,
+  "level": "strong",
+  "strong": true,
+  "ipf_converged": false,
+  "ipf_residual": 0.37849577582035177,
+  "chsh": 3.92,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ },
+ {
+  "lam": 1.0,
+  "CF": 1.0,
+  "S0": 0.6931471805599453,
+  "S2": 0.5,
+  "gamma": true,
+  "level": "strong",
+  "strong": true,
+  "ipf_converged": false,
+  "ipf_residual": 0.5,
+  "chsh": 4.0,
+  "detect": {
+   "50": 1.0,
+   "200": 1.0,
+   "1000": 1.0,
+   "5000": 1.0
+  }
+ }
+]

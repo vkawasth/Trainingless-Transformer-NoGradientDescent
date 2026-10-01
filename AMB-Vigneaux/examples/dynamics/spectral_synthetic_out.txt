@@ -1,0 +1,5 @@
+        none Welch mean 0.09  Slepian step 0.06  MT low 0.04  MT mid 0.00  MT high 0.01  line F (after only) 0.05
+       level Welch mean 0.90  Slepian step 0.36  MT low 0.03  MT mid 0.01  MT high 0.00  line F (after only) 0.04
+ persistence Welch mean 0.36  Slepian step 0.21  MT low 0.28  MT mid 0.00  MT high 0.99  line F (after only) 0.03
+       cycle Welch mean 0.10  Slepian step 0.04  MT low 0.04  MT mid 0.03  MT high 0.01  line F (after only) 0.20
+       trend Welch mean 0.91  Slepian step 0.07  MT low 0.04  MT mid 0.01  MT high 0.01  line F (after only) 0.03

@@ -1,0 +1,42 @@
+{
+ "none": {
+  "Welch mean": 0.0925,
+  "Slepian step": 0.0625,
+  "MT low": 0.035,
+  "MT mid": 0.0,
+  "MT high": 0.005,
+  "line F (after only)": 0.05
+ },
+ "level": {
+  "Welch mean": 0.9025,
+  "Slepian step": 0.3625,
+  "MT low": 0.03,
+  "MT mid": 0.005,
+  "MT high": 0.0025,
+  "line F (after only)": 0.04
+ },
+ "persistence": {
+  "Welch mean": 0.36,
+  "Slepian step": 0.2075,
+  "MT low": 0.285,
+  "MT mid": 0.0,
+  "MT high": 0.9925,
+  "line F (after only)": 0.03
+ },
+ "cycle": {
+  "Welch mean": 0.0975,
+  "Slepian step": 0.0425,
+  "MT low": 0.0375,
+  "MT mid": 0.03,
+  "MT high": 0.0125,
+  "line F (after only)": 0.205
+ },
+ "trend": {
+  "Welch mean": 0.905,
+  "Slepian step": 0.075,
+  "MT low": 0.045,
+  "MT mid": 0.0075,
+  "MT high": 0.01,
+  "line F (after only)": 0.0275
+ }
+}
