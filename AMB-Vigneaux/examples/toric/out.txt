@@ -1,0 +1,27 @@
+(0) synthetic
+    n=3: binomial degree 4; max |Birch - IPF| 4.7e-15; max |log binomial ratio| at IPF 5.4e-15; theta increasing along the fibre: True
+    n=4: binomial degree 8; max |Birch - IPF| 3.9e-15; max |log binomial ratio| at IPF 1.0e-14; theta increasing along the fibre: True
+    n=5: binomial degree 16; max |Birch - IPF| 4.6e-15; max |log binomial ratio| at IPF 2.0e-14; theta increasing along the fibre: True
+    higher PR box: signed law with its 3-margins found (residual 1.4e-16); positivity needs t in [0.1875, -0.0625] -> [F] empty
+
+(1) real tables (full joint observed)
+  MBIC 3 groups (1600 units, n=3):
+    [F] segment m in [-0.923, 0.060]; observed m -0.277
+    [T] binomial degree 4; theta at IPF 8.3e-17; |Birch - IPF| 2.7e-15
+    [I] theta_hat -0.050 (95% CI [-0.111, +0.011], z -1.61); observed law at t = -0.0040 on the segment; TV(observed, Birch) 0.016
+    [S] toggle radius / saturated radius: median 1.46 (range 1.28-3.38); forced-set sizes [(2, 8)]
+  AllSides 3 sides (736 units, n=3):
+    [F] segment m in [0.200, 0.557]; observed m 0.368
+    [T] binomial degree 4; theta at IPF -1.1e-16; |Birch - IPF| 1.1e-15
+    [I] theta_hat -0.053 (95% CI [-0.177, +0.071], z -0.84); observed law at t = -0.0022 on the segment; TV(observed, Birch) 0.009
+    [S] toggle radius / saturated radius: median 1.53 (range 1.06-2.11); forced-set sizes [(2, 8)]
+  MBIC 4 groups (1200 units, n=4):
+    [F] segment m in [-0.121, 0.528]; observed m 0.190
+    [T] binomial degree 8; theta at IPF -9.7e-17; |Birch - IPF| 1.7e-15
+    [I] theta_hat -0.015 (95% CI [-0.087, +0.058], z -0.39); observed law at t = -0.0006 on the segment; TV(observed, Birch) 0.004
+    [S] toggle radius / saturated radius: median 1.50 (range 1.07-2.05); forced-set sizes [(2, 16)]
+
+(2) one outcome through the components: P(all n positive)
+  MBIC 3 groups: [F] bounds [0.407, 0.530] | [F]+[T] max-ent 0.445 | [I] observed 0.449 (se 0.012) | theta's effect +0.004
+  AllSides 3 sides: [F] bounds [0.000, 0.045] | [F]+[T] max-ent 0.021 | [I] observed 0.024 (se 0.006) | theta's effect +0.002
+  MBIC 4 groups: [F] bounds [0.329, 0.369] | [F]+[T] max-ent 0.349 | [I] observed 0.348 (se 0.014) | theta's effect -0.001
