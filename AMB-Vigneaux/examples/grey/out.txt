@@ -1,0 +1,39 @@
+(1) MBIC: bound P(biased | filter) from {X,Y} (half 1) and {X,filter} (half 2); truth hidden in half 1; 50 splits
+   age >= 55      | X = ideology                 bounds [0.000, 1.000] (width 1.000)  CIA point 0.599  truth 0.632  coverage 1.00  CIA error 0.037
+   age >= 55      | X = ideology x gender        bounds [0.000, 1.000] (width 1.000)  CIA point 0.602  truth 0.632  coverage 1.00  CIA error 0.033
+   age >= 55      | X = ideology x gender x BA+  bounds [0.000, 1.000] (width 1.000)  CIA point 0.601  truth 0.632  coverage 1.00  CIA error 0.035
+   age >= 45      | X = ideology                 bounds [0.000, 1.000] (width 1.000)  CIA point 0.600  truth 0.593  coverage 1.00  CIA error 0.011
+   age >= 45      | X = ideology x gender        bounds [0.015, 1.000] (width 0.985)  CIA point 0.602  truth 0.593  coverage 1.00  CIA error 0.012
+   age >= 45      | X = ideology x gender x BA+  bounds [0.025, 1.000] (width 0.975)  CIA point 0.601  truth 0.593  coverage 1.00  CIA error 0.012
+   female         | X = ideology                 bounds [0.055, 1.000] (width 0.945)  CIA point 0.598  truth 0.607  coverage 1.00  CIA error 0.010
+   graduate work  | X = ideology                 bounds [0.000, 1.000] (width 1.000)  CIA point 0.597  truth 0.594  coverage 1.00  CIA error 0.015
+   graduate work  | X = ideology x gender        bounds [0.000, 1.000] (width 1.000)  CIA point 0.598  truth 0.594  coverage 1.00  CIA error 0.016
+   no bachelor's  | X = ideology                 bounds [0.019, 1.000] (width 0.981)  CIA point 0.598  truth 0.601  coverage 1.00  CIA error 0.009
+   no bachelor's  | X = ideology x gender        bounds [0.034, 1.000] (width 0.966)  CIA point 0.598  truth 0.601  coverage 1.00  CIA error 0.009
+
+(2) MBIC what-if P(biased | age >= 55) = s: data allow s in [0.000, 1.000]; sweep feasible for s in [0.000, 1.000]; observed (hidden) 0.634
+    s 0.000: P(biased | 55+, right) in [0.000, 0.000]
+    s 0.125: P(biased | 55+, right) in [0.000, 0.403]
+    s 0.250: P(biased | 55+, right) in [0.000, 0.806]
+    s 0.375: P(biased | 55+, right) in [0.000, 1.000]
+    s 0.500: P(biased | 55+, right) in [0.000, 1.000]
+    s 0.625: P(biased | 55+, right) in [0.000, 1.000]
+    s 0.750: P(biased | 55+, right) in [0.194, 1.000]
+    s 0.875: P(biased | 55+, right) in [0.597, 1.000]
+    s 1.000: P(biased | 55+, right) in [1.000, 1.000]
+
+(3) AllSides what-if P(R adv | L and C adv) = s: feasible for s in [0.000, 0.700] (triple stories show 0.415)
+    s 0.000: P(majority adversarial) in [0.108, 0.108]
+    s 0.125: P(majority adversarial) in [0.098, 0.098]
+    s 0.250: P(majority adversarial) in [0.088, 0.088]
+    s 0.375: P(majority adversarial) in [0.078, 0.078]
+    s 0.500: P(majority adversarial) in [0.068, 0.068]
+    s 0.625: P(majority adversarial) in [0.058, 0.058]
+    s 0.750: ruled out, L1 slack 0.002
+    s 0.875: ruled out, L1 slack 0.007
+    s 1.000: ruled out, L1 slack 0.012
+
+(4) Population test: each pair's table from pair-only stories vs from triple-covered stories
+   L-R: TV 0.014, chi2 p 0.94  (P(adv) pair-only 0.211/0.120 vs triple 0.220/0.130)
+   L-C: TV 0.031, chi2 p 0.53  (P(adv) pair-only 0.216/0.143 vs triple 0.220/0.174)
+   C-R: TV 0.097, chi2 p 0.00017  (P(adv) pair-only 0.101/0.080 vs triple 0.174/0.130)
