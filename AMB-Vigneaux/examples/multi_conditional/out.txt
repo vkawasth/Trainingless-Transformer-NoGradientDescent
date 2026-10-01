@@ -1,0 +1,13 @@
+(0) cup products: nerve Betti numbers  triangle [1, 1]  CHSH [1, 1]  star {X,Y},{X,A,F} [1, 0]  -> no H^2: every cup product of degree-1 classes is 0
+
+(1) AllSides triangle: dim ker R = 1; nerve Betti [1, 1]
+    alone: s1 in [0.000, 0.707], s2 in [0.000, 1.000]; independent conditions among (s1, s2): 1
+    jointly: s2 is a function of s1 (max width of s2-range 2.0e-07); e.g. s1 0.177 -> s2 0.250;  s1 0.530 -> s2 0.750
+    the pair (s1, s2) = (0.177, 0.750) is allowed by each condition alone but jointly ruled out, L1 slack 0.0141; cup-product mask says: compatible (H^2 = 0)
+    triple-covered stories: s1 0.415, s2 0.531
+
+(2) MBIC, filters 55+ (A) and female (F): dim ker R = 9, nerve Betti [1, 0]; independent conditions among (s1, s2): 2
+    alone: P(Y|A) in [0.000, 1.000], P(Y|F) in [0.041, 1.000]; jointly feasible share of the 21x21 grid 0.81
+    P(Y | A, F): no conditions [0.000, 1.000];  at the true (s1, s2) = (0.614, 0.598): [0.412, 0.937];  hidden truth 0.608
+    P(Y | not A, not F): no conditions [0.239, 1.000];  at the true (s1, s2): [0.550, 0.625];  hidden truth 0.576
+(3) Kleisli composite A,F -> X -> Y (conditional independence): P(Y | A, F) = 0.591; inside the no-condition bounds: True
