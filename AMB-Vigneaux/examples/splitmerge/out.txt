@@ -1,0 +1,19 @@
+(A) learning coefficients by number of parent symbols K
+    lone node (1 child on 16 cells)  K=1: d/2   7.5  lambda_hat  7.37 (MC se 0.33)  max loglik   -7279.9
+    lone node (1 child on 16 cells)  K=2: d/2  15.5  lambda_hat  7.20 (MC se 0.36)  max loglik   -7279.9
+    lone node (1 child on 16 cells)  K=3: d/2  23.5  lambda_hat  8.28 (MC se 0.32)  max loglik   -7279.9
+    lone node (1 child on 16 cells)  K=4: d/2  31.5  lambda_hat  7.72 (MC se 0.59)  max loglik   -7279.9
+    window (3 children on 4)         K=1: d/2   4.5  lambda_hat  4.86 (MC se 0.24)  max loglik  -11229.4
+    window (3 children on 4)         K=2: d/2   9.5  lambda_hat  7.57 (MC se 0.94)  max loglik  -10090.5
+    window (3 children on 4)         K=3: d/2  14.5  lambda_hat  8.55 (MC se 1.12)  max loglik  -10084.3
+    window (3 children on 4)         K=4: d/2  19.5  lambda_hat  8.39 (MC se 1.25)  max loglik  -10078.5
+
+(B) the merge decision: accept the merge (choose the smaller K)?
+    spurious split (truth K0=2, candidate K=3)       n=  300: merge accepted by held-out LL 1.00 | BIC 1.00 | WBIC 0.75 | Bayes factor 0.75   (held-out gain of the split -0.0296 nats/unit)
+    spurious split (truth K0=2, candidate K=3)       n= 1000: merge accepted by held-out LL 1.00 | BIC 1.00 | WBIC 0.50 | Bayes factor 0.75   (held-out gain of the split -0.0158 nats/unit)
+    spurious split (truth K0=2, candidate K=3)       n= 3000: merge accepted by held-out LL 1.00 | BIC 1.00 | WBIC 0.75 | Bayes factor 0.25   (held-out gain of the split -0.0059 nats/unit)
+    spurious split (truth K0=2, candidate K=3)       n=10000: merge accepted by held-out LL 0.75 | BIC 1.00 | WBIC 1.00 | Bayes factor 0.50   (held-out gain of the split -0.0004 nats/unit)
+    weak real split (truth K0=3, two symbols close)  n=  300: merge accepted by held-out LL 0.75 | BIC 1.00 | WBIC 0.50 | Bayes factor 1.00   (held-out gain of the split -0.0999 nats/unit)
+    weak real split (truth K0=3, two symbols close)  n= 1000: merge accepted by held-out LL 1.00 | BIC 1.00 | WBIC 1.00 | Bayes factor 0.25   (held-out gain of the split -0.0067 nats/unit)
+    weak real split (truth K0=3, two symbols close)  n= 3000: merge accepted by held-out LL 0.75 | BIC 1.00 | WBIC 0.75 | Bayes factor 0.25   (held-out gain of the split -0.0021 nats/unit)
+    weak real split (truth K0=3, two symbols close)  n=10000: merge accepted by held-out LL 0.50 | BIC 1.00 | WBIC 0.75 | Bayes factor 0.75   (held-out gain of the split -0.0001 nats/unit)
