@@ -1,0 +1,8 @@
+== adversarial: P before L/C/R 0.128/0.081/0.088   after 0.142/0.109/0.115
+   f = 2C-L-R: before -0.0555 (se 0.0263)  after -0.0393 (se 0.0336)  Delta +0.0162
+   placebo (n=88 before/after pairs 2016-2020): sd 0.0796;  |Delta| >= COVID in 0.80 of them
+   toggle radius before COVID: centre must move 0.0277 = 0.7 placebo sd;  share of f reading the natural (exact) part 1.000
+== directed: P before L/C/R 0.025/0.006/0.007   after 0.033/0.016/0.002
+   f = 2C-L-R: before -0.0188 (se 0.0093)  after -0.0041 (se 0.0119)  Delta +0.0147
+   placebo (n=88 before/after pairs 2016-2020): sd 0.0161;  |Delta| >= COVID in 0.48 of them
+   toggle radius before COVID: centre must move 0.0094 = 1.2 placebo sd;  share of f reading the natural (exact) part 1.000

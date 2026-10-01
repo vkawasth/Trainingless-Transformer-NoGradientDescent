@@ -1,0 +1,23 @@
+stream: 108 windows of 26 weeks, step 2 weeks;  outcome yes in 0.36 of windows;  glued (p > 0.05) in 0.92
+sd of f between non-overlapping windows: 0.0229;  windows whose outcome is decided (|f| > 1.96 se): 0.03
+
+== election 2016 (2016-11-08)
+   before: P(directed) L/C/R 0.032/0.031/0.010  f +0.0193 (se 0.0220)  outcome YES (P(yes) 0.81)  gluability p 0.04  | to flip: relabel 3 centre articles, or add 136 (of n_C = 294)
+   after : P(directed) L/C/R 0.019/0.016/0.010  f +0.0026 (se 0.0159)  outcome YES (P(yes) 0.57)  gluability p 0.33  | to flip: relabel 1 centre articles, or add 29 (of n_C = 318)
+   change of f: -0.0167 (z -0.61);  outcome did not change;  of which topic-rate change -0.0262, topic-mix change +0.0095
+   AMB (centre: directed fact-check possible on topic): before ['elections', 'economy']  after ['politics', 'media']  -> toggled: ['elections', 'politics', 'media', 'economy']
+   nearest AMB toggles after (articles that must vanish; glued model vs the cell alone): media 5 vs 1.0  politics 5 vs 2.9
+
+== inauguration (2017-01-20)
+   before: P(directed) L/C/R 0.030/0.024/0.010  f +0.0076 (se 0.0191)  outcome YES (P(yes) 0.66)  gluability p 0.46  | to flip: relabel 2 centre articles, or add 62 (of n_C = 330)
+   after : P(directed) L/C/R 0.027/0.014/0.009  f -0.0087 (se 0.0150)  outcome no  (P(yes) 0.28)  gluability p 0.14  | to flip: relabel 2 centre articles, or add 2 (of n_C = 359)
+   change of f: -0.0164 (z -0.67);  outcome changed;  of which topic-rate change -0.0198, topic-mix change +0.0034
+   AMB (centre: directed fact-check possible on topic): before ['elections', 'politics', 'media', 'economy']  after ['politics']  -> toggled: ['elections', 'media', 'economy']
+   nearest AMB toggles after (articles that must vanish; glued model vs the cell alone): politics 5 vs 3.1
+
+== COVID emergency (2020-03-13)
+   before: P(directed) L/C/R 0.028/0.007/0.010  f -0.0239 (se 0.0124)  outcome no  (P(yes) 0.03)  gluability p 0.21  | to flip: relabel 7 centre articles, or add 7 (of n_C = 560)
+   after : P(directed) L/C/R 0.022/0.017/0.000  f +0.0116 (se 0.0195)  outcome YES (P(yes) 0.72)  gluability p 0.48  | to flip: relabel 2 centre articles, or add 123 (of n_C = 236)
+   change of f: +0.0355 (z +1.54);  outcome changed;  of which topic-rate change +0.0440, topic-mix change -0.0086
+   AMB (centre: directed fact-check possible on topic): before ['politics', 'justice']  after ['politics', 'justice']  -> toggled: none
+   nearest AMB toggles after (articles that must vanish; glued model vs the cell alone): justice 2 vs 0.9  politics 4 vs 2.2
