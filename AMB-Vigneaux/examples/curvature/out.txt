@@ -1,0 +1,18 @@
+[C1] velocity (first-order house effect; tau^2 0.0027; 2075 polls, 252 pollsters)
+    Dem-affiliated (156): delta -0.0496 logit (cluster SE 0.0162) = -2.48 margin pts
+    Rep-affiliated (102): delta +0.0128 logit (cluster SE 0.0148) = +0.64 margin pts
+    Pollster-affiliated only: delta_D -0.0393 (n 85), delta_R +0.0024 (n 59)
+    Sponsor-affiliated only: delta_D -0.0649 (n 71), delta_R +0.0276 (n 43)
+
+[C2] curvature
+  Dem-affiliated (n 156, baseline Trump share 0.33-0.71):
+    kappa (slope of residual on baseline logit) +0.050 (model SE 0.047, cluster SE 0.062)
+    weighted SSE: none 142.1 | shift (e-flat) 98.1 | pull to q=0.73, w=-0.052 (m-flat) 97.4
+    Efron curvature of the pull family at w=0: gamma^2 = 5.51e-07 (shift: 0; 'large' if >= 1/8)
+  Rep-affiliated (n 102, baseline Trump share 0.44-0.61):
+    kappa (slope of residual on baseline logit) -0.111 (model SE 0.071, cluster SE 0.083)
+    weighted SSE: none 91.5 | shift (e-flat) 89.3 | pull to q=0.53, w=+0.103 (m-flat) 86.8
+    Efron curvature of the pull family at w=0: gamma^2 = 3.7e-07 (shift: 0; 'large' if >= 1/8)
+
+[C3] singular point: hidden sponsorship among 1817 nonpartisan polls (shifts fixed at delta_D, delta_R)
+    EM: pi_D 0.040, pi_R 0.086; LR vs pi = 0: 1.34; parametric-bootstrap p 0.270 (null: LR = 0 in 0.19 of draws -- the boundary mass of a chi-bar-squared; 95% point 3.47)
