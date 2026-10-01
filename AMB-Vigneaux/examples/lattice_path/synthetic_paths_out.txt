@@ -1,0 +1,5 @@
+full cover glues in 0.00 of cases (3 contaminated topics of 12)
+   full cover             mean |p_hat - p_true| = 0.045   (n 640)
+   consistency-pruned     mean |p_hat - p_true| = 0.039   (n 640)
+   raise-path end         mean |p_hat - p_true| = 0.073   (n 640)
+   lower-path end         mean |p_hat - p_true| = 0.078   (n 640)

@@ -1,0 +1,14 @@
+ breitbart x gender                                 glueable  7691  R2 first-order 0.935 (+pairs 0.994)  aligned moves that raise p 0.846  feedback finds max 0.65 (5.7 steps)  p in [0.32, 0.72]
+  alternet x gender                                 glueable  7472  R2 first-order 0.891 (+pairs 0.982)  aligned moves that raise p 0.929  feedback finds max 0.65 (5.7 steps)  p in [0.67, 0.91]
+ breitbart x coronavirus                            glueable  7791  R2 first-order 0.937 (+pairs 0.994)  aligned moves that raise p 0.851  feedback finds max 0.55 (5.5 steps)  p in [0.44, 0.81]
+ breitbart x student-debt                           glueable  7801  R2 first-order 0.940 (+pairs 0.995)  aligned moves that raise p 0.864  feedback finds max 0.30 (4.8 steps)  p in [0.55, 0.85]
+  alternet x trump-presidency                       glueable  7489  R2 first-order 0.921 (+pairs 0.989)  aligned moves that raise p 0.932  feedback finds max 0.75 (6.0 steps)  p in [0.82, 0.96]
+ breitbart x white-nationalism                      glueable  7391  R2 first-order 0.934 (+pairs 0.993)  aligned moves that raise p 0.839  feedback finds max 0.45 (6.0 steps)  p in [0.63, 0.91]
+federalist x student-debt                           glueable  7371  R2 first-order 0.803 (+pairs 0.934)  aligned moves that raise p 0.805  feedback finds max 0.85 (6.7 steps)  p in [0.60, 0.96]
+federalist x vaccines                               glueable  7161  R2 first-order 0.873 (+pairs 0.958)  aligned moves that raise p 0.724  feedback finds max 1.00 (7.3 steps)  p in [0.66, 0.98]
+  huffpost x student-debt                           glueable  7075  R2 first-order 0.551 (+pairs 0.850)  aligned moves that raise p 0.845  feedback finds max 0.35 (5.3 steps)  p in [0.49, 0.95]
+     msnbc x vaccines                               glueable  7445  R2 first-order 0.887 (+pairs 0.970)  aligned moves that raise p 0.916  feedback finds max 0.45 (5.0 steps)  p in [0.33, 0.80]
+     msnbc x white-nationalism                      glueable  7598  R2 first-order 0.878 (+pairs 0.972)  aligned moves that raise p 0.888  feedback finds max 0.30 (6.3 steps)  p in [0.58, 0.92]
+     msnbc x environment                            glueable  7579  R2 first-order 0.863 (+pairs 0.965)  aligned moves that raise p 0.884  feedback finds max 0.75 (6.5 steps)  p in [0.41, 0.85]
+
+median: R2 first-order 0.889, second-order 0.977;  aligned moves raising p 0.857;  feedback reaches the global max in 0.59 of starts

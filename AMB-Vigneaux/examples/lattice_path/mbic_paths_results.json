@@ -1,0 +1,3319 @@
+{
+ "targets": [
+  {
+   "target": [
+    "alternet",
+    "abortion"
+   ],
+   "truth": 1.0,
+   "n": 17,
+   "lo": 0.7980000769635267,
+   "hi": 0.985077045410089,
+   "lo_region": [
+    "abortion",
+    "middle-class"
+   ],
+   "hi_region": [
+    "abortion",
+    "trump-presidency"
+   ],
+   "n_glueable": 1067,
+   "full": 0.8906672462658274,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.985
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.798
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "coronavirus"
+   ],
+   "truth": 0.85,
+   "n": 20,
+   "lo": 0.8118711230876089,
+   "hi": 0.9851548203311512,
+   "lo_region": [
+    "coronavirus",
+    "middle-class"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "trump-presidency"
+   ],
+   "n_glueable": 952,
+   "full": 0.8850597064872396,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.985
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.812
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "elections-2020"
+   ],
+   "truth": 0.95,
+   "n": 20,
+   "lo": 0.744837355373229,
+   "hi": 0.9772692852438307,
+   "lo_region": [
+    "elections-2020",
+    "middle-class"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "trump-presidency"
+   ],
+   "n_glueable": 1065,
+   "full": 0.8614978897300974,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.977
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.745
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "environment"
+   ],
+   "truth": 0.8214285714285714,
+   "n": 28,
+   "lo": 0.7856383233680061,
+   "hi": 0.9847819303355132,
+   "lo_region": [
+    "environment",
+    "middle-class"
+   ],
+   "hi_region": [
+    "environment",
+    "trump-presidency"
+   ],
+   "n_glueable": 1064,
+   "full": 0.8920659170740634,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.985
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.786
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "gender"
+   ],
+   "truth": 0.8333333333333334,
+   "n": 36,
+   "lo": 0.6278191591757702,
+   "hi": 0.9687924556752666,
+   "lo_region": [
+    "coronavirus",
+    "gender"
+   ],
+   "hi_region": [
+    "gender",
+    "trump-presidency"
+   ],
+   "n_glueable": 1017,
+   "full": 0.7763103821955009,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.969
+    ]
+   ],
+   "down_path": [
+    [
+     "coronavirus",
+     0.628
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "gun-control"
+   ],
+   "truth": 0.9230769230769231,
+   "n": 26,
+   "lo": 0.7369869053860905,
+   "hi": 0.9616320126729551,
+   "lo_region": [
+    "coronavirus",
+    "environment",
+    "gun-control",
+    "middle-class",
+    "student-debt"
+   ],
+   "hi_region": [
+    "gun-control",
+    "trump-presidency"
+   ],
+   "n_glueable": 894,
+   "full": 0.7895665936889165,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.962
+    ]
+   ],
+   "down_path": [
+    [
+     "coronavirus",
+     0.737
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "immigration"
+   ],
+   "truth": 0.8518518518518519,
+   "n": 27,
+   "lo": 0.7519201125815214,
+   "hi": 0.9849784798204488,
+   "lo_region": [
+    "immigration",
+    "middle-class"
+   ],
+   "hi_region": [
+    "immigration",
+    "trump-presidency"
+   ],
+   "n_glueable": 1061,
+   "full": 0.8631444196713547,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.985
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.752
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "international-politics-and-world-news"
+   ],
+   "truth": 0.8518518518518519,
+   "n": 27,
+   "lo": 0.7360588089535238,
+   "hi": 0.9793107860948742,
+   "lo_region": [
+    "international-politics-and-world-news",
+    "middle-class"
+   ],
+   "hi_region": [
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "n_glueable": 1037,
+   "full": 0.8456797139449511,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.979
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.736
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "middle-class"
+   ],
+   "truth": 0.8076923076923077,
+   "n": 26,
+   "lo": 0.819139500517844,
+   "hi": 0.9843696005176878,
+   "lo_region": [
+    "coronavirus",
+    "middle-class"
+   ],
+   "hi_region": [
+    "middle-class",
+    "trump-presidency"
+   ],
+   "n_glueable": 1055,
+   "full": 0.8981423867523702,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.984
+    ]
+   ],
+   "down_path": [
+    [
+     "coronavirus",
+     0.819
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "sport"
+   ],
+   "truth": 0.7857142857142857,
+   "n": 14,
+   "lo": 0.5168015003266484,
+   "hi": 0.9472316742344904,
+   "lo_region": [
+    "coronavirus",
+    "sport"
+   ],
+   "hi_region": [
+    "sport",
+    "trump-presidency"
+   ],
+   "n_glueable": 1028,
+   "full": 0.7320549279527574,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.947
+    ]
+   ],
+   "down_path": [
+    [
+     "coronavirus",
+     0.517
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "student-debt"
+   ],
+   "truth": 0.8,
+   "n": 20,
+   "lo": 0.6421178580214904,
+   "hi": 0.9663743720513146,
+   "lo_region": [
+    "environment",
+    "middle-class",
+    "student-debt"
+   ],
+   "hi_region": [
+    "student-debt",
+    "trump-presidency"
+   ],
+   "n_glueable": 874,
+   "full": 0.803659577360923,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.966
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.652
+    ],
+    [
+     "environment",
+     0.642
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "trump-presidency"
+   ],
+   "truth": 1.0,
+   "n": 30,
+   "lo": 0.7910712860702744,
+   "hi": 0.9700088446418346,
+   "lo_region": [
+    "middle-class",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "abortion",
+    "trump-presidency"
+   ],
+   "n_glueable": 1013,
+   "full": 0.8986242507301185,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.97
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.791
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "vaccines"
+   ],
+   "truth": 0.95,
+   "n": 20,
+   "lo": 0.7428649812595903,
+   "hi": 0.968286357918112,
+   "lo_region": [
+    "middle-class",
+    "vaccines"
+   ],
+   "hi_region": [
+    "trump-presidency",
+    "vaccines"
+   ],
+   "n_glueable": 951,
+   "full": 0.8496233707806952,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.968
+    ]
+   ],
+   "down_path": [
+    [
+     "middle-class",
+     0.743
+    ]
+   ]
+  },
+  {
+   "target": [
+    "alternet",
+    "white-nationalism"
+   ],
+   "truth": 0.9259259259259259,
+   "n": 27,
+   "lo": 0.8447017521156533,
+   "hi": 0.9905238903398432,
+   "lo_region": [
+    "environment",
+    "white-nationalism"
+   ],
+   "hi_region": [
+    "trump-presidency",
+    "white-nationalism"
+   ],
+   "n_glueable": 1002,
+   "full": 0.9145992306816797,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.991
+    ]
+   ],
+   "down_path": [
+    [
+     "environment",
+     0.845
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "abortion"
+   ],
+   "truth": 0.8,
+   "n": 25,
+   "lo": 0.5027423287602685,
+   "hi": 0.9460058884211413,
+   "lo_region": [
+    "abortion",
+    "student-debt",
+    "vaccines"
+   ],
+   "hi_region": [
+    "abortion",
+    "coronavirus"
+   ],
+   "n_glueable": 1057,
+   "full": 0.7632510134203898,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.946
+    ]
+   ],
+   "down_path": [
+    [
+     "international-politics-and-world-news",
+     0.508
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "coronavirus"
+   ],
+   "truth": 0.9354838709677419,
+   "n": 31,
+   "lo": 0.3569776779814631,
+   "hi": 0.8449134114323683,
+   "lo_region": [
+    "coronavirus",
+    "student-debt"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "gun-control",
+    "sport"
+   ],
+   "n_glueable": 1083,
+   "full": 0.671057311508469,
+   "full_glues": true,
+   "up_path": [
+    [
+     "sport",
+     0.845
+    ],
+    [
+     "gun-control",
+     0.845
+    ]
+   ],
+   "down_path": [
+    [
+     "student-debt",
+     0.357
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "elections-2020"
+   ],
+   "truth": 0.75,
+   "n": 20,
+   "lo": 0.43938848370388345,
+   "hi": 0.9531734486733914,
+   "lo_region": [
+    "elections-2020",
+    "student-debt"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "elections-2020"
+   ],
+   "n_glueable": 1064,
+   "full": 0.7200291145430723,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.953
+    ]
+   ],
+   "down_path": [
+    [
+     "student-debt",
+     0.439
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "environment"
+   ],
+   "truth": 0.7692307692307693,
+   "n": 26,
+   "lo": 0.4272299978234868,
+   "hi": 0.9273862875481361,
+   "lo_region": [
+    "environment",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "environment"
+   ],
+   "n_glueable": 1055,
+   "full": 0.719799693142247,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.927
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.427
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "gender"
+   ],
+   "truth": 0.6744186046511628,
+   "n": 43,
+   "lo": 0.24282618058573588,
+   "hi": 0.8596800489171502,
+   "lo_region": [
+    "gender",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "gender"
+   ],
+   "n_glueable": 1067,
+   "full": 0.5319569923382191,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.86
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.243
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "gun-control"
+   ],
+   "truth": 0.8076923076923077,
+   "n": 26,
+   "lo": 0.27066685128624934,
+   "hi": 0.9040529387405928,
+   "lo_region": [
+    "gun-control",
+    "student-debt"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "gun-control"
+   ],
+   "n_glueable": 1045,
+   "full": 0.5592489379768142,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.904
+    ]
+   ],
+   "down_path": [
+    [
+     "student-debt",
+     0.271
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "immigration"
+   ],
+   "truth": 0.7307692307692307,
+   "n": 26,
+   "lo": 0.42220875114497686,
+   "hi": 0.9323789285466095,
+   "lo_region": [
+    "immigration",
+    "student-debt",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "immigration"
+   ],
+   "n_glueable": 1061,
+   "full": 0.6933022841119119,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.932
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.427
+    ],
+    [
+     "student-debt",
+     0.422
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "international-politics-and-world-news"
+   ],
+   "truth": 0.56,
+   "n": 25,
+   "lo": 0.4684730519777507,
+   "hi": 0.9538853597699234,
+   "lo_region": [
+    "international-politics-and-world-news",
+    "student-debt"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "international-politics-and-world-news"
+   ],
+   "n_glueable": 1067,
+   "full": 0.7478802104130537,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.954
+    ]
+   ],
+   "down_path": [
+    [
+     "student-debt",
+     0.468
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "middle-class"
+   ],
+   "truth": 0.7407407407407407,
+   "n": 27,
+   "lo": 0.4132082677722877,
+   "hi": 0.9337178026546183,
+   "lo_region": [
+    "middle-class",
+    "student-debt"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "middle-class"
+   ],
+   "n_glueable": 1034,
+   "full": 0.7348672879853801,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.934
+    ]
+   ],
+   "down_path": [
+    [
+     "student-debt",
+     0.413
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "sport"
+   ],
+   "truth": 0.64,
+   "n": 25,
+   "lo": 0.16596421270852674,
+   "hi": 0.7903762035351766,
+   "lo_region": [
+    "sport",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "sport"
+   ],
+   "n_glueable": 1076,
+   "full": 0.47230297729154497,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.79
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.166
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "student-debt"
+   ],
+   "truth": 0.41935483870967744,
+   "n": 31,
+   "lo": 0.50040117194057,
+   "hi": 0.939432906643188,
+   "lo_region": [
+    "student-debt",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "student-debt"
+   ],
+   "n_glueable": 1085,
+   "full": 0.7245618675336649,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.939
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.5
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "trump-presidency"
+   ],
+   "truth": 0.8,
+   "n": 20,
+   "lo": 0.5365444171915552,
+   "hi": 0.9545998301377578,
+   "lo_region": [
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "trump-presidency"
+   ],
+   "n_glueable": 981,
+   "full": 0.7974600775193172,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.955
+    ]
+   ],
+   "down_path": [
+    [
+     "international-politics-and-world-news",
+     0.537
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "vaccines"
+   ],
+   "truth": 0.5,
+   "n": 22,
+   "lo": 0.4214836713556585,
+   "hi": 0.9435812759751916,
+   "lo_region": [
+    "student-debt",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "vaccines"
+   ],
+   "n_glueable": 1059,
+   "full": 0.7891471310378093,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.944
+    ]
+   ],
+   "down_path": [
+    [
+     "student-debt",
+     0.421
+    ]
+   ]
+  },
+  {
+   "target": [
+    "breitbart",
+    "white-nationalism"
+   ],
+   "truth": 0.8,
+   "n": 30,
+   "lo": 0.5836977064301928,
+   "hi": 0.9582767979007049,
+   "lo_region": [
+    "student-debt",
+    "vaccines",
+    "white-nationalism"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "white-nationalism"
+   ],
+   "n_glueable": 1003,
+   "full": 0.8124616745650532,
+   "full_glues": true,
+   "up_path": [
+    [
+     "coronavirus",
+     0.958
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.596
+    ],
+    [
+     "student-debt",
+     0.584
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "abortion"
+   ],
+   "truth": 1.0,
+   "n": 26,
+   "lo": 0.7551360692569958,
+   "hi": 0.9787688829245,
+   "lo_region": [
+    "abortion",
+    "environment",
+    "gun-control",
+    "international-politics-and-world-news",
+    "middle-class"
+   ],
+   "hi_region": [
+    "abortion",
+    "environment",
+    "sport",
+    "white-nationalism"
+   ],
+   "n_glueable": 1046,
+   "full": 0.8989682114844918,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.978
+    ],
+    [
+     "sport",
+     0.979
+    ],
+    [
+     "environment",
+     0.979
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.782
+    ],
+    [
+     "middle-class",
+     0.762
+    ],
+    [
+     "international-politics-and-world-news",
+     0.756
+    ],
+    [
+     "environment",
+     0.755
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "coronavirus"
+   ],
+   "truth": 0.9,
+   "n": 20,
+   "lo": 0.705347853694213,
+   "hi": 0.9818881778862613,
+   "lo_region": [
+    "coronavirus",
+    "gun-control",
+    "immigration",
+    "international-politics-and-world-news",
+    "middle-class"
+   ],
+   "hi_region": [
+    "abortion",
+    "coronavirus",
+    "environment"
+   ],
+   "n_glueable": 905,
+   "full": 0.8906518826343078,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.982
+    ],
+    [
+     "environment",
+     0.982
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.742
+    ],
+    [
+     "international-politics-and-world-news",
+     0.707
+    ],
+    [
+     "middle-class",
+     0.706
+    ],
+    [
+     "immigration",
+     0.705
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "elections-2020"
+   ],
+   "truth": 0.95,
+   "n": 20,
+   "lo": 0.72812329297837,
+   "hi": 0.9772967223268609,
+   "lo_region": [
+    "elections-2020",
+    "gun-control",
+    "immigration",
+    "middle-class",
+    "sport"
+   ],
+   "hi_region": [
+    "abortion",
+    "elections-2020",
+    "environment",
+    "international-politics-and-world-news"
+   ],
+   "n_glueable": 1037,
+   "full": 0.8755860469906219,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.972
+    ],
+    [
+     "environment",
+     0.977
+    ],
+    [
+     "international-politics-and-world-news",
+     0.977
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.774
+    ],
+    [
+     "middle-class",
+     0.741
+    ],
+    [
+     "sport",
+     0.732
+    ],
+    [
+     "immigration",
+     0.728
+    ],
+    [
+     "international-politics-and-world-news",
+     0.727
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "gun-control"
+   ],
+   "truth": 0.7083333333333334,
+   "n": 24,
+   "lo": 0.8265627095475584,
+   "hi": 0.9758201019290897,
+   "lo_region": [
+    "gender",
+    "gun-control",
+    "international-politics-and-world-news",
+    "middle-class",
+    "sport"
+   ],
+   "hi_region": [
+    "environment",
+    "gun-control",
+    "white-nationalism"
+   ],
+   "n_glueable": 1007,
+   "full": 0.9015841619077667,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.975
+    ],
+    [
+     "environment",
+     0.976
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.856
+    ],
+    [
+     "sport",
+     0.838
+    ],
+    [
+     "middle-class",
+     0.83
+    ],
+    [
+     "international-politics-and-world-news",
+     0.827
+    ],
+    [
+     "environment",
+     0.825
+    ],
+    [
+     "immigration",
+     0.824
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "student-debt"
+   ],
+   "truth": 0.9,
+   "n": 30,
+   "lo": 0.5982135751448625,
+   "hi": 0.9615366487003886,
+   "lo_region": [
+    "environment",
+    "gun-control",
+    "sport",
+    "student-debt"
+   ],
+   "hi_region": [
+    "abortion",
+    "international-politics-and-world-news",
+    "middle-class",
+    "student-debt"
+   ],
+   "n_glueable": 920,
+   "full": 0.785478179729103,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.955
+    ],
+    [
+     "international-politics-and-world-news",
+     0.961
+    ],
+    [
+     "middle-class",
+     0.962
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.681
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "trump-presidency"
+   ],
+   "truth": 0.95,
+   "n": 20,
+   "lo": 0.7818288360237505,
+   "hi": 0.984631619960634,
+   "lo_region": [
+    "environment",
+    "gun-control",
+    "immigration",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "abortion",
+    "international-politics-and-world-news",
+    "middle-class",
+    "trump-presidency"
+   ],
+   "n_glueable": 948,
+   "full": 0.916034704169527,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.982
+    ],
+    [
+     "international-politics-and-world-news",
+     0.984
+    ],
+    [
+     "middle-class",
+     0.985
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.836
+    ],
+    [
+     "environment",
+     0.794
+    ],
+    [
+     "immigration",
+     0.782
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "vaccines"
+   ],
+   "truth": 0.9,
+   "n": 30,
+   "lo": 0.6437868459377455,
+   "hi": 0.9767068777382597,
+   "lo_region": [
+    "gun-control",
+    "international-politics-and-world-news",
+    "vaccines"
+   ],
+   "hi_region": [
+    "abortion",
+    "environment",
+    "immigration",
+    "international-politics-and-world-news",
+    "vaccines"
+   ],
+   "n_glueable": 914,
+   "full": 0.8702390504519254,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.975
+    ],
+    [
+     "environment",
+     0.976
+    ],
+    [
+     "international-politics-and-world-news",
+     0.977
+    ],
+    [
+     "immigration",
+     0.977
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.649
+    ],
+    [
+     "international-politics-and-world-news",
+     0.644
+    ]
+   ]
+  },
+  {
+   "target": [
+    "federalist",
+    "white-nationalism"
+   ],
+   "truth": 1.0,
+   "n": 28,
+   "lo": 0.7672044119630216,
+   "hi": 0.9868808000445958,
+   "lo_region": [
+    "environment",
+    "gun-control",
+    "white-nationalism"
+   ],
+   "hi_region": [
+    "abortion",
+    "middle-class",
+    "white-nationalism"
+   ],
+   "n_glueable": 1002,
+   "full": 0.9166563154039806,
+   "full_glues": true,
+   "up_path": [
+    [
+     "abortion",
+     0.986
+    ],
+    [
+     "middle-class",
+     0.987
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.77
+    ],
+    [
+     "environment",
+     0.767
+    ]
+   ]
+  },
+  {
+   "target": [
+    "fox-news",
+    "environment"
+   ],
+   "truth": 0.6666666666666666,
+   "n": 27,
+   "lo": 0.5583121241188903,
+   "hi": 0.7511468103054383,
+   "lo_region": [
+    "coronavirus",
+    "environment",
+    "immigration",
+    "trump-presidency",
+    "vaccines"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "environment",
+    "gender",
+    "middle-class",
+    "white-nationalism"
+   ],
+   "n_glueable": 829,
+   "full": 0.6512291914242944,
+   "full_glues": true,
+   "up_path": [
+    [
+     "middle-class",
+     0.746
+    ],
+    [
+     "elections-2020",
+     0.749
+    ],
+    [
+     "white-nationalism",
+     0.75
+    ],
+    [
+     "gender",
+     0.751
+    ]
+   ],
+   "down_path": [
+    [
+     "immigration",
+     0.569
+    ],
+    [
+     "trump-presidency",
+     0.562
+    ],
+    [
+     "vaccines",
+     0.559
+    ],
+    [
+     "coronavirus",
+     0.558
+    ]
+   ]
+  },
+  {
+   "target": [
+    "fox-news",
+    "immigration"
+   ],
+   "truth": 0.56,
+   "n": 25,
+   "lo": 0.5821295660991513,
+   "hi": 0.7391796844369248,
+   "lo_region": [
+    "immigration",
+    "international-politics-and-world-news",
+    "student-debt",
+    "vaccines"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "gun-control",
+    "immigration",
+    "middle-class",
+    "vaccines"
+   ],
+   "n_glueable": 831,
+   "full": 0.6672817808442656,
+   "full_glues": true,
+   "up_path": [
+    [
+     "middle-class",
+     0.735
+    ],
+    [
+     "vaccines",
+     0.737
+    ],
+    [
+     "gun-control",
+     0.739
+    ],
+    [
+     "elections-2020",
+     0.739
+    ]
+   ],
+   "down_path": [
+    [
+     "international-politics-and-world-news",
+     0.601
+    ],
+    [
+     "vaccines",
+     0.588
+    ],
+    [
+     "student-debt",
+     0.582
+    ]
+   ]
+  },
+  {
+   "target": [
+    "fox-news",
+    "international-politics-and-world-news"
+   ],
+   "truth": 0.5833333333333334,
+   "n": 12,
+   "lo": 0.4968170105534555,
+   "hi": 0.7344235352078772,
+   "lo_region": [
+    "abortion",
+    "elections-2020",
+    "gender",
+    "immigration",
+    "international-politics-and-world-news"
+   ],
+   "hi_region": [
+    "international-politics-and-world-news",
+    "middle-class",
+    "student-debt",
+    "vaccines"
+   ],
+   "n_glueable": 823,
+   "full": 0.603620099260917,
+   "full_glues": true,
+   "up_path": [
+    [
+     "middle-class",
+     0.718
+    ],
+    [
+     "vaccines",
+     0.73
+    ],
+    [
+     "student-debt",
+     0.734
+    ]
+   ],
+   "down_path": [
+    [
+     "immigration",
+     0.533
+    ],
+    [
+     "gender",
+     0.502
+    ],
+    [
+     "elections-2020",
+     0.499
+    ],
+    [
+     "abortion",
+     0.497
+    ],
+    [
+     "white-nationalism",
+     0.496
+    ]
+   ]
+  },
+  {
+   "target": [
+    "fox-news",
+    "middle-class"
+   ],
+   "truth": 0.75,
+   "n": 20,
+   "lo": 0.5563062137935385,
+   "hi": 0.6934362430390488,
+   "lo_region": [
+    "elections-2020",
+    "gun-control",
+    "immigration",
+    "middle-class",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "middle-class",
+    "sport",
+    "trump-presidency"
+   ],
+   "n_glueable": 824,
+   "full": 0.6236122365346747,
+   "full_glues": true,
+   "up_path": [
+    [
+     "sport",
+     0.673
+    ],
+    [
+     "coronavirus",
+     0.686
+    ],
+    [
+     "trump-presidency",
+     0.693
+    ]
+   ],
+   "down_path": [
+    [
+     "immigration",
+     0.562
+    ],
+    [
+     "vaccines",
+     0.559
+    ],
+    [
+     "gun-control",
+     0.557
+    ],
+    [
+     "elections-2020",
+     0.556
+    ]
+   ]
+  },
+  {
+   "target": [
+    "fox-news",
+    "sport"
+   ],
+   "truth": 0.4444444444444444,
+   "n": 27,
+   "lo": 0.3119325892909246,
+   "hi": 0.5576669430519384,
+   "lo_region": [
+    "coronavirus",
+    "immigration",
+    "sport",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "gun-control",
+    "middle-class",
+    "sport",
+    "vaccines",
+    "white-nationalism"
+   ],
+   "n_glueable": 816,
+   "full": 0.4260166557840112,
+   "full_glues": true,
+   "up_path": [
+    [
+     "middle-class",
+     0.525
+    ],
+    [
+     "gun-control",
+     0.546
+    ],
+    [
+     "vaccines",
+     0.555
+    ],
+    [
+     "white-nationalism",
+     0.558
+    ],
+    [
+     "elections-2020",
+     0.558
+    ]
+   ],
+   "down_path": [
+    [
+     "immigration",
+     0.333
+    ],
+    [
+     "trump-presidency",
+     0.32
+    ],
+    [
+     "coronavirus",
+     0.312
+    ]
+   ]
+  },
+  {
+   "target": [
+    "huffpost",
+    "abortion"
+   ],
+   "truth": 0.9166666666666666,
+   "n": 12,
+   "lo": 0.6437597282112383,
+   "hi": 0.9797854495609268,
+   "lo_region": [
+    "abortion",
+    "gun-control",
+    "immigration",
+    "international-politics-and-world-news",
+    "middle-class"
+   ],
+   "hi_region": [
+    "abortion",
+    "trump-presidency"
+   ],
+   "n_glueable": 964,
+   "full": 0.8199700990405302,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.98
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.679
+    ],
+    [
+     "middle-class",
+     0.652
+    ],
+    [
+     "international-politics-and-world-news",
+     0.644
+    ],
+    [
+     "immigration",
+     0.644
+    ]
+   ]
+  },
+  {
+   "target": [
+    "huffpost",
+    "elections-2020"
+   ],
+   "truth": 0.75,
+   "n": 20,
+   "lo": 0.637882387074295,
+   "hi": 0.9726686076241551,
+   "lo_region": [
+    "elections-2020",
+    "gun-control",
+    "immigration",
+    "middle-class",
+    "white-nationalism"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "elections-2020",
+    "immigration",
+    "trump-presidency"
+   ],
+   "n_glueable": 966,
+   "full": 0.8233549022048301,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.97
+    ],
+    [
+     "coronavirus",
+     0.972
+    ],
+    [
+     "immigration",
+     0.973
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.696
+    ],
+    [
+     "middle-class",
+     0.65
+    ],
+    [
+     "white-nationalism",
+     0.64
+    ],
+    [
+     "immigration",
+     0.638
+    ],
+    [
+     "international-politics-and-world-news",
+     0.637
+    ],
+    [
+     "gender",
+     0.637
+    ]
+   ]
+  },
+  {
+   "target": [
+    "huffpost",
+    "gun-control"
+   ],
+   "truth": 0.5833333333333334,
+   "n": 12,
+   "lo": 0.6265119033658365,
+   "hi": 0.961996135787989,
+   "lo_region": [
+    "coronavirus",
+    "elections-2020",
+    "gun-control",
+    "vaccines"
+   ],
+   "hi_region": [
+    "gender",
+    "gun-control",
+    "immigration",
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "n_glueable": 847,
+   "full": 0.7624598342221615,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.95
+    ],
+    [
+     "immigration",
+     0.96
+    ],
+    [
+     "gender",
+     0.961
+    ],
+    [
+     "international-politics-and-world-news",
+     0.962
+    ],
+    [
+     "middle-class",
+     0.962
+    ]
+   ],
+   "down_path": [
+    [
+     "elections-2020",
+     0.627
+    ]
+   ]
+  },
+  {
+   "target": [
+    "huffpost",
+    "sport"
+   ],
+   "truth": 0.6470588235294118,
+   "n": 17,
+   "lo": 0.31676131156825377,
+   "hi": 0.9420181451963583,
+   "lo_region": [
+    "gun-control",
+    "sport"
+   ],
+   "hi_region": [
+    "immigration",
+    "international-politics-and-world-news",
+    "sport",
+    "trump-presidency",
+    "white-nationalism"
+   ],
+   "n_glueable": 944,
+   "full": 0.6023055192163143,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.925
+    ],
+    [
+     "immigration",
+     0.937
+    ],
+    [
+     "white-nationalism",
+     0.942
+    ],
+    [
+     "international-politics-and-world-news",
+     0.942
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.317
+    ]
+   ]
+  },
+  {
+   "target": [
+    "huffpost",
+    "student-debt"
+   ],
+   "truth": 0.7333333333333333,
+   "n": 30,
+   "lo": 0.49253779348182786,
+   "hi": 0.9531529115520355,
+   "lo_region": [
+    "coronavirus",
+    "gender",
+    "gun-control",
+    "immigration",
+    "student-debt"
+   ],
+   "hi_region": [
+    "international-politics-and-world-news",
+    "student-debt",
+    "trump-presidency"
+   ],
+   "n_glueable": 816,
+   "full": 0.6629291532904434,
+   "full_glues": true,
+   "up_path": [
+    [
+     "trump-presidency",
+     0.951
+    ],
+    [
+     "international-politics-and-world-news",
+     0.953
+    ]
+   ],
+   "down_path": [
+    [
+     "elections-2020",
+     0.615
+    ],
+    [
+     "gender",
+     0.598
+    ],
+    [
+     "gun-control",
+     0.547
+    ],
+    [
+     "coronavirus",
+     0.538
+    ]
+   ]
+  },
+  {
+   "target": [
+    "huffpost",
+    "trump-presidency"
+   ],
+   "truth": 1.0,
+   "n": 20,
+   "lo": 0.6883473697750253,
+   "hi": 0.9121319721619837,
+   "lo_region": [
+    "gender",
+    "gun-control",
+    "immigration",
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "environment",
+    "trump-presidency",
+    "vaccines"
+   ],
+   "n_glueable": 941,
+   "full": 0.82871755325948,
+   "full_glues": true,
+   "up_path": [
+    [
+     "environment",
+     0.887
+    ],
+    [
+     "vaccines",
+     0.912
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.746
+    ],
+    [
+     "immigration",
+     0.7
+    ],
+    [
+     "gender",
+     0.691
+    ],
+    [
+     "international-politics-and-world-news",
+     0.688
+    ],
+    [
+     "middle-class",
+     0.688
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "abortion"
+   ],
+   "truth": 0.625,
+   "n": 24,
+   "lo": 0.5033872836259266,
+   "hi": 0.9006300487852541,
+   "lo_region": [
+    "abortion",
+    "gender",
+    "student-debt"
+   ],
+   "hi_region": [
+    "abortion",
+    "elections-2020",
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "n_glueable": 1069,
+   "full": 0.7121080762751715,
+   "full_glues": true,
+   "up_path": [
+    [
+     "gun-control",
+     0.883
+    ],
+    [
+     "trump-presidency",
+     0.892
+    ],
+    [
+     "student-debt",
+     0.892
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.54
+    ],
+    [
+     "student-debt",
+     0.503
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "coronavirus"
+   ],
+   "truth": 0.7,
+   "n": 20,
+   "lo": 0.40367528114885187,
+   "hi": 0.8505891296429554,
+   "lo_region": [
+    "coronavirus",
+    "elections-2020",
+    "gender",
+    "student-debt"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "n_glueable": 930,
+   "full": 0.5989017300223145,
+   "full_glues": true,
+   "up_path": [
+    [
+     "gun-control",
+     0.839
+    ],
+    [
+     "trump-presidency",
+     0.844
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.483
+    ],
+    [
+     "student-debt",
+     0.408
+    ],
+    [
+     "elections-2020",
+     0.404
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "environment"
+   ],
+   "truth": 0.6551724137931034,
+   "n": 29,
+   "lo": 0.4072918857575489,
+   "hi": 0.8512741523949464,
+   "lo_region": [
+    "environment",
+    "gender",
+    "student-debt"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "environment",
+    "international-politics-and-world-news"
+   ],
+   "n_glueable": 1039,
+   "full": 0.6151879688320552,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.846
+    ],
+    [
+     "elections-2020",
+     0.851
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.413
+    ],
+    [
+     "student-debt",
+     0.407
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "gender"
+   ],
+   "truth": 0.3181818181818182,
+   "n": 22,
+   "lo": 0.353869600088031,
+   "hi": 0.8014912970104894,
+   "lo_region": [
+    "elections-2020",
+    "gender",
+    "sport"
+   ],
+   "hi_region": [
+    "gender",
+    "international-politics-and-world-news"
+   ],
+   "n_glueable": 1075,
+   "full": 0.5440490634564893,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.801
+    ]
+   ],
+   "down_path": [
+    [
+     "sport",
+     0.375
+    ],
+    [
+     "elections-2020",
+     0.354
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "gun-control"
+   ],
+   "truth": 0.7692307692307693,
+   "n": 13,
+   "lo": 0.3101757045673863,
+   "hi": 0.8412519358228164,
+   "lo_region": [
+    "gender",
+    "gun-control",
+    "student-debt",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "gun-control",
+    "international-politics-and-world-news"
+   ],
+   "n_glueable": 947,
+   "full": 0.4618917358851165,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.841
+    ]
+   ],
+   "down_path": [
+    [
+     "abortion",
+     0.393
+    ],
+    [
+     "trump-presidency",
+     0.373
+    ],
+    [
+     "gender",
+     0.37
+    ],
+    [
+     "student-debt",
+     0.341
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "immigration"
+   ],
+   "truth": 0.5909090909090909,
+   "n": 22,
+   "lo": 0.41530180111574555,
+   "hi": 0.8428856485570844,
+   "lo_region": [
+    "gender",
+    "immigration",
+    "student-debt"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "immigration",
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "n_glueable": 1061,
+   "full": 0.5973394806698915,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.839
+    ],
+    [
+     "elections-2020",
+     0.842
+    ],
+    [
+     "trump-presidency",
+     0.843
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.423
+    ],
+    [
+     "student-debt",
+     0.415
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "middle-class"
+   ],
+   "truth": 0.625,
+   "n": 24,
+   "lo": 0.4022931818461059,
+   "hi": 0.8597619201706245,
+   "lo_region": [
+    "gender",
+    "middle-class",
+    "student-debt"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "international-politics-and-world-news",
+    "middle-class"
+   ],
+   "n_glueable": 1037,
+   "full": 0.6383185929197395,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.858
+    ],
+    [
+     "elections-2020",
+     0.86
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.408
+    ],
+    [
+     "student-debt",
+     0.402
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "sport"
+   ],
+   "truth": 0.2857142857142857,
+   "n": 21,
+   "lo": 0.245025228404015,
+   "hi": 0.7400444376267675,
+   "lo_region": [
+    "gender",
+    "sport",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "international-politics-and-world-news",
+    "sport"
+   ],
+   "n_glueable": 1062,
+   "full": 0.4473993441218389,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.734
+    ],
+    [
+     "elections-2020",
+     0.74
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.252
+    ],
+    [
+     "trump-presidency",
+     0.245
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "vaccines"
+   ],
+   "truth": 0.7333333333333333,
+   "n": 30,
+   "lo": 0.3185697910346777,
+   "hi": 0.8051949959162218,
+   "lo_region": [
+    "gender",
+    "student-debt",
+    "vaccines"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "international-politics-and-world-news",
+    "trump-presidency",
+    "vaccines"
+   ],
+   "n_glueable": 986,
+   "full": 0.5129308258818844,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.796
+    ],
+    [
+     "trump-presidency",
+     0.804
+    ],
+    [
+     "elections-2020",
+     0.805
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.337
+    ],
+    [
+     "student-debt",
+     0.319
+    ]
+   ]
+  },
+  {
+   "target": [
+    "msnbc",
+    "white-nationalism"
+   ],
+   "truth": 0.6666666666666666,
+   "n": 30,
+   "lo": 0.5689614570296424,
+   "hi": 0.9188318395296189,
+   "lo_region": [
+    "gender",
+    "student-debt",
+    "trump-presidency",
+    "white-nationalism"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "international-politics-and-world-news",
+    "white-nationalism"
+   ],
+   "n_glueable": 1045,
+   "full": 0.764514197924128,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.917
+    ],
+    [
+     "elections-2020",
+     0.919
+    ]
+   ],
+   "down_path": [
+    [
+     "gender",
+     0.581
+    ],
+    [
+     "trump-presidency",
+     0.572
+    ],
+    [
+     "student-debt",
+     0.569
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "abortion"
+   ],
+   "truth": 0.36363636363636365,
+   "n": 11,
+   "lo": 0.11680341682916615,
+   "hi": 0.9052672896512419,
+   "lo_region": [
+    "abortion",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "abortion",
+    "white-nationalism"
+   ],
+   "n_glueable": 1054,
+   "full": 0.4282193807261028,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.905
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.117
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "coronavirus"
+   ],
+   "truth": 0.2,
+   "n": 20,
+   "lo": 0.10879001286281326,
+   "hi": 0.9066951999844831,
+   "lo_region": [
+    "coronavirus",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "white-nationalism"
+   ],
+   "n_glueable": 1018,
+   "full": 0.4355061114829411,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.907
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.109
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "elections-2020"
+   ],
+   "truth": 0.4,
+   "n": 20,
+   "lo": 0.06654037167520702,
+   "hi": 0.8605020374323189,
+   "lo_region": [
+    "elections-2020",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "white-nationalism"
+   ],
+   "n_glueable": 1068,
+   "full": 0.33108992747708976,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.861
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.067
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "environment"
+   ],
+   "truth": 0.18181818181818182,
+   "n": 11,
+   "lo": 0.1058640919328046,
+   "hi": 0.8983090435281897,
+   "lo_region": [
+    "environment",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "environment",
+    "white-nationalism"
+   ],
+   "n_glueable": 1055,
+   "full": 0.39216217787160856,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.898
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.106
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "gender"
+   ],
+   "truth": 0.18181818181818182,
+   "n": 11,
+   "lo": 0.054494423322121725,
+   "hi": 0.7910812213620332,
+   "lo_region": [
+    "gender",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "gender",
+    "white-nationalism"
+   ],
+   "n_glueable": 1015,
+   "full": 0.24469313959410838,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.791
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.054
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "gun-control"
+   ],
+   "truth": 0.16666666666666666,
+   "n": 12,
+   "lo": 0.047689989658864125,
+   "hi": 0.8824864387347416,
+   "lo_region": [
+    "gun-control",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "gun-control",
+    "white-nationalism"
+   ],
+   "n_glueable": 878,
+   "full": 0.2824720478733215,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.882
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.048
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "immigration"
+   ],
+   "truth": 0.36363636363636365,
+   "n": 11,
+   "lo": 0.09389470206965149,
+   "hi": 0.8808730005183432,
+   "lo_region": [
+    "immigration",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "immigration",
+    "white-nationalism"
+   ],
+   "n_glueable": 1059,
+   "full": 0.32303186232304065,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.881
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.094
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "international-politics-and-world-news"
+   ],
+   "truth": 0.4,
+   "n": 10,
+   "lo": 0.06341655819184969,
+   "hi": 0.8614622286713142,
+   "lo_region": [
+    "international-politics-and-world-news",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "international-politics-and-world-news",
+    "white-nationalism"
+   ],
+   "n_glueable": 1046,
+   "full": 0.2843263072694649,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.861
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.063
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "middle-class"
+   ],
+   "truth": 0.5454545454545454,
+   "n": 11,
+   "lo": 0.07588077044186438,
+   "hi": 0.8737770403268682,
+   "lo_region": [
+    "middle-class",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "middle-class",
+    "white-nationalism"
+   ],
+   "n_glueable": 1064,
+   "full": 0.3295973601226584,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.874
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.076
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "sport"
+   ],
+   "truth": 0.09090909090909091,
+   "n": 11,
+   "lo": 0.03187870771630441,
+   "hi": 0.7504221554949774,
+   "lo_region": [
+    "sport",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "sport",
+    "white-nationalism"
+   ],
+   "n_glueable": 1029,
+   "full": 0.1961564456748567,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.75
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.032
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "trump-presidency"
+   ],
+   "truth": 0.1,
+   "n": 10,
+   "lo": 0.2596151589247088,
+   "hi": 0.9092601357194352,
+   "lo_region": [
+    "coronavirus",
+    "environment",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "trump-presidency",
+    "white-nationalism"
+   ],
+   "n_glueable": 1065,
+   "full": 0.5162629432889467,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.909
+    ]
+   ],
+   "down_path": [
+    [
+     "environment",
+     0.26
+    ],
+    [
+     "coronavirus",
+     0.26
+    ]
+   ]
+  },
+  {
+   "target": [
+    "reuters",
+    "vaccines"
+   ],
+   "truth": 0.5,
+   "n": 10,
+   "lo": 0.04571388753690609,
+   "hi": 0.8564726778406354,
+   "lo_region": [
+    "trump-presidency",
+    "vaccines"
+   ],
+   "hi_region": [
+    "vaccines",
+    "white-nationalism"
+   ],
+   "n_glueable": 1008,
+   "full": 0.29998769394908814,
+   "full_glues": true,
+   "up_path": [
+    [
+     "white-nationalism",
+     0.856
+    ]
+   ],
+   "down_path": [
+    [
+     "trump-presidency",
+     0.046
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "abortion"
+   ],
+   "truth": 0.45454545454545453,
+   "n": 11,
+   "lo": 0.284069450688512,
+   "hi": 0.8144737159424758,
+   "lo_region": [
+    "abortion",
+    "vaccines"
+   ],
+   "hi_region": [
+    "abortion",
+    "student-debt"
+   ],
+   "n_glueable": 1055,
+   "full": 0.5234666961270145,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.814
+    ]
+   ],
+   "down_path": [
+    [
+     "vaccines",
+     0.284
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "coronavirus"
+   ],
+   "truth": 0.36363636363636365,
+   "n": 11,
+   "lo": 0.23092881738944684,
+   "hi": 0.7130299605369671,
+   "lo_region": [
+    "coronavirus",
+    "elections-2020",
+    "vaccines"
+   ],
+   "hi_region": [
+    "coronavirus",
+    "environment"
+   ],
+   "n_glueable": 938,
+   "full": 0.4782543225647419,
+   "full_glues": true,
+   "up_path": [
+    [
+     "environment",
+     0.713
+    ]
+   ],
+   "down_path": [
+    [
+     "elections-2020",
+     0.249
+    ],
+    [
+     "vaccines",
+     0.231
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "elections-2020"
+   ],
+   "truth": 0.2727272727272727,
+   "n": 11,
+   "lo": 0.2366684695771504,
+   "hi": 0.7113572358251805,
+   "lo_region": [
+    "elections-2020",
+    "sport"
+   ],
+   "hi_region": [
+    "elections-2020",
+    "environment"
+   ],
+   "n_glueable": 1079,
+   "full": 0.48981378894563027,
+   "full_glues": true,
+   "up_path": [
+    [
+     "environment",
+     0.711
+    ]
+   ],
+   "down_path": [
+    [
+     "sport",
+     0.237
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "environment"
+   ],
+   "truth": 0.6363636363636364,
+   "n": 11,
+   "lo": 0.1640047506732429,
+   "hi": 0.7056914946051159,
+   "lo_region": [
+    "environment",
+    "gun-control"
+   ],
+   "hi_region": [
+    "environment",
+    "student-debt"
+   ],
+   "n_glueable": 1072,
+   "full": 0.41769004617768596,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.706
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.164
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "gender"
+   ],
+   "truth": 0.2727272727272727,
+   "n": 11,
+   "lo": 0.1122882191300324,
+   "hi": 0.6478449816788333,
+   "lo_region": [
+    "gender",
+    "gun-control"
+   ],
+   "hi_region": [
+    "gender",
+    "student-debt"
+   ],
+   "n_glueable": 1014,
+   "full": 0.31816768124803446,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.648
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.112
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "gun-control"
+   ],
+   "truth": 0.18181818181818182,
+   "n": 11,
+   "lo": 0.1874988440310255,
+   "hi": 0.6909473748440339,
+   "lo_region": [
+    "elections-2020",
+    "gun-control"
+   ],
+   "hi_region": [
+    "environment",
+    "gun-control"
+   ],
+   "n_glueable": 914,
+   "full": 0.37333762222009476,
+   "full_glues": true,
+   "up_path": [
+    [
+     "environment",
+     0.691
+    ]
+   ],
+   "down_path": [
+    [
+     "elections-2020",
+     0.187
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "immigration"
+   ],
+   "truth": 0.5454545454545454,
+   "n": 11,
+   "lo": 0.16051861690982994,
+   "hi": 0.7198129673400079,
+   "lo_region": [
+    "gun-control",
+    "immigration"
+   ],
+   "hi_region": [
+    "immigration",
+    "student-debt"
+   ],
+   "n_glueable": 1067,
+   "full": 0.39222973202358935,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.72
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.161
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "middle-class"
+   ],
+   "truth": 0.4,
+   "n": 10,
+   "lo": 0.17494195007837213,
+   "hi": 0.7243210372950543,
+   "lo_region": [
+    "gun-control",
+    "middle-class"
+   ],
+   "hi_region": [
+    "middle-class",
+    "student-debt"
+   ],
+   "n_glueable": 1034,
+   "full": 0.46984697409388365,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.724
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.175
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "sport"
+   ],
+   "truth": 0.09090909090909091,
+   "n": 11,
+   "lo": 0.10318867649325279,
+   "hi": 0.5661168347446478,
+   "lo_region": [
+    "gun-control",
+    "sport"
+   ],
+   "hi_region": [
+    "sport",
+    "student-debt"
+   ],
+   "n_glueable": 1043,
+   "full": 0.26823377822908234,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.566
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.103
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "student-debt"
+   ],
+   "truth": 0.5454545454545454,
+   "n": 11,
+   "lo": 0.11457062520754512,
+   "hi": 0.4600166987006573,
+   "lo_region": [
+    "sport",
+    "student-debt"
+   ],
+   "hi_region": [
+    "international-politics-and-world-news",
+    "student-debt"
+   ],
+   "n_glueable": 993,
+   "full": 0.27620428128298397,
+   "full_glues": true,
+   "up_path": [
+    [
+     "international-politics-and-world-news",
+     0.46
+    ]
+   ],
+   "down_path": [
+    [
+     "sport",
+     0.115
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "trump-presidency"
+   ],
+   "truth": 0.55,
+   "n": 20,
+   "lo": 0.30507182190887094,
+   "hi": 0.7982922197459338,
+   "lo_region": [
+    "elections-2020",
+    "sport",
+    "trump-presidency"
+   ],
+   "hi_region": [
+    "student-debt",
+    "trump-presidency"
+   ],
+   "n_glueable": 988,
+   "full": 0.5367263568455144,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.798
+    ]
+   ],
+   "down_path": [
+    [
+     "sport",
+     0.314
+    ],
+    [
+     "elections-2020",
+     0.305
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "vaccines"
+   ],
+   "truth": 0.2,
+   "n": 10,
+   "lo": 0.21590477281796885,
+   "hi": 0.6500240099604485,
+   "lo_region": [
+    "elections-2020",
+    "gun-control",
+    "vaccines"
+   ],
+   "hi_region": [
+    "environment",
+    "student-debt",
+    "vaccines"
+   ],
+   "n_glueable": 972,
+   "full": 0.4616893227515914,
+   "full_glues": true,
+   "up_path": [
+    [
+     "environment",
+     0.646
+    ],
+    [
+     "student-debt",
+     0.65
+    ]
+   ],
+   "down_path": [
+    [
+     "elections-2020",
+     0.217
+    ],
+    [
+     "gun-control",
+     0.216
+    ]
+   ]
+  },
+  {
+   "target": [
+    "usa-today",
+    "white-nationalism"
+   ],
+   "truth": 0.6363636363636364,
+   "n": 11,
+   "lo": 0.2627135499148857,
+   "hi": 0.8502118354608822,
+   "lo_region": [
+    "gun-control",
+    "white-nationalism"
+   ],
+   "hi_region": [
+    "student-debt",
+    "white-nationalism"
+   ],
+   "n_glueable": 1016,
+   "full": 0.540963401055647,
+   "full_glues": true,
+   "up_path": [
+    [
+     "student-debt",
+     0.85
+    ]
+   ],
+   "down_path": [
+    [
+     "gun-control",
+     0.263
+    ]
+   ]
+  }
+ ],
+ "n": 82,
+ "frac_truth_inside": 0.7804878048780488,
+ "median_spread": 0.44544805756575057,
+ "frac_outcome_flippable": 0.5609756097560976,
+ "mae_full": 0.11249075058948568,
+ "mae_median_region": 0.11147024502914585
+}

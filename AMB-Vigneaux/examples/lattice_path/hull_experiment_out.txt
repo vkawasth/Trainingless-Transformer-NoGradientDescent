@@ -1,0 +1,25 @@
+
+== MBIC (outlet x topic): 8 x 14, 82 targets, MIN 5; full cover glues 82/82
+   MAE full 0.112 | hull value 0.112 profile 0.112 loop 0.112 (sub-region {'value': 0, 'profile': 0, 'loop': 0}) | chain spread {'value': 0.01928344418338343, 'profile': 0.0455398190757368, 'loop': 0.061418533731767755} | lattice envelope 0.336 | oracle 0.021000348308643804
+   stitch 0.130 (applicable 82/82) | rank-1 0.150 | trop2 min 0.177 max 0.129 | beats full {'rank1': 33, 'trop2_min': 23, 'trop2_max': 35} | sign p {'rank1': 0.09703091129729907, 'trop2_min': 8.715478657320524e-05, 'trop2_max': 0.22424452830608183}
+   hull (chains + merge heights) invariant under k -> n-k: 246/246; signed loop residuals flip: 82/82
+
+== NewsWCL50 (outlet x target): 5 x 5, 23 targets, MIN 2; full cover glues 15/23
+   MAE full 0.128 | hull value 0.139 profile 0.138 loop 0.138 (sub-region {'value': 8, 'profile': 8, 'loop': 8}) | chain spread {'value': 0.07352952260086004, 'profile': 0.026362261607385584, 'loop': 0.050032190793810744} | lattice envelope 0.230 | oracle 0.05560791041900306
+   stitch 0.141 (applicable 23/23) | rank-1 0.076 | trop2 min 0.090 max 0.238 | beats full {'rank1': 16, 'trop2_min': 16, 'trop2_max': 4} | sign p {'rank1': 0.0931396484375, 'trop2_min': 0.0931396484375, 'trop2_max': 0.002599477767944336}
+   hull (chains + merge heights) invariant under k -> n-k: 69/69; signed loop residuals flip: 23/23
+
+== AllSides adversarial (side x topic): 3 x 9, 27 targets, MIN 2; full cover glues 27/27
+   MAE full 0.020 | hull value 0.020 profile 0.020 loop 0.020 (sub-region {'value': 0, 'profile': 0, 'loop': 0}) | chain spread {'value': 0.010386495426177325, 'profile': 0.0050512307148593005, 'loop': 0.009647766682045464} | lattice envelope 0.082 | oracle 0.0045800983559054825
+   stitch 0.020 (applicable 0/27) | rank-1 0.077 | trop2 min 0.036 max 0.110 | beats full {'rank1': 4, 'trop2_min': 10, 'trop2_max': 5} | sign p {'rank1': 0.000310748815536499, 'trop2_min': 0.24778856337070465, 'trop2_max': 0.0015137195587158203}
+   hull (chains + merge heights) invariant under k -> n-k: 81/81; signed loop residuals flip: 27/27
+
+== AllSides directed (side x topic): 3 x 9, 27 targets, MIN 2; full cover glues 27/27
+   MAE full 0.006 | hull value 0.006 profile 0.006 loop 0.006 (sub-region {'value': 0, 'profile': 0, 'loop': 0}) | chain spread {'value': 0.0025880394854552007, 'profile': 0.001703414128332895, 'loop': 0.0025386810951212313} | lattice envelope 0.024 | oracle 0.001676383846313049
+   stitch 0.006 (applicable 0/27) | rank-1 0.016 | trop2 min 0.007 max 0.050 | beats full {'rank1': 14, 'trop2_min': 13, 'trop2_max': 2} | sign p {'rank1': 1.0, 'trop2_min': 1.0, 'trop2_max': 5.647540092468262e-06}
+   hull (chains + merge heights) invariant under k -> n-k: 81/81; signed loop residuals flip: 27/27
+
+== BASIL (source x target party): 3 x 2, 6 targets, MIN 2; full cover glues 4/6
+   MAE full 0.087 | hull value 0.087 profile 0.087 loop 0.087 (sub-region {'value': 0, 'profile': 0, 'loop': 0}) | chain spread {'value': 0.0, 'profile': 0.0, 'loop': 0.0} | lattice envelope 0.000 | oracle 0.12204173682883493
+   stitch 0.087 (applicable 0/6) | rank-1 0.097 | trop2 min 0.112 max 0.237 | beats full {'rank1': 1, 'trop2_min': 2, 'trop2_max': 0} | sign p {'rank1': 0.21875, 'trop2_min': 0.6875, 'trop2_max': 0.03125}
+   hull (chains + merge heights) invariant under k -> n-k: 18/18; signed loop residuals flip: 6/6

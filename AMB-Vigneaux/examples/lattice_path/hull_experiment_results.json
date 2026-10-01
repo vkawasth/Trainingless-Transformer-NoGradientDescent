@@ -1,0 +1,217 @@
+[
+ {
+  "corpus": "MBIC (outlet x topic)",
+  "sources": 8,
+  "topics": 14,
+  "targets": 82,
+  "min_topics": 5,
+  "full_glues": 82,
+  "mae": {
+   "full": 0.11249075058948568,
+   "value": 0.11249075058948568,
+   "profile": 0.11249075058948568,
+   "loop": 0.11249075058948568,
+   "stitch": 0.1301575626862743,
+   "rank1": 0.15002237246549635,
+   "trop2_min": 0.17684538435464087,
+   "trop2_max": 0.1287343314739942
+  },
+  "sub_region": {
+   "value": 0,
+   "profile": 0,
+   "loop": 0
+  },
+  "chain_spread": {
+   "value": 0.01928344418338343,
+   "profile": 0.0455398190757368,
+   "loop": 0.061418533731767755
+  },
+  "envelope_spread": 0.33581503861128903,
+  "oracle": 0.021000348308643804,
+  "stitch_applicable": 82,
+  "beats_full": {
+   "rank1": 33,
+   "trop2_min": 23,
+   "trop2_max": 35
+  },
+  "sign_p": {
+   "rank1": 0.09703091129729907,
+   "trop2_min": 8.715478657320524e-05,
+   "trop2_max": 0.22424452830608183
+  },
+  "hull_invariant_under_flip": "246/246",
+  "loop_sign_flips": "82/82"
+ },
+ {
+  "corpus": "NewsWCL50 (outlet x target)",
+  "sources": 5,
+  "topics": 5,
+  "targets": 23,
+  "min_topics": 2,
+  "full_glues": 15,
+  "mae": {
+   "full": 0.12770712208606583,
+   "value": 0.13910327986362458,
+   "profile": 0.13774023269769464,
+   "loop": 0.13774023269769464,
+   "stitch": 0.14087905078600965,
+   "rank1": 0.07567070524526612,
+   "trop2_min": 0.09036975537908351,
+   "trop2_max": 0.2384551784312561
+  },
+  "sub_region": {
+   "value": 8,
+   "profile": 8,
+   "loop": 8
+  },
+  "chain_spread": {
+   "value": 0.07352952260086004,
+   "profile": 0.026362261607385584,
+   "loop": 0.050032190793810744
+  },
+  "envelope_spread": 0.22966244640242148,
+  "oracle": 0.05560791041900306,
+  "stitch_applicable": 23,
+  "beats_full": {
+   "rank1": 16,
+   "trop2_min": 16,
+   "trop2_max": 4
+  },
+  "sign_p": {
+   "rank1": 0.0931396484375,
+   "trop2_min": 0.0931396484375,
+   "trop2_max": 0.002599477767944336
+  },
+  "hull_invariant_under_flip": "69/69",
+  "loop_sign_flips": "23/23"
+ },
+ {
+  "corpus": "AllSides adversarial (side x topic)",
+  "sources": 3,
+  "topics": 9,
+  "targets": 27,
+  "min_topics": 2,
+  "full_glues": 27,
+  "mae": {
+   "full": 0.019914167191726985,
+   "value": 0.019914167191726985,
+   "profile": 0.019914167191726985,
+   "loop": 0.019914167191726985,
+   "stitch": 0.019914167191726985,
+   "rank1": 0.07700215118969489,
+   "trop2_min": 0.03567189223885811,
+   "trop2_max": 0.10996479525595679
+  },
+  "sub_region": {
+   "value": 0,
+   "profile": 0,
+   "loop": 0
+  },
+  "chain_spread": {
+   "value": 0.010386495426177325,
+   "profile": 0.0050512307148593005,
+   "loop": 0.009647766682045464
+  },
+  "envelope_spread": 0.0819679033009293,
+  "oracle": 0.0045800983559054825,
+  "stitch_applicable": 0,
+  "beats_full": {
+   "rank1": 4,
+   "trop2_min": 10,
+   "trop2_max": 5
+  },
+  "sign_p": {
+   "rank1": 0.000310748815536499,
+   "trop2_min": 0.24778856337070465,
+   "trop2_max": 0.0015137195587158203
+  },
+  "hull_invariant_under_flip": "81/81",
+  "loop_sign_flips": "27/27"
+ },
+ {
+  "corpus": "AllSides directed (side x topic)",
+  "sources": 3,
+  "topics": 9,
+  "targets": 27,
+  "min_topics": 2,
+  "full_glues": 27,
+  "mae": {
+   "full": 0.006362494222355169,
+   "value": 0.006362494222355169,
+   "profile": 0.006362494222355169,
+   "loop": 0.006362494222355169,
+   "stitch": 0.006362494222355169,
+   "rank1": 0.016195256537674257,
+   "trop2_min": 0.00697997696776152,
+   "trop2_max": 0.050059696173798136
+  },
+  "sub_region": {
+   "value": 0,
+   "profile": 0,
+   "loop": 0
+  },
+  "chain_spread": {
+   "value": 0.0025880394854552007,
+   "profile": 0.001703414128332895,
+   "loop": 0.0025386810951212313
+  },
+  "envelope_spread": 0.023725361983702026,
+  "oracle": 0.001676383846313049,
+  "stitch_applicable": 0,
+  "beats_full": {
+   "rank1": 14,
+   "trop2_min": 13,
+   "trop2_max": 2
+  },
+  "sign_p": {
+   "rank1": 1.0,
+   "trop2_min": 1.0,
+   "trop2_max": 5.647540092468262e-06
+  },
+  "hull_invariant_under_flip": "81/81",
+  "loop_sign_flips": "27/27"
+ },
+ {
+  "corpus": "BASIL (source x target party)",
+  "sources": 3,
+  "topics": 2,
+  "targets": 6,
+  "min_topics": 2,
+  "full_glues": 4,
+  "mae": {
+   "full": 0.08728777445240293,
+   "value": 0.08728777445240293,
+   "profile": 0.08728777445240293,
+   "loop": 0.08728777445240293,
+   "stitch": 0.08728777445240293,
+   "rank1": 0.09652272815297512,
+   "trop2_min": 0.11178892242752031,
+   "trop2_max": 0.23718530142743202
+  },
+  "sub_region": {
+   "value": 0,
+   "profile": 0,
+   "loop": 0
+  },
+  "chain_spread": {
+   "value": 0.0,
+   "profile": 0.0,
+   "loop": 0.0
+  },
+  "envelope_spread": 0.0,
+  "oracle": 0.12204173682883493,
+  "stitch_applicable": 0,
+  "beats_full": {
+   "rank1": 1,
+   "trop2_min": 2,
+   "trop2_max": 0
+  },
+  "sign_p": {
+   "rank1": 0.21875,
+   "trop2_min": 0.6875,
+   "trop2_max": 0.03125
+  },
+  "hull_invariant_under_flip": "18/18",
+  "loop_sign_flips": "6/6"
+ }
+]

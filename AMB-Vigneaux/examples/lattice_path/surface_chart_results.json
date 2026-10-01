@@ -1,0 +1,122 @@
+{
+ "target": [
+  "breitbart",
+  "gender"
+ ],
+ "truth": 0.6744186046511628,
+ "full": 0.5319569923382191,
+ "w": {
+  "abortion": 0.030349797465104036,
+  "coronavirus": 0.15646909318492344,
+  "elections-2020": -0.004428090290669698,
+  "environment": 0.06534248386378229,
+  "gun-control": 0.10290810228526316,
+  "immigration": 0.024751729630225507,
+  "international-politics-and-world-news": -0.1318929617732891,
+  "middle-class": 0.05295534536541814,
+  "sport": 0.14292888896964812,
+  "student-debt": -0.21098846352605502,
+  "trump-presidency": 0.001621458521498939,
+  "vaccines": -0.22855876479651718,
+  "white-nationalism": -0.00040816016055476823
+ },
+ "residual": {
+  "abortion": 0.6324065725489586,
+  "coronavirus": 3.4091171060875975,
+  "elections-2020": 0.43049978802988664,
+  "environment": 0.9815680848810507,
+  "gun-control": 3.673231126556341,
+  "immigration": 0.7911948115263518,
+  "international-politics-and-world-news": -2.8951517195942524,
+  "middle-class": 0.2180808359951386,
+  "sport": 2.927698309492326,
+  "student-debt": -5.403072057013222,
+  "trump-presidency": -0.011170724447939002,
+  "vaccines": -4.54612355739954,
+  "white-nationalism": -0.208278576662722
+ },
+ "up": [
+  [
+   null,
+   0.5319569923382191
+  ],
+  [
+   "vaccines",
+   0.5616131168742761
+  ],
+  [
+   "student-debt",
+   0.5969361291417259
+  ],
+  [
+   "international-politics-and-world-news",
+   0.6245156356271429
+  ],
+  [
+   "white-nationalism",
+   0.6353429478364506
+  ],
+  [
+   "elections-2020",
+   0.6479444097711036
+  ],
+  [
+   "immigration",
+   0.6609676410579982
+  ],
+  [
+   "trump-presidency",
+   0.6763876699485434
+  ],
+  [
+   "middle-class",
+   0.6939973302523675
+  ],
+  [
+   "abortion",
+   0.7191432980956137
+  ]
+ ],
+ "down": [
+  [
+   null,
+   0.5319569923382191
+  ],
+  [
+   "coronavirus",
+   0.5129097373957839
+  ],
+  [
+   "sport",
+   0.49138594877762354
+  ],
+  [
+   "gun-control",
+   0.4734439884244293
+  ],
+  [
+   "environment",
+   0.45646065644943273
+  ],
+  [
+   "middle-class",
+   0.43462484944424873
+  ],
+  [
+   "immigration",
+   0.41232171222844644
+  ],
+  [
+   "white-nationalism",
+   0.38724526597284725
+  ],
+  [
+   "abortion",
+   0.3459698528702289
+  ],
+  [
+   "elections-2020",
+   0.3215620972479667
+  ]
+ ]
+}

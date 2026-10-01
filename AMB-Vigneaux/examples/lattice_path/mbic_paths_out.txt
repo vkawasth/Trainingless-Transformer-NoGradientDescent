@@ -1,0 +1,4 @@
+regions: glueable topic sets of 5..7 topics containing the target's topic (the target cell itself held out)
+MBIC: 88 outlet x topic cells, 82 targets with >= 10 sentences
+targets evaluated 82: the held-out truth lies inside the envelope for 53/82; median envelope width 0.336;  outcome [p > 1/2] can be flipped by region choice for 36/82 targets
+prediction error (mean |p_hat - truth|): full cover 0.112;  median over glueable regions 0.112;  most consistent region 0.120;  raise-path end (max p) 0.172;  lower-path end (min p) 0.185;  glue-p weighted average 0.112

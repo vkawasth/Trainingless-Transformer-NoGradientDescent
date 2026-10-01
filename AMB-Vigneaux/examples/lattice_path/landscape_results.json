@@ -1,0 +1,386 @@
+[
+ {
+  "target": [
+   "breitbart",
+   "gender"
+  ],
+  "n_glueable": 7691,
+  "r2_first_order": 0.9350547125591253,
+  "r2_second_order": 0.993762377756517,
+  "aligned_moves": 48127,
+  "frac_aligned_raise": 0.8456999189644067,
+  "feedback_hit_max": 0.65,
+  "feedback_steps": 5.65,
+  "p_min": 0.3215620972479667,
+  "p_max": 0.7191432980956137,
+  "raisers": [
+   "elections-2020",
+   "international-politics-and-world-news",
+   "student-debt",
+   "vaccines",
+   "white-nationalism"
+  ],
+  "adders": [
+   "abortion",
+   "coronavirus",
+   "environment",
+   "gun-control",
+   "immigration",
+   "middle-class",
+   "sport",
+   "trump-presidency"
+  ]
+ },
+ {
+  "target": [
+   "alternet",
+   "gender"
+  ],
+  "n_glueable": 7472,
+  "r2_first_order": 0.8910312876279997,
+  "r2_second_order": 0.9819842691738982,
+  "aligned_moves": 46111,
+  "frac_aligned_raise": 0.9289757324716446,
+  "feedback_hit_max": 0.65,
+  "feedback_steps": 5.65,
+  "p_min": 0.670018224644759,
+  "p_max": 0.9096630180480731,
+  "raisers": [
+   "coronavirus",
+   "environment",
+   "immigration",
+   "middle-class"
+  ],
+  "adders": [
+   "abortion",
+   "elections-2020",
+   "gun-control",
+   "international-politics-and-world-news",
+   "sport",
+   "student-debt",
+   "trump-presidency",
+   "vaccines",
+   "white-nationalism"
+  ]
+ },
+ {
+  "target": [
+   "breitbart",
+   "coronavirus"
+  ],
+  "n_glueable": 7791,
+  "r2_first_order": 0.9371592523440664,
+  "r2_second_order": 0.9939029081043803,
+  "aligned_moves": 49117,
+  "frac_aligned_raise": 0.8506627033410021,
+  "feedback_hit_max": 0.55,
+  "feedback_steps": 5.55,
+  "p_min": 0.44264568234274804,
+  "p_max": 0.8112834102473231,
+  "raisers": [
+   "elections-2020",
+   "international-politics-and-world-news",
+   "student-debt",
+   "vaccines",
+   "white-nationalism"
+  ],
+  "adders": [
+   "abortion",
+   "environment",
+   "gender",
+   "gun-control",
+   "immigration",
+   "middle-class",
+   "sport",
+   "trump-presidency"
+  ]
+ },
+ {
+  "target": [
+   "breitbart",
+   "student-debt"
+  ],
+  "n_glueable": 7801,
+  "r2_first_order": 0.9395398791420895,
+  "r2_second_order": 0.9945815504913114,
+  "aligned_moves": 49225,
+  "frac_aligned_raise": 0.8640528186896902,
+  "feedback_hit_max": 0.3,
+  "feedback_steps": 4.75,
+  "p_min": 0.5463465600924047,
+  "p_max": 0.8477982469411612,
+  "raisers": [
+   "abortion",
+   "immigration",
+   "international-politics-and-world-news",
+   "trump-presidency",
+   "vaccines",
+   "white-nationalism"
+  ],
+  "adders": [
+   "coronavirus",
+   "elections-2020",
+   "environment",
+   "gender",
+   "gun-control",
+   "middle-class",
+   "sport"
+  ]
+ },
+ {
+  "target": [
+   "alternet",
+   "trump-presidency"
+  ],
+  "n_glueable": 7489,
+  "r2_first_order": 0.9211438865324907,
+  "r2_second_order": 0.9891804757489917,
+  "aligned_moves": 46277,
+  "frac_aligned_raise": 0.9322557642025197,
+  "feedback_hit_max": 0.75,
+  "feedback_steps": 6.05,
+  "p_min": 0.8154093527659265,
+  "p_max": 0.9626452871186264,
+  "raisers": [
+   "coronavirus",
+   "environment",
+   "immigration",
+   "international-politics-and-world-news",
+   "middle-class",
+   "student-debt",
+   "white-nationalism"
+  ],
+  "adders": [
+   "abortion",
+   "elections-2020",
+   "gender",
+   "gun-control",
+   "sport",
+   "vaccines"
+  ]
+ },
+ {
+  "target": [
+   "breitbart",
+   "white-nationalism"
+  ],
+  "n_glueable": 7391,
+  "r2_first_order": 0.9338151737094806,
+  "r2_second_order": 0.9930740406338104,
+  "aligned_moves": 45368,
+  "frac_aligned_raise": 0.8387189208252512,
+  "feedback_hit_max": 0.45,
+  "feedback_steps": 6.0,
+  "p_min": 0.6289746258425044,
+  "p_max": 0.906228673225435,
+  "raisers": [
+   "environment",
+   "immigration",
+   "international-politics-and-world-news",
+   "student-debt",
+   "trump-presidency",
+   "vaccines"
+  ],
+  "adders": [
+   "abortion",
+   "coronavirus",
+   "elections-2020",
+   "gender",
+   "gun-control",
+   "middle-class",
+   "sport"
+  ]
+ },
+ {
+  "target": [
+   "federalist",
+   "student-debt"
+  ],
+  "n_glueable": 7371,
+  "r2_first_order": 0.8029565419383675,
+  "r2_second_order": 0.9340848054413102,
+  "aligned_moves": 45274,
+  "frac_aligned_raise": 0.8048327958651765,
+  "feedback_hit_max": 0.85,
+  "feedback_steps": 6.65,
+  "p_min": 0.5989573758706992,
+  "p_max": 0.9610608523909898,
+  "raisers": [
+   "coronavirus",
+   "gender",
+   "gun-control",
+   "sport",
+   "trump-presidency"
+  ],
+  "adders": [
+   "abortion",
+   "elections-2020",
+   "environment",
+   "immigration",
+   "international-politics-and-world-news",
+   "middle-class",
+   "vaccines",
+   "white-nationalism"
+  ]
+ },
+ {
+  "target": [
+   "federalist",
+   "vaccines"
+  ],
+  "n_glueable": 7161,
+  "r2_first_order": 0.8726994484461151,
+  "r2_second_order": 0.9582529418786901,
+  "aligned_moves": 43448,
+  "frac_aligned_raise": 0.7242220585527527,
+  "feedback_hit_max": 1.0,
+  "feedback_steps": 7.3,
+  "p_min": 0.6556825560262408,
+  "p_max": 0.9767068777382597,
+  "raisers": [
+   "coronavirus",
+   "gender",
+   "gun-control"
+  ],
+  "adders": [
+   "abortion",
+   "elections-2020",
+   "environment",
+   "immigration",
+   "international-politics-and-world-news",
+   "middle-class",
+   "sport",
+   "student-debt",
+   "trump-presidency",
+   "white-nationalism"
+  ]
+ },
+ {
+  "target": [
+   "huffpost",
+   "student-debt"
+  ],
+  "n_glueable": 7075,
+  "r2_first_order": 0.5511558391121463,
+  "r2_second_order": 0.8502731415120386,
+  "aligned_moves": 42788,
+  "frac_aligned_raise": 0.8448630457137515,
+  "feedback_hit_max": 0.35,
+  "feedback_steps": 5.3,
+  "p_min": 0.49253779348182786,
+  "p_max": 0.9522459006109367,
+  "raisers": [
+   "elections-2020",
+   "gender",
+   "gun-control",
+   "immigration",
+   "sport",
+   "white-nationalism"
+  ],
+  "adders": [
+   "abortion",
+   "coronavirus",
+   "environment",
+   "international-politics-and-world-news",
+   "middle-class",
+   "trump-presidency",
+   "vaccines"
+  ]
+ },
+ {
+  "target": [
+   "msnbc",
+   "vaccines"
+  ],
+  "n_glueable": 7445,
+  "r2_first_order": 0.8865065082228769,
+  "r2_second_order": 0.9703446522830248,
+  "aligned_moves": 45891,
+  "frac_aligned_raise": 0.9158876468152797,
+  "feedback_hit_max": 0.45,
+  "feedback_steps": 5.05,
+  "p_min": 0.33253228873798923,
+  "p_max": 0.8013174131589285,
+  "raisers": [
+   "abortion",
+   "elections-2020",
+   "gender",
+   "immigration",
+   "sport",
+   "student-debt",
+   "white-nationalism"
+  ],
+  "adders": [
+   "coronavirus",
+   "environment",
+   "gun-control",
+   "international-politics-and-world-news",
+   "middle-class",
+   "trump-presidency"
+  ]
+ },
+ {
+  "target": [
+   "msnbc",
+   "white-nationalism"
+  ],
+  "n_glueable": 7598,
+  "r2_first_order": 0.8784958096999587,
+  "r2_second_order": 0.9715689737880187,
+  "aligned_moves": 47245,
+  "frac_aligned_raise": 0.8877976505450312,
+  "feedback_hit_max": 0.3,
+  "feedback_steps": 6.3,
+  "p_min": 0.5772366637992122,
+  "p_max": 0.9159627807731707,
+  "raisers": [
+   "abortion",
+   "gender",
+   "immigration",
+   "sport",
+   "trump-presidency"
+  ],
+  "adders": [
+   "coronavirus",
+   "elections-2020",
+   "environment",
+   "gun-control",
+   "international-politics-and-world-news",
+   "middle-class",
+   "student-debt",
+   "vaccines"
+  ]
+ },
+ {
+  "target": [
+   "msnbc",
+   "environment"
+  ],
+  "n_glueable": 7579,
+  "r2_first_order": 0.8632626989289631,
+  "r2_second_order": 0.9651653566556148,
+  "aligned_moves": 47069,
+  "frac_aligned_raise": 0.8838088763304935,
+  "feedback_hit_max": 0.75,
+  "feedback_steps": 6.5,
+  "p_min": 0.4133452926926388,
+  "p_max": 0.8475099421768293,
+  "raisers": [
+   "abortion",
+   "gender",
+   "middle-class",
+   "sport",
+   "trump-presidency",
+   "white-nationalism"
+  ],
+  "adders": [
+   "coronavirus",
+   "elections-2020",
+   "gun-control",
+   "immigration",
+   "international-politics-and-world-news",
+   "student-debt",
+   "vaccines"
+  ]
+ }
+]
