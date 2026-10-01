@@ -1,0 +1,381 @@
+{
+ "BASIL spans (source x target party)": {
+  "n_units": 1274,
+  "sources": [
+   "fox",
+   "hpo",
+   "nyt"
+  ],
+  "topics": [
+   "D",
+   "R"
+  ],
+  "edges": 6,
+  "beta0": 1,
+  "beta1": 2,
+  "Q": 13.045424311210322,
+  "p": 0.0014696776975400235,
+  "fiedler": 3030.958512591019,
+  "dL_q95": 1605.64533105532,
+  "margin": 1.8876886781708533,
+  "frac_boot_connected": 1.0,
+  "snr": 2.267535381384779,
+  "median_cos": 0.9690417266910587,
+  "refine_median_p": 0.010861933408242421,
+  "refine_frac_sig": 1.0,
+  "leave_one_source_out": {
+   "fox": {
+    "Q": 4.152726468002981,
+    "df": 1,
+    "p": 0.04156754188099839
+   },
+   "hpo": {
+    "Q": 2.675634942310902,
+    "df": 1,
+    "p": 0.10189468005354105
+   },
+   "nyt": {
+    "Q": 13.618969907224024,
+    "df": 1,
+    "p": 0.0002239115062224092
+   }
+  }
+ },
+ "BASIL spans, Trump excluded": {
+  "n_units": 933,
+  "sources": [
+   "fox",
+   "hpo",
+   "nyt"
+  ],
+  "topics": [
+   "D",
+   "R"
+  ],
+  "edges": 6,
+  "beta0": 1,
+  "beta1": 2,
+  "Q": 6.008569257974742,
+  "p": 0.049574205596184986,
+  "fiedler": 1913.2904719900407,
+  "dL_q95": 1167.9448025182471,
+  "margin": 1.6381685742894077,
+  "frac_boot_connected": 1.0,
+  "snr": 1.340004735342412,
+  "median_cos": 0.9261516617636594,
+  "refine_median_p": 0.08684881946890255,
+  "refine_frac_sig": 0.42,
+  "leave_one_source_out": {
+   "fox": {
+    "Q": 1.6128639061773593,
+    "df": 1,
+    "p": 0.20408969199400584
+   },
+   "hpo": {
+    "Q": 1.5796771601197013,
+    "df": 1,
+    "p": 0.20880720209866357
+   },
+   "nyt": {
+    "Q": 6.223520427811206,
+    "df": 1,
+    "p": 0.012606420691410845
+   }
+  }
+ },
+ "MBIC (outlet x topic)": {
+  "n_units": 1700,
+  "sources": [
+   "alternet",
+   "breitbart",
+   "federalist",
+   "fox-news",
+   "huffpost",
+   "msnbc",
+   "reuters",
+   "usa-today"
+  ],
+  "topics": [
+   "abortion",
+   "coronavirus",
+   "elections-2020",
+   "environment",
+   "gender",
+   "gun-control",
+   "immigration",
+   "international-politics-and-world-news",
+   "middle-class",
+   "sport",
+   "student-debt",
+   "trump-presidency",
+   "vaccines",
+   "white-nationalism"
+  ],
+  "edges": 87,
+  "beta0": 1,
+  "beta1": 66,
+  "Q": 131.04155256893685,
+  "p": 3.378099690600324e-06,
+  "fiedler": 1343.8472220312328,
+  "dL_q95": 1087.2718283892493,
+  "margin": 1.2359809083089093,
+  "frac_boot_connected": 1.0,
+  "snr": 1.3635233569058964,
+  "median_cos": 0.8112771452088329,
+  "refine_median_p": 0.0015584873695630927,
+  "refine_frac_sig": 0.98,
+  "leave_one_source_out": {
+   "alternet": {
+    "Q": 109.70864344419145,
+    "df": 53,
+    "p": 7.781628525236947e-06
+   },
+   "breitbart": {
+    "Q": 96.34742602097995,
+    "df": 53,
+    "p": 0.0002530368677515416
+   },
+   "federalist": {
+    "Q": 116.12809598235194,
+    "df": 58,
+    "p": 9.169380719490644e-06
+   },
+   "fox-news": {
+    "Q": 129.29705189456737,
+    "df": 62,
+    "p": 1.1959407484546992e-06
+   },
+   "huffpost": {
+    "Q": 124.53751883284437,
+    "df": 61,
+    "p": 2.9706809303819672e-06
+   },
+   "msnbc": {
+    "Q": 96.20318225438992,
+    "df": 56,
+    "p": 0.0006717711818069136
+   },
+   "reuters": {
+    "Q": 100.56526272523402,
+    "df": 53,
+    "p": 8.79918333804219e-05
+   },
+   "usa-today": {
+    "Q": 115.9815244191469,
+    "df": 53,
+    "p": 1.338785290397956e-06
+   }
+  }
+ },
+ "NewsWCL50 (outlet x target)": {
+  "n_units": 723,
+  "sources": [
+   "L",
+   "LL",
+   "M",
+   "R",
+   "RR"
+  ],
+  "topics": [
+   "Democrats",
+   "IRN",
+   "Migrant caravan",
+   "Trump",
+   "USA"
+  ],
+  "edges": 24,
+  "beta0": 1,
+  "beta1": 15,
+  "Q": 29.736313099020645,
+  "p": 0.012908658923486138,
+  "fiedler": 236.31626299968852,
+  "dL_q95": 1796.9015841176417,
+  "margin": 0.1315131919791424,
+  "frac_boot_connected": 0.36333333333333334,
+  "snr": 1.3184491733042865,
+  "median_cos": 0.7921549278233606,
+  "refine_median_p": 0.0011785887383594287,
+  "refine_frac_sig": 1.0,
+  "leave_one_source_out": {
+   "L": {
+    "Q": 27.72141325826504,
+    "df": 11,
+    "p": 0.003570909223761185
+   },
+   "LL": {
+    "Q": 7.890688751291243,
+    "df": 11,
+    "p": 0.7230610543613456
+   },
+   "M": {
+    "Q": 21.73508236293817,
+    "df": 11,
+    "p": 0.026507815004636358
+   },
+   "R": {
+    "Q": 29.329308732674964,
+    "df": 11,
+    "p": 0.0020175327551071156
+   },
+   "RR": {
+    "Q": 25.844127910525078,
+    "df": 12,
+    "p": 0.011292216861246195
+   }
+  }
+ },
+ "NewsWCL50 without Democrats (a one-event target)": {
+  "n_units": 680,
+  "sources": [
+   "L",
+   "LL",
+   "M",
+   "R",
+   "RR"
+  ],
+  "topics": [
+   "IRN",
+   "Migrant caravan",
+   "Trump",
+   "USA"
+  ],
+  "edges": 20,
+  "beta0": 1,
+  "beta1": 12,
+  "Q": 28.546892350551538,
+  "p": 0.004597796302864713,
+  "fiedler": 395.5312210562226,
+  "dL_q95": 1766.5612921297197,
+  "margin": 0.22389895149314665,
+  "frac_boot_connected": 0.5733333333333334,
+  "snr": 1.3024820139744293,
+  "median_cos": 0.7907138549962553,
+  "refine_median_p": 0.0004620280510269551,
+  "refine_frac_sig": 1.0,
+  "leave_one_source_out": {
+   "L": {
+    "Q": 27.0070917773758,
+    "df": 9,
+    "p": 0.0013949945366551091
+   },
+   "LL": {
+    "Q": 7.164462879254836,
+    "df": 9,
+    "p": 0.6200010176695523
+   },
+   "M": {
+    "Q": 21.21590482350661,
+    "df": 9,
+    "p": 0.011725513578653753
+   },
+   "R": {
+    "Q": 28.047123217581202,
+    "df": 9,
+    "p": 0.0009367255221586627
+   },
+   "RR": {
+    "Q": 24.671597378349965,
+    "df": 9,
+    "p": 0.0033567619909986098
+   }
+  }
+ },
+ "AllSides adversarial (side x topic group)": {
+  "n_units": 12033,
+  "sources": [
+   "center",
+   "left",
+   "right"
+  ],
+  "topics": [
+   "coronavirus",
+   "economy",
+   "elections",
+   "foreign",
+   "healthcare",
+   "immigration",
+   "justice",
+   "media",
+   "politics"
+  ],
+  "edges": 27,
+  "beta0": 1,
+  "beta1": 16,
+  "Q": 18.104891162689203,
+  "p": 0.31779063544276503,
+  "fiedler": 3551.9250026631707,
+  "dL_q95": 3212.0764191863364,
+  "margin": 1.105803392922676,
+  "frac_boot_connected": 1.0,
+  "snr": 1.1811205292957425,
+  "median_cos": 0.7867410622569917,
+  "refine_median_p": 0.6196569592643177,
+  "refine_frac_sig": 0.02,
+  "leave_one_source_out": {
+   "center": {
+    "Q": 7.585456580995665,
+    "df": 8,
+    "p": 0.47497368557289965
+   },
+   "left": {
+    "Q": 8.499872349215135,
+    "df": 8,
+    "p": 0.38622321064821485
+   },
+   "right": {
+    "Q": 11.800092826644418,
+    "df": 8,
+    "p": 0.1603485937305644
+   }
+  }
+ },
+ "AllSides directed (side x topic group)": {
+  "n_units": 12033,
+  "sources": [
+   "center",
+   "left",
+   "right"
+  ],
+  "topics": [
+   "coronavirus",
+   "economy",
+   "elections",
+   "foreign",
+   "healthcare",
+   "immigration",
+   "justice",
+   "media",
+   "politics"
+  ],
+  "edges": 27,
+  "beta0": 1,
+  "beta1": 16,
+  "Q": 16.583023510536336,
+  "p": 0.4130623053746641,
+  "fiedler": 25319.76582427772,
+  "dL_q95": 22897.167784371486,
+  "margin": 1.1058033929226734,
+  "frac_boot_connected": 1.0,
+  "snr": 1.0988379157017767,
+  "median_cos": 0.7552691669301821,
+  "refine_median_p": 0.5538007787897825,
+  "refine_frac_sig": 0.02,
+  "leave_one_source_out": {
+   "center": {
+    "Q": 5.950881227583224,
+    "df": 8,
+    "p": 0.652734032932452
+   },
+   "left": {
+    "Q": 10.595882410680327,
+    "df": 8,
+    "p": 0.22566467286358563
+   },
+   "right": {
+    "Q": 9.321450601544576,
+    "df": 8,
+    "p": 0.315908644096423
+   }
+  }
+ }
+}
