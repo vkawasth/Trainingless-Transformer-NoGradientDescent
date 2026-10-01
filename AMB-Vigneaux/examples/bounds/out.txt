@@ -1,0 +1,33 @@
+(id) triangle: dim ker R = 1; R chi = 0: True;  <f, chi>: all -1, majority +2, unanimous +0
+(0) CHSH: bound on the dropped context's correlator from the other three
+    lambda 0.0: [-1.000, +1.000]  max-ent +0.000  truth -0.000  CF 0.00  inside True
+    lambda 0.1: [-1.000, +1.000]  max-ent +0.001  truth -0.100  CF 0.00  inside True
+    lambda 0.2: [-1.000, +1.000]  max-ent +0.008  truth -0.200  CF 0.00  inside True
+    lambda 0.3: [-1.000, +1.000]  max-ent +0.027  truth -0.300  CF 0.00  inside True
+    lambda 0.4: [-0.800, +1.000]  max-ent +0.064  truth -0.400  CF 0.00  inside True
+    lambda 0.5: [-0.500, +1.000]  max-ent +0.125  truth -0.500  CF 0.00  inside True
+    lambda 0.6: [-0.200, +1.000]  max-ent +0.216  truth -0.600  CF 0.20  inside False
+    lambda 0.7: [+0.100, +1.000]  max-ent +0.343  truth -0.700  CF 0.40  inside False
+    lambda 0.8: [+0.400, +1.000]  max-ent +0.512  truth -0.800  CF 0.60  inside False
+    lambda 0.9: [+0.700, +1.000]  max-ent +0.729  truth -0.900  CF 0.80  inside False
+    lambda 1.0: [+1.000, +1.000]  max-ent +1.000  truth -1.000  CF 1.00  inside False
+
+(1: MBIC annotator groups) 1600 units, 200 random 4-way splits
+   all        plug-in coverage 0.90 (width 0.117, projected 1.00) | bootstrap-widened coverage 0.97 (width 0.176), + truth-sample noise 1.00 | max-ent point error 0.026
+   majority   plug-in coverage 1.00 (width 0.235, projected 1.00) | bootstrap-widened coverage 1.00 (width 0.289), + truth-sample noise 1.00 | max-ent point error 0.024
+   unanimous  plug-in coverage 0.00 (width 0.000, projected 1.00) | bootstrap-widened coverage 0.68 (width 0.068), + truth-sample noise 0.98 | max-ent point error 0.025
+   pair_LR    plug-in coverage 1.00 (width 0.263, projected 0.96) | bootstrap-widened coverage 1.00 (width 0.340), + truth-sample noise 1.00 | max-ent point error 0.049
+
+(2a: AllSides triple stories) 736 units, 200 random 4-way splits
+   all        plug-in coverage 0.88 (width 0.042, projected 1.00) | bootstrap-widened coverage 0.98 (width 0.057), + truth-sample noise 1.00 | max-ent point error 0.012
+   majority   plug-in coverage 0.83 (width 0.085, projected 1.00) | bootstrap-widened coverage 0.97 (width 0.150), + truth-sample noise 1.00 | max-ent point error 0.020
+   unanimous  plug-in coverage 0.00 (width 0.000, projected 1.00) | bootstrap-widened coverage 0.68 (width 0.096), + truth-sample noise 0.98 | max-ent point error 0.039
+   pair_LR    plug-in coverage 0.99 (width 0.135, projected 0.95) | bootstrap-widened coverage 1.00 (width 0.170), + truth-sample noise 1.00 | max-ent point error 0.029
+
+(2b) AllSides natural design: pair-only stories [566, 612, 607], truth from 736 triple stories
+   all        [0.000, 0.028] (projected, defect 0.024)  max-ent 0.018  triple-story truth 0.023
+   majority   [0.052, 0.108] (projected, defect 0.024)  max-ent 0.071  triple-story truth 0.105
+   unanimous  [0.670, 0.670] (projected, defect 0.024)  max-ent 0.670  triple-story truth 0.626
+   pair_LR    [0.000, 0.084] (projected, defect 0.021)  max-ent 0.010  triple-story truth 0.052
+
+(3) AllSides stream: 115 windows; observed triple value inside the bounds: all 0.75, majority 0.70; median width all 0.030, majority 0.059
