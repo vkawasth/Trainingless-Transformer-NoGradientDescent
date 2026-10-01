@@ -1,0 +1,304 @@
+{
+ "allsides": {
+  "n": 736,
+  "lean": {
+   "left": 0.0091,
+   "center": -0.0063,
+   "right": -0.0028
+  },
+  "coalitions": {
+   "('left', 'center')": {
+    "obs": 258,
+    "null": 250.8995,
+    "p": 0.576
+   },
+   "('left', 'right')": {
+    "obs": 236,
+    "null": 239.5595,
+    "p": 0.791
+   },
+   "('center', 'right')": {
+    "obs": 242,
+    "null": 245.541,
+    "p": 0.805
+   },
+   "tie": {
+    "obs": 0,
+    "null": 0.0,
+    "p": 1.0
+   }
+  }
+ },
+ "allsides_shift_election 2016": {
+  "n_before": 158,
+  "n_after": 578,
+  "shares": {
+   "center-right": {
+    "before": 0.31645569620253167,
+    "after": 0.33217993079584773,
+    "p": 0.7825
+   },
+   "left-center": {
+    "before": 0.3227848101265823,
+    "after": 0.35813148788927335,
+    "p": 0.451
+   },
+   "left-right": {
+    "before": 0.36075949367088606,
+    "after": 0.3096885813148789,
+    "p": 0.251
+   }
+  }
+ },
+ "allsides_shift_COVID emergency": {
+  "n_before": 651,
+  "n_after": 85,
+  "shares": {
+   "center-right": {
+    "before": 0.32565284178187404,
+    "after": 0.35294117647058826,
+    "p": 0.617
+   },
+   "left-center": {
+    "before": 0.3456221198156682,
+    "after": 0.38823529411764707,
+    "p": 0.4595
+   },
+   "left-right": {
+    "before": 0.32872503840245776,
+    "after": 0.25882352941176473,
+    "p": 0.2045
+   }
+  }
+ },
+ "mbic_labelperm": {
+  "n": 1640,
+  "coalitions": {
+   "('left', 'centre')": {
+    "obs": 578,
+    "null": 460.83,
+    "p": 0.0
+   },
+   "('left', 'right')": {
+    "obs": 441,
+    "null": 483.824,
+    "p": 0.008
+   },
+   "('centre', 'right')": {
+    "obs": 396,
+    "null": 466.9,
+    "p": 0.0
+   },
+   "tie": {
+    "obs": 225,
+    "null": 228.446,
+    "p": 0.728
+   }
+  }
+ },
+ "mbic_labelperm_left_outlets": {
+  "n": 678,
+  "coalitions": {
+   "('left', 'centre')": {
+    "obs": 246,
+    "null": 191.88,
+    "p": 0.0
+   },
+   "('left', 'right')": {
+    "obs": 157,
+    "null": 193.642,
+    "p": 0.0
+   },
+   "('centre', 'right')": {
+    "obs": 180,
+    "null": 194.208,
+    "p": 0.204
+   },
+   "tie": {
+    "obs": 95,
+    "null": 98.27,
+    "p": 0.524
+   }
+  }
+ },
+ "mbic_labelperm_center_outlets": {
+  "n": 298,
+  "coalitions": {
+   "('left', 'centre')": {
+    "obs": 99,
+    "null": 80.412,
+    "p": 0.008
+   },
+   "('left', 'right')": {
+    "obs": 93,
+    "null": 95.11,
+    "p": 0.812
+   },
+   "('centre', 'right')": {
+    "obs": 66,
+    "null": 85.21,
+    "p": 0.02
+   },
+   "tie": {
+    "obs": 40,
+    "null": 37.268,
+    "p": 0.524
+   }
+  }
+ },
+ "mbic_labelperm_right_outlets": {
+  "n": 664,
+  "coalitions": {
+   "('left', 'centre')": {
+    "obs": 233,
+    "null": 187.162,
+    "p": 0.0
+   },
+   "('left', 'right')": {
+    "obs": 191,
+    "null": 197.346,
+    "p": 0.588
+   },
+   "('centre', 'right')": {
+    "obs": 150,
+    "null": 186.57,
+    "p": 0.0
+   },
+   "tie": {
+    "obs": 90,
+    "null": 92.922,
+    "p": 0.608
+   }
+  }
+ },
+ "mbic_binomial": {
+  "n": 1640,
+  "lean": {
+   "left": -0.0105,
+   "centre": 0.0097,
+   "right": 0.0119
+  },
+  "coalitions": {
+   "('left', 'centre')": {
+    "obs": 578,
+    "null": 413.8335,
+    "p": 0.0
+   },
+   "('left', 'right')": {
+    "obs": 441,
+    "null": 435.8255,
+    "p": 0.786
+   },
+   "('centre', 'right')": {
+    "obs": 396,
+    "null": 440.264,
+    "p": 0.011
+   },
+   "tie": {
+    "obs": 225,
+    "null": 350.077,
+    "p": 0.0
+   }
+  }
+ },
+ "newswcl50": {
+  "n": 6,
+  "lean": {
+   "LL": -0.3266,
+   "L": 0.1795,
+   "M": -0.0111,
+   "R": 0.2641,
+   "RR": -0.1059
+  },
+  "coalitions": {
+   "('LL', 'L')": {
+    "obs": 0,
+    "null": 0.13,
+    "p": 1.0
+   },
+   "('LL', 'M')": {
+    "obs": 1,
+    "null": 0.582,
+    "p": 1.0
+   },
+   "('LL', 'R')": {
+    "obs": 1,
+    "null": 0.293,
+    "p": 0.583
+   },
+   "('LL', 'RR')": {
+    "obs": 0,
+    "null": 0.143,
+    "p": 1.0
+   },
+   "('L', 'M')": {
+    "obs": 1,
+    "null": 0.9685,
+    "p": 1.0
+   },
+   "('L', 'R')": {
+    "obs": 1,
+    "null": 0.7805,
+    "p": 1.0
+   },
+   "('L', 'RR')": {
+    "obs": 0,
+    "null": 0.663,
+    "p": 0.983
+   },
+   "('M', 'R')": {
+    "obs": 1,
+    "null": 1.0025,
+    "p": 1.0
+   },
+   "('M', 'RR')": {
+    "obs": 1,
+    "null": 0.76,
+    "p": 1.0
+   },
+   "('R', 'RR')": {
+    "obs": 0,
+    "null": 0.6775,
+    "p": 0.953
+   },
+   "tie": {
+    "obs": 0,
+    "null": 0.0,
+    "p": 1.0
+   }
+  }
+ },
+ "padic_profile": {
+  "profile": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    2,
+    0
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    5,
+    3
+   ],
+   [
+    6,
+    4
+   ]
+  ],
+  "m_star": 2
+ }
+}

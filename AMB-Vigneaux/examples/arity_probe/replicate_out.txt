@@ -1,0 +1,16 @@
+== MBIC crowd, noise-corrected variogram
+   3 groups: first merge ('L', 'C') (bootstrap support 0.97);  gamma* L-C -0.0022±0.0028  L-R +0.0049±0.0029  C-R +0.0138±0.0042
+   5 groups (<=-7, -6..-2, -1..1, 2..6, >=7): first merge ('LL', 'R') (bootstrap support 0.37);  gamma* LL-L -0.0038±0.0035  LL-C -0.0007±0.0047  LL-R -0.0062±0.0045  LL-RR +0.0068±0.0049  L-C +0.0049±0.0063  L-R -0.0033±0.0055  L-RR +0.0023±0.0071  C-R +0.0106±0.0066  C-RR -0.0001±0.0073  R-RR -0.0005±0.0067
+   3 groups, left outlets: first merge ('L', 'C') (bootstrap support 0.86);  gamma* L-C -0.0016±0.0043  L-R +0.0050±0.0043  C-R +0.0079±0.0060
+   3 groups, center outlets: first merge ('L', 'R') (bootstrap support 0.90);  gamma* L-C -0.0051±0.0066  L-R -0.0152±0.0059  C-R +0.0051±0.0104
+   3 groups, right outlets: first merge ('L', 'C') (bootstrap support 0.97);  gamma* L-C -0.0015±0.0045  L-R +0.0094±0.0047  C-R +0.0208±0.0069
+== MBIC coalition by article year (label-permutation null)
+   articles <= 2019 (n 497): ('left', 'centre') 180 vs 135 (p 0.000)  ('left', 'right') 123 vs 144 (p 0.020)  ('centre', 'right') 125 vs 147 (p 0.007)  tie 69 vs 71 (p 0.687)
+   articles 2020 (n 474): ('left', 'centre') 164 vs 130 (p 0.000)  ('left', 'right') 131 vs 135 (p 0.720)  ('centre', 'right') 103 vs 131 (p 0.000)  tie 76 vs 78 (p 0.760)
+== BABE expert annotators (ideology from annotator_demographics.csv)
+   raw_labels_SG1.csv: annotators [1, 2, 3, 4, 7, 8, 9, 10], ideology [5, -15, 0, 0, -10, -15, -5, -15]
+      Mantel r(gamma_ij, |ideology_i - ideology_j|) = -0.259, permutation p = 0.947 (28 pairs)
+      groups {'L': [2, 7, 8, 9, 10], 'C': [3, 4], 'R': [1]}: a group has a single annotator: noise cannot be corrected
+   raw_labels_SG2.csv: annotators [1, 2, 3, 5, 6, 7, 9, 11], ideology [5, -15, 0, 0, 5, -10, -5, 10]
+      Mantel r(gamma_ij, |ideology_i - ideology_j|) = -0.023, permutation p = 0.504 (21 pairs)
+   groups {'L': [2, 7, 9], 'C': [3, 5], 'R': [1, 6, 11]}: first merge ('L', 'C') (bootstrap support 0.76);  gamma* L-C -0.0039±0.0021  L-R +0.0083±0.0125  C-R +nan±0.0884

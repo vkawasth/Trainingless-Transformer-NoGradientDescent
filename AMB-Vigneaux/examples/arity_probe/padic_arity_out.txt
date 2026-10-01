@@ -1,0 +1,4 @@
+one unit alone: gluing depth m* = 8 (full precision, flat) for 24/24 units
+arity >= 2: 24 units, 70 claims  -> glue to radius 3^-1;  e(m) = [0, 0, 1, 2, 3, 4, 5, 6, 7]
+arity >= 3: 14 units, 60 claims  -> glue to radius 3^-2;  e(m) = [0, 0, 0, 1, 2, 3, 4, 5, 6]
+arity >= 4: 6 units, 36 claims  -> glue to radius 3^-4;  e(m) = [0, 0, 0, 0, 0, 1, 2, 3, 4]
