@@ -1,0 +1,22 @@
+(1) boundary supports (zero sets in the closure of the model), by (#even, #odd) zeros
+    n=3 (all subsets): occurs on the boundary iff it meets both parity classes: True
+    n=4 (up to 4 zeros): occurs on the boundary iff it meets both parity classes: True
+
+(2) local structure at a boundary point with a even and b odd zeros (f ~ x1..xa - y1..yb)
+    (a,b)=(1,1): smooth    Tjurina 0  singular-locus dim -1  transversal type smooth
+    (a,b)=(1,2): smooth    Tjurina 0  singular-locus dim -1  transversal type smooth
+    (a,b)=(1,3): smooth    Tjurina 0  singular-locus dim -1  transversal type smooth
+    (a,b)=(2,2): singular  Tjurina 1  singular-locus dim 0  transversal type node (Tjurina 1)
+    (a,b)=(2,3): singular  Tjurina inf (non-isolated)  singular-locus dim 1  transversal type node (Tjurina 1)
+    (a,b)=(3,3): singular  Tjurina inf (non-isolated)  singular-locus dim 2  transversal type node (Tjurina 1)
+    (a,b)=(2,4): singular  Tjurina inf (non-isolated)  singular-locus dim 2  transversal type node (Tjurina 1)
+    T^2 = 0 at every point (hypersurface). theta-level sets x1 x2 = e^c y1 y2: Tjurina {0: 1, 1: 1, -2: 1} -> equisingular
+
+(3) the flop: does the toggle's odd partner flip under perturbation?
+    near a smooth boundary point: MILP forced set [(0, 0, 0), (0, 0, 1)] (cheapest odd (0, 0, 1)); partner margin 0.898; switch rate at eps 0.01/0.05/0.2: 0.00 / 0.00 / 0.00
+    near a node boundary point: MILP forced set [(0, 0, 0), (0, 1, 0)] (cheapest odd (0, 1, 0)); partner margin 0.002; switch rate at eps 0.01/0.05/0.2: 0.38 / 0.48 / 0.54
+
+(4) real tables
+    MBIC 3 groups: toggle pair [(1, 0, 1), (1, 0, 0)] mass 0.123 (radius 0.131); node mass 0.269 (radius 0.313); partner margin 0.16; forced pair changes in 0.37 of resamples
+    AllSides 3 sides: toggle pair [(0, 1, 1), (1, 1, 1)] mass 0.045 (radius 0.046); node mass 0.132 (radius 0.142); partner margin 0.43; forced pair changes in 0.18 of resamples
+    MBIC 4 groups: toggle pair [(1, 0, 1, 0), (1, 0, 0, 0)] mass 0.041 (radius 0.041); node mass 0.088 (radius 0.092); partner margin 0.11; forced pair changes in 0.55 of resamples
