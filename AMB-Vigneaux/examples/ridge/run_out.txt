@@ -1,0 +1,5 @@
+  full joint (3 binary)      d  7  dim ker R 0  Fisher rank  7  lambda: theory  3.5  estimated  3.44 ± 0.06  (d/2 = 3.5)
+  tree: AB, BC               d  7  dim ker R 2  Fisher rank  5  lambda: theory  2.5  estimated  2.21 ± 0.29  (d/2 = 3.5)
+  triangle: AB, BC, CA       d  7  dim ker R 1  Fisher rank  6  lambda: theory  3.0  estimated  3.10 ± 0.14  (d/2 = 3.5)
+  4-cycle: AB, BC, CD, DA    d 15  dim ker R 7  Fisher rank  8  lambda: theory  4.0  estimated  4.05 ± 0.56  (d/2 = 7.5)
+  sphere: all triples of 4   d 15  dim ker R 1  Fisher rank 14  lambda: theory  7.0  estimated  6.31 ± 0.80  (d/2 = 7.5)

@@ -1,0 +1,52 @@
+{
+ "full joint (3 binary)": {
+  "d": 7,
+  "dim_ker_R": 0,
+  "fisher_rank": 7,
+  "lam_theory": 3.5,
+  "lam_hat": 3.4433361287721636,
+  "lam_se": 0.05899561312174314,
+  "d_half": 3.5,
+  "contexts": 1
+ },
+ "tree: AB, BC": {
+  "d": 7,
+  "dim_ker_R": 2,
+  "fisher_rank": 5,
+  "lam_theory": 2.5,
+  "lam_hat": 2.2104486489683857,
+  "lam_se": 0.29226256964715,
+  "d_half": 3.5,
+  "contexts": 2
+ },
+ "triangle: AB, BC, CA": {
+  "d": 7,
+  "dim_ker_R": 1,
+  "fisher_rank": 6,
+  "lam_theory": 3.0,
+  "lam_hat": 3.098979750435045,
+  "lam_se": 0.13782065272933572,
+  "d_half": 3.5,
+  "contexts": 3
+ },
+ "4-cycle: AB, BC, CD, DA": {
+  "d": 15,
+  "dim_ker_R": 7,
+  "fisher_rank": 8,
+  "lam_theory": 4.0,
+  "lam_hat": 4.053412379060546,
+  "lam_se": 0.556786218747355,
+  "d_half": 7.5,
+  "contexts": 4
+ },
+ "sphere: all triples of 4": {
+  "d": 15,
+  "dim_ker_R": 1,
+  "fisher_rank": 14,
+  "lam_theory": 7.0,
+  "lam_hat": 6.307048094501159,
+  "lam_se": 0.8036037299710427,
+  "d_half": 7.5,
+  "contexts": 4
+ }
+}
