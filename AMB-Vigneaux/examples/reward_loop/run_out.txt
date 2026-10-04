@@ -1,0 +1,60 @@
+
+=== loop amplitude 0.6, switching cost 0.5
+EM from burn-in: lam_hat 45.2 (Fisher norm^2 of the planted loops ~ 61.3), share looped 0.14
+oracle        (param None): reward/period   47.56 ± 0.39 | glue ok 1.00 lean ok 0.93 | looped kept 0.00 clean kept 1.00 | switches/period 2.0
+all-in        (param None): reward/period  -27.64 ± 4.50 | glue ok 0.28 lean ok 0.34 | looped kept 1.00 clean kept 1.00 | switches/period 0.0
+myopic-test   (param 0.9): reward/period   42.66 ± 0.67 | glue ok 1.00 lean ok 0.93 | looped kept 0.04 clean kept 0.97 | switches/period 5.1
+myopic-Bayes  (param 0.1): reward/period   45.07 ± 0.69 | glue ok 1.00 lean ok 0.93 | looped kept 0.04 clean kept 1.00 | switches/period 2.2
+value-iter    (param 20.0): reward/period   45.40 ± 0.65 | glue ok 1.00 lean ok 0.93 | looped kept 0.03 clean kept 0.99 | switches/period 2.2
+myopic-Bayes* (param 0.1): reward/period   42.99 ± 0.91 | glue ok 1.00 lean ok 0.93 | looped kept 0.09 clean kept 1.00 | switches/period 2.3
+value-iter*   (param 20.0): reward/period   43.82 ± 0.83 | glue ok 1.00 lean ok 0.93 | looped kept 0.07 clean kept 1.00 | switches/period 2.2
+
+=== loop amplitude 0.6, switching cost 2.0
+EM from burn-in: lam_hat 45.2 (Fisher norm^2 of the planted loops ~ 61.3), share looped 0.14
+oracle        (param None): reward/period   44.56 ± 0.44 | glue ok 1.00 lean ok 0.93 | looped kept 0.00 clean kept 1.00 | switches/period 2.0
+all-in        (param None): reward/period  -27.64 ± 4.50 | glue ok 0.28 lean ok 0.34 | looped kept 1.00 clean kept 1.00 | switches/period 0.0
+myopic-test   (param 0.95): reward/period   37.07 ± 0.93 | glue ok 1.00 lean ok 0.93 | looped kept 0.07 clean kept 0.99 | switches/period 3.8
+myopic-Bayes  (param 0.1): reward/period   41.75 ± 0.77 | glue ok 1.00 lean ok 0.93 | looped kept 0.04 clean kept 1.00 | switches/period 2.2
+value-iter    (param 20.0): reward/period   42.07 ± 0.76 | glue ok 1.00 lean ok 0.94 | looped kept 0.04 clean kept 0.99 | switches/period 2.1
+myopic-Bayes* (param 0.1): reward/period   39.53 ± 0.98 | glue ok 1.00 lean ok 0.93 | looped kept 0.09 clean kept 1.00 | switches/period 2.3
+value-iter*   (param 20.0): reward/period   40.36 ± 0.90 | glue ok 1.00 lean ok 0.93 | looped kept 0.08 clean kept 1.00 | switches/period 2.1
+
+=== loop amplitude 0.35, switching cost 0.5
+EM from burn-in: lam_hat 26.8 (Fisher norm^2 of the planted loops ~ 21.1), share looped 0.02
+oracle        (param None): reward/period   47.56 ± 0.39 | glue ok 1.00 lean ok 0.93 | looped kept 0.00 clean kept 1.00 | switches/period 2.0
+all-in        (param None): reward/period   -7.84 ± 3.30 | glue ok 0.99 lean ok 0.62 | looped kept 1.00 clean kept 1.00 | switches/period 0.0
+myopic-test   (param 0.9): reward/period   12.41 ± 1.88 | glue ok 1.00 lean ok 0.83 | looped kept 0.58 clean kept 0.97 | switches/period 7.5
+myopic-Bayes  (param 0.1): reward/period   21.14 ± 1.45 | glue ok 1.00 lean ok 0.85 | looped kept 0.48 clean kept 0.99 | switches/period 3.3
+value-iter    (param 20.0): reward/period   25.85 ± 1.19 | glue ok 1.00 lean ok 0.89 | looped kept 0.38 clean kept 0.98 | switches/period 3.6
+myopic-Bayes* (param 0.1): reward/period   27.75 ± 1.18 | glue ok 1.00 lean ok 0.90 | looped kept 0.35 clean kept 0.98 | switches/period 3.4
+value-iter*   (param 20.0): reward/period   31.46 ± 1.11 | glue ok 1.00 lean ok 0.91 | looped kept 0.26 clean kept 0.96 | switches/period 3.9
+
+=== loop amplitude 0.35, switching cost 2.0
+EM from burn-in: lam_hat 26.8 (Fisher norm^2 of the planted loops ~ 21.1), share looped 0.02
+oracle        (param None): reward/period   44.56 ± 0.44 | glue ok 1.00 lean ok 0.93 | looped kept 0.00 clean kept 1.00 | switches/period 2.0
+all-in        (param None): reward/period   -7.84 ± 3.30 | glue ok 0.99 lean ok 0.62 | looped kept 1.00 clean kept 1.00 | switches/period 0.0
+myopic-test   (param 0.9): reward/period    1.15 ± 2.07 | glue ok 1.00 lean ok 0.83 | looped kept 0.58 clean kept 0.97 | switches/period 7.5
+myopic-Bayes  (param 0.1): reward/period   16.11 ± 1.48 | glue ok 1.00 lean ok 0.85 | looped kept 0.48 clean kept 0.99 | switches/period 3.3
+value-iter    (param 20.0): reward/period   22.15 ± 1.35 | glue ok 1.00 lean ok 0.89 | looped kept 0.41 clean kept 0.99 | switches/period 2.2
+myopic-Bayes* (param 0.1): reward/period   22.62 ± 1.23 | glue ok 1.00 lean ok 0.90 | looped kept 0.35 clean kept 0.98 | switches/period 3.4
+value-iter*   (param 20.0): reward/period   28.22 ± 1.26 | glue ok 1.00 lean ok 0.92 | looped kept 0.28 clean kept 0.97 | switches/period 2.3
+
+=== loop amplitude 0.25, switching cost 0.5
+EM from burn-in: lam_hat 0.5 (Fisher norm^2 of the planted loops ~ 10.8), share looped 0.01
+oracle        (param None): reward/period   47.56 ± 0.39 | glue ok 1.00 lean ok 0.93 | looped kept 0.00 clean kept 1.00 | switches/period 2.0
+all-in        (param None): reward/period   -4.78 ± 2.71 | glue ok 1.00 lean ok 0.76 | looped kept 1.00 clean kept 1.00 | switches/period 0.0
+myopic-test   (param 0.9): reward/period    0.74 ± 2.21 | glue ok 1.00 lean ok 0.81 | looped kept 0.83 clean kept 0.97 | switches/period 5.4
+myopic-Bayes  (param 0.2): reward/period    0.47 ± 1.99 | glue ok 1.00 lean ok 0.80 | looped kept 0.91 clean kept 1.00 | switches/period 0.5
+value-iter    (param 0.0): reward/period   11.04 ± 1.64 | glue ok 1.00 lean ok 0.86 | looped kept 0.64 clean kept 0.92 | switches/period 0.6
+myopic-Bayes* (param 0.1): reward/period   15.09 ± 1.50 | glue ok 1.00 lean ok 0.88 | looped kept 0.57 clean kept 0.96 | switches/period 4.3
+value-iter*   (param 20.0): reward/period   22.03 ± 1.09 | glue ok 1.00 lean ok 0.93 | looped kept 0.30 clean kept 0.84 | switches/period 6.6
+
+=== loop amplitude 0.25, switching cost 2.0
+EM from burn-in: lam_hat 0.5 (Fisher norm^2 of the planted loops ~ 10.8), share looped 0.01
+oracle        (param None): reward/period   44.56 ± 0.44 | glue ok 1.00 lean ok 0.93 | looped kept 0.00 clean kept 1.00 | switches/period 2.0
+all-in        (param None): reward/period   -4.78 ± 2.71 | glue ok 1.00 lean ok 0.76 | looped kept 1.00 clean kept 1.00 | switches/period 0.0
+myopic-test   (param 0.99): reward/period   -4.68 ± 2.65 | glue ok 1.00 lean ok 0.77 | looped kept 0.98 clean kept 1.00 | switches/period 0.5
+myopic-Bayes  (param 0.2): reward/period   -0.35 ± 2.05 | glue ok 1.00 lean ok 0.80 | looped kept 0.91 clean kept 1.00 | switches/period 0.5
+value-iter    (param 2.0): reward/period   -1.32 ± 0.19 | glue ok 1.00 lean ok 0.97 | looped kept 0.01 clean kept 0.04 | switches/period 1.1
+myopic-Bayes* (param 0.1): reward/period    8.64 ± 1.48 | glue ok 1.00 lean ok 0.88 | looped kept 0.57 clean kept 0.96 | switches/period 4.3
+value-iter*   (param 10.0): reward/period   18.00 ± 1.64 | glue ok 1.00 lean ok 0.92 | looped kept 0.47 clean kept 0.93 | switches/period 1.7

@@ -1,0 +1,992 @@
+{
+ "amp 0.6, kappa 0.5": {
+  "lam_hat": 45.15593078785214,
+  "lam_planted": 61.33848750441277,
+  "checks": {
+   "0.0": {
+    "vi_iters": 401,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.009423494338989258,
+    "pi_s": 0.0038754940032958984,
+    "keep_threshold_if_kept": 0.29,
+    "keep_threshold_if_dropped": 0.14
+   },
+   "2.0": {
+    "vi_iters": 401,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.00997781753540039,
+    "pi_s": 0.0027332305908203125,
+    "keep_threshold_if_kept": 0.22,
+    "keep_threshold_if_dropped": 0.11
+   },
+   "5.0": {
+    "vi_iters": 400,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.009965181350708008,
+    "pi_s": 0.002591848373413086,
+    "keep_threshold_if_kept": 0.17,
+    "keep_threshold_if_dropped": 0.08
+   },
+   "10.0": {
+    "vi_iters": 400,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.009942293167114258,
+    "pi_s": 0.0026242733001708984,
+    "keep_threshold_if_kept": 0.12,
+    "keep_threshold_if_dropped": 0.06
+   },
+   "20.0": {
+    "vi_iters": 400,
+    "pi_iters": 3,
+    "same": true,
+    "vi_s": 0.010015249252319336,
+    "pi_s": 0.0020020008087158203,
+    "keep_threshold_if_kept": 0.08,
+    "keep_threshold_if_dropped": 0.04
+   }
+  },
+  "tuning": {
+   "oracle": {
+    "None": 48.176
+   },
+   "all-in": {
+    "None": -25.892000000000003
+   },
+   "myopic-test": {
+    "0.9": 43.251999999999995,
+    "0.95": 43.238,
+    "0.99": 37.509,
+    "0.999": 23.357
+   },
+   "myopic-Bayes": {
+    "0.1": 45.432,
+    "0.2": 44.852,
+    "0.3": 44.408,
+    "0.5": 43.435,
+    "0.7": 42.172000000000004
+   },
+   "value-iter": {
+    "0.0": 44.709999999999994,
+    "2.0": 44.970000000000006,
+    "5.0": 45.219,
+    "10.0": 45.464999999999996,
+    "20.0": 45.702
+   },
+   "myopic-Bayes*": {
+    "0.1": 43.04600000000001,
+    "0.2": 42.022999999999996,
+    "0.3": 41.111000000000004,
+    "0.5": 39.491,
+    "0.7": 37.294000000000004
+   },
+   "value-iter*": {
+    "0.0": 41.976,
+    "2.0": 42.306,
+    "5.0": 42.762,
+    "10.0": 43.286,
+    "20.0": 43.799
+   }
+  },
+  "test": {
+   "oracle": {
+    "reward_per_period": 47.557,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9280000000000002,
+    "switches_per_period": 1.998,
+    "looped_kept": 0.0,
+    "clean_kept": 1.0,
+    "reward_sd": 0.39330916592421283,
+    "param": null
+   },
+   "all-in": {
+    "reward_per_period": -27.644,
+    "glue_ok": 0.27899999999999997,
+    "lean_ok": 0.33999999999999997,
+    "switches_per_period": 0.0,
+    "looped_kept": 1.0,
+    "clean_kept": 1.0,
+    "reward_sd": 4.504233386493199,
+    "param": null
+   },
+   "myopic-test": {
+    "reward_per_period": 42.662,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9259999999999998,
+    "switches_per_period": 5.106,
+    "looped_kept": 0.0366679939382072,
+    "clean_kept": 0.9712420283983908,
+    "reward_sd": 0.6705382912257881,
+    "param": 0.9
+   },
+   "myopic-Bayes": {
+    "reward_per_period": 45.069,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9269999999999999,
+    "switches_per_period": 2.2119999999999997,
+    "looped_kept": 0.041338197542797286,
+    "clean_kept": 0.995171959506906,
+    "reward_sd": 0.6859784253167147,
+    "param": 0.1
+   },
+   "value-iter": {
+    "reward_per_period": 45.3995,
+    "glue_ok": 1.0,
+    "lean_ok": 0.932,
+    "switches_per_period": 2.213,
+    "looped_kept": 0.033844409210464305,
+    "clean_kept": 0.9923817904618009,
+    "reward_sd": 0.6501962972825973,
+    "param": 20.0
+   },
+   "myopic-Bayes*": {
+    "reward_per_period": 42.991499999999995,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9259999999999999,
+    "switches_per_period": 2.311,
+    "looped_kept": 0.08614038014642705,
+    "clean_kept": 0.9992168987674503,
+    "reward_sd": 0.9126250736200487,
+    "param": 0.1
+   },
+   "value-iter*": {
+    "reward_per_period": 43.82449999999999,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9299999999999999,
+    "switches_per_period": 2.193,
+    "looped_kept": 0.0713704587724306,
+    "clean_kept": 0.99849543387501,
+    "reward_sd": 0.8252494925778505,
+    "param": 20.0
+   }
+  }
+ },
+ "amp 0.6, kappa 2.0": {
+  "lam_hat": 45.15593078785214,
+  "lam_planted": 61.33848750441277,
+  "checks": {
+   "0.0": {
+    "vi_iters": 399,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.008761882781982422,
+    "pi_s": 0.003480672836303711,
+    "keep_threshold_if_kept": 0.51,
+    "keep_threshold_if_dropped": 0.09
+   },
+   "2.0": {
+    "vi_iters": 399,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.009525537490844727,
+    "pi_s": 0.0031342506408691406,
+    "keep_threshold_if_kept": 0.42,
+    "keep_threshold_if_dropped": 0.07
+   },
+   "5.0": {
+    "vi_iters": 399,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.009616374969482422,
+    "pi_s": 0.0031838417053222656,
+    "keep_threshold_if_kept": 0.33,
+    "keep_threshold_if_dropped": 0.06
+   },
+   "10.0": {
+    "vi_iters": 398,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.009806394577026367,
+    "pi_s": 0.0031533241271972656,
+    "keep_threshold_if_kept": 0.25,
+    "keep_threshold_if_dropped": 0.04
+   },
+   "20.0": {
+    "vi_iters": 397,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.010149478912353516,
+    "pi_s": 0.0035822391510009766,
+    "keep_threshold_if_kept": 0.16,
+    "keep_threshold_if_dropped": 0.03
+   }
+  },
+  "tuning": {
+   "oracle": {
+    "None": 44.989999999999995
+   },
+   "all-in": {
+    "None": -25.892000000000003
+   },
+   "myopic-test": {
+    "0.9": 35.416000000000004,
+    "0.95": 37.436,
+    "0.99": 31.722,
+    "0.999": 15.962
+   },
+   "myopic-Bayes": {
+    "0.1": 41.873999999999995,
+    "0.2": 41.45,
+    "0.3": 41.06,
+    "0.5": 40.09,
+    "0.7": 38.686
+   },
+   "value-iter": {
+    "0.0": 40.952,
+    "2.0": 41.2,
+    "5.0": 41.459999999999994,
+    "10.0": 41.656,
+    "20.0": 42.062
+   },
+   "myopic-Bayes*": {
+    "0.1": 39.458,
+    "0.2": 38.432,
+    "0.3": 37.4,
+    "0.5": 35.69,
+    "0.7": 33.226
+   },
+   "value-iter*": {
+    "0.0": 38.126,
+    "2.0": 38.504,
+    "5.0": 39.024,
+    "10.0": 39.468,
+    "20.0": 40.016000000000005
+   }
+  },
+  "test": {
+   "oracle": {
+    "reward_per_period": 44.559999999999995,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9280000000000002,
+    "switches_per_period": 1.998,
+    "looped_kept": 0.0,
+    "clean_kept": 1.0,
+    "reward_sd": 0.4376139851512978,
+    "param": null
+   },
+   "all-in": {
+    "reward_per_period": -27.644,
+    "glue_ok": 0.27899999999999997,
+    "lean_ok": 0.33999999999999997,
+    "switches_per_period": 0.0,
+    "looped_kept": 1.0,
+    "clean_kept": 1.0,
+    "reward_sd": 4.504233386493199,
+    "param": null
+   },
+   "myopic-test": {
+    "reward_per_period": 37.074000000000005,
+    "glue_ok": 1.0,
+    "lean_ok": 0.925,
+    "switches_per_period": 3.755,
+    "looped_kept": 0.06694350714238155,
+    "clean_kept": 0.9893365256181855,
+    "reward_sd": 0.9271334316051814,
+    "param": 0.95
+   },
+   "myopic-Bayes": {
+    "reward_per_period": 41.751,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9269999999999999,
+    "switches_per_period": 2.2119999999999997,
+    "looped_kept": 0.041338197542797286,
+    "clean_kept": 0.995171959506906,
+    "reward_sd": 0.7689583213672896,
+    "param": 0.1
+   },
+   "value-iter": {
+    "reward_per_period": 42.068,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9360000000000002,
+    "switches_per_period": 2.058,
+    "looped_kept": 0.042003801654734725,
+    "clean_kept": 0.9925412010479915,
+    "reward_sd": 0.7570558764054339,
+    "param": 20.0
+   },
+   "myopic-Bayes*": {
+    "reward_per_period": 39.525000000000006,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9259999999999999,
+    "switches_per_period": 2.311,
+    "looped_kept": 0.08614038014642705,
+    "clean_kept": 0.9992168987674503,
+    "reward_sd": 0.983999237804583,
+    "param": 0.1
+   },
+   "value-iter*": {
+    "reward_per_period": 40.358999999999995,
+    "glue_ok": 1.0,
+    "lean_ok": 0.925,
+    "switches_per_period": 2.0599999999999996,
+    "looped_kept": 0.07825448767333386,
+    "clean_kept": 0.99855218643005,
+    "reward_sd": 0.9002126970888602,
+    "param": 20.0
+   }
+  }
+ },
+ "amp 0.35, kappa 0.5": {
+  "lam_hat": 26.776227475805058,
+  "lam_planted": 21.051659384238977,
+  "checks": {
+   "0.0": {
+    "vi_iters": 399,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.009212493896484375,
+    "pi_s": 0.002897500991821289,
+    "keep_threshold_if_kept": 0.28,
+    "keep_threshold_if_dropped": 0.14
+   },
+   "2.0": {
+    "vi_iters": 398,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.010095596313476562,
+    "pi_s": 0.003469705581665039,
+    "keep_threshold_if_kept": 0.21,
+    "keep_threshold_if_dropped": 0.11
+   },
+   "5.0": {
+    "vi_iters": 397,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.010929346084594727,
+    "pi_s": 0.002703428268432617,
+    "keep_threshold_if_kept": 0.16,
+    "keep_threshold_if_dropped": 0.08
+   },
+   "10.0": {
+    "vi_iters": 396,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.01020956039428711,
+    "pi_s": 0.002585887908935547,
+    "keep_threshold_if_kept": 0.11,
+    "keep_threshold_if_dropped": 0.06
+   },
+   "20.0": {
+    "vi_iters": 394,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.009986639022827148,
+    "pi_s": 0.0025262832641601562,
+    "keep_threshold_if_kept": 0.07,
+    "keep_threshold_if_dropped": 0.04
+   }
+  },
+  "tuning": {
+   "oracle": {
+    "None": 48.176
+   },
+   "all-in": {
+    "None": -5.531999999999999
+   },
+   "myopic-test": {
+    "0.9": 13.386000000000001,
+    "0.95": 8.293,
+    "0.99": -0.25500000000000006,
+    "0.999": -4.464
+   },
+   "myopic-Bayes": {
+    "0.1": 22.154999999999998,
+    "0.2": 17.128,
+    "0.3": 13.754,
+    "0.5": 9.449000000000002,
+    "0.7": 4.775
+   },
+   "value-iter": {
+    "0.0": 16.874000000000002,
+    "2.0": 18.78,
+    "5.0": 21.323,
+    "10.0": 23.916000000000004,
+    "20.0": 26.999000000000002
+   },
+   "myopic-Bayes*": {
+    "0.1": 28.617,
+    "0.2": 23.81,
+    "0.3": 20.089000000000002,
+    "0.5": 14.321000000000002,
+    "0.7": 9.497
+   },
+   "value-iter*": {
+    "0.0": 23.748,
+    "2.0": 26.337,
+    "5.0": 28.027000000000005,
+    "10.0": 30.371999999999996,
+    "20.0": 31.802
+   }
+  },
+  "test": {
+   "oracle": {
+    "reward_per_period": 47.557,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9280000000000002,
+    "switches_per_period": 1.998,
+    "looped_kept": 0.0,
+    "clean_kept": 1.0,
+    "reward_sd": 0.39330916592421283,
+    "param": null
+   },
+   "all-in": {
+    "reward_per_period": -7.843999999999999,
+    "glue_ok": 0.9890000000000001,
+    "lean_ok": 0.62,
+    "switches_per_period": 0.0,
+    "looped_kept": 1.0,
+    "clean_kept": 1.0,
+    "reward_sd": 3.297665598571207,
+    "param": null
+   },
+   "myopic-test": {
+    "reward_per_period": 12.4065,
+    "glue_ok": 1.0,
+    "lean_ok": 0.833,
+    "switches_per_period": 7.505,
+    "looped_kept": 0.5823891303708333,
+    "clean_kept": 0.9729365191089407,
+    "reward_sd": 1.8791415659816584,
+    "param": 0.9
+   },
+   "myopic-Bayes": {
+    "reward_per_period": 21.136,
+    "glue_ok": 1.0,
+    "lean_ok": 0.8539999999999999,
+    "switches_per_period": 3.348,
+    "looped_kept": 0.4763277248850798,
+    "clean_kept": 0.9900532560667845,
+    "reward_sd": 1.454453643125143,
+    "param": 0.1
+   },
+   "value-iter": {
+    "reward_per_period": 25.85,
+    "glue_ok": 1.0,
+    "lean_ok": 0.885,
+    "switches_per_period": 3.6399999999999997,
+    "looped_kept": 0.3823383886359081,
+    "clean_kept": 0.9806361966585515,
+    "reward_sd": 1.1939822025474247,
+    "param": 20.0
+   },
+   "myopic-Bayes*": {
+    "reward_per_period": 27.7505,
+    "glue_ok": 1.0,
+    "lean_ok": 0.897,
+    "switches_per_period": 3.4170000000000003,
+    "looped_kept": 0.35128220125540266,
+    "clean_kept": 0.9808199473700038,
+    "reward_sd": 1.1817187588423905,
+    "param": 0.1
+   },
+   "value-iter*": {
+    "reward_per_period": 31.4635,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9129999999999999,
+    "switches_per_period": 3.915,
+    "looped_kept": 0.26075246154162324,
+    "clean_kept": 0.9639329227535246,
+    "reward_sd": 1.1121182603482418,
+    "param": 20.0
+   }
+  }
+ },
+ "amp 0.35, kappa 2.0": {
+  "lam_hat": 26.776227475805058,
+  "lam_planted": 21.051659384238977,
+  "checks": {
+   "0.0": {
+    "vi_iters": 397,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.010992050170898438,
+    "pi_s": 0.004372119903564453,
+    "keep_threshold_if_kept": 0.48,
+    "keep_threshold_if_dropped": 0.09
+   },
+   "2.0": {
+    "vi_iters": 396,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.011831521987915039,
+    "pi_s": 0.004002809524536133,
+    "keep_threshold_if_kept": 0.39,
+    "keep_threshold_if_dropped": 0.07
+   },
+   "5.0": {
+    "vi_iters": 395,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.01111745834350586,
+    "pi_s": 0.003679990768432617,
+    "keep_threshold_if_kept": 0.31,
+    "keep_threshold_if_dropped": 0.05
+   },
+   "10.0": {
+    "vi_iters": 393,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.011411190032958984,
+    "pi_s": 0.0038862228393554688,
+    "keep_threshold_if_kept": 0.22,
+    "keep_threshold_if_dropped": 0.04
+   },
+   "20.0": {
+    "vi_iters": 389,
+    "pi_iters": 5,
+    "same": true,
+    "vi_s": 0.010916948318481445,
+    "pi_s": 0.003543853759765625,
+    "keep_threshold_if_kept": 0.15,
+    "keep_threshold_if_dropped": 0.02
+   }
+  },
+  "tuning": {
+   "oracle": {
+    "None": 44.989999999999995
+   },
+   "all-in": {
+    "None": -5.531999999999999
+   },
+   "myopic-test": {
+    "0.9": 2.142,
+    "0.95": 0.772,
+    "0.99": -3.066,
+    "0.999": -5.082
+   },
+   "myopic-Bayes": {
+    "0.1": 16.902,
+    "0.2": 13.053999999999998,
+    "0.3": 10.178,
+    "0.5": 6.476000000000001,
+    "0.7": 2.354
+   },
+   "value-iter": {
+    "0.0": 12.364,
+    "2.0": 14.272,
+    "5.0": 16.43,
+    "10.0": 18.762,
+    "20.0": 23.131999999999998
+   },
+   "myopic-Bayes*": {
+    "0.1": 23.34,
+    "0.2": 19.736,
+    "0.3": 16.474,
+    "0.5": 11.174,
+    "0.7": 6.5840000000000005
+   },
+   "value-iter*": {
+    "0.0": 19.122000000000003,
+    "2.0": 20.869999999999997,
+    "5.0": 23.672,
+    "10.0": 26.339999999999996,
+    "20.0": 28.310000000000002
+   }
+  },
+  "test": {
+   "oracle": {
+    "reward_per_period": 44.559999999999995,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9280000000000002,
+    "switches_per_period": 1.998,
+    "looped_kept": 0.0,
+    "clean_kept": 1.0,
+    "reward_sd": 0.4376139851512978,
+    "param": null
+   },
+   "all-in": {
+    "reward_per_period": -7.843999999999999,
+    "glue_ok": 0.9890000000000001,
+    "lean_ok": 0.62,
+    "switches_per_period": 0.0,
+    "looped_kept": 1.0,
+    "clean_kept": 1.0,
+    "reward_sd": 3.297665598571207,
+    "param": null
+   },
+   "myopic-test": {
+    "reward_per_period": 1.1490000000000002,
+    "glue_ok": 1.0,
+    "lean_ok": 0.833,
+    "switches_per_period": 7.505,
+    "looped_kept": 0.5823891303708333,
+    "clean_kept": 0.9729365191089407,
+    "reward_sd": 2.0743825346353066,
+    "param": 0.9
+   },
+   "myopic-Bayes": {
+    "reward_per_period": 16.113999999999997,
+    "glue_ok": 1.0,
+    "lean_ok": 0.8539999999999999,
+    "switches_per_period": 3.348,
+    "looped_kept": 0.4763277248850798,
+    "clean_kept": 0.9900532560667845,
+    "reward_sd": 1.4819252342814058,
+    "param": 0.1
+   },
+   "value-iter": {
+    "reward_per_period": 22.148999999999997,
+    "glue_ok": 1.0,
+    "lean_ok": 0.885,
+    "switches_per_period": 2.1839999999999997,
+    "looped_kept": 0.4103613024411875,
+    "clean_kept": 0.9856854575489475,
+    "reward_sd": 1.3543754649283928,
+    "param": 20.0
+   },
+   "myopic-Bayes*": {
+    "reward_per_period": 22.625,
+    "glue_ok": 1.0,
+    "lean_ok": 0.897,
+    "switches_per_period": 3.4170000000000003,
+    "looped_kept": 0.35128220125540266,
+    "clean_kept": 0.9808199473700038,
+    "reward_sd": 1.2260581144464562,
+    "param": 0.1
+   },
+   "value-iter*": {
+    "reward_per_period": 28.215999999999998,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9179999999999999,
+    "switches_per_period": 2.296,
+    "looped_kept": 0.2793270571208241,
+    "clean_kept": 0.9683750557093574,
+    "reward_sd": 1.2627455800754166,
+    "param": 20.0
+   }
+  }
+ },
+ "amp 0.25, kappa 0.5": {
+  "lam_hat": 0.5,
+  "lam_planted": 10.76374684709661,
+  "checks": {
+   "0.0": {
+    "vi_iters": 324,
+    "pi_iters": 4,
+    "same": true,
+    "vi_s": 0.0066297054290771484,
+    "pi_s": 0.0024662017822265625,
+    "keep_threshold_if_kept": 0.19,
+    "keep_threshold_if_dropped": 0.15
+   },
+   "2.0": {
+    "vi_iters": 47,
+    "pi_iters": 3,
+    "same": true,
+    "vi_s": 0.0011484622955322266,
+    "pi_s": 0.0017354488372802734,
+    "keep_threshold_if_kept": 0.13,
+    "keep_threshold_if_dropped": 0.09
+   },
+   "5.0": {
+    "vi_iters": 24,
+    "pi_iters": 3,
+    "same": true,
+    "vi_s": 0.0005710124969482422,
+    "pi_s": 0.0017695426940917969,
+    "keep_threshold_if_kept": 0.1,
+    "keep_threshold_if_dropped": 0.06
+   },
+   "10.0": {
+    "vi_iters": 14,
+    "pi_iters": 3,
+    "same": true,
+    "vi_s": 0.000308990478515625,
+    "pi_s": 0.0016393661499023438,
+    "keep_threshold_if_kept": 0.07,
+    "keep_threshold_if_dropped": 0.03
+   },
+   "20.0": {
+    "vi_iters": 8,
+    "pi_iters": 3,
+    "same": true,
+    "vi_s": 0.0001919269561767578,
+    "pi_s": 0.0016973018646240234,
+    "keep_threshold_if_kept": 0.04,
+    "keep_threshold_if_dropped": 0.02
+   }
+  },
+  "tuning": {
+   "oracle": {
+    "None": 48.176
+   },
+   "all-in": {
+    "None": -2.572
+   },
+   "myopic-test": {
+    "0.9": 2.992,
+    "0.95": 0.4819999999999999,
+    "0.99": -1.775,
+    "0.999": -2.472
+   },
+   "myopic-Bayes": {
+    "0.1": -0.05600000000000001,
+    "0.2": 0.43000000000000005,
+    "0.3": -2.572,
+    "0.5": -2.572,
+    "0.7": -2.572
+   },
+   "value-iter": {
+    "0.0": 11.205,
+    "2.0": 0.018000000000000006,
+    "5.0": -0.05600000000000001,
+    "10.0": -0.05600000000000001,
+    "20.0": -0.05600000000000001
+   },
+   "myopic-Bayes*": {
+    "0.1": 16.244999999999997,
+    "0.2": 9.031,
+    "0.3": 5.069,
+    "0.5": 0.5039999999999998,
+    "0.7": -1.3979999999999997
+   },
+   "value-iter*": {
+    "0.0": 9.484,
+    "2.0": 13.160000000000002,
+    "5.0": 16.887,
+    "10.0": 19.895,
+    "20.0": 22.521
+   }
+  },
+  "test": {
+   "oracle": {
+    "reward_per_period": 47.557,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9280000000000002,
+    "switches_per_period": 1.998,
+    "looped_kept": 0.0,
+    "clean_kept": 1.0,
+    "reward_sd": 0.39330916592421283,
+    "param": null
+   },
+   "all-in": {
+    "reward_per_period": -4.784,
+    "glue_ok": 1.0,
+    "lean_ok": 0.762,
+    "switches_per_period": 0.0,
+    "looped_kept": 1.0,
+    "clean_kept": 1.0,
+    "reward_sd": 2.711613246759206,
+    "param": null
+   },
+   "myopic-test": {
+    "reward_per_period": 0.7400000000000001,
+    "glue_ok": 1.0,
+    "lean_ok": 0.8149999999999998,
+    "switches_per_period": 5.428,
+    "looped_kept": 0.8300017998517187,
+    "clean_kept": 0.9732392038216103,
+    "reward_sd": 2.205883156470442,
+    "param": 0.9
+   },
+   "myopic-Bayes": {
+    "reward_per_period": 0.46699999999999997,
+    "glue_ok": 1.0,
+    "lean_ok": 0.8019999999999999,
+    "switches_per_period": 0.5439999999999999,
+    "looped_kept": 0.9065246447431029,
+    "clean_kept": 0.9978384662629642,
+    "reward_sd": 1.9873628506138479,
+    "param": 0.2
+   },
+   "value-iter": {
+    "reward_per_period": 11.0355,
+    "glue_ok": 1.0,
+    "lean_ok": 0.8640000000000001,
+    "switches_per_period": 0.5630000000000001,
+    "looped_kept": 0.6378442597529068,
+    "clean_kept": 0.916857555861122,
+    "reward_sd": 1.6421364818430895,
+    "param": 0.0
+   },
+   "myopic-Bayes*": {
+    "reward_per_period": 15.085999999999999,
+    "glue_ok": 1.0,
+    "lean_ok": 0.877,
+    "switches_per_period": 4.296,
+    "looped_kept": 0.5691919824083989,
+    "clean_kept": 0.9618389603571694,
+    "reward_sd": 1.4976053886121004,
+    "param": 0.1
+   },
+   "value-iter*": {
+    "reward_per_period": 22.026500000000002,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9269999999999999,
+    "switches_per_period": 6.635,
+    "looped_kept": 0.3030612856694303,
+    "clean_kept": 0.8384211147966238,
+    "reward_sd": 1.0879172877567485,
+    "param": 20.0
+   }
+  }
+ },
+ "amp 0.25, kappa 2.0": {
+  "lam_hat": 0.5,
+  "lam_planted": 10.76374684709661,
+  "checks": {
+   "0.0": {
+    "vi_iters": 258,
+    "pi_iters": 6,
+    "same": true,
+    "vi_s": 0.0058095455169677734,
+    "pi_s": 0.003743410110473633,
+    "keep_threshold_if_kept": 0.23,
+    "keep_threshold_if_dropped": 0.12
+   },
+   "2.0": {
+    "vi_iters": 69,
+    "pi_iters": 3,
+    "same": true,
+    "vi_s": 0.0017817020416259766,
+    "pi_s": 0.00183868408203125,
+    "keep_threshold_if_kept": 0.14,
+    "keep_threshold_if_dropped": 0.03
+   },
+   "5.0": {
+    "vi_iters": 33,
+    "pi_iters": 2,
+    "same": true,
+    "vi_s": 0.0008873939514160156,
+    "pi_s": 0.001256704330444336,
+    "keep_threshold_if_kept": 0.11,
+    "keep_threshold_if_dropped": 0.0
+   },
+   "10.0": {
+    "vi_iters": 17,
+    "pi_iters": 2,
+    "same": true,
+    "vi_s": 0.0004723072052001953,
+    "pi_s": 0.0011644363403320312,
+    "keep_threshold_if_kept": 0.07,
+    "keep_threshold_if_dropped": 0.0
+   },
+   "20.0": {
+    "vi_iters": 11,
+    "pi_iters": 2,
+    "same": true,
+    "vi_s": 0.00026345252990722656,
+    "pi_s": 0.0012233257293701172,
+    "keep_threshold_if_kept": 0.05,
+    "keep_threshold_if_dropped": 0.0
+   }
+  },
+  "tuning": {
+   "oracle": {
+    "None": 44.989999999999995
+   },
+   "all-in": {
+    "None": -2.572
+   },
+   "myopic-test": {
+    "0.9": -5.204000000000001,
+    "0.95": -3.442,
+    "0.99": -2.492,
+    "0.999": -2.5740000000000003
+   },
+   "myopic-Bayes": {
+    "0.1": -3.3920000000000003,
+    "0.2": -0.3739999999999998,
+    "0.3": -2.572,
+    "0.5": -2.572,
+    "0.7": -2.572
+   },
+   "value-iter": {
+    "0.0": -2.076,
+    "2.0": -1.686,
+    "5.0": -3.3920000000000003,
+    "10.0": -3.3920000000000003,
+    "20.0": -3.3920000000000003
+   },
+   "myopic-Bayes*": {
+    "0.1": 9.624,
+    "0.2": 5.782,
+    "0.3": 2.972,
+    "0.5": -0.5399999999999998,
+    "0.7": -1.8599999999999999
+   },
+   "value-iter*": {
+    "0.0": 4.974,
+    "2.0": 8.838,
+    "5.0": 12.622,
+    "10.0": 17.59,
+    "20.0": 3.1739999999999995
+   }
+  },
+  "test": {
+   "oracle": {
+    "reward_per_period": 44.559999999999995,
+    "glue_ok": 1.0,
+    "lean_ok": 0.9280000000000002,
+    "switches_per_period": 1.998,
+    "looped_kept": 0.0,
+    "clean_kept": 1.0,
+    "reward_sd": 0.4376139851512978,
+    "param": null
+   },
+   "all-in": {
+    "reward_per_period": -4.784,
+    "glue_ok": 1.0,
+    "lean_ok": 0.762,
+    "switches_per_period": 0.0,
+    "looped_kept": 1.0,
+    "clean_kept": 1.0,
+    "reward_sd": 2.711613246759206,
+    "param": null
+   },
+   "myopic-test": {
+    "reward_per_period": -4.68,
+    "glue_ok": 1.0,
+    "lean_ok": 0.7689999999999999,
+    "switches_per_period": 0.507,
+    "looped_kept": 0.9793799918642436,
+    "clean_kept": 0.9989623961078093,
+    "reward_sd": 2.652517294948329,
+    "param": 0.99
+   },
+   "myopic-Bayes": {
+    "reward_per_period": -0.34900000000000003,
+    "glue_ok": 1.0,
+    "lean_ok": 0.8019999999999999,
+    "switches_per_period": 0.5439999999999999,
+    "looped_kept": 0.9065246447431029,
+    "clean_kept": 0.9978384662629642,
+    "reward_sd": 2.046685833243588,
+    "param": 0.2
+   },
+   "value-iter": {
+    "reward_per_period": -1.323,
+    "glue_ok": 0.9970000000000001,
+    "lean_ok": 0.97,
+    "switches_per_period": 1.1380000000000001,
+    "looped_kept": 0.009377431624793498,
+    "clean_kept": 0.04158925485377161,
+    "reward_sd": 0.18979488928841048,
+    "param": 2.0
+   },
+   "myopic-Bayes*": {
+    "reward_per_period": 8.642,
+    "glue_ok": 1.0,
+    "lean_ok": 0.877,
+    "switches_per_period": 4.296,
+    "looped_kept": 0.5691919824083989,
+    "clean_kept": 0.9618389603571694,
+    "reward_sd": 1.4775349742053485,
+    "param": 0.1
+   },
+   "value-iter*": {
+    "reward_per_period": 17.996,
+    "glue_ok": 1.0,
+    "lean_ok": 0.916,
+    "switches_per_period": 1.7,
+    "looped_kept": 0.47026992334378936,
+    "clean_kept": 0.9316797238219066,
+    "reward_sd": 1.6447390066512073,
+    "param": 10.0
+   }
+  }
+ }
+}
