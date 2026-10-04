@@ -1,0 +1,28 @@
+X=50: jets 0.0s; R2 of D(U): first 0.999 second 1.000; bags 34 (max 7; 3/3 planted clusters inside one bag); full cover glue p 6.3e-08, target r 1.76
+   DP-2nd+rule feasible   0/200 (0.00), distinct   0, diversity 0.000, contaminated excluded nan, clean kept nan, outcome correct nan, glues 0.00, stable 0.98, 1.0s (0.98s per feasible)
+   DP-2nd  feasible  29/200 (0.14), distinct   5, diversity 0.087, contaminated excluded 1.00, clean kept 0.83, outcome correct 1.00, glues 1.00, stable 0.14, 0.7s (0.03s per feasible)
+   DP-1st  feasible   0/200 (0.00), distinct   0, diversity 0.000, contaminated excluded nan, clean kept nan, outcome correct nan, glues 1.00, stable 0.00, 0.8s (0.81s per feasible)
+   random  feasible   0/200 (0.00), distinct   0, diversity 0.000, contaminated excluded nan, clean kept nan, outcome correct nan, glues 0.03, stable 0.49, 0.8s (0.82s per feasible)
+   greedy  feasible 158/200 (0.79), distinct 146, diversity 0.227, contaminated excluded 0.98, clean kept 0.78, outcome correct 1.00, glues 1.00, stable 0.79, 4.0s (0.03s per feasible)
+X=100: jets 0.0s; R2 of D(U): first 1.000 second 1.000; bags 82 (max 6; 6/6 planted clusters inside one bag); full cover glue p 2.3e-17, target r 2.03
+   DP-2nd+rule feasible 200/200 (1.00), distinct   6, diversity 0.030, contaminated excluded 0.98, clean kept 0.92, outcome correct 1.00, glues 1.00, stable 1.00, 2.4s (0.01s per feasible)
+   DP-2nd  feasible 200/200 (1.00), distinct   9, diversity 0.031, contaminated excluded 0.94, clean kept 0.92, outcome correct 1.00, glues 1.00, stable 1.00, 1.6s (0.01s per feasible)
+   DP-1st  feasible 188/200 (0.94), distinct  13, diversity 0.033, contaminated excluded 0.91, clean kept 0.92, outcome correct 1.00, glues 1.00, stable 0.94, 1.8s (0.01s per feasible)
+   random  feasible   0/200 (0.00), distinct   0, diversity 0.000, contaminated excluded nan, clean kept nan, outcome correct nan, glues 0.00, stable 0.39, 2.0s (1.97s per feasible)
+   greedy  feasible 150/150 (1.00), distinct 148, diversity 0.113, contaminated excluded 0.87, clean kept 0.91, outcome correct 1.00, glues 1.00, stable 1.00, 5.0s (0.03s per feasible)
+   beta 1.0  : feasible 1.00, distinct 40, diversity 0.026, contaminated excluded 0.98
+   beta 0.3  : feasible 0.99, distinct 189, diversity 0.052, contaminated excluded 0.93
+   beta 0.1  : feasible 0.33, distinct 65, diversity 0.203, contaminated excluded 0.88
+   beta 0.03 : feasible 0.00, distinct 0, diversity 0.000, contaminated excluded nan
+X=200: jets 0.0s; R2 of D(U): first 1.000 second 1.000; bags 172 (max 4; 10/10 planted clusters inside one bag); full cover glue p 9.0e-40, target r 4.11
+   DP-2nd+rule feasible 200/200 (1.00), distinct  30, diversity 0.027, contaminated excluded 0.98, clean kept 0.95, outcome correct 1.00, glues 1.00, stable 1.00, 5.0s (0.02s per feasible)
+   DP-2nd  feasible 200/200 (1.00), distinct  42, diversity 0.028, contaminated excluded 0.98, clean kept 0.95, outcome correct 1.00, glues 1.00, stable 1.00, 3.4s (0.02s per feasible)
+   DP-1st  feasible 200/200 (1.00), distinct  56, diversity 0.029, contaminated excluded 0.96, clean kept 0.95, outcome correct 1.00, glues 1.00, stable 1.00, 3.7s (0.02s per feasible)
+   random  feasible   0/200 (0.00), distinct   0, diversity 0.000, contaminated excluded nan, clean kept nan, outcome correct nan, glues 0.00, stable 0.88, 3.5s (3.54s per feasible)
+   greedy  feasible  78/ 78 (1.00), distinct  78, diversity 0.060, contaminated excluded 0.84, clean kept 0.95, outcome correct 1.00, glues 1.00, stable 1.00, 5.0s (0.06s per feasible)
+X=400: jets 0.0s; R2 of D(U): first 1.000 second 1.000; bags 361 (max 5; 16/22 planted clusters inside one bag); full cover glue p 4.2e-65, target r 5.61
+   DP-2nd+rule feasible 200/200 (1.00), distinct  71, diversity 0.015, contaminated excluded 0.94, clean kept 0.98, outcome correct 1.00, glues 1.00, stable 1.00, 12.3s (0.06s per feasible)
+   DP-2nd  feasible 200/200 (1.00), distinct  73, diversity 0.015, contaminated excluded 0.94, clean kept 0.98, outcome correct 1.00, glues 1.00, stable 1.00, 7.5s (0.04s per feasible)
+   DP-1st  feasible 200/200 (1.00), distinct  68, diversity 0.014, contaminated excluded 0.94, clean kept 0.98, outcome correct 1.00, glues 1.00, stable 1.00, 8.1s (0.04s per feasible)
+   random  feasible   0/200 (0.00), distinct   0, diversity 0.000, contaminated excluded nan, clean kept nan, outcome correct nan, glues 0.00, stable 0.99, 8.0s (7.95s per feasible)
+   greedy  feasible  76/ 76 (1.00), distinct  76, diversity 0.030, contaminated excluded 0.77, clean kept 0.98, outcome correct 1.00, glues 1.00, stable 1.00, 12.3s (0.16s per feasible)
