@@ -1,0 +1,8 @@
+== MBIC (1640 sentences): Frechet mean on star at 0.0000 (leg moments L-C 0.1181, L-R 0.0749, C-R 0.0671)
+   label-permutation null: leg moments mean L-C 0.0815, L-R 0.0823, C-R 0.0799;  p(moment >= observed): L-C 0.000, L-R 0.976, C-R 1.000;  null means off the origin in 0.00 of permutations
+   left vs right outlets: energy 0.0027, p 0.066 (n 678/664);  Frechet mean on star at 0.0000 (leg moments L-C 0.1145, L-R 0.0669, C-R 0.0753)  |  Frechet mean on star at 0.0000 (leg moments L-C 0.1234, L-R 0.0822, C-R 0.0607)
+   articles <= 2019 vs 2020: energy 0.0023, p 0.231 (n 497/474);  Frechet mean on star at 0.0000 (leg moments L-C 0.1252, L-R 0.0711, C-R 0.0795)  |  Frechet mean on star at 0.0000 (leg moments L-C 0.1205, L-R 0.0733, C-R 0.0563)
+
+== AllSides (736 stories, tone): Frechet mean on star at 0.0000 (leg moments L-C 0.0626, L-R 0.0501, C-R 0.0501)
+   before/after election 2016: energy 0.0032, p 0.168 (n 158/578);  Frechet mean on star at 0.0000 (leg moments L-C 0.0404, L-R 0.0520, C-R 0.0501)  |  Frechet mean on star at 0.0000 (leg moments L-C 0.0687, L-R 0.0496, C-R 0.0501)
+   before/after COVID emergency: energy 0.0074, p 0.058 (n 651/85);  Frechet mean on star at 0.0000 (leg moments L-C 0.0584, L-R 0.0492, C-R 0.0471)  |  Frechet mean on star at 0.0000 (leg moments L-C 0.0951, L-R 0.0574, C-R 0.0731)

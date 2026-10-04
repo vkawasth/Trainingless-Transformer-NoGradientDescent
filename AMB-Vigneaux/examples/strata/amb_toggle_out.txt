@@ -1,0 +1,42 @@
+
+== MBIC outlet x topic x majority label: 1700 units, table (8, 14, 2), 176 live cells (48 in empty contexts), glued-model MLE interior on live cells: True
+   evidence that must vanish to toggle one cell: saturated (the cell alone) vs glued (its co-facial set)
+   median glued/saturated = 2.0x   (range 1.0-17.3x);  exact (MILP optimal) for 176/176 cells
+   cheapest toggle is: context 163, source slice 9, topic slice 4
+   huffpost/environment/biased                      obs    3  saturated    2.5  glued     3.0  [context: huffpost/environment/biased; huffpost/environment/not]
+   huffpost/environment/not                         obs    0  saturated    0.5  glued     3.0  [context: huffpost/environment/biased; huffpost/environment/not]
+   reuters/student-debt/biased                      obs    2  saturated    1.0  glued     5.0  [context: reuters/student-debt/biased; reuters/student-debt/not]
+   reuters/student-debt/not                         obs    3  saturated    4.0  glued     5.0  [context: reuters/student-debt/biased; reuters/student-debt/not]
+   reuters/white-nationalism/biased                 obs    5  saturated    2.4  glued     5.0  [context: reuters/white-nationalism/biased; reuters/white-nationalism/not]
+   reuters/white-nationalism/not                    obs    0  saturated    2.6  glued     5.0  [context: reuters/white-nationalism/biased; reuters/white-nationalism/not]
+
+== AllSides side x topic group x adversarial, 2015-2020: 11558 units, table (3, 8, 2), 48 live cells (0 in empty contexts), glued-model MLE interior on live cells: True
+   evidence that must vanish to toggle one cell: saturated (the cell alone) vs glued (its co-facial set)
+   median glued/saturated = 1.6x   (range 1.0-5.4x);  exact (MILP optimal) for 48/48 cells
+   cheapest toggle is: context 25, topic slice 20, source slice 3
+   left/healthcare/adversarial                      obs    5  saturated    3.4  glued     7.0  [topic slice: left/healthcare/adversarial; center/healthcare/adversarial; right/healthcare/adversarial]
+   center/healthcare/adversarial                    obs    1  saturated    1.9  glued     7.0  [topic slice: left/healthcare/adversarial; center/healthcare/adversarial; right/healthcare/adversarial]
+   right/healthcare/adversarial                     obs    1  saturated    1.6  glued     7.0  [topic slice: left/healthcare/adversarial; center/healthcare/adversarial; right/healthcare/adversarial]
+   left/economy/adversarial                         obs    3  saturated    5.7  glued    15.0  [topic slice: left/economy/adversarial; center/economy/adversarial; right/economy/adversarial]
+   center/economy/adversarial                       obs    8  saturated    5.4  glued    15.0  [topic slice: left/economy/adversarial; center/economy/adversarial; right/economy/adversarial]
+   right/economy/adversarial                        obs    4  saturated    3.9  glued    15.0  [topic slice: left/economy/adversarial; center/economy/adversarial; right/economy/adversarial]
+
+== AllSides before COVID (26 wk), groups ['elections', 'foreign', 'justice', 'media', 'politics']: 1232 units, table (3, 5, 2), 30 live cells (0 in empty contexts), glued-model MLE interior on live cells: True
+   evidence that must vanish to toggle one cell: saturated (the cell alone) vs glued (its co-facial set)
+   median glued/saturated = 1.7x   (range 1.1-4.2x);  exact (MILP optimal) for 30/30 cells
+   cheapest toggle is: context 15, topic slice 12, source slice 3
+   left/foreign/adversarial                         obs    4  saturated    2.6  glued    11.0  [topic slice: left/foreign/adversarial; center/foreign/adversarial; right/foreign/adversarial]
+   center/foreign/adversarial                       obs    3  saturated    4.3  glued    11.0  [topic slice: left/foreign/adversarial; center/foreign/adversarial; right/foreign/adversarial]
+   right/foreign/adversarial                        obs    4  saturated    4.1  glued    11.0  [topic slice: left/foreign/adversarial; center/foreign/adversarial; right/foreign/adversarial]
+   left/media/adversarial                           obs    5  saturated    4.4  glued    13.0  [topic slice: left/media/adversarial; center/media/adversarial; right/media/adversarial]
+   centre 'adversarial possible' toggle (articles, glued; % of window): elections 17 (1.4%)  foreign 11 (0.9%)  justice 45 (3.7%)  media 13 (1.1%)  politics 31 (2.5%)
+
+== AllSides after COVID (19 wk), groups ['elections', 'foreign', 'justice', 'media', 'politics']: 616 units, table (3, 5, 2), 30 live cells (0 in empty contexts), glued-model MLE interior on live cells: True
+   evidence that must vanish to toggle one cell: saturated (the cell alone) vs glued (its co-facial set)
+   median glued/saturated = 1.6x   (range 1.1-4.8x);  exact (MILP optimal) for 30/30 cells
+   cheapest toggle is: context 15, topic slice 12, source slice 3
+   left/foreign/adversarial                         obs    1  saturated    1.6  glued     5.0  [topic slice: left/foreign/adversarial; center/foreign/adversarial; right/foreign/adversarial]
+   center/foreign/adversarial                       obs    2  saturated    2.1  glued     5.0  [topic slice: left/foreign/adversarial; center/foreign/adversarial; right/foreign/adversarial]
+   right/foreign/adversarial                        obs    2  saturated    1.3  glued     5.0  [topic slice: left/foreign/adversarial; center/foreign/adversarial; right/foreign/adversarial]
+   left/elections/adversarial                       obs    3  saturated    2.6  glued     7.0  [topic slice: left/elections/adversarial; center/elections/adversarial; right/elections/adversarial]
+   centre 'adversarial possible' toggle (articles, glued; % of window): elections 7 (1.1%)  foreign 5 (0.8%)  justice 11 (1.8%)  media 23 (3.7%)  politics 29 (4.7%)

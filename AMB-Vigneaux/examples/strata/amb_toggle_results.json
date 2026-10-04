@@ -1,0 +1,750 @@
+{
+ "mbic": {
+  "n": 1700.0,
+  "mle_interior": true,
+  "median_ratio": 2.0017022477359525,
+  "min_ratio": 1.0489578432245021,
+  "max_ratio": 17.32780697832254,
+  "kinds": {
+   "context": 163,
+   "source slice": 9,
+   "topic slice": 4
+  },
+  "nearest": [
+   {
+    "cell": [
+     "huffpost",
+     "environment",
+     "biased"
+    ],
+    "obs": 3,
+    "fitted": 2.500930904339147,
+    "sat": 2.500930904339147,
+    "glued": 2.9999999999962363,
+    "n_forced": 2,
+    "optimal": true,
+    "kind": "context",
+    "forced": [
+     [
+      "huffpost",
+      "environment",
+      "biased"
+     ],
+     [
+      "huffpost",
+      "environment",
+      "not"
+     ]
+    ],
+    "forced_contexts": [
+     "huffpost|environment"
+    ]
+   },
+   {
+    "cell": [
+     "huffpost",
+     "environment",
+     "not"
+    ],
+    "obs": 0,
+    "fitted": 0.49906909565708973,
+    "sat": 0.49906909565708973,
+    "glued": 2.9999999999962363,
+    "n_forced": 2,
+    "optimal": true,
+    "kind": "context",
+    "forced": [
+     [
+      "huffpost",
+      "environment",
+      "biased"
+     ],
+     [
+      "huffpost",
+      "environment",
+      "not"
+     ]
+    ],
+    "forced_contexts": [
+     "huffpost|environment"
+    ]
+   },
+   {
+    "cell": [
+     "reuters",
+     "student-debt",
+     "biased"
+    ],
+    "obs": 2,
+    "fitted": 1.0180687456810058,
+    "sat": 1.0180687456810058,
+    "glued": 4.999999999984737,
+    "n_forced": 2,
+    "optimal": true,
+    "kind": "context",
+    "forced": [
+     [
+      "reuters",
+      "student-debt",
+      "biased"
+     ],
+     [
+      "reuters",
+      "student-debt",
+      "not"
+     ]
+    ],
+    "forced_contexts": [
+     "reuters|student-debt"
+    ]
+   },
+   {
+    "cell": [
+     "reuters",
+     "student-debt",
+     "not"
+    ],
+    "obs": 3,
+    "fitted": 3.981931254303731,
+    "sat": 3.9819312543037304,
+    "glued": 4.999999999984737,
+    "n_forced": 2,
+    "optimal": true,
+    "kind": "context",
+    "forced": [
+     [
+      "reuters",
+      "student-debt",
+      "biased"
+     ],
+     [
+      "reuters",
+      "student-debt",
+      "not"
+     ]
+    ],
+    "forced_contexts": [
+     "reuters|student-debt"
+    ]
+   },
+   {
+    "cell": [
+     "reuters",
+     "white-nationalism",
+     "biased"
+    ],
+    "obs": 5,
+    "fitted": 2.40103405142939,
+    "sat": 2.40103405142939,
+    "glued": 5.0000000000006075,
+    "n_forced": 2,
+    "optimal": true,
+    "kind": "context",
+    "forced": [
+     [
+      "reuters",
+      "white-nationalism",
+      "biased"
+     ],
+     [
+      "reuters",
+      "white-nationalism",
+      "not"
+     ]
+    ],
+    "forced_contexts": [
+     "reuters|white-nationalism"
+    ]
+   },
+   {
+    "cell": [
+     "reuters",
+     "white-nationalism",
+     "not"
+    ],
+    "obs": 0,
+    "fitted": 2.598965948571217,
+    "sat": 2.598965948571217,
+    "glued": 5.0000000000006075,
+    "n_forced": 2,
+    "optimal": true,
+    "kind": "context",
+    "forced": [
+     [
+      "reuters",
+      "white-nationalism",
+      "biased"
+     ],
+     [
+      "reuters",
+      "white-nationalism",
+      "not"
+     ]
+    ],
+    "forced_contexts": [
+     "reuters|white-nationalism"
+    ]
+   }
+  ]
+ },
+ "allsides_all": {
+  "n": 11558.0,
+  "mle_interior": true,
+  "median_ratio": 1.6308469075281682,
+  "min_ratio": 1.015764611636535,
+  "max_ratio": 5.378903485060164,
+  "kinds": {
+   "topic slice": 20,
+   "context": 25,
+   "source slice": 3
+  },
+  "nearest": [
+   {
+    "cell": [
+     "left",
+     "healthcare",
+     "adversarial"
+    ],
+    "obs": 5,
+    "fitted": 3.4396690847923668,
+    "sat": 3.4396690847923668,
+    "glued": 7.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "healthcare",
+      "adversarial"
+     ],
+     [
+      "center",
+      "healthcare",
+      "adversarial"
+     ],
+     [
+      "right",
+      "healthcare",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|healthcare",
+     "left|healthcare",
+     "right|healthcare"
+    ]
+   },
+   {
+    "cell": [
+     "center",
+     "healthcare",
+     "adversarial"
+    ],
+    "obs": 1,
+    "fitted": 1.9307366146449192,
+    "sat": 1.9307366146449192,
+    "glued": 7.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "healthcare",
+      "adversarial"
+     ],
+     [
+      "center",
+      "healthcare",
+      "adversarial"
+     ],
+     [
+      "right",
+      "healthcare",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|healthcare",
+     "left|healthcare",
+     "right|healthcare"
+    ]
+   },
+   {
+    "cell": [
+     "right",
+     "healthcare",
+     "adversarial"
+    ],
+    "obs": 1,
+    "fitted": 1.629594300562714,
+    "sat": 1.629594300562714,
+    "glued": 7.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "healthcare",
+      "adversarial"
+     ],
+     [
+      "center",
+      "healthcare",
+      "adversarial"
+     ],
+     [
+      "right",
+      "healthcare",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|healthcare",
+     "left|healthcare",
+     "right|healthcare"
+    ]
+   },
+   {
+    "cell": [
+     "left",
+     "economy",
+     "adversarial"
+    ],
+    "obs": 3,
+    "fitted": 5.724048821578894,
+    "sat": 5.724048821578894,
+    "glued": 15.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "economy",
+      "adversarial"
+     ],
+     [
+      "center",
+      "economy",
+      "adversarial"
+     ],
+     [
+      "right",
+      "economy",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|economy",
+     "left|economy",
+     "right|economy"
+    ]
+   },
+   {
+    "cell": [
+     "center",
+     "economy",
+     "adversarial"
+    ],
+    "obs": 8,
+    "fitted": 5.381924758623665,
+    "sat": 5.381924758623665,
+    "glued": 15.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "economy",
+      "adversarial"
+     ],
+     [
+      "center",
+      "economy",
+      "adversarial"
+     ],
+     [
+      "right",
+      "economy",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|economy",
+     "left|economy",
+     "right|economy"
+    ]
+   },
+   {
+    "cell": [
+     "right",
+     "economy",
+     "adversarial"
+    ],
+    "obs": 4,
+    "fitted": 3.894026419797441,
+    "sat": 3.894026419797441,
+    "glued": 15.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "economy",
+      "adversarial"
+     ],
+     [
+      "center",
+      "economy",
+      "adversarial"
+     ],
+     [
+      "right",
+      "economy",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|economy",
+     "left|economy",
+     "right|economy"
+    ]
+   }
+  ]
+ },
+ "allsides_before": {
+  "n": 1232.0,
+  "mle_interior": true,
+  "median_ratio": 1.6741735637181667,
+  "min_ratio": 1.0527431029214822,
+  "max_ratio": 4.222251264025666,
+  "kinds": {
+   "topic slice": 12,
+   "context": 15,
+   "source slice": 3
+  },
+  "nearest": [
+   {
+    "cell": [
+     "left",
+     "foreign",
+     "adversarial"
+    ],
+    "obs": 4,
+    "fitted": 2.6209570873971524,
+    "sat": 2.6209570873971524,
+    "glued": 11.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "center",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "right",
+      "foreign",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|foreign",
+     "left|foreign",
+     "right|foreign"
+    ]
+   },
+   {
+    "cell": [
+     "center",
+     "foreign",
+     "adversarial"
+    ],
+    "obs": 3,
+    "fitted": 4.280813885088561,
+    "sat": 4.280813885088561,
+    "glued": 11.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "center",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "right",
+      "foreign",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|foreign",
+     "left|foreign",
+     "right|foreign"
+    ]
+   },
+   {
+    "cell": [
+     "right",
+     "foreign",
+     "adversarial"
+    ],
+    "obs": 4,
+    "fitted": 4.098229027514287,
+    "sat": 4.098229027514287,
+    "glued": 11.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "center",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "right",
+      "foreign",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|foreign",
+     "left|foreign",
+     "right|foreign"
+    ]
+   },
+   {
+    "cell": [
+     "left",
+     "media",
+     "adversarial"
+    ],
+    "obs": 5,
+    "fitted": 4.433619132121312,
+    "sat": 4.433619132121312,
+    "glued": 13.0,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "media",
+      "adversarial"
+     ],
+     [
+      "center",
+      "media",
+      "adversarial"
+     ],
+     [
+      "right",
+      "media",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|media",
+     "left|media",
+     "right|media"
+    ]
+   }
+  ],
+  "centre_adversarial_toggle": {
+   "elections": 17.0,
+   "foreign": 11.0,
+   "justice": 45.0000000000001,
+   "media": 13.0,
+   "politics": 31.0
+  }
+ },
+ "allsides_after": {
+  "n": 616.0,
+  "mle_interior": true,
+  "median_ratio": 1.5882353479606999,
+  "min_ratio": 1.0899669837734232,
+  "max_ratio": 4.768977024755267,
+  "kinds": {
+   "topic slice": 12,
+   "context": 15,
+   "source slice": 3
+  },
+  "nearest": [
+   {
+    "cell": [
+     "left",
+     "foreign",
+     "adversarial"
+    ],
+    "obs": 1,
+    "fitted": 1.5745029484995439,
+    "sat": 1.5745029484995434,
+    "glued": 4.999999999999999,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "center",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "right",
+      "foreign",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|foreign",
+     "left|foreign",
+     "right|foreign"
+    ]
+   },
+   {
+    "cell": [
+     "center",
+     "foreign",
+     "adversarial"
+    ],
+    "obs": 2,
+    "fitted": 2.0846872217952157,
+    "sat": 2.0846872217952153,
+    "glued": 4.999999999999999,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "center",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "right",
+      "foreign",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|foreign",
+     "left|foreign",
+     "right|foreign"
+    ]
+   },
+   {
+    "cell": [
+     "right",
+     "foreign",
+     "adversarial"
+    ],
+    "obs": 2,
+    "fitted": 1.3408098297052413,
+    "sat": 1.340809829705241,
+    "glued": 4.999999999999999,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "center",
+      "foreign",
+      "adversarial"
+     ],
+     [
+      "right",
+      "foreign",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|foreign",
+     "left|foreign",
+     "right|foreign"
+    ]
+   },
+   {
+    "cell": [
+     "left",
+     "elections",
+     "adversarial"
+    ],
+    "obs": 3,
+    "fitted": 2.6018489015955333,
+    "sat": 2.601848901595533,
+    "glued": 6.999999999999998,
+    "n_forced": 3,
+    "optimal": true,
+    "kind": "topic slice",
+    "forced": [
+     [
+      "left",
+      "elections",
+      "adversarial"
+     ],
+     [
+      "center",
+      "elections",
+      "adversarial"
+     ],
+     [
+      "right",
+      "elections",
+      "adversarial"
+     ]
+    ],
+    "forced_contexts": [
+     "center|elections",
+     "left|elections",
+     "right|elections"
+    ]
+   }
+  ],
+  "centre_adversarial_toggle": {
+   "elections": 6.999999999999998,
+   "foreign": 4.999999999999999,
+   "justice": 11.0,
+   "media": 23.0,
+   "politics": 28.999999999996653
+  }
+ }
+}
