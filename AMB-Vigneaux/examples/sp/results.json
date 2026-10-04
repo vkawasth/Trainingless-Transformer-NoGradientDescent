@@ -1,0 +1,25 @@
+{
+ "giry_mixture_equals_C": true,
+ "global_equals_D_(A_and_B_vs_A_or_B)": true,
+ "per_branch_records": 2,
+ "per_branch_recovers_A_B_exactly": true,
+ "MI_outcome_record_nats": 0.043183441607471625,
+ "P(A|e)_per_branch": "25/41",
+ "P(A|e)_bayes": "25/41",
+ "bayes_factor_A:B": "25/16",
+ "per_branch_matches_bayes": true,
+ "global_after_e_record": [
+  "1[x2=1]",
+  "p(w)",
+  "p(x1|w)",
+  "p(x1|z)",
+  "p(x2|w)",
+  "p(x2|x1)",
+  "p(z)"
+ ],
+ "global_after_e_can_weigh_A_vs_B": false,
+ "giry_posterior_x1_given_e": {
+  "(0, 1)": "59/328",
+  "(1, 1)": "269/328"
+ }
+}
