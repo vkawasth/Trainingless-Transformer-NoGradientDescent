@@ -1,0 +1,5 @@
+5 linear base 0.090 | generic-prior Bayes 0.077 (chains 0.092 0.077 0.083 0.072; between-chain rms 0.041; final loglik [-1282.6, -1272.9, -1267.9, -1279.9]) | 285s
+6 quadratic_ base 0.103 | generic-prior Bayes 0.103 (chains 0.108 0.106 0.106 0.106; between-chain rms 0.038; final loglik [-1332.4, -1317.1, -1304.4, -1315.9]) | 281s
+7 threshold_ base 0.105 | generic-prior Bayes 0.092 (chains 0.089 0.101 0.096 0.102; between-chain rms 0.050; final loglik [-1284.8, -1274.1, -1279.8, -1271.6]) | 278s
+8 fourier_no base 0.128 | generic-prior Bayes 0.101 (chains 0.112 0.110 0.101 0.098; between-chain rms 0.054; final loglik [-1293.6, -1296.7, -1315.3, -1287.8]) | 277s
+mean base 0.1065 | generic-prior Bayes 0.0935

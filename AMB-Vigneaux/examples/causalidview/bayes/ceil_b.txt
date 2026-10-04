@@ -1,0 +1,53 @@
+   it 0 loglik -1374.0
+   it 250 loglik -1300.6
+   it 500 loglik -1284.0
+   it 750 loglik -1291.5
+   it 1000 loglik -1286.4
+   it 1250 loglik -1288.6
+   it 0 loglik -1361.1
+   it 250 loglik -1294.9
+   it 500 loglik -1298.2
+   it 750 loglik -1290.0
+   it 1000 loglik -1274.1
+   it 1250 loglik -1275.3
+5 linear base 0.090 | Bayes ceiling 0.079 (chains 0.074 0.084; between-chain rms 0.020) | loglik tails [-1287.2 -1285.5] | 212s
+   it 0 loglik -1379.2
+   it 250 loglik -1311.0
+   it 500 loglik -1305.4
+   it 750 loglik -1314.1
+   it 1000 loglik -1304.6
+   it 1250 loglik -1303.2
+   it 0 loglik -1371.8
+   it 250 loglik -1306.1
+   it 500 loglik -1314.0
+   it 750 loglik -1318.0
+   it 1000 loglik -1308.3
+   it 1250 loglik -1303.8
+6 quadratic_ base 0.103 | Bayes ceiling 0.091 (chains 0.121 0.075; between-chain rms 0.085) | loglik tails [-1315.9 -1313.9] | 214s
+   it 0 loglik -1380.0
+   it 250 loglik -1293.0
+   it 500 loglik -1285.1
+   it 750 loglik -1298.5
+   it 1000 loglik -1276.5
+   it 1250 loglik -1284.3
+   it 0 loglik -1370.6
+   it 250 loglik -1285.5
+   it 500 loglik -1285.1
+   it 750 loglik -1285.4
+   it 1000 loglik -1290.4
+   it 1250 loglik -1295.8
+7 threshold_ base 0.105 | Bayes ceiling 0.095 (chains 0.107 0.089; between-chain rms 0.048) | loglik tails [-1285.8 -1287.2] | 209s
+   it 0 loglik -1371.9
+   it 250 loglik -1309.0
+   it 500 loglik -1311.2
+   it 750 loglik -1293.2
+   it 1000 loglik -1310.8
+   it 1250 loglik -1296.7
+   it 0 loglik -1370.2
+   it 250 loglik -1314.4
+   it 500 loglik -1292.1
+   it 750 loglik -1293.8
+   it 1000 loglik -1300.6
+   it 1250 loglik -1299.1
+8 fourier_no base 0.128 | Bayes ceiling 0.107 (chains 0.136 0.095; between-chain rms 0.096) | loglik tails [-1305.4 -1289.6] | 213s
+mean base 0.1065 | Bayes ceiling 0.0930

@@ -1,0 +1,21 @@
+0 linear base 0.096 | generic-prior Bayes: Manski 0.087 IV 0.127 (IV infeasible 0.00) | chains 0.090 0.090 0.090 0.094 | 290s
+2 threshold_ base 0.109 | generic-prior Bayes: Manski 0.111 IV 0.142 (IV infeasible 0.00) | chains 0.115 0.113 0.119 0.114 | 286s
+4 shallow_ml base 0.103 | generic-prior Bayes: Manski 0.109 IV 0.141 (IV infeasible 0.00) | chains 0.118 0.131 0.111 0.106 | 283s
+6 quadratic_ base 0.103 | generic-prior Bayes: Manski 0.102 IV 0.133 (IV infeasible 0.00) | chains 0.101 0.102 0.114 0.108 | 284s
+8 fourier_no base 0.128 | generic-prior Bayes: Manski 0.094 IV 0.120 (IV infeasible 0.00) | chains 0.099 0.092 0.099 0.103 | 285s
+10 linear base 0.095 | generic-prior Bayes: Manski 0.072 IV 0.092 (IV infeasible 0.00) | chains 0.067 0.085 0.082 0.074 | 279s
+12 threshold_ base 0.100 | generic-prior Bayes: Manski 0.087 IV 0.114 (IV infeasible 0.00) | chains 0.092 0.094 0.088 0.099 | 276s
+14 shallow_ml base 0.102 | generic-prior Bayes: Manski 0.105 IV 0.136 (IV infeasible 0.00) | chains 0.110 0.107 0.105 0.109 | 285s
+16 quadratic_ base 0.094 | generic-prior Bayes: Manski 0.096 IV 0.124 (IV infeasible 0.00) | chains 0.087 0.094 0.112 0.113 | 286s
+18 fourier_no base 0.126 | generic-prior Bayes: Manski 0.092 IV 0.119 (IV infeasible 0.00) | chains 0.101 0.097 0.098 0.089 | 288s
+20 linear base 0.091 | generic-prior Bayes: Manski 0.073 IV 0.098 (IV infeasible 0.00) | chains 0.082 0.070 0.080 0.079 | 283s
+22 threshold_ base 0.103 | generic-prior Bayes: Manski 0.091 IV 0.115 (IV infeasible 0.00) | chains 0.099 0.093 0.099 0.092 | 281s
+24 shallow_ml base 0.105 | generic-prior Bayes: Manski 0.106 IV 0.137 (IV infeasible 0.00) | chains 0.107 0.119 0.113 0.109 | 278s
+26 quadratic_ base 0.109 | generic-prior Bayes: Manski 0.101 IV 0.136 (IV infeasible 0.00) | chains 0.099 0.115 0.099 0.108 | 280s
+28 fourier_no base 0.127 | generic-prior Bayes: Manski 0.104 IV 0.136 (IV infeasible 0.00) | chains 0.114 0.108 0.107 0.100 | 275s
+30 linear base 0.087 | generic-prior Bayes: Manski 0.063 IV 0.079 (IV infeasible 0.00) | chains 0.071 0.064 0.071 0.067 | 270s
+32 threshold_ base 0.086 | generic-prior Bayes: Manski 0.066 IV 0.091 (IV infeasible 0.00) | chains 0.077 0.071 0.071 0.074 | 272s
+34 shallow_ml base 0.102 | generic-prior Bayes: Manski 0.102 IV 0.134 (IV infeasible 0.00) | chains 0.108 0.104 0.109 0.106 | 276s
+36 quadratic_ base 0.099 | generic-prior Bayes: Manski 0.111 IV 0.145 (IV infeasible 0.00) | chains 0.126 0.113 0.112 0.118 | 274s
+38 fourier_no base 0.114 | generic-prior Bayes: Manski 0.102 IV 0.135 (IV infeasible 0.00) | chains 0.111 0.096 0.105 0.113 | 274s
+mean base 0.1039 | generic-prior Bayes Manski 0.0938 IV 0.1227

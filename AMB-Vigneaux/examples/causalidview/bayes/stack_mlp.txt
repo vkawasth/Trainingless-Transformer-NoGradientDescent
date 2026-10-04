@@ -1,0 +1,12 @@
+4 shallow_ml equal M 0.104 IV 0.140 | stacking M 0.108 IV 0.144 | pseudo-BMA M 0.106 IV 0.142 | best chain M 0.111 IV 0.148 | log-score spread 5.4
+9 shallow_ml equal M 0.104 IV 0.135 | stacking M 0.116 IV 0.152 | pseudo-BMA M 0.114 IV 0.149 | best chain M 0.118 IV 0.155 | log-score spread 6.0
+14 shallow_ml equal M 0.106 IV 0.139 | stacking M 0.111 IV 0.146 | pseudo-BMA M 0.109 IV 0.143 | best chain M 0.111 IV 0.146 | log-score spread 4.0
+19 shallow_ml equal M 0.116 IV 0.158 | stacking M 0.117 IV 0.159 | pseudo-BMA M 0.116 IV 0.157 | best chain M 0.120 IV 0.162 | log-score spread 5.3
+24 shallow_ml equal M 0.113 IV 0.147 | stacking M 0.110 IV 0.142 | pseudo-BMA M 0.111 IV 0.144 | best chain M 0.110 IV 0.142 | log-score spread 6.0
+29 shallow_ml equal M 0.111 IV 0.148 | stacking M 0.114 IV 0.151 | pseudo-BMA M 0.113 IV 0.150 | best chain M 0.116 IV 0.153 | log-score spread 4.6
+34 shallow_ml equal M 0.104 IV 0.134 | stacking M 0.109 IV 0.140 | pseudo-BMA M 0.108 IV 0.139 | best chain M 0.112 IV 0.145 | log-score spread 3.6
+39 shallow_ml equal M 0.107 IV 0.144 | stacking M 0.112 IV 0.150 | pseudo-BMA M 0.109 IV 0.146 | best chain M 0.111 IV 0.149 | log-score spread 4.9
+equal       Manski 0.1082 IV 0.1430
+stacking    Manski 0.1121 IV 0.1479
+pseudo-BMA  Manski 0.1108 IV 0.1464
+best chain  Manski 0.1137 IV 0.1499

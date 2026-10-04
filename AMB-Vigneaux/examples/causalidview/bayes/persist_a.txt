@@ -1,0 +1,3 @@
+0 linear n=1024 Manski: rerun 0.090 | persist-300 0.085 | persist-100 0.101 | stale 0.128 || work: rerun 1.23e+07, persist-300 updates 7.68e+06 (all 8 batches)
+1 quadratic_ n=1024 Manski: rerun 0.099 | persist-300 0.109 | persist-100 0.107 | stale 0.105 || work: rerun 1.23e+07, persist-300 updates 7.68e+06 (all 8 batches)
+2 threshold_ n=1024 Manski: rerun 0.114 | persist-300 0.118 | persist-100 0.120 | stale 0.142 || work: rerun 1.23e+07, persist-300 updates 7.68e+06 (all 8 batches)

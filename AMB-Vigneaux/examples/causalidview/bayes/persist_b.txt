@@ -1,0 +1,2 @@
+3 fourier_no n=1024 Manski: rerun 0.089 | persist-300 0.102 | persist-100 0.105 | stale 0.123 || work: rerun 1.23e+07, persist-300 updates 7.68e+06 (all 8 batches)
+4 shallow_ml n=1024 Manski: rerun 0.106 | persist-300 0.112 | persist-100 0.107 | stale 0.125 || work: rerun 1.23e+07, persist-300 updates 7.68e+06 (all 8 batches)
