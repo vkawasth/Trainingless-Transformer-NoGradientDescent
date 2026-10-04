@@ -39,7 +39,7 @@ Attribution Sets, Mechanism Reach and Path Defects\\[4pt]
 Department of Applied Mathematics and Statistics\\
 Johns Hopkins University\thanks{Verification scripts: \texttt{provenance.py},
 \texttt{check\_attribution.py}, \texttt{provenance\_demo.py}; see \cref{sec:code}.}}
-\date{October 4, 2026, draft 1}
+\date{October 4, 2026, draft 3}
 
 \begin{document}
 \maketitle
@@ -62,7 +62,12 @@ temperature gives a curve, and an unconstrained edit can explain anything. Final
 compared quantitatively: comparisons compose by the triangle inequality and by a Lipschitz rule, with
 exact Lipschitz constants for mixing and bounds for tilts, and a weight-level intervention may have no
 Lipschitz constant on observed outputs at all. Order and loop defects measure path dependence, and
-coarse evaluations certify fine differences. A synthetic four-stage experiment produces a full
+coarse evaluations certify fine differences. The three kinds of uncertainty involved (who could
+have produced an output, what a mechanism can produce, and what observation reveals about an
+intervention) arise from three maps that fail to be injective; we make their interaction precise
+through the observable reach of an intervention and a soundness condition for mechanism classes, and
+show that the parameters of a reachable tilt are identified exactly up to the slack in the reward
+range. A synthetic four-stage experiment produces a full
 provenance report. Every theorem is checked in exact arithmetic or with exactly verified linear
 programming certificates.
 \end{abstract}
@@ -85,6 +90,34 @@ feedback (RLHF) produces $M_4$. For such a history we want answers to three ques
 \item \emph{Path dependence.} Does the result depend on the order of interventions, and does a
   sequence that should cancel actually cancel?
 \end{enumerate}
+
+\paragraph{Three kinds of uncertainty.} Each question concerns a different map that fails to be
+injective, and the paper is organized around them.
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.2\textwidth}p{0.19\textwidth}p{0.27\textwidth}p{0.26\textwidth}@{}}
+\toprule
+Question & Object & Source of the uncertainty & Measured and certified by\\
+\midrule
+Who could have produced $p$? & attribution set $W_{\bar\mu}(p)$ (\S\ref{sec:attribution}) &
+inverse image of $p$ under the mixing map from decompositions to outputs & widths
+(\cref{def:precision}); dual certificate (\cref{thm:attset})\\
+What can mechanism $T$ produce? & reach set $\Reach_T(p)$ (\S\ref{sec:mechanisms}) & image of the
+mechanism's parameters, which may themselves not be identified & residual weight and certificate
+(\cref{thm:change}); parameter widths (\cref{prop:reward-ident})\\
+What can we observe about $T$? & $\Phi\circ T$ (\S\ref{sec:composition}) & quotient by $\Phi$, which
+merges models with equal probe outputs & comparisons, Lipschitz constants and defects
+(\cref{thm:composition})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The second and third interact: an intervention acts on model states, so what can be seen of it from
+observed outputs is set-valued even when the intervention is deterministic. The \emph{observable reach}
+and the \emph{soundness} of a mechanism class (\cref{def:sound,prop:sound}) make this precise, and
+they separate two claims that are easily conflated: that a change is not a tilt, which is a fact about
+outputs, and that a change was not produced by RLHF, which also requires the tilt class to be sound
+for the procedure actually run.
 
 \paragraph{Architecture.} The companion paper \cite{Awasthi-Tower} develops the \emph{local} structure:
 an ambient probability monad $\D$, and over each outcome base $B$ a context comonad, a mixed
@@ -109,8 +142,13 @@ several contexts into a global state, is left to future work (\cref{sec:scope}).
   and coarsening, and the absence of any observable Lipschitz constant for some weight-level
   interventions (\cref{prop:lipschitz,prop:nonfaithful}); order and loop defects; monotonicity under
   coarsening (\cref{prop:coarse}).
+\item Observable reach and soundness of mechanism classes, with an enlargement that keeps the RLHF
+  class sound for approximate optimization (\cref{prop:sound,cor:enlarge}); identifiability of tilt
+  parameters up to the slack in the reward range (\cref{prop:reward-ident}).
 \item A synthetic four-stage experiment with a complete provenance report (\cref{sec:demo}).
 \end{enumerate}
+Several ingredients are known in other fields; \cref{sec:related} states precisely which, and what is
+new here.
 
 \paragraph{What is not claimed.} We do not extract hypotheses from weights: declared sources must
 come from reference models, checkpoints or ablations. All guarantees concern a finite probe set.
@@ -200,6 +238,13 @@ source, so $\langle y,\sum_is_i\rangle\ge\sum_i\lambda_i=1-\mu$, while $\langle 
 $1-\mu_{\min}(p)$ is the value of $\max\{\sum_i\lambda_i\}$ over (a), (b), and its dual is
 $\min\{\langle y,p\rangle\}$ under the stated constraints on $y$.
 \end{proof}
+
+\begin{remark}[Mixture proportion estimation]\label{rem:mpe}
+With a single exact source $A$, $\mu_{\min}(p)=1-\kappa^*(p\,|\,A)$, where
+$\kappa^*(p\,|\,A)=\min_{b\in\supp A}p(b)/A(b)$ is the maximal proportion of $A$ in $p$ studied in
+mixture proportion estimation \cite{Blanchard2010,Scott2015}. A positive budget $\bar\mu$ plays the role
+of the bound on the error probability in contaminated sampling \cite{HorowitzManski1995}.
+\end{remark}
 
 \begin{definition}[Precision]\label{def:precision}
 For a nonempty attribution set, the \emph{width} of source $i$ is $w_i=\max\lambda_i-\min\lambda_i$
@@ -318,6 +363,14 @@ if $q_b=0$ then $q_c\,p_b\le K\,q_b\,p_c=0$ for all $c$, contradicting $\sum q=1
 $\supp q=\supp p$ is implied, and the set is closed.
 \end{proof}
 
+\begin{remark}[Density ratio classes]\label{rem:drc}
+The set in \cref{thm:tilt-polytope} is the interval of measures $\{q: p\le c\,q\le Kp\text{ for some
+}c>0\}$ of DeRobertis and Hartigan \cite{DeRobertisHartigan1981}, known in robust Bayesian analysis as a
+density ratio class. \Cref{thm:tilt-polytope} therefore identifies the reach of KL-regularized RLHF
+with bounded rewards as a classical object; what it adds is that identification, and the reading of
+$\beta\log K^*$ as the least reward range that explains an observed change.
+\end{remark}
+
 \begin{proposition}[Fixed reward, unknown temperature]\label{prop:curve}
 For a fixed reward $r$, the set $\{T_{r/\beta'}(p):\beta'>0\}$ is a curve, and in general not convex:
 for $p$ uniform on three outcomes and $r=(0,1,2)$, the midpoint of the points with $1/\beta'=1$ and
@@ -331,6 +384,32 @@ On the curve, $\log(q_b/p_b)-\log(q_0/p_0)$ is proportional to $r_b-r_0$, so $\l
 
 So the geometry of a reach set depends on what is assumed about the mechanism: a bounded reward range
 gives a polytope, a fixed reward gives a curve, and no assumption gives everything.
+
+A reachable change can still leave the mechanism's parameters undetermined. For tilts this is
+measured exactly.
+
+\begin{proposition}[Identifiability of tilt parameters]\label{prop:reward-ident}
+Fix $\beta>0$ and a reward range $[r_{\min},r_{\max}]$ of length $\Delta_r$, and let $q\in\Reach_K(p)$
+with $K=e^{\Delta_r/\beta}$. Put $\ell_b=\beta\log(q_b/p_b)$ for $b\in\supp p$. The rewards $r$ with values
+in $[r_{\min},r_{\max}]$ and $T_r(p)=q$ are exactly
+\[
+r_b=\ell_b+c\ \ (b\in\supp p),\qquad c\in\big[r_{\min}-\min_b\ell_b,\ r_{\max}-\max_b\ell_b\big],
+\]
+with $r_b\in[r_{\min},r_{\max}]$ arbitrary for $b\notin\supp p$.
+Hence on $\supp p$ every reward value has width $\Delta_r-\beta\log K^*(p,q)$, reward differences are
+identified exactly, and the reward is identified exactly on $\supp p$ if and only if
+$\beta\log K^*(p,q)=\Delta_r$. Only $r/\beta$ enters $T_r$, so without a known $\beta$ only the ratios
+of reward differences are identified.
+\end{proposition}
+\begin{proof}
+$T_r(p)=q$ holds iff $q_b/p_b=e^{r_b/\beta}/Z$ on $\supp p$, that is, iff $r_b-\beta\log(q_b/p_b)$ is
+constant on $\supp p$; outcomes outside the support do not affect $T_r(p)$. The range constraint on
+$\supp p$ is $r_{\min}\le\ell_b+c\le r_{\max}$ for all $b$, which is the stated interval for $c$; its
+length is $\Delta_r-(\max_b\ell_b-\min_b\ell_b)=\Delta_r-\beta\log K^*(p,q)$.
+\end{proof}
+
+This mirrors \cref{prop:slack}: slack in the assumed reward range costs precision about the reward,
+exactly as slack in the unmodeled budget costs precision about the sources.
 
 \begin{definition}[Residual of a change]
 Let $\cone\Reach(p)=\{tq:t\ge0,\ q\in\Reach(p)\}$. An \emph{explained part} of a change $p\to p'$ is a
@@ -372,6 +451,55 @@ $\{s\ge0:\ s_b\,p_c\le K\,s_c\,p_b,\ s=0\text{ off }\supp p\}$, so attributing a
 linear program with an exact certificate. For an unconstrained edit the residual is always zero: an
 edit can be tested only through a claim about it, such as locality.
 \end{remark}
+
+Mechanism classes are defined on observed outputs, while real interventions act on model states. The
+link between the two is the following.
+
+\begin{definition}[Observable reach and soundness]\label{def:sound}
+For an intervention $T\colon\cW\to\cW$ and an observable state $p\in\cP$, the \emph{observable reach}
+is
+\[
+R^\Phi_T(p)=\{\Phi TM:\ M\in\cW,\ \Phi M=p\}.
+\]
+A mechanism class is \emph{sound} for $T$ if $R^\Phi_T(p)$ is contained, probe by probe, in
+$\Reach_T(p)$ for every $p$ in the image of $\Phi$.
+\end{definition}
+
+The observable reach can have more than one point even for a deterministic $T$: in the example of
+\cref{prop:nonfaithful} it has two. So mechanism classes must be set-valued even for deterministic
+interventions.
+
+\begin{proposition}[What a residual certifies]\label{prop:sound}
+Let the mechanism class be sound for $T$, and suppose the change $p\to p'$ has positive residual weight
+at some probe. Then there is no model $M$ with $\Phi M=p$ and $\Phi TM=p'$: the change was not produced
+by $T$ from any model with the observed outputs. Without soundness, the residual certifies only that
+the change lies outside the declared class. A zero residual never certifies that $T$ produced the
+change.
+\end{proposition}
+\begin{proof}
+If such an $M$ existed, then $p'\in R^\Phi_T(p)\subseteq\Reach_T(p)$ at every probe, so the residual
+would vanish by \cref{thm:change}(i). The last sentence holds because other interventions may reach the
+same outputs.
+\end{proof}
+
+The tilt class of \cref{thm:tilt-polytope} is sound for an exact optimizer of the KL-regularized
+objective with rewards in the stated range, by \cref{prop:gibbs}. Actual RLHF procedures stop short of
+the optimum, so soundness holds only approximately. The following enlargement restores it while
+keeping linear programming.
+
+\begin{corollary}[Enlarged classes]\label{cor:enlarge}
+If a procedure is known to end within total variation $\varepsilon$ of the exact tilt, then the
+enlarged class $\Reach^\varepsilon_K(p)=\{q\in\D(B):\TV(q,q')\le\varepsilon\text{ for some }q'\in
+\Reach_K(p)\}$ is sound for it, and it is again a polytope, so \cref{thm:change} applies.
+\end{corollary}
+\begin{proof}
+Soundness is immediate from the assumption. The set is the projection onto $q$ of the polyhedron
+$\{(q,q',u):q'\in\Reach_K(p),\ -u\le q-q'\le u,\ \sum_bu_b\le2\varepsilon,\ q\in\D(B)\}$, and a bounded
+projection of a polyhedron is a polytope.
+\end{proof}
+
+How large $\varepsilon$ is for a given procedure is an empirical question; the corollary only says how to
+use it once it is known.
 
 %=====================================================================
 \section{Comparing interventions: composition and path defects}\label{sec:composition}
@@ -461,6 +589,13 @@ the first term is at most $d_{F(\cS)}(G,G')$ and the second at most $L\,d(\Phi F
 and $G_{j-1}\cdots G_1M$, and unroll the recursion.
 \end{proof}
 
+\begin{remark}
+Composition rules of this kind are standard for behavioral pseudometrics of probabilistic systems
+\cite{Desharnais2004}, in quantitative algebraic reasoning \cite{MPP2016} and in sensitivity type
+systems \cite{ReedPierce2010}. \Cref{thm:composition} is an instance; what is specific here is the
+observation map $\Phi$, which is not faithful, and the constants for tilts.
+\end{remark}
+
 \begin{corollary}[Enriched structure]\label{cor:enriched}
 Output-level mechanisms on $\cP$ with Lipschitz constant at most $1$, with $d=d_{\cP}$, form a
 category enriched in pseudometric spaces in Lawvere's sense \cite{Lawvere1973}:
@@ -543,7 +678,10 @@ certified unexplained weight $0.20$: the two quantities answer different questio
 change is reachable with the claimed reward range. For the drifted variant, $K^*=10$ at $x_2$, so the
 change is not reachable; the residual weight relative to the tilt class is $0.1934$, with an exactly
 verified certificate. The other probes remain reachable, so the departure from the declared mechanism
-is localized.
+is localized. For the pure tilt at $x_1$, with $\beta=1$ and claimed range $[0,\ln4]$, the rewards are
+identified exactly, $r=(0,\ln2,\ln4,0,\ln3,0)$, because $K^*=K$ (\cref{prop:reward-ident}); with a
+claimed range $[0,\ln8]$ the reward differences are still exact, but each reward value has width
+$\ln2$.
 
 \paragraph{Paths.} At $x_1$, with $E$ the edit and $R$ the tilt, the order defect is
 $\TV(REp,ERp)=51/518\approx0.0985$, so the order matters. Tilting by $w$ and then by $1/w$ has loop defect
@@ -568,7 +706,106 @@ RLHF, drifted & $K^*=10$ at $x_2$ & not reachable at $x_2$ & $0.19$ ($x_2$)\\
 \end{center}
 
 %=====================================================================
-\section{Relation to the posterior tower and scope}\label{sec:scope}
+\section{Relation to prior work}\label{sec:related}
+%=====================================================================
+
+Most individual ingredients of this paper are known; the contribution is their combination into a
+calculus for model provenance whose reported object is a set of explanations together with its width
+and a certificate. We state the relation area by area and then summarize.
+
+\paragraph{Mixture proportion estimation and contaminated data.} Mixture proportion estimation studies
+$F=(1-\kappa)G+\kappa H$ with $H$ known and $G$ unknown; the maximal proportion
+$\kappa^*(F|H)=\operatorname{ess\,inf}f/h$ is identified, and $\kappa$ itself is identified under
+irreducibility \cite{Blanchard2010,Scott2015}, with extensions beyond irreducibility \cite{Zhu2023}.
+Several known components plus one unknown appear in class-proportion estimation with anomaly rejection
+\cite{SandersonScott2014}, in open-set label shift, where identifiability needs positivity or
+separability conditions \cite{Garg2022}, and in mutual contamination models \cite{BlanchardScott2014}.
+In econometrics, Horowitz and Manski derive sharp bounds under contaminated sampling with a known
+bound on the error probability \cite{HorowitzManski1995}, within the program of partial
+identification \cite{Manski2003}. Our minimal unmodeled weight is the finite-outcome complement of
+$\kappa^*$ (\cref{rem:mpe}), and our budget is the Horowitz--Manski error bound. These works estimate
+proportions from samples under identifying assumptions. We instead treat output distributions as
+known, characterize the \emph{whole} set of decompositions whether or not it is identified, allow
+sources known exactly and sources known only by their supports in the same model, report sharp
+intervals for every weight and every observation-level attribution, and attach exact certificates.
+
+\paragraph{Imprecise probability.} Attribution sets are credal sets of decompositions in the sense of
+imprecise probability \cite{Walley1991}; for sources known by their supports, the weight intervals are
+belief and plausibility of Dempster--Shafer theory \cite{Dempster1967,Shafer1976}
+(\cite[Prop.~5.8]{Awasthi-Tower}). The density ratio classes of robust Bayesian analysis
+\cite{DeRobertisHartigan1981} are exactly the reach sets of bounded-reward RLHF (\cref{rem:drc}). What
+is new here is the precision ladder that separates structural, informational and unmodeled
+imprecision (\cref{thm:ladder}), and the fact that slack in the unmodeled budget always costs precision
+(\cref{prop:slack}).
+
+\paragraph{RLHF.} The Gibbs form of the optimum of KL-regularized reinforcement learning is known
+\cite{Korbak2022,Rafailov2023}; we use it. The new point is a membership test for the resulting class of
+changes and a certified residual when a change falls outside it (\cref{thm:tilt-polytope,thm:change}).
+
+\paragraph{Training-data attribution.} Influence functions \cite{KohLiang2017}, datamodels
+\cite{Ilyas2022} and TRAK \cite{Park2023} estimate how individual training examples affect predictions,
+approximating counterfactual retraining. They answer a different question. We take sources as given,
+for instance reference models trained on each corpus, and certify what observed output distributions
+do and do not determine about them. The two are complementary: data-attribution estimates can be used
+to construct declared sources.
+
+\paragraph{Model editing, diffing and composition.} Locality or specificity of weight edits is measured
+as an evaluation metric \cite{Meng2022}, and edits are known to have ripple effects beyond their
+intended scope \cite{Cohen2024}. Here a locality claim is a mechanism class, and its violation comes
+with a certified residual (\cref{ex:classes}, \cref{thm:change}). Crosscoder-based model diffing compares
+the internal features of a base and a fine-tuned model \cite{Minder2025}; our comparisons are
+behavioral, at the probe outputs. Task arithmetic composes interventions as vectors in weight space
+\cite{Ilharco2023}; the order defect measures whether composition commutes in the outputs.
+
+\paragraph{Metric semantics.} Categories enriched in generalized metric spaces go back to Lawvere
+\cite{Lawvere1973}; behavioral pseudometrics for probabilistic systems \cite{Desharnais2004},
+quantitative algebraic reasoning \cite{MPP2016} and sensitivity type systems \cite{ReedPierce2010} all
+use composition rules with Lipschitz factors. \Cref{thm:composition} is an instance. What is specific
+here is that interventions act on model states and are compared only through a non-faithful
+observation map, which can rule out any Lipschitz constant (\cref{prop:nonfaithful}), and the explicit
+constants for tilts (\cref{prop:lipschitz}).
+
+\paragraph{Contextuality and comonadic simulation.} The relation to contextuality is one of extension,
+not replacement. Abramsky and Brandenburger formulate an empirical model as compatible local probability
+data and characterize contextuality by the existence of a global section
+\cite{AbramskyBrandenburger2011}. Abramsky, Barbosa, Karvonen and Mansfield then gave a comonadic
+treatment of simulations, that is, of morphisms between empirical models \cite{Abramsky2019}. Morphisms
+are therefore not our novelty. Our local object is richer: for each base $B$ it contains the ambient
+probability structure together with a base-dependent context comonad, a mixed distributive law,
+higher-order admissibility data and an obstruction tower \cite{Awasthi-Tower}. The maps considered here
+are meant to transport these whole local structures, and the present paper equips such transport with
+quantitative comparison and path defects. The complementary global problem, whether compatible local
+structures assemble into a single coherent state, including under approximate compatibility, is left
+open.
+
+\paragraph{Summary.}
+\begin{center}\small
+\begin{tabular}{@{}p{0.2\textwidth}p{0.33\textwidth}p{0.39\textwidth}@{}}
+\toprule
+Result & Closest prior work & What is new here\\
+\midrule
+\Cref{thm:attset} & mixture proportion estimation; contaminated-sampling bounds & full polytope of
+decompositions for several exact or support-known sources; sharp weight and observation intervals;
+exact certificates\\
+\Cref{thm:ladder}, \cref{prop:slack} & credal sets; partial identification & monotone ladder of
+structural, informational and unmodeled imprecision; slack costs precision\\
+\Cref{thm:tilt-polytope} & density ratio classes; Gibbs form of RLHF & RLHF reach is a density ratio
+class; implied reward range $\beta\log K^*$\\
+\Cref{thm:change} & LP duality & residual of a change relative to a mechanism class, with
+certificate\\
+\Cref{thm:composition}, \cref{prop:lipschitz,prop:nonfaithful} & behavioral metrics; quantitative
+algebra; sensitivity typing & interventions seen through a non-faithful observation map; constants for
+tilts; no-Lipschitz obstruction\\
+\Cref{sec:demo} & --- & an end-to-end provenance report with widths and certificates\\
+\bottomrule
+\end{tabular}
+\end{center}
+We do not claim as new the linear-programming and duality machinery, the single-source formula of
+mixture proportion estimation, the Gibbs form of RLHF, density ratio classes, or the Lipschitz
+composition calculus.
+
+%=====================================================================
+\section{Scope and open problems}\label{sec:scope}
 %=====================================================================
 
 \paragraph{Local structure and glue.} In the architecture of \cite{Awasthi-Tower}, the probability monad
@@ -601,15 +838,6 @@ future work.
   from reference models.
 \end{enumerate}
 
-\paragraph{Related work.} Attribution of predictions to training data is studied with influence
-functions \cite{KohLiang2017}; locality claims for weight edits appear in \cite{Meng2022}; the view of
-KL-regularized RLHF as Bayesian reweighting is in \cite{Korbak2022,Rafailov2023}; contamination models
-go back to \cite{Huber1964}, and lower and upper probabilities to \cite{Dempster1967,Shafer1976}.
-Sheaf-theoretic contextuality \cite{AbramskyBrandenburger2011} and its comonadic treatment of
-simulations \cite{Abramsky2019} concern compatibility of local models and maps between them; to our
-knowledge they provide neither quantitative comparisons between interventions nor the probability
-hierarchy of \cite{Awasthi-Tower}.
-
 \appendix
 
 %=====================================================================
@@ -625,7 +853,12 @@ every point satisfying them is reconstructed exactly as a tilt, and mixtures of 
 \cref{prop:curve}; \cref{thm:change} for the tilt class (exactly verified certificates $(y,\nu)$, and
 zero residual exactly for reachable changes); \cref{prop:lipschitz} (the exact constant for mixing, the
 tilt bound, and an example with amplification $4.0$ for $K=4$); \cref{prop:nonfaithful};
-\cref{thm:composition}(i)--(iii) in exact arithmetic; and \cref{prop:coarse}. All 18 checks pass.
+\cref{thm:composition}(i)--(iii) in exact arithmetic; \cref{prop:coarse}; \cref{prop:reward-ident} (the
+reward interval reproduces the tilt at both endpoints, leaves the range just beyond them, and has
+width $\Delta_r-\beta\log K^*$); the observable reach of the example of \cref{prop:nonfaithful} has two
+points, so \cref{prop:sound} needs set-valued classes; and \cref{cor:enlarge} (the residual relative
+to the enlarged class vanishes for perturbed tilts within $\varepsilon$ and is positive outside). All 24
+checks pass.
 The script \texttt{provenance\allowbreak\_demo.py} produces the report of \cref{sec:demo}. Linear programs are solved in
 floating point, and their certificates are rounded to rationals and verified exactly.
 
@@ -645,24 +878,70 @@ S.~Abramsky and A.~Brandenburger.
 
 \bibitem{Awasthi-Tower}
 V.~K. Awasthi.
-\newblock The three-level posterior tower: hierarchical Bayesian inference and mixed distributive
-  laws.
-\newblock Revised version 8, Johns Hopkins University, October 2026.
+\newblock The three-level posterior tower: hierarchical Bayesian inference and weak distributive laws.
+\newblock Technical report, Johns Hopkins University, October 2026.
+\newblock doi:10.13140/RG.2.2.29743.50088. Numbered results cited here refer to revised version 8.
+
+\bibitem{Blanchard2010}
+G.~Blanchard, G.~Lee, and C.~Scott.
+\newblock Semi-supervised novelty detection.
+\newblock \emph{Journal of Machine Learning Research}, 11:2973--3009, 2010.
+
+\bibitem{BlanchardScott2014}
+G.~Blanchard and C.~Scott.
+\newblock Decontamination of mutually contaminated models.
+\newblock In \emph{Proceedings of the 17th International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, volume~33 of \emph{PMLR}, 2014.
+
+\bibitem{Cohen2024}
+R.~Cohen, E.~Biran, O.~Yoran, A.~Globerson, and M.~Geva.
+\newblock Evaluating the ripple effects of knowledge editing in language models.
+\newblock \emph{Transactions of the Association for Computational Linguistics}, 12, 2024.
 
 \bibitem{Dempster1967}
 A.~P. Dempster.
 \newblock Upper and lower probabilities induced by a multivalued mapping.
 \newblock \emph{Annals of Mathematical Statistics}, 38(2):325--339, 1967.
 
+\bibitem{DeRobertisHartigan1981}
+L.~DeRobertis and J.~A. Hartigan.
+\newblock Bayesian inference using intervals of measures.
+\newblock \emph{Annals of Statistics}, 9(2):235--244, 1981.
+
+\bibitem{Desharnais2004}
+J.~Desharnais, V.~Gupta, R.~Jagadeesan, and P.~Panangaden.
+\newblock Metrics for labelled {M}arkov processes.
+\newblock \emph{Theoretical Computer Science}, 318(3):323--354, 2004.
+
 \bibitem{FritzPerrone2019}
 T.~Fritz and P.~Perrone.
 \newblock A probability monad as the colimit of spaces of finite samples.
 \newblock \emph{Theory and Applications of Categories}, 34(7):170--220, 2019.
 
+\bibitem{Garg2022}
+S.~Garg, S.~Balakrishnan, and Z.~C. Lipton.
+\newblock Domain adaptation under open set label shift.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2022.
+
+\bibitem{HorowitzManski1995}
+J.~L. Horowitz and C.~F. Manski.
+\newblock Identification and robustness with contaminated and corrupted data.
+\newblock \emph{Econometrica}, 63(2):281--302, 1995.
+
 \bibitem{Huber1964}
 P.~J. Huber.
 \newblock Robust estimation of a location parameter.
 \newblock \emph{Annals of Mathematical Statistics}, 35(1):73--101, 1964.
+
+\bibitem{Ilharco2023}
+G.~Ilharco, M.~T. Ribeiro, M.~Wortsman, S.~Gururangan, L.~Schmidt, H.~Hajishirzi, and A.~Farhadi.
+\newblock Editing models with task arithmetic.
+\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2023.
+
+\bibitem{Ilyas2022}
+A.~Ilyas, S.~M. Park, L.~Engstrom, G.~Leclerc, and A.~Madry.
+\newblock Datamodels: predicting predictions from training data.
+\newblock In \emph{Proceedings of the 39th International Conference on Machine Learning (ICML)}, 2022.
 
 \bibitem{KohLiang2017}
 P.~W. Koh and P.~Liang.
@@ -679,25 +958,76 @@ F.~W. Lawvere.
 \newblock Metric spaces, generalized logic, and closed categories.
 \newblock \emph{Rendiconti del Seminario Matematico e Fisico di Milano}, 43:135--166, 1973.
 
+\bibitem{Manski2003}
+C.~F. Manski.
+\newblock \emph{Partial Identification of Probability Distributions}.
+\newblock Springer, 2003.
+
+\bibitem{MPP2016}
+R.~Mardare, P.~Panangaden, and G.~Plotkin.
+\newblock Quantitative algebraic reasoning.
+\newblock In \emph{Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in Computer Science
+  (LICS)}, pages 700--709, 2016.
+
 \bibitem{Meng2022}
 K.~Meng, D.~Bau, A.~Andonian, and Y.~Belinkov.
 \newblock Locating and editing factual associations in {GPT}.
 \newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2022.
+
+\bibitem{Minder2025}
+J.~Minder, C.~Dumas, C.~Juang, B.~Chughtai, and N.~Nanda.
+\newblock Overcoming sparsity artifacts in crosscoders to interpret chat-tuning.
+\newblock arXiv:2504.02922, 2025.
+
+\bibitem{Park2023}
+S.~M. Park, K.~Georgiev, A.~Ilyas, G.~Leclerc, and A.~Madry.
+\newblock {TRAK}: attributing model behavior at scale.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning (ICML)}, 2023.
 
 \bibitem{Rafailov2023}
 R.~Rafailov, A.~Sharma, E.~Mitchell, S.~Ermon, C.~D. Manning, and C.~Finn.
 \newblock Direct preference optimization: your language model is secretly a reward model.
 \newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2023.
 
+\bibitem{ReedPierce2010}
+J.~Reed and B.~C. Pierce.
+\newblock Distance makes the types grow stronger: a calculus for differential privacy.
+\newblock In \emph{Proceedings of the 15th ACM SIGPLAN International Conference on Functional
+  Programming (ICFP)}, 2010.
+
+\bibitem{SandersonScott2014}
+T.~Sanderson and C.~Scott.
+\newblock Class proportion estimation with application to multiclass anomaly rejection.
+\newblock In \emph{Proceedings of the 17th International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, volume~33 of \emph{PMLR}, 2014.
+
 \bibitem{Schrijver1986}
 A.~Schrijver.
 \newblock \emph{Theory of Linear and Integer Programming}.
 \newblock Wiley, Chichester, 1986.
 
+\bibitem{Scott2015}
+C.~Scott.
+\newblock A rate of convergence for mixture proportion estimation, with application to learning from
+  noisy labels.
+\newblock In \emph{Proceedings of the 18th International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, volume~38 of \emph{PMLR}, 2015.
+
 \bibitem{Shafer1976}
 G.~Shafer.
 \newblock \emph{A Mathematical Theory of Evidence}.
 \newblock Princeton University Press, 1976.
+
+\bibitem{Walley1991}
+P.~Walley.
+\newblock \emph{Statistical Reasoning with Imprecise Probabilities}.
+\newblock Chapman and Hall, 1991.
+
+\bibitem{Zhu2023}
+Y.~Zhu, A.~Fjeldsted, D.~Holland, G.~Landon, A.~Lintereur, and C.~Scott.
+\newblock Mixture proportion estimation beyond irreducibility.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  volume 202 of \emph{PMLR}, 2023.
 
 \end{thebibliography}
 

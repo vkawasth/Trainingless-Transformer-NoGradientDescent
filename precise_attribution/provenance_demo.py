@@ -84,6 +84,17 @@ for label, M in (("tilt", M4), ("drifted", M4d)):
             report[f"stage4_{label}_{x}_res"] = (mm, float(lb))
         print(line); report[f"stage4_{label}_{x}"] = float(ks)
 
+import math
+print("\nreward identification at x1 (beta = 1):")
+for Kc in (F(4), F(8)):
+    ks = implied_ratio(M3["x1"], M4["x1"])
+    width = math.log(Kc) - math.log(ks)
+    ell = [math.log(M4["x1"][b] / M3["x1"][b]) for b in range(6)]
+    lo = [l - min(ell) for l in ell]
+    print(f"  claimed range [0, ln {Kc}]: reward differences exact "
+          f"{[round(v, 4) for v in lo]}; each reward value has width {width:.4f}")
+    report[f"reward_width_K{Kc}"] = width
+
 print("\n" + "=" * 78); print("PATHS at x1: E = edit, R = tilt"); print("=" * 78)
 E, Rt = edit["x1"], tilt_map(W)
 Rinv = tilt_map([1 / v for v in W])
