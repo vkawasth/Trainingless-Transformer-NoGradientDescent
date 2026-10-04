@@ -1,0 +1,45 @@
+{
+ "manski_rmse": {
+  "constant (no covariates)": 0.131,
+  "linear ridge, LOO (our backbone)": 0.106,
+  "+ TRUE coordinate support": 0.1015,
+  "+ TRUE subspace, linear": 0.0783,
+  "+ TRUE subspace, RBF": 0.072,
+  "plug-in learned subspace (pooled)": 0.1142,
+  "plug-in, sequential chain": 0.1157,
+  "half data, no prior": 0.1114,
+  "cross-fitted prior (A->B, B->A)": 0.1093,
+  "empirical Bayes, shared Sigma": 0.1259,
+  "EB + inverse-Wishart, best nu": 0.1048,
+  "pre-pass law (rank, sparsity) + cross-fit": 0.1082,
+  "TRUE law (rank, sparsity) + cross-fit": 0.1096
+ },
+ "eb_hyper": {
+  "nu": [
+   1,
+   5,
+   20,
+   50,
+   200,
+   1000
+  ],
+  "rank 1": [
+   0.1274,
+   0.1239,
+   0.1183,
+   0.1119,
+   0.1054,
+   0.1048
+  ],
+  "rank 5": [
+   0.1239,
+   0.1203,
+   0.1156,
+   0.1109,
+   0.1052,
+   0.1048
+  ],
+  "base": 0.1046
+ },
+ "tabpfn_published": 0.09
+}
