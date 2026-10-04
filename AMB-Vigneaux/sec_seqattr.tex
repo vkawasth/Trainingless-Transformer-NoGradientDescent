@@ -1,0 +1,202 @@
+%---------------------------------------------------------------------
+\subsection{Sequential attribution of generated tokens}\label{sec:seqattr}
+%---------------------------------------------------------------------
+
+\Cref{sec:ident,sec:contam} decompose one distribution $x\in\D(X)$. A generator that writes text
+with two contexts available does not produce one distribution; it produces a sequence
+$x_1,\dots,x_n$ of tokens in a vocabulary $V$, and at step $t$ each declared source has its own
+predictive given the prefix. We now give a projection of the sequence onto the declared sources,
+with a confidence band for the share of each context and a certified lower bound for the part that
+neither context explains.
+
+\paragraph{Sources and the sequential contamination model.} For each $t$ let
+$A_t=p(\cdot\mid x_{<t},\text{context }A)$ and $B_t=p(\cdot\mid x_{<t},\text{context }B)$ be the
+generator's predictives with context $A$ or context $B$ in its window, and let $U_t$ be a declared
+\emph{reference} predictive, for example the same generator with neither context. These are
+computable from three forward passes. Write $a_t=A_t(x_t)$, $b_t=B_t(x_t)$, $u_t=U_t(x_t)$ and
+$P\in\mathbb{R}^{n\times3}$ for the matrix with rows $(a_t,b_t,u_t)$. The sequential analogue of the
+contamination model of \cref{sec:contam} is
+\[
+x_t\mid x_{<t}\ \sim\ w_AA_t+w_BB_t+w_UU_t,\qquad w=(w_A,w_B,w_U)\in\Delta_3,
+\]
+with constant weights. The reported coordinates are the \emph{context share}
+$\theta=w_A/(w_A+w_B)$ and the \emph{unexplained weight} $\mu=w_U$.
+
+\begin{definition}[Likelihood projection]\label{def:likproj}
+The projection of $x_{1:n}$ onto the declared sources is
+\[
+\pi(x_{1:n})=\operatorname*{arg\,max}_{w\in\Delta_3}\ \ell(w),\qquad
+\ell(w)=\sum_{t=1}^n\log\,(Pw)_t .
+\]
+If the sources do not depend on the prefix ($A_t=A$, $B_t=B$, $U_t=U$), then
+$\ell(w)/n=-\mathrm{KL}\big(\hat x\,\|\,w_AA+w_BB+w_UU\big)-H(\hat x)$ for the empirical distribution
+$\hat x$, so $\pi$ is the reverse information projection of $\hat x$ onto
+$\operatorname{conv}(A,B,U)$~\cite{Csiszar1975}. In particular $\pi(\hat x)\in W(\hat x)$ whenever
+$\hat x\in\operatorname{conv}(A,B,U)$, so $\pi$ extends the decompositions of \cref{sec:ident} to data
+that do not lie exactly in the hull.
+\end{definition}
+
+\begin{proposition}[Sample identifiability]\label{prop:sample-ident}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item $\ell$ is concave on $\Delta_3$, and the EM iteration
+  $w_i\leftarrow\frac1n\sum_tw_iP_{ti}/(Pw)_t$ increases $\ell$ and converges to its maximum value
+  \cite{DempsterLairdRubin1977,CsiszarTusnady1984}.
+\item If no $c\ne0$ with $c_A+c_B+c_U=0$ satisfies $Pc=0$, then $\ell$ is strictly concave on
+  $\Delta_3$ and $\pi(x_{1:n})$ is a single point. If such a $c$ exists, then $\ell$ is constant along
+  the direction $c$, and an interior maximiser lies on a segment of maximisers.
+\item In particular, if $U_t=\alpha A_t+(1-\alpha)B_t$ for all $t$ and some fixed $\alpha\in[0,1]$, then
+  $c=(\alpha,1-\alpha,-1)$ is such a direction: the likelihood is flat in $\mu$ and no amount of data
+  separates unexplained text from a blend of the contexts. This is the sequential form of
+  \cref{prop:ident}(i) and of the last sentence of the remark after \cref{prop:counting}.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) $w\mapsto(Pw)_t$ is linear and $\log$ is concave; EM for mixture weights with fixed components
+is an alternating minimisation of a divergence, whose values converge to the minimum
+\cite{CsiszarTusnady1984}. (ii) For $w$ in the relative interior and $c$ tangent to the simplex,
+$\frac{d^2}{ds^2}\ell(w+sc)=-\sum_t(Pc)_t^2/(Pw)_t^2$, which is negative unless $Pc=0$; if $Pc=0$
+then $\ell(w+sc)=\ell(w)$. (iii) $Pc=\alpha a+(1-\alpha)b-u=0$.
+\end{proof}
+
+The next statement shows that near-dependence is already enough to lose the unexplained weight,
+and that it arises when the reference is folded into the context models instead of being kept as
+its own coordinate.
+
+\begin{proposition}[Absorbed reference]\label{prop:absorbed}
+Let $A_t,B_t$ be the \emph{document parts} of the two contexts and suppose each full context
+predictive mixes its document part with the reference: $A'_t=\beta A_t+(1-\beta)U_t$ and
+$B'_t=\beta B_t+(1-\beta)U_t$ with $\beta\in(0,1)$. Suppose a fraction $f$ of the tokens lie outside
+both documents ($a_t=b_t=0<u_t$) and that on the other tokens $a_t+b_t>0=u_t$. Then the unexplained weight
+estimated in the coordinates $(A,B,U)$ is $\hat\mu=f$, while in the coordinates $(A',B',U)$ it is
+\[
+\hat\mu'=\max\Big(0,\ \frac{f-(1-\beta)}{\beta}\Big),
+\]
+which is zero whenever $f\le1-\beta$.
+\end{proposition}
+\begin{proof}
+In the coordinates $(A,B,U)$, $\ell(w)=\sum_{a_t+b_t>0}\log(w_Aa_t+w_Bb_t)+\sum_{a_t=b_t=0}\log(w_Uu_t)$.
+Writing $w_A+w_B=1-\mu$, the first sum is $(1-f)n\log(1-\mu)$ plus a function of $\theta$ alone, and
+the second is $fn\log\mu$ plus a constant, so $\hat\mu=f$. In the coordinates $(A',B',U)$ the tokens
+outside both documents have likelihood $((1-\beta)(1-\mu)+\mu)u_t$, so up to terms in $\theta$
+\[
+\ell/n=(1-f)\log(1-\mu)+f\log(1-\beta+\beta\mu),
+\]
+whose derivative $-\frac{1-f}{1-\mu}+\frac{f\beta}{1-\beta+\beta\mu}$ vanishes at
+$\mu=(f-(1-\beta))/\beta$ and is negative on $[0,1)$ when $f\le1-\beta$.
+\end{proof}
+
+\Cref{prop:absorbed} is the design rule for the projection: the coordinates should be the parts of
+each source that the others do not already contain. With $\beta=\tfrac12$, a generation that copies
+half of its tokens from a document outside the context window has $\hat\mu'=0$; this is what the
+experiment below finds for the full context models.
+
+\paragraph{Bands.} For a scalar coordinate let $\ell_\theta(g)=\max\{\ell(w):w_A/(w_A+w_B)=g\}$ and
+$\ell_\mu(m)=\max\{\ell(w):w_U=m\}$ be the profile log-likelihoods and $\hat\ell=\max\ell$. The band for
+the context share is
+\[
+C_\theta=\{g\in[0,1]:\ 2(\hat\ell-\ell_\theta(g))\le\kappa_\theta\,\chi^2_{1,0.95}\},
+\]
+and the certified lower bound for the unexplained weight is
+\[
+\mu_{\mathrm{lo}}=\min\{m\in[0,1]:\ 2(\hat\ell-\ell_\mu(m))\le\kappa_\mu\,\chi^2_{1,0.90}\}.
+\]
+Two corrections to Wilks' calibration are needed. The tokens are dependent and the model is
+misspecified, so the threshold is scaled by a design effect $\kappa\ge1$, the ratio of the variance
+of block sums of the score to its value under independence (a sandwich estimate in the sense of
+\cite{White1982}, with block length $\lceil\sqrt n\,\rceil$). And $\mu=0$ lies on the boundary of
+the parameter space, where the likelihood-ratio statistic is asymptotically an equal mixture of
+$\chi^2_0$ and $\chi^2_1$~\cite{Chernoff1954,SelfLiang1987}, so the one-sided $95\%$ bound uses
+$\chi^2_{1,0.90}=2.706$.
+
+\paragraph{What is certified.} The statement $\mu_{\mathrm{lo}}>0$ rejects the hypothesis that the
+sequence is a blend of the two contexts, at level $5\%$ asymptotically, and its validity requires
+only that the blend model be correct under the null; it does not require $U$ to be the true source
+of the unexplained text. This is the sequential counterpart of \cref{thm:unmodeled}(iii), the test
+with zero budget. A positive budget $\bar\mu$ and the value of $\mu$ itself are relative to the
+declared reference direction $U$, as \cref{thm:unmodeled}(iv) and the remark after
+\cref{prop:counting} require: with an arbitrary per-token contaminant ($U_t=\delta_{x_t}$) every
+sequence is explained by $\mu=1$, which is the sequential form of the interval $[\mu_{\min},1]$.
+In practice the budget is calibrated: $\bar\mu$ is the $95\%$ quantile of $\mu_{\mathrm{lo}}$ on
+generations known to use only the two contexts, so that paraphrase, which also lies in the
+reference direction, is not reported as unexplained.
+
+\paragraph{Blend versus switching is a level-two distinction.} A generator can use both contexts in
+two different ways. It can \emph{blend} them, drawing each token from one mixture
+$\lambda A_t+(1-\lambda)B_t$, or it can \emph{switch} between them in spans, drawing $x_t$ from $A_t$
+or $B_t$ according to a hidden two-state chain $z_t$. If the chain is stationary with
+$\Pr(z_t=A)=\lambda$, each token is drawn from $A_t$ with marginal probability $\lambda$ in both
+cases, and the constant-weight projection $\pi$ targets the same $\theta=\lambda$. They differ in the second-order state: a blend has a single posterior
+weight, $\Pi=\delta_\lambda$, while switching carries a distribution over weights concentrated near
+$0$ and $1$. This is \cref{ex:level2} for generated text: pooling (here, the constant-weight
+projection) returns the same level-one state and hides the difference, which survives at level two.
+The test uses the two-state hidden Markov model with free transition probabilities $p_{AB},p_{BA}$,
+whose memoryless case $p_{AB}=1-\lambda$, $p_{BA}=\lambda$ is exactly the blend, and the statistic
+\[
+S=2\Big(\max_{p_{AB},p_{BA}}\log L_{\mathrm{HMM}}-\max_\lambda\log L_{\mathrm{blend}}\Big)\ \ge0.
+\]
+Under the null the transition parameters are not identified, so the null distribution is not
+$\chi^2$~\cite{Davies1977}; the threshold is the $95\%$ quantile of $S$ over blends simulated from
+the declared sources.
+
+\paragraph{Per-token attribution.} Given $\hat w$, token $t$ came from source $i$ with probability
+$r_t(i)=\hat w_iP_{ti}/(P\hat w)_t$, as in \cref{prop:ident}(v); under switching, forward--backward
+smoothing in the fitted chain replaces $\hat w$ by the posterior of $z_t$. As in \cref{sec:ident},
+what is exact is the attribution of the whole sequence; a single token in the overlap of two
+sources is attributed only probabilistically.
+
+\paragraph{Decision rule.} With budget $\bar\mu$ and switching threshold $s^*$, report
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+condition (checked in order) & report\\
+\midrule
+$\mu_{\mathrm{lo}}>\bar\mu$ & \emph{unknown}: a certified share $\ge\mu_{\mathrm{lo}}$ is explained by neither context\\
+$S>s^*$ & \emph{switching} between $A$ and $B$, with $\theta$ and $C_\theta$ as time shares\\
+$\min C_\theta\ge0.9$ & \emph{from $A$}\\
+$\max C_\theta\le0.1$ & \emph{from $B$}\\
+otherwise & \emph{blend} with share $\theta\in C_\theta$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every report carries the band $C_\theta$ and the interval $[\mu_{\mathrm{lo}},1]$ for the unexplained
+weight; the decision is a summary of them, not a replacement.
+
+\paragraph{Experiment.} We tested the projection in a retrieval-style setting on real news text:
+contexts $A$ and $B$ are two articles from the BASIL corpus~\cite{BASIL2019}, either about different
+events (``easy'') or two outlets' articles about the same event (``hard''). The reference $U$ is a
+bigram model trained on the remaining articles and 40{,}000 neutral headlines~\cite{BABE2021}; each
+context predictive is $\tfrac12$(document bigram)$+\tfrac12U$, and the coordinates are the
+document parts and $U$, as \cref{prop:absorbed} requires. Generated text with known truth: a span
+copied from $A$ or from $B$ with $20\%$ of the tokens replaced by samples from $U$ (paraphrase noise);
+switching between spans of 20--50 tokens; blends sampled token by token at $\lambda=0.2,0.5,0.8$; a
+span from a third article not in the context (\emph{unknown}); and half $A$, half third article.
+Forty generations per case and pair type; the budget and threshold were calibrated on separate
+generations. \Cref{tab:seqattr} gives the fraction of correct reports.
+
+\begin{table}[ht]
+\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+& copy & copy & & & & half & $C_\theta$ & $C_\theta$ & false\\
+& $A$ & $B$ & switch & blend & unk. & unk. & cover & width & unk.\\
+\midrule
+\SEQATTRROWS
+\bottomrule
+\end{tabular}
+\caption{Context attribution of generated text (fraction of 40 generations per case reported
+correctly; ``blend'' is the mean over $\lambda=0.2,0.5,0.8$; coverage and width of the $95\%$ band
+$C_\theta$ over the three blends; ``false unk.'' is the rate of \emph{unknown} reports on text that
+uses only the two contexts). Rows marked \emph{full} use the full context models as coordinates,
+which absorbs the reference (\cref{prop:absorbed}).}\label{tab:seqattr}
+\end{table}
+
+\SEQATTRTEXT
+
+\paragraph{Scope.} The generations in this experiment come from bigram context models and from
+copied spans of real articles, not from a large language model, so the experiment tests the
+statistics of the projection (identifiability, band coverage, the unknown certificate and the
+level-two test) and not the behaviour of a particular generator. For a language model the
+procedure is the same, with $A_t$, $B_t$, $U_t$ read from three forward passes. The bands assume
+constant weights within the sequence; for long generations they should be computed on windows, and
+the switching test then becomes a test for change points.

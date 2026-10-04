@@ -1,0 +1,81 @@
+\section{Obstructed claims cannot learn: transport certificates and the limiting error}\label{sec:claimlearn}
+Section~\ref{sec:shadow} measured that a claim that is level-one admissible but obstructed at level two keeps its error after updating, and that the graded distance $d_2^W$ ranks errors (AUC $0.96$). This section turns that measurement into theorems. The statements came from the open problems of \cite{awasthiT}. Lemma~\ref{lem:d2w}, Theorem~\ref{thm:claimlimit}, Corollary~\ref{cor:permanent}, Theorem~\ref{thm:claimrate} and Proposition~\ref{prop:coverpi} are proved here. Proposition~\ref{prop:noweighted} shows that the original form of the next conjecture is false, and Proposition~\ref{prop:ties} shows that the lower bound needs a unique limit. The level-three problem stays open. Every statement is checked numerically in \texttt{examples/tower/claims\_theorems.py}, with reduced versions in \texttt{tests/test\_claims\_theorems.py}.
+
+\paragraph{Setup.}
+\begin{itemize}
+  \item $B$ is a finite outcome set. The admissible class is $S_1=\{\rho_h:h\in H\}\subset D(B)$, finite, with every $\rho_h$ of full support. The truth is $\rho^*=\rho_{h^*}\in S_1$ (well specified).
+  \item A level-two claim is $x_2=\sum_cw_c\delta_{\sigma_c}$ with $w_c>0$ and distinct atoms $\sigma_c\in D(B)$ of full support, not necessarily in $S_1$. Put $\sigma_{\min}=\min_{c,b}\sigma_c(b)$.
+  \item On data $y_1,\dots,y_n$ i.i.d.\ from $\rho^*$ the claim updates as it says: $w^{(n)}_c\propto w_c\prod_i\sigma_c(y_i)$, with prediction $p_n=\sum_cw^{(n)}_c\sigma_c$.
+  \item Three quantities use only the claim and $S_1$, not the truth: the graded distance $d_2^W(x_2)=\sum_cw_c\min_h\|\sigma_c-\rho_h\|_1$; the spurious radius $s(x_2)=\min_c\min_h\|\sigma_c-\rho_h\|_1$; and the coverage radius $r(x_2)=\max_h\min_c\|\sigma_c-\rho_h\|_1$.
+\end{itemize}
+
+\begin{lemma}[The graded distance is a transport distance]\label{lem:d2w}
+With ground metric $\|\cdot\|_1$ on $D(B)$, the Kantorovich distance from $x_2$ to the set $D(S_1)$ of second-order states supported on $S_1$ equals $d_2^W(x_2)$, attained by moving each atom to a nearest admissible law.
+\end{lemma}
+\begin{proof}
+A coupling of $x_2$ with any $\nu\in D(S_1)$ sends the mass $w_c$ of atom $\sigma_c$ to points of $S_1$, at cost at least $w_c\min_h\|\sigma_c-\rho_h\|_1$; summing gives $\ge d_2^W$. The push-forward of $x_2$ under a nearest-point map $\sigma_c\mapsto\rho_{h(c)}$ is in $D(S_1)$ and its deterministic coupling costs exactly $d_2^W$.
+\end{proof}
+Check: the transport linear programme equals $d_2^W$ to $10^{-16}$ in $400$ random instances.
+
+\begin{theorem}[Where an updated claim ends up]\label{thm:claimlimit}
+Let $M=\arg\min_c\mathrm{KL}(\rho^*\,\|\,\sigma_c)$.
+\begin{enumerate}[label=(\roman*)]
+  \item Almost surely $\sum_{c\notin M}w_c^{(n)}\to0$, and $\limsup_n\mathrm{TV}(p_n,\rho^*)\le\sqrt{\tfrac12\min_c\mathrm{KL}(\rho^*\|\sigma_c)}\le\min_c\|\sigma_c-\rho^*\|_1/\sqrt{2\sigma_{\min}}$.
+  \item If $M=\{c^\dagger\}$, then $p_n\to\sigma_{c^\dagger}$ almost surely and
+  \[\tfrac12 s(x_2)\ \le\ \tfrac12\min_c\|\sigma_c-\rho^*\|_1\ \le\ \lim_n\mathrm{TV}(p_n,\rho^*)\ \le\ \sqrt{\tfrac12\min_c\mathrm{KL}(\rho^*\|\sigma_c)}\ \le\ \frac{\min_c\|\sigma_c-\rho^*\|_1}{\sqrt{2\sigma_{\min}}}.\]
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+For $c\notin M$ and $m\in M$, $\frac1n\log(w^{(n)}_c/w^{(n)}_m)=\frac1n\log(w_c/w_m)+\frac1n\sum_i\log\frac{\sigma_c(y_i)}{\sigma_m(y_i)}\to\mathrm{KL}(\rho^*\|\sigma_m)-\mathrm{KL}(\rho^*\|\sigma_c)<0$ by the strong law (the summands are bounded because the atoms have full support). This is Berk's theorem for a finite family \cite{berk66,kleijnvdv06}. Hence $p_n$ approaches $\operatorname{conv}\{\sigma_m:m\in M\}$. Every $\sigma_m$ has the same KL, so by Pinsker $\mathrm{TV}(\sigma_m,\rho^*)\le\sqrt{\frac12\min_c\mathrm{KL}}$, and TV is convex, which gives the $\limsup$. Next, $\mathrm{KL}\le\chi^2$ \cite{gibbssu02} and $\chi^2(\rho^*\|\sigma)=\sum_b(\rho^*(b)-\sigma(b))^2/\sigma(b)\le\|\rho^*-\sigma\|_1^2/\sigma_{\min}$, since $\sum_bx_b^2\le(\sum_b|x_b|)^2$. Apply this at the atom closest to $\rho^*$ in $L^1$ and use $\min_c\mathrm{KL}\le\mathrm{KL}$ at that atom. For (ii), $\lim\mathrm{TV}(p_n,\rho^*)=\frac12\|\sigma_{c^\dagger}-\rho^*\|_1\ge\frac12\min_c\|\sigma_c-\rho^*\|_1$, and since $\rho^*\in S_1$, $\min_c\|\sigma_c-\rho^*\|_1\ge\min_c\min_h\|\sigma_c-\rho_h\|_1=s$.
+\end{proof}
+
+\begin{corollary}[Structural hallucination is permanent, and certified without the truth]\label{cor:permanent}
+Uniformly over the unknown truth $h^*\in H$: $\limsup_n\mathrm{TV}(p_n,\rho^*)\le r(x_2)/\sqrt{2\sigma_{\min}}$, and, when the KL-minimiser is unique, $\lim_n\mathrm{TV}(p_n,\rho^*)\ge\frac12 s(x_2)$.
+\begin{itemize}
+  \item \emph{Permanence.} If every atom is at least $s>0$ from $S_1$, the error never falls below $s/2$, whatever data arrive.
+  \item \emph{Learning.} If some atom equals each admissible law ($r=0$), the claim learns the truth.
+  \item \emph{The collapsed claim} of Section~\ref{sec:shadow} is a single atom at the barycenter; its error stays at $\mathrm{TV}(\bar\rho,\rho^*)$, which is what was measured.
+\end{itemize}
+\end{corollary}
+\begin{proof}
+$\rho^*=\rho_{h^*}$, so $\min_c\|\sigma_c-\rho^*\|_1\le\max_h\min_c\|\sigma_c-\rho_h\|_1=r$; then apply Theorem~\ref{thm:claimlimit}. If $r=0$, some atom equals $\rho^*$, so the minimum KL is $0$ and every minimiser equals $\rho^*$.
+\end{proof}
+
+\begin{theorem}[Finite-$n$ rate]\label{thm:claimrate}
+Let $M=\{c^\dagger\}$, $\Delta_c=\mathrm{KL}(\rho^*\|\sigma_c)-\mathrm{KL}(\rho^*\|\sigma_{c^\dagger})>0$ for $c\ne c^\dagger$, $\ell=\log(1/\sigma_{\min})$ and $C$ the number of atoms. With probability at least $1-\delta$,
+\[\mathrm{TV}(p_n,\sigma_{c^\dagger})\ \le\ \sum_{c\ne c^\dagger}\frac{w_c}{w_{c^\dagger}}\exp\!\Big(-n\Delta_c+\ell\sqrt{2n\log\tfrac{C-1}{\delta}}\Big).\]
+\end{theorem}
+\begin{proof}
+$\mathrm{TV}(p_n,\sigma_{c^\dagger})=\frac12\|\sum_{c\ne c^\dagger}w^{(n)}_c(\sigma_c-\sigma_{c^\dagger})\|_1\le\sum_{c\ne c^\dagger}w^{(n)}_c\le\sum_{c\ne c^\dagger}w^{(n)}_c/w^{(n)}_{c^\dagger}$, and $w^{(n)}_c/w^{(n)}_{c^\dagger}=(w_c/w_{c^\dagger})\exp(\sum_iL_i)$ with $L_i=\log(\sigma_c(y_i)/\sigma_{c^\dagger}(y_i))\in[-\ell,\ell]$ and mean $-\Delta_c$. Hoeffding's inequality \cite{hoeffding63} gives $\Pr(\sum_iL_i\ge-n\Delta_c+t)\le\exp(-t^2/(2n\ell^2))$; take $t=\ell\sqrt{2n\log((C-1)/\delta)}$ and a union bound over the $C-1$ atoms.
+\end{proof}
+Check: across $200$ instances with $50$ data sets each ($n=300$, $\delta=0.1$), the bound is never violated. It is loose: it is below $1$ in only $10\%$ of the instances, because Hoeffding uses the worst-case range $\ell$. A Bernstein bound with the variance of $L_i$ would tighten it.
+
+\paragraph{The next conjecture: does the graded distance control the error?} The measured AUC of $0.96$ suggested a bound $\mathbb E\,\mathrm{TV}(p_n,\rho^*)\le f(d_2^W(x_2),n)$ with $f(0,n)\to0$. In that form it is false.
+\begin{proposition}[The graded distance alone does not bound the error]\label{prop:noweighted}
+For $x_2=\delta_{\rho_{h_1}}$ with $h_1\ne h^*$, $d_2^W(x_2)=0$ while $\mathrm{TV}(p_n,\rho^*)=\mathrm{TV}(\rho_{h_1},\rho^*)>0$ for every $n$. This remains positive after averaging $h^*$ over any prior with mass off $h_1$.
+\end{proposition}
+\begin{proof}
+A single atom never reweights, and it lies in $S_1$.
+\end{proof}
+The graded distance measures distance to $S_1$, not to the truth, so a bound must also see coverage. With a prior $\pi$ on $H$, define the $\pi$-coverage radius $r_\pi(x_2)=\sum_h\pi(h)\min_c\|\sigma_c-\rho_h\|_1$.
+\begin{proposition}[Coverage controls the error on average; perturbed honest claims]\label{prop:coverpi}
+For $h^*\sim\pi$, $\mathbb E_\pi\limsup_n\mathrm{TV}(p_n,\rho^*)\le r_\pi(x_2)/\sqrt{2\sigma_{\min}}$. If the claim is a perturbed honest claim, that is, its atoms are indexed by $H$ with $w_h=\pi(h)$ and the nearest admissible law of $\sigma_h$ is $\rho_h$, then $r_\pi(x_2)\le d_2^W(x_2)$, and so
+\[\mathbb E_{h^*\sim\pi}\,\limsup_n\mathrm{TV}(p_n,\rho^*)\ \le\ \frac{d_2^W(x_2)}{\sqrt{2\sigma_{\min}}}.\]
+\end{proposition}
+\begin{proof}
+Average the pointwise bound of Theorem~\ref{thm:claimlimit}(i), which gives $\min_c\|\sigma_c-\rho_{h^*}\|_1/\sqrt{2\sigma_{\min}}$. Then $r_\pi\le\sum_h\pi(h)\|\sigma_h-\rho_h\|_1=\sum_hw_h\min_{h'}\|\sigma_h-\rho_{h'}\|_1=d_2^W$.
+\end{proof}
+This is the regime of the hallucinated claims in the experiment of Section~\ref{sec:shadow}: perturbed atoms carrying posterior weights. It explains why $d_2^W$ ranked their errors. Check: no violation in $160$ random perturbed honest claims. \emph{Open} (the remaining part of the conjecture): a finite-$n$ version, $\mathbb E\,\mathrm{TV}(p_n,\rho^*)\le f(d_2^W,n)$ for perturbed honest claims with $f(0,n)$ at the Bayes rate. This needs a rate that is uniform over the truth, which Theorem~\ref{thm:claimrate} does not give when KL gaps are small.
+
+\begin{proposition}[Ties: the lower bound needs a unique limit]\label{prop:ties}
+Let $S_1=\{\rho^*\}$ with $\rho^*$ uniform on three outcomes, and $\sigma_{1,2}=\rho^*\pm\varepsilon(e_1-e_2)$ with equal weights. Then $\mathrm{KL}(\rho^*\|\sigma_1)=\mathrm{KL}(\rho^*\|\sigma_2)$ and $s=2\varepsilon$, but almost surely $p_n=\rho^*$ infinitely often, so $\liminf_n\mathrm{TV}(p_n,\rho^*)=0<\frac12 s$. Also $\limsup_n\mathrm{TV}(p_n,\rho^*)=\varepsilon=\frac12 s$, and $p_n$ does not converge.
+\end{proposition}
+\begin{proof}
+The log weight ratio is $a\cdot(N_1-N_2)$ with $a=\log\frac{1/3+\varepsilon}{1/3-\varepsilon}$, a mean-zero lattice random walk with steps in $\{-a,0,a\}$. It returns to $0$ infinitely often, and there $p_n=\frac12\sigma_1+\frac12\sigma_2=\rho^*$. It is unbounded in both directions (Chung--Fuchs), so the weight of each atom approaches $1$ along subsequences.
+\end{proof}
+Check: in $20{,}000$ draws the walk returns to zero $88$ times in the second half, where the error ranges over $[0,\varepsilon]$. So Corollary~\ref{cor:permanent}'s lower bound holds for unique minimisers, which is the generic case. With two tied minimisers it holds for $\limsup$, by the same oscillation argument. Ties among three or more atoms are not covered.
+
+\paragraph{Open: the level-three analogue.} In the committed regime $S_2=\{\delta_\rho:\rho\in S_1\}$ with two-stage evidence (first-stage data bear on which second-order state is correct, second-stage data on the outcome), show that a level-three claim asserting a mixture of second-order states as a single state ($x_3\notin L_3$) has limiting two-stage error bounded below by a level-three spurious radius. This would be Corollary~\ref{cor:permanent} one level up. It needs a two-stage likelihood model to be fixed first.
+
+\paragraph{What is new.} Theorem~\ref{thm:claimlimit} and the limit in Theorem~\ref{thm:claimrate} are Bayesian asymptotics under misspecification. The new parts are these. Lemma~\ref{lem:d2w} identifies the tower's graded certificate as a transport distance. Corollary~\ref{cor:permanent} states the error in terms of $s$ and $r$, which are computable without the truth, so ``an obstructed claim cannot learn'' becomes a theorem rather than a measurement. Propositions~\ref{prop:noweighted}--\ref{prop:ties} mark where the certificate stops being enough.
+
