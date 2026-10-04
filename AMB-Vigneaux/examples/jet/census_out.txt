@@ -1,0 +1,43 @@
+298904 jets; QCD 0.234; cell occupancy (all): [41417, 16885, 14205, 2544, 11971, 1694, 7868, 381, 5008, 31177, 12925, 33481, 19675, 36772, 31978, 30923]
+
+== all (n=298904)
+[1] pT path: e-flat dev 6255/90 (p=0.0e+00); curved term LR 5860/15 (p=0.0e+00); quad dev 395/75; gamma^2 = 9.6 per obs (n-sample curvature >= 1/8 only for n < 76.8)
+[2] holonomy ptb x etab: G 1117/315 = 3.55 (p=3.8e-90); rms plaquette 0.241
+[2] holonomy ptb x phib: G 809/735 = 1.10 (p=0.03); rms plaquette 0.311
+[2] holonomy etab x phib: G 305/315 = 0.97 (p=0.65); rms plaquette 0.202
+[3] pT bin 0: n  37363 theta +0.074±0.021 empty(<5)  0 min p 2.8e-04 toggle r 0.0049 node r 0.0281 partner margin 0.97 flop 0.00
+[3] pT bin 1: n  37363 theta +0.106±0.021 empty(<5)  0 min p 2.8e-04 toggle r 0.0049 node r 0.0254 partner margin 0.96 flop 0.00
+[3] pT bin 2: n  37363 theta +0.088±0.019 empty(<5)  0 min p 3.6e-04 toggle r 0.0041 node r 0.0233 partner margin 0.94 flop 0.00
+[3] pT bin 3: n  37363 theta +0.060±0.019 empty(<5)  0 min p 3.6e-04 toggle r 0.0032 node r 0.0243 partner margin 0.94 flop 0.00
+[3] pT bin 4: n  37363 theta +0.017±0.014 empty(<5)  0 min p 8.4e-04 toggle r 0.0043 node r 0.0257 partner margin 0.88 flop 0.00
+[3] pT bin 5: n  37364 theta +0.024±0.012 empty(<5)  0 min p 1.2e-03 toggle r 0.0059 node r 0.0325 partner margin 0.87 flop 0.00
+[3] pT bin 6: n  37362 theta +0.006±0.010 empty(<5)  0 min p 2.3e-03 toggle r 0.0100 node r 0.0456 partner margin 0.83 flop 0.00
+[3] pT bin 7: n  37363 theta -0.003±0.008 empty(<5)  0 min p 4.7e-03 toggle r 0.0174 node r 0.0579 partner margin 0.69 flop 0.00
+
+== QCD (n=69998)
+[1] pT path: e-flat dev 1238/90 (p=3.3e-201); curved term LR 1020/15 (p=6.7e-208); quad dev 218/75; gamma^2 = 2.52 per obs (n-sample curvature >= 1/8 only for n < 20.1)
+[2] holonomy ptb x etab: G 500/315 = 1.59 (p=1.5e-10); rms plaquette 0.477
+[2] holonomy ptb x phib: G 739/735 = 1.01 (p=0.45); rms plaquette 0.567
+[2] holonomy etab x phib: G 291/315 = 0.93 (p=0.83); rms plaquette 0.406
+[3] pT bin 0: n  13249 theta +0.045±0.044 empty(<5)  1 min p 1.9e-04 toggle r 0.0042 node r 0.0188 partner margin 0.96 flop 0.00
+[3] pT bin 1: n   9327 theta +0.059±0.045 empty(<5)  1 min p 2.7e-04 toggle r 0.0038 node r 0.0199 partner margin 0.94 flop 0.00
+[3] pT bin 2: n   7104 theta +0.103±0.045 empty(<5)  1 min p 3.5e-04 toggle r 0.0062 node r 0.0203 partner margin 0.89 flop 0.00
+[3] pT bin 3: n   5928 theta +0.055±0.041 empty(<5)  1 min p 5.9e-04 toggle r 0.0056 node r 0.0196 partner margin 0.82 flop 0.00
+[3] pT bin 4: n   5414 theta +0.043±0.028 empty(<5)  0 min p 1.9e-03 toggle r 0.0128 node r 0.0330 partner margin 0.62 flop 0.00
+[3] pT bin 5: n   5610 theta +0.042±0.027 empty(<5)  0 min p 1.9e-03 toggle r 0.0124 node r 0.0355 partner margin 0.65 flop 0.00
+[3] pT bin 6: n   6785 theta +0.020±0.018 empty(<5)  0 min p 5.7e-03 toggle r 0.0225 node r 0.0576 partner margin 0.39 flop 0.00
+[3] pT bin 7: n  16581 theta +0.005±0.011 empty(<5)  0 min p 8.3e-03 toggle r 0.0297 node r 0.0684 partner margin 0.29 flop 0.00
+
+== resonance (n=228906)
+[1] pT path: e-flat dev 2988/90 (p=0.0e+00); curved term LR 2769/15 (p=0.0e+00); quad dev 219/75; gamma^2 = 14.4 per obs (n-sample curvature >= 1/8 only for n < 115.2)
+[2] holonomy ptb x etab: G 1046/315 = 3.32 (p=3e-79); rms plaquette 0.276
+[2] holonomy ptb x phib: G 801/735 = 1.09 (p=0.046); rms plaquette 0.329
+[2] holonomy etab x phib: G 304/315 = 0.96 (p=0.67); rms plaquette 0.271
+[3] pT bin 0: n  24114 theta +0.063±0.024 empty(<5)  0 min p 3.5e-04 toggle r 0.0053 node r 0.0302 partner margin 0.96 flop 0.00
+[3] pT bin 1: n  28036 theta +0.098±0.024 empty(<5)  0 min p 3.0e-04 toggle r 0.0036 node r 0.0254 partner margin 0.96 flop 0.00
+[3] pT bin 2: n  30259 theta +0.082±0.021 empty(<5)  0 min p 3.8e-04 toggle r 0.0031 node r 0.0229 partner margin 0.94 flop 0.00
+[3] pT bin 3: n  31435 theta +0.057±0.022 empty(<5)  0 min p 3.3e-04 toggle r 0.0023 node r 0.0235 partner margin 0.95 flop 0.00
+[3] pT bin 4: n  31949 theta +0.016±0.017 empty(<5)  0 min p 6.7e-04 toggle r 0.0028 node r 0.0237 partner margin 0.91 flop 0.00
+[3] pT bin 5: n  31754 theta +0.021±0.015 empty(<5)  0 min p 1.1e-03 toggle r 0.0041 node r 0.0300 partner margin 0.89 flop 0.00
+[3] pT bin 6: n  30577 theta +0.008±0.013 empty(<5)  0 min p 1.6e-03 toggle r 0.0063 node r 0.0326 partner margin 0.85 flop 0.00
+[3] pT bin 7: n  20782 theta +0.014±0.015 empty(<5)  0 min p 1.9e-03 toggle r 0.0072 node r 0.0310 partner margin 0.79 flop 0.00

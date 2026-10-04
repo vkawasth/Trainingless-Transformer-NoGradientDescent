@@ -1,0 +1,2 @@
+G (holonomy statistic): IPF 1069.15   gradient descent 1069.07   max |mu_gd - mu_ipf| / mu_ipf 2.23e-02
+holonomy information: IPF 1.796e-3   GD 1.796e-3 nats/jet

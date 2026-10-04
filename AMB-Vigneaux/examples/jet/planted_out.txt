@@ -1,0 +1,22 @@
+(a) path curvatures (exact | estimated from counts)
+  shift (e-geodesic)           exact: e 0.000  m 0.851  FR 0.213  | n=200000: e 0.000±0.001 (raw 0.001)  m 0.834±0.013 (raw 0.835)  FR 0.202±0.006 (raw 0.203)
+  pull (m-geodesic)            exact: e 0.813  m 0.000  FR 0.203  | n=200000: e 0.794±0.136 (raw 0.860)  m 0.007±0.061 (raw 0.092)  FR 0.171±0.076 (raw 0.247)
+  great circle (FR geodesic)   exact: e 0.258  m 0.258  FR 0.000  | n=200000: e 0.279±0.084 (raw 0.352)  m 0.266±0.075 (raw 0.323)  FR 0.003±0.045 (raw 0.068)
+  bent (eta quadratic)         exact: e 4.523  m 4.564  FR 4.331  | n=200000: e 4.574±0.070 (raw 4.590)  m 4.557±0.084 (raw 4.574)  FR 4.353±0.077 (raw 4.370)
+(b) holonomy 2-form
+  twist lam=0.0  : true holonomy -0.0000 nats  estimated -0.0027 ± 0.0095  z -0.44  detected 0.10
+  twist lam=0.02 : true holonomy 0.0046 nats  estimated +0.0040 ± 0.0077  z +0.65  detected 0.20
+  twist lam=0.04 : true holonomy 0.0187 nats  estimated +0.0190 ± 0.0091  z +3.08  detected 0.85
+  twist lam=0.06 : true holonomy 0.0423 nats  estimated +0.0409 ± 0.0076  z +6.61  detected 1.00
+  twist lam=0.1  : true holonomy 0.1196 nats  estimated +0.1165 ± 0.0102  z +18.58  detected 1.00
+(c) Efron-Hinkley information wobble
+  e-flat (d = 0)   gamma2_e 0.000 | n Var(J/nI): n=25: 0.000  n=100: 0.000  n=400: 0.000  n=1600: 0.000
+  bent (d)         gamma2_e 4.523 | n Var(J/nI): n=25: 3.008  n=100: 4.308  n=400: 4.507  n=1600: 4.577
+  bent (2d)        gamma2_e 18.093 | n Var(J/nI): n=25: 7.776  n=100: 12.339  n=400: 16.119  n=1600: 17.982
+(d) nodes
+  node, equal partners  : top branch 0.50  branches 2  margin 0.00 [0.01, 0.27]
+  partners separated    : top branch 1.00  branches 1  margin 0.77 [0.70, 0.84]
+(e) top-order information
+  theta-scale 0.0: true D_top 0.00000  estimated -0.00001 ± 0.00002 (n=20000)
+  theta-scale 0.05: true D_top 0.00083  estimated +0.00091 ± 0.00035 (n=20000)
+  theta-scale 0.1: true D_top 0.00459  estimated +0.00438 ± 0.00058 (n=20000)
