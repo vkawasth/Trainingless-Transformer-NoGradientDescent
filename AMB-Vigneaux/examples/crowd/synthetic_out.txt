@@ -1,0 +1,14 @@
+real design: 8315 items; 11 gold-0 tetrahedral covers; planting into 5
+  DS (null)        [A] gold0 BH-sig planted 0/5, sharing a planted triple 0/4, disjoint 0/2 | [B] pair O/E 0.97 [0.91,1.02], triple 0.89 | [C] Q/df 0.64 (p 1.0e+00), oracle Q/df 0.66 (p 9.9e-01) | [D] pivotal share 0.94, DS-MV +0.059 | [E] K [1, 1, 2, 1]
+  +dif             [A] gold0 BH-sig planted 0/5, sharing a planted triple 0/4, disjoint 0/2 | [B] pair O/E 1.10 [1.03,1.15], triple 1.46 | [C] Q/df 0.78 (p 9.6e-01), oracle Q/df 0.68 (p 9.8e-01) | [D] pivotal share 0.88, DS-MV +0.089 | [E] K [2, 1, 2, 1]
+  +dif+int         [A] gold0 BH-sig planted 0/5, sharing a planted triple 0/4, disjoint 0/2 | [B] pair O/E 1.04 [0.97,1.11], triple 1.16 | [C] Q/df 0.80 (p 9.5e-01), oracle Q/df 5.98 (p 9.5e-52) | [D] pivotal share 0.91, DS-MV +0.082 | [E] K [2, 1, 2, 1]
+  +H(0.5)          [A] gold0 BH-sig planted 0/5, sharing a planted triple 0/4, disjoint 0/2 | [B] pair O/E 1.06 [1.00,1.13], triple 0.73 | [C] Q/df 1.79 (p 7.5e-07), oracle Q/df 0.70 (p 9.7e-01) | [D] pivotal share 0.95, DS-MV +0.072 | [E] K [2, 1, 2, 1]
+  +H(1.0)          [A] gold0 BH-sig planted 5/5, sharing a planted triple 4/4, disjoint 1/2 | [B] pair O/E 1.12 [1.05,1.17], triple 0.59 | [C] Q/df 3.37 (p 1.1e-29), oracle Q/df 0.67 (p 9.8e-01) | [D] pivotal share 0.96, DS-MV +0.079 | [E] K [2, 1, 1, 3]
+  +dif+int+H(1.0)  [A] gold0 BH-sig planted 5/5, sharing a planted triple 4/4, disjoint 0/2 | [B] pair O/E 1.12 [1.06,1.17], triple 0.85 | [C] Q/df 2.72 (p 6.7e-21), oracle Q/df 5.47 (p 2.7e-45) | [D] pivotal share 0.93, DS-MV +0.103 | [E] K [2, 1, 3, 3]
+  real data        [B] pair O/E 1.13 | [C] Q/df 5.50 | [D] pivotal share 0.83, DS-MV +0.010
+(P) power of [A] for one tetrahedral cover
+    n =  15 items per triple: floor 0.342; detection rate at lam 0.00: 0.04, 0.25: 0.29, 0.50: 0.75, 0.75: 0.99, 1.00: 1.00
+    n =  30 items per triple: floor 0.279; detection rate at lam 0.00: 0.02, 0.25: 0.32, 0.50: 0.91, 0.75: 1.00, 1.00: 1.00
+    n =  60 items per triple: floor 0.219; detection rate at lam 0.00: 0.01, 0.25: 0.42, 0.50: 1.00, 0.75: 1.00, 1.00: 1.00
+    n = 120 items per triple: floor 0.153; detection rate at lam 0.00: 0.06, 0.25: 0.73, 0.50: 1.00, 0.75: 1.00, 1.00: 1.00
+    n = 240 items per triple: floor 0.119; detection rate at lam 0.00: 0.05, 0.25: 0.82, 0.50: 1.00, 0.75: 1.00, 1.00: 1.00

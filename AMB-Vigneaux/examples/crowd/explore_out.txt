@@ -1,0 +1,8 @@
+8315 items, 176 workers, gold positive rate 0.122
+(A) all  : 16 tetrahedral covers (all triples >= 12 items); CF above floor at p<0.05: 4; after Benjamini-Hochberg: 2 (of which with a significant gold-rate difference between triples: 2); median CF 0.262 vs median floor 0.260
+(A) gold0: 11 tetrahedral covers (all triples >= 12 items); CF above floor at p<0.05: 2; after Benjamini-Hochberg: 0; median CF 0.201 vs median floor 0.249
+(B) gold = 0 (7304 items): co-errors observed / expected under conditional independence -- pairs 1.13 [1.03, 1.21] (543 vs 481); all three 1.62 [1.19, 2.13] (37 vs 22.9)
+(B) gold = 1 (1011 items): co-errors observed / expected under conditional independence -- pairs 1.16 [1.07, 1.26] (615 vs 529); all three 1.58 [1.31, 1.86] (112 vs 71.1)
+(C) worker x difficulty (175 workers, 292 cells >= 8): additive (natural) logit model; loop residual Q 632.8 on 115 df, p 1.6e-72; difficulty effect on the logit of an error (vs d0): d0 +0.00, d1 +0.54, d2 +1.69; pooled error rate d0 0.160, d1 0.204, d2 0.372
+(D) outcomes: 41% of items are 2-1 splits (pivotal: one flip changes the majority); majority-vote error 3-0 0.030, 2-1 0.208; 83% of all errors are on pivotal items; accuracy: majority 0.897, one-coin Dawid-Skene 0.907
+(E) latent classes on the 6 busiest worker triples (n = [114, 65, 51, 49, 49, 49]): BIC picks K = [1, 1, 1, 1, 1, 1], held-out likelihood picks K = [1, 1, 1, 1, 1, 1] (K = 2 is truth only; K = 3 needs no more than 7 free parameters on 8 cells)
