@@ -1,0 +1,6 @@
+planted null  x10: windows 380 flips 120 | AUC r 0.60 gamma2 0.48 KL 0.54 prolate 0.56 | LR gain 2.5 (null mean 3.8, p 0.587)
+planted ramp  x1 : windows 380 flips 163 | AUC r 0.59 gamma2 0.46 KL 0.54 prolate 0.53 | LR gain 4.0 (null mean 5.7, p 0.537)
+planted ramp  x10: windows 380 flips 124 | AUC r 0.73 gamma2 0.51 KL 0.61 prolate 0.48 | LR gain 3.0 (null mean 5.5, p 0.639)
+planted step  x10: windows 380 flips 112 | AUC r 0.65 gamma2 0.47 KL 0.50 prolate 0.46 | LR gain 17.2 (null mean 6.2, p 0.036)
+AllSides     : windows 95 flips 41 | AUC r 0.64 gamma2 0.47 KL 0.64 prolate 0.48 | LR gain 3.5 (null mean 3.8, p 0.389)
+2016 polls   : windows 176 flips 51 | AUC r 0.52 gamma2 0.41 KL 0.53 prolate 0.35 | LR gain 0.5 (null mean 3.1, p 0.852)
