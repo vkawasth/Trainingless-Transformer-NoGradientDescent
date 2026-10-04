@@ -1,0 +1,8 @@
+(1) k=2: n=12, frontier by growth 35 (formed 132 combinations, 0.1s) vs 4096 regions enumerated (0.9s); optimum identical in 114/114 (reward, budget/price) cases
+(1) k=3: n=12, frontier by growth 57 (formed 145 combinations, 5.1s) vs 4096 regions enumerated (1.2s); optimum identical in 114/114 (reward, budget/price) cases
+(2) n= 7 (4 blocks): frontier   17, combinations formed      40 (vs 2^7 regions),   0.0s; budget 1.9: frontier best accuracy 0.686, myopic greedy 0.686
+(2) n=14 (8 blocks): frontier   33, combinations formed     207 (vs 2^14 regions),   0.2s; budget 5.2: frontier best accuracy 0.900, myopic greedy 0.786
+(2) n=21 (12 blocks): frontier  123, combinations formed     879 (vs 2^21 regions),   2.2s; budget 6.6: frontier best accuracy 0.935, myopic greedy 0.835
+(2) n=28 (16 blocks): frontier  167, combinations formed    1755 (vs 2^28 regions),  10.3s; budget 9.2: frontier best accuracy 0.972, myopic greedy 0.864
+(2) n=35 (20 blocks): frontier  296, combinations formed    4910 (vs 2^35 regions), 142.5s; budget 9.1: frontier best accuracy 0.972, myopic greedy 0.931
+(3) {N} <= {B}: True (values 0.50 <= 0.60); after adding C: {N,C} <= {B,C}: False, {B,C} <= {N,C}: True (values 1.00 vs 0.60). Budget 2: growth with wrong blocks finds 0.60, with N and C in one block 1.00

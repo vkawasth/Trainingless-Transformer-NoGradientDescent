@@ -1,0 +1,19 @@
+(A) n=8: 256 regions, frontier 17 (6.6%), 1460 dominance checks (vs 65280 pairwise), 0.1s; optimum on the frontier in 123/123 (reward, budget/price) cases
+(A) n=10: 1024 regions, frontier 23 (2.2%), 8152 dominance checks (vs 1047552 pairwise), 1.0s; optimum on the frontier in 135/135 (reward, budget/price) cases
+(A) n=12: 4096 regions, frontier 28 (0.7%), 39728 dominance checks (vs 16773120 pairwise), 7.6s; optimum on the frontier in 147/147 (reward, budget/price) cases
+(B) budget 4.0:
+   greedy-MI    region ['X8', 'X5']  accuracy 0.750  value along the growth path [0.5, 0.75, 0.75]
+   greedy-value region ['X8', 'X5']  accuracy 0.750  value along the growth path [0.5, 0.75, 0.75]
+   pairwise-MI  region ['X1', 'X5', 'X6', 'X7']  accuracy 0.650  value along the growth path [0.5, 0.5, 0.65, 0.65, 0.65]
+   frontier     region ['X1', 'X2', 'X3', 'X4']  accuracy 0.900  value along the growth path [0.5, 0.5, 0.5, 0.5, 0.9]
+(C) lam 0.0: naive glued accuracy 0.500; honest interval [0.500, 1.000]
+(C) lam 0.1: naive glued accuracy 0.550; honest interval [0.550, 0.850]
+(C) lam 0.2: naive glued accuracy 0.600; honest interval [0.600, 0.700]
+(C) lam 0.3: naive glued accuracy 0.650; honest interval [0.650, 0.675]
+(C) lam 0.4: naive glued accuracy 0.700; NO consistent joint (contextual): region has no value
+(C) lam 0.5: naive glued accuracy 0.750; NO consistent joint (contextual): region has no value
+(C) lam 0.6: naive glued accuracy 0.800; NO consistent joint (contextual): region has no value
+(C) lam 0.7: naive glued accuracy 0.850; NO consistent joint (contextual): region has no value
+(C) lam 0.8: naive glued accuracy 0.900; NO consistent joint (contextual): region has no value
+(C) lam 0.9: naive glued accuracy 0.950; NO consistent joint (contextual): region has no value
+(C) lam 1.0: naive glued accuracy nan; NO consistent joint (contextual): region has no value

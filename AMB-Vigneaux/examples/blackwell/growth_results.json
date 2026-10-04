@@ -1,0 +1,89 @@
+{
+ "exactness": [
+  {
+   "k": 2,
+   "n": 12,
+   "frontier": 35,
+   "formed": 132,
+   "regions": 4096,
+   "ok": 114.0,
+   "tests": 114,
+   "t_growth": 0.1156308650970459,
+   "t_enum": 0.9159011840820312
+  },
+  {
+   "k": 3,
+   "n": 12,
+   "frontier": 57,
+   "formed": 145,
+   "regions": 4096,
+   "ok": 114.0,
+   "tests": 114,
+   "t_growth": 5.104621887207031,
+   "t_enum": 1.1507329940795898
+  }
+ ],
+ "scaling": [
+  {
+   "n": 7,
+   "blocks": 4,
+   "frontier": 17,
+   "formed": 40,
+   "seconds": 0.016022205352783203,
+   "budget": 1.875,
+   "best": 0.685857848917883,
+   "greedy": 0.685857848917883
+  },
+  {
+   "n": 14,
+   "blocks": 8,
+   "frontier": 33,
+   "formed": 207,
+   "seconds": 0.15775585174560547,
+   "budget": 5.25,
+   "best": 0.9000000000000001,
+   "greedy": 0.785894055925811
+  },
+  {
+   "n": 21,
+   "blocks": 12,
+   "frontier": 123,
+   "formed": 879,
+   "seconds": 2.2458889484405518,
+   "budget": 6.625,
+   "best": 0.9349442664120298,
+   "greedy": 0.8351616076659623
+  },
+  {
+   "n": 28,
+   "blocks": 16,
+   "frontier": 167,
+   "formed": 1755,
+   "seconds": 10.337695837020874,
+   "budget": 9.25,
+   "best": 0.9720000000000003,
+   "greedy": 0.8636710188415828
+  },
+  {
+   "n": 35,
+   "blocks": 20,
+   "frontier": 296,
+   "formed": 4910,
+   "seconds": 142.50345063209534,
+   "budget": 9.125,
+   "best": 0.9720000000000004,
+   "greedy": 0.9311514619206811
+  }
+ ],
+ "counterexample": {
+  "N_le_B": true,
+  "NC_le_BC": false,
+  "BC_le_NC": true,
+  "val_N": 0.5,
+  "val_B": 0.6,
+  "val_NC": 1.0,
+  "val_BC": 0.6,
+  "wrong_blocks_best": 0.6,
+  "right_blocks_best": 1.0
+ }
+}
