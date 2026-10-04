@@ -1,0 +1,30 @@
+triangle | unanimity (identified) | t inside  (131s)
+   bounds-first stop 0.50  error 0.00  median cost   55906  mean   53802  median ratio to c-opt 1.00  switched 0.00
+   c-opt        stop 0.83  error 0.00  median cost   51707  mean   48972  median ratio to c-opt 1.00
+   cheap-only   stop 0.42  error 0.00  median cost   60002  mean   56573  median ratio to c-opt 1.16
+   full-only    stop 1.00  error 0.00  median cost   33100  mean   36892  median ratio to c-opt 0.72
+triangle | all-ones (not identified) | t outside  (36s)
+   bounds-first stop 0.83  error 0.00  median cost   27142  mean   30466  median ratio to c-opt 1.41  switched 0.33
+   c-opt        stop 1.00  error 0.00  median cost   13946  mean   14247  median ratio to c-opt 1.00
+   cheap-only   stop 0.50  error 0.00  median cost   50736  mean   44334  median ratio to c-opt 2.74
+   full-only    stop 1.00  error 0.00  median cost    8700  mean    9517  median ratio to c-opt 0.64
+triangle | all-ones (not identified) | t inside  (172s)
+   bounds-first stop 0.25  error 0.00  median cost   60016  mean   57097  median ratio to c-opt 1.00  switched 1.00
+   c-opt        stop 0.25  error 0.00  median cost   60040  mean   56241  median ratio to c-opt 1.00
+   cheap-only   stop 0.00  error nan  median cost   60048  mean   60047  median ratio to c-opt 1.00
+   full-only    stop 0.83  error 0.00  median cost   46550  mean   46550  median ratio to c-opt 0.86
+4-cycle | P(A = C) (diagonal identifies) | t inside  (88s)
+   bounds-first stop 1.00  error 0.00  median cost   17000  mean   23433  median ratio to c-opt 1.25  switched 1.00
+   c-opt        stop 1.00  error 0.00  median cost   17002  mean   18082  median ratio to c-opt 1.00
+   cheap-only   stop 0.00  error nan  median cost   60000  mean   60000  median ratio to c-opt 3.53
+   full-only    stop 0.00  error nan  median cost   60040  mean   60044  median ratio to c-opt 3.53
+4-cycle | all-ones (not identified) | t outside  (26s)
+   bounds-first stop 1.00  error 0.00  median cost   33100  mean   23016  median ratio to c-opt 5.59  switched 0.42
+   c-opt        stop 1.00  error 0.00  median cost    4040  mean    4267  median ratio to c-opt 1.00
+   cheap-only   stop 0.83  error 0.00  median cost   29800  mean   35225  median ratio to c-opt 8.82
+   full-only    stop 1.00  error 0.00  median cost    3268  mean    3545  median ratio to c-opt 0.91
+4-cycle | all-ones (not identified) | t inside  (346s)
+   bounds-first stop 0.00  error nan  median cost   60064  mean   60055  median ratio to c-opt 1.00  switched 1.00
+   c-opt        stop 0.00  error nan  median cost   60050  mean   60042  median ratio to c-opt 1.00
+   cheap-only   stop 0.00  error nan  median cost   60000  mean   60000  median ratio to c-opt 1.00
+   full-only    stop 0.00  error nan  median cost   60044  mean   60044  median ratio to c-opt 1.00
