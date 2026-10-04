@@ -1,0 +1,21 @@
+vocab 16135, 60 test documents, background built in 1s
+
+different-event pair (easy): switching threshold 3.78, unknown budget (background share above which = unknown) 0.00
+  copy A        {'A': 39, 'blend': 1} | theta 1.00 | mu 0.00 (lower bound 0.00) 
+  copy B        {'B': 39, 'blend': 1} | theta 0.00 | mu 0.00 (lower bound 0.00) 
+  switching     {'switching': 40} | theta 0.55 | mu 0.00 (lower bound 0.00) 
+  blend 0.2     {'blend': 40} | theta 0.19 | mu 0.00 (lower bound 0.00) | band coverage 0.90, width 0.25
+  blend 0.5     {'blend': 36, 'switching': 4} | theta 0.52 | mu 0.00 (lower bound 0.00) | band coverage 0.95, width 0.31
+  blend 0.8     {'blend': 40} | theta 0.81 | mu 0.00 (lower bound 0.00) | band coverage 1.00, width 0.24
+  unknown       {'unknown': 40} | theta 0.43 | mu 0.75 (lower bound 0.55) 
+  half unknown  {'switching': 22, 'blend': 18} | theta 0.97 | mu 0.08 (lower bound 0.00) 
+
+same-event pair (hard): switching threshold 1.76, unknown budget (background share above which = unknown) 0.00
+  copy A        {'A': 35, 'switching': 1, 'blend': 4} | theta 1.00 | mu 0.00 (lower bound 0.00) 
+  copy B        {'B': 35, 'blend': 5} | theta 0.00 | mu 0.00 (lower bound 0.00) 
+  switching     {'switching': 40} | theta 0.45 | mu 0.00 (lower bound 0.00) 
+  blend 0.2     {'blend': 37, 'switching': 3} | theta 0.19 | mu 0.00 (lower bound 0.00) | band coverage 0.97, width 0.30
+  blend 0.5     {'blend': 33, 'switching': 7} | theta 0.49 | mu 0.00 (lower bound 0.00) | band coverage 0.95, width 0.37
+  blend 0.8     {'blend': 37, 'switching': 2, 'A': 1} | theta 0.82 | mu 0.00 (lower bound 0.00) | band coverage 0.93, width 0.28
+  unknown       {'unknown': 40} | theta 0.52 | mu 0.79 (lower bound 0.60) 
+  half unknown  {'blend': 20, 'switching': 17, 'A': 2, 'unknown': 1} | theta 0.97 | mu 0.08 (lower bound 0.00) 

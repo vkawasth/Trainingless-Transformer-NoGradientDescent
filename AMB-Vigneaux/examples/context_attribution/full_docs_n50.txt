@@ -1,0 +1,21 @@
+vocab 16135, 60 test documents, background built in 1s
+
+different-event pair (easy): switching threshold 3.44, unknown budget (background share above which = unknown) 0.19
+  copy A        {'A': 31, 'blend': 7, 'unknown': 2} | theta 1.00 | mu 0.19 (lower bound 0.10) 
+  copy B        {'B': 31, 'blend': 8, 'unknown': 1} | theta 0.00 | mu 0.17 (lower bound 0.08) 
+  switching     {'switching': 34, 'B': 1, 'unknown': 1, 'blend': 4} | theta 0.51 | mu 0.20 (lower bound 0.10) 
+  blend 0.2     {'blend': 36, 'switching': 3, 'unknown': 1} | theta 0.21 | mu 0.19 (lower bound 0.10) | band coverage 0.85, width 0.33
+  blend 0.5     {'blend': 33, 'unknown': 5, 'switching': 2} | theta 0.52 | mu 0.21 (lower bound 0.11) | band coverage 0.93, width 0.40
+  blend 0.8     {'blend': 36, 'switching': 3, 'unknown': 1} | theta 0.79 | mu 0.19 (lower bound 0.10) | band coverage 1.00, width 0.34
+  unknown       {'unknown': 40} | theta 0.38 | mu 0.88 (lower bound 0.74) 
+  half unknown  {'blend': 4, 'unknown': 36} | theta 0.96 | mu 0.52 (lower bound 0.29) 
+
+same-event pair (hard): switching threshold 3.48, unknown budget (background share above which = unknown) 0.17
+  copy A        {'A': 20, 'unknown': 5, 'blend': 14, 'switching': 1} | theta 1.00 | mu 0.18 (lower bound 0.10) 
+  copy B        {'B': 21, 'blend': 15, 'unknown': 4} | theta 0.03 | mu 0.20 (lower bound 0.10) 
+  switching     {'blend': 8, 'switching': 28, 'unknown': 2, 'A': 1, 'B': 1} | theta 0.44 | mu 0.19 (lower bound 0.10) 
+  blend 0.2     {'blend': 33, 'unknown': 5, 'switching': 2} | theta 0.19 | mu 0.20 (lower bound 0.11) | band coverage 0.97, width 0.37
+  blend 0.5     {'blend': 35, 'unknown': 4, 'switching': 1} | theta 0.53 | mu 0.19 (lower bound 0.10) | band coverage 0.93, width 0.45
+  blend 0.8     {'blend': 36, 'switching': 3, 'unknown': 1} | theta 0.79 | mu 0.19 (lower bound 0.10) | band coverage 0.95, width 0.39
+  unknown       {'unknown': 40} | theta 0.54 | mu 0.89 (lower bound 0.76) 
+  half unknown  {'unknown': 40} | theta 0.96 | mu 0.53 (lower bound 0.30) 
