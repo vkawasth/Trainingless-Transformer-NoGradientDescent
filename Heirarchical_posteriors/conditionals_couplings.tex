@@ -1,0 +1,483 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\D}{\mathsf{D}}
+\newcommand{\Kl}{\mathrm{Kl}}
+\newcommand{\Cpl}{\operatorname{Cpl}}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\Hyp}{\mathrm{Hyp}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\C}{\mathsf{C}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\id}{\mathrm{id}}
+
+\title{Conditionals, Couplings and Toric Geometry:\\
+Established Results and a Fukaya Programme\\[4pt]
+\large Revised draft}
+\author{Vinay K. Awasthi\\
+Department of Applied Mathematics and Statistics\\
+Johns Hopkins University\thanks{Verification scripts: \texttt{check\_glue.py},
+\texttt{check\_stochastic\_basechange.py}, \texttt{check\_conditionals.py}; see \cref{sec:code}.}}
+\date{October 4, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We separate the conditional/coupling formulation of the finite distribution monad into what is proved,
+what is imported from symplectic topology, and what is conjectural. The proved layer has four parts.
+(1) Markov kernels are the 1-cells of the Kleisli category; couplings are 2-cells whose vertical
+composition is the gluing lemma; the natural whiskerings are not functorial, and the strict
+2-categorical structure is a graded metric shadow. (2) The base-relative posterior tower is a fibre
+over this base: its coherence, canonical section, strict mixed distributive law, admissibility data
+and obstructions are all transported along Markov kernels. (3) Coupling polytopes are moment
+polytopes: for nondegenerate marginals the polytope of couplings is Delzant, so it is the image of the
+moment map of a compact toric symplectic manifold, and when every cell is a facet the Fisher metric on
+the polytope is twice the Hessian of Guillemin's canonical symplectic potential. (4) The marginal
+space is cut by walls $\sum_If=\sum_Jg$; the combinatorial type, and hence the toric manifold, is
+locally constant off the walls and changes across them; the manifold is monotone exactly for uniform
+marginals, which are nondegenerate exactly for coprime sizes, and the smallest example is the degree-6
+del Pezzo surface. The imported layer uses known Floer theory to locate a distinguished Lagrangian
+torus fibre in the monotone case over the \emph{product} coupling, not the maximal coupling. The
+conjectural layer is restated with correct types: a family of toric manifolds over the chamber complex
+with wall-crossing in place of monodromy, and the whiskering defect as the second component of an
+$A_\infty$-functor rather than an $m_3$. We also list the corrections to the first draft.
+\end{abstract}
+
+\tableofcontents
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+%=====================================================================
+
+Two structures sit on top of the finite distribution monad $\D$. The base-relative posterior tower
+\cite{Awasthi-Tower} fixes an outcome base $B$ and solves a \emph{strict integrability} problem: it
+carries a mixed distributive law satisfying all four Beck axioms. The conditional/coupling formulation
+\cite{Awasthi-Attribution} lets the base vary along Markov kernels and compares kernels by couplings;
+it solves a \emph{transport} problem. The relation is
+\begin{align*}
+\text{base-relative tower}&=\text{fibre over a fixed base},\\
+\text{conditional/coupling structure}&=\text{the varying-base global structure}.
+\end{align*}
+The first draft of this note left one gap: the tower's change of base had been established only for
+functions $f\colon B\to B'$, while the global structure uses kernels $k\colon B\to\D(B')$. That gap is
+closed in \cite[\S9.7]{Awasthi-Tower}; we state the result in \cref{sec:fibre}.
+
+The second purpose of this note is the geometry. The first draft conjectured a symplectic structure
+whose restriction to a fibre ``is the Fisher metric'', and that the critical points of a projection are
+the maximal couplings. The correct statements turn out to be theorems about coupling polytopes
+(\cref{sec:toric}), and they point in a different direction: the distinguished point is the product
+coupling.
+
+\paragraph{Status of the results.}
+\begin{center}\small
+\begin{tabular}{@{}R{0.2\textwidth}R{0.48\textwidth}R{0.22\textwidth}@{}}
+\toprule
+Layer & Content & Where\\
+\midrule
+Proved & kernels, coupling 2-cells, graded shadow; stochastic base change of the tower; coupling
+polytopes are Delzant; Fisher $=2\,\mathrm{Hess}$ of Guillemin's potential; walls and chambers;
+monotone cases & \cref{sec:established,sec:fibre,sec:toric}\\
+Imported & Lagrangian torus fibres; nondisplaceability and Floer cohomology of the special fibre in the
+monotone case & \cref{sec:imported}\\
+Conjectural & families over the chamber complex; whiskering defects as $A_\infty$-functor data; a
+Fukaya-type functor & \cref{sec:conjectural}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=====================================================================
+\section{The established layer: kernels and couplings}\label{sec:established}
+%=====================================================================
+
+$\D$ is the finitely supported distribution monad on $\mathbf{Set}$ and $\Kl(\D)$ its Kleisli category.
+A 1-cell $k\colon B\rightsquigarrow B'$ is a Markov kernel $k\colon B\to\D(B')$, acting on states by
+$k^\#(p)(b')=\sum_bp(b)k(b)(b')$. The results of this section are proved in
+\cite[\S7]{Awasthi-Attribution}; we restate them for reference.
+
+\begin{proposition}[1-cells {\cite[Props.~7.2, 7.3]{Awasthi-Attribution}}]\label{prop:1cells}
+$k^\#$ is affine, $(h\circ k)^\#=h^\#k^\#$, $k^\#\circ\mu=\mu\circ\D(k^\#)$, and
+$\TV(k^\#p,k^\#q)\le\TV(p,q)$. Attribution sets are transported along $k$, and precision can only be lost.
+\end{proposition}
+
+\begin{definition}[Coupling 2-cells]\label{def:coupling}
+For 1-cells $f,g\colon X\rightsquigarrow Y$, a coupling 2-cell $\alpha\colon f\Rightarrow g$ is a kernel
+$\alpha\colon X\to\D(Y\times Y)$ with marginals $f(x)$ and $g(x)$. Its cost is
+$c(\alpha)=\max_x\Pr_{\alpha(x)}(y\ne y')$; the identity is the diagonal coupling; the vertical
+composite glues along the common marginal,
+$(\beta\cdot\alpha)(x)(y,y'')=\sum_{y'}\alpha(x)(y,y')\beta(x)(y',y'')/g(x)(y')$.
+\end{definition}
+
+\begin{theorem}[Witnesses and shadow {\cite[Thms.~7.6, 7.8]{Awasthi-Attribution}}]\label{thm:witness}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item For fixed $X,Y$, 1-cells and coupling 2-cells form a category under gluing, strictly
+  associative and unital. Cost is subadditive and $\min_\alpha c(\alpha)=d(f,g)=\max_x\TV(f(x),g(x))$.
+\item Whiskering by a deterministic precomposition is strictly functorial. Whiskering by a stochastic
+  precomposition (mixing couplings) or by a postcomposition (copying on equal pairs, independent on
+  unequal pairs) preserves identities, marginals and the cost bound, but is not functorial.
+\item Graded 2-cells $f\Rightarrow_\varepsilon g$, $\varepsilon\ge d(f,g)$, with grades adding, form a strict
+  2-category on kernel 1-cells, and $d$ makes $\Kl(\D)$ a Lawvere-enriched category.
+\end{enumerate}
+\end{theorem}
+
+%=====================================================================
+\section{The fibre: stochastic change of base for the tower}\label{sec:fibre}
+%=====================================================================
+
+The base-relative tower over $B$ has context algebra $A_B=\D B\times\D^2B\times\D^3B\times\Sh(B)$,
+reader comonad $\C^B(Y)=Y\times A_B$ and strict law $\lambda^B$ \cite[\S9]{Awasthi-Tower}. With
+$\Hyp=\Theta\times\D(-)$, a kernel $k\colon B\to\D(B')$ acts on hypotheses by
+$\Hyp(k)(\theta,\rho)=(\theta,k^\#\rho)$, and we put
+$A_k=k^\#\times\D(k^\#)\times\D^2(k^\#)\times\D(\Hyp k)$.
+
+\begin{theorem}[The tower is a functor on the Kleisli category {\cite[Prop.~9.14, Cor.~9.15, Prop.~9.16]{Awasthi-Tower}}]\label{thm:fibre}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item $A_k$ is a morphism of $\D$-algebras, preserves coherent contexts, commutes with the canonical
+  section $\sigma$, and $A_{h\circ k}=A_hA_k$; for deterministic $k$ it is the earlier base change.
+\item $\id\times A_k$ is a comonad morphism $\C^B\Rightarrow\C^{B'}$ commuting with the laws $\lambda^B$,
+  $\lambda^{B'}$.
+\item Admissibility data, coherent lifts and the effective sets are transported; certificates pull
+  back along $f'\mapsto k\rhd f'$; failure levels can only rise and the secondary obstruction can only
+  fall.
+\item Conditioning on an outcome observed after the channel equals conditioning on the pulled-back
+  predicate $k\rhd1_{e'}$, then changing base.
+\end{enumerate}
+Graded 2-cells transport to every level: for kernels $f,g$, the level-one and level-two Kantorovich
+distances between $A_f(c)$ and $A_g(c)$ are at most $d(f,g)$.
+\end{theorem}
+
+The proof uses a single fact beyond naturality: Kleisli extension is a morphism of free $\D$-algebras.
+All other components of $A_k$ are pushforwards along functions. So the strict integrability of the
+fibre and the transport of the global structure are compatible, and the fibre is functorial on all
+of $\Kl(\D)$, not only on $\mathbf{Set}$.
+
+%=====================================================================
+\section{Coupling polytopes are moment polytopes}\label{sec:toric}
+%=====================================================================
+
+\subsection{The polytope and its lattice}
+
+Let $f\in\D(Y)$ and $g\in\D(Y')$ have full support, with $\lvert Y\rvert=n$, $\lvert Y'\rvert=m$. (For
+coupling 2-cells $Y=Y'$; rectangular polytopes arise when gluing contexts
+\cite[Prop.~7.11]{Awasthi-Attribution}.) The \emph{coupling polytope} is
+\[
+\Cpl(f,g)=\Big\{\alpha\in\mathbb{R}_{\ge0}^{Y\times Y'}:\ \textstyle\sum_{y'}\alpha(y,y')=f(y),\
+\sum_y\alpha(y,y')=g(y')\Big\}.
+\]
+Its tangent space is the space of \emph{circulations}, matrices with zero row and column sums. The
+integer circulations form a lattice $\Lambda$ of rank $(n-1)(m-1)$; a basis is
+$E_{ij}-E_{i,m}-E_{n,j}+E_{n,m}$ for $i<n$, $j<m$.
+
+\begin{proposition}[Interior and Fisher metric]\label{prop:interior}
+$\Cpl(f,g)$ has dimension $(n-1)(m-1)$, its relative interior is the set of strictly positive
+couplings, and on it the Fisher metric $\mathcal{I}_\alpha(v,w)=\sum v(y,y')w(y,y')/\alpha(y,y')$ is
+positive definite on circulations.
+\end{proposition}
+\begin{proof}
+The product coupling $f\otimes g$ is strictly positive, so no inequality $\alpha\ge0$ is an implicit
+equality, and the relative interior of the polytope in its affine hull is $\{\alpha>0\}$. There
+$\mathcal{I}_\alpha(v,v)=\sum v^2/\alpha>0$ for $v\ne0$.
+\end{proof}
+
+\begin{remark}
+The first draft argued nondegeneracy through a radical and then distinguished ``the Fisher metric''
+from ``the Fisher--Rao metric''. These are the same metric, the Fisher information metric. The
+square-root embedding is a way of computing its geodesic distance \cite[Prop.~8.1]{Awasthi-Attribution}.
+\end{remark}
+
+\subsection{Nondegeneracy implies Delzant}
+
+\begin{definition}[Walls]\label{def:walls}
+The pair $(f,g)$ is \emph{degenerate} if $\sum_{y\in I}f(y)=\sum_{y'\in J}g(y')$ for some
+nonempty proper subsets $I\subsetneq Y$ and $J\subsetneq Y'$. These equations define hyperplanes,
+the \emph{walls}, in the space of pairs of marginals; the \emph{chambers} are the connected components of
+the complement of the walls.
+\end{definition}
+
+\begin{theorem}[Coupling polytopes are Delzant]\label{thm:delzant}
+If $(f,g)$ is nondegenerate, then $\Cpl(f,g)$ is a Delzant polytope with respect to $\Lambda$: it is
+simple, its facet normals are rational, and at each vertex the primitive edge vectors form a basis of
+$\Lambda$. Its edges at a vertex are the fundamental cycles of a spanning tree.
+\end{theorem}
+\begin{proof}
+Regard $\alpha$ as a weighting of the edges of the complete bipartite graph on $Y\sqcup Y'$.
+\emph{Vertices are forests.} If the support of a feasible $\alpha$ contains a cycle, adding $\pm\epsilon$
+alternately around it stays feasible, so $\alpha$ is not a vertex. If the support is a forest, the
+marginal equations determine $\alpha$ on it uniquely (peel off leaves), so $\alpha$ is a vertex.
+\emph{Nondegeneracy makes them spanning trees.} Every node has positive marginal and hence an incident
+edge of the support. If the support forest had two or more components, take one with row set $I$ and
+column set $J$. Then $\sum_If=\sum_Jg$; $I$ and $J$ are nonempty, and if $I=Y$ then $\sum_Jg=1$ forces
+$J=Y'$ and the component is everything. So $I$ and $J$ are proper, contradicting nondegeneracy.
+\emph{Simplicity and smoothness.} At a vertex with spanning tree $T$, the zero cells are the
+$nm-(n+m-1)=(n-1)(m-1)$ non-tree cells $c$. Each closes a unique cycle in $T\cup\{c\}$, giving a
+circulation $C_c$ with entries in $\{0,\pm1\}$ and $C_c(c)=1$. A circulation $w$ equals
+$\sum_{c\notin T}w(c)C_c$, because the difference is a circulation supported on the tree, hence zero.
+So the feasible directions at the vertex form the cone $\{\sum_ct_cC_c:t\ge0\}$ on exactly
+$\dim\Cpl(f,g)$ independent generators (simplicity), and the $C_c$ are integral and form a $\mathbb{Z}$-basis
+of $\Lambda$, since integer coefficients $w(c)$ suffice (smoothness). The facet normals are the coordinate
+functionals $\alpha\mapsto\alpha(c)$, which are rational.
+\end{proof}
+
+By Delzant's theorem \cite{Delzant1988} there is a compact connected toric symplectic manifold
+$(X_{f,g},\omega)$ of real dimension $2(n-1)(m-1)$, unique up to equivariant symplectomorphism, whose
+moment map $\mu\colon X_{f,g}\to\Cpl(f,g)$ has image the coupling polytope. The fibre over an interior
+coupling is a Lagrangian torus $T^{(n-1)(m-1)}$, and the fibre over a vertex is a point.
+
+\begin{proposition}[Fisher metric and Guillemin's potential]\label{prop:guillemin}
+Suppose every inequality $\alpha(c)\ge0$ defines a facet of $\Cpl(f,g)$. The canonical K\"ahler metric
+of $X_{f,g}$ constructed by Guillemin \cite{Guillemin1994} has, in action--angle coordinates over the
+interior, the form $\mathrm{Hess}\,G$ in the polytope directions, with symplectic potential
+\[
+G(\alpha)=\tfrac12\sum_{c}\alpha(c)\log\alpha(c).
+\]
+Hence the Fisher metric on $\Cpl(f,g)$ is twice the restriction of the canonical K\"ahler metric to the
+real section, and the product coupling $f\otimes g$, the coupling of maximal entropy, is the unique
+critical point of $G$ on the polytope.
+\end{proposition}
+\begin{proof}
+Guillemin's potential is $\tfrac12\sum_i\ell_i\log\ell_i$ over the facets, where $\ell_i\ge0$ are the
+facet inequalities written with primitive inward normals. Here $\ell_c(\alpha)=\alpha(c)$, and the
+coordinate functional is primitive on $\Lambda$ because some integer circulation has entry $1$ at $c$.
+Then $\mathrm{Hess}\,G(v,v)=\tfrac12\sum_cv(c)^2/\alpha(c)$. The critical-point condition is that
+$\log\alpha$ is orthogonal to all circulations, that is $\log\alpha(y,y')=r(y)+s(y')$, which together with
+the marginals gives $\alpha=f\otimes g$. Uniqueness follows from strict convexity.
+\end{proof}
+
+If some cell is not a facet, for instance when $f(y)+g(y')>1$ forces $\alpha(y,y')>0$, the potential
+omits that term and the identity holds only up to those terms.
+
+\subsection{Walls, chambers and monotone cases}
+
+\begin{proposition}[Chambers]\label{prop:chambers}
+The set of spanning trees that support vertices, and hence the combinatorial type of $\Cpl(f,g)$ and
+the toric manifold $X_{f,g}$ up to equivariant diffeomorphism, is constant on each chamber. The type
+can change across a wall. For $f=(\tfrac12,\tfrac12)$ and $g=(t,\tfrac23-t,\tfrac13)$ the polytope is a
+hexagon for $t<\tfrac12$ and a quadrilateral for $t>\tfrac12$, both Delzant: two facets become redundant
+across the wall $g_1=f_1$.
+\end{proposition}
+\begin{proof}
+The tree solution on a spanning tree $T$ assigns to each tree edge the value $\sum_If-\sum_Jg$ (up to
+sign) for the bipartition $(I,J)$ obtained by deleting that edge. So feasibility of $T$ depends only on
+the signs of such differences, which are constant on chambers. The example is checked in
+\texttt{check\_conditionals.py}.
+\end{proof}
+
+\begin{proposition}[Monotone cases]\label{prop:monotone}
+Assume $(f,g)$ is nondegenerate and every cell defines a facet. Then $X_{f,g}$ is monotone if and only
+if $f$ and $g$ are uniform, and uniform marginals are nondegenerate exactly when $\gcd(n,m)=1$. In
+particular, in the square case $Y=Y'$ of coupling 2-cells no nondegenerate pair is monotone. On the
+wall, the uniform $2\times2$ pair still gives a Delzant segment, $X=\mathbb{CP}^1$, with the product
+coupling as its midpoint; the uniform $n\times n$ pair with $n\ge3$ gives a polytope that is not simple.
+\end{proposition}
+\begin{proof}
+For a Delzant polytope written with primitive normals, the toric manifold is monotone exactly when
+some interior point has equal lattice distance to all facets: the classes of the toric divisors span
+$H^2$ subject to the linear relations given by the normals, $c_1$ is the sum of the divisor classes, and
+$[\omega]$ is the sum weighted by the facet distances. Here the distances are the entries
+$\alpha(c)$, so they are equal exactly when $\alpha$ is constant, which forces $f$ and $g$ to be
+uniform; then $\alpha=f\otimes g$. Uniform marginals are nondegenerate iff $a/n\ne b/m$ for
+$0<a<n$, $0<b<m$, iff $\gcd(n,m)=1$, which fails when $n=m$. The two wall cases are checked in
+\texttt{check\_conditionals.py} (T3).
+\end{proof}
+
+\begin{example}[The degree-6 del Pezzo surface]\label{ex:dp6}
+For $f$ uniform on two points and $g$ uniform on three, $\Cpl(f,g)$ is a hexagon. In the basis of
+$\Lambda$ above, its facet normals are $\pm e_1$, $\pm e_2$ and $\pm(e_1+e_2)$. This is the fan of
+$\mathbb{CP}^2$ blown up at three points, the del Pezzo surface of degree $6$. All six entries of the
+product coupling equal $\tfrac16$, so it is the equidistant point. The case $3\times4$ (uniform) gives a
+Delzant polytope of dimension $6$ with $96$ vertices and all $12$ cells facets, again monotone.
+\end{example}
+
+%=====================================================================
+\section{The imported layer: Floer theory of the special fibre}\label{sec:imported}
+%=====================================================================
+
+We now quote results from symplectic topology. They are not proved or checked here.
+
+\paragraph{Nondisplaceability.} For a monotone toric manifold, the torus fibre over the point at equal
+distance from all facets (the \emph{special fibre}) is a stem in the sense of Entov and Polterovich,
+hence nondisplaceable \cite{EntovPolterovich2006}. For toric Fano manifolds, Cho and Oh show that a
+torus fibre with a flat $U(1)$ connection has nonvanishing Floer cohomology when it corresponds to a
+critical point of the disc potential \cite{ChoOh2006}; see \cite{Cho2004} for the Clifford torus and
+\cite{FOOO2010} for general compact toric manifolds.
+
+\paragraph{Consequence for couplings.} In the monotone cases of \cref{prop:monotone}, the special fibre
+lies over the product coupling $f\otimes g$. For \cref{ex:dp6}, the disc potential of the monotone
+special fibre is, up to the factor $T^{1/6}$, the Laurent polynomial
+\[
+W(x,y)=x+y+\frac1x+\frac1y+xy+\frac1{xy},
+\]
+read off from the facet normals, and it has a critical point at $(x,y)=(1,1)$ (checked exactly), so the
+special fibre with trivial holonomy has nonzero Floer cohomology by \cite{ChoOh2006}.
+
+The maximal coupling, by contrast, has zero entries whenever $f\ne g$, so it lies on the boundary of
+$\Cpl(f,g)$, where the torus fibre collapses (\texttt{check\_conditionals.py}, T6). The first draft's
+conjecture that the critical points are the maximal couplings should therefore be replaced. The
+geometrically distinguished coupling is the product coupling, which is also the maximum-entropy
+coupling and the critical point of Guillemin's potential (\cref{prop:guillemin}).
+
+%=====================================================================
+\section{Corrections to the first draft}\label{sec:corrections}
+%=====================================================================
+
+\begin{enumerate}[leftmargin=*]
+\item \emph{Candidate disc potential.} $W_\beta(f)=\sum_g\int_{\Cpl(f,g)}e^{-\beta c(\alpha)}\,d\nu$ sums over a
+  continuum of 1-cells $g$ and is not defined as written. Its Laplace limit
+  $\min_{g,\alpha}c(\alpha)$ is always $0$, attained at $g=f$, $\alpha=\Delta_f$, so it carries no
+  information. The toric disc potential of $X_{f,g}$ is the correct object (\cref{sec:imported}).
+\item \emph{Symplectic structure.} A symplectic form is antisymmetric and the Fisher metric is
+  symmetric, so the restriction of the one cannot be the other. The correct statement is
+  \cref{prop:guillemin}: the Fisher metric is twice the canonical K\"ahler metric on the real section
+  of $X_{f,g}$.
+\item \emph{Critical points.} ``Critical points of $\pi\colon E\to\Kl(\D)$'' is undefined, since $\pi$ is a
+  functor, not a smooth map. The replacement is the special fibre over the product coupling in the
+  monotone cases, and the walls of \cref{def:walls} as the locus where the family degenerates.
+\item \emph{Monodromy and Dehn twists.} The family $(f,g)\mapsto X_{f,g}$ is constant on chambers
+  and changes by toric birational modifications across walls (\cref{prop:chambers}); no vanishing
+  cycle or Dehn twist has been identified. \Cref{conj:family} restates the question.
+\item \emph{The $m_3$ conjecture.} Gluing is strictly associative (\cref{thm:witness}(i)), so each
+  hom-category, regarded as an $A_\infty$-category, has $m_k=0$ for $k\ge3$. The whiskering defect
+  compares $u\cdot(\beta\cdot\alpha)$ with $(u\cdot\beta)\cdot(u\cdot\alpha)$. Its inputs are two 2-cells and a
+  1-cell, and it measures the failure of whiskering to be a functor. In $A_\infty$ language that is the
+  second component $\mathcal{F}_2$ of an $A_\infty$-functor, not a ternary composition
+  (\cref{conj:ainfty}).
+\item \emph{Homotopy category.} The graded shadow has hom-sets $[d(f,g),\infty)$ under addition. These
+  are not the degree-zero cohomology of cochain complexes, so the shadow is not a homotopy category of
+  an $A_\infty$-category without further structure.
+\item \emph{Fisher versus Fisher--Rao.} These are the same metric (\cref{prop:interior}).
+\item \emph{References.} The companion tower is now version 9; its posted earlier version has the
+  title ``\ldots and Weak Distributive Laws'', a claim withdrawn in the revisions.
+\end{enumerate}
+
+%=====================================================================
+\section{The conjectural layer, restated}\label{sec:conjectural}
+%=====================================================================
+
+\begin{conjecture}[Family over the chamber complex]\label{conj:family}
+The toric manifolds $X_{f,g}$ form a family over each chamber, and crossing a wall is a toric
+birational transformation (a blow-up, blow-down or flip) determined by the pair $(I,J)$ defining the
+wall. On a wall, $X_{f,g}$ degenerates to a singular toric variety whose moment polytope is the
+non-simple $\Cpl(f,g)$.
+\end{conjecture}
+
+\begin{question}[Location of Floer-nontrivial fibres]\label{q:location}
+Outside the monotone cases, the fibres with nonvanishing Floer cohomology (possibly after bulk
+deformation) are located by the potential of \cite{FOOO2010}. Is the product coupling always among
+them, and do they have a statistical meaning?
+\end{question}
+
+\begin{conjecture}[Whiskering as an $A_\infty$-functor]\label{conj:ainfty}
+After a linearization of coupling 2-cells (for instance chains on the coupling polytopes), whiskering by
+a 1-cell $u$ extends to an $A_\infty$-functor whose first component is the whiskering of
+\cref{thm:witness}(ii) and whose second component is the whiskering defect. The $A_\infty$-functor
+equation in arity two then reads
+$\mathcal{F}_1(m_2(\beta,\alpha))-m_2(\mathcal{F}_1\beta,\mathcal{F}_1\alpha)=
+m_1\mathcal{F}_2(\beta,\alpha)\pm\mathcal{F}_2(m_1\beta,\alpha)\pm\mathcal{F}_2(\beta,m_1\alpha)$.
+Finding a linearization in which this holds is the first concrete target.
+\end{conjecture}
+
+\begin{conjecture}[Fukaya-type functor]\label{conj:fukaya}
+There is a functor from a category built from the Fukaya categories of the $X_{f,g}$ (with special
+fibres as distinguished objects) to a linearization of the coupling 2-cells, compatible with gluing on
+one side and composition of Lagrangian correspondences on the other.
+\end{conjecture}
+
+%=====================================================================
+\section{Next computations}\label{sec:next}
+%=====================================================================
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item \emph{The $2\times3$ family.} Describe the toric surfaces in every chamber of
+  $\{(f,g)\}$ for $\lvert Y\rvert=2$, $\lvert Y'\rvert=3$, and the transformations across each wall
+  (\cref{conj:family}).
+\item \emph{Square $2\times2$.} Here $\Cpl$ is a segment and $X=\mathbb{CP}^1$. Compute the coupling
+  2-cells, the whiskerings and their defects exactly for all four deterministic 1-cells and a
+  rational grid of stochastic ones, as the base case of \cref{conj:ainfty}.
+\item \emph{Level two.} Extend \cref{thm:delzant} to couplings of second-order states, using the
+  level-two gluing of \cite[Prop.~7.16]{Awasthi-Attribution}.
+\end{enumerate}
+
+\section{Computational checks}\label{sec:code}
+
+All checks pass.
+\begin{itemize}[leftmargin=*]
+\item \texttt{check\_glue.py} (30 checks): \cref{prop:1cells,thm:witness}.
+\item \texttt{check\_stochastic\_basechange.py} (13 checks): \cref{thm:fibre}; the hexagon of
+  \cref{ex:dp6}; the Delzant property for random nondegenerate $3\times3$ marginals; non-simplicity of
+  the uniform $3\times3$ case; the Hessian identity and critical point of \cref{prop:guillemin}.
+\item \texttt{check\_conditionals.py} (7 checks): \cref{thm:delzant} by a geometric test (vertex degrees
+  from the face lattice and unimodularity of primitive edge vectors) on random $2\times3$, $3\times3$
+  and $2\times4$ cases; \cref{prop:chambers}; the degenerate $2\times2$ and $3\times3$ cases;
+  \cref{prop:monotone,ex:dp6}, including the $3\times4$ case; the critical point of $W$; the boundary
+  position of maximal couplings; strict associativity of gluing.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{Awasthi-Attribution}
+V.~K. Awasthi.
+\newblock Precise attribution of model interventions: attribution sets, mechanism reach, path defects
+and gluing.
+\newblock Technical report, Johns Hopkins University, October 2026. Draft 4.
+
+\bibitem{Awasthi-Tower}
+V.~K. Awasthi.
+\newblock The three-level posterior tower: hierarchical {B}ayesian inference and mixed distributive laws.
+\newblock Technical report, Johns Hopkins University, October 2026. Revised version 9. An earlier
+version is posted as DOI 10.13140/RG.2.2.29743.50088.
+
+\bibitem{Cho2004}
+C.-H. Cho.
+\newblock Holomorphic discs, spin structures, and {F}loer cohomology of the {C}lifford torus.
+\newblock \emph{International Mathematics Research Notices}, 2004(35):1803--1843, 2004.
+
+\bibitem{ChoOh2006}
+C.-H. Cho and Y.-G. Oh.
+\newblock Floer cohomology and disc instantons of {L}agrangian torus fibers in {F}ano toric manifolds.
+\newblock \emph{Asian Journal of Mathematics}, 10(4):773--814, 2006.
+
+\bibitem{Delzant1988}
+T.~Delzant.
+\newblock Hamiltoniens p\'eriodiques et images convexes de l'application moment.
+\newblock \emph{Bulletin de la Soci\'et\'e Math\'ematique de France}, 116(3):315--339, 1988.
+
+\bibitem{EntovPolterovich2006}
+M.~Entov and L.~Polterovich.
+\newblock Quasi-states and symplectic intersections.
+\newblock \emph{Commentarii Mathematici Helvetici}, 81(1):75--99, 2006.
+
+\bibitem{FOOO2010}
+K.~Fukaya, Y.-G. Oh, H.~Ohta, and K.~Ono.
+\newblock Lagrangian {F}loer theory on compact toric manifolds {I}.
+\newblock \emph{Duke Mathematical Journal}, 151(1):23--174, 2010.
+
+\bibitem{Guillemin1994}
+V.~Guillemin.
+\newblock Kaehler structures on toric varieties.
+\newblock \emph{Journal of Differential Geometry}, 40(2):285--309, 1994.
+
+\end{thebibliography}
+\end{document}
