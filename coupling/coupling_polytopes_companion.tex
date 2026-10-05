@@ -71,6 +71,11 @@ computed completely, and records how far it goes.
 \item \emph{Stability.} Each $\omega_{f,g}$ gives a Bridgeland stability condition on the derived category
   of the corresponding surface, with explicit central charges. We state what this does and does not
   connect.
+\item \emph{Cumulants.} Centred couplings are second mixed cumulants, and level-two flattening keeps only
+  the cross-covariance of random measures. The whiskering defects are the Boolean cumulants of
+  whiskering, viewed as a noncommutative expectation. They are circulations, so tangent vectors of coupling
+  polytopes. A cone in the sense of homotopy probability theory makes whiskering an $A_\infty$-functor through
+  arity three, and its cohomology keeps only the marginals.
 \end{itemize}
 \end{abstract}
 
@@ -92,7 +97,8 @@ case, the base case for the whiskering questions of \cite[\S7]{Conditionals}. \C
 extends the polytope results to second- and third-order states. \Cref{sec:potential} computes disc
 potentials and relates optimal transport to the moment map. \Cref{sec:stability} constructs stability
 conditions from marginals and states the remaining questions. \Cref{sec:ainfty} records the status of
-the $A_\infty$ question. Every numbered claim is checked in \texttt{check\_polytope\_companion.py}.
+the $A_\infty$ question, and \cref{sec:cumulants} connects the polytopes to cumulants and homotopy probability
+theory. Every numbered claim is checked in \texttt{check\_polytope\_companion.py}.
 
 %=====================================================================
 \section{Setup}\label{sec:setup}
@@ -471,7 +477,112 @@ shows that it is not. Hence the defect can be the second component of an $A_\inf
 linearization with nonzero $m_1$, for instance chains on coupling polytopes in which the defects are
 boundaries \cite[Conj.~7.3]{Conditionals}. No such linearization is known. Statements identifying the defect with
 the Hessian of a disc potential, or the functor equation with a Picard--Lefschetz formula, are withdrawn
-(\cref{app:changes}).
+(\cref{app:changes}). \Cref{sec:cumulants} shows how a cone supplies such an $m_1$.
+
+%=====================================================================
+\section{Cumulants and the homotopy viewpoint}\label{sec:cumulants}
+%=====================================================================
+
+Homotopy probability theory treats an expectation that fails to be an algebra map as a morphism of
+homotopy algebras. Its components are then the cumulants \cite{HPT1,HPT2}. This section shows that the
+coupling polytopes carry exactly this structure. Couplings are second mixed cumulants, level-two
+flattening keeps only second cumulants, and the whiskering defects are the Boolean cumulants of the
+whiskering map. All of them are tangent vectors of coupling polytopes. Everything here is checked in
+\texttt{check\_cumulants.py}.
+
+\begin{proposition}[Couplings are second cumulants]\label{prop:kappa2}
+For $\alpha\in\Cpl(f,g)$, the centred coupling $\alpha-f\otimes g$ is the cross-covariance matrix
+$\kappa_2(1_{\{y=i\}},1_{\{y'=j\}})$ of the indicator vectors under $\alpha$. So $\Cpl(f,g)-f\otimes g$ is the set
+of cross-covariances compatible with the marginals and with positivity. It lies in the space of
+circulations, and the product coupling is the point where every mixed cumulant of the pair $(y,y')$
+vanishes. The product coupling is also the only point of $\Cpl(f,g)$ of rank one, that is, the only point
+on the toric variety of the independence model. This is the Birch point of that model
+\cite{PachterSturmfels2005}.
+\end{proposition}
+\begin{proof}
+$\mathbb{E}[1_{\{y=i\}}1_{\{y'=j\}}]-\mathbb{E}[1_{\{y=i\}}]\mathbb{E}[1_{\{y'=j\}}]=\alpha_{ij}-f_ig_j$. A nonnegative rank-one matrix
+$uv^\top$ with row sums $f$ and column sums $g$ equals $f\otimes g$. For two finite variables, independence is
+equivalent to vanishing of all mixed cumulants of the indicators.
+\end{proof}
+
+\begin{proposition}[Level two: flattening keeps the second cumulant]\label{prop:flatcov}
+For a level-two coupling $\Pi\in\Cpl_2(P,Q)$,
+\[
+\mu^*(\Pi)=\mu_BP\otimes\mu_BQ+\operatorname{Cov}_\Pi(\rho,\rho'),
+\]
+where $\operatorname{Cov}_\Pi(\rho,\rho')=\mathbb{E}_\Pi[(\rho-\mu_BP)\otimes(\rho'-\mu_BQ)]$ is the cross-covariance of the
+two random measures, a circulation. The fibres of $\mu^*$ are therefore the level-two couplings with a
+fixed cross-covariance. For three states on two outcomes, the mixed moments
+$\mathbb{E}_\Pi[\rho(0)^a\rho'(0)^b]$ with $a,b\le2$ determine $\Pi$, while flattening sees only $a=b=1$; this accounts
+for the three-dimensional fibres of \cref{prop:flat}(iv).
+\end{proposition}
+\begin{proof}
+Expand $\mathbb{E}_\Pi[\rho\otimes\rho']$. For the example, the map from the four-dimensional space of circulations to the
+mixed moments of order up to $(2,2)$ has rank $4$, and to the order-$(1,1)$ moment it has rank $1$.
+\end{proof}
+
+So level-two couplings carry the higher mixed cumulants of a pair of random distributions, and level-one
+gluing keeps only the second. This is the cumulant form of ``level-two gluing keeps correlations that
+level-one gluing loses'' \cite[Prop.~7.16]{Attribution}.
+
+\paragraph{Whiskering as an expectation.} Fix $f\in\D(Y)$ and let $A_f$ be the space of real $Y\times Y$
+matrices whose row sums and column sums are both multiples of $f$; it is spanned by the couplings of $f$ with
+itself. With the gluing product $a\cdot b=a\operatorname{diag}(f)^{-1}b$ and unit $\operatorname{diag}(f)$, $A_f$ is an
+associative unital algebra. The circulations $I_f$ form a two-sided ideal, and $A_f/I_f\cong\mathbb{R}$ records only
+the total mass. Whiskering by a kernel $h$ (\cref{def:whisker}) is a linear unital map
+$h_*\colon A_f\to A_{h^\#f}$, a noncommutative ``expectation'' that need not be multiplicative. Its
+\emph{Boolean cumulants} \cite{SpeicherWoroudi1997} are defined recursively over interval partitions:
+\begin{align*}
+b_1&=h_*,\qquad b_2(a,b)=h_*(a\cdot b)-h_*(a)\cdot h_*(b),\\
+b_3(a,b,c)&=h_*(a\cdot b\cdot c)-h_*a\cdot h_*b\cdot h_*c-b_2(a,b)\cdot h_*c-h_*a\cdot b_2(b,c).
+\end{align*}
+Here $a\cdot b$ means: glue $a$ first, then $b$.
+
+\begin{proposition}[Whiskering defects are Boolean cumulants]\label{prop:boolean}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item The whiskering defect of \cref{prop:defect} is $F_2(\beta,\alpha)=-b_2(\alpha,\beta)$.
+\item Every $b_n$ with $n\ge2$ takes values in the circulations $I_{h^\#f}$, that is, in tangent vectors of coupling
+  polytopes. Modulo $I_{h^\#f}$, $h_*$ is an algebra map.
+\item For $\lvert Y\rvert=3$ the defects $b_2$ span all of $I_{h^\#f}$, and $b_3$ is nonzero in general.
+\item Let $C$ be the differential graded algebra obtained from $A_{h^\#f}$ by freely adjoining generators
+  $\delta(a,b)$ of degree $-1$ with $d\delta(a,b)=b_2(a,b)$; this is a cone in the sense of homotopy probability
+  theory. Then $(h_*,\delta)$ satisfies the arity-two equation of an $A_\infty$-functor $A_f\to C$, the arity-three
+  obstruction is a cycle, and $H^0(C)=A_{h^\#f}/(b_2)$, which equals $A_{h^\#f}/I_{h^\#f}\cong\mathbb{R}$ whenever the defects span $I_{h^\#f}$, as in (iii).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is the definition. (ii) Both composites couple the same two marginals, so their difference is a
+circulation; the recursion preserves this because $I$ is an ideal. Modulo $I$ only masses remain, and they
+multiply. (iii) The defects from $40$ random instances have rank $4=\dim I$ for three points, and random
+instances give $b_3\ne0$. (iv) The arity-two equation is $d\delta=b_2$. The arity-three obstruction is
+$h_*a\cdot\delta(b,c)-\delta(a,b)\cdot h_*c-\delta(a\cdot b,c)+\delta(a,b\cdot c)$, whose differential vanishes
+identically; this is verified exactly. $H^0$ of a free extension by degree $-1$ generators is the quotient by
+the two-sided ideal generated by their boundaries, here $I_{h^\#f}$ by (iii).
+\end{proof}
+
+\paragraph{What this shows.} Making whiskering an $A_\infty$-functor through a cone forgets exactly the
+correlations. The cohomology $H^0$ keeps only the marginals, that is, the Kleisli level of
+\cite{Conditionals}. The correlation structure lives in the homotopy data: the Boolean cumulants $b_n$, which
+are tangent vectors of the coupling polytopes. In the geometry of \cref{sec:setup}, the base of the
+fibration $\Cpl(f,g)\mapsto(f,g)$ is the cohomological part, and the fibres, where the Fisher metric
+measures the cumulants \cite[Prop.~4.5]{Conditionals}, carry the homotopy. This also explains
+\cref{sec:ainfty}: with $m_1=0$ the cumulants have nowhere to live, and a cone supplies the missing
+$m_1$.
+
+\begin{question}\label{q:cumulants}
+\leavevmode
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item Do the higher Boolean cumulants $b_n$, with generators of degree $1-n$, complete $(h_*,\delta)$ to an
+  $A_\infty$-functor into a cone, as in the bar-construction description of Boolean cumulants? This is checked
+  here only through arity three.
+\item Classical and free cumulants are organized by set partitions and non-crossing partitions, and
+  $A_\infty$-structures by associahedra. The permutohedron is a linear image of the Birkhoff polytope, and its
+  faces correspond to ordered set partitions. Uniform square coupling polytopes are scaled Birkhoff
+  polytopes, which lie on the walls of the chamber structure. Does cumulant combinatorics live on these
+  degenerate walls?
+\end{enumerate}
+\end{question}
 
 \appendix
 %=====================================================================
@@ -517,6 +628,9 @@ Bridgeland 2008 for all surfaces; ``(i)--(iii) none known'' & Bridgeland 2008 is
 \section{Computational checks}\label{app:code}
 %=====================================================================
 
+\texttt{check\_cumulants.py} runs $8$ checks for \cref{sec:cumulants}, all passing: Q1--Q3 for
+\cref{prop:kappa2,prop:flatcov}, and E1--E5 for \cref{prop:boolean}.
+
 \texttt{check\_polytope\_companion.py} runs $26$ checks, all passing:
 \begin{itemize}[leftmargin=*]
 \item chambers, types, surfaces, the sum rule, orbits, the del Pezzo fan, wall-crossings and
@@ -542,6 +656,12 @@ D.~Arcara and A.~Bertram.
 V.~K. Awasthi.
 \newblock Conditionals, couplings and toric geometry: established results and a {F}ukaya programme.
 \newblock Revised draft, Johns Hopkins University, October 2026.
+
+\bibitem{Attribution}
+V.~K. Awasthi.
+\newblock Precise attribution of model interventions: attribution sets, mechanism reach, path defects
+and gluing.
+\newblock Technical report, Johns Hopkins University, October 2026. Draft 4.
 
 \bibitem{Tower}
 V.~K. Awasthi.
@@ -588,6 +708,16 @@ V.~Guillemin.
 \newblock Kaehler structures on toric varieties.
 \newblock \emph{Journal of Differential Geometry}, 40(2):285--309, 1994.
 
+\bibitem{HPT1}
+G.~C. Drummond-Cole, J.-S. Park, and J.~Terilla.
+\newblock Homotopy probability theory {I}.
+\newblock \emph{Journal of Homotopy and Related Structures}, 10(3):425--435, 2015.
+
+\bibitem{HPT2}
+G.~C. Drummond-Cole, J.-S. Park, and J.~Terilla.
+\newblock Homotopy probability theory {II}.
+\newblock \emph{Journal of Homotopy and Related Structures}, 10(3):623--635, 2015.
+
 \bibitem{Iritani2009}
 H.~Iritani.
 \newblock An integral structure in quantum cohomology and mirror symmetry for toric orbifolds.
@@ -603,6 +733,17 @@ E.~Macr\`i and B.~Schmidt.
 D.~O. Orlov.
 \newblock Projective bundles, monoidal transformations, and derived categories of coherent sheaves.
 \newblock \emph{Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya}, 56(4):852--862, 1992.
+
+\bibitem{PachterSturmfels2005}
+L.~Pachter and B.~Sturmfels, editors.
+\newblock \emph{Algebraic Statistics for Computational Biology}.
+\newblock Cambridge University Press, 2005.
+
+\bibitem{SpeicherWoroudi1997}
+R.~Speicher and R.~Woroudi.
+\newblock Boolean convolution.
+\newblock In \emph{Free Probability Theory}, Fields Institute Communications 12. American Mathematical
+Society, 1997.
 
 \end{thebibliography}
 \end{document}
