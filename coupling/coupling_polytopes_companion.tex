@@ -28,6 +28,7 @@
 \newcommand{\TV}{\mathrm{TV}}
 \newcommand{\ch}{\operatorname{ch}}
 \newcommand{\Coh}{\operatorname{Coh}}
+\newcommand{\C}{\mathsf{C}}
 
 \title{Coupling Polytopes and Toric Geometry:\\
 the $2\times3$ Family, the Square Case, Higher Levels and Stability\\[4pt]
@@ -81,6 +82,12 @@ computed completely, and records how far it goes.
   fillers form products of coupling polytopes, with the gluing filler the maximum-entropy one. Its 3-horns and
   4-horns can fail to fill, with contextual fraction $\tfrac12$ and $\tfrac34$, so it is not Kan. Boundary fibres are
   Delzant for shape $2\times n\times m$, orbifold polytopes for $3\times3\times3$, and eventually arbitrary.
+\item \emph{The tower as a fibration.} In a worked example, transport along kernels keeps a failure, destroys it
+  (constant kernel), pulls certificates back, never increases the secondary obstruction, and bounds the
+  distances at all three levels by the distance between kernels.
+\item \emph{The family over marginals.} Inside a chamber the polytopes vary linearly. Across a wall the
+  Duistermaat--Heckman volume is $C^1$ with a jump in its second derivative, while the Fisher metric at the
+  product coupling is smooth: walls are toric, not statistical.
 \end{itemize}
 \end{abstract}
 
@@ -98,12 +105,14 @@ asks what the correspondence gives in concrete cases.
 
 \Cref{sec:setup} fixes conventions and proves a general formula for the Kähler class.
 \Cref{sec:2x3} treats the $2\times3$ family completely. \Cref{sec:square} treats the square $2\times2$
-case, the base case for the whiskering questions of \cite[\S7]{Conditionals}. \Cref{sec:levels}
+case, the base case for the whiskering questions of \cite[\S\S5, 9]{Conditionals}. \Cref{sec:levels}
 extends the polytope results to second- and third-order states. \Cref{sec:potential} computes disc
 potentials and relates optimal transport to the moment map. \Cref{sec:stability} constructs stability
 conditions from marginals and states the remaining questions. \Cref{sec:ainfty} records the status of
 the $A_\infty$ question, \cref{sec:cumulants} connects the polytopes to cumulants and homotopy probability
-theory, and \cref{sec:nerve} computes the low-dimensional fillers of the coupling nerve. Every numbered claim is checked in \texttt{check\_polytope\_companion.py}.
+theory, \cref{sec:nerve} computes the low-dimensional fillers of the coupling nerve, \cref{sec:fibration} follows one
+fibre of the tower along explicit kernels, and \cref{sec:family} describes how the polytopes vary with the
+marginals. Every numbered claim is checked in \texttt{check\_polytope\_companion.py}.
 
 %=====================================================================
 \section{Setup}\label{sec:setup}
@@ -122,7 +131,7 @@ top-left $(n-1)\times(m-1)$ block. The pair $(f,g)$ is \emph{degenerate} if $\su
 nonempty proper $I\subsetneq Y$ and $J\subsetneq Y'$. These hyperplanes are the \emph{walls}, and the
 components of their complement are the \emph{chambers}.
 
-\begin{theorem}[{\cite[Thm.~4.4]{Conditionals}}]\label{thm:delzant}
+\begin{theorem}[{\cite[Thm.~6.4]{Conditionals}}]\label{thm:delzant}
 If $(f,g)$ is nondegenerate, every vertex of $\Cpl(f,g)$ is supported on a spanning tree of $K_{n,m}$,
 the edges at a vertex are the fundamental cycles of that tree, and $\Cpl(f,g)$ is Delzant with respect to
 $\Lambda$.
@@ -218,7 +227,7 @@ inside a chamber.
 \end{proposition}
 \begin{proof}
 The concurrency is direct. For all $30$ pairs of chambers whose sign vectors differ in one wall, the
-vertex counts differ by exactly one. Constancy inside a chamber is \cite[Prop.~4.6]{Conditionals}.
+vertex counts differ by exactly one. Constancy inside a chamber is \cite[Prop.~6.6]{Conditionals}.
 \end{proof}
 
 \begin{example}\label{ex:2x3}
@@ -232,7 +241,7 @@ vertex counts differ by exactly one. Constancy inside a chamber is \cite[Prop.~4
 \item At the uniform point $(\tfrac12,\tfrac13,\tfrac13)$ the hexagon has vertices $(0,\tfrac16)$, $(0,\tfrac13)$,
   $(\tfrac16,\tfrac13)$, $(\tfrac13,\tfrac16)$, $(\tfrac13,0)$ and $(\tfrac16,0)$, all six edges have lattice length
   $\tfrac16$, its lattice area is $\tfrac1{12}$, and $[\omega]=-\tfrac16K_X$. This is the unique monotone point of
-  the family \cite[Prop.~4.7]{Conditionals}: monotonicity holds at a point, not on a chamber.
+  the family \cite[Prop.~6.7]{Conditionals}: monotonicity holds at a point, not on a chamber.
 \end{enumerate}
 \end{example}
 
@@ -299,7 +308,7 @@ couple the same two marginals.
 \end{proof}
 
 So the defect lives in the tangent space of a coupling polytope. There the Fisher metric, which is
-twice the Hessian of Guillemin's potential \cite[Prop.~4.5]{Conditionals}, gives it a size. This is the
+twice the Hessian of Guillemin's potential \cite[Prop.~6.5]{Conditionals}, gives it a size. This is the
 only sense in which the defect meets the toric geometry that we can establish.
 
 %=====================================================================
@@ -446,7 +455,7 @@ $(-1)$-curve, and $Z(\mathcal O_E)\to-\tfrac12$.
 $\omega_{f,g}$ is ample by \cref{prop:kahler2x3}. The values follow from $\ch(\mathcal O_X)=1$,
 $\ch(\mathcal O_x)=[\mathrm{pt}]$ and $\ch(\mathcal O_D)=D-\tfrac12D^2$, together with \cref{prop:kahler2x3}. The
 statement about walls is \cref{prop:wall} with the self-intersections of \cref{thm:chambers}, and is
-checked in \cite[\S7.1]{Conditionals}.
+checked in \cite[\S8]{Conditionals}.
 \end{proof}
 
 \paragraph{Mirror symmetry.} For a toric Fano manifold the disc potential is the Hori--Vafa
@@ -479,10 +488,12 @@ The hom-categories of coupling 2-cells are strictly associative, so as $A_\infty
 $m_k=0$ for $k\ge3$. If a linearization also has $m_1=0$, the arity-two $A_\infty$-functor equation reduces to
 $F_1(m_2(\beta,\alpha))=m_2(F_1\beta,F_1\alpha)$, which says that whiskering is functorial. \Cref{prop:defect}(iii)
 shows that it is not. Hence the defect can be the second component of an $A_\infty$-functor only in a
-linearization with nonzero $m_1$, for instance chains on coupling polytopes in which the defects are
-boundaries \cite[Conj.~7.3]{Conditionals}. No such linearization is known. Statements identifying the defect with
-the Hessian of a disc potential, or the functor equation with a Picard--Lefschetz formula, are withdrawn
-(\cref{app:changes}). \Cref{sec:cumulants} shows how a cone supplies such an $m_1$.
+linearization with nonzero $m_1$, in which the defects are boundaries. The square-zero cone of the circulation
+ideal is such a linearization: into it, whiskering is an $A_\infty$-functor with exactly two components
+(\cref{prop:sqzero}; \cite[Thm.~5.2]{Conditionals}). Larger models such as the free cone remain open
+\cite[Question~9.4]{Conditionals}. Statements identifying the defect with the Hessian of a disc potential, or the
+functor equation with a Picard--Lefschetz formula, are withdrawn (\cref{app:changes}). \Cref{sec:cumulants} gives
+the details.
 
 %=====================================================================
 \section{Cumulants and the homotopy viewpoint}\label{sec:cumulants}
@@ -597,7 +608,7 @@ correlations. The cohomology $H^0$ keeps only the marginals, that is, the Kleisl
 \cite{Conditionals}. The correlation structure lives in the homotopy data: the Boolean cumulants $b_n$, which
 are tangent vectors of the coupling polytopes. In the geometry of \cref{sec:setup}, the base of the
 fibration $\Cpl(f,g)\mapsto(f,g)$ is the cohomological part, and the fibres, where the Fisher metric
-measures the cumulants \cite[Prop.~4.5]{Conditionals}, carry the homotopy. This also explains
+measures the cumulants \cite[Prop.~6.5]{Conditionals}, carry the homotopy. This also explains
 \cref{sec:ainfty}: with $m_1=0$ the cumulants have nowhere to live, and a cone supplies the missing
 $m_1$.
 
@@ -731,6 +742,121 @@ $\Lambda^n_k$, $n\ge3$ & may be empty & obstruction = contextual fraction (\cref
 \end{tabular}
 \end{center}
 
+%=====================================================================
+\section{The tower as a fibration: a worked example}\label{sec:fibration}
+%=====================================================================
+
+The base-relative tower of \cite{Tower} assigns to each finite set $B$ a context algebra $A_B$, a reader comonad
+$\C^B$ and a strict mixed distributive law $\lambda^B$. Every Markov kernel $k\colon B\to\D(B')$ acts by
+$A_k=k^\#\times\D(k^\#)\times\D^2(k^\#)\times\D(\mathrm{Hyp}\,k)$, with $A_{h\circ k}=A_hA_k$ \cite[Prop.~9.14]{Tower}. So the
+tower is a functor on the Kleisli category, and its Grothendieck construction is a split opfibration over
+$\mathrm{Kl}(\D)$. This section follows one explicit fibre along explicit kernels. Every number below is checked in
+\texttt{check\_tower\_fibration.py}, in exact arithmetic except for the linear programs.
+
+\paragraph{The data.} Take $B=\{0,1\}$, the posteriors $\delta_0$, $\delta_1$ and $\eta=(\tfrac12,\tfrac12)$, and the general
+(non-saturated) admissibility data
+\[
+S_1=\{\delta_0,\delta_1,\eta\},\qquad
+S_2=\big\{\tfrac12\delta_{\delta_0}+\tfrac12\delta_{\delta_1},\ \delta_\eta\big\}
+\]
+of \cite[Def.~10.11]{Tower}. A fair coin is admissible only as certainty in $\eta$ or as a mixture of the two decisive
+posteriors. Then $L_1$ is the whole simplex, but the effective set is a single point, $E_1=\{\eta\}$. The kernels
+are
+\[
+k\colon\ 0\mapsto(\tfrac12,\tfrac14,\tfrac14),\ 1\mapsto(\tfrac15,\tfrac15,\tfrac35)\quad\text{on }B'=\{u,v,w\},\qquad
+\kappa\colon\ 0,1\mapsto(\tfrac13,\tfrac13,\tfrac13),
+\]
+together with $h\colon B'\to\D\{P,Q\}$, given by $u\mapsto\delta_P$, $v\mapsto(\tfrac12,\tfrac12)$, $w\mapsto\delta_Q$.
+
+\begin{center}\small
+\begin{tabular}{@{}R{0.3\textwidth}R{0.62\textwidth}@{}}
+\toprule
+Statement & Values in the example\\
+\midrule
+A claim passes the local test but has no lift & $x_1=(\tfrac7{10},\tfrac3{10})\in L_1\setminus E_1$; certificate $f=(1,-1)$ with
+$\langle f,x_1\rangle=\tfrac25>0=\langle f,\eta\rangle$\\\addlinespace[2pt]
+Along $k$ the failure persists, and certificates pull back & $k^\#x_1=(\tfrac{41}{100},\tfrac{47}{200},\tfrac{71}{200})\ne k^\#\eta=(\tfrac7{20},\tfrac9{40},\tfrac{17}{40})$;
+$f'=k^\#x_1-k^\#\eta$ separates them, and $k\rhd f'=(\tfrac3{200},-\tfrac7{250})$ separates $x_1$ from $E_1$ on $B$\\\addlinespace[2pt]
+Along $\kappa$ the failure disappears & $\kappa^\#x_1=\kappa^\#\eta$: the failure level rises to $\infty$\\\addlinespace[2pt]
+The secondary obstruction can only fall & $o_3(\delta_{\delta_0})=1$ on $B$, $1$ after $k$ (injective on $S_1$), $0$ after $\kappa$\\\addlinespace[2pt]
+Coherence and functoriality & a coherent context stays coherent under $A_k$, and $A_{h\circ k}=A_hA_k$ exactly\\\addlinespace[2pt]
+Grades transport to every level & for $g\colon0\mapsto(\tfrac13,\tfrac13,\tfrac13)$, $1\mapsto(\tfrac1{10},\tfrac3{10},\tfrac35)$:
+$d(k,g)=\tfrac16$, while the level-1 total variation and the level-2 and level-3 Kantorovich distances between
+$A_k(z)$ and $A_g(z)$ for a coherent context $z$ are all $\tfrac2{15}$\\\addlinespace[2pt]
+Conditioning through the channel & observing $w$ on $B'$ after $k$ equals conditioning on $k\rhd1_w$ on $B$, which has likelihoods
+$\tfrac14,\tfrac35,\tfrac{17}{40}$ on $\delta_0,\delta_1,\eta$; the posterior weights become $\tfrac5{34},\tfrac6{17},\tfrac12$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The example shows the three properties of the fibration that matter for provenance. First, transport never
+creates an obstruction, and it can destroy one: here $\kappa$ forgets the outcome. Second, a certificate found
+downstream is a certificate upstream. Third, the quantitative comparison of two kernels bounds the
+comparison of the transported states at every level of the tower, so grades of the 2-category become grades
+on fibres.
+
+%=====================================================================
+\section{The family over the space of marginals}\label{sec:family}
+%=====================================================================
+
+The coupling polytopes form a family $\Cpl(f,g)\to(f,g)$ over the space of marginal pairs. This section records
+how the family varies, in the $2\times3$ case. The checks are in \texttt{check\_family.py} and
+\texttt{check\_family\_geometry.py}.
+
+\begin{proposition}[Variation inside and across chambers]\label{prop:family}
+\leavevmode
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item \emph{Inside a chamber.} Each vertex is an affine function of $(f_1,g_1,g_2)$, given by the solution on a fixed
+  spanning tree, and the set of trees is constant on the chamber. So the polygons in one chamber are a linear family
+  with a fixed normal fan, and the edge lengths, hence the degrees $\omega_{f,g}\cdot D_c$, are affine in the marginals.
+  In the hexagon chamber, with $c=f_1+g_1+g_2-1$ and coordinates $(x,y)=(\alpha_{11},\alpha_{12})$, the vertices are
+  $(0,c)$, $(0,g_2)$, $(f_1-g_2,g_2)$, $(g_1,f_1-g_1)$, $(g_1,0)$ and $(c,0)$.
+\item \emph{The product coupling} $f\otimes g$ is a polynomial section of the family that lies in the interior of every
+  fibre. It is the maximum-entropy point of each fibre \cite[Prop.~6.5]{Conditionals}.
+\item \emph{Across a wall.} Along the straight path from $(0.4,0.5,0.3)$ to the uniform point, which crosses exactly the
+  wall $f_1=g_1$ at $t=\tfrac38$, the lattice area of the polygon is
+  \[
+  \tfrac{11}{200}+\tfrac t{25}+\tfrac{t^2}{450}\ \ (t\le\tfrac38),\qquad \tfrac1{20}+\tfrac t{15}-\tfrac{t^2}{30}\ \ (t\ge\tfrac38).
+  \]
+  It is continuous and continuously differentiable at the wall, and its second derivative jumps by $\tfrac{16}{225}$, which
+  is the second derivative of the area $\tfrac12(f_1-g_1)^2$ of the corner that is cut off. The edge on
+  $\{\alpha_{10}=0\}$ appears at the wall with length $0$ and grows linearly, as $f_1-g_1$.
+\item \emph{Information geometry is blind to the walls.} The Fisher metric at the product coupling,
+  $G(v,w)=\sum_cv_cw_c/(f_ig_j)$ on circulations, is a rational function of $t$ with no singularity on the path. At the wall
+  it equals $\left(\begin{smallmatrix}11264/441&1024/63\\1024/63&1024/35\end{smallmatrix}\right)$ in the basis
+  $e_{11},e_{12}$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is \cite[Prop.~6.6]{Conditionals} made explicit: tree solutions are linear in the marginals. The script checks affine
+interpolation between $189$ pairs of points in common chambers. (ii) The entries $f_ig_j$ are positive. (iii) Exact
+second divided differences on each side, and one-sided difference quotients at the wall. The area is the
+Duistermaat--Heckman volume $\tfrac12\omega_{f,g}^2$ (\cref{prop:kahler2x3}), which is piecewise polynomial in the
+Kähler class. Cutting a corner of size $s$ removes area of order $s^2$, which explains the $C^1$ behaviour.
+(iv) The product coupling never meets the boundary.
+\end{proof}
+
+\begin{center}\small
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$t$ & vertices & length of $\{\alpha_{10}=0\}$ & area\\
+\midrule
+$0$ & 5 & 0 & $11/200$\\
+$1/4$ & 5 & 0 & $469/7200$\\
+$3/8$ (wall) & 5 & 0 & $9/128$\\
+$1/2$ & 6 & $1/30$ & $3/40$\\
+$3/4$ & 6 & $1/10$ & $13/160$\\
+$1$ & 6 & $1/6$ & $1/12$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+So the two geometries on the family see different things. The toric and symplectic data (combinatorial type,
+edge lengths, Duistermaat--Heckman volume, the stability conditions of \cref{sec:stability}) change at the walls,
+where an edge, and so a $(-1)$-curve, shrinks to zero. The information geometry at the product coupling varies
+smoothly through them. Walls in the space of marginals are therefore a toric phenomenon, not a statistical one:
+they mark where the set of possible couplings changes shape, not where the canonical coupling changes behaviour.
+
 \appendix
 %=====================================================================
 \section{Changes from the earlier draft}\label{app:changes}
@@ -775,6 +901,11 @@ Bridgeland 2008 for all surfaces; ``(i)--(iii) none known'' & Bridgeland 2008 is
 \section{Computational checks}\label{app:code}
 %=====================================================================
 
+The script \texttt{check\_family.py} runs $5$ checks (C1--C4), all passing, for \cref{prop:family}. The script \texttt{check\_family\_geometry.py} runs $6$ more (G1--G3d): the hexagon vertex formulas, the exact area quadratics and the jump in the second derivative, and the Fisher determinant along the path.
+
+\texttt{check\_tower\_fibration.py} runs $7$ checks (W1--W7), all passing, for every entry of the table in
+\cref{sec:fibration}.
+
 \texttt{check\_nerve.py} runs $10$ checks, all passing: A1--A2 for \cref{prop:2horn,prop:canonical}, A3--A4 for
 \cref{prop:parity}, A5--A6 for \cref{prop:boundary} (A6 takes about a minute), and D1--D3 for
 \cref{prop:sqzero}.
@@ -805,8 +936,9 @@ D.~Arcara and A.~Bertram.
 
 \bibitem{Conditionals}
 V.~K. Awasthi.
-\newblock Conditionals, couplings and toric geometry: established results and a {F}ukaya programme.
-\newblock Revised draft, Johns Hopkins University, October 2026.
+\newblock Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
+programme.
+\newblock Revised draft 3, Johns Hopkins University, October 2026.
 
 \bibitem{Attribution}
 V.~K. Awasthi.
