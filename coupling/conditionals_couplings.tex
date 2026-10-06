@@ -1,0 +1,1067 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\D}{\mathsf{D}}
+\newcommand{\Kl}{\mathrm{Kl}}
+\newcommand{\Cpl}{\operatorname{Cpl}}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\Hyp}{\mathrm{Hyp}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\C}{\mathsf{C}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\id}{\mathrm{id}}
+
+\title{Conditionals, Couplings and Toric Geometry:\\
+Kernels, the Coupling Nerve, Cumulants and a Fukaya Programme\\[4pt]
+\large Revised draft 4}
+\author{Vinay K. Awasthi\\
+Department of Applied Mathematics and Statistics\\
+Johns Hopkins University\thanks{Verification scripts are listed in \cref{sec:code}; the worked examples are
+in the companion \cite{Awasthi-Family}.}}
+\date{October 6, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We organize the conditional and coupling structure of the finite distribution monad $\D$ into four layers
+and separate what is proved from what is conjectural.
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item \emph{The base.} Markov kernels are the 1-cells of the Kleisli category, and couplings are 2-cells whose
+  vertical composition is the gluing lemma. The natural whiskerings are not functorial, so the couplings do not
+  form a 2-category. Their image under the cost map does: a strict, graded, Lawvere-enriched 2-category.
+\item \emph{The fibre.} The base-relative posterior tower is a functor on the Kleisli category. Its category of
+  elements is a discrete opfibration over it, and every grade of the shadow bounds the distance between
+  transported contexts at every level of the tower.
+\item \emph{The coupling nerve.} Couplings of all arities form the simplicial object $\D(Y^{\bullet+1})$, with
+  marginalization as faces. Every 2-horn fills. The fillers form a product of coupling polytopes, and the
+  maximum-entropy filler is the one whose third face is the vertical composite. For $n\ge3$ the faces of an
+  $n$-horn form a cyclic cover, so filling can fail. The failure is measured by the contextual fraction, and
+  $\D(Y^{\bullet+1})$ is not a Kan complex, although $Y^{\bullet+1}$ is.
+\item \emph{Linearization.} Centred couplings are second mixed cumulants, and whiskering defects are the
+  Boolean cumulants of whiskering viewed as a noncommutative expectation. Into the square-zero cone of the
+  circulation ideal, whiskering is an $A_\infty$-functor with exactly two components. Its cohomology keeps
+  only the marginals, and the coupling data are homotopical.
+\end{enumerate}
+On top of these layers sits the geometry. Coupling polytopes of nondegenerate marginals are Delzant, so they
+are moment polytopes of toric manifolds whose Kähler class is the product coupling and whose canonical metric
+restricts to the Fisher metric. Their walls and chambers, monotone cases, Floer theory and Bridgeland
+stability conditions are treated as before. A new section takes up the five problems the previous draft left
+open. The parity horns have contextual fraction $1-2^{2-n}$ for every $n$. Whiskering extends to a multi-object
+$A_\infty$-functor that receives the 2-skeleton of the nerve. Wall-crossing is variation of GIT. Central charges glue
+continuously across the pentagon--hexagon wall. The Floer-nontrivial fibres lie over the leximin coupling, not over
+the product coupling. Conjectures are stated with correct types, and a companion paper
+\cite{Awasthi-Family} computes every construction explicitly.
+\end{abstract}
+
+\tableofcontents
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+%=====================================================================
+
+Two structures sit on top of the finite distribution monad $\D$. The base-relative posterior tower
+\cite{Awasthi-Tower} fixes an outcome base $B$ and solves a \emph{strict integrability} problem: it carries a
+mixed distributive law satisfying all four Beck axioms. The conditional/coupling structure
+\cite{Awasthi-Attribution} lets the base vary along Markov kernels and compares kernels by couplings: it solves
+a \emph{transport} problem. This paper assembles them, together with a simplicial and a homotopical layer,
+into one framework.
+
+\begin{center}\small
+\begin{tabular}{@{}R{0.17\textwidth}R{0.42\textwidth}R{0.33\textwidth}@{}}
+\toprule
+Layer & Objects and structure & Status\\
+\midrule
+I.\ Base & finite sets, kernels, coupling 2-cells; the graded shadow & strict 2-category on grades only
+(\cref{sec:base})\\
+II.\ Fibre & the tower over each base; transport along kernels & discrete opfibration; grades act on fibres
+(\cref{sec:fibre})\\
+III.\ Nerve & $\D(Y^{\bullet+1})$; horns, fillers, boundary fibres & 2-horns fill; higher horns obstructed by
+contextuality (\cref{sec:nerve})\\
+IV.\ Linearization & circulations, cumulants, cones & whiskering is a two-component $A_\infty$-functor into a cone
+(\cref{sec:linear})\\
+Geometry & coupling polytopes as moment polytopes; stability & proved in the nondegenerate case
+(\cref{sec:toric,sec:imported,sec:stability})\\
+Programme & families over chambers; Fukaya-type functor & conjectural (\cref{sec:conjectural})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The layers interlock. A 2-cell is a 1-simplex of the nerve, and vertical composition is the canonical filler of
+an inner 2-horn. The tangent spaces of the filler polytopes are circulations, and those are where the cumulants
+of layer IV live. The tower of layer II is transported along the 1-cells of layer I, and the grades of layer I
+bound the transport. The polytopes of layer III are, in the nondegenerate case, moment polytopes, and that is
+where the geometry enters. What does \emph{not} hold is equally important. The couplings themselves do not form a
+2-category, the nerve is not Kan, and the toric picture stops at boundary fibres of 3-way tables.
+
+%=====================================================================
+\section{Layer I: kernels, couplings and the graded shadow}\label{sec:base}
+%=====================================================================
+
+$\D$ is the finitely supported distribution monad on $\mathbf{Set}$ and $\Kl(\D)$ its Kleisli category.
+A 1-cell $k\colon B\rightsquigarrow B'$ is a Markov kernel $k\colon B\to\D(B')$, acting on states by
+$k^\#(p)(b')=\sum_bp(b)k(b)(b')$. The results of this section are proved in
+\cite[\S7]{Awasthi-Attribution}; we restate them for reference.
+
+\begin{proposition}[1-cells {\cite[Props.~7.2, 7.3]{Awasthi-Attribution}}]\label{prop:1cells}
+$k^\#$ is affine, $(h\circ k)^\#=h^\#k^\#$, $k^\#\circ\mu=\mu\circ\D(k^\#)$, and
+$\TV(k^\#p,k^\#q)\le\TV(p,q)$. Attribution sets are transported along $k$, and precision can only be lost.
+\end{proposition}
+
+\begin{definition}[Coupling 2-cells]\label{def:coupling}
+For 1-cells $f,g\colon X\rightsquigarrow Y$, a coupling 2-cell $\alpha\colon f\Rightarrow g$ is a kernel
+$\alpha\colon X\to\D(Y\times Y)$ with marginals $f(x)$ and $g(x)$. Its cost is
+$c(\alpha)=\max_x\Pr_{\alpha(x)}(y\ne y')$; the identity is the diagonal coupling; the vertical
+composite glues along the common marginal,
+$(\beta\cdot\alpha)(x)(y,y'')=\sum_{y'}\alpha(x)(y,y')\beta(x)(y',y'')/g(x)(y')$.
+\end{definition}
+
+\begin{theorem}[Witnesses and shadow {\cite[Thms.~7.6, 7.8]{Awasthi-Attribution}}]\label{thm:witness}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item For fixed $X,Y$, 1-cells and coupling 2-cells form a category under gluing, strictly
+  associative and unital. Cost is subadditive and $\min_\alpha c(\alpha)=d(f,g)=\max_x\TV(f(x),g(x))$.
+\item Whiskering by a deterministic precomposition is strictly functorial. Whiskering by a stochastic
+  precomposition (mixing couplings) or by a postcomposition (copying on equal pairs, independent on
+  unequal pairs) preserves identities, marginals and the cost bound, but is not functorial.
+\item Graded 2-cells $f\Rightarrow_\varepsilon g$, $\varepsilon\ge d(f,g)$, with grades adding, form a strict
+  2-category on kernel 1-cells, and $d$ makes $\Kl(\D)$ a Lawvere-enriched category.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Witness layer and shadow]\label{rem:shadow}
+The cost map $\alpha\mapsto c(\alpha)$ sends the witness layer onto the graded shadow. It preserves identities and
+sends composites to grades no larger than the sum. The shadow is an image of the witness layer, not a
+substructure of it, and it is the only strict 2-category in sight: with couplings as 2-cells, (ii) rules out a
+2-category or a bicategory with these whiskerings. The polytopes $\Cpl(f(x),g(x))$ are the spaces of 2-cells, not
+further cells; their geometry is the subject of \cref{sec:nerve,sec:toric}.
+\end{remark}
+
+%=====================================================================
+\section{Layer II: the tower as a fibration}\label{sec:fibre}
+%=====================================================================
+
+The base-relative tower over $B$ has context algebra $A_B=\D B\times\D^2B\times\D^3B\times\Sh(B)$,
+reader comonad $\C^B(Y)=Y\times A_B$ and strict law $\lambda^B$ \cite[\S9]{Awasthi-Tower}. With
+$\Hyp=\Theta\times\D(-)$, a kernel $k\colon B\to\D(B')$ acts on hypotheses by
+$\Hyp(k)(\theta,\rho)=(\theta,k^\#\rho)$, and we put
+$A_k=k^\#\times\D(k^\#)\times\D^2(k^\#)\times\D(\Hyp k)$.
+
+\begin{theorem}[The tower is a functor on the Kleisli category {\cite[Prop.~9.14, Cor.~9.15, Prop.~9.16]{Awasthi-Tower}}]\label{thm:fibre}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item $A_k$ is a morphism of $\D$-algebras, preserves coherent contexts, commutes with the canonical
+  section $\sigma$, and $A_{h\circ k}=A_hA_k$; for deterministic $k$ it is the earlier base change.
+\item $\id\times A_k$ is a comonad morphism $\C^B\Rightarrow\C^{B'}$ commuting with the laws $\lambda^B$,
+  $\lambda^{B'}$.
+\item Admissibility data, coherent lifts and the effective sets are transported; certificates pull
+  back along $f'\mapsto k\rhd f'$; failure levels can only rise and the secondary obstruction can only
+  fall.
+\item Conditioning on an outcome observed after the channel equals conditioning on the pulled-back
+  predicate $k\rhd1_{e'}$, then changing base.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[The total category]\label{def:total}
+Let $\mathcal E$ be the category whose objects are pairs $(B,z)$ with $B$ a finite set and $z\in A_B^{\mathrm{coh}}$ a
+coherent context, and whose morphisms $(B,z)\to(B',z')$ are kernels $k$ with $A_k(z)=z'$. Let $\pi\colon\mathcal E\to\Kl(\D)$
+forget $z$.
+\end{definition}
+
+\begin{proposition}[Split opfibration]\label{prop:opfib}
+$\pi$ is a discrete opfibration, and in particular a split opfibration. The cocartesian lift of $k\colon B\to B'$ at
+$(B,z)$ is $k\colon(B,z)\to(B',A_kz)$. Through $\id\times A_k$, the comonads $\C^B$ and the laws $\lambda^B$ are carried
+along the lifts.
+\end{proposition}
+\begin{proof}
+$\mathcal E$ is the category of elements of the functor $B\mapsto A^{\mathrm{coh}}_B$, $k\mapsto A_k$, which is a functor by
+\cref{thm:fibre}(i); categories of elements of set-valued functors are discrete opfibrations. The statement about
+comonads and laws is \cref{thm:fibre}(ii).
+\end{proof}
+
+\begin{proposition}[Grades act on fibres]\label{prop:gradefibre}
+Let $f,g\colon B\to\D(B')$ and let $z=(\rho,\Pi,\Omega,\Sigma)$ be a coherent context. Put $\mathrm{TV}$ on $\D B'$, the
+Kantorovich metric $W_1$ over $\mathrm{TV}$ on $\D^2B'$, the Kantorovich metric over that on $\D^3B'$, and on hypotheses the
+metric that is $\TV$ of predictives for equal descriptors and $1$ otherwise. Then every component of $A_f(z)$ and
+$A_g(z)$ is within $d(f,g)$. So a graded 2-cell $f\Rightarrow_\varepsilon g$ gives $\varepsilon$-close transported contexts at
+every level.
+\end{proposition}
+\begin{proof}
+$\TV(f^\#\rho,g^\#\rho)\le\sum_b\rho(b)\TV(f(b),g(b))\le d(f,g)$ by convexity. For $\Pi$, push $\Pi$ forward along
+$\rho\mapsto(f^\#\rho,g^\#\rho)$. This is a coupling of $\D(f^\#)\Pi$ and $\D(g^\#)\Pi$ of cost $\mathbb E_\Pi\TV(f^\#\rho,g^\#\rho)\le d(f,g)$.
+Level three and the shadow are the same argument one level up. The companion verifies the bound in a worked
+example, where all three levels give $\tfrac2{15}\le\tfrac16$ \cite[\S11]{Awasthi-Family}.
+\end{proof}
+
+The proof of \cref{thm:fibre} uses one fact beyond naturality: Kleisli extension is a morphism of free
+$\D$-algebras. All other components of $A_k$ are pushforwards along functions. So the strict integrability of
+each fibre and the transport between fibres are compatible.
+
+%=====================================================================
+\section{Layer III: the coupling nerve}\label{sec:nerve}
+%=====================================================================
+
+\begin{definition}[The coupling nerve]\label{def:nerve}
+For a finite set $Y$, let $N_k(Y)=\D(Y^{k+1})$, with face maps $d_i$ that marginalize out the $i$th coordinate and
+degeneracies $s_i$ that push forward along the diagonal repeating it. Since $Y^{\bullet+1}$ is a simplicial set (the
+Čech nerve of $Y\to1$) and $\D$ is a functor, $N(Y)=\D(Y^{\bullet+1})$ is a simplicial set. The relative version over a
+set $X$ has $k$-simplices the kernels $X\to\D(Y_0\times\dots\times Y_k)$, with all structure taken pointwise in $x$.
+\end{definition}
+
+A 1-simplex of $N(Y)$ is a coupling of its two vertices. A coupling 2-cell $\alpha\colon f\Rightarrow g$ between kernels
+$X\rightsquigarrow Y$ is an $X$-indexed 1-simplex with vertices $f$ and $g$. A horn $\Lambda^n_k$ in $N$ is a compatible family of
+laws on the $n$ faces other than the $k$th, and a filler is an $n$-simplex with those faces. In probabilistic terms
+a horn is an empirical model on the cover of $\{0,\dots,n\}$ by those faces, and a filler is a global section
+\cite{AbramskyBrandenburger2011}.
+
+\begin{theorem}[2-horns fill, and composition is the canonical filler]\label{thm:2horn}
+Let $p_{01}$ and $p_{12}$ be compatible laws on $Y_0\times Y_1$ and $Y_1\times Y_2$ with common marginal $p_1$, the data of
+an inner horn $\Lambda^2_1$.
+\begin{enumerate}[label=(\roman*)]
+\item The fillers form the product, over $x_1$ with $p_1(x_1)>0$, of the transportation polytopes of the slices
+  $p(\cdot,x_1,\cdot)$ with marginals $p_{01}(\cdot,x_1)$ and $p_{12}(x_1,\cdot)$. If every slice has full support and
+  nondegenerate marginals, the filler polytope is Delzant.
+\item The gluing filler $p^{\mathrm{gl}}=p_{01}\,p_{12}/p_1$ is the unique filler of maximal entropy, and its face $d_1$ is the
+  vertical composite of the two couplings.
+\item Any filler differs from $p^{\mathrm{gl}}$, slice by slice, by $p_1(x_1)\operatorname{Cov}(1_{\{x_0\}},1_{\{x_2\}}\mid x_1)$, a
+  circulation of the slice.
+\end{enumerate}
+The outer horns $\Lambda^2_0$ and $\Lambda^2_2$ fill in the same way, by gluing over the shared vertex.
+\end{theorem}
+\begin{proof}
+(i) Each marginal constraint involves one value of $x_1$, so the constraints decouple into slices. Each slice is a
+two-way transportation polytope, Delzant under the stated conditions (\cref{thm:delzant}), and a product of
+Delzant polytopes is Delzant with respect to the product lattice. (ii) $\log p^{\mathrm{gl}}$ is a sum of a function of
+$(x_0,x_1)$ and a function of $(x_1,x_2)$, so it is orthogonal to every tangent vector of the filler polytope. So
+$p^{\mathrm{gl}}$ is a critical point of the strictly concave entropy on the polytope, hence its unique maximizer.
+Equivalently, $H(X_0X_1X_2)\le H(X_0X_1)+H(X_1X_2)-H(X_1)$, with equality exactly under conditional independence.
+Summing $p^{\mathrm{gl}}$ over $x_1$ gives the gluing formula of \cref{def:coupling}. (iii) is a direct computation.
+\end{proof}
+
+So the 2-cells of layer I are the 1-simplices of the nerve, and their vertical composition is the canonical
+filling of inner 2-horns. The other fillers are conditional cumulants, which is the link to layer IV.
+
+\begin{theorem}[Higher horns]\label{thm:higherhorn}
+Let $n\ge3$.
+\begin{enumerate}[label=(\roman*)]
+\item The $n$ faces of $\Lambda^n_k$, viewed as subsets of $\{0,\dots,n\}$, form a cover that is not acyclic. For $n=2$ it is
+  acyclic.
+\item Hence, for $\lvert Y\rvert\ge2$, there are compatible horn data in $N(Y)$ with no filler.
+\item For compatible horn data, the minimal unmodeled weight with the deterministic global assignments as
+  sources, each face weighted $1/n$, equals the contextual fraction of the horn, and it vanishes exactly when
+  the horn fills. For the parity horns on two outcomes (uniform on assignments of fixed parity on each face, with
+  exactly one face odd) it is $1-2^{2-n}$ for every $n$-horn.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) Use Graham's reduction for acyclic hypergraphs \cite{BFMY1983}: repeatedly delete vertices in a single edge and
+edges contained in others; the hypergraph is acyclic if and only if this empties it. In $\Lambda^n_k$ the vertex $k$
+lies in all $n$ faces and every other vertex lies in $n-1$ of them. No face contains another, so for $n\ge3$ no
+reduction step applies. For $n=2$ the two faces share one vertex and reduce away. (ii) By Vorob'ev's theorem
+\cite{Vorobev1962}, every compatible family extends to a global law exactly on acyclic covers. Data on two outcomes
+embed into any $Y$ with $\lvert Y\rvert\ge2$. (iii) A filler is a global section, so this is
+\cite[Thm.~7.12]{Awasthi-Attribution} applied to the horn's cover. For the parity horn on bits $x_0,\dots,x_n$, put $\sigma=\sum_jx_j$ and let
+$p_i\in\{0,1\}$ be the parity of face $i\ne k$. A global assignment meets every face parity if and only if
+$x_i=\sigma-p_i$ for all $i\ne k$; then $x_k$ is fixed by $\sum_jx_j=\sigma$, and this is consistent because $\sum_ip_i=1$.
+So exactly two global assignments, one for each $\sigma$, are compatible with all faces, and they differ on every face.
+Every other deterministic source puts mass on an assignment of probability zero on some face. On each face the two
+compatible sources have distinct restrictions of probability $2^{1-n}$, so each can carry weight at most $2^{1-n}$;
+the noncontextual fraction is $2^{2-n}$. Exactly verified certificates for $n\le6$ and the count for $n\le8$ are in
+\texttt{check\_horns\_n.py}.
+\end{proof}
+
+\begin{corollary}[The nerve is not Kan]\label{cor:notkan}
+For $\lvert Y\rvert\ge2$, $N(Y)=\D(Y^{\bullet+1})$ fills every 2-horn but not every $n$-horn for $n\ge3$. In particular it is not
+a Kan complex, although $Y^{\bullet+1}$ is. The monad $\D$ does not preserve horn filling, because it does not turn
+compatible families over cyclic covers into global laws, and the obstruction is the contextual fraction.
+\end{corollary}
+
+\begin{proposition}[Boundary fibres]\label{prop:boundaryfibre}
+Prescribing all three faces of a 2-simplex, that is all three 2-margins of a 3-way table on $Y_0\times Y_1\times Y_2$, gives
+a planar 3-way transportation polytope of dimension $(n_0-1)(n_1-1)(n_2-1)$ when it is nonempty and generic. It can be empty
+even for compatible faces, because the cover by the three edges of a triangle is cyclic.
+\begin{enumerate}[label=(\roman*)]
+\item For $n_0=2$ it is a capacitated two-way transportation polytope, whose constraint matrix is totally unimodular,
+  so it is Delzant whenever it is simple.
+\item Every rational polytope is a planar $r\times s\times3$ transportation polytope \cite{DeLoeraOnn2004}, so boundary fibres are
+  not toric in general. Already for $3\times3\times3$, generic instances are simple but not smooth: they are moment polytopes
+  of toric orbifolds \cite{LermanTolman1997}, not of manifolds \cite[\S10]{Awasthi-Family}.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For $n_0=2$ the second layer is $m-y$, where $y$ is the first layer, $m$ is the $(1,2)$-margin, and $y$ has fixed row and column
+sums with $0\le y\le m$. A bipartite incidence matrix stacked with an identity is totally unimodular, so edges are $\pm1$
+cycle vectors and the argument of \cref{thm:delzant} applies at simple vertices. (ii) combines the cited theorem with
+the computation in the companion.
+\end{proof}
+
+So the toric regime of the nerve is exactly the 1-simplices and the 2-horns. Boundary fillings leave it, and higher
+horns can be empty.
+
+%=====================================================================
+\section{Layer IV: cumulants and the square-zero cone}\label{sec:linear}
+%=====================================================================
+
+\begin{proposition}[Couplings are second cumulants]\label{prop:kappa2}
+For $\alpha\in\Cpl(f,g)$, $\alpha-f\otimes g$ is the cross-covariance $\kappa_2(1_{\{y=i\}},1_{\{y'=j\}})$ of the indicator vectors, a
+circulation. The product coupling is the point where all mixed cumulants vanish, and it is the only point of
+rank one, the Birch point of the independence model \cite{PachterSturmfels2005}. For level-two couplings of
+second-order states,
+\[
+\mu^*(\Pi)=\mu_BP\otimes\mu_BQ+\operatorname{Cov}_\Pi(\rho,\rho'),
+\]
+so flattening keeps only the second mixed cumulant of the two random distributions.
+\end{proposition}
+
+Fix $f\in\D(Y)$ and let $A_f$ be the matrices on $Y\times Y$ whose row and column sums are multiples of $f$. With the
+gluing product $a\cdot b=a\operatorname{diag}(f)^{-1}b$ and unit $\operatorname{diag}(f)$, $A_f$ is an associative unital algebra, spanned by
+the couplings of $f$ with itself. The circulations $I_f$ form a two-sided ideal, and $A_f/I_f\cong\mathbb R$ records the total
+mass. Whiskering by a kernel $h$ is a linear unital map $h_*\colon A_f\to A_{h^\#f}$, which need not be multiplicative: a
+noncommutative expectation in the sense of homotopy probability theory \cite{HPT1,HPT2}. Its Boolean cumulants
+\cite{SpeicherWoroudi1997} are $b_1=h_*$, $b_2(a,b)=h_*(a\cdot b)-h_*a\cdot h_*b$, and so on over interval partitions. The
+whiskering defect of \cref{thm:witness}(ii) is $-b_2$.
+
+\begin{theorem}[Whiskering is a two-component $A_\infty$-functor]\label{thm:sqzero}
+Let $C=A_{h^\#f}\oplus\varepsilon I_{h^\#f}$, with $\varepsilon$ of degree $-1$, $\varepsilon^2=0$ and $d(\varepsilon x)=x$. Then $C$ is a differential graded
+algebra with $H^0(C)=A_{h^\#f}/I_{h^\#f}\cong\mathbb R$ and $H^{-1}(C)=0$: it is the mapping cone of $I\hookrightarrow A$. The maps
+\[
+F_1=h_*,\qquad F_2=\varepsilon\,b_2,\qquad F_n=0\ (n\ge3)
+\]
+form an $A_\infty$-functor $A_f\to C$.
+\end{theorem}
+\begin{proof}
+Every $b_2$ is a circulation, because both composites couple the same marginals, so $F_2$ lands in $\varepsilon I$. $C$ is the
+trivial extension of $A$ by the bimodule $\varepsilon I$, and $d$ is a derivation because $I$ is an ideal. Arity two of the functor
+equation is $dF_2=b_2$, true by definition. In arity three, with $F_3=0$, it reads
+$b_2(ab,c)-b_2(a,bc)=h_*a\cdot b_2(b,c)-b_2(a,b)\cdot h_*c$. Both sides equal $h_*a\cdot h_*(bc)-h_*(ab)\cdot h_*c$, which says that $b_2$
+is the Hochschild coboundary of $h_*$. In arity $n\ge4$ every term involves some $F_k$ with $k\ge3$ or a product
+$F_2\cdot F_2\in\varepsilon^2I=0$.
+\end{proof}
+
+\begin{remark}
+This settles, in the minimal model, the question of the previous draft whether whiskering is an $A_\infty$-functor.
+The higher Boolean cumulants are nonzero \cite[\S9]{Awasthi-Family}, but they are not needed here. They appear as
+higher components only in larger models such as the free cone, as in the bar-construction description of
+cumulants. The defects span all of $I$ for three and four points \cite[\S10]{Awasthi-Family}, so $H^0$ of the cone
+generated by the defects alone is also $A/I$.
+\end{remark}
+
+\paragraph{The four layers together.} Under the cone, all coupling information is homotopical: $H^0$ keeps only
+masses, so the 1-cells of layer I, while the couplings live in degree $-1$, in the circulations. These are the
+tangent spaces of the polytopes of layer III. The cumulants of \cref{prop:kappa2}, the defects of \cref{thm:sqzero}
+and the deviations of 2-horn fillers from the canonical filler (\cref{thm:2horn}(iii)) are all circulations, and
+the Fisher metric of \cref{prop:guillemin} measures them. Layer II carries the tower along the same kernels, with
+the grades of layer I as bounds.
+
+%=====================================================================
+\section{Coupling polytopes are moment polytopes}\label{sec:toric}
+%=====================================================================
+
+\subsection{The polytope and its lattice}
+
+Let $f\in\D(Y)$ and $g\in\D(Y')$ have full support, with $\lvert Y\rvert=n$, $\lvert Y'\rvert=m$. (For
+coupling 2-cells $Y=Y'$; rectangular polytopes arise when gluing contexts
+\cite[Prop.~7.11]{Awasthi-Attribution}.) The \emph{coupling polytope} is
+\[
+\Cpl(f,g)=\Big\{\alpha\in\mathbb{R}_{\ge0}^{Y\times Y'}:\ \textstyle\sum_{y'}\alpha(y,y')=f(y),\
+\sum_y\alpha(y,y')=g(y')\Big\}.
+\]
+Its tangent space is the space of \emph{circulations}, matrices with zero row and column sums. The
+integer circulations form a lattice $\Lambda$ of rank $(n-1)(m-1)$; a basis is
+$E_{ij}-E_{i,m}-E_{n,j}+E_{n,m}$ for $i<n$, $j<m$.
+
+\begin{proposition}[Interior and Fisher metric]\label{prop:interior}
+$\Cpl(f,g)$ has dimension $(n-1)(m-1)$, its relative interior is the set of strictly positive
+couplings, and on it the Fisher metric $\mathcal{I}_\alpha(v,w)=\sum v(y,y')w(y,y')/\alpha(y,y')$ is
+positive definite on circulations.
+\end{proposition}
+\begin{proof}
+The product coupling $f\otimes g$ is strictly positive, so no inequality $\alpha\ge0$ is an implicit
+equality, and the relative interior of the polytope in its affine hull is $\{\alpha>0\}$. There
+$\mathcal{I}_\alpha(v,v)=\sum v^2/\alpha>0$ for $v\ne0$.
+\end{proof}
+
+\begin{remark}
+The first draft argued nondegeneracy through a radical and then distinguished ``the Fisher metric''
+from ``the Fisher--Rao metric''. These are the same metric, the Fisher information metric. The
+square-root embedding is a way of computing its geodesic distance \cite[Prop.~8.1]{Awasthi-Attribution}.
+\end{remark}
+
+\subsection{Nondegeneracy implies Delzant}
+
+\begin{definition}[Walls]\label{def:walls}
+The pair $(f,g)$ is \emph{degenerate} if $\sum_{y\in I}f(y)=\sum_{y'\in J}g(y')$ for some
+nonempty proper subsets $I\subsetneq Y$ and $J\subsetneq Y'$. These equations define hyperplanes,
+the \emph{walls}, in the space of pairs of marginals; the \emph{chambers} are the connected components of
+the complement of the walls.
+\end{definition}
+
+\begin{theorem}[Coupling polytopes are Delzant]\label{thm:delzant}
+If $(f,g)$ is nondegenerate, then $\Cpl(f,g)$ is a Delzant polytope with respect to $\Lambda$: it is
+simple, its facet normals are rational, and at each vertex the primitive edge vectors form a basis of
+$\Lambda$. Its edges at a vertex are the fundamental cycles of a spanning tree.
+\end{theorem}
+\begin{proof}
+Regard $\alpha$ as a weighting of the edges of the complete bipartite graph on $Y\sqcup Y'$.
+\emph{Vertices are forests.} If the support of a feasible $\alpha$ contains a cycle, adding $\pm\epsilon$
+alternately around it stays feasible, so $\alpha$ is not a vertex. If the support is a forest, the
+marginal equations determine $\alpha$ on it uniquely (peel off leaves), so $\alpha$ is a vertex.
+\emph{Nondegeneracy makes them spanning trees.} Every node has positive marginal and hence an incident
+edge of the support. If the support forest had two or more components, take one with row set $I$ and
+column set $J$. Then $\sum_If=\sum_Jg$; $I$ and $J$ are nonempty, and if $I=Y$ then $\sum_Jg=1$ forces
+$J=Y'$ and the component is everything. So $I$ and $J$ are proper, contradicting nondegeneracy.
+\emph{Simplicity and smoothness.} At a vertex with spanning tree $T$, the zero cells are the
+$nm-(n+m-1)=(n-1)(m-1)$ non-tree cells $c$. Each closes a unique cycle in $T\cup\{c\}$, giving a
+circulation $C_c$ with entries in $\{0,\pm1\}$ and $C_c(c)=1$. A circulation $w$ equals
+$\sum_{c\notin T}w(c)C_c$, because the difference is a circulation supported on the tree, hence zero.
+So the feasible directions at the vertex form the cone $\{\sum_ct_cC_c:t\ge0\}$ on exactly
+$\dim\Cpl(f,g)$ independent generators (simplicity), and the $C_c$ are integral and form a $\mathbb{Z}$-basis
+of $\Lambda$, since integer coefficients $w(c)$ suffice (smoothness). The facet normals are the coordinate
+functionals $\alpha\mapsto\alpha(c)$, which are rational.
+\end{proof}
+
+By Delzant's theorem \cite{Delzant1988} there is a compact connected toric symplectic manifold
+$(X_{f,g},\omega)$ of real dimension $2(n-1)(m-1)$, unique up to equivariant symplectomorphism, whose
+moment map $\mu\colon X_{f,g}\to\Cpl(f,g)$ has image the coupling polytope. The fibre over an interior
+coupling is a Lagrangian torus $T^{(n-1)(m-1)}$, and the fibre over a vertex is a point.
+
+\begin{proposition}[Fisher metric and Guillemin's potential]\label{prop:guillemin}
+Suppose every inequality $\alpha(c)\ge0$ defines a facet of $\Cpl(f,g)$. The canonical K\"ahler metric
+of $X_{f,g}$ constructed by Guillemin \cite{Guillemin1994} has, in action--angle coordinates over the
+interior, the form $\mathrm{Hess}\,G$ in the polytope directions, with symplectic potential
+\[
+G(\alpha)=\tfrac12\sum_{c}\alpha(c)\log\alpha(c).
+\]
+Hence the Fisher metric on $\Cpl(f,g)$ is twice the restriction of the canonical K\"ahler metric to the
+real section, and the product coupling $f\otimes g$, the coupling of maximal entropy, is the unique
+critical point of $G$ on the polytope.
+\end{proposition}
+\begin{proof}
+Guillemin's potential is $\tfrac12\sum_i\ell_i\log\ell_i$ over the facets, where $\ell_i\ge0$ are the
+facet inequalities written with primitive inward normals. Here $\ell_c(\alpha)=\alpha(c)$, and the
+coordinate functional is primitive on $\Lambda$ because some integer circulation has entry $1$ at $c$.
+Then $\mathrm{Hess}\,G(v,v)=\tfrac12\sum_cv(c)^2/\alpha(c)$. The critical-point condition is that
+$\log\alpha$ is orthogonal to all circulations, that is $\log\alpha(y,y')=r(y)+s(y')$, which together with
+the marginals gives $\alpha=f\otimes g$. Uniqueness follows from strict convexity.
+\end{proof}
+
+If some cell is not a facet, for instance when $f(y)+g(y')>1$ forces $\alpha(y,y')>0$, the potential
+omits that term and the identity holds only up to those terms.
+
+\subsection{Walls, chambers and monotone cases}
+
+\begin{proposition}[Chambers]\label{prop:chambers}
+The set of spanning trees that support vertices, and hence the combinatorial type of $\Cpl(f,g)$ and
+the toric manifold $X_{f,g}$ up to equivariant diffeomorphism, is constant on each chamber. The type
+can change across a wall. For $f=(\tfrac12,\tfrac12)$ and $g=(t,\tfrac23-t,\tfrac13)$ the polytope is a
+hexagon for $t<\tfrac12$ and a quadrilateral for $t>\tfrac12$, both Delzant: two facets become redundant
+across the wall $g_1=f_1$.
+\end{proposition}
+\begin{proof}
+The tree solution on a spanning tree $T$ assigns to each tree edge the value $\sum_If-\sum_Jg$ (up to
+sign) for the bipartition $(I,J)$ obtained by deleting that edge. So feasibility of $T$ depends only on
+the signs of such differences, which are constant on chambers. The example is checked in
+\texttt{check\_conditionals.py}.
+\end{proof}
+
+\begin{proposition}[Monotone cases]\label{prop:monotone}
+Assume $(f,g)$ is nondegenerate and every cell defines a facet. Then $X_{f,g}$ is monotone if and only
+if $f$ and $g$ are uniform, and uniform marginals are nondegenerate exactly when $\gcd(n,m)=1$. In
+particular, in the square case $Y=Y'$ of coupling 2-cells no nondegenerate pair is monotone. On the
+wall, the uniform $2\times2$ pair still gives a Delzant segment, $X=\mathbb{CP}^1$, with the product
+coupling as its midpoint; the uniform $n\times n$ pair with $n\ge3$ gives a polytope that is not simple.
+\end{proposition}
+\begin{proof}
+For a Delzant polytope written with primitive normals, the toric manifold is monotone exactly when
+some interior point has equal lattice distance to all facets: the classes of the toric divisors span
+$H^2$ subject to the linear relations given by the normals, $c_1$ is the sum of the divisor classes, and
+$[\omega]$ is the sum weighted by the facet distances. Here the distances are the entries
+$\alpha(c)$, so they are equal exactly when $\alpha$ is constant, which forces $f$ and $g$ to be
+uniform; then $\alpha=f\otimes g$. Uniform marginals are nondegenerate iff $a/n\ne b/m$ for
+$0<a<n$, $0<b<m$, iff $\gcd(n,m)=1$, which fails when $n=m$. The two wall cases are checked in
+\texttt{check\_conditionals.py} (T3).
+\end{proof}
+
+\begin{example}[The degree-6 del Pezzo surface]\label{ex:dp6}
+For $f$ uniform on two points and $g$ uniform on three, $\Cpl(f,g)$ is a hexagon. In the basis of
+$\Lambda$ above, its facet normals are $\pm e_1$, $\pm e_2$ and $\pm(e_1+e_2)$. This is the fan of
+$\mathbb{CP}^2$ blown up at three points, the del Pezzo surface of degree $6$. All six entries of the
+product coupling equal $\tfrac16$, so it is the equidistant point. The case $3\times4$ (uniform) gives a
+Delzant polytope of dimension $6$ with $96$ vertices and all $12$ cells facets, again monotone.
+\end{example}
+
+%=====================================================================
+\section{The imported layer: Floer theory of the special fibre}\label{sec:imported}
+%=====================================================================
+
+We now quote results from symplectic topology. They are not proved or checked here.
+
+\paragraph{Nondisplaceability.} For a monotone toric manifold, the torus fibre over the point at equal
+distance from all facets (the \emph{special fibre}) is a stem in the sense of Entov and Polterovich,
+hence nondisplaceable \cite{EntovPolterovich2006}. For toric Fano manifolds, Cho and Oh show that a
+torus fibre with a flat $U(1)$ connection has nonvanishing Floer cohomology when it corresponds to a
+critical point of the disc potential \cite{ChoOh2006}; see \cite{Cho2004} for the Clifford torus and
+\cite{FOOO2010} for general compact toric manifolds.
+
+\paragraph{Consequence for couplings.} In the monotone cases of \cref{prop:monotone}, the special fibre
+lies over the product coupling $f\otimes g$. For \cref{ex:dp6}, the disc potential of the monotone
+special fibre is, up to the factor $T^{1/6}$, the Laurent polynomial
+\[
+W(x,y)=x+y+\frac1x+\frac1y+xy+\frac1{xy},
+\]
+read off from the facet normals, and it has a critical point at $(x,y)=(1,1)$ (checked exactly), so the
+special fibre with trivial holonomy has nonzero Floer cohomology by \cite{ChoOh2006}.
+
+The maximal coupling, by contrast, has zero entries whenever $f\ne g$, so it lies on the boundary of
+$\Cpl(f,g)$, where the torus fibre collapses (\texttt{check\_conditionals.py}, T6). The first draft's
+conjecture that the critical points are the maximal couplings should therefore be replaced. The
+geometrically distinguished coupling is the product coupling, which is also the maximum-entropy
+coupling and the critical point of Guillemin's potential (\cref{prop:guillemin}).
+
+%=====================================================================
+\section{Stability conditions: a question}\label{sec:stability}
+%=====================================================================
+
+This subsection replaces a draft that proposed a Bridgeland stability condition whose central charge
+is the disc potential, whose heart is the committed states, and whose Harder--Narasimhan filtration
+is the obstruction tower. None of those identifications is well typed. A central charge is an additive
+map $K_0\to\mathbb{C}$ and $W$ is a function on a torus. Committed states are vertices of a polytope
+and form no abelian category. The obstruction tower assigns numbers to a claim; it does not
+filter an object. What can be said precisely is the following.
+
+\paragraph{Bridgeland stability.} A stability condition on a triangulated category $\mathcal D$ is a
+pair $(Z,\mathcal A)$. Here $\mathcal A$ is the heart of a bounded $t$-structure, and
+$Z\colon K_0(\mathcal D)\to\mathbb{C}$ is additive, sends nonzero objects of $\mathcal A$ to the upper
+half-plane together with $\mathbb{R}_{<0}$, and admits Harder--Narasimhan filtrations; the support
+property is also required \cite{Bridgeland2007}. On any smooth projective surface $X$, and for
+any ample class $\omega$, there is a stability condition with central charge
+\[
+Z_\omega(E)=-\int_Xe^{-i\omega}\operatorname{ch}(E)
+\]
+whose heart is a tilt of $\operatorname{Coh}X$ \cite{ArcaraBertram2013,MacriSchmidt2017}. (A $B$-field
+can be added; we set it to zero.)
+
+\begin{proposition}[Marginals give stability conditions on the $2\times3$ surfaces]\label{prop:stab}
+Let $(f,g)$ be nondegenerate in the $2\times3$ family, let $X_\Sigma$ be the toric surface of its
+chamber, and let $D_c$ be the toric divisor of the facet $\{\alpha_c=0\}$. Put
+\[
+[\omega_{f,g}]=\sum_{c\ \mathrm{facet}}f_ig_j\,[D_c],\qquad c=(i,j),
+\]
+the product coupling read as divisor coefficients. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $[\omega_{f,g}]$ is the class of the toric symplectic form with moment polygon $\Cpl(f,g)$. It is
+  independent of the base point used to write the polygon, and it is ample.
+\item $\omega_{f,g}\cdot D_c$ is the lattice length of the edge $\{\alpha_c=0\}$ of the coupling polygon,
+  and $\tfrac12\omega_{f,g}^2$ is its lattice area.
+\item There is a stability condition $\sigma_{f,g}=(Z_{\omega_{f,g}},\mathcal A_{\omega_{f,g}})$ on
+  $D^b(\operatorname{Coh}X_\Sigma)$. It depends continuously on $(f,g)$ within the chamber, and
+  \[
+  Z(\mathcal O_X)=\operatorname{area}\Cpl(f,g),\qquad Z(\mathcal O_x)=-1,\qquad
+  Z(\mathcal O_{D_c})=\tfrac12D_c^2+i\,\operatorname{length}\{\alpha_c=0\}.
+  \]
+\item As $(f,g)$ approaches a wall from inside a chamber, one edge length tends to $0$, its divisor
+  $E$ is a $(-1)$-curve, and $Z(\mathcal O_E)\to-\tfrac12$, a point on the negative real axis.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) If a Delzant polygon is $\{u:\langle u,v_c\rangle+\lambda_c\ge0\}$, the symplectic class is
+$\sum_c\lambda_c[D_c]$, up to the normalization of $\omega$. Here the facet functions are
+$\alpha_c(u)=\langle u-u_0,v_c\rangle+\alpha_c(u_0)$ for any interior base point $u_0$, and choosing
+$u_0=f\otimes g$ gives the formula. Another choice of base point changes the coefficients by
+$\langle w,v_c\rangle$, which is a linear relation among the $[D_c]$. A Kähler class on a projective
+toric surface is ample. (ii) These are standard toric identities: the degree of $\omega$ on $D_c$ is
+the lattice length of the corresponding edge, and the symplectic volume is the lattice area
+(Duistermaat--Heckman). (iii) Apply \cite{ArcaraBertram2013,MacriSchmidt2017} with $\omega=\omega_{f,g}$,
+which varies continuously with $(f,g)$. The values follow from $\operatorname{ch}(\mathcal O_X)=1$,
+$\operatorname{ch}(\mathcal O_x)=[\mathrm{pt}]$ and $\operatorname{ch}(\mathcal O_D)=D-\tfrac12D^2$. (iv) By
+\cref{prop:chambers} and \texttt{check\_stability\_layer.py} (S5), the vanishing edge is that of a
+$(-1)$-curve. All identities are checked in all $18$ chambers.
+\end{proof}
+
+So the probabilistic data enter Bridgeland stability through the Kähler class, and nowhere else. The
+product coupling fixes the class, edge lengths of the coupling polygon are imaginary parts of central
+charges, and its area is $Z(\mathcal O_X)$. At the uniform point $\omega=-\tfrac16K_X$ on the del Pezzo
+surface, with area $\tfrac1{12}$ and six edges of length $\tfrac16$.
+
+\paragraph{Questions.}
+\begin{enumerate}[label=(Q\arabic*),leftmargin=*]
+\item \emph{Across walls.} Crossing a wall blows up or blows down a point
+  (\cref{prop:chambers}), and Orlov's theorem gives
+  $D^b(\mathrm{Bl}_pX)=\langle\mathcal O_E(-1),D^b(X)\rangle$ \cite{Orlov1992}. As the wall is approached,
+  $Z(\mathcal O_E)$ tends to the negative real axis. Does the path $\sigma_{f,g}$ extend across the wall to
+  a path through stability conditions glued along Orlov's decomposition? If so, the chamber structure of
+  the marginals becomes a wall structure in a single space of stability conditions.
+\item \emph{Objects for couplings.} Is there a natural object $E_\alpha\in D^b(\operatorname{Coh}X)$ attached to
+  an interior coupling $\alpha$? A candidate is the SYZ or mirror transform of the torus fibre over
+  $\alpha$ with a flat connection. Does $Z(E_\alpha)$ have a probabilistic meaning, for instance in terms of
+  the Fisher metric of \cref{prop:guillemin}?
+\item \emph{Quantum corrections.} Iritani's integral structure identifies quantum-corrected central
+  charges of objects of $D^b(\operatorname{Coh}X)$ with oscillatory integrals $\int e^{-W/z}$ of the
+  mirror potential over integral cycles, and their asymptotics involve the $\widehat\Gamma$-class
+  \cite{Iritani2009,GGI2016}. This is the precise sense in which the disc potential is related to
+  central charges: through oscillatory integrals, not through its values. Do the corrected central
+  charges, with $\omega=\omega_{f,g}$, define stability conditions on these surfaces? Does the monotone
+  point $f\otimes g$ uniform play a special role?
+\item \emph{Higher dimensions.} For $(n-1)(m-1)\ge3$ the toric manifolds have complex dimension at least
+  three. There, the existence of stability conditions is known only in special cases, through
+  Bogomolov--Gieseker type inequalities \cite{BMT2014}. The construction of \cref{prop:stab} therefore
+  extends only conditionally.
+\end{enumerate}
+
+\paragraph{What is not claimed.} We make no identification of the disc potential with a central
+charge, of committed states with a heart, of the obstruction tower with Harder--Narasimhan filtrations,
+or of hallucination with instability. The obstruction tower and the stability conditions above live
+on different objects (claims and admissibility data on one side, coherent sheaves on $X_{f,g}$ on the
+other), and any relation between them would have to be constructed.
+
+%=====================================================================
+\section{The conjectural layer}\label{sec:conjectural}
+%=====================================================================
+
+\begin{proposition}[The $2\times3$ family {\cite[\S3]{Awasthi-Family}}]\label{prop:family23}
+In the $2\times3$ family there are $18$ chambers. Every toric surface $X_{f,g}$ is the degree-6 del Pezzo surface or a
+toric blow-down of it, and crossing one wall is exactly one toric blow-up or blow-down.
+\end{proposition}
+
+\begin{conjecture}[Family over the chamber complex]\label{conj:family}
+For general $n\times m$, the toric manifolds $X_{f,g}$ form a family over each chamber, and crossing a wall is a toric
+birational transformation (in higher dimension possibly a flip) determined by the pair $(I,J)$ defining the wall. On a
+wall, $X_{f,g}$ degenerates to a singular toric variety whose moment polytope is the non-simple $\Cpl(f,g)$.
+\end{conjecture}
+
+\begin{question}[Location of Floer-nontrivial fibres]\label{q:location}
+Outside the monotone cases, the fibres with nonvanishing Floer cohomology (possibly after bulk
+deformation) are located by the potential of \cite{FOOO2010}. Is the product coupling always among
+them, and do they have a statistical meaning?
+\end{question}
+
+\begin{question}[Beyond the minimal cone]\label{conj:ainfty}
+\Cref{thm:sqzero} makes whiskering an $A_\infty$-functor into the square-zero cone, with two components. (i) In the free cone,
+do the higher Boolean cumulants give the higher components? (ii) Does the construction extend to the
+multi-object setting, an $A_\infty$-functor between linear categories whose objects are 1-cells, compatible with the
+nerve of \cref{sec:nerve}?
+\end{question}
+
+\begin{conjecture}[Fukaya-type functor]\label{conj:fukaya}
+There is a functor from a category built from the Fukaya categories of the $X_{f,g}$ (with special
+fibres as distinguished objects) to a linearization of the coupling 2-cells, compatible with gluing on
+one side and composition of Lagrangian correspondences on the other.
+\end{conjecture}
+
+%=====================================================================
+%=====================================================================
+\section{Experimental definitions and evidence}\label{sec:experimental}
+%=====================================================================
+
+This section takes up the five problems left open by the previous draft. Each subsection states a definition,
+proves what can be proved, and records what was only computed. The numbers are tabulated in
+\cite[\S13]{Awasthi-Family}, and the scripts are listed in \cref{sec:code}.
+
+\subsection{The multi-object cone}\label{sec:multicone}
+
+\begin{definition}[The linear category of couplings]\label{def:Lcat}
+Let $\mathcal L$ be the category whose objects are full-support distributions $f$ on finite sets. Its morphisms are
+\[
+\mathcal L(f,g)=V(f,g)=\{a\in\mathbb R^{Y\times Y'}: a\mathbf 1=s\,f,\ \mathbf 1^{\mathsf T}a=s\,g^{\mathsf T}\ \text{for some }s=s(a)\in\mathbb R\},
+\]
+with composition $a\cdot b=a\operatorname{diag}(g)^{-1}b$ and identity $1_f=\operatorname{diag}(f)$. Let $\mathcal I(f,g)=\{a: s(a)=0\}$
+be the circulations, and let $\mathcal C$ be the mapping cone of $\mathcal I\hookrightarrow\mathcal L$: it has
+$\mathcal C(f,g)=V(f,g)\oplus\varepsilon\,\mathcal I(f,g)$, with $\deg\varepsilon=-1$, $m_1(\varepsilon x)=x$ and
+$\varepsilon x\cdot\varepsilon y=0$. For a family of kernels $h=(h_Y\colon Y\to Z_Y)$, put $F^h_1(a)=h_Y^{\mathsf T}ah_{Y'}$,
+$F^h_2=\varepsilon\,\delta_h$ with $\delta_h(a,b)=F_1^h(a\cdot b)-F_1^h(a)\cdot F_1^h(b)$, and $F^h_n=0$ for $n\ge3$.
+\end{definition}
+
+Couplings are the morphisms with $a\ge0$ and $s=1$, and their composition is gluing. When $f=g$ this is the algebra $A_f$
+of \cref{sec:linear}. For kernels $X\to Y$ as objects, take the product over $x\in X$.
+
+\begin{theorem}[Multi-object version of \cref{thm:sqzero}]\label{thm:multicone}
+\begin{enumerate}[label=(\roman*)]
+\item $\mathcal L$ is a linear category, $s$ is a functor to the one-object category $\mathbb R$, and its kernel $\mathcal I$ is a
+  two-sided ideal with $\dim\mathcal I(f,g)=(\lvert Y\rvert-1)(\lvert Y'\rvert-1)$. Hence $H^0(\mathcal C)=\mathcal L/\mathcal I$ has every
+  hom-space equal to $\mathbb R$, and $H^{-1}(\mathcal C)=0$.
+\item $F^h$ is an $A_\infty$-functor $\mathcal L\to\mathcal C$ with two components. It is cohomologically unital but not strictly
+  unital: $F_1^h(1_f)-1_{h^\#f}=m_1(\varepsilon u_f)$ with $u_f\in\mathcal I$, and $F_2^h(1_f,a)\ne0$ in general.
+\item Whiskering is strictly functorial in the kernel: $F^{h'}\circ F^h=F^{hh'}$ as $A_\infty$-functors, where $F^{h'}$ acts on
+  $\varepsilon\mathcal I$ by $F_1^{h'}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) $(a\operatorname{diag}(g)^{-1}b)\mathbf 1=s(b)\,a\mathbf 1=s(a)s(b)f$, and similarly for column sums, so composition is well typed
+and $s$ is multiplicative. The dimension count is that of the transportation polytope's tangent space. (ii) $F_1^h$ preserves
+$s$ because kernels preserve mass, so $\delta_h$ and $u_f$ have $s=0$. The arity-two and arity-three equations are those
+in the proof of \cref{thm:sqzero}, which never used that source and target coincide. (iii) $F_1$ composes because
+$(hh')^{\mathsf T}a(hh')=h'^{\mathsf T}(h^{\mathsf T}ah)h'$. The composite's second component is
+$F_1^{h'}\delta_h(a,b)+\delta_{h'}(F_1^ha,F_1^hb)$, which telescopes to $\delta_{hh'}(a,b)$.
+\end{proof}
+
+\begin{definition}[Nerve to cone]\label{def:nervecone}
+For a 2-simplex $p$ of the coupling nerve, with edges $d_2p\in V(f_0,f_1)$, $d_0p\in V(f_1,f_2)$ and $d_1p\in V(f_0,f_2)$, put
+$H(p)=\varepsilon\,(d_1p-d_2p\cdot d_0p)\in\varepsilon\,\mathcal I(f_0,f_2)$.
+\end{definition}
+
+\begin{proposition}\label{prop:nervecone}
+$m_1H(p)=d_1p-d_2p\cdot d_0p$, so every 2-simplex is a homotopy from the composite of two of its edges to the third. $H$
+vanishes on gluing fillers and on degenerate 2-simplices. It is natural for whiskering:
+$H(h_*p)=F_1^h(H(p))+F_2^h(d_2p,d_0p)$. On a 3-simplex the coherence class
+$Z=\gamma_{01}H_{123}+H_{013}-H_{012}\gamma_{23}-H_{023}$ vanishes identically.
+\end{proposition}
+\begin{proof}
+The first two claims follow from the definition and \cref{thm:2horn}(iii). Naturality is the identity
+$h_*(d_1p)-h_*d_2p\cdot h_*d_0p=h_*(d_1p-d_2p\cdot d_0p)+\delta_h(d_2p,d_0p)$. Expanding $d_1$ of each face of a 3-simplex
+gives $m_1Z=0$, and $m_1$ is injective on $\varepsilon\mathcal I$.
+\end{proof}
+
+So \cref{conj:ainfty}(ii) has a positive answer on the 2-skeleton. The answer is also limited: since $H^{-1}(\mathcal C)=0$, the
+square-zero cone cannot see the 3-simplex obstructions of \cref{thm:higherhorn}. Detecting contextuality needs a target with
+nonzero $H^{-1}$, such as the free cone of \cref{conj:ainfty}(i).
+
+\subsection{Wall-crossing as variation of GIT}\label{sec:vgit}
+
+\begin{proposition}[Cox presentation and walls]\label{prop:vgit}
+$X_{f,g}$ is the GIT quotient $\mathbb C^{n\times m}/\!\!/_{(f,g)}(T^n\times T^m)/\Delta$, where the cell $(i,j)$ has weight $e_i\oplus e_j$. The kernel
+of the ray map $\mathbb Z^{n\times m}\to\Lambda^*$, $c\mapsto v_c$, is the saturated lattice of matrices $r_i+s_j$, of rank $n+m-1$. The
+hyperplanes in the character space $\{\sum f=\sum g\}$ spanned by weights are exactly the walls $\sum_If=\sum_Jg$ and the facets
+$f_i=0$, $g_j=0$ of the weight cone.
+\end{proposition}
+\begin{proof}
+The first statement is Cox's construction \cite{Cox1995} for the fan of \cref{sec:toric}, with the kernel checked in
+\texttt{check\_vgit.py}~(V1). For the second, a functional $(a,b)$ vanishes on the weights of a set $S$ of cells if and only if
+$a_i+b_j=0$ for $(i,j)\in S$, that is, if and only if $a$ and $-b$ are constant on the connected components of the bipartite
+graph $S$. The rank of $S$ is $n+m$ minus the number of components. It is $n+m-2$ exactly when there are two components,
+$I\sqcup J$ and $I^c\sqcup J^c$. Then the functional is $\sum_If-\sum_Jg$, or $f_i$ or $g_j$ when a component is a single
+isolated vertex.
+\end{proof}
+
+So \cref{conj:family} is an instance of variation of GIT for torus actions \cite{Thaddeus1996,DolgachevHu1998}. The
+quotient is constant on chambers and changes by a birational transformation at each wall. What remains is the type of
+transformation. In the examples, every single-wall crossing is one toric blow-up or blow-down, or a flip with the same rays.
+For $2\times4$, 40 random crossings gave 18 blow-ups or blow-downs and 22 flips. For $3\times3$, 25 crossings gave 6 and 19
+(\texttt{check\_vgit.py}~(V3)).
+
+\subsection{Across a wall}\label{sec:acrosswall}
+
+Follow the path $P(t)$ of \cite[\S12]{Awasthi-Family} from the pentagon chamber ($X_-=\mathrm{Bl}_2\mathbb{CP}^2$) to the hexagon
+chamber ($X_+$ the del Pezzo surface of degree 6). It crosses only the wall $f_1=g_1$, at $t=\frac38$. Let
+$\pi\colon X_+\to X_-$ blow up the fixed point $D_{01}\cap D_{02}$, with exceptional curve $E=D_{10}$, and let
+$s(t)=f_1-g_1$, the lattice length of the new edge.
+
+\begin{proposition}[Central charges across the wall]\label{prop:acrosswall}
+Let $\omega_-(t)$ be the pentagon class with its support numbers continued affinely past the wall. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $\omega_+=\pi^*\omega_--sE$, so $\operatorname{area}_+=\operatorname{area}_--\tfrac12s^2$. In particular the jump $\frac{16}{225}$ of the second
+  derivative of the area \cite[\S12]{Awasthi-Family} is $(ds/dt)^2$.
+\item $Z_+(\pi^*F)=Z_-(F)-\operatorname{rk}(F)\,\tfrac12s^2$ for all $F\in K_0(X_-)$, and $Z_+(\mathcal O_E(-1))=\tfrac12+is$.
+\item At the level of $K_0$, Orlov's decomposition $\langle\mathcal O_E(-1),\pi^*D^b(X_-)\rangle$ holds:
+  $\chi(\mathcal O_E(-1),\mathcal O_E(-1))=1$, $\chi(\pi^*F,\mathcal O_E(-1))=0$, and $K_0(X_+)=\mathbb Z[\mathcal O_E(-1)]\oplus\pi^*K_0(X_-)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) $\pi^*$ is an isometry onto $E^\perp$ with $E^2=-1$, and the difference of support numbers on $E$ is
+$h_{10}-h_{01}-h_{02}=g_1-f_1$. (ii) $\operatorname{ch}$ commutes with $\pi^*$. Then
+$(\pi^*\omega-sE)\cdot\pi^*D=\omega\cdot D$ and $(\pi^*\omega-sE)^2=\omega^2-s^2$, and $\operatorname{ch}\mathcal O_E(-1)=(0,E,-\frac12)$.
+(iii) This is Riemann--Roch, checked on generators of $K_0(X_-)$. All of it is verified exactly along the path in
+\texttt{check\_across\_wall.py}.
+\end{proof}
+
+\begin{definition}[Glued central charge]\label{def:gluedZ}
+Along the path, define $Z_t$ on $K_0(X_+)=\mathbb Z[\mathcal O_E(-1)]\oplus\pi^*K_0(X_-)$ by $Z_t=Z_-$ on $\pi^*K_0$ for
+$t\le\frac38$, and by $Z_+$ for $t>\frac38$, with $Z_t(\mathcal O_E(-1))=\frac12+i\,s(t)^+$.
+\end{definition}
+
+By \cref{prop:acrosswall}, $Z_t$ is continuous at the wall, and the new class enters at the real point $\frac12$: the phase of
+$\mathcal O_E(-1)$ tends to $0$, and that of $\mathcal O_E$ tends to $1$. This answers (Q1) of \cref{sec:stability} at the level
+of central charges. The glued charges extend continuously, in the form the gluing construction of
+\cite{CollinsPolishchuk2010} requires along Orlov's decomposition. The hearts and the gluing condition on them are not
+tested.
+
+\subsection{The Fukaya probe}\label{sec:fukprobe}
+
+\begin{definition}[Candidate object map]\label{def:fukobj}
+For $u$ in the interior of $\Cpl(f,g)$, let
+$\mathfrak{PO}(u;w)=\sum_c\exp(-\lambda\alpha_c(u)+\langle n_c,w\rangle)$, with $T=e^{-\lambda}$. A critical point $w$ whose real part
+stays bounded as $\lambda\to\infty$ makes the fibre $L(u)$ Floer-nontrivial, with holonomy $\operatorname{Im}w$ \cite{FOOO2010}.
+The candidate object map of \cref{conj:fukaya} sends $(L(u),\operatorname{Im}w)$ to the coupling $u$.
+\end{definition}
+
+Since $\mathfrak{PO}(u;w)=\mathfrak{PO}(0;w-\lambda u)$, the locations $u_k=-\lim\operatorname{Re}w_k/\lambda$ of the critical points of
+$\mathfrak{PO}(0;\cdot)$ are intrinsic.
+
+\begin{proposition}[Monotone point]\label{prop:fukmono}
+At $f=(\frac12,\frac12)$, $g=(\frac13,\frac13,\frac13)$, the six critical points of $W$ (\cref{ex:dp6}) all lie over the product
+coupling. The Hessian of $W$ in logarithmic coordinates is a positive multiple ($\frac16$) of the Fisher metric
+$\sum_cn_cn_c^{\mathsf T}/\alpha_c$ at the product coupling at the critical point $(1,1)$, and at no other.
+\end{proposition}
+\begin{proof}
+All $\alpha_c$ equal $\frac16$ at the product coupling, so $\operatorname{Hess}W(1,1)=\sum_cn_cn_c^{\mathsf T}=\frac16\cdot$Fisher. At the other
+critical points the coefficients $x^{n_c}$ are non-real or have mixed signs (\texttt{check\_fukaya\_probe.py}, K3).
+\end{proof}
+
+\begin{observation}[Off the monotone point]\label{obs:fukoff}
+At $(f_1,g_1,g_2)=(0.52,0.31,0.35)$ in the hexagon chamber, the six critical points, tracked to $\lambda=2560$, lie over
+three couplings. Four lie over the \emph{leximin coupling}, which maximizes the smallest cell, then the next smallest,
+and so on. One lies over each of two couplings where three minimal cells balance with holonomy signs,
+$\sum_c\pm n_c=0$. The product coupling is not among them. Off the monotone point the Hessian of $\mathfrak{PO}$ carries
+Boltzmann weights $e^{-\lambda\alpha_c}$, not the Fisher weights $1/\alpha_c$, and the two forms are not proportional. In
+\texttt{fukaya\_scan.py}, which finds all critical points by elimination at $\lambda=500$ and $2000$, the same pattern
+holds at three further random points of the chamber. There are three locations with multiplicities $4+1+1$, and the
+leximin coupling carries four of them, including the positive real one.
+\end{observation}
+
+This answers \cref{q:location} negatively for the product coupling. The Floer-nontrivial fibres do have a statistical
+meaning: the leximin coupling, the most balanced coupling in the max--min sense, consistent with the iterated max--min
+construction of a nondisplaceable fibre in \cite{FOOO2010}, together with signed-balanced couplings. The candidate object
+map of \cref{def:fukobj} therefore lands on these couplings, not on the maximum-entropy coupling. The metric
+compatibility hoped for in \cref{conj:fukaya} holds only at the monotone point.
+
+%=====================================================================
+\section{Next steps}\label{sec:next}
+%=====================================================================
+
+The companion \cite{Awasthi-Family} computes every layer explicitly. Of the five problems left open by the previous
+draft, \cref{sec:experimental} settles or reduces each:
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item \emph{Across a wall:} the central charges glue continuously (\cref{prop:acrosswall}). Open: the hearts, and the
+  gluing condition of \cite{CollinsPolishchuk2010} on them.
+\item \emph{General wall-crossing:} \cref{conj:family} is toric VGIT (\cref{prop:vgit}). Open: prove that a single wall is
+  always a blow-up, a blow-down or a flip, as in all computed $2\times4$ and $3\times3$ crossings, and read off which from
+  $(I,J)$.
+\item \emph{Higher horns:} the parity horns have contextual fraction $1-2^{2-n}$ for every $n$ (\cref{thm:higherhorn}). Open:
+  a closed form for the best approximate fillers $\varepsilon^*(n)$, which increase and stay below $\frac12$ for $n\le8$.
+\item \emph{Multi-object cone:} positive on the 2-skeleton (\cref{thm:multicone,prop:nervecone}). Open: a target with
+  $H^{-1}\ne0$ that sees 3-simplex obstructions, which is \cref{conj:ainfty}(i).
+\item \emph{Fukaya:} objects go to leximin and signed-balanced couplings, and the Fisher metric matches only at the
+  monotone point (\cref{prop:fukmono}, \cref{obs:fukoff}). Open: a proof that leximin always carries the trivial-holonomy
+  critical point, and the functor on morphisms.
+\end{enumerate}
+
+\section{Computational checks}\label{sec:code}
+
+All checks pass.
+\begin{itemize}[leftmargin=*]
+\item \texttt{check\_glue.py} (30 checks): \cref{prop:1cells,thm:witness}.
+\item \texttt{check\_stochastic\_basechange.py} (13 checks): \cref{thm:fibre}; the hexagon of \cref{ex:dp6}; the Delzant
+  property for random nondegenerate $3\times3$ marginals; non-simplicity of the uniform $3\times3$ case; the Hessian
+  identity and critical point of \cref{prop:guillemin}.
+\item \texttt{check\_conditionals.py} (7 checks): \cref{thm:delzant,prop:chambers,prop:monotone,ex:dp6}.
+\item \texttt{check\_stability\_layer.py} (6 checks): \cref{prop:stab} in all $18$ chambers of the $2\times3$ family.
+\item In the companion \cite{Awasthi-Family}:
+  \begin{itemize}[leftmargin=*]
+  \item \texttt{check\_tower\_fibration.py} (7 checks): \cref{thm:fibre,prop:gradefibre};
+  \item \texttt{check\_nerve.py} (10 checks): \cref{thm:2horn,thm:higherhorn,prop:boundaryfibre,thm:sqzero};
+  \item \texttt{check\_cumulants.py} (8 checks): \cref{prop:kappa2};
+  \item \texttt{check\_polytope\_companion.py}, \texttt{check\_family.py} and \texttt{check\_family\_geometry.py}:
+    \cref{prop:family23}.
+  \end{itemize}
+\item For \cref{sec:experimental}:
+  \begin{itemize}[leftmargin=*]
+  \item \texttt{check\_horns\_n.py} (4 checks): \cref{thm:higherhorn}(iii) for all $n$, and $\varepsilon^*(n)$ for $n\le8$;
+  \item \texttt{check\_vgit.py} (4 checks): \cref{prop:vgit} and the crossing types;
+  \item \texttt{check\_multiobject\_cone.py} (9 checks): \cref{thm:multicone,prop:nervecone};
+  \item \texttt{check\_across\_wall.py} (7 checks): \cref{prop:acrosswall};
+  \item \texttt{check\_fukaya\_probe.py} (6 checks) and \texttt{fukaya\_scan.py}: \cref{prop:fukmono}, \cref{obs:fukoff}.
+  \end{itemize}
+\end{itemize}
+
+\appendix
+%=====================================================================
+\section{Corrections to the first draft}\label{sec:corrections}
+%=====================================================================
+
+\begin{enumerate}[leftmargin=*]
+\item \emph{Candidate disc potential.} $W_\beta(f)=\sum_g\int_{\Cpl(f,g)}e^{-\beta c(\alpha)}\,d\nu$ sums over a
+  continuum of 1-cells $g$ and is not defined as written. Its Laplace limit
+  $\min_{g,\alpha}c(\alpha)$ is always $0$, attained at $g=f$, $\alpha=\Delta_f$, so it carries no
+  information. The toric disc potential of $X_{f,g}$ is the correct object (\cref{sec:imported}).
+\item \emph{Symplectic structure.} A symplectic form is antisymmetric and the Fisher metric is
+  symmetric, so the restriction of the one cannot be the other. The correct statement is
+  \cref{prop:guillemin}: the Fisher metric is twice the canonical K\"ahler metric on the real section
+  of $X_{f,g}$.
+\item \emph{Critical points.} ``Critical points of $\pi\colon E\to\Kl(\D)$'' is undefined, since $\pi$ is a
+  functor, not a smooth map. The replacement is the special fibre over the product coupling in the
+  monotone cases, and the walls of \cref{def:walls} as the locus where the family degenerates.
+\item \emph{Monodromy and Dehn twists.} The family $(f,g)\mapsto X_{f,g}$ is constant on chambers
+  and changes by toric birational modifications across walls (\cref{prop:chambers}); no vanishing
+  cycle or Dehn twist has been identified. \Cref{conj:family} restates the question.
+\item \emph{The $m_3$ conjecture.} Gluing is strictly associative (\cref{thm:witness}(i)), so each
+  hom-category, regarded as an $A_\infty$-category, has $m_k=0$ for $k\ge3$. The whiskering defect
+  compares $u\cdot(\beta\cdot\alpha)$ with $(u\cdot\beta)\cdot(u\cdot\alpha)$. Its inputs are two 2-cells and a
+  1-cell, and it measures the failure of whiskering to be a functor. In $A_\infty$ language that is the
+  second component $\mathcal{F}_2$ of an $A_\infty$-functor, not a ternary composition
+  (now \cref{thm:sqzero}).
+\item \emph{Homotopy category.} The graded shadow has hom-sets $[d(f,g),\infty)$ under addition. These
+  are not the degree-zero cohomology of cochain complexes, so the shadow is not a homotopy category of
+  an $A_\infty$-category without further structure.
+\item \emph{Fisher versus Fisher--Rao.} These are the same metric (\cref{prop:interior}).
+\item \emph{References.} The companion tower is now version 9; its posted earlier version has the
+  title ``\ldots and Weak Distributive Laws'', a claim withdrawn in the revisions.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{Awasthi-Attribution}
+V.~K. Awasthi.
+\newblock Precise attribution of model interventions: attribution sets, mechanism reach, path defects
+and gluing.
+\newblock Technical report, Johns Hopkins University, October 2026. Draft 4.
+
+\bibitem{Awasthi-Tower}
+V.~K. Awasthi.
+\newblock The three-level posterior tower: hierarchical {B}ayesian inference and mixed distributive laws.
+\newblock Technical report, Johns Hopkins University, October 2026. Revised version 9. An earlier
+version is posted as DOI 10.13140/RG.2.2.29743.50088.
+
+\bibitem{ArcaraBertram2013}
+D.~Arcara and A.~Bertram.
+\newblock Bridgeland-stable moduli spaces for {$K$}-trivial surfaces (with an appendix by M.~Lieblich).
+\newblock \emph{Journal of the European Mathematical Society}, 15(1):1--38, 2013.
+
+\bibitem{Awasthi-Family}
+V.~K. Awasthi.
+\newblock Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability.
+\newblock Companion paper, Johns Hopkins University, October 2026.
+
+\bibitem{BMT2014}
+A.~Bayer, E.~Macr\`i, and Y.~Toda.
+\newblock Bridgeland stability conditions on threefolds {I}: {B}ogomolov--{G}ieseker type inequalities.
+\newblock \emph{Journal of Algebraic Geometry}, 23(1):117--163, 2014.
+
+\bibitem{Bridgeland2007}
+T.~Bridgeland.
+\newblock Stability conditions on triangulated categories.
+\newblock \emph{Annals of Mathematics}, 166(2):317--345, 2007.
+
+\bibitem{Cho2004}
+C.-H. Cho.
+\newblock Holomorphic discs, spin structures, and {F}loer cohomology of the {C}lifford torus.
+\newblock \emph{International Mathematics Research Notices}, 2004(35):1803--1843, 2004.
+
+\bibitem{ChoOh2006}
+C.-H. Cho and Y.-G. Oh.
+\newblock Floer cohomology and disc instantons of {L}agrangian torus fibers in {F}ano toric manifolds.
+\newblock \emph{Asian Journal of Mathematics}, 10(4):773--814, 2006.
+
+\bibitem{Delzant1988}
+T.~Delzant.
+\newblock Hamiltoniens p\'eriodiques et images convexes de l'application moment.
+\newblock \emph{Bulletin de la Soci\'et\'e Math\'ematique de France}, 116(3):315--339, 1988.
+
+\bibitem{EntovPolterovich2006}
+M.~Entov and L.~Polterovich.
+\newblock Quasi-states and symplectic intersections.
+\newblock \emph{Commentarii Mathematici Helvetici}, 81(1):75--99, 2006.
+
+\bibitem{FOOO2010}
+K.~Fukaya, Y.-G. Oh, H.~Ohta, and K.~Ono.
+\newblock Lagrangian {F}loer theory on compact toric manifolds {I}.
+\newblock \emph{Duke Mathematical Journal}, 151(1):23--174, 2010.
+
+\bibitem{GGI2016}
+S.~Galkin, V.~Golyshev, and H.~Iritani.
+\newblock Gamma conjectures for {F}ano manifolds.
+\newblock \emph{Duke Mathematical Journal}, 165(11):2005--2077, 2016.
+
+\bibitem{Guillemin1994}
+V.~Guillemin.
+\newblock Kaehler structures on toric varieties.
+\newblock \emph{Journal of Differential Geometry}, 40(2):285--309, 1994.
+
+\bibitem{Iritani2009}
+H.~Iritani.
+\newblock An integral structure in quantum cohomology and mirror symmetry for toric orbifolds.
+\newblock \emph{Advances in Mathematics}, 222(3):1016--1079, 2009.
+
+\bibitem{MacriSchmidt2017}
+E.~Macr\`i and B.~Schmidt.
+\newblock Lectures on {B}ridgeland stability.
+\newblock In \emph{Moduli of Curves}, Lecture Notes of the Unione Matematica Italiana 21. Springer,
+2017. arXiv:1607.01262.
+
+\bibitem{Orlov1992}
+D.~O. Orlov.
+\newblock Projective bundles, monoidal transformations, and derived categories of coherent sheaves.
+\newblock \emph{Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya}, 56(4):852--862, 1992.
+
+\bibitem{AbramskyBrandenburger2011}
+S.~Abramsky and A.~Brandenburger.
+\newblock The sheaf-theoretic structure of non-locality and contextuality.
+\newblock \emph{New Journal of Physics}, 13:113036, 2011.
+
+\bibitem{BFMY1983}
+C.~Beeri, R.~Fagin, D.~Maier, and M.~Yannakakis.
+\newblock On the desirability of acyclic database schemes.
+\newblock \emph{Journal of the ACM}, 30(3):479--513, 1983.
+
+\bibitem{DeLoeraOnn2004}
+J.~A. De~Loera and S.~Onn.
+\newblock All rational polytopes are transportation polytopes and all polytopal integer sets are contingency
+tables.
+\newblock In \emph{Integer Programming and Combinatorial Optimization (IPCO 2004)}, Lecture Notes in Computer
+Science 3064. Springer, 2004.
+
+\bibitem{HPT1}
+G.~C. Drummond-Cole, J.-S. Park, and J.~Terilla.
+\newblock Homotopy probability theory {I}.
+\newblock \emph{Journal of Homotopy and Related Structures}, 10(3):425--435, 2015.
+
+\bibitem{HPT2}
+G.~C. Drummond-Cole, J.-S. Park, and J.~Terilla.
+\newblock Homotopy probability theory {II}.
+\newblock \emph{Journal of Homotopy and Related Structures}, 10(3):623--635, 2015.
+
+\bibitem{LermanTolman1997}
+E.~Lerman and S.~Tolman.
+\newblock Hamiltonian torus actions on symplectic orbifolds and toric varieties.
+\newblock \emph{Transactions of the American Mathematical Society}, 349(10):4201--4230, 1997.
+
+\bibitem{PachterSturmfels2005}
+L.~Pachter and B.~Sturmfels, editors.
+\newblock \emph{Algebraic Statistics for Computational Biology}.
+\newblock Cambridge University Press, 2005.
+
+\bibitem{SpeicherWoroudi1997}
+R.~Speicher and R.~Woroudi.
+\newblock Boolean convolution.
+\newblock In \emph{Free Probability Theory}, Fields Institute Communications 12. American Mathematical
+Society, 1997.
+
+\bibitem{CollinsPolishchuk2010}
+J.~Collins and A.~Polishchuk, Gluing stability conditions, \emph{Adv. Theor. Math. Phys.} \textbf{14} (2010), 563--607.
+
+\bibitem{Cox1995}
+D.~A.~Cox, The homogeneous coordinate ring of a toric variety, \emph{J. Algebraic Geom.} \textbf{4} (1995), 17--50.
+
+\bibitem{DolgachevHu1998}
+I.~V.~Dolgachev and Y.~Hu, Variation of geometric invariant theory quotients, \emph{Publ. Math. IH\'ES} \textbf{87} (1998), 5--56.
+
+\bibitem{Thaddeus1996}
+M.~Thaddeus, Geometric invariant theory and flips, \emph{J. Amer. Math. Soc.} \textbf{9} (1996), 691--723.
+
+\bibitem{Vorobev1962}
+N.~N. Vorob'ev.
+\newblock Consistent families of measures and their extensions.
+\newblock \emph{Theory of Probability and Its Applications}, 7(2):147--163, 1962.
+
+\end{thebibliography}
+\end{document}

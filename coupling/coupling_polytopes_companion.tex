@@ -39,7 +39,7 @@ Johns Hopkins University\thanks{Verification script: \texttt{check\_polytope\_co
 (26 checks; exact rational arithmetic except where marked). This version replaces the draft
 ``Coupling polytopes and the $2\times3$ family''; \cref{app:changes} lists what was corrected and
 what was withdrawn.}}
-\date{October 5, 2026 (revised)}
+\date{October 6, 2026 (revised)}
 
 \begin{document}
 \maketitle
@@ -80,7 +80,7 @@ computed completely, and records how far it goes.
   $A_\infty$-functor with exactly two components.
 \item \emph{The coupling nerve.} Couplings form the simplicial object $\D(Y^{\bullet+1})$. Its 2-horns always fill, and the
   fillers form products of coupling polytopes, with the gluing filler the maximum-entropy one. Its 3-horns and
-  4-horns can fail to fill, with contextual fraction $\tfrac12$ and $\tfrac34$, so it is not Kan. Boundary fibres are
+  4-horns can fail to fill, with contextual fraction $\tfrac12$ and $\tfrac34$, and $1-2^{2-n}$ in general, so it is not Kan. Boundary fibres are
   Delzant for shape $2\times n\times m$, orbifold polytopes for $3\times3\times3$, and eventually arbitrary.
 \item \emph{The tower as a fibration.} In a worked example, transport along kernels keeps a failure, destroys it
   (constant kernel), pulls certificates back, never increases the secondary obstruction, and bounds the
@@ -88,6 +88,10 @@ computed completely, and records how far it goes.
 \item \emph{The family over marginals.} Inside a chamber the polytopes vary linearly. Across a wall the
   Duistermaat--Heckman volume is $C^1$ with a jump in its second derivative, while the Fisher metric at the
   product coupling is smooth: walls are toric, not statistical.
+\item \emph{The open problems.} The numbers behind the theory paper's experimental definitions are recorded here:
+  approximate fillers of parity horns up to $n=8$; wall counts and crossing types for $2\times4$ and $3\times3$; glued
+  central charges across the pentagon--hexagon wall, where $\operatorname{area}_+=\operatorname{area}_--\frac12s^2$; and the
+  Floer-nontrivial fibres, which lie over the leximin coupling rather than the product coupling.
 \end{itemize}
 \end{abstract}
 
@@ -685,7 +689,8 @@ exactly one face odd. These data agree on all overlaps. For $n=2$ every such hor
 the contextual fraction of the horn, computed as the minimal unmodeled weight with global assignments as
 sources \cite[Thm.~7.12]{Attribution}, is $\tfrac12$. For every $n=4$ horn it is $\tfrac34$. Both values come with exactly
 verified certificates. The best approximate fillers are at distance $\varepsilon^*=\tfrac16$ for $n=3$ and
-$\varepsilon^*=\tfrac3{16}$ for $n=4$.
+$\varepsilon^*=\tfrac3{16}$ for $n=4$. For all $n\ge3$ the contextual fraction is $1-2^{2-n}$ \cite[Thm.~4.3]{Conditionals}; \cref{sec:openhorns} has the
+values up to $n=8$.
 \end{proposition}
 
 \begin{corollary}\label{cor:notkan}
@@ -857,6 +862,102 @@ where an edge, and so a $(-1)$-curve, shrinks to zero. The information geometry 
 smoothly through them. Walls in the space of marginals are therefore a toric phenomenon, not a statistical one:
 they mark where the set of possible couplings changes shape, not where the canonical coupling changes behaviour.
 
+%=====================================================================
+\section{Computations for the five open problems}\label{sec:open}
+%=====================================================================
+
+The theory paper lists five open problems and gives, in its \S10, the experimental definitions and the
+results for each \cite[\S10]{Conditionals}. This section records the numbers behind them. The scripts are listed in
+\cref{app:code}.
+
+\subsection{Higher horns}\label{sec:openhorns}
+\Cref{prop:parity} extends to all $n$: the contextual fraction of the parity $n$-horn is $1-2^{2-n}$ \cite[Thm.~4.3]{Conditionals}.
+The best approximate filler is a global law that minimizes the largest total-variation distance between its face
+marginals and the horn data. Its distance $\varepsilon^*(n)$ comes from a linear program:
+\begin{center}\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+$n$ & 3 & 4 & 5 & 6 & 7 & 8\\
+\midrule
+contextual fraction $1-2^{2-n}$ & $\tfrac12$ & $\tfrac34$ & $\tfrac78$ & $\tfrac{15}{16}$ & $\tfrac{31}{32}$ & $\tfrac{63}{64}$\\
+$\varepsilon^*(n)$ & $0.1667$ & $0.1875$ & $0.2250$ & $0.2500$ & $0.2589$ & $0.2832$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The contextual fractions for $n\le6$ have exactly verified certificates. For $n\le8$ the script also confirms the count
+that proves the formula: exactly two global assignments satisfy all face parities. The values $\varepsilon^*(n)$
+increase and stay below $\frac12$. The value for $n=8$ is $\frac{145}{512}$; we claim no closed form.
+
+\subsection{Wall-crossing beyond $2\times3$}\label{sec:openvgit}
+The hyperplanes spanned by the GIT weights $e_i\oplus e_j$ are the walls together with the facets of the weight cone
+\cite[Prop.~10.5]{Conditionals}:
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+shape & hyperplane flats & walls $\sum_If=\sum_Jg$ & facets $f_i=0$, $g_j=0$\\
+\midrule
+$2\times3$ & 11 & 6 & 5\\
+$2\times4$ & 20 & 14 & 6\\
+$3\times3$ & 24 & 18 & 6\\
+\bottomrule
+\end{tabular}
+\end{center}
+Single-wall crossings were classified by comparing normal fans, with rays the facet cells and maximal cones the zero sets
+at vertices. For $2\times4$, 40 random crossings gave 18 blow-ups or blow-downs (one ray changes) and 22 flips (same rays,
+different cones). For $3\times3$, 25 crossings gave 6 and 19. No other type occurred.
+
+\subsection{Across the wall $f_1=g_1$}\label{sec:openwall}
+On the path of \cref{sec:family}, with $s=f_1-g_1=\frac{4t}{15}-\frac1{10}$, the pentagon and hexagon areas are
+\[
+\operatorname{area}_-(t)=\tfrac{(2t+3)(2t+33)}{1800},\qquad \operatorname{area}_+(t)=\tfrac{3+4t-2t^2}{60}=\operatorname{area}_-(t)-\tfrac12s^2.
+\]
+The jump in the second derivative is therefore $(4/15)^2=\frac{16}{225}$, as in \cref{prop:family}. The glued central charge
+of \cite[Def.~10.7]{Conditionals} gives:
+\begin{center}\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$t$ & $\tfrac38$ & $\tfrac12$ & $\tfrac34$ & $1$\\
+\midrule
+$s$ & $0$ & $\tfrac1{30}$ & $\tfrac1{10}$ & $\tfrac16$\\
+$Z(\mathcal O_X)=\operatorname{area}$ & $\tfrac9{128}$ & $\tfrac3{40}$ & $\tfrac{13}{160}$ & $\tfrac1{12}$\\
+$Z(\mathcal O_E(-1))$ & $\tfrac12$ & $\tfrac12+\tfrac i{30}$ & $\tfrac12+\tfrac i{10}$ & $\tfrac12+\tfrac i6$\\
+phase of $\mathcal O_E(-1)$ & $0$ & $0.0212$ & $0.0628$ & $0.1024$\\
+\bottomrule
+\end{tabular}
+\end{center}
+On $\pi^*K_0(X_-)$, $Z_+-Z_-=-\operatorname{rk}\cdot\frac12s^2$ exactly. The numerical jump at $t=\frac38\pm10^{-8}$ is
+$3\times10^{-9}$. The Euler form confirms Orlov's decomposition on $K_0$.
+
+\subsection{The multi-object cone}\label{sec:opencone}
+All identities of \cite[Thm.~10.2, Prop.~10.4]{Conditionals} are checked exactly on objects of sizes $2,3,4,2$, on kernels
+with $\lvert X\rvert=2$, and on random 3-way and 4-way tables. Failure of strict unitality is visible already for $f=(\frac12,\frac12)$
+and $h=\bigl(\begin{smallmatrix}1&0\\ \frac12&\frac12\end{smallmatrix}\bigr)$:
+\[
+F_1^h(1_f)-1_{h^\#f}=h^{\mathsf T}\operatorname{diag}(f)\,h-\operatorname{diag}(\tfrac34,\tfrac14)
+=\tfrac18\begin{pmatrix}-1&1\\1&-1\end{pmatrix}\in\mathcal I.
+\]
+
+\subsection{The Fukaya probe}\label{sec:openfuk}
+At the monotone point the six critical points of $W$ lie over the product coupling, and the Hessian at $(1,1)$ is
+$\frac16$ of the Fisher metric. Away from it, the locations $u_k=-\lim\log\lvert z_k\rvert/\lambda$ of the six critical
+points are:
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+$(f_1,g_1,g_2)$ & leximin (multiplicity 4) & other two & product coupling\\
+\midrule
+$(0.52,0.31,0.35)$ & $(0.155,0.1875)$ & $(0.17,0.21)$, $(0.18,0.13)$ & $(0.1612,0.182)$\\
+$(0.47,0.09,0.46)$ & $(0.045,0.2125)$ & $(0.01,0.45)$, $(0.02,0.02)$ & $(0.0423,0.2162)$\\
+$(0.46,0.45,0.36)$ & $(0.185,0.18)$ & $(0.44,0.01)$, $(0.09,0.27)$ & $(0.207,0.1656)$\\
+$(0.53,0.45,0.23)$ & $(0.255,0.115)$ & $(0.37,0.08)$, $(0.02,0.21)$ & $(0.2385,0.1219)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Coordinates are $(\alpha_{00},\alpha_{01})$. The positive real critical point always lies over the leximin coupling. At the
+first point the two other couplings are signed-balanced: the minimal cells are $\{02,10,11\}$ with holonomy $(-1,-1)$, and
+$\{01,10,12\}$ with holonomy $(-1,1)$. At $\lambda=40$ the cosine between the Hessian of $\mathfrak{PO}$ at the positive
+critical point and the Fisher metric at the product coupling is $0.9866$, not $1$.
+
 \appendix
 %=====================================================================
 \section{Changes from the earlier draft}\label{app:changes}
@@ -893,6 +994,7 @@ Cycle counts $N_{2k}=\frac1{2k}\binom nk^2k!(k-1)!$; $K_{4,4}$ total 156 & $N_{2
 $36+96+72=204$; $K_{5,5}$ has $100+600+1800+1440$\\\addlinespace[3pt]
 Bridgeland 2008 for all surfaces; ``(i)--(iii) none known'' & Bridgeland 2008 is for K3; general surfaces are
 \cite{ArcaraBertram2013}; (i) is answered by \cref{prop:stab}\\\addlinespace[3pt]
+Parity contextual fractions for $n=3,4$ only & $1-2^{2-n}$ for all $n$ (\cref{sec:openhorns})\\\addlinespace[3pt]
 \bottomrule
 \end{tabular}
 \end{center}
@@ -912,6 +1014,14 @@ The script \texttt{check\_family.py} runs $5$ checks (C1--C4), all passing, for 
 
 \texttt{check\_cumulants.py} runs $8$ checks for \cref{sec:cumulants}, all passing: Q1--Q3 for
 \cref{prop:kappa2,prop:flatcov}, and E1--E5 for \cref{prop:boolean}.
+
+For \cref{sec:open}, all passing:
+\begin{itemize}[leftmargin=*]
+\item \texttt{check\_horns\_n.py} ($4$ checks, H1--H4) and \texttt{check\_vgit.py} ($4$, V1--V3);
+\item \texttt{check\_across\_wall.py} ($7$, A1--A7) and \texttt{check\_multiobject\_cone.py} ($9$, M1--M9);
+\item \texttt{check\_fukaya\_probe.py} ($6$, K1--K6) and \texttt{fukaya\_scan.py} ($1$, S1, by elimination at $\lambda=500$
+  and $2000$).
+\end{itemize}
 
 \texttt{check\_polytope\_companion.py} runs $26$ checks, all passing:
 \begin{itemize}[leftmargin=*]
@@ -938,7 +1048,7 @@ D.~Arcara and A.~Bertram.
 V.~K. Awasthi.
 \newblock Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
 programme.
-\newblock Revised draft 3, Johns Hopkins University, October 2026.
+\newblock Revised draft 4, Johns Hopkins University, October 2026.
 
 \bibitem{Attribution}
 V.~K. Awasthi.
