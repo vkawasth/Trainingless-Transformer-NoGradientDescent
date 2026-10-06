@@ -92,6 +92,9 @@ computed completely, and records how far it goes.
   approximate fillers of parity horns up to $n=8$; wall counts and crossing types for $2\times4$ and $3\times3$; glued
   central charges across the pentagon--hexagon wall, where $\operatorname{area}_+=\operatorname{area}_--\frac12s^2$; and the
   Floer-nontrivial fibres, which lie over the leximin coupling rather than the product coupling.
+\item \emph{The tower and the nerve.} Encoded as tower claims, the parity horns pass the local test but cannot be
+  lifted. Their secondary obstruction is twice the contextual fraction, and their distance to the fillable horns is twice the
+  best approximate filler distance. The Fisher bound on the obstructions is attained in the worked tower example.
 \end{itemize}
 \end{abstract}
 
@@ -480,9 +483,12 @@ eigenvalues of quantum multiplication by $c_1$, which is what the Gamma conjectu
 \end{enumerate}
 \end{question}
 
-\paragraph{Not claimed.} We make no identification of the disc potential with a central charge, of
-spanning-tree couplings with a heart, of the obstruction tower with Harder--Narasimhan filtrations, or of
-hallucination with instability.
+\paragraph{Not claimed.} We make no identification of the disc potential with a central charge (it is a
+function on a torus, not an additive map on $K_0$), of committed states, the spanning-tree couplings, with a heart (they
+form no abelian category), of the obstruction tower with Harder--Narasimhan filtrations (the tower assigns numbers to a
+claim and filters no object), or of hallucination with instability. What is claimed instead is \cref{prop:stab} and,
+for hallucination, obstructed lifting in the tower \cite[\S11]{Conditionals}. Each item is tabulated with its
+reason in \cite[App.~A]{Conditionals}.
 
 %=====================================================================
 \section{The $A_\infty$ question}\label{sec:ainfty}
@@ -958,6 +964,44 @@ first point the two other couplings are signed-balanced: the minimal cells are $
 $\{01,10,12\}$ with holonomy $(-1,1)$. At $\lambda=40$ the cosine between the Hessian of $\mathfrak{PO}$ at the positive
 critical point and the Fisher metric at the product coupling is $0.9866$, not $1$.
 
+%=====================================================================
+\section{The obstruction tower and the nerve: computations}\label{sec:towercomp}
+%=====================================================================
+
+This section gives the numbers behind \cite[\S11]{Conditionals}. A horn on bits is encoded as a level-one claim on the
+disjoint union of its face assignment sets, with weight $\frac1n$ per face. Global assignments are the effective
+mechanisms. For the parity horns:
+\begin{center}\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$n$ & $\operatorname{CF}$ & $d(x_1,E_1)$ & $2\varepsilon^*(n)$ & $o_3^-$, $S_1=\operatorname{vert}\mathrm{Loc}$ & $o_3^-$, $S_1$ = global + parity\\
+\midrule
+3 & $\tfrac12$ & $\tfrac13$ & $\tfrac13$ & $1$ & $2$\\
+4 & $\tfrac34$ & $\tfrac38$ & $\tfrac38$ & $\tfrac32$ & $2$\\
+5 & $\tfrac78$ & $\tfrac9{20}$ & $\tfrac9{20}$ & $\tfrac74$ & $2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Each row passes the local test, so it is extension-obstructed. The secondary obstruction equals twice the contextual
+fraction exactly when every compatible family is admissible. Otherwise it depends on which contextual mechanisms are
+admitted. The $\ell^1$ distance to the fillable horns equals twice the best approximate filler distance of
+\cref{sec:openhorns}. For mixtures of a parity horn with a restricted global law, all three quantities scale down together
+and vanish when the mixture is fillable; in every computed case $d(x_1,E_1)\le2\operatorname{CF}\le o_3^-$. Every compatible
+2-horn lies in $E_1$.
+
+\paragraph{Directions.} With only global mechanisms admissible, the fibre of level-two lifts of a 2-horn is its filler
+polytope. Its tangent space consists of the slice-wise circulations, of dimension $\sum_{y_1}(\lvert Y_0\rvert-1)(\lvert Y_2\rvert-1)$:
+$2$, $3$ and $12$ for shapes $2\times2\times2$, $2\times3\times2$ and $3\times2\times4$.
+
+\paragraph{Fisher bound.} In 300 random instances,
+$d(x_1,E_1)^2\le\lVert x_1-y\rVert_1^2\le\min\{\chi^2(x_1\Vert y),2\operatorname{KL}(x_1\Vert y)\}$ for $y\in E_1$, with the largest
+ratio $\lVert x_1-y\rVert_1^2/\chi^2$ equal to $0.9998$. In the example of \cref{sec:fibration}, $x_1=(\frac7{10},\frac3{10})$ and
+$E_1=\{h\}$, the bound is attained: $0.16=0.16$, because $\lvert x_1-h\rvert$ is proportional to $h$.
+
+\paragraph{Transport.} In 60 random general admissibility data transported along random kernels, $o_3^-$ never increased,
+and it decreased strictly in 12 cases. This matches the worked example of \cref{sec:fibration}, where $o_3$ stays at $1$
+under an injective kernel and drops to $0$ under a constant one.
+
 \appendix
 %=====================================================================
 \section{Changes from the earlier draft}\label{app:changes}
@@ -988,8 +1032,9 @@ simple; nondegenerate square $n\ge3$ is not Fano (\cref{prop:notfano})\\\addline
 Lattice distances are sums over cycles & they are the entries of the coupling at the fibre position\\\addlinespace[3pt]
 Critical points of $W$ are vertices (committed states) & critical points are interior torus fibres with flat
 connections (\cref{prop:dp6}); vertices are fixed points and optimal-transport optima (\cref{prop:ot})\\\addlinespace[3pt]
-$F_2=\mathrm{Hess}\,W$; Picard--Lefschetz formula; ``symbolic proof'' & withdrawn (\cref{sec:ainfty}); the cited
-verification compared $0.1152$ with $2$\\\addlinespace[3pt]
+$F_2=\mathrm{Hess}\,W$; Picard--Lefschetz formula; ``symbolic proof'' & withdrawn: $F_2$ is bilinear on couplings
+with values in circulations, $\mathrm{Hess}\,W$ is a quadratic form at a critical point, and the cited verification
+compared $0.1152$ with $2$. Replaced by $F_2=\varepsilon b_2$ (\cref{sec:ainfty,prop:sqzero})\\\addlinespace[3pt]
 Cycle counts $N_{2k}=\frac1{2k}\binom nk^2k!(k-1)!$; $K_{4,4}$ total 156 & $N_{2k}=\binom nk^2k!(k-1)!/2$; $K_{4,4}$ has
 $36+96+72=204$; $K_{5,5}$ has $100+600+1800+1440$\\\addlinespace[3pt]
 Bridgeland 2008 for all surfaces; ``(i)--(iii) none known'' & Bridgeland 2008 is for K3; general surfaces are
@@ -1015,12 +1060,13 @@ The script \texttt{check\_family.py} runs $5$ checks (C1--C4), all passing, for 
 \texttt{check\_cumulants.py} runs $8$ checks for \cref{sec:cumulants}, all passing: Q1--Q3 for
 \cref{prop:kappa2,prop:flatcov}, and E1--E5 for \cref{prop:boolean}.
 
-For \cref{sec:open}, all passing:
+For \cref{sec:open,sec:towercomp}, all passing:
 \begin{itemize}[leftmargin=*]
 \item \texttt{check\_horns\_n.py} ($4$ checks, H1--H4) and \texttt{check\_vgit.py} ($4$, V1--V3);
 \item \texttt{check\_across\_wall.py} ($7$, A1--A7) and \texttt{check\_multiobject\_cone.py} ($9$, M1--M9);
 \item \texttt{check\_fukaya\_probe.py} ($6$, K1--K6) and \texttt{fukaya\_scan.py} ($1$, S1, by elimination at $\lambda=500$
   and $2000$).
+\item For \cref{sec:towercomp}: \texttt{check\_tower\_horns.py} ($9$, T1--T7).
 \end{itemize}
 
 \texttt{check\_polytope\_companion.py} runs $26$ checks, all passing:
