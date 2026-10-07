@@ -1,0 +1,200 @@
+--- precise_attribution_orig.tex	2026-10-06 17:42:41.167530568 -0700
++++ precise_attribution.tex	2026-10-06 17:47:59.298177585 -0700
+@@ -41,7 +41,7 @@
+ Department of Applied Mathematics and Statistics\\
+ Johns Hopkins University\thanks{Verification scripts: \texttt{provenance.py},
+ \texttt{check\_attribution.py}, \texttt{check\_glue.py}, \texttt{provenance\_demo.py}; see \cref{sec:code}.}}
+-\date{October 4, 2026, draft 4}
++\date{October 6, 2026, draft 5}
+ 
+ \begin{document}
+ \maketitle
+@@ -79,7 +79,8 @@
+ linear program; for the Popescu--Rohrlich box it is exactly $1/4$ away from some context. Gluing at
+ the second level of the tower retains correlations that gluing flattened states loses. Finally, the
+ simplex of output distributions is a moment polytope whose Lagrangian fibres are what observation
+-forgets, and we state necessary conditions for a Fukaya-type realization. A synthetic four-stage
++forgets, and we state necessary conditions for a Fukaya-type realization; a companion theory paper has since
++decided parts of two of them. A synthetic four-stage
+ experiment produces a full provenance report. Every theorem is checked in exact arithmetic or with exactly verified linear
+ programming certificates.
+ \end{abstract}
+@@ -998,7 +999,9 @@
+ \end{proof}
+ 
+ For the noisy PR family the linear program gives $\varepsilon^*=\tfrac14\mathrm{CF}$ at $v=\tfrac34$ and
+-$v=\tfrac9{10}$, so the bound in (iii) can be loose by a factor of four. The two numbers answer
++$v=\tfrac9{10}$, so the bound in (iii) can be loose by a factor of four. For the parity horns of the coupling nerve,
++$\varepsilon^*=\tfrac16,\tfrac3{16},0.225,0.25$ for $n=3,4,5,6$, against $\mathrm{CF}=1-2^{2-n}$
++\cite[\S13.1]{Awasthi-Family}. The two numbers answer
+ different questions. $\mathrm{CF}$ is the weight that must be attributed to something outside every
+ global explanation, while $\varepsilon^*$ is how far the best single global state is from the worst
+ context.
+@@ -1041,15 +1044,17 @@
+ distributive law; obstruction tower & \cite[\S\S9--10]{Awasthi-Tower}\\
+ 1-cells & kernels $k\colon B\rightsquigarrow B'$ & Kleisli category; affine, compatible with flattening,
+ non-expansive; transports attribution & \cref{prop:onecell,prop:transport}\\
+-2-cells (witness) & couplings & hom-categories by gluing (strict); whiskering not functorial &
+-\cref{thm:witness}\\
++2-cells (witness) & couplings & hom-categories by gluing (strict); whiskering not functorial, but a
++two-component $A_\infty$-functor up to coherent homotopy & \cref{thm:witness}; \cite[Thm.~5.2]{Awasthi-Conditionals}\\
+ 2-cells (shadow) & grades $\varepsilon\ge d(f,g)$ & strict 2-category; Lawvere-enriched; Lipschitz
+ weights for tilts & \cref{thm:shadow,thm:composition}\\
+ Assembly & compatible families, global sections & exact for two contexts and acyclic covers;
+ $\mathrm{CF}=\mu_{\min}$; approximate gluing $\varepsilon^*$; level-2 gluing &
+ \cref{prop:twoctx,thm:cf,prop:epsstar,prop:level2}\\
+-Geometry & simplex as moment polytope & Fisher metric is round under $\sqrt p$; observation forgets
+-Lagrangian phases & \cref{prop:geometry}\\
++Nerve & couplings of all arities & simplicial object $\D(Y^{\bullet+1})$: 2-horns fill, higher horns are obstructed
++by $\mathrm{CF}$ & \cite[\S4]{Awasthi-Conditionals}\\
++Geometry & simplex as moment polytope; coupling polytopes & Fisher metric is round under $\sqrt p$; observation forgets
++Lagrangian phases; nondegenerate coupling polytopes are Delzant & \cref{prop:geometry}; \cite[\S6]{Awasthi-Conditionals}\\
+ \bottomrule
+ \end{tabular}
+ \end{center}
+@@ -1087,7 +1092,10 @@
+ \paragraph{What is strict and what is not.} Kernels form a strict category, the witness
+ hom-categories are strict, and the graded shadow is a strict 2-category. The witness layer with its
+ natural whiskerings is not a 2-category: functoriality fails, with explicit counterexamples, and only
+-the cost inequality survives. Tilts are not kernels, and with them the shadow keeps its composition
++the cost inequality survives. Up to coherent homotopy the failure is organized: in the square-zero cone of the
++circulations, whiskering is an $A_\infty$-functor with exactly two components, the second being the whiskering defect
++\cite[Thm.~5.2]{Awasthi-Conditionals}. No action of a stochastic kernel on couplings is both strictly unital and strictly
++compatible with composing kernels \cite[Thm.~10.2]{Awasthi-Conditionals}. Tilts are not kernels, and with them the shadow keeps its composition
+ rule but loses strict interchange. Exact gluing holds for two contexts and for acyclic covers, and
+ fails on cycles, where $\mathrm{CF}$ and $\varepsilon^*$ measure the failure.
+ 
+@@ -1125,10 +1133,14 @@
+ the disc potential \cite{ChoOh2006,FOOO2010}. For $\mathbb{CP}^{n-1}$ the only such fibre is the
+ Clifford torus over the barycentre, whose Floer cohomology Cho computed \cite{Cho2004}. In statistical terms, only
+ the uniform distribution gives a nonzero object. We know of no statistical meaning for this fact, and
+-we conclude that the ambient $\mathbb{CP}^{n-1}$ is not the right symplectic manifold for attribution.
++we conclude that the ambient $\mathbb{CP}^{n-1}$ is not the right symplectic manifold for attribution. The companion theory
++\cite{Awasthi-Conditionals} replaces it by the toric manifolds whose moment polytopes are the coupling polytopes of
++\cref{sec:twocells}, the spaces of witnesses. There the answer differs. The fibre over the product coupling is
++Floer-trivial for generic margins, which is proved; at the sampled points the Floer-nontrivial fibres lie over the
++leximin coupling, which is computed \cite[Prop.~10.11, \S10.4]{Awasthi-Conditionals}.
+ 
+ \paragraph{Necessary conditions for a genuine connection.} We state the programme as conditions that
+-any construction would have to meet. We do not claim that any of them holds.
++any construction would have to meet. This paper does not prove any of them; the status of each, as decided elsewhere, is noted after it.
+ \begin{enumerate}[label=(F\arabic*),leftmargin=*]
+ \item \emph{A manifold built from the data.} Attribution sets and bounded-reward reach sets are
+   polytopes (\cref{thm:attset,thm:tilt-polytope}), with rational facet normals when the data are
+@@ -1136,20 +1148,27 @@
+   it is Delzant \cite{Delzant1988}, and of a toric orbifold if and only if it is simple and rational
+   \cite{LermanTolman1997}. When the condition holds, precision widths become lengths in a moment
+   polytope and torus fibres sit over individual explanations. Attribution polytopes need not be
+-  simple, so this already restricts the cases covered.
++  simple, so this already restricts the cases covered. \emph{Status:} for witness polytopes, the coupling polytopes
++  $\mathrm{Cpl}(f(x),g(x))$, it holds whenever the margins are nondegenerate, and fails for the uniform $3\times3$ case,
++  which is not simple \cite[Thm.~6.4]{Awasthi-Conditionals}. For attribution polytopes it is open.
+ \item \emph{Higher compositions for witnesses.} \Cref{thm:witness}(v) shows that the witness layer
+   composes only up to an inequality. A Fukaya-type structure would need these failures to be organized
+-  as higher operations satisfying the $A_\infty$ relations. We have not constructed such operations.
++  as higher operations satisfying the $A_\infty$ relations. \emph{Status:} settled in the minimal model. The defects are
++  the second Boolean cumulants of whiskering and form a two-component $A_\infty$-functor into the square-zero cone, also
++  across objects \cite[Thm.~5.2, Thm.~10.2]{Awasthi-Conditionals}. Larger models are open.
+ \item \emph{Assembly as composition.} \Cref{prop:twoctx} identifies two-context gluing with
+   vertical composition of witnesses. A geometric realization should send this identification to
+   composition of Lagrangian morphisms, and send the obstruction measured by $\mathrm{CF}$ and
+-  $\varepsilon^*$ on cyclic covers to an obstruction to composition.
++  $\varepsilon^*$ on cyclic covers to an obstruction to composition. \emph{Status:} the combinatorial half holds.
++  Two-context gluing is the canonical filler of a 2-horn of the coupling nerve, and cyclic covers give higher horns whose
++  filling is obstructed exactly by $\mathrm{CF}$ \cite[Thm.~4.2, Thm.~4.3]{Awasthi-Conditionals}. The Lagrangian half is
++  a conjecture \cite[Conj.~9.5]{Awasthi-Conditionals}, with a computed probe in \cite[\S10.4]{Awasthi-Conditionals}.
+ \end{enumerate}
+ 
+ \paragraph{Why pursue it.} The two features that distinguish the witness layer from a plain metric,
+ composition by gluing and laws that hold only up to controlled error, are also the defining features of
+ Fukaya categories. That is an analogy, not a theorem. Its value is that (F1)--(F3) are checkable: each is
+-a finite statement about specific polytopes, couplings and covers.
++a finite statement about specific polytopes, couplings and covers, and parts of (F1)--(F3) have now been checked.
+ 
+ %=====================================================================
+ \section{Relation to prior work}\label{sec:related}
+@@ -1238,7 +1257,9 @@
+ \cite{Wootters1981,AmariNagaoka2000}, and the moment map of $\mathbb{CP}^{n-1}$, Delzant's theorem and
+ the Floer theory of toric fibres are standard \cite{Delzant1988,LermanTolman1997,Cho2004,ChoOh2006,FOOO2010}.
+ Nothing in \cref{sec:fukaya} is a new theorem. What is new there is the list of conditions
+-(F1)--(F3) that a Fukaya-type realization of attribution would have to satisfy.
++(F1)--(F3) that a Fukaya-type realization of attribution would have to satisfy. The companion theory
++\cite{Awasthi-Conditionals}, with computations in \cite{Awasthi-Family}, proves (F2) in the square-zero model and (F1) for
++witness polytopes, and reduces (F3) to its Lagrangian half.
+ 
+ \paragraph{Summary.}
+ \begin{center}\small
+@@ -1285,8 +1306,10 @@
+ structures: interventions, mechanism classes and quantitative comparison, and, in \cref{sec:glue},
+ kernel 1-cells, coupling 2-cells and assembly. Deterministic base change is a structure-preserving map
+ in \cite[Prop.~9.13]{Awasthi-Tower}. Kernel 1-cells act on the first two levels compatibly with
+-flattening (\cref{prop:onecell}); whether they act on the full local structure, including the context
+-comonad and the mixed law, is not yet established.
++flattening (\cref{prop:onecell}), and in fact on the full local structure: the context comonad, the mixed law,
++admissibility data and obstructions are transported along kernels, obstructions can only disappear, and certificates
++pull back \cite[Prop.~9.14, Cor.~9.15]{Awasthi-Tower}. The context functor is then a discrete opfibration over the
++Kleisli category \cite[\S3]{Awasthi-Conditionals}.
+ 
+ \paragraph{Structural provenance.} The obstruction tower of \cite[\S10]{Awasthi-Tower} gives a second
+ coordinate. For a claim $c$ attached to a model, let $k(c)$ be its first failing level. Along an
+@@ -1300,18 +1323,24 @@
+ \begin{enumerate}[leftmargin=*]
+ \item \emph{Finite-sample precision.} Output distributions are estimated from samples. Replacing $p$ by
+   a confidence region $\mathcal C_\delta$ turns each linear program into a robust program and each width
+-  into a statistical width.
++  into a statistical width. Two pieces exist: a finite-sample test built from a certificate
++  \cite[Prop.~11.1]{Awasthi-Tower}, and a sample bound for identifying the chamber of a pair of margins
++  \cite[Prop.~12.2]{Awasthi-Conditionals}.
+ \item \emph{Weight-level metrics.} Choose a metric on $\cW$ for which real interventions are Lipschitz,
+   so that \cref{thm:composition} applies beyond output-level mechanisms.
+ \item \emph{Higher levels.} Lift comparisons to second- and third-order states with the Kantorovich
+-  metric \cite{FritzPerrone2019}, and relate them to the obstruction tower.
++  metric \cite{FritzPerrone2019}, and relate them to the obstruction tower. At level two the graded obstruction is a
++  Kantorovich distance, and a claim obstructed there cannot learn \cite[Lemma~52.1, Cor.~52.3]{Awasthi-ThreeLayers}; level
++  three is open.
+ \item \emph{Cyclic covers at level 2.} \Cref{prop:level2} glues two contexts at level 2. For cyclic
+   covers, define and compute a level-2 contextual fraction and compare it with the level-1 value of
+   the flattened model.
+ \item \emph{A functorial witness layer.} Find whiskerings of coupling 2-cells that are functorial, for
+   example by indexing couplings by pairs of inputs as in relational program logics, or prove that none
+-  exist for noisy 1-cells.
+-\item \emph{Fukaya conditions.} Decide (F1)--(F3) of \cref{sec:fukaya} for the attribution polytopes
++  exist for noisy 1-cells. Up to coherent homotopy this is answered \cite[Thm.~5.2]{Awasthi-Conditionals}. Strictly, the
++  whiskering that keeps diagonal couplings as identities does not compose along stochastic kernels, while the product
++  action that does is not unital \cite[Thm.~10.2]{Awasthi-Conditionals}.
++\item \emph{Fukaya conditions.} Parts are decided (\cref{sec:fukaya}). Decide (F1)--(F3) of \cref{sec:fukaya} for the attribution polytopes
+   that arise in practice.
+ \item \emph{Empirical validation.} Run the provenance report on real checkpoints, with declared sources
+   from reference models.
+@@ -1378,11 +1407,28 @@
+ \newblock Translations of Mathematical Monographs 191. American Mathematical Society and Oxford
+ University Press, 2000.
+ 
++\bibitem{Awasthi-Conditionals}
++V.~K. Awasthi.
++\newblock Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
++programme.
++\newblock Technical report, Johns Hopkins University, October 2026. Revised draft 4.
++
++\bibitem{Awasthi-Family}
++V.~K. Awasthi.
++\newblock Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability.
++\newblock Companion paper, Johns Hopkins University, October 2026.
++
++\bibitem{Awasthi-ThreeLayers}
++V.~K. Awasthi.
++\newblock Three layers of realisation: hierarchy recovery, holonomy, information, contextuality and categorical dynamics.
++\newblock Technical report, Johns Hopkins University, September 2026, revised October 2026.
++\newblock DOI: 10.13140/RG.2.2.24274.52163.
++
+ \bibitem{Awasthi-Tower}
+ V.~K. Awasthi.
+-\newblock The three-level posterior tower: hierarchical Bayesian inference and weak distributive laws.
+-\newblock Technical report, Johns Hopkins University, October 2026.
+-\newblock doi:10.13140/RG.2.2.29743.50088. Numbered results cited here refer to revised version 8.
++\newblock The three-level posterior tower: hierarchical Bayesian inference and mixed distributive laws.
++\newblock Technical report, Johns Hopkins University, October 2026. Revised version 10.
++\newblock doi:10.13140/RG.2.2.29743.50088 (an earlier version, titled ``\ldots and weak distributive laws'').
+ 
+ \bibitem{Blanchard2010}
+ G.~Blanchard, G.~Lee, and C.~Scott.

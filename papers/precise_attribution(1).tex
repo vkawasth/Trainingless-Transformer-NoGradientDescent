@@ -1,0 +1,1632 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\D}{\mathsf{D}}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\Reach}{\mathrm{Reach}}
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\cone}{\operatorname{cone}}
+\newcommand{\mass}{\operatorname{mass}}
+
+\title{Precise Attribution of Model Interventions:\\
+Attribution Sets, Mechanism Reach, Path Defects and Gluing\\[4pt]
+\large A companion to \emph{The Three-Level Posterior Tower}}
+\author{Vinay K. Awasthi\\
+Department of Applied Mathematics and Statistics\\
+Johns Hopkins University\thanks{Verification scripts: \texttt{provenance.py},
+\texttt{check\_attribution.py}, \texttt{check\_glue.py}, \texttt{provenance\_demo.py}; see \cref{sec:code}.}}
+\date{October 6, 2026, draft 5}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A language model is trained on a corpus, extended with a second corpus, edited directly in its
+weights, and tuned with reinforcement learning from human feedback. Each step changes some outputs
+and leaves others alone, and new outputs appear. We ask three questions about such a history: what
+explains each observed change, how precisely the data determine that explanation, and whether the
+answer depends on the order of the steps. We answer them with three notions. An \emph{attribution
+set} collects every decomposition of an observed output distribution into declared sources and an
+unmodeled remainder; it is a polytope, and its emptiness, its range of unmodeled weight and its
+certificates are computed by linear programming. \emph{Precision} is the width of the attribution
+set; it is monotone along a ladder from exact sources to sources known by their supports to a
+positive budget for unmodeled sources, and any slack in that budget forces imprecision.
+\emph{Mechanism reach} declares what an intervention type may change: we prove that the reach set of
+KL-regularized reinforcement learning with a bounded reward range is a polytope, so that attributing
+a change to it is a linear program with an exact certificate, whereas a fixed reward with unknown
+temperature gives a curve, and an unconstrained edit can explain anything. Finally, interventions are
+compared quantitatively: comparisons compose by the triangle inequality and by a Lipschitz rule, with
+exact Lipschitz constants for mixing and bounds for tilts, and a weight-level intervention may have no
+Lipschitz constant on observed outputs at all. Order and loop defects measure path dependence, and
+coarse evaluations certify fine differences. The three kinds of uncertainty involved (who could
+have produced an output, what a mechanism can produce, and what observation reveals about an
+intervention) arise from three maps that fail to be injective; we make their interaction precise
+through the observable reach of an intervention and a soundness condition for mechanism classes, and
+show that the parameters of a reachable tilt are identified exactly up to the slack in the reward
+range. We then supply the glue between local structures. Markov kernels are the 1-cells; they
+transport attribution sets and can only lose precision. Couplings are 2-cells that witness how two
+1-cells differ. Their vertical composition is the gluing lemma and is strictly associative, but the
+natural whiskerings are not functorial, and the strict 2-categorical structure is a graded metric
+shadow. For several contexts, two compatible contexts always glue, and that gluing is vertical
+composition of witnesses. For a general cover, the contextual fraction of Abramsky, Barbosa and
+Mansfield equals our minimal unmodeled weight, and the best approximate global state is computed by a
+linear program; for the Popescu--Rohrlich box it is exactly $1/4$ away from some context. Gluing at
+the second level of the tower retains correlations that gluing flattened states loses. Finally, the
+simplex of output distributions is a moment polytope whose Lagrangian fibres are what observation
+forgets, and we state necessary conditions for a Fukaya-type realization; a companion theory paper has since
+decided parts of two of them. A synthetic four-stage
+experiment produces a full provenance report. Every theorem is checked in exact arithmetic or with exactly verified linear
+programming certificates.
+\end{abstract}
+
+\tableofcontents
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+%=====================================================================
+
+Consider the life of a model. Corpus $C_1$ produces model $M_1$. Adding corpus $C_2$ produces $M_2$,
+which changes some outputs, leaves others unchanged, and makes outcomes probable that were not before.
+An engineer then edits weights directly, producing $M_3$, and reinforcement learning from human
+feedback (RLHF) produces $M_4$. For such a history we want answers to three questions.
+
+\begin{enumerate}[label=(Q\arabic*),leftmargin=*]
+\item \emph{Attribution.} Which declared source or intervention explains each observed change, and
+  what is left unexplained?
+\item \emph{Precision.} How tightly do the observations determine that explanation?
+\item \emph{Path dependence.} Does the result depend on the order of interventions, and does a
+  sequence that should cancel actually cancel?
+\end{enumerate}
+
+\paragraph{Three kinds of uncertainty.} Each question concerns a different map that fails to be
+injective, and the paper is organized around them.
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.2\textwidth}p{0.19\textwidth}p{0.27\textwidth}p{0.26\textwidth}@{}}
+\toprule
+Question & Object & Source of the uncertainty & Measured and certified by\\
+\midrule
+Who could have produced $p$? & attribution set $W_{\bar\mu}(p)$ (\S\ref{sec:attribution}) &
+inverse image of $p$ under the mixing map from decompositions to outputs & widths
+(\cref{def:precision}); dual certificate (\cref{thm:attset})\\
+What can mechanism $T$ produce? & reach set $\Reach_T(p)$ (\S\ref{sec:mechanisms}) & image of the
+mechanism's parameters, which may themselves not be identified & residual weight and certificate
+(\cref{thm:change}); parameter widths (\cref{prop:reward-ident})\\
+What can we observe about $T$? & $\Phi\circ T$ (\S\ref{sec:composition}) & quotient by $\Phi$, which
+merges models with equal probe outputs & comparisons, Lipschitz constants and defects
+(\cref{thm:composition})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The second and third interact: an intervention acts on model states, so what can be seen of it from
+observed outputs is set-valued even when the intervention is deterministic. The \emph{observable reach}
+and the \emph{soundness} of a mechanism class (\cref{def:sound,prop:sound}) make this precise, and
+they separate two claims that are easily conflated: that a change is not a tilt, which is a fact about
+outputs, and that a change was not produced by RLHF, which also requires the tilt class to be sound
+for the procedure actually run.
+
+\paragraph{Architecture.} The companion paper \cite{Awasthi-Tower} develops the \emph{local} structure:
+an ambient probability monad $\D$, and over each outcome base $B$ a context comonad, a mixed
+distributive law, admissibility data and an obstruction tower. Its \S5 establishes identifiability and
+contamination results for a single output distribution. The present paper builds the
+\emph{transport} half of the glue between local structures: interventions as maps between model
+states, and quantitative comparisons between interventions. \Cref{sec:glue} makes the glue
+explicit: kernels as 1-cells, couplings as 2-cells with a strict graded shadow, and assembly of
+several contexts into a global state, exactly or approximately. \Cref{sec:architecture} says how the
+layers fit together, which laws are strict, and where symplectic geometry and Fukaya categories could
+enter.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=*]
+\item Attribution sets for declared sources known exactly or by their supports, with an unmodeled
+  budget; their structure, emptiness criterion and certificates (\cref{thm:attset}).
+\item Precision as width, a monotone precision ladder separating structural, informational and
+  unmodeled imprecision (\cref{thm:ladder}), and the fact that budget slack forces imprecision
+  (\cref{prop:slack}).
+\item Mechanism classes and a change-decomposition theorem with certificates (\cref{thm:change}); the
+  reach set of KL-regularized RLHF with bounded rewards is a polytope (\cref{thm:tilt-polytope}),
+  while a fixed reward with unknown temperature is not convex (\cref{prop:curve}).
+\item Quantitative comparison of interventions with vertical and horizontal composition rules and an
+  accumulation bound (\cref{thm:composition}); exact or bounded Lipschitz constants for mixing, tilts
+  and coarsening, and the absence of any observable Lipschitz constant for some weight-level
+  interventions (\cref{prop:lipschitz,prop:nonfaithful}); order and loop defects; monotonicity under
+  coarsening (\cref{prop:coarse}).
+\item Observable reach and soundness of mechanism classes, with an enlargement that keeps the RLHF
+  class sound for approximate optimization (\cref{prop:sound,cor:enlarge}); identifiability of tilt
+  parameters up to the slack in the reward range (\cref{prop:reward-ident}).
+\item A synthetic four-stage experiment with a complete provenance report (\cref{sec:demo}).
+\item The glue: kernel 1-cells transport attribution and only lose precision
+  (\cref{prop:transport}); coupling 2-cells form hom-categories under gluing, with explicit failures
+  of functorial whiskering (\cref{thm:witness}); the graded shadow is a strict 2-category
+  (\cref{thm:shadow}).
+\item Assembly: two-context gluing is vertical composition of witnesses (\cref{prop:twoctx}); the
+  contextual fraction equals the minimal unmodeled weight (\cref{thm:cf}), which also detects
+  prompt-dependent attribution (\cref{ex:global-attr}); bounds for approximate gluing with the exact
+  value $\tfrac14$ for the PR box (\cref{prop:epsstar}); gluing at level 2 (\cref{prop:level2}).
+\item An architecture that separates what is strict from what holds up to error, and a geometric
+  placement with checkable conditions for a Fukaya-type realization (\cref{sec:architecture}).
+\end{enumerate}
+Several ingredients are known in other fields; \cref{sec:related} states precisely which, and what is
+new here.
+
+\paragraph{What is not claimed.} We do not extract hypotheses from weights: declared sources must
+come from reference models, checkpoints or ablations. All guarantees concern a finite probe set.
+Attribution relative to a declared mechanism is not identification of a cause; causal statements
+require running the compared paths. We treat output distributions as known; finite-sample precision
+is an open problem (\cref{sec:scope}).
+
+%=====================================================================
+\section{Model states and observation}\label{sec:states}
+%=====================================================================
+
+\begin{definition}[Observable states]\label{def:obs}
+Fix a finite set $X$ of \emph{probes} (prompts or evaluation contexts) and, for each $x\in X$, a
+finite set $B_x$ of outcomes, which may be coarse classes of completions. The \emph{observable state
+space} is $\cP=\prod_{x\in X}\D(B_x)$, with
+\[
+d(p,q)=\max_{x\in X}\TV(p_x,q_x),\qquad \TV(p_x,q_x)=\tfrac12\textstyle\sum_b\lvert p_x(b)-q_x(b)\rvert .
+\]
+\end{definition}
+
+\begin{definition}[Model states and interventions]
+A set $\cW$ of \emph{model states} (for instance weight vectors) carries an \emph{observation map}
+$\Phi\colon\cW\to\cP$ sending a model to its output distributions on the probes. An
+\emph{intervention} is a map $T\colon\cW\to\cW$; its \emph{observable effect} on $M$ is the pair
+$(\Phi M,\Phi TM)$.
+\end{definition}
+
+\begin{remark}[Observation is not faithful]
+Different models can have the same outputs on every probe, and the same intervention can then
+produce different outputs. This is why statements about interventions on weights cannot in general be
+reduced to statements about observable states (\cref{prop:nonfaithful}).
+\end{remark}
+
+\begin{definition}[New outcomes]
+A softmax output assigns positive probability to every outcome, so ``a new outcome appears'' is made
+precise by a threshold $\varepsilon>0$: outcome $b$ \emph{appears at level $\varepsilon$} at probe
+$x$ under $M\to M'$ if $(\Phi M)_x(b)\le\varepsilon<(\Phi M')_x(b)$.
+\end{definition}
+
+From \cref{sec:attribution} to \cref{sec:mechanisms} we fix a probe, write $B$ for its finite outcome
+set and $p\in\D(B)$ for an observed output distribution. All statements apply probe by probe.
+
+%=====================================================================
+\section{Attribution sets and precision}\label{sec:attribution}
+%=====================================================================
+
+\begin{definition}[Declared sources and attribution sets]\label{def:attset}
+A \emph{declared source} is either \emph{exact}, a distribution $A_i\in\D(B)$, or \emph{known by its
+support}, a set $S_i\subseteq B$. An \emph{unmodeled budget} is a number $\bar\mu\in[0,1]$. A
+\emph{decomposition} of $p$ is a family of nonnegative measures $s_1,\dots,s_k$ on $B$, the
+\emph{contributions}, such that
+\begin{enumerate}[label=(\alph*)]
+\item $s_i=\lambda_iA_i$ for some $\lambda_i\ge0$ if source $i$ is exact, and $\supp s_i\subseteq S_i$
+  if source $i$ is known by its support, in which case $\lambda_i=\mass(s_i)$;
+\item $\sum_is_i\le p$ pointwise, and $\mu:=1-\sum_i\lambda_i\le\bar\mu$.
+\end{enumerate}
+The \emph{unmodeled part} is $p-\sum_is_i=\mu U$ with $U\in\D(B)$ when $\mu>0$. The \emph{attribution
+set} $W_{\bar\mu}(p)$ is the set of all decompositions. The \emph{minimal unmodeled weight}
+$\mu_{\min}(p)$ is the least $\mu$ over decompositions with $\bar\mu=1$.
+\end{definition}
+
+The model is Huber's contamination model \cite{Huber1964} with declared sources. A decomposition
+determines $U$, so the attribution set records exactly the explanations compatible with $p$.
+
+\begin{theorem}[Structure of attribution sets]\label{thm:attset}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item $W_{\bar\mu}(p)$ is a polytope, cut out by linear constraints on the contributions.
+\item $W_{\bar\mu}(p)\ne\emptyset$ if and only if $\mu_{\min}(p)\le\bar\mu$.
+\item If $W_{\bar\mu}(p)\ne\emptyset$, the unmodeled weights it contains form the interval
+  $[\mu_{\min}(p),\bar\mu]$.
+\item (Certificate) Suppose $y\in\mathbb{R}^B_{\ge0}$ satisfies $\langle y,a\rangle\ge1$ for every
+  admissible version $a$ of every source, that is $\langle y,A_i\rangle\ge1$ for exact sources and
+  $y_b\ge1$ for $b\in S_i$ for support-known sources. Then every decomposition has
+  $\mu\ge1-\langle y,p\rangle$, and the best such bound equals $\mu_{\min}(p)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) Constraints (a) and (b) are linear in the variables $\lambda_i$ (exact sources) and $s_i$
+(support-known sources), with $s_i\ge0$, and the feasible set is bounded since $\sum_is_i\le p$.
+(ii) and (iii) If a decomposition has weight vector $\lambda$, then so does $t\lambda$ (with scaled
+contributions) for every $t\in[0,1]$, which raises $\mu$ continuously up to $1$. Hence the attainable
+$\mu$ form $[\mu_{\min}(p),1]$, and the budget cuts this to $[\mu_{\min}(p),\bar\mu]$.
+(iv) Each contribution is a nonnegative multiple $\lambda_ia$ of an admissible version $a$ of its
+source, so $\langle y,\sum_is_i\rangle\ge\sum_i\lambda_i=1-\mu$, while $\langle y,\sum_is_i\rangle
+\le\langle y,p\rangle$. Optimality of the best bound is linear programming duality \cite{Schrijver1986}:
+$1-\mu_{\min}(p)$ is the value of $\max\{\sum_i\lambda_i\}$ over (a), (b), and its dual is
+$\min\{\langle y,p\rangle\}$ under the stated constraints on $y$.
+\end{proof}
+
+\begin{remark}[Mixture proportion estimation]\label{rem:mpe}
+With a single exact source $A$, $\mu_{\min}(p)=1-\kappa^*(p\,|\,A)$, where
+$\kappa^*(p\,|\,A)=\min_{b\in\supp A}p(b)/A(b)$ is the maximal proportion of $A$ in $p$ studied in
+mixture proportion estimation \cite{Blanchard2010,Scott2015}. A positive budget $\bar\mu$ plays the role
+of the bound on the error probability in contaminated sampling \cite{HorowitzManski1995}.
+\end{remark}
+
+\begin{definition}[Precision]\label{def:precision}
+For a nonempty attribution set, the \emph{width} of source $i$ is $w_i=\max\lambda_i-\min\lambda_i$
+over $W_{\bar\mu}(p)$, and the width of the unmodeled weight is $w_\mu=\max\mu-\min\mu$. For an outcome
+$b$ with $p(b)>0$, the \emph{observation-level attribution} $\pi_i(b)=s_i(b)/p(b)$ is the probability
+that an observation of $b$ came from source $i$; its width is defined likewise. The attribution is
+\emph{exact} if all widths vanish. All widths are values of linear programs over $W_{\bar\mu}(p)$.
+\end{definition}
+
+\begin{theorem}[Monotone precision ladder]\label{thm:ladder}
+Enlarging the admissible versions of any source, or raising the budget, can only enlarge the
+attribution set; hence all widths are nondecreasing. In particular, writing $\mu^{\mathrm{ex}}_{\min}$
+for the minimal unmodeled weight with exact sources, the attribution sets
+\[
+W^{(1)}=W^{\mathrm{exact}}_{\mu^{\mathrm{ex}}_{\min}}(p)\ \subseteq\
+W^{(2)}=W^{\mathrm{support}}_{\mu^{\mathrm{ex}}_{\min}}(p)\ \subseteq\
+W^{(3)}=W^{\mathrm{support}}_{\bar\mu}(p)\qquad(\bar\mu\ge\mu^{\mathrm{ex}}_{\min})
+\]
+are nonempty and nested, and each width satisfies $w^{(1)}\le w^{(2)}\le w^{(3)}$.
+\end{theorem}
+\begin{proof}
+Every decomposition with exact sources is one with the corresponding supports, since $\supp(\lambda_i
+A_i)\subseteq\supp A_i$; and every decomposition within budget $\bar\mu$ is one within any larger
+budget. The width of a coordinate over a larger set is at least its width over a smaller set.
+$W^{(1)}$ is nonempty by \cref{thm:attset}(ii).
+\end{proof}
+
+We call the increments $w^{(1)}$, $w^{(2)}-w^{(1)}$ and $w^{(3)}-w^{(2)}$ the \emph{structural},
+\emph{informational} and \emph{unmodeled} imprecision. They are nonnegative by \cref{thm:ladder}; we do
+not claim that they combine additively across sources.
+
+\begin{proposition}[Budget slack forces imprecision]\label{prop:slack}
+If $\mu_{\min}(p)<\bar\mu$ and $\mu_{\min}(p)<1$, then $w_\mu=\bar\mu-\mu_{\min}(p)>0$, and every source
+whose maximal weight is positive has positive width.
+\end{proposition}
+\begin{proof}
+The first claim is \cref{thm:attset}(iii). Take a decomposition $\lambda$ with $\mu=\mu_{\min}(p)$.
+For $t=(1-\bar\mu)/(1-\mu_{\min}(p))<1$, the scaled family $t\lambda$ is again a decomposition, since its
+unmodeled weight is $\bar\mu$. If $\lambda_i>0$, the two decompositions give different values of the
+$i$-th weight. If $\lambda_i=0$, this value differs from the positive maximal weight. Either way
+$w_i>0$.
+\end{proof}
+
+So precision and robustness trade off: a budget for unmodeled sources protects against rejecting the
+declared model, and every unit of slack in that budget is paid for in width.
+
+\begin{proposition}[When attribution is exact]\label{prop:exact}
+With exact sources and budget $\mu_{\min}(p)=0$, the attribution is exact for every $p$ in
+$\conv(A_1,\dots,A_k)$ if and only if the sources are affinely independent. For any sources, if the
+exclusive region $R_i=\{b:A_i(b)>0,\ A_j(b)=0\ (j\ne i)\}$ has $A_i(R_i)>0$, then
+$\lambda_i=p(R_i)/A_i(R_i)$ in every decomposition, and $\pi_i(b)=\lambda_iA_i(b)/p(b)$.
+\end{proposition}
+\begin{proof}
+This is \cite[Prop.~5.7]{Awasthi-Tower}.
+\end{proof}
+
+%=====================================================================
+\section{Mechanism classes and attribution of change}\label{sec:mechanisms}
+%=====================================================================
+
+\begin{definition}[Mechanism class]
+A \emph{mechanism class} for an intervention type assigns to each $p\in\D(B)$ a set
+$\Reach(p)\subseteq\D(B)$ of output distributions the intervention may produce from $p$. A change
+$p\to p'$ is \emph{reachable} if $p'\in\Reach(p)$.
+\end{definition}
+
+\begin{example}[Three polyhedral classes]\label{ex:classes}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Source expansion} (adding a corpus): $\Reach(p)=\conv(\cA\cup\mathcal{N})$, where $\cA$
+  are the old sources and $\mathcal{N}$ the new ones.
+\item \emph{Locality claim} for an edit with declared scope $X_0\subseteq X$ and tolerance $\tau$: at
+  a probe outside $X_0$, $\Reach(p)=\{q:\TV(q,p)\le\tau\}$.
+\item \emph{Unconstrained edit}: $\Reach(p)=\D(B)$.
+\end{enumerate}
+\end{example}
+
+\begin{proposition}[KL-regularized reinforcement learning is an exponential tilt]\label{prop:gibbs}
+For a reward $r\colon B\to\mathbb{R}$ and $\beta>0$, the maximizer of
+$\mathbb{E}_q[r]-\beta\,\mathrm{KL}(q\,\|\,p)$ over $q\in\D(B)$ is
+\[
+T_r(p)(b)=\frac{p(b)\,e^{r(b)/\beta}}{\sum_cp(c)\,e^{r(c)/\beta}} .
+\]
+\end{proposition}
+\begin{proof}
+For $q\ll p$, $\mathbb{E}_q[r]-\beta\,\mathrm{KL}(q\|p)=\beta\log Z-\beta\,\mathrm{KL}(q\|T_r(p))$ with
+$Z=\sum_cp(c)e^{r(c)/\beta}$, which is maximal exactly at $q=T_r(p)$; and $q\not\ll p$ gives
+$-\infty$. This is the standard Gibbs variational principle, used for RLHF in
+\cite{Korbak2022,Rafailov2023}.
+\end{proof}
+
+Writing $w(b)=e^{(r(b)-r_{\min})/\beta}$, a reward with values in $[r_{\min},r_{\max}]$ gives weights
+in $[1,K]$ with $K=e^{(r_{\max}-r_{\min})/\beta}$, and $T_r(p)$ depends only on $w$. The tilt is a
+reweighting by a likelihood, the operation called conditioning in \cite[\S4]{Awasthi-Tower}; it is not
+conditioning on an observed event. It preserves support exactly, $\supp T_r(p)=\supp p$, but it can
+raise a small probability by a factor up to $K$.
+
+\begin{theorem}[The tilt reach set is a polytope]\label{thm:tilt-polytope}
+Let $\Reach_K(p)=\{T_r(p):r(B)\subseteq[r_{\min},r_{\max}]\}$ with $K$ as above. Then
+\[
+\Reach_K(p)=\big\{q\in\D(B):\ \supp q=\supp p,\ \ q_b\,p_c\le K\,q_c\,p_b\ \text{ for all }b,c\in\supp p\big\},
+\]
+a convex polytope. Equivalently $q\in\Reach_K(p)$ iff $\supp q=\supp p$ and
+\[
+K^*(p,q)=\frac{\max_{b\in\supp p}q_b/p_b}{\min_{b\in\supp p}q_b/p_b}\le K,
+\]
+so $\beta\log K^*(p,q)$ is the least reward range that explains the change.
+\end{theorem}
+\begin{proof}
+If $q=T_r(p)$, then $q_b/p_b=w_b/Z$ for $b\in\supp p$, so the ratios lie within a factor $K$ of each
+other, which is the stated inequality. Conversely, if $q$ satisfies the inequalities and has support
+$\supp p$, put $w_b=(q_b/p_b)/\min_c(q_c/p_c)\in[1,K]$ for $b\in\supp p$ and $w_b=1$ elsewhere; then
+$T_w(p)=q$. The inequalities are linear in $q$ for fixed $p$; together with $\sum_bq_b=1$ and $q_b=0$
+off $\supp p$ they define a polytope. A point satisfying them cannot vanish anywhere on $\supp p$:
+if $q_b=0$ then $q_c\,p_b\le K\,q_b\,p_c=0$ for all $c$, contradicting $\sum q=1$. So the constraint
+$\supp q=\supp p$ is implied, and the set is closed.
+\end{proof}
+
+\begin{remark}[Density ratio classes]\label{rem:drc}
+The set in \cref{thm:tilt-polytope} is the interval of measures $\{q: p\le c\,q\le Kp\text{ for some
+}c>0\}$ of DeRobertis and Hartigan \cite{DeRobertisHartigan1981}, known in robust Bayesian analysis as a
+density ratio class. \Cref{thm:tilt-polytope} therefore identifies the reach of KL-regularized RLHF
+with bounded rewards as a classical object; what it adds is that identification, and the reading of
+$\beta\log K^*$ as the least reward range that explains an observed change.
+\end{remark}
+
+\begin{proposition}[Fixed reward, unknown temperature]\label{prop:curve}
+For a fixed reward $r$, the set $\{T_{r/\beta'}(p):\beta'>0\}$ is a curve, and in general not convex:
+for $p$ uniform on three outcomes and $r=(0,1,2)$, the midpoint of the points with $1/\beta'=1$ and
+$1/\beta'=3$ is not on the curve.
+\end{proposition}
+\begin{proof}
+On the curve, $\log(q_b/p_b)-\log(q_0/p_0)$ is proportional to $r_b-r_0$, so $\log(q_2/q_0)=
+2\log(q_1/q_0)$ for this $p$ and $r$; the midpoint violates this identity, as checked in
+\cref{sec:code}.
+\end{proof}
+
+So the geometry of a reach set depends on what is assumed about the mechanism: a bounded reward range
+gives a polytope, a fixed reward gives a curve, and no assumption gives everything.
+
+A reachable change can still leave the mechanism's parameters undetermined. For tilts this is
+measured exactly.
+
+\begin{proposition}[Identifiability of tilt parameters]\label{prop:reward-ident}
+Fix $\beta>0$ and a reward range $[r_{\min},r_{\max}]$ of length $\Delta_r$, and let $q\in\Reach_K(p)$
+with $K=e^{\Delta_r/\beta}$. Put $\ell_b=\beta\log(q_b/p_b)$ for $b\in\supp p$. The rewards $r$ with values
+in $[r_{\min},r_{\max}]$ and $T_r(p)=q$ are exactly
+\[
+r_b=\ell_b+c\ \ (b\in\supp p),\qquad c\in\big[r_{\min}-\min_b\ell_b,\ r_{\max}-\max_b\ell_b\big],
+\]
+with $r_b\in[r_{\min},r_{\max}]$ arbitrary for $b\notin\supp p$.
+Hence on $\supp p$ every reward value has width $\Delta_r-\beta\log K^*(p,q)$, reward differences are
+identified exactly, and the reward is identified exactly on $\supp p$ if and only if
+$\beta\log K^*(p,q)=\Delta_r$. Only $r/\beta$ enters $T_r$, so without a known $\beta$ only the ratios
+of reward differences are identified.
+\end{proposition}
+\begin{proof}
+$T_r(p)=q$ holds iff $q_b/p_b=e^{r_b/\beta}/Z$ on $\supp p$, that is, iff $r_b-\beta\log(q_b/p_b)$ is
+constant on $\supp p$; outcomes outside the support do not affect $T_r(p)$. The range constraint on
+$\supp p$ is $r_{\min}\le\ell_b+c\le r_{\max}$ for all $b$, which is the stated interval for $c$; its
+length is $\Delta_r-(\max_b\ell_b-\min_b\ell_b)=\Delta_r-\beta\log K^*(p,q)$.
+\end{proof}
+
+This mirrors \cref{prop:slack}: slack in the assumed reward range costs precision about the reward,
+exactly as slack in the unmodeled budget costs precision about the sources.
+
+\begin{definition}[Residual of a change]
+Let $\cone\Reach(p)=\{tq:t\ge0,\ q\in\Reach(p)\}$. An \emph{explained part} of a change $p\to p'$ is a
+measure $s\in\cone\Reach(p)$ with $s\le p'$; the remainder $p'-s$ is the \emph{residual}. The
+\emph{residual weight} of the change is
+\[
+\mu^T_{\min}(p,p')=1-\max\{\mass(s):\ s\in\cone\Reach(p),\ s\le p'\}.
+\]
+\end{definition}
+
+\begin{theorem}[Change decomposition]\label{thm:change}
+Let $\Reach(p)$ be closed and convex.
+\begin{enumerate}[label=(\roman*)]
+\item The maximum defining $\mu^T_{\min}(p,p')$ is attained, and $\mu^T_{\min}(p,p')=0$ if and only if
+  $p'\in\Reach(p)$.
+\item (Certificate) If $y\ge0$ satisfies $\langle y,q\rangle\ge1$ for all $q\in\Reach(p)$, then
+  $\mu^T_{\min}(p,p')\ge1-\langle y,p'\rangle$. If $\cone\Reach(p)=\{s\ge0:Gs\le0\}$ is polyhedral, the
+  best such bound is attained by a pair $y\ge0$, $\nu\ge0$ with $y+G^{\top}\nu\ge\mathbf{1}$, and it equals
+  $\mu^T_{\min}(p,p')$.
+\item (Precision of change attribution) The optimal explained parts form a polytope when the cone is
+  polyhedral, and the range of each $s(b)$ over it is given by linear programs.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) $\Reach(p)\subseteq\D(B)$ is compact and avoids $0$, so its cone is closed; intersected with
+$\{0\le s\le p'\}$ it is compact, and $\mass$ is continuous. If the maximum is $1$, then $s\le p'$ and
+$\mass(s)=\mass(p')$ force $s=p'$, so $p'\in\cone\Reach(p)$ with mass one, that is, $p'\in\Reach(p)$.
+(ii) For $s=tq$ with $q\in\Reach(p)$, $\mass(s)=t\le t\langle y,q\rangle=\langle y,s\rangle\le\langle
+y,p'\rangle$. In the polyhedral case, $\max\{\mathbf 1^{\top}s: Gs\le0,\ s\le p',\ s\ge0\}$ has dual
+$\min\{\langle y,p'\rangle:y+G^{\top}\nu\ge\mathbf 1,\ y,\nu\ge0\}$, and strong duality holds
+\cite{Schrijver1986}; every dual-feasible pair satisfies $\langle y,s\rangle\ge\mathbf 1^{\top}s-\langle
+\nu,Gs\rangle\ge\mathbf 1^{\top}s$ on the cone. (iii) The optimal set is a face of a polytope.
+\end{proof}
+
+\begin{remark}[What residuals mean]
+A positive residual weight says that at least this much of the observed change is not produced by any
+intervention of the declared type. It does not say what produced it. For the tilt class the cone is
+$\{s\ge0:\ s_b\,p_c\le K\,s_c\,p_b,\ s=0\text{ off }\supp p\}$, so attributing a change to RLHF is a
+linear program with an exact certificate. For an unconstrained edit the residual is always zero: an
+edit can be tested only through a claim about it, such as locality.
+\end{remark}
+
+Mechanism classes are defined on observed outputs, while real interventions act on model states. The
+link between the two is the following.
+
+\begin{definition}[Observable reach and soundness]\label{def:sound}
+For an intervention $T\colon\cW\to\cW$ and an observable state $p\in\cP$, the \emph{observable reach}
+is
+\[
+R^\Phi_T(p)=\{\Phi TM:\ M\in\cW,\ \Phi M=p\}.
+\]
+A mechanism class is \emph{sound} for $T$ if $R^\Phi_T(p)$ is contained, probe by probe, in
+$\Reach_T(p)$ for every $p$ in the image of $\Phi$.
+\end{definition}
+
+The observable reach can have more than one point even for a deterministic $T$: in the example of
+\cref{prop:nonfaithful} it has two. So mechanism classes must be set-valued even for deterministic
+interventions.
+
+\begin{proposition}[What a residual certifies]\label{prop:sound}
+Let the mechanism class be sound for $T$, and suppose the change $p\to p'$ has positive residual weight
+at some probe. Then there is no model $M$ with $\Phi M=p$ and $\Phi TM=p'$: the change was not produced
+by $T$ from any model with the observed outputs. Without soundness, the residual certifies only that
+the change lies outside the declared class. A zero residual never certifies that $T$ produced the
+change.
+\end{proposition}
+\begin{proof}
+If such an $M$ existed, then $p'\in R^\Phi_T(p)\subseteq\Reach_T(p)$ at every probe, so the residual
+would vanish by \cref{thm:change}(i). The last sentence holds because other interventions may reach the
+same outputs.
+\end{proof}
+
+The tilt class of \cref{thm:tilt-polytope} is sound for an exact optimizer of the KL-regularized
+objective with rewards in the stated range, by \cref{prop:gibbs}. Actual RLHF procedures stop short of
+the optimum, so soundness holds only approximately. The following enlargement restores it while
+keeping linear programming.
+
+\begin{corollary}[Enlarged classes]\label{cor:enlarge}
+If a procedure is known to end within total variation $\varepsilon$ of the exact tilt, then the
+enlarged class $\Reach^\varepsilon_K(p)=\{q\in\D(B):\TV(q,q')\le\varepsilon\text{ for some }q'\in
+\Reach_K(p)\}$ is sound for it, and it is again a polytope, so \cref{thm:change} applies.
+\end{corollary}
+\begin{proof}
+Soundness is immediate from the assumption. The set is the projection onto $q$ of the polyhedron
+$\{(q,q',u):q'\in\Reach_K(p),\ -u\le q-q'\le u,\ \sum_bu_b\le2\varepsilon,\ q\in\D(B)\}$, and a bounded
+projection of a polyhedron is a polytope.
+\end{proof}
+
+How large $\varepsilon$ is for a given procedure is an empirical question; the corollary only says how to
+use it once it is known.
+
+%=====================================================================
+\section{Comparing interventions: composition and path defects}\label{sec:composition}
+%=====================================================================
+
+\begin{definition}[Quantitative comparison]\label{def:comparison}
+For interventions $F,G$ and a set $\cS\subseteq\cW$ of model states,
+\[
+d_\cS(F,G)=\sup_{M\in\cS}d(\Phi FM,\Phi GM).
+\]
+This is a pseudometric on interventions. We write $F\approx_\varepsilon G$ on $\cS$ if
+$d_\cS(F,G)\le\varepsilon$, and call this a \emph{quantitative comparison}.
+\end{definition}
+
+A quantitative comparison records how far two interventions are apart; it is not by itself a 2-cell
+in a 2-category, and we do not call it one. \Cref{cor:enriched} identifies the structure in which it is
+the hom-metric of an enriched category.
+
+\begin{definition}[Lipschitz on observables]
+An intervention $G$ is \emph{$L$-Lipschitz on observables} over $\mathcal{T}\subseteq\cW$ if
+$d(\Phi GM,\Phi GM')\le L\,d(\Phi M,\Phi M')$ for all $M,M'\in\mathcal T$. An \emph{output-level
+mechanism} is a map $T\colon\cP\to\cP$ acting on observable states; for it the Lipschitz constant is the
+usual one for $d$.
+\end{definition}
+
+\begin{proposition}[Lipschitz constants of output-level mechanisms]\label{prop:lipschitz}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item Mixing with a fixed target, $p\mapsto(1-a)p+a\,t$, is exactly $(1-a)$-Lipschitz.
+\item A tilt with weights in $[1,K]$ is $\tfrac{3K-1}{2}$-Lipschitz, and no constant below $K$ works in
+  general.
+\item Coarsening along any map of outcomes is $1$-Lipschitz.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) The difference of images is $(1-a)(p-q)$. (iii) Data processing for total variation. (ii) Let
+$Z=\langle w,p\rangle\ge1$ and $Z'=\langle w,q\rangle$. Then
+$T(p)-T(q)=w\odot(p-q)/Z+w\odot q\,(1/Z-1/Z')$, so
+$\lVert T(p)-T(q)\rVert_1\le\big(K\lVert p-q\rVert_1+\lvert Z-Z'\rvert\big)/Z\le K\lVert
+p-q\rVert_1+\lvert Z-Z'\rvert$, using $\lVert w\odot q\rVert_1=Z'$ and $Z\ge1$. Since $p-q$ has total mass zero,
+$\lvert Z-Z'\rvert=\lvert\langle w-\tfrac{K+1}2\mathbf 1,p-q\rangle\rvert\le\tfrac{K-1}2\lVert
+p-q\rVert_1$. For the lower bound take $p=(\epsilon,1-\epsilon)$ and $w=(K,1)$: the first coordinate
+of $T(p)$ is $K\epsilon/(1+(K-1)\epsilon)$, whose derivative at $\epsilon=0$ is $K$.
+\end{proof}
+
+So tilts can amplify differences, which matters for composition.
+
+\begin{proposition}[No observable Lipschitz constant]\label{prop:nonfaithful}
+If $\Phi M=\Phi M'$ but $\Phi GM\ne\Phi GM'$, then $G$ is not $L$-Lipschitz on observables over
+$\{M,M'\}$ for any $L$.
+\end{proposition}
+\begin{proof}
+The left side of the Lipschitz inequality is positive and the right side is zero.
+\end{proof}
+
+A weight edit that depends on parts of the model not visible on the probes is of this kind. For such
+interventions the composition bound below must use a metric on $\cW$, and conclusions at the probe
+level are conditional on that metric.
+
+\begin{theorem}[Composition of quantitative comparisons]\label{thm:composition}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item (Vertical) $d_\cS(F,H)\le d_\cS(F,G)+d_\cS(G,H)$.
+\item (Horizontal) If $G'$ is $L$-Lipschitz on observables over $F(\cS)\cup F'(\cS)$, then
+  \[
+  d_\cS(GF,G'F')\le d_{F(\cS)}(G,G')+L\,d_\cS(F,F').
+  \]
+\item (Accumulation) For paths $F_n\cdots F_1$ and $G_n\cdots G_1$, let $\cS_0=\cS$ and
+  $\cS_j=F_j(\cS_{j-1})$, put $\varepsilon_j=d_{\cS_{j-1}}(F_j,G_j)$, and suppose each $G_j$ is
+  $L_j$-Lipschitz on observables over the states reached by both paths. Then
+  \[
+  \delta_j=d_\cS(F_j\cdots F_1,\,G_j\cdots G_1)\quad\text{satisfies}\quad
+  \delta_j\le\varepsilon_j+L_j\delta_{j-1},
+  \]
+  and hence
+  \[
+  \delta_n\le\sum_{j=1}^n\varepsilon_j\prod_{i=j+1}^nL_i .
+  \]
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) is the triangle inequality for $d$. (ii) For $M\in\cS$,
+\[
+d(\Phi GFM,\Phi G'F'M)\le d(\Phi GFM,\Phi G'FM)+d(\Phi G'FM,\Phi G'F'M);
+\]
+the first term is at most $d_{F(\cS)}(G,G')$ and the second at most $L\,d(\Phi FM,\Phi F'M)$. (iii) Apply (ii) with $F=F_j$, $G=G_j$ to the states $F_{j-1}\cdots F_1M$
+and $G_{j-1}\cdots G_1M$, and unroll the recursion.
+\end{proof}
+
+\begin{remark}
+Composition rules of this kind are standard for behavioral pseudometrics of probabilistic systems
+\cite{Desharnais2004}, in quantitative algebraic reasoning \cite{MPP2016} and in sensitivity type
+systems \cite{ReedPierce2010}. \Cref{thm:composition} is an instance; what is specific here is the
+observation map $\Phi$, which is not faithful, and the constants for tilts.
+\end{remark}
+
+\begin{corollary}[Enriched structure]\label{cor:enriched}
+Output-level mechanisms on $\cP$ with Lipschitz constant at most $1$, with $d=d_{\cP}$, form a
+category enriched in pseudometric spaces in Lawvere's sense \cite{Lawvere1973}:
+$d(\mathrm{id},\mathrm{id})=0$ and $d(GF,G'F')\le d(G,G')+d(F,F')$. Mixings and coarsenings belong to it; tilts do not, since their
+Lipschitz constant can exceed $1$, so in general the structure is the Lipschitz-weighted one of
+\cref{thm:composition}.
+\end{corollary}
+
+\begin{definition}[Order and loop defects]
+For interventions $E$ and $R$, the \emph{order defect} on $\cS$ is $d_\cS(RE,ER)$. For a sequence
+of interventions $T_1,\dots,T_n$, the \emph{loop defect} is $d_\cS(T_n\cdots T_1,\,\mathrm{id})$.
+\end{definition}
+
+A positive order defect certifies that the two orders produce different observable models on the
+probes; it becomes a causal statement once both orders have actually been run. We call the loop defect
+a defect rather than a holonomy, since no connection has been defined.
+
+\begin{proposition}[Coarse evaluation]\label{prop:coarse}
+For any coarsening $g$ of outcomes, $\TV(g_*p,g_*q)\le\TV(p,q)$. Hence every order, loop or comparison
+defect measured on a coarse evaluation is a lower bound for the fine one, and a positive coarse defect
+certifies a positive fine defect.
+\end{proposition}
+
+%=====================================================================
+\section{A four-stage provenance experiment}\label{sec:demo}
+%=====================================================================
+
+We run a synthetic history through all four stages and report what the framework certifies. The
+experiment is in \texttt{provenance\_demo.py}; all distributions are exact rationals.
+
+\paragraph{Setup.} There are three probes $x_1,x_2,x_3$ and six outcomes $y_1,\dots,y_6$. Corpus $C_1$
+has two sources $A_1,A_2$, and corpus $C_2$ has one source $N$, which is the only one giving mass to
+$y_6$:
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+probe & $A_1$ & $A_2$ & $N$\\
+\midrule
+$x_1$ & $(.4,.3,.2,.1,0,0)$ & $(0,.1,.2,.3,.4,0)$ & $(0,0,0,.2,.3,.5)$\\
+$x_2$ & $(.1,.1,.4,.4,0,0)$ & $(.3,.3,.1,.1,.2,0)$ & $(0,0,0,0,.5,.5)$\\
+$x_3$ & $(.5,.5,0,0,0,0)$ & $(0,0,.5,.5,0,0)$ & $(0,0,0,0,.5,.5)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$M_1$ mixes $A_1,A_2$ with weights $(0.6,0.4)$ at every probe. $M_2$ uses weights $(0.45,0.25,0.30)$ at
+$x_1$, $(0.5,0.3,0.2)$ at $x_2$, and leaves $x_3$ unchanged. The edit producing $M_3$ declares scope
+$\{x_1\}$ and moves $20\%$ of the mass at $x_1$ to $y_3$, but also leaks $5\%$ to $y_1$ at $x_2$. RLHF
+producing $M_4$ is a tilt with weights $(1,2,4,1,3,1)$, so $K=4$; a \emph{drifted} variant additionally
+multiplies $y_6$ by $10$ at $x_2$.
+
+\paragraph{Stage 2: adding $C_2$.} With exact sources the attribution is exact at every probe: the
+weights $(A_1,A_2,N)$ are recovered as $(0.45,0.25,0.30)$, $(0.5,0.3,0.2)$ and $(0.6,0.4,0)$, with widths
+zero. Outcome $y_6$ appears at level $\varepsilon=0.01$ at $x_1$ and $x_2$ and not at $x_3$, where
+$\TV(M_1,M_2)=0$. Since $y_6$ is exclusive to $N$, \cref{prop:exact} gives $\lambda_N=p(y_6)/N(y_6)$,
+namely $3/10$ and $1/5$. An observation of $y_5$ at $x_1$ came from $A_2$ with probability $10/19$ and
+from $N$ with probability $9/19$. The precision ladder at $x_1$ is:
+\begin{center}\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+stage & $A_1$ & $A_2$ & $N$ & $\mu$\\
+\midrule
+exact sources, budget $0$ & $0.45$ & $0.25$ & $0.30$ & $0$\\
+supports only, budget $0$ & $[0.18,0.66]$ & $[0,0.67]$ & $[0.15,0.52]$ & $0$\\
+supports only, budget $0.1$ & $[0.08,0.66]$ & $[0,0.67]$ & $[0.05,0.52]$ & $[0,0.1]$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The structural imprecision is zero, the informational imprecision is large, and the budget lowers the
+lower ends further, as \cref{thm:ladder,prop:slack} predict. The lower bound $0.18$ for $A_1$ is the mass of
+its exclusive outcome $y_1$.
+
+\paragraph{Stage 3: the edit.} The locality test with $\tau=0.01$ passes at $x_3$ ($\TV=0$) and fails at
+$x_2$ ($\TV(M_2,M_3)=0.043$), detecting the leak. Relative to the corpus sources $A_1,A_2,N$, the
+certified unmodeled weight is $0.20$ at $x_1$ and $0.05$ at $x_2$, exactly the mass moved by the edit
+and by the leak, with certificates $y$ satisfying $\min_i\langle y,A_i\rangle=1$ and $\langle
+y,p\rangle=0.80$, respectively $0.95$. At $x_1$ the total-variation change is $0.172$, smaller than the
+certified unexplained weight $0.20$: the two quantities answer different questions.
+
+\paragraph{Stage 4: RLHF.} For the pure tilt, the implied ratio is $K^*=4$ at every probe, so every
+change is reachable with the claimed reward range. For the drifted variant, $K^*=10$ at $x_2$, so the
+change is not reachable; the residual weight relative to the tilt class is $0.1934$, with an exactly
+verified certificate. The other probes remain reachable, so the departure from the declared mechanism
+is localized. For the pure tilt at $x_1$, with $\beta=1$ and claimed range $[0,\ln4]$, the rewards are
+identified exactly, $r=(0,\ln2,\ln4,0,\ln3,0)$, because $K^*=K$ (\cref{prop:reward-ident}); with a
+claimed range $[0,\ln8]$ the reward differences are still exact, but each reward value has width
+$\ln2$.
+
+\paragraph{Paths.} At $x_1$, with $E$ the edit and $R$ the tilt, the order defect is
+$\TV(REp,ERp)=51/518\approx0.0985$, so the order matters. Tilting by $w$ and then by $1/w$ has loop defect
+zero. Comparing $E$ with a weaker edit $E'$ (moving $25\%$ instead of $20\%$),
+$\TV(REp,RE'p)=0.0479$ is within the bound $\tfrac{3K-1}2\TV(Ep,E'p)=5.5\times0.043$, with observed
+amplification $1.11$. On the coarse evaluation $\{y_1,y_2\},\{y_3,y_4\},\{y_5,y_6\}$ the order defect is
+$0.0858$, smaller but still positive, so the coarse evaluation alone certifies that the order matters.
+
+\paragraph{Summary.} The report separates what changed, what the declared sources and mechanisms
+explain, how precisely, and where they fail:
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+step & behavioral change & attribution & certified residual\\
+\midrule
+add $C_2$ & $\TV=0.18$ at $x_1,x_2$; $0$ at $x_3$ & exact; $\lambda_N=0.3,\,0.2,\,0$ & none\\
+edit & $\TV=0.172$ at $x_1$; leak $0.043$ at $x_2$ & locality fails at $x_2$ & $0.20$ ($x_1$), $0.05$ ($x_2$)\\
+RLHF & tilt, $K^*=4$ & reachable at all probes & none\\
+RLHF, drifted & $K^*=10$ at $x_2$ & not reachable at $x_2$ & $0.19$ ($x_2$)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=====================================================================
+\section{The glue: 1-cells, 2-cells and assembly}\label{sec:glue}
+%=====================================================================
+
+The previous sections work probe by probe and compare interventions by numbers. This section
+supplies the structure that connects local states: \emph{1-cells} that transport states and their
+attribution data, \emph{2-cells} that witness how far two 1-cells differ, and \emph{assembly}, which
+asks whether local states over several contexts come from one global state. We state exactly which
+laws hold strictly, which hold only as inequalities, and which fail. Every claim below is checked in
+\texttt{check\_glue.py} (\cref{sec:code}).
+
+\subsection{Kernel 1-cells}\label{sec:onecells}
+
+\begin{definition}[Kernel 1-cells]\label{def:onecell}
+Objects are finite outcome sets. A \emph{1-cell} $k\colon B\rightsquigarrow B'$ is a Markov kernel
+$k\colon B\to\D(B')$. It acts on states by Kleisli extension,
+$k^\#(p)(b')=\sum_bp(b)\,k(b)(b')$, and on second-order states by $\D(k^\#)$. 1-cells compose by
+$(h\circ k)(b)=h^\#(k(b))$, with identities the point masses $\eta_B$.
+\end{definition}
+
+Coarsenings, restrictions of a joint outcome to some of its coordinates, noise channels and
+mixings $p\mapsto(1-a)p+a\,t$ (the kernel $b\mapsto(1-a)\delta_b+a\,t$) are 1-cells. Tilts are not:
+$T_w$ is not affine in $p$, because of the normalization. They are Bayesian updates by the predicate
+$w/K$ in the sense of \cite{JacobsZanasi2016}, and they live in the Lipschitz layer of
+\cref{sec:composition}, not in the Kleisli category.
+
+\begin{proposition}[Properties of 1-cells]\label{prop:onecell}
+For 1-cells $k\colon B\rightsquigarrow B'$ and $h\colon B'\rightsquigarrow B''$:
+\begin{enumerate}[label=(\roman*)]
+\item $k^\#$ is affine;
+\item $(h\circ k)^\#=h^\#k^\#$ and $\eta_B^\#=\mathrm{id}$;
+\item $k^\#\circ\mu=\mu\circ\D(k^\#)$ on second-order states, where $\mu$ is flattening;
+\item $\TV(k^\#p,k^\#q)\le\TV(p,q)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i)--(iii) are the Kleisli-category laws of $\D$, and (iii) says that $k^\#$ is a morphism of
+free $\D$-algebras. (iv) is the data-processing inequality.
+\end{proof}
+
+\begin{proposition}[Attribution is transported along 1-cells]\label{prop:transport}
+Let $k\colon B\rightsquigarrow B'$. Transport each exact source $A_i$ to $k^\#A_i$ and each support
+$S_i$ to $k(S_i)=\bigcup_{b\in S_i}\supp k(b)$. A decomposition $(s_i)$ of $p$ with weights $\lambda$
+maps to the decomposition $(k_*s_i)$ of $k^\#p$ with the same weights. Hence
+\[
+\mu_{\min}(k^\#p)\le\mu_{\min}(p),
+\]
+and for every budget, each weight interval at $k^\#p$ contains the corresponding interval at $p$:
+precision can only be lost along a 1-cell.
+\end{proposition}
+\begin{proof}
+Pushforward $k_*$ is linear and monotone on nonnegative measures and preserves mass, so
+$\sum_ik_*s_i\le k^\#p$, $k_*(\lambda_iA_i)=\lambda_ik^\#A_i$ and $\supp k_*s_i\subseteq k(S_i)$.
+Images of decompositions are decompositions with the same weights, which gives both claims.
+\end{proof}
+
+\begin{remark}[Attribution as a fibre]
+With exact sources and no unmodeled part, the sources form a 1-cell $a\colon I\rightsquigarrow B$,
+$i\mapsto A_i$, from the index set of sources, and the attribution set is the fibre
+$(a^\#)^{-1}(p)\subseteq\D(I)$. Precision is the size of this fibre, and \cref{prop:transport} is the
+inclusion $(a^\#)^{-1}(p)\subseteq((k\circ a)^\#)^{-1}(k^\#p)$, which follows from
+$(k\circ a)^\#=k^\#a^\#$. In the demo, coarsening the six outcomes of $x_1$ into three classes lowers
+$\mu_{\min}$ at stage 3 from $0.20$ to $0.029$ and widens the weight intervals at budget $0.25$ from
+$(0.05,0.125,0.10)$ to $(0.31,0.62,0.31)$.
+\end{remark}
+
+\subsection{Coupling 2-cells and their metric shadow}\label{sec:twocells}
+
+\begin{definition}[Coupling 2-cells]\label{def:twocell}
+Let $f,g\colon X\rightsquigarrow Y$ be 1-cells. A \emph{coupling 2-cell} $\alpha\colon f\Rightarrow g$
+is a kernel $\alpha\colon X\to\D(Y\times Y)$ such that $\alpha(x)$ has first marginal $f(x)$ and second
+marginal $g(x)$ for every $x$. Its \emph{cost} is
+$c(\alpha)=\max_x\Pr_{\alpha(x)}(y\ne y')$. The identity on $f$ is the diagonal coupling
+$\Delta_f(x)=\sum_yf(x)(y)\,\delta_{(y,y)}$. The \emph{vertical composite} of $\alpha\colon f\Rightarrow g$
+and $\beta\colon g\Rightarrow h$ glues along the common marginal and then forgets it:
+\[
+(\beta\cdot\alpha)(x)(y,y'')=\sum_{y'\colon g(x)(y')>0}\frac{\alpha(x)(y,y')\,\beta(x)(y',y'')}{g(x)(y')}.
+\]
+\end{definition}
+
+A coupling is a witness: it pairs the outputs of $f$ and $g$ and shows on which outputs they
+disagree. The gluing formula is the gluing lemma for couplings \cite[Ch.~1]{Villani2009}.
+
+\begin{theorem}[The witness layer]\label{thm:witness}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item For fixed $X,Y$, 1-cells $X\rightsquigarrow Y$ and coupling 2-cells form a category: vertical
+  composition has the right marginals, is associative, and the diagonal couplings are identities.
+\item Cost is subadditive, $c(\beta\cdot\alpha)\le c(\alpha)+c(\beta)$, and $c(\Delta_f)=0$.
+\item $\min_\alpha c(\alpha)=d(f,g):=\max_x\TV(f(x),g(x))$, attained by the maximal coupling at each
+  $x$ \cite{Lindvall1992}.
+\item Whiskering by a deterministic map $u\colon W\to X$, $\alpha\mapsto\alpha\circ u$, is strictly
+  functorial.
+\item Whiskering by a stochastic 1-cell $u\colon W\rightsquigarrow X$ (mixing the couplings) and
+  whiskering by a 1-cell $h\colon Y\rightsquigarrow Z$ (copying $h$ on equal pairs and running it
+  independently on unequal pairs) preserve identities and marginals and do not increase cost, but
+  neither is functorial for vertical composition, even when $h$ is deterministic.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) Fix $x$ and drop it from the notation. For $\gamma\colon h\Rightarrow k$, both bracketings of the
+triple composite equal
+$\sum_{y',y''}\alpha(y,y')\beta(y',y'')\gamma(y'',y''')/(g(y')h(y''))$, the sum running over the
+supports of $g$ and $h$. Marginals: summing over $y''$
+gives $\sum_{y'}\alpha(y,y')=f(x)(y)$, and symmetrically. For the identity,
+$(\alpha\cdot\Delta_f)(y,y'')=f(y)\,\alpha(y,y'')/f(y)$. (ii) In the glued triple, $y\ne y''$
+implies $y\ne y'$ or $y'\ne y''$. (iii) This is the coupling characterization of total variation.
+(iv) Both sides evaluate the same couplings at $u(w)$. (v) Take $X=\{x_0,x_1\}$, $Y=\{0,1\}$,
+all three 1-cells constant and uniform, and $\alpha=\beta$ equal to the diagonal at $x_0$ and to the swap coupling at $x_1$.
+Then $\beta\cdot\alpha$ is the diagonal at both points, and mixing it with weights
+$(\tfrac12,\tfrac12)$ gives cost $0$, whereas mixing first gives the independent coupling at each
+step, whose composite has cost $\tfrac12$. For postcomposition, let $h$ forget its input,
+$h(y)=\nu$ uniform: since $\mathrm{swap}\cdot\mathrm{swap}=\Delta$, the whiskered composite has cost $0$,
+while the composite of the whiskered swaps (each the independent coupling of $\nu$ with itself) has
+cost $\tfrac12$. A deterministic $h$ merging two of three outcomes also fails; the script exhibits an
+instance. The remaining claims are direct.
+\end{proof}
+
+So the witness layer has genuine hom-categories, whose composition is gluing, but the natural
+whiskerings are not functorial, and therefore it is not a 2-category or a bicategory with these
+operations. What survives is the inequality between costs, and that is exactly what the next result
+packages strictly.
+
+\begin{definition}[Graded 2-cells]\label{def:graded}
+For 1-cells $f,g\colon X\rightsquigarrow Y$, a \emph{graded 2-cell} $f\Rightarrow_\varepsilon g$ is a
+number $\varepsilon\ge d(f,g)$. Vertical composition adds grades, the identity on $f$ has grade $0$,
+and the horizontal composite of $f\Rightarrow_\varepsilon g$ (with $f,g\colon X\rightsquigarrow Y$) and
+$h\Rightarrow_\delta h'$ (with $h,h'\colon Y\rightsquigarrow Z$) is $hf\Rightarrow_{\delta+\varepsilon}h'g$.
+\end{definition}
+
+\begin{theorem}[The graded shadow is a strict 2-category]\label{thm:shadow}
+Finite sets, kernel 1-cells and graded 2-cells form a strict 2-category. Every coupling 2-cell
+$\alpha\colon f\Rightarrow g$ defines the graded 2-cell $f\Rightarrow_{c(\alpha)}g$; identities go to
+identities, and vertical composites go to grades no larger than the sum. The hom-pseudometric $d$
+makes kernel 1-cells a category enriched in Lawvere metric spaces.
+\end{theorem}
+\begin{proof}
+Validity of the composites: vertical by the triangle inequality, horizontal by
+\[
+d(hf,h'g)\le d(hf,h'f)+d(h'f,h'g)\le d(h,h')+d(f,g),
+\]
+using convexity of total variation for the first term and \cref{prop:onecell}(iv) for the second.
+Since grades compose by addition in a commutative monoid, associativity, unit laws, functoriality of
+horizontal composition and the interchange law
+$(\delta'+\delta)+(\varepsilon'+\varepsilon)=(\delta'+\varepsilon')+(\delta+\varepsilon)$ all hold.
+The statements about couplings are \cref{thm:witness}(ii),(iii).
+\end{proof}
+
+\begin{remark}[Why tilts break the strict shadow]
+For an $L$-Lipschitz map $h'$ the horizontal grade becomes $\delta+L_{h'}\varepsilon$
+(\cref{thm:composition}(ii)). Interchange then compares $L_{h''}(\varepsilon+\varepsilon')$ with
+$L_{h''}\varepsilon'+L_{h'}\varepsilon$, which agree only if $L_{h'}=L_{h''}$. This is the 2-categorical
+reading of \cref{cor:enriched}: the strict structure holds for non-expansive maps, and tilts enter
+with Lipschitz weights.
+\end{remark}
+
+\subsection{Assembly: gluing local states}\label{sec:assembly}
+
+\begin{definition}[Contexts and global sections \cite{AbramskyBrandenburger2011}]\label{def:contexts}
+Let $V$ be a finite set of observables with outcome sets $O_v$, and let $\mathcal C$ be a cover of $V$
+by \emph{contexts}. For $C'\subseteq C$ the restriction $r^C_{C'}\colon O^C\to O^{C'}$ is a
+deterministic 1-cell. An \emph{empirical model} is a family $e=(e_C\in\D(O^C))_{C\in\mathcal C}$; it is
+\emph{compatible} if $e_C$ and $e_{C'}$ restrict to the same distribution on $C\cap C'$. A
+\emph{global section} is $g\in\D(O^V)$ with $(r^V_C)^\#g=e_C$ for every $C$.
+\end{definition}
+
+In provenance terms, an observable is a probe, and a context is a set of probes whose outputs are
+recorded jointly, for instance several questions answered in one conversation, or one evaluation
+item scored on several criteria. Per-probe evaluation is the case of singleton contexts, in which
+every family glues. We call gluing along restriction 1-cells \emph{1-cell gluing}; it is an exact
+condition. \emph{2-cell gluing} is gluing of witnesses, and assembly up to a graded 2-cell.
+
+\begin{proposition}[Two contexts: 1-cell gluing is 2-cell composition]\label{prop:twoctx}
+Let $C_1,C_2$ be contexts with $I=C_1\cap C_2$, and let $e_1,e_2$ be compatible with common
+restriction $e_I$. Then
+\[
+g(a,i,c)=\frac{e_1(a,i)\,e_2(i,c)}{e_I(i)}\qquad(a\in O^{C_1\setminus I},\ i\in O^I,\ c\in O^{C_2\setminus I})
+\]
+(read as $0$ when $e_I(i)=0$) is a global section. Regarding $e_1$ as a coupling of its $C_1\setminus I$ marginal with $e_I$, and
+$e_2$ as a coupling of $e_I$ with its $C_2\setminus I$ marginal, the marginal of $g$ that forgets $I$
+is the vertical composite $e_2\cdot e_1$ of \cref{def:twocell}.
+\end{proposition}
+\begin{proof}
+Summing $g$ over $c$ gives $e_1$, and over $a$ gives $e_2$. Forgetting $i$ gives the gluing formula of
+\cref{def:twocell}.
+\end{proof}
+
+For more than two contexts, compatibility is not enough: a classical theorem of Vorob'ev states that
+every compatible family over a cover extends to a global section precisely when the cover is
+acyclic, in the sense that its contexts can be ordered so that each one meets the union of its
+predecessors inside a single predecessor \cite{Vorobev1962}. The four contexts of the
+Clauser--Horne--Shimony--Holt (CHSH) scenario form a cycle, and the Popescu--Rohrlich (PR) box is
+compatible on every overlap without having a global section (\cref{sec:code}). The next theorem measures
+the failure with the machinery of \cref{sec:attribution}.
+
+\begin{theorem}[Contextual fraction is minimal unmodeled weight]\label{thm:cf}
+Let $e$ be a compatible empirical model with $m=\lvert\mathcal C\rvert$ contexts. Put
+$p_e=\tfrac1m(e_C)_{C\in\mathcal C}$, a distribution on the disjoint union $\bigsqcup_CO^C$, and, for each
+deterministic global assignment $s\in O^V$, declare the exact source
+$A_s=\tfrac1m(\delta_{s|_C})_{C\in\mathcal C}$. Then
+\[
+\mu_{\min}(p_e)=\mathrm{CF}(e),
+\]
+the contextual fraction of Abramsky, Barbosa and Mansfield \cite{ABM2017}. In particular $e$ has a
+global section if and only if $\mu_{\min}(p_e)=0$, and a certificate $y$ of \cref{thm:attset}(iv) is
+an inequality $\langle y,A_s\rangle\ge1$ satisfied by every global assignment and violated by $e$
+whenever $\langle y,p_e\rangle<1$.
+\end{theorem}
+\begin{proof}
+Mixtures $\sum_s\lambda_sA_s$ with $\sum_s\lambda_s=1$ are exactly the vectors $p_g$ of the restriction
+families of global distributions $g=\sum_s\lambda_s\delta_s$. In a decomposition
+$p_e=\sum_s\lambda_sA_s+\mu U$, every context block of $\sum_s\lambda_sA_s$ has mass
+$(1-\mu)/m$, so every block of $\mu U$ has mass $\mu/m$, and $m$ times each block of $U$ is a distribution $e'_C$; the family $e'$ is
+compatible because $e$ and the restriction family of $g$ are. Thus decompositions are exactly the
+expressions $e=(1-\mu)e^{\mathrm{NC}}+\mu e'$ with $e^{\mathrm{NC}}$ noncontextual, and minimizing $\mu$
+is the linear program defining $\mathrm{CF}$ in \cite{ABM2017}.
+\end{proof}
+
+For the PR box mixed with uniform noise at visibility $v$, the linear program gives
+$\mathrm{CF}=\max(0,2v-1)$ at $v\in\{1,\tfrac34,\tfrac12,\tfrac14\}$, with exactly verified
+certificates. The same construction with \emph{declared} sources in place of deterministic
+assignments asks a provenance question.
+
+\begin{example}[Prompt-independent attribution]\label{ex:global-attr}
+At stage 2 of \cref{sec:demo}, the corpus weights are identified exactly at each probe, with
+$\mu_{\min}=0$ probe by probe, but they differ across probes. Declaring the sources $A_1,A_2,N$
+on all probes jointly and asking for one weight vector, as in \cref{thm:cf}, gives
+$\mu_{\min}=\tfrac1{10}$ on $\{x_1,x_2\}$ and $\tfrac3{10}$ on $\{x_1,x_2,x_3\}$, both certified exactly.
+So no prompt-independent mixture of the declared corpora explains the joint behaviour, and $\tfrac3{10}$
+is the least mass that any such explanation leaves unexplained. The local answers glue only if the
+explanation is allowed to depend on the prompt.
+\end{example}
+
+\begin{definition}[Approximate gluing]\label{def:epsstar}
+For any empirical model $e$, compatible or not,
+\[
+\varepsilon^*(e)=\min_{g\in\D(O^V)}\ \max_{C\in\mathcal C}\TV\big((r^V_C)^\#g,\ e_C\big).
+\]
+A minimizer is a global state that agrees with every context up to the graded 2-cell of grade
+$\varepsilon^*$.
+\end{definition}
+
+\begin{proposition}[Bounds for approximate gluing]\label{prop:epsstar}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item $\varepsilon^*(e)$ is the value of a linear program, and it is attained.
+\item $\varepsilon^*(e)\ge\tfrac12\max_{C,C'}\TV\big(e_C|_{C\cap C'},\,e_{C'}|_{C\cap C'}\big)$.
+\item If $e$ is compatible, $\varepsilon^*(e)\le\mathrm{CF}(e)$, and $\varepsilon^*(e)=0$ if and only if
+  $e$ has a global section.
+\item For the PR box, $\varepsilon^*=\tfrac14$, whereas $\mathrm{CF}=1$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) Introduce slack variables for the absolute values. (ii) For any $g$, by the triangle inequality and
+data processing,
+$\TV(e_C|_I,e_{C'}|_I)\le\TV(e_C,g|_C)+\TV(g|_{C'},e_{C'})\le2\max_C\TV(g|_C,e_C)$.
+(iii) Write $e=(1-\kappa)e^{\mathrm{NC}}+\kappa e'$ with $\kappa=\mathrm{CF}(e)$ and let $g$ be a global
+section of $e^{\mathrm{NC}}$. Then $\TV(g|_C,e_C)=\kappa\,\TV(e^{\mathrm{NC}}_C,e'_C)\le\kappa$. The
+equivalence follows since $\varepsilon^*=0$ means that a global section exists.
+(iv) The PR box in context $(i,j)$ is uniform on the outcomes with $o_1\oplus o_2=ij$. Every deterministic
+assignment violates this parity in an odd number of the four contexts, since the four left-hand
+sides sum to $0$ and the right-hand sides to $1$ modulo $2$. Hence for any $g$ the expected number of
+violated contexts is at least $1$, some context is violated with probability at least $\tfrac14$, and
+$\TV(g|_C,e_C)$ is at least that probability. The uniform distribution on the eight assignments with
+exactly one violation attains $\tfrac14$ in every context.
+\end{proof}
+
+For the noisy PR family the linear program gives $\varepsilon^*=\tfrac14\mathrm{CF}$ at $v=\tfrac34$ and
+$v=\tfrac9{10}$, so the bound in (iii) can be loose by a factor of four. For the parity horns of the coupling nerve,
+$\varepsilon^*=\tfrac16,\tfrac3{16},0.225,0.25$ for $n=3,4,5,6$, against $\mathrm{CF}=1-2^{2-n}$
+\cite[\S13.1]{Awasthi-Family}. The two numbers answer
+different questions. $\mathrm{CF}$ is the weight that must be attributed to something outside every
+global explanation, while $\varepsilon^*$ is how far the best single global state is from the worst
+context.
+
+\paragraph{Gluing at level 2.} The tower's second level carries uncertainty about output
+distributions, for instance a posterior over a model's predictive distribution. Gluing there is
+finer than gluing the flattened states.
+
+\begin{proposition}[Two-context gluing at level 2]\label{prop:level2}
+Let $P_1\in\D^2(O^{C_1})$ and $P_2\in\D^2(O^{C_2})$ have finite support and the same image
+$Q=\D((r_I)^\#)P_1=\D((r_I)^\#)P_2$ on the overlap $I$. Define
+\[
+G=\sum_q Q(q)\sum_{p_1,p_2}P_1(p_1\mid q)\,P_2(p_2\mid q)\;\delta_{p_1\otimes_qp_2},
+\]
+where $p_1\otimes_qp_2$ is the gluing of \cref{prop:twoctx}. Then $G$ restricts to $P_1$ and to $P_2$,
+and its flattening $\mu G$ is a global section of the pair $(\mu P_1,\mu P_2)$. In general
+$\mu G\ne\mu P_1\otimes\mu P_2$: the level-2 gluing keeps a correlation between the contexts that runs
+through the uncertainty about the overlap.
+\end{proposition}
+\begin{proof}
+Each $p_1\otimes_qp_2$ restricts to $p_1$ and $p_2$ by \cref{prop:twoctx}, and $G$ is the gluing of
+$P_1$ and $P_2$ along $Q$, so its restrictions are $P_1$ and $P_2$. For the flattening,
+$(r_{C_1})^\#\mu G=\mu\,\D((r_{C_1})^\#)G=\mu P_1$ by \cref{prop:onecell}(iii). The script gives an
+instance in which $\TV(\mu G,\mu P_1\otimes\mu P_2)=0.015$.
+\end{proof}
+
+%=====================================================================
+\section{Architecture: how the pieces fit, and why}\label{sec:architecture}
+%=====================================================================
+
+\subsection{The layers}
+
+\begin{center}\small
+\begin{tabular}{@{}R{0.13\textwidth}R{0.24\textwidth}R{0.37\textwidth}R{0.17\textwidth}@{}}
+\toprule
+Layer & Cells & Structure and status & Where\\
+\midrule
+Ambient & finite sets, $\D$ & probability monad; mixing is its algebra structure & \cite{Awasthi-Tower}\\
+Local & per base $B$: context comonad, mixed law, admissibility & comonad with a strict mixed
+distributive law; obstruction tower & \cite[\S\S9--10]{Awasthi-Tower}\\
+1-cells & kernels $k\colon B\rightsquigarrow B'$ & Kleisli category; affine, compatible with flattening,
+non-expansive; transports attribution & \cref{prop:onecell,prop:transport}\\
+2-cells (witness) & couplings & hom-categories by gluing (strict); whiskering not functorial, but a
+two-component $A_\infty$-functor up to coherent homotopy & \cref{thm:witness}; \cite[Thm.~5.2]{Awasthi-Conditionals}\\
+2-cells (shadow) & grades $\varepsilon\ge d(f,g)$ & strict 2-category; Lawvere-enriched; Lipschitz
+weights for tilts & \cref{thm:shadow,thm:composition}\\
+Assembly & compatible families, global sections & exact for two contexts and acyclic covers;
+$\mathrm{CF}=\mu_{\min}$; approximate gluing $\varepsilon^*$; level-2 gluing &
+\cref{prop:twoctx,thm:cf,prop:epsstar,prop:level2}\\
+Nerve & couplings of all arities & simplicial object $\D(Y^{\bullet+1})$: 2-horns fill, higher horns are obstructed
+by $\mathrm{CF}$ & \cite[\S4]{Awasthi-Conditionals}\\
+Geometry & simplex as moment polytope; coupling polytopes & Fisher metric is round under $\sqrt p$; observation forgets
+Lagrangian phases; nondegenerate coupling polytopes are Delzant & \cref{prop:geometry}; \cite[\S6]{Awasthi-Conditionals}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Why each layer is needed.} The monad is needed because attribution \emph{is} mixture
+decomposition: a decomposition is a preimage under the algebra structure of $\D$. The local comonad
+is needed because what counts as an admissible belief depends on context, which is the subject of
+\cite{Awasthi-Tower}. 1-cells are needed because every stage of a model's history (coarsening an
+evaluation, restricting to a context, mixing in data) must carry attribution data from one state to
+the next, and \cref{prop:transport} says this transport never manufactures precision. 2-cells are
+needed because ``these two paths differ by $0.0985$'' (\cref{sec:demo}) is a claim about a pair of
+1-cells. The shadow composes such claims strictly, and a witness shows \emph{where} the paths
+disagree, as a joint distribution of their outputs. Assembly is needed because real evaluations
+record several probes jointly, and \cref{ex:global-attr} shows that exact local attributions need not
+come from any single global explanation. The geometry is needed for the metric, and it is where a
+Fukaya-type structure would enter.
+
+\paragraph{What is categorical here.} A reader may ask why a paper about 2-categorical glue spends
+most of its pages on polytopes and linear programs. The answer is that the linear programs
+\emph{compute} categorical objects:
+\begin{itemize}[leftmargin=*]
+\item an attribution set is a fibre of the Kleisli extension of a 1-cell (the remark after
+  \cref{prop:transport});
+\item the minimal unmodeled weight of a multi-context state is the failure of the sheaf condition
+  (\cref{thm:cf});
+\item a reach set is the image of a family of maps of observable states, which for tilts are
+  Bayesian predicate updates \cite{JacobsZanasi2016};
+\item comparisons are the hom-metric of a Lawvere-enriched category and the grades of a strict
+  2-category (\cref{thm:shadow});
+\item witnesses are couplings, and their composition is the gluing lemma (\cref{thm:witness}).
+\end{itemize}
+Category theory fixes what the objects are and how they compose. Convex geometry and duality are how
+one computes them on a finite probe set, with certificates. Neither replaces the other.
+
+\paragraph{What is strict and what is not.} Kernels form a strict category, the witness
+hom-categories are strict, and the graded shadow is a strict 2-category. The witness layer with its
+natural whiskerings is not a 2-category: functoriality fails, with explicit counterexamples, and only
+the cost inequality survives. Up to coherent homotopy the failure is organized: in the square-zero cone of the
+circulations, whiskering is an $A_\infty$-functor with exactly two components, the second being the whiskering defect
+\cite[Thm.~5.2]{Awasthi-Conditionals}. No action of a stochastic kernel on couplings is both strictly unital and strictly
+compatible with composing kernels \cite[Thm.~10.2]{Awasthi-Conditionals}. Tilts are not kernels, and with them the shadow keeps its composition
+rule but loses strict interchange. Exact gluing holds for two contexts and for acyclic covers, and
+fails on cycles, where $\mathrm{CF}$ and $\varepsilon^*$ measure the failure.
+
+\subsection{Geometry and the Fukaya programme}\label{sec:fukaya}
+
+\begin{proposition}[The simplex as a moment polytope]\label{prop:geometry}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item The map $p\mapsto\sqrt p$ pulls the round metric of the unit sphere back to one quarter of the
+  Fisher metric: $\sum_bv_b^2/p_b=4\sum_b\big(v_b/(2\sqrt{p_b})\big)^2$. Consequently, the Fisher--Rao
+  distance is $2\arccos\sum_b\sqrt{p_bq_b}$ \cite{Wootters1981,AmariNagaoka2000}.
+\item The map $[\psi]\mapsto(\lvert\psi_b\rvert^2/\lVert\psi\rVert^2)_b$ is the moment map of the
+  standard torus action on $\mathbb{CP}^{n-1}$ with the Fubini--Study form, and its image is the
+  simplex $\D(B)$ with $\lvert B\rvert=n$. The fibre over an interior $p$ is a Lagrangian torus
+  $T^{n-1}$, the set of amplitudes with $\lvert\psi_b\rvert^2=p_b$, which differ only in their phases.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is a direct computation; the distance follows because $\sqrt p$ lies on the unit sphere, where
+the geodesic distance is $\arccos\langle\sqrt p,\sqrt q\rangle$. (ii) is standard toric geometry
+\cite{Delzant1988}. Isotropy of the fibre is checked in \texttt{check\_glue.py} in an affine chart of
+$\mathbb{CP}^2$: the Fubini--Study form vanishes on pairs of phase-rotation vectors.
+\end{proof}
+
+So an output distribution is a point of a moment polytope, and the information that observation
+discards (the phases of an amplitude realizing it) is a Lagrangian torus. This is the precise
+sense in which symplectic geometry sits under the simplex. It is a geometric fact about the ambient
+space, and nothing in this paper depends on it.
+
+\paragraph{What the Fukaya category of $\mathbb{CP}^{n-1}$ sees.} The objects of a Fukaya category are
+Lagrangians with brane data, its morphisms are Floer cochains, and its compositions count holomorphic
+polygons, so that composition is defined by gluing and is associative only up to coherent higher
+homotopies. For the torus fibres of $\mathbb{CP}^{n-1}$ the answer is sharp. A fibre with a flat
+$U(1)$ connection has nonvanishing Floer cohomology exactly when it lies over a critical point of
+the disc potential \cite{ChoOh2006,FOOO2010}. For $\mathbb{CP}^{n-1}$ the only such fibre is the
+Clifford torus over the barycentre, whose Floer cohomology Cho computed \cite{Cho2004}. In statistical terms, only
+the uniform distribution gives a nonzero object. We know of no statistical meaning for this fact, and
+we conclude that the ambient $\mathbb{CP}^{n-1}$ is not the right symplectic manifold for attribution. The companion theory
+\cite{Awasthi-Conditionals} replaces it by the toric manifolds whose moment polytopes are the coupling polytopes of
+\cref{sec:twocells}, the spaces of witnesses. There the answer differs. The fibre over the product coupling is
+Floer-trivial for generic margins, which is proved; at the sampled points the Floer-nontrivial fibres lie over the
+leximin coupling, which is computed \cite[Prop.~10.11, \S10.4]{Awasthi-Conditionals}.
+
+\paragraph{Necessary conditions for a genuine connection.} We state the programme as conditions that
+any construction would have to meet. This paper does not prove any of them; the status of each, as decided elsewhere, is noted after it.
+\begin{enumerate}[label=(F\arabic*),leftmargin=*]
+\item \emph{A manifold built from the data.} Attribution sets and bounded-reward reach sets are
+  polytopes (\cref{thm:attset,thm:tilt-polytope}), with rational facet normals when the data are
+  rational. A compact polytope is the moment image of a compact toric symplectic manifold if and only if
+  it is Delzant \cite{Delzant1988}, and of a toric orbifold if and only if it is simple and rational
+  \cite{LermanTolman1997}. When the condition holds, precision widths become lengths in a moment
+  polytope and torus fibres sit over individual explanations. Attribution polytopes need not be
+  simple, so this already restricts the cases covered. \emph{Status:} for witness polytopes, the coupling polytopes
+  $\mathrm{Cpl}(f(x),g(x))$, it holds whenever the margins are nondegenerate, and fails for the uniform $3\times3$ case,
+  which is not simple \cite[Thm.~6.4]{Awasthi-Conditionals}. For attribution polytopes it is open.
+\item \emph{Higher compositions for witnesses.} \Cref{thm:witness}(v) shows that the witness layer
+  composes only up to an inequality. A Fukaya-type structure would need these failures to be organized
+  as higher operations satisfying the $A_\infty$ relations. \emph{Status:} settled in the minimal model. The defects are
+  the second Boolean cumulants of whiskering and form a two-component $A_\infty$-functor into the square-zero cone, also
+  across objects \cite[Thm.~5.2, Thm.~10.2]{Awasthi-Conditionals}. Larger models are open.
+\item \emph{Assembly as composition.} \Cref{prop:twoctx} identifies two-context gluing with
+  vertical composition of witnesses. A geometric realization should send this identification to
+  composition of Lagrangian morphisms, and send the obstruction measured by $\mathrm{CF}$ and
+  $\varepsilon^*$ on cyclic covers to an obstruction to composition. \emph{Status:} the combinatorial half holds.
+  Two-context gluing is the canonical filler of a 2-horn of the coupling nerve, and cyclic covers give higher horns whose
+  filling is obstructed exactly by $\mathrm{CF}$ \cite[Thm.~4.2, Thm.~4.3]{Awasthi-Conditionals}. The Lagrangian half is
+  a conjecture \cite[Conj.~9.5]{Awasthi-Conditionals}, with a computed probe in \cite[\S10.4]{Awasthi-Conditionals}.
+\end{enumerate}
+
+\paragraph{Why pursue it.} The two features that distinguish the witness layer from a plain metric,
+composition by gluing and laws that hold only up to controlled error, are also the defining features of
+Fukaya categories. That is an analogy, not a theorem. Its value is that (F1)--(F3) are checkable: each is
+a finite statement about specific polytopes, couplings and covers, and parts of (F1)--(F3) have now been checked.
+
+%=====================================================================
+\section{Relation to prior work}\label{sec:related}
+%=====================================================================
+
+Most individual ingredients of this paper are known; the contribution is their combination into a
+calculus for model provenance whose reported object is a set of explanations together with its width
+and a certificate. We state the relation area by area and then summarize.
+
+\paragraph{Mixture proportion estimation and contaminated data.} Mixture proportion estimation studies
+$F=(1-\kappa)G+\kappa H$ with $H$ known and $G$ unknown; the maximal proportion
+$\kappa^*(F|H)=\operatorname{ess\,inf}f/h$ is identified, and $\kappa$ itself is identified under
+irreducibility \cite{Blanchard2010,Scott2015}, with extensions beyond irreducibility \cite{Zhu2023}.
+Several known components plus one unknown appear in class-proportion estimation with anomaly rejection
+\cite{SandersonScott2014}, in open-set label shift, where identifiability needs positivity or
+separability conditions \cite{Garg2022}, and in mutual contamination models \cite{BlanchardScott2014}.
+In econometrics, Horowitz and Manski derive sharp bounds under contaminated sampling with a known
+bound on the error probability \cite{HorowitzManski1995}, within the program of partial
+identification \cite{Manski2003}. Our minimal unmodeled weight is the finite-outcome complement of
+$\kappa^*$ (\cref{rem:mpe}), and our budget is the Horowitz--Manski error bound. These works estimate
+proportions from samples under identifying assumptions. We instead treat output distributions as
+known, characterize the \emph{whole} set of decompositions whether or not it is identified, allow
+sources known exactly and sources known only by their supports in the same model, report sharp
+intervals for every weight and every observation-level attribution, and attach exact certificates.
+
+\paragraph{Imprecise probability.} Attribution sets are credal sets of decompositions in the sense of
+imprecise probability \cite{Walley1991}; for sources known by their supports, the weight intervals are
+belief and plausibility of Dempster--Shafer theory \cite{Dempster1967,Shafer1976}
+(\cite[Prop.~5.8]{Awasthi-Tower}). The density ratio classes of robust Bayesian analysis
+\cite{DeRobertisHartigan1981} are exactly the reach sets of bounded-reward RLHF (\cref{rem:drc}). What
+is new here is the precision ladder that separates structural, informational and unmodeled
+imprecision (\cref{thm:ladder}), and the fact that slack in the unmodeled budget always costs precision
+(\cref{prop:slack}).
+
+\paragraph{RLHF.} The Gibbs form of the optimum of KL-regularized reinforcement learning is known
+\cite{Korbak2022,Rafailov2023}; we use it. The new point is a membership test for the resulting class of
+changes and a certified residual when a change falls outside it (\cref{thm:tilt-polytope,thm:change}).
+
+\paragraph{Training-data attribution.} Influence functions \cite{KohLiang2017}, datamodels
+\cite{Ilyas2022} and TRAK \cite{Park2023} estimate how individual training examples affect predictions,
+approximating counterfactual retraining. They answer a different question. We take sources as given,
+for instance reference models trained on each corpus, and certify what observed output distributions
+do and do not determine about them. The two are complementary: data-attribution estimates can be used
+to construct declared sources.
+
+\paragraph{Model editing, diffing and composition.} Locality or specificity of weight edits is measured
+as an evaluation metric \cite{Meng2022}, and edits are known to have ripple effects beyond their
+intended scope \cite{Cohen2024}. Here a locality claim is a mechanism class, and its violation comes
+with a certified residual (\cref{ex:classes}, \cref{thm:change}). Crosscoder-based model diffing compares
+the internal features of a base and a fine-tuned model \cite{Minder2025}; our comparisons are
+behavioral, at the probe outputs. Task arithmetic composes interventions as vectors in weight space
+\cite{Ilharco2023}; the order defect measures whether composition commutes in the outputs.
+
+\paragraph{Metric semantics.} Categories enriched in generalized metric spaces go back to Lawvere
+\cite{Lawvere1973}; behavioral pseudometrics for probabilistic systems \cite{Desharnais2004},
+quantitative algebraic reasoning \cite{MPP2016} and sensitivity type systems \cite{ReedPierce2010} all
+use composition rules with Lipschitz factors. \Cref{thm:composition} is an instance. What is specific
+here is that interventions act on model states and are compared only through a non-faithful
+observation map, which can rule out any Lipschitz constant (\cref{prop:nonfaithful}), and the explicit
+constants for tilts (\cref{prop:lipschitz}).
+
+\paragraph{Contextuality and comonadic simulation.} The relation to contextuality is one of extension,
+not replacement. Abramsky and Brandenburger formulate an empirical model as compatible local probability
+data and characterize contextuality by the existence of a global section
+\cite{AbramskyBrandenburger2011}. Abramsky, Barbosa, Karvonen and Mansfield then gave a comonadic
+treatment of simulations, that is, of morphisms between empirical models \cite{Abramsky2019}. Morphisms
+are therefore not our novelty. Our local object is richer: for each base $B$ it contains the ambient
+probability structure together with a base-dependent context comonad, a mixed distributive law,
+higher-order admissibility data and an obstruction tower \cite{Awasthi-Tower}. The maps considered here
+are meant to transport these whole local structures, and the present paper equips such transport with
+quantitative comparison and path defects. For the global problem, \cref{thm:cf} shows that the
+contextual fraction of Abramsky, Barbosa and Mansfield \cite{ABM2017} is the minimal unmodeled weight of
+\cref{sec:attribution} for a particular choice of sources, namely the deterministic global assignments.
+Declaring reference models as sources instead turns the same linear program into a test for
+prompt-independent attribution (\cref{ex:global-attr}). Abramsky and Brandenburger work with sections
+and do not use 2-cells. Here two-context gluing is identified with vertical composition of coupling
+2-cells (\cref{prop:twoctx}), approximate assembly is graded by the shadow (\cref{prop:epsstar}), and
+gluing is carried out at the second level of the tower (\cref{prop:level2}). The extension criterion for
+acyclic covers is Vorob'ev's \cite{Vorobev1962}.
+
+\paragraph{Couplings, information geometry and toric geometry.} The gluing lemma and the coupling
+characterization of total variation are standard \cite{Villani2009,Lindvall1992}. Our use of them is
+to organize witnesses of comparisons into hom-categories and to show where functoriality fails
+(\cref{thm:witness}). Bayesian updating as predicate transformation is due to Jacobs and Zanasi
+\cite{JacobsZanasi2016}. The square-root embedding and the Fisher--Rao distance are classical
+\cite{Wootters1981,AmariNagaoka2000}, and the moment map of $\mathbb{CP}^{n-1}$, Delzant's theorem and
+the Floer theory of toric fibres are standard \cite{Delzant1988,LermanTolman1997,Cho2004,ChoOh2006,FOOO2010}.
+Nothing in \cref{sec:fukaya} is a new theorem. What is new there is the list of conditions
+(F1)--(F3) that a Fukaya-type realization of attribution would have to satisfy. The companion theory
+\cite{Awasthi-Conditionals}, with computations in \cite{Awasthi-Family}, proves (F2) in the square-zero model and (F1) for
+witness polytopes, and reduces (F3) to its Lagrangian half.
+
+\paragraph{Summary.}
+\begin{center}\small
+\begin{tabular}{@{}p{0.2\textwidth}p{0.33\textwidth}p{0.39\textwidth}@{}}
+\toprule
+Result & Closest prior work & What is new here\\
+\midrule
+\Cref{thm:attset} & mixture proportion estimation; contaminated-sampling bounds & full polytope of
+decompositions for several exact or support-known sources; sharp weight and observation intervals;
+exact certificates\\
+\Cref{thm:ladder}, \cref{prop:slack} & credal sets; partial identification & monotone ladder of
+structural, informational and unmodeled imprecision; slack costs precision\\
+\Cref{thm:tilt-polytope} & density ratio classes; Gibbs form of RLHF & RLHF reach is a density ratio
+class; implied reward range $\beta\log K^*$\\
+\Cref{thm:change} & LP duality & residual of a change relative to a mechanism class, with
+certificate\\
+\Cref{thm:composition}, \cref{prop:lipschitz,prop:nonfaithful} & behavioral metrics; quantitative
+algebra; sensitivity typing & interventions seen through a non-faithful observation map; constants for
+tilts; no-Lipschitz obstruction\\
+\Cref{prop:transport}, \cref{thm:witness,thm:shadow} & Kleisli categories; gluing lemma; Lawvere
+metrics & attribution transported along 1-cells; witness hom-categories and explicit failures of
+whiskering; strict graded shadow\\
+\Cref{thm:cf}, \cref{ex:global-attr} & contextual fraction \cite{ABM2017} & $\mathrm{CF}=\mu_{\min}$;
+the same program with declared sources tests prompt-independent attribution\\
+\Cref{prop:twoctx,prop:epsstar,prop:level2} & sheaf-theoretic contextuality; Vorob'ev & gluing as
+2-cell composition; bounds for approximate gluing, $\varepsilon^*=\tfrac14$ for the PR box; level-2
+gluing\\
+\Cref{sec:demo} & --- & an end-to-end provenance report with widths and certificates\\
+\bottomrule
+\end{tabular}
+\end{center}
+We do not claim as new the linear-programming and duality machinery, the single-source formula of
+mixture proportion estimation, the Gibbs form of RLHF, density ratio classes, or the Lipschitz
+composition calculus, the gluing lemma, the contextual fraction, or the
+geometry of \cref{prop:geometry}.
+
+%=====================================================================
+\section{Scope and open problems}\label{sec:scope}
+%=====================================================================
+
+\paragraph{Local structure and glue.} In the architecture of \cite{Awasthi-Tower}, the probability monad
+$\D$ is ambient, and each base $B$ carries local structure: a context comonad, a distributive law,
+admissibility data and an obstruction tower. This paper supplies the transport between local
+structures: interventions, mechanism classes and quantitative comparison, and, in \cref{sec:glue},
+kernel 1-cells, coupling 2-cells and assembly. Deterministic base change is a structure-preserving map
+in \cite[Prop.~9.13]{Awasthi-Tower}. Kernel 1-cells act on the first two levels compatibly with
+flattening (\cref{prop:onecell}), and in fact on the full local structure: the context comonad, the mixed law,
+admissibility data and obstructions are transported along kernels, obstructions can only disappear, and certificates
+pull back \cite[Prop.~9.14, Cor.~9.15]{Awasthi-Tower}. The context functor is then a discrete opfibration over the
+Kleisli category \cite[\S3]{Awasthi-Conditionals}.
+
+\paragraph{Structural provenance.} The obstruction tower of \cite[\S10]{Awasthi-Tower} gives a second
+coordinate. For a claim $c$ attached to a model, let $k(c)$ be its first failing level. Along an
+intervention, the pair $(k_{\mathrm{before}},k_{\mathrm{after}})$ records which level of admissibility
+changed. Because failure is monotone up the tower \cite[Thm.~10.5]{Awasthi-Tower}, a transition
+$k:1\to2$ means that a level-one obstruction was removed while a level-two one remains; it does not
+mean that a level-two obstruction was created. We leave the systematic study of such transitions to
+future work.
+
+\paragraph{Open problems.}
+\begin{enumerate}[leftmargin=*]
+\item \emph{Finite-sample precision.} Output distributions are estimated from samples. Replacing $p$ by
+  a confidence region $\mathcal C_\delta$ turns each linear program into a robust program and each width
+  into a statistical width. Two pieces exist: a finite-sample test built from a certificate
+  \cite[Prop.~11.1]{Awasthi-Tower}, and a sample bound for identifying the chamber of a pair of margins
+  \cite[Prop.~12.2]{Awasthi-Conditionals}.
+\item \emph{Weight-level metrics.} Choose a metric on $\cW$ for which real interventions are Lipschitz,
+  so that \cref{thm:composition} applies beyond output-level mechanisms.
+\item \emph{Higher levels.} Lift comparisons to second- and third-order states with the Kantorovich
+  metric \cite{FritzPerrone2019}, and relate them to the obstruction tower. At level two the graded obstruction is a
+  Kantorovich distance, and a claim obstructed there cannot learn \cite[Lemma~52.1, Cor.~52.3]{Awasthi-ThreeLayers}; level
+  three is open.
+\item \emph{Cyclic covers at level 2.} \Cref{prop:level2} glues two contexts at level 2. For cyclic
+  covers, define and compute a level-2 contextual fraction and compare it with the level-1 value of
+  the flattened model.
+\item \emph{A functorial witness layer.} Find whiskerings of coupling 2-cells that are functorial, for
+  example by indexing couplings by pairs of inputs as in relational program logics, or prove that none
+  exist for noisy 1-cells. Up to coherent homotopy this is answered \cite[Thm.~5.2]{Awasthi-Conditionals}. Strictly, the
+  whiskering that keeps diagonal couplings as identities does not compose along stochastic kernels, while the product
+  action that does is not unital \cite[Thm.~10.2]{Awasthi-Conditionals}.
+\item \emph{Fukaya conditions.} Parts are decided (\cref{sec:fukaya}). Decide (F1)--(F3) of \cref{sec:fukaya} for the attribution polytopes
+  that arise in practice.
+\item \emph{Empirical validation.} Run the provenance report on real checkpoints, with declared sources
+  from reference models.
+\end{enumerate}
+
+\appendix
+
+%=====================================================================
+\section{Code and computational checks}\label{sec:code}
+%=====================================================================
+
+The library \texttt{provenance.py} implements attribution sets, widths, residuals and certificates.
+The script \texttt{check\allowbreak\_attribution.py} verifies the following.
+\cref{thm:attset} (nonemptiness criterion, the interval $[\mu_{\min},\bar\mu]$, and exactly verified dual
+certificates); \cref{thm:ladder} (monotone widths along the ladder and in the budget);
+\cref{prop:slack}; \cref{thm:tilt-polytope} in exact arithmetic (every tilt satisfies the inequalities,
+every point satisfying them is reconstructed exactly as a tilt, and mixtures of tilts are tilts);
+\cref{prop:curve}; \cref{thm:change} for the tilt class (exactly verified certificates $(y,\nu)$, and
+zero residual exactly for reachable changes); \cref{prop:lipschitz} (the exact constant for mixing, the
+tilt bound, and an example with amplification $4.0$ for $K=4$); \cref{prop:nonfaithful};
+\cref{thm:composition}(i)--(iii) in exact arithmetic; \cref{prop:coarse}; \cref{prop:reward-ident} (the
+reward interval reproduces the tilt at both endpoints, leaves the range just beyond them, and has
+width $\Delta_r-\beta\log K^*$); the observable reach of the example of \cref{prop:nonfaithful} has two
+points, so \cref{prop:sound} needs set-valued classes; and \cref{cor:enlarge} (the residual relative
+to the enlarged class vanishes for perturbed tilts within $\varepsilon$ and is positive outside). All 24
+checks pass.
+The script \texttt{check\allowbreak\_glue.py} verifies \cref{sec:glue,sec:architecture} in 30 checks.
+\emph{1-cells:} \cref{prop:onecell}(i)--(iv) in exact arithmetic, and \cref{prop:transport} for a
+coarsening and a noisy coarsening of the demo state. \emph{2-cells:} the marginals, associativity and
+identities of \cref{thm:witness}(i) exactly, including couplings with zeros; subadditivity of cost; minimal
+cost equal to total variation by linear programming; strict functoriality for deterministic
+precomposition; the two counterexamples of \cref{thm:witness}(v) and a counterexample for a deterministic
+merging map; the laws of \cref{thm:shadow}. \emph{Assembly:} \cref{prop:twoctx}; \cref{thm:cf} for the
+noisy PR family, with exactly verified certificates; compatibility of the PR box on all overlaps;
+\cref{prop:level2}; \cref{prop:epsstar}(ii)--(iv), with an exact feasible section and the parity lower
+bound for $\varepsilon^*=\tfrac14$; \cref{ex:global-attr}. \emph{Geometry:} \cref{prop:geometry}, the
+Fisher--Rao distance by integrating along a great circle, and isotropy of the torus fibres in
+$\mathbb{CP}^2$. All 30 checks pass.
+The script \texttt{provenance\allowbreak\_demo.py} produces the report of \cref{sec:demo}. Linear programs are solved in
+floating point, and their certificates are rounded to rationals and verified exactly.
+
+%=====================================================================
+\begin{thebibliography}{99}
+
+\bibitem{AbramskyBrandenburger2011}
+S.~Abramsky and A.~Brandenburger.
+\newblock The sheaf-theoretic structure of non-locality and contextuality.
+\newblock \emph{New Journal of Physics}, 13:113036, 2011.
+
+\bibitem{ABM2017}
+S.~Abramsky, R.~S. Barbosa, and S.~Mansfield.
+\newblock Contextual fraction as a measure of contextuality.
+\newblock \emph{Physical Review Letters}, 119:050504, 2017.
+
+\bibitem{Abramsky2019}
+S.~Abramsky, R.~S. Barbosa, M.~Karvonen, and S.~Mansfield.
+\newblock A comonadic view of simulation and quantum resources.
+\newblock In \emph{Proceedings of the 34th Annual ACM/IEEE Symposium on Logic in Computer Science
+  (LICS)}, 2019.
+
+\bibitem{AmariNagaoka2000}
+S.~Amari and H.~Nagaoka.
+\newblock \emph{Methods of Information Geometry}.
+\newblock Translations of Mathematical Monographs 191. American Mathematical Society and Oxford
+University Press, 2000.
+
+\bibitem{Awasthi-Conditionals}
+V.~K. Awasthi.
+\newblock Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
+programme.
+\newblock Technical report, Johns Hopkins University, October 2026. Revised draft 4.
+
+\bibitem{Awasthi-Family}
+V.~K. Awasthi.
+\newblock Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability.
+\newblock Companion paper, Johns Hopkins University, October 2026.
+
+\bibitem{Awasthi-ThreeLayers}
+V.~K. Awasthi.
+\newblock Three layers of realisation: hierarchy recovery, holonomy, information, contextuality and categorical dynamics.
+\newblock Technical report, Johns Hopkins University, September 2026, revised October 2026.
+\newblock DOI: 10.13140/RG.2.2.24274.52163.
+
+\bibitem{Awasthi-Tower}
+V.~K. Awasthi.
+\newblock The three-level posterior tower: hierarchical Bayesian inference and mixed distributive laws.
+\newblock Technical report, Johns Hopkins University, October 2026. Revised version 10.
+\newblock doi:10.13140/RG.2.2.29743.50088 (an earlier version, titled ``\ldots and weak distributive laws'').
+
+\bibitem{Blanchard2010}
+G.~Blanchard, G.~Lee, and C.~Scott.
+\newblock Semi-supervised novelty detection.
+\newblock \emph{Journal of Machine Learning Research}, 11:2973--3009, 2010.
+
+\bibitem{BlanchardScott2014}
+G.~Blanchard and C.~Scott.
+\newblock Decontamination of mutually contaminated models.
+\newblock In \emph{Proceedings of the 17th International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, volume~33 of \emph{PMLR}, 2014.
+
+\bibitem{Cho2004}
+C.-H. Cho.
+\newblock Holomorphic discs, spin structures, and {F}loer cohomology of the {C}lifford torus.
+\newblock \emph{International Mathematics Research Notices}, 2004(35):1803--1843, 2004.
+
+\bibitem{ChoOh2006}
+C.-H. Cho and Y.-G. Oh.
+\newblock Floer cohomology and disc instantons of {L}agrangian torus fibers in {F}ano toric manifolds.
+\newblock \emph{Asian Journal of Mathematics}, 10(4):773--814, 2006.
+
+\bibitem{Cohen2024}
+R.~Cohen, E.~Biran, O.~Yoran, A.~Globerson, and M.~Geva.
+\newblock Evaluating the ripple effects of knowledge editing in language models.
+\newblock \emph{Transactions of the Association for Computational Linguistics}, 12, 2024.
+
+\bibitem{Delzant1988}
+T.~Delzant.
+\newblock Hamiltoniens p\'eriodiques et images convexes de l'application moment.
+\newblock \emph{Bulletin de la Soci\'et\'e Math\'ematique de France}, 116(3):315--339, 1988.
+
+\bibitem{Dempster1967}
+A.~P. Dempster.
+\newblock Upper and lower probabilities induced by a multivalued mapping.
+\newblock \emph{Annals of Mathematical Statistics}, 38(2):325--339, 1967.
+
+\bibitem{DeRobertisHartigan1981}
+L.~DeRobertis and J.~A. Hartigan.
+\newblock Bayesian inference using intervals of measures.
+\newblock \emph{Annals of Statistics}, 9(2):235--244, 1981.
+
+\bibitem{Desharnais2004}
+J.~Desharnais, V.~Gupta, R.~Jagadeesan, and P.~Panangaden.
+\newblock Metrics for labelled {M}arkov processes.
+\newblock \emph{Theoretical Computer Science}, 318(3):323--354, 2004.
+
+\bibitem{FritzPerrone2019}
+T.~Fritz and P.~Perrone.
+\newblock A probability monad as the colimit of spaces of finite samples.
+\newblock \emph{Theory and Applications of Categories}, 34(7):170--220, 2019.
+
+\bibitem{FOOO2010}
+K.~Fukaya, Y.-G. Oh, H.~Ohta, and K.~Ono.
+\newblock Lagrangian {F}loer theory on compact toric manifolds {I}.
+\newblock \emph{Duke Mathematical Journal}, 151(1):23--174, 2010.
+
+\bibitem{Garg2022}
+S.~Garg, S.~Balakrishnan, and Z.~C. Lipton.
+\newblock Domain adaptation under open set label shift.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2022.
+
+\bibitem{HorowitzManski1995}
+J.~L. Horowitz and C.~F. Manski.
+\newblock Identification and robustness with contaminated and corrupted data.
+\newblock \emph{Econometrica}, 63(2):281--302, 1995.
+
+\bibitem{Huber1964}
+P.~J. Huber.
+\newblock Robust estimation of a location parameter.
+\newblock \emph{Annals of Mathematical Statistics}, 35(1):73--101, 1964.
+
+\bibitem{Ilharco2023}
+G.~Ilharco, M.~T. Ribeiro, M.~Wortsman, S.~Gururangan, L.~Schmidt, H.~Hajishirzi, and A.~Farhadi.
+\newblock Editing models with task arithmetic.
+\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2023.
+
+\bibitem{Ilyas2022}
+A.~Ilyas, S.~M. Park, L.~Engstrom, G.~Leclerc, and A.~Madry.
+\newblock Datamodels: predicting predictions from training data.
+\newblock In \emph{Proceedings of the 39th International Conference on Machine Learning (ICML)}, 2022.
+
+\bibitem{JacobsZanasi2016}
+B.~Jacobs and F.~Zanasi.
+\newblock A predicate/state transformer semantics for {B}ayesian learning.
+\newblock \emph{Electronic Notes in Theoretical Computer Science}, 325:185--200, 2016.
+
+\bibitem{KohLiang2017}
+P.~W. Koh and P.~Liang.
+\newblock Understanding black-box predictions via influence functions.
+\newblock In \emph{Proceedings of the 34th International Conference on Machine Learning (ICML)}, 2017.
+
+\bibitem{Korbak2022}
+T.~Korbak, E.~Perez, and C.~L. Buckley.
+\newblock {RL} with {KL} penalties is better viewed as {B}ayesian inference.
+\newblock In \emph{Findings of the Association for Computational Linguistics: EMNLP}, 2022.
+
+\bibitem{Lawvere1973}
+F.~W. Lawvere.
+\newblock Metric spaces, generalized logic, and closed categories.
+\newblock \emph{Rendiconti del Seminario Matematico e Fisico di Milano}, 43:135--166, 1973.
+
+\bibitem{LermanTolman1997}
+E.~Lerman and S.~Tolman.
+\newblock Hamiltonian torus actions on symplectic orbifolds and toric varieties.
+\newblock \emph{Transactions of the American Mathematical Society}, 349(10):4201--4230, 1997.
+
+\bibitem{Lindvall1992}
+T.~Lindvall.
+\newblock \emph{Lectures on the Coupling Method}.
+\newblock Wiley, 1992.
+
+\bibitem{Manski2003}
+C.~F. Manski.
+\newblock \emph{Partial Identification of Probability Distributions}.
+\newblock Springer, 2003.
+
+\bibitem{MPP2016}
+R.~Mardare, P.~Panangaden, and G.~Plotkin.
+\newblock Quantitative algebraic reasoning.
+\newblock In \emph{Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in Computer Science
+  (LICS)}, pages 700--709, 2016.
+
+\bibitem{Meng2022}
+K.~Meng, D.~Bau, A.~Andonian, and Y.~Belinkov.
+\newblock Locating and editing factual associations in {GPT}.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2022.
+
+\bibitem{Minder2025}
+J.~Minder, C.~Dumas, C.~Juang, B.~Chughtai, and N.~Nanda.
+\newblock Overcoming sparsity artifacts in crosscoders to interpret chat-tuning.
+\newblock arXiv:2504.02922, 2025.
+
+\bibitem{Park2023}
+S.~M. Park, K.~Georgiev, A.~Ilyas, G.~Leclerc, and A.~Madry.
+\newblock {TRAK}: attributing model behavior at scale.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning (ICML)}, 2023.
+
+\bibitem{Rafailov2023}
+R.~Rafailov, A.~Sharma, E.~Mitchell, S.~Ermon, C.~D. Manning, and C.~Finn.
+\newblock Direct preference optimization: your language model is secretly a reward model.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2023.
+
+\bibitem{ReedPierce2010}
+J.~Reed and B.~C. Pierce.
+\newblock Distance makes the types grow stronger: a calculus for differential privacy.
+\newblock In \emph{Proceedings of the 15th ACM SIGPLAN International Conference on Functional
+  Programming (ICFP)}, 2010.
+
+\bibitem{SandersonScott2014}
+T.~Sanderson and C.~Scott.
+\newblock Class proportion estimation with application to multiclass anomaly rejection.
+\newblock In \emph{Proceedings of the 17th International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, volume~33 of \emph{PMLR}, 2014.
+
+\bibitem{Schrijver1986}
+A.~Schrijver.
+\newblock \emph{Theory of Linear and Integer Programming}.
+\newblock Wiley, Chichester, 1986.
+
+\bibitem{Scott2015}
+C.~Scott.
+\newblock A rate of convergence for mixture proportion estimation, with application to learning from
+  noisy labels.
+\newblock In \emph{Proceedings of the 18th International Conference on Artificial Intelligence and
+  Statistics (AISTATS)}, volume~38 of \emph{PMLR}, 2015.
+
+\bibitem{Shafer1976}
+G.~Shafer.
+\newblock \emph{A Mathematical Theory of Evidence}.
+\newblock Princeton University Press, 1976.
+
+\bibitem{Villani2009}
+C.~Villani.
+\newblock \emph{Optimal Transport: Old and New}.
+\newblock Grundlehren der mathematischen Wissenschaften 338. Springer, 2009.
+
+\bibitem{Vorobev1962}
+N.~N. Vorob'ev.
+\newblock Consistent families of measures and their extensions.
+\newblock \emph{Theory of Probability and Its Applications}, 7(2):147--163, 1962.
+
+\bibitem{Walley1991}
+P.~Walley.
+\newblock \emph{Statistical Reasoning with Imprecise Probabilities}.
+\newblock Chapman and Hall, 1991.
+
+\bibitem{Wootters1981}
+W.~K. Wootters.
+\newblock Statistical distance and {H}ilbert space.
+\newblock \emph{Physical Review D}, 23(2):357--362, 1981.
+
+\bibitem{Zhu2023}
+Y.~Zhu, A.~Fjeldsted, D.~Holland, G.~Landon, A.~Lintereur, and C.~Scott.
+\newblock Mixture proportion estimation beyond irreducibility.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  volume 202 of \emph{PMLR}, 2023.
+
+\end{thebibliography}
+
+\end{document}
