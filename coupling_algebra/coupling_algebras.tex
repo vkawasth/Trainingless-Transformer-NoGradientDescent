@@ -27,35 +27,40 @@
 \newcommand{\Cpl}{\operatorname{Cpl}}
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\T}{\mathsf T}
+\newcommand{\C}{\mathsf C}
+\newcommand{\Sh}{\mathrm{Sh}}
 
 \title{Coupling Algebras:\\
 Gluing, the Square-Zero Cone and the Ring of Contingency Tables}
 \author{Vinay K. Awasthi\\
 Department of Applied Mathematics and Statistics\\
-Johns Hopkins University\thanks{Every statement is checked by \texttt{check\_coupling\_algebra.py} (10 checks, exact
+Johns Hopkins University\thanks{Every statement is checked by \texttt{check\_coupling\_algebra.py} (14 checks, exact
 arithmetic except where marked).}}
-\date{October 6, 2026, draft 1}
+\date{October 6, 2026, draft 3}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Couplings of finite distributions carry two algebraic structures, and this note determines both. The first is the
-\emph{gluing algebra} $A_f$: matrices whose row and column sums are multiples of a distribution $f$, multiplied by
-the gluing lemma. We show that $A_f\cong\R\times M_{n-1}(\R)$, with the product coupling $f\otimes f$ and its
-complement $\diag(f)-f\otimes f$ as the two central idempotents. So the circulations form a direct factor, the
-mass functional is the projection onto the other factor, and the algebra sees nothing of positivity. Whiskering by a
-kernel is not multiplicative. Its defect makes it an $A_\infty$-functor into the square-zero cone of the circulations,
-and we show that this functor is the unique one with its first component, for every mass-preserving linear map, not
-only for whiskering. Up to homotopy it is the mass functional: the cone is quasi-isomorphic to $\R$, the gluing algebra
-is separable, and so every homotopy invariant of a functor that kills the circulations sees only the total mass. We
-also show that couplings with kernels as vertical arrows do not form a double category: squares compose horizontally
-for bijections, but not for some constant kernels or for some non-injective functions. The second structure is the
-\emph{ring of contingency tables}: the Ehrhart ring of a coupling polytope with rational margins. It is generated in
-degree one, its Hilbert function counts integer tables with scaled margins, and its $\operatorname{Proj}$ is the toric
-variety of the polytope. Its degree-one basis is the sample space of Fisher's exact test, and the basic moves that
-connect it are integer circulations. The circulations thus appear three times: as the ideal of the gluing algebra, as
-the tangent directions of the coupling polytope, and as the Markov moves of exact conditional inference.
+The algebra that carries the geometry of couplings of finite distributions is the \emph{ring of contingency tables}:
+the Ehrhart ring of a coupling polytope with rational margins. It is generated in degree one, its Hilbert function counts
+integer tables with scaled margins, and its $\operatorname{Proj}$ is the toric variety of the coupling polytope. Its degree-one
+basis is the sample space of Fisher's exact test, and the basic moves that connect that sample space are integer
+circulations. For $2\times m$ tables we give the number of tables in closed form on every chamber of margins: it is a
+polynomial on each chamber, and crossing a wall changes it by a single binomial term. When the wall cuts a corner of
+lattice depth $d$ off the polygon, as in the blow-ups of the toric picture, the count drops by $\binom{d+1}2$, which is the
+Riemann--Roch jump of the line bundle. The ring is classical in algebraic statistics; what is new is its place here, as the
+object that joins the toric geometry of couplings to exact conditional inference.
+
+The other algebra in the programme, the \emph{gluing algebra} $A_f$ of matrices whose row and column sums are multiples of
+$f$, is much smaller than it looks, and this corrects earlier expectations about it. We show $A_f\cong\R\times M_{n-1}(\R)$, with
+the product coupling and its complement as central idempotents. Categorically, $A_f$ is the linear span of the monoid of
+$\D$-algebra endomorphisms of $\D(Y)$ fixing $f$, with the product coupling the endomorphism through the zero object. The
+$A_\infty$-functor of whiskering into the square-zero cone of the circulations exists and is unique for every mass-preserving
+linear map, but the cone is quasi-isomorphic to $\R$, and up to homotopy the functor is the mass. Couplings with kernels as
+vertical arrows do not form a double category, although squares compose when the middle map is a bijection or merges only
+interchangeable values. The tower's context comonad is acted on by the monoid of $f$-fixing kernels, but not linearly, so it does
+not see $A_f$.
 \end{abstract}
 
 \tableofcontents
@@ -73,11 +78,25 @@ whiskering is an $A_\infty$-functor with exactly two components \cite[Thm.~5.2]{
 \cite[Question~9.4]{Conditionals}. A third question, from the attribution paper \cite[Open problem~5]{Attribution}, asks
 for a strict structure on the witness layer.
 
-This note answers all three, and identifies a second algebra that does carry the geometry. The answers are not the ones a
-reader might hope for. The cone is homotopy-initial among targets that kill the circulations, but only because it is
-equivalent to $\R$: the gluing algebra splits off its circulations as a direct factor. The functor into it is forced,
-and up to homotopy it remembers only the mass. And couplings with kernels do not form a double category. What does carry the coupling geometry is a different algebra, graded and commutative: the
-semigroup ring of lattice points of the coupling polytope.
+This note has a positive result and a set of corrections. The positive result is that the algebra which carries the coupling
+geometry is not $A_f$ but a graded commutative one: the ring of lattice points of the coupling polytope, the ring of
+contingency tables. It joins the toric varieties of \cite{Conditionals,Family} to exact conditional inference
+\cite{DiaconisSturmfels1998}, and its Hilbert function crosses the walls of margins in the same way that the toric surfaces
+are blown up (\cref{prop:twobym}). The ring itself is classical; its role as the meeting point of the two sides is what is new.
+
+The corrections concern the three questions. The cone is homotopy-initial among targets that kill the circulations, but only
+because it is equivalent to $\R$: the gluing algebra splits off its circulations as a direct factor. The functor into it is
+forced, and up to homotopy it remembers only the mass. And couplings with kernels do not form a double category.
+
+\paragraph{For readers of the theory paper.} The answer to ``why this cone?'' is a correction of the strong form of the
+question, not a confirmation of it. The cone of \cite[Thm.~5.2]{Conditionals} is the right construction, and nothing about it
+is a choice: by \cref{thm:forced}, every mass-preserving linear map, whiskering included, becomes an $A_\infty$-functor into it in
+exactly one way, with $F_2=\varepsilon b_2$ and no higher components. But the universality one might hope for, that the cone is
+the initial recipient of the coupling information, is true only in a vacuous form. By \cref{thm:homotopy} the cone is
+quasi-isomorphic to $\R$, and by \cref{cor:blind} every homotopy invariant of such a functor is a function of masses. So the
+coupling information of whiskering lives at chain level, in $F_2=\varepsilon b_2$, and \cite[Question~9.4(i)]{Conditionals}
+has a negative answer for homotopy invariants. Whether a free cone carries chain-level information in the higher Boolean
+cumulants remains open.
 
 \begin{mainthm}
 \leavevmode
@@ -86,6 +105,11 @@ semigroup ring of lattice points of the coupling polytope.
   $P_f=f\otimes f$ and $e_f=\diag(f)-P_f$ are complementary central idempotents, $I_f=e_fA_f$, and the mass is the
   projection onto $\R P_f$. Across objects the linear category of couplings splits as the indiscrete category on $\R$
   times the category of circulations.
+\item \emph{Monad and comonad} (\cref{prop:kleisli,prop:comonad}). Couplings of $f$ with itself are the $\D$-algebra
+  endomorphisms of $\D(Y)$ fixing $f$, gluing is Kleisli composition, and $A_f$ is their linear span. The product coupling is
+  the endomorphism through the zero object $(1,\delta)$, and the mass is the map to it. The tower's context comonad, whose
+  distributive law is the $\D$-algebra structure of the context algebra, is acted on by this monoid, but not affinely at level
+  two, so the action does not extend to $A_f$.
 \item \emph{Forced functor} (\cref{thm:forced}). For every linear map $F_1$ that preserves mass, there is exactly one
   $A_\infty$-functor into the square-zero cone with first component $F_1$: its second component is the multiplicativity
   defect, and all higher components vanish.
@@ -96,24 +120,29 @@ semigroup ring of lattice points of the coupling polytope.
 \item \emph{No double category} (\cref{prop:double}). With couplings as horizontal arrows, kernels as vertical arrows and
   squares given by pushforward, squares compose horizontally when the middle kernel is a bijection, but not for some
   constant kernels or some non-injective functions. The defect is a circulation.
-\item \emph{The ring of contingency tables} (\cref{thm:ehrhart}). For margins with common denominator $N$, the polytope
+\item \emph{The ring of contingency tables} (\cref{thm:ehrhart,prop:twobym}). For margins with common denominator $N$, the polytope
   $N\cdot\Cpl(f,g)$ is a lattice polytope with the integer decomposition property. Its Ehrhart ring is generated in degree
   one, its Hilbert function counts integer tables, and its $\operatorname{Proj}$ is the toric variety of the coupling
   polytope. Its degree-one basis is the sample space of Fisher's exact test, connected by basic moves that are integer
-  circulations.
+  circulations. For $2\times m$ tables the count is a polynomial on each chamber of margins, and across a wall that cuts a
+  corner of lattice depth $d$ it drops by $\binom{d+1}2$, the Riemann--Roch jump of a toric blow-up.
 \end{enumerate}
 \end{mainthm}
 
-\paragraph{What is not claimed.} Earlier drafts of this programme proposed three stronger statements, and each is false.
+\paragraph{What is not claimed.} Earlier drafts of this programme proposed several stronger statements, and each is false.
 The square-zero cone is homotopy-initial among targets killing $I_f$, but it is equivalent to $\R$, so initiality says nothing
 beyond the mass. Its minimal model, in the sense of $A_\infty$-algebras \cite{Keller2001}, is $\R$ itself. And the witness
 layer with kernels as vertical maps is not a double category, strict or lax. The gluing algebra is also not a coordinate ring,
 since it is not commutative, and $A_f/I_f\cong\R$ is not the cohomology ring of the toric manifold, whose dimension is the
-number of vertices of the polytope.
+number of vertices of the polytope. The monadic reading also has limits, listed in \cref{rem:monad-not}: the barycenter is not
+the mass projection, there is no ideal filtration matching the precision ladder, and the multiplicativity defect is not a
+Hochschild class.
 
 \paragraph{Relation to the other papers.} This note uses the definitions of \cite[\S\S2, 5, 10]{Conditionals} and of the
-coupling 2-cells of \cite[\S7]{Attribution}. It does not use the obstruction tower \cite{Tower}, the empirical material of
-\cite{ThreeLayers}, or the toric computations of \cite{Family}, except to name the variety in \cref{thm:ehrhart}.
+coupling 2-cells of \cite[\S7]{Attribution}. From the tower paper \cite{Tower} it uses only the context comonad, its distributive law and the stochastic change of base, in
+\cref{sec:monad}. It does not use the obstruction tower, the empirical material of
+\cite{ThreeLayers}, or the toric computations of \cite{Family}, except to name the variety in \cref{thm:ehrhart} and to compare
+walls in \cref{prop:twobym}.
 
 %=====================================================================
 \section{The gluing algebra}\label{sec:gluing}
@@ -169,6 +198,112 @@ whose identity at $f$ is $e_f$.
 $fg^\T\diag(g)^{-1}y=f(\mathbf 1^\T y)=0$ for a circulation $y$, and $x\,\diag(g)^{-1}gk^\T=(x\mathbf 1)k^\T=0$; the remaining term is
 $st\,f(\mathbf 1^\T\diag(g)^{-1}g)k^\T=st\,fk^\T$.
 \end{proof}
+
+%=====================================================================
+\section{The monad and the comonad}\label{sec:monad}
+%=====================================================================
+
+The gluing algebra is defined by matrices, but it comes from the distribution monad $\D$. This section says how, and
+how far the context comonad of the tower paper \cite{Tower} reaches into it. Write $K^\#\colon\D(Y)\to\D(Y)$,
+$K^\#(\rho)=K^\T\rho$, for the Kleisli extension of a kernel $K\colon Y\to\D(Y)$, written as a stochastic matrix. The Kleisli
+extensions are exactly the morphisms of $\D$-algebras $\D(Y)\to\D(Y)$ between free algebras, that is, the affine self-maps of
+the simplex. Let
+\[
+\operatorname{End}(f)=\{K\colon Y\to\D(Y)\ :\ K^\#f=f\},
+\]
+the monoid, under Kleisli composition, of $\D$-algebra endomorphisms of $\D(Y)$ that fix the point $f$.
+
+\begin{proposition}[Couplings are invariant kernels]\label{prop:kleisli}
+\begin{enumerate}[label=(\roman*)]
+\item The map $\alpha\mapsto D^{-1}\alpha$ is an isomorphism of monoids from $\Cpl(f,f)$ under gluing onto $\operatorname{End}(f)$
+  under Kleisli composition, with the unit $D$ going to the identity kernel. Its linear extension $a\mapsto D^{-1}a$ is an
+  isomorphism of $A_f$ onto the algebra of matrices $M$ with $M\mathbf 1=s\mathbf 1$ and $M^\T f=sf$, and $A_f$ is the linear span of the
+  couplings, so of $\operatorname{End}(f)$.
+\item Let $\mathcal P$ be the category whose objects are the full-support probability spaces $(Y,f)$, that is, the objects of
+  the coslice of the Kleisli category under the one-point set, restricted to full support, and whose morphisms are the
+  kernels that push the first distribution to the second. The one-point space $(1,\delta)$ is a zero object of $\mathcal P$.
+  Under (i), $\mathcal P(f,g)\cong\Cpl(f,g)$, and $\mathcal L$ is the category obtained from $\mathcal P$ by taking linear spans of the
+  hom-sets.
+\item The morphism of $\mathcal P$ that factors through the zero object is the constant kernel $y\mapsto g$, which corresponds to the
+  product coupling $fg^\T$. So the first summand of \cref{prop:split} is spanned by the maps through the zero object, and
+  $P_f$ is the endomorphism of $(Y,f)$ through it.
+\item The mass is the pushforward along the unique morphism $(Y,f)\to(1,\delta)$: for this kernel $!$ the product action of
+  \cref{sec:actions} gives $\pi_!(a)=\mathbf 1^\T a\mathbf 1=s(a)$, and it is multiplicative.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) If $\alpha\in\Cpl(f,f)$ then $K=D^{-1}\alpha$ is nonnegative with $K\mathbf 1=D^{-1}f=\mathbf 1$ and $K^\T f=\alpha^\T\mathbf 1=f$; conversely
+$\alpha=DK$ for $K\in\operatorname{End}(f)$ is a coupling. Gluing is $\alpha D^{-1}\beta=D(D^{-1}\alpha)(D^{-1}\beta)$, which is Kleisli composition of
+the kernels in matrix form. The linear statement is the same computation without positivity. The couplings span $A_f$ because
+$P_f$ has positive entries, so $P_f+tx$ is a coupling for every circulation $x$ and small $t$; the span therefore contains $\R P_f+I_f=A_f$.
+(ii) A morphism $(1,\delta)\to(Y,f)$ is a kernel $1\to\D(Y)$ sending $\delta$ to $f$, so it is $f$ itself; a morphism $(Y,f)\to(1,\delta)$ is
+the unique kernel to the one-point set. The isomorphism $\mathcal P(f,g)\cong\Cpl(f,g)$ is (i) with two objects, and composition in
+$\mathcal L$ is the linear extension of composition in $\mathcal P$. (iii) The composite $Y\to1\to\D(Y)$ is $y\mapsto g$, with matrix $\mathbf 1g^\T$, and
+$D\,\mathbf 1g^\T=fg^\T$. (iv) $\mathbf 1^\T aD^{-1}b\mathbf 1=s(a)\,f^\T D^{-1}f\,s(b)=s(a)s(b)$.
+\end{proof}
+
+So the gluing algebra is the linearized endomorphism monoid of a point of a free $\D$-algebra, and the structure theorem
+reads categorically. The central idempotent $P_f$ is the endomorphism through the zero object, the mass is the
+linearized map to the zero object, and the circulations are the complementary summand. The barycenter
+$\mu_Y\colon\D^2(Y)\to\D(Y)$ plays no role in the splitting: the mass line comes from the zero object, not from the monad
+multiplication.
+
+\paragraph{The comonad.} The tower paper builds, for a finite base $B$, the context algebra $A_B=\D B\times\D^2B\times\D^3B\times\Sh(B)$
+with the levelwise barycenter $\beta_B$, which makes it a product of free $\D$-algebras \cite[\S9]{Tower}. The comonad
+$\C^B(Y)=Y\times A_B$ is the product (reader) comonad with parameter $A_B$, and the mixed distributive law
+$\lambda^B\colon\D\C^B\Rightarrow\C^B\D$ of \cite[Thm.~9.8]{Tower} is $\lambda^B_Y(M)=(\D(\mathrm{pr}_1)M,\ \beta_B(\D(\mathrm{pr}_2)M))$. Mixed distributive
+laws correspond to liftings of the comonad to the Eilenberg--Moore category \cite{PowerWatanabe2002}, and the lifting here sends a
+$\D$-algebra $(X,\xi)$ to the product algebra $(X,\xi)\times(A_B,\beta_B)$. So the law is exactly the statement that $A_B$ is a
+$\D$-algebra. The coalgebras of $\C^B$ are the sets over $A_B$, and the cofree coalgebra on $X$ is $X\times A_B$
+\cite[Props.~13.1, 13.2]{Tower}. A kernel $k\colon B\to\D(B')$ acts by the $\D$-algebra map
+$A_k=k^\#\times\D(k^\#)\times\D^2(k^\#)\times\Sh(k)$, with $A_{h\circ k}=A_hA_k$ \cite[Prop.~9.14]{Tower}.
+
+\begin{proposition}[The comonad sees the monoid, not the algebra]\label{prop:comonad}
+Take $B=Y$, and let $A^f_Y\subseteq A_Y$ be the contexts whose level-one component is $f$.
+\begin{enumerate}[label=(\roman*)]
+\item $K\mapsto A_K$ is an action of the monoid $\operatorname{End}(f)$ on $A^f_Y$, by $\D$-algebra maps. It is trivial on the level-one
+  component.
+\item On level one, $K\mapsto K^\#$ is affine in $K$. On level two it is not: for $K_1,K_2\in\operatorname{End}(f)$ with
+  $\bar K=\frac12(K_1+K_2)$ and a context with level-two component $\Pi$, in general
+  $\D(\bar K^\#)\Pi\ne\frac12\D(K_1^\#)\Pi+\frac12\D(K_2^\#)\Pi$.
+\item Hence the action does not extend to a linear action of $A_f$ on the span of the contexts, compatible with
+  \cref{prop:kleisli}(i). The algebra $A_f$ linearizes the monad side only; the comonad side sees the monoid
+  $\operatorname{End}(f)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) $A_K$ is a $\D$-algebra map and $A_{K_2\circ K_1}=A_{K_2}A_{K_1}$ by \cite[Prop.~9.14]{Tower}, and $K^\#f=f$. (ii) $K^\#\rho=K^\T\rho$ is linear in
+$K$. For the second statement take $\Pi=\frac12\delta_{\rho_1}+\frac12\delta_{\rho_2}$ with $\frac12(\rho_1+\rho_2)=f$. Then
+$\D(\bar K^\#)\Pi$ is supported on the two points $\bar K^\#\rho_i$, while the average of the $\D(K_j^\#)\Pi$ is supported on the four points
+$K_j^\#\rho_i$, which are distinct for generic $K_1,K_2$. This is the phenomenon behind the failure of the shift law and of the level
+separation in \cite[Thm.~8.3, Ex.~10.6]{Tower}: averaging inside a level is not averaging of levels. (iii) A linear action of the
+span $A_f$ would restrict to an affine map on the convex set $\operatorname{End}(f)$, contradicting (ii).
+\end{proof}
+
+\begin{remark}[What the monadic reading does not give]\label{rem:monad-not}
+Several stronger identifications suggest themselves, and each fails.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item \emph{The barycenter is not the mass projection.} $\mu_Y$ is a map $\D^2(Y)\to\D(Y)$ and does not act on $A_f$. The projection
+  onto $\R P_f$ is \cref{prop:kleisli}(iv), induced by the map to the zero object.
+\item \emph{$A_f$ is the span of $\operatorname{End}(f)$, not equal to it.} The monoid consists of the nonnegative elements of mass one;
+  the algebra is its linear span, and it is in passing to the span that positivity, hence contextuality, is lost
+  (\cref{cor:blind}).
+\item \emph{No ideal filtration.} By \cref{thm:structure}, $A_f\cong\R\times M_{n-1}(\R)$ is a product of two simple algebras, so its
+  two-sided ideals are $0$, $\R P_f$, $I_f$ and $A_f$; any single nonzero circulation generates $I_f$. There is no room for a
+  three-step filtration by ideals, so the precision ladder of \cite[Thm.~3.5]{Attribution}, whose rungs are nested attribution sets, is not a filtration of $A_f$. The ladder lives in the 1-cell layer. A decomposition
+  of $p$ with exact sources is a weight vector $(\lambda_1,\dots,\lambda_k,\mu)$ and an unmodeled law $U$ with
+  $p=k^\#(\lambda,\mu)$ for the kernel $k\colon i\mapsto A_i$, $u\mapsto U$; so the attribution set is a union, over $U$, of fibres over
+  $p$ of the Kleisli extension of a kernel, cut by the budget $\mu\le\bar\mu$ \cite[Def.~3.1, Thm.~3.2]{Attribution}. Sources known
+  by their supports enlarge the set of admissible kernels. The rungs grow because more kernels are admitted and the budget
+  grows, which is a statement about fibres of a 1-cell, not about the gluing of 2-cells.
+\item \emph{The defect is not a Hochschild class.} The arity-three equation in \cref{thm:forced} is formally the Hochschild cocycle
+  identity for $b_2$, but $I_{f'}$ is an $A_f$-bimodule through $F_1$ only when $F_1$ is multiplicative, and then $b_2=0$. In any case
+  $A_f$ is separable, so its Hochschild cohomology vanishes in positive degrees for every bimodule, and no Hochschild class can
+  carry the defect.
+\item \emph{No explanation of non-unification.} The splitting is internal to the coupling layer. The non-unification results of
+  \cite{ThreeLayers} concern different coefficient systems, and nothing here maps them to $A_f$.
+\end{enumerate}
+\end{remark}
 
 %=====================================================================
 \section{How kernels act}\label{sec:actions}
@@ -279,11 +414,21 @@ Let $\alpha\in\Cpl(p,q)$, $\beta\in\Cpl(q,r)$, and kernels $k,l,m$ with $l$ acti
 \[
 k^\T(\alpha\cdot\beta)m=(k^\T\alpha l)\cdot(l^\T\beta m),
 \]
-where the right side glues over $l^\T q$, holds whenever $l$ is a bijection. It fails for some constant kernels $l$ and for some non-injective functions $l$, so squares are
+where the right side glues over $l^\T q$, holds whenever $l$ is a bijection, and more generally whenever $l$ is a function such that on each of its fibres the
+conditional law of the first coordinate given the middle one, or that of the last coordinate given the middle one, is
+constant. It fails for some constant kernels $l$ and for some non-injective functions $l$, so squares are
 not closed under horizontal composition. The difference of the two sides is always a circulation.
 \end{proposition}
 \begin{proof}
-A bijection relabels the middle variable, which does not change the glued law. For a counterexample with a function, let
+Since $k$ and $m$ act on the outer coordinates, it suffices to take them to be identities. For a function $l$ write $y'$ for a
+fibre and $q(y')$ for its mass. With $\alpha_{\cdot y}$ the columns of $\alpha$ and $\beta_{y\cdot}$ the rows of $\beta$, the two sides are
+\[
+\sum_{y'}\sum_{y\in y'}\frac{\alpha_{\cdot y}\beta_{y\cdot}}{q_y}
+\quad\text{and}\quad
+\sum_{y'}\frac1{q(y')}\Bigl(\sum_{y\in y'}\alpha_{\cdot y}\Bigr)\Bigl(\sum_{y\in y'}\beta_{y\cdot}\Bigr).
+\]
+If $\alpha_{\cdot y}=q_y c_{y'}$ for $y\in y'$, both fibre terms equal
+$c_{y'}\sum_{y\in y'}\beta_{y\cdot}$, and symmetrically for $\beta$. A bijection has singleton fibres. For a counterexample with a function, let
 $p=q=r$ be uniform on $\{0,1\}$, let $\alpha=\beta$ be the diagonal coupling, let $k,m$ be identities and let $l$ collapse
 $\{0,1\}$ to a point. The left side is the diagonal coupling, since gluing two copies of the identity gives the identity. On
 the right, $k^\T\alpha l$ and $l^\T\beta m$ are product couplings with a one-point middle space, so their gluing is the product
@@ -292,7 +437,9 @@ $\alpha l$ and $l^\T\beta$ are again product couplings, so the right side is sti
 $k^\T p$ and $m^\T r$, so their difference is a circulation.
 \end{proof}
 
-So the structure is a double category, strict and thin, when the vertical arrows are restricted to bijections. With all
+So the structure is a double category, strict and thin, when the vertical arrows are restricted to bijections. The
+sufficient condition says that interchange holds when the middle map merges only values that are interchangeable for one
+of the outer variables, that is, when $l(Y)$ is sufficient for $Y$ with respect to $X$ or to $Z$. With all
 kernels, horizontal composition of squares is not defined in general, and since squares are a property there are no
 comparison cells that could make it lax. The defect is a circulation of the same kind as the whiskering defect, so a
 double-category formulation does not remove the obstruction of \cite[Thm.~7.6(v)]{Attribution}.
@@ -343,9 +490,45 @@ form a Markov basis \cite{DiaconisSturmfels1998}; each has zero row and column s
 For $f=(\frac12,\frac12)$ and $g=(\frac13,\frac13,\frac13)$, take $N=6$. The tables with margins $(3,3)$ and $(2,2,2)$ are
 $7$ lattice points of a hexagon. The numbers of tables with margins $k(3,3)$ and $k(2,2,2)$ are $7,19,37,61,91$ for $k=1,\dots,5$,
 equal to $3k^2+3k+1$. The leading coefficient $3$ is the lattice area of the hexagon, which is $N^2=36$ times the area
-$\frac1{12}$ of $\Cpl(f,g)$ in \cite[\S8]{Conditionals}. For margins $(5,7)$ and $(3,4,5)$ the counts give $10k^2+6k+1$, and the
-area of that polygon is $10$.
+$\frac1{12}$ of $\Cpl(f,g)$ in \cite[\S8]{Conditionals}. The hexagon has one interior point, so it is the reflexive hexagon of the
+del Pezzo surface of degree $6$, and its $h^*$-vector, read off from $\sum_k L(k)t^k=h^*(t)/(1-t)^3$, is $(1,4,1)$, of sum $6$, the
+normalized area. For margins $(5,7)$ and $(3,4,5)$ the counts give $10k^2+6k+1$, the area of that polygon is $10$, and
+$h^*=(1,14,5)$.
 \end{example}
+
+For two rows the dependence on the margins can be written down completely. Write $r=(r_1,r_2)$ and $c=(c_1,\dots,c_m)$ for
+integer margins with $r_1+r_2=\sum_jc_j$, $N(r,c)$ for the number of integer tables, and $c(S)=\sum_{j\in S}c_j$. The walls of
+\cite[Def.~6.3]{Conditionals} for two rows are the hyperplanes $r_1=c(S)$ with $\emptyset\ne S\subsetneq\{1,\dots,m\}$, since $r_2=c(S)$
+is $r_1=c(S^c)$.
+
+\begin{proposition}[Two-row tables across the walls]\label{prop:twobym}
+\begin{enumerate}[label=(\roman*)]
+\item $N(r,c)=\sum_{S}(-1)^{|S|}\binom{r_1-c(S)-|S|+m-1}{m-1}$, the sum over $S=\emptyset$ and the subsets
+  $S\subseteq\{1,\dots,m\}$ with $c(S)<r_1$.
+\item On each chamber $N$ is a polynomial in $(r_1,c)$ of degree $m-1$. Crossing the wall $r_1=c(S)$ in the direction of
+  increasing $r_1$ adds the polynomial $(-1)^{|S|}\binom{r_1-c(S)-|S|+m-1}{m-1}$, which vanishes on the lattice points with
+  $|S|-m+1\le r_1-c(S)\le|S|-1$. So the polynomials of adjacent chambers agree on a strip along the wall.
+\item For $m=3$ and $|S|=1$, the polygon on the far side is obtained by cutting a corner of lattice depth $d=r_1-c_j$, and the
+  count drops by $\binom{d+1}2$. This is the Riemann--Roch identity $\chi(\pi^*L-dE)=\chi(L)-\binom{d+1}2$ for the toric blow-up
+  $\pi$ at the corresponding fixed point with exceptional curve $E$, and its leading term $\frac12d^2$ is, after rescaling by $N$, the area
+  jump $\frac12s^2$ of \cite[Prop.~10.6(i)]{Conditionals}.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) A table is determined by its first row $t$, with $0\le t_j\le c_j$ and $\sum t_j=r_1$. Without the upper bounds there are
+$\binom{r_1+m-1}{m-1}$ such rows, and inclusion--exclusion over the set $S$ of violated bounds, substituting $t_j=c_j+1+t'_j$ for
+$j\in S$, gives the terms with $r_1-c(S)-|S|\ge0$. A term with $c(S)<r_1$ but $r_1-c(S)-|S|<0$ has top argument between $0$ and $m-2$,
+so it is zero, and including it changes nothing. (ii) On a chamber the set of subsets with $c(S)<r_1$ is constant, so (i) is a polynomial.
+Crossing $r_1=c(S)$ adds exactly the term for $S$, and $\binom{x+m-1}{m-1}$ vanishes for $x=-1,\dots,-(m-1)$. (iii) For $m=3$ the
+polygon is the triangle $\{t\ge0,\ t_1+t_2+t_3=r_1\}$ cut by the bounds $t_j\le c_j$, and the term for $S=\{j\}$ is minus the number
+$\binom{d+1}2$ of lattice points with $t_j>c_j$, a corner triangle. For the toric surface, $(\pi^*L-dE)^2=L^2-d^2$ and
+$(\pi^*L-dE)\cdot K=L\cdot K+d$, since $K=\pi^*K+E$ and $E^2=-1$; Riemann--Roch gives the identity, and the lattice points of the
+polygon count $\chi$ because the line bundle is nef. The leading term of $\binom{d+1}2$ is $\frac12d^2$.
+\end{proof}
+
+General transportation polytopes behave the same way in outline: the number of tables is a vector partition function,
+polynomial on the chambers because the constraint matrix is unimodular \cite{Sturmfels1995}, and its jumps across walls are
+given by the wall-crossing formula of Paradan as made explicit by Boysal and Vergne \cite{BoysalVergne2009}.
 
 \begin{example}[Fisher's exact test on synthetic data]\label{ex:fisher}
 The first $40$ items of the synthetic moderation data of \cite[\S12]{Conditionals} give the label-by-action table
@@ -372,11 +555,20 @@ is cut out by nonnegativity.
 \item \emph{The free cone at chain level.} In the free cone of $I_f$, products of homotopies survive, and the functor of
   \cref{thm:forced} acquires arity-four terms. Are the higher components given by the higher Boolean cumulants of
   whiskering? By \cref{thm:homotopy} any answer is invisible up to homotopy.
-\item \emph{A positive homotopy theory.} \Cref{cor:blind} locates contextuality in positivity. Find a homotopy theory of
-  cones of measures, for example through simplicial distributions, in which unfillable horns of the coupling nerve
-  \cite[\S4]{Conditionals} are nontrivial classes.
-\item \emph{Ehrhart data of coupling polytopes.} The $h^*$-vectors of $N\cdot\Cpl(f,g)$ as functions of the chamber of $(f,g)$,
-  and the asymptotic number of tables near a wall, where the polytope stops being simple \cite[\S6]{Conditionals}.
+\item \emph{A positive homotopy theory.} \Cref{cor:blind} locates contextuality in positivity: every linear invariant is blind
+  to it, and every horn fills with signed measures \cite[Prop.~35.1]{ThreeLayers}. Find a homotopy theory of cones of
+  measures, for example through simplicial distributions, in which unfillable horns of the coupling nerve
+  \cite[\S4]{Conditionals} are nontrivial classes. The concrete test case is the family of parity horns of
+  \cite[Thm.~4.3]{Conditionals}, unfillable with contextual fraction $1-2^{2-n}$, whose secondary obstruction in the tower is
+  $o_3^-=2\,\mathrm{CF}$ \cite[Thm.~11.2]{Conditionals}. A theory that sees them would be a positivity-preserving refinement of the
+  square-zero cone: it must agree with the cone on signed measures, where it can only see masses, and it should recover the
+  contextual fraction, or $o_3^-$, as the size of a class.
+\item \emph{Ehrhart data across walls.} \Cref{prop:twobym} settles two rows. For $n\times m$ tables, compute the chamber
+  polynomials and the $h^*$-vectors of $N\cdot\Cpl(f,g)$ chamber by chamber, and match the wall-crossing terms of
+  \cite{BoysalVergne2009} with the variation of GIT and the central-charge jumps of \cite[\S10]{Conditionals} and
+  \cite[\S3]{Family}, as \cref{prop:twobym}(iii) does for one blow-up. This is the algebraic-statistical counterpart of the
+  wall-crossing of the companion paper: the number of tables with given margins is the Euler characteristic of a line
+  bundle, and its jumps should be those of the derived categories across the wall.
 \item \emph{Sections and potentials.} On $X_{f,g}$ the degree-one sections are indexed by tables. Relate the exact test to
   the disc potential of \cite[\S7]{Conditionals}, for example through the leximin coupling, which lies over the
   Floer-nontrivial fibres at the sampled points of \cite[Obs.~10.10]{Conditionals}.
@@ -386,7 +578,7 @@ is cut out by nonnegativity.
 \section{Computational checks}\label{sec:code}
 %=====================================================================
 
-\texttt{check\_coupling\_algebra.py} runs ten checks, all passing:
+\texttt{check\_coupling\_algebra.py} runs fourteen checks, all passing:
 \begin{itemize}[leftmargin=*,nosep]
 \item A1--A2: \cref{thm:structure} for $n=2,\dots,5$, and \cref{prop:split} on objects of sizes $2,3,4$;
 \item A3: \cref{prop:actions};
@@ -394,7 +586,12 @@ is cut out by nonnegativity.
 \item A5: \cref{thm:homotopy};
 \item A6: \cref{prop:double};
 \item A7--A9: \cref{thm:ehrhart}(i), (ii) and (iv) on two $2\times3$ examples and a $3\times3$ example;
-\item A10: \cref{ex:fisher}, in floating point.
+\item A10: \cref{ex:fisher}, in floating point;
+\item A11: \cref{prop:kleisli} for $n=3,4$, including the dimension of the span;
+\item A12: \cref{prop:comonad}, with an explicit level-two context;
+\item A13: \cref{rem:monad-not}(c), the sufficient condition of \cref{prop:double} on both sides, and its failure for a generic merge;
+\item A14: \cref{prop:twobym} against enumeration for $m=3,4$, the chamber polynomials and corner cuts, and the $h^*$-vectors of
+  \cref{ex:hexagon}.
 \end{itemize}
 Everything except A10 uses exact rational arithmetic.
 
@@ -431,6 +628,10 @@ S.~Baum and L.~E. Trotter, Integer rounding and polyhedral decomposition for tot
 \bibitem{BeckRobins2015}
 M.~Beck and S.~Robins, \emph{Computing the Continuous Discretely}, 2nd ed., Springer, 2015.
 
+\bibitem{BoysalVergne2009}
+A.~Boysal and M.~Vergne, Paradan's wall crossing formula for partition functions and Khovanski--Pukhlikov differential
+operator. \emph{Ann. Inst. Fourier} \textbf{59} (2009), 1715--1752.
+
 \bibitem{CLS2011}
 D.~A. Cox, J.~B. Little and H.~K. Schenck, \emph{Toric Varieties}, Graduate Studies in Mathematics 124, American
 Mathematical Society, 2011.
@@ -442,8 +643,14 @@ P.~Diaconis and B.~Sturmfels, Algebraic algorithms for sampling from conditional
 \bibitem{Keller2001}
 B.~Keller, Introduction to $A$-infinity algebras and modules. \emph{Homology Homotopy Appl.} \textbf{3} (2001), 1--35.
 
+\bibitem{PowerWatanabe2002}
+J.~Power and H.~Watanabe, Combining a monad and a comonad. \emph{Theoret. Comput. Sci.} \textbf{280} (2002), 137--162.
+
 \bibitem{Schrijver1986}
 A.~Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley, 1986.
+
+\bibitem{Sturmfels1995}
+B.~Sturmfels, On vector partition functions. \emph{J. Combin. Theory Ser. A} \textbf{72} (1995), 302--309.
 
 \end{thebibliography}
 \end{document}
