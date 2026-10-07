@@ -17,7 +17,7 @@
   A9 Markov moves: the basic 2x2 moves connect all integer tables with fixed margins (two examples); each move is an
      integer circulation
   A10 Fisher's exact test on a 40-item subsample of the synthetic triage data: enumeration of the fibre, hypergeometric
-      probabilities sum to 1, exact p-value against the chi-square approximation (floating point)
+      probabilities sum to 1 exactly, exact rational p-value; only the chi-square tail exp(-X^2/2) is floating point
   A11 monad side: alpha -> diag(f)^{-1} alpha is a monoid isomorphism from Cpl(f,f) under gluing onto the f-invariant
       kernels under Kleisli composition; P_f is the constant kernel y -> f (through the one-point space); the mass is the
       pushforward along Y -> 1 and is multiplicative; the f-invariant kernels span A_f (dimension (n-1)^2 + 1)  (n = 3, 4)
@@ -213,18 +213,19 @@ L = ["safe", "harmful"]; A = ["accept", "review", "reject"]
 T = [[sum(1 for r in rows if r["label"] == l and r["action"] == a) for a in A] for l in L]
 rs = tuple(sum(row) for row in T); cs = tuple(sum(col) for col in zip(*T)); N = sum(rs)
 fib = tables(rs, cs)
-def logp(t):  # multivariate hypergeometric probability of a table given its margins
-    return (sum(math.lgamma(x + 1) for x in rs) + sum(math.lgamma(x + 1) for x in cs) - math.lgamma(N + 1)
-            - sum(math.lgamma(x + 1) for row in t for x in row))
-probs = [math.exp(logp(t)) for t in fib]; p_obs = math.exp(logp(tuple(map(tuple, T))))
-p_exact = sum(p for p in probs if p <= p_obs * (1 + 1e-9))
-exp_ = [[rs[i] * cs[j] / N for j in range(3)] for i in range(2)]
-X2 = sum((T[i][j] - exp_[i][j]) ** 2 / exp_[i][j] for i in range(2) for j in range(3))
+def pex(t):  # exact hypergeometric probability of a table given its margins
+    num = math.prod(math.factorial(x) for x in rs) * math.prod(math.factorial(x) for x in cs)
+    return Fr(num, math.factorial(N) * math.prod(math.factorial(x) for row in t for x in row))
+probs = [pex(t) for t in fib]; p_obs = pex(tuple(map(tuple, T)))
+p_exact = sum(p for p in probs if p <= p_obs)                       # exact rational p-value
+exp_ = [[Fr(rs[i] * cs[j], N) for j in range(3)] for i in range(2)]
+X2 = sum((T[i][j] - exp_[i][j]) ** 2 / exp_[i][j] for i in range(2) for j in range(3))   # exact rational statistic
+p_chi = math.exp(-float(X2) / 2)                                    # chi-square tail with 2 df; the only float
 from scipy.stats import chi2 as chi2d
-p_chi = chi2d.sf(X2, 2)
-check("A10 Fisher's exact test on 40 synthetic triage items: the fibre is enumerated, hypergeometric probabilities sum to 1, "
-      "exact and chi-square p-values both reject independence", abs(sum(probs) - 1) < 1e-9 and p_exact < 1e-3 and p_chi < 1e-3,
-      f"table {T}, fibre size {len(fib)}, exact p = {p_exact:.2e}, chi-square p = {p_chi:.2e}")
+check("A10 Fisher's exact test on 40 synthetic triage items: the fibre is enumerated, hypergeometric probabilities sum to 1 "
+      "exactly, exact and chi-square p-values both reject independence", sum(probs) == 1 and p_exact < Fr(1, 1000) and p_chi < 1e-3
+      and abs(p_chi - chi2d.sf(float(X2), 2)) < 1e-15,
+      f"table {T}, fibre size {len(fib)}, exact p = {float(p_exact):.2e} (rational, denominator {p_exact.denominator}), chi-square p = {p_chi:.2e}")
 
 # A11 monad side
 def inv_coupling(f, steps=6):

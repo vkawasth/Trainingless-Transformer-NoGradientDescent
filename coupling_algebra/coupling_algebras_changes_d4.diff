@@ -1,0 +1,113 @@
+39c39
+< \date{October 6, 2026, draft 3}
+---
+> \date{October 6, 2026, draft 4}
+55,63c55,58
+< The other algebra in the programme, the \emph{gluing algebra} $A_f$ of matrices whose row and column sums are multiples of
+< $f$, is much smaller than it looks, and this corrects earlier expectations about it. We show $A_f\cong\R\times M_{n-1}(\R)$, with
+< the product coupling and its complement as central idempotents. Categorically, $A_f$ is the linear span of the monoid of
+< $\D$-algebra endomorphisms of $\D(Y)$ fixing $f$, with the product coupling the endomorphism through the zero object. The
+< $A_\infty$-functor of whiskering into the square-zero cone of the circulations exists and is unique for every mass-preserving
+< linear map, but the cone is quasi-isomorphic to $\R$, and up to homotopy the functor is the mass. Couplings with kernels as
+< vertical arrows do not form a double category, although squares compose when the middle map is a bijection or merges only
+< interchangeable values. The tower's context comonad is acted on by the monoid of $f$-fixing kernels, but not linearly, so it does
+< not see $A_f$.
+---
+> The other algebra in the programme, the gluing algebra $A_f$, is much smaller than it looks: $A_f\cong\R\times M_{n-1}(\R)$, the
+> linear span of the $\D$-algebra endomorphisms of $\D(Y)$ fixing $f$. The $A_\infty$-functor into the square-zero cone is forced
+> for every mass-preserving linear map but is the mass up to homotopy, and couplings with kernels do not form a double
+> category. These results correct earlier expectations in the programme.
+91c86,87
+< \paragraph{For readers of the theory paper.} The answer to ``why this cone?'' is a correction of the strong form of the
+---
+> \subsection{For readers of the theory paper}\label{sec:forreaders}
+> The answer to ``why this cone?'' is a correction of the strong form of the
+100a97
+> \subsection{Main results}
+108c105
+< \item \emph{Monad and comonad} (\cref{prop:kleisli,prop:comonad}). Couplings of $f$ with itself are the $\D$-algebra
+---
+> \item \emph{Monad and comonad} (\cref{prop:kleisli,prop:comonad,prop:monad-not}). Couplings of $f$ with itself are the $\D$-algebra
+123c120
+< \item \emph{The ring of contingency tables} (\cref{thm:ehrhart,prop:twobym}). For margins with common denominator $N$, the polytope
+---
+> \item \emph{The ring of contingency tables} (\cref{thm:ehrhart}). For margins with common denominator $N$, the polytope
+127,128c124,128
+<   circulations. For $2\times m$ tables the count is a polynomial on each chamber of margins, and across a wall that cuts a
+<   corner of lattice depth $d$ it drops by $\binom{d+1}2$, the Riemann--Roch jump of a toric blow-up.
+---
+>   circulations.
+> \item \emph{Tables across walls} (\cref{prop:twobym}). For $2\times m$ tables the number of tables is given in closed form; it is a
+>   polynomial on each chamber of margins, adjacent polynomials differ by one binomial term that vanishes on a strip along
+>   the wall, and across a wall that cuts a corner of lattice depth $d$ the count drops by $\binom{d+1}2$, the Riemann--Roch
+>   jump of a toric blow-up.
+132c132
+< \paragraph{What is not claimed.} Earlier drafts of this programme proposed several stronger statements, and each is false.
+---
+> \subsection{What is not claimed} Earlier drafts of this programme proposed several stronger statements, and each is false.
+137c137
+< number of vertices of the polytope. The monadic reading also has limits, listed in \cref{rem:monad-not}: the barycenter is not
+---
+> number of vertices of the polytope. The monadic reading also has limits (\cref{prop:monad-not,rem:monad-not}): the barycenter is not
+141c141
+< \paragraph{Relation to the other papers.} This note uses the definitions of \cite[\S\S2, 5, 10]{Conditionals} and of the
+---
+> \subsection{Relation to the other papers} This note uses the definitions of \cite[\S\S2, 5, 10]{Conditionals} and of the
+282a283,305
+> \begin{proposition}[Limits of the monadic reading]\label{prop:monad-not}
+> \begin{enumerate}[label=(\roman*)]
+> \item $D\cdot\operatorname{End}(f)=\{a\in A_f:a\ge0,\ s(a)=1\}=\Cpl(f,f)$ is a proper subset of $A_f$ that spans it. It is a
+>   convex set closed under gluing, not a subspace.
+> \item The two-sided ideals of $A_f$ are exactly $0$, $\R P_f$, $I_f$ and $A_f$, and every nonzero circulation generates $I_f$. So the
+>   maximal chains of ideals are $0\subsetneq\R P_f\subsetneq A_f$ and $0\subsetneq I_f\subsetneq A_f$, and there is no chain
+>   $0\subsetneq J_1\subsetneq J_2\subsetneq A_f$.
+> \item $HH^n(A_f,M)=0$ for every $A_f$-bimodule $M$ and every $n\ge1$. For a mass-preserving linear $F_1\colon A_f\to A_{f'}$, the rule
+>   $a\cdot x=F_1(a)\cdot x$ makes $I_{f'}$ a left $A_f$-module if and only if $b_2=0$.
+> \end{enumerate}
+> \end{proposition}
+> \begin{proof}
+> (i) is \cref{prop:kleisli}(i); the set is not closed under negation. (ii) By \cref{thm:structure}(iii), $A_f\cong\R\times M_{n-1}(\R)$,
+> a product of two simple algebras, whose two-sided ideals are the four products of $0$ or the whole factor. A nonzero $x\in I_f$
+> lies in the simple factor $I_f$, so it generates $I_f$. (iii) $A_f$ is a product of matrix algebras over $\R$, hence separable, so
+> it is projective as a bimodule over itself and its Hochschild cohomology vanishes in positive degrees. The module axiom
+> $F_1(ab)\cdot x=F_1(a)\cdot(F_1(b)\cdot x)$ says $b_2(a,b)\cdot x=0$ for all $x\in I_{f'}$; taking $x=e_{f'}$, the unit of $I_{f'}$, gives
+> $b_2(a,b)=0$, since $b_2(a,b)\in I_{f'}$.
+> \end{proof}
+> 
+> So $b_2$ satisfies the Hochschild cocycle identity only formally (the arity-three equation of \cref{thm:forced}): there is no
+> bimodule in which it is a cocycle unless it vanishes, and no Hochschild class could carry it anyway.
+> 
+284d306
+< Several stronger identifications suggest themselves, and each fails.
+286,293c308,311
+< \item \emph{The barycenter is not the mass projection.} $\mu_Y$ is a map $\D^2(Y)\to\D(Y)$ and does not act on $A_f$. The projection
+<   onto $\R P_f$ is \cref{prop:kleisli}(iv), induced by the map to the zero object.
+< \item \emph{$A_f$ is the span of $\operatorname{End}(f)$, not equal to it.} The monoid consists of the nonnegative elements of mass one;
+<   the algebra is its linear span, and it is in passing to the span that positivity, hence contextuality, is lost
+<   (\cref{cor:blind}).
+< \item \emph{No ideal filtration.} By \cref{thm:structure}, $A_f\cong\R\times M_{n-1}(\R)$ is a product of two simple algebras, so its
+<   two-sided ideals are $0$, $\R P_f$, $I_f$ and $A_f$; any single nonzero circulation generates $I_f$. There is no room for a
+<   three-step filtration by ideals, so the precision ladder of \cite[Thm.~3.5]{Attribution}, whose rungs are nested attribution sets, is not a filtration of $A_f$. The ladder lives in the 1-cell layer. A decomposition
+---
+> \item \emph{The barycenter is not the mass projection.} $\mu_Y$ is a map $\D^2(Y)\to\D(Y)$, and the projection onto $\R P_f$ is
+>   \cref{prop:kleisli}(iv), induced by the map to the zero object.
+> \item \emph{The precision ladder is not an ideal filtration.} The ladder of \cite[Thm.~3.5]{Attribution} has three nested rungs,
+>   in general distinct, and by \cref{prop:monad-not}(ii) $A_f$ has no chain of three distinct nonzero ideals. The ladder lives in the 1-cell layer. A decomposition
+299,302d316
+< \item \emph{The defect is not a Hochschild class.} The arity-three equation in \cref{thm:forced} is formally the Hochschild cocycle
+<   identity for $b_2$, but $I_{f'}$ is an $A_f$-bimodule through $F_1$ only when $F_1$ is multiplicative, and then $b_2=0$. In any case
+<   $A_f$ is separable, so its Hochschild cohomology vanishes in positive degrees for every bimodule, and no Hochschild class can
+<   carry the defect.
+305a320,321
+> By \cref{prop:monad-not}(i), it is in passing from the monoid to its span that positivity, and with it contextuality, is lost
+> (\cref{cor:blind}).
+592c608
+< \item A13: \cref{rem:monad-not}(c), the sufficient condition of \cref{prop:double} on both sides, and its failure for a generic merge;
+---
+> \item A13: \cref{prop:monad-not}(ii), the sufficient condition of \cref{prop:double} on both sides, and its failure for a generic merge;
+596c612,614
+< Everything except A10 uses exact rational arithmetic.
+---
+> Everything is exact rational arithmetic except the $\chi^2$ tail in A10. The exact test itself is computed exactly: each
+> hypergeometric probability is a rational number, and the $151$ tables of the fibre are compared exactly. The $\chi^2$ tail with
+> two degrees of freedom is $e^{-X^2/2}$, evaluated in floating point.
