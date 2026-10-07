@@ -6,7 +6,7 @@ Experimental definitions.
          identity 1_f = diag(f).  Couplings are the a >= 0 with s = 1, and composition of couplings is gluing.
   I      the circulations (s = 0): a two-sided ideal.
   C      the mapping cone of I -> L: Hom_C = V (+) eps I, deg eps = -1, m1(eps x) = x, eps x . eps y = 0.
-  F^h    whiskering by a stochastic matrix h: F1 = h_* (a -> h^T a h), F2 = eps delta_h with
+  F^h    the product action of a stochastic matrix h: F1 = pi_h (a -> h^T a h), F2 = eps delta_h with
          delta_h(a,b) = h_*(ab) - h_*(a) h_*(b), F_{>=3} = 0.
   N      nerve -> cone: a 2-simplex p (a 3-way table) gives H(p) = eps (d1 p - d2 p . d0 p).
 
@@ -19,7 +19,10 @@ Experimental definitions.
   M7 kernels X -> Y as objects: Hom = product over x, all of M1-M4 componentwise (|X| = 2)
   M8 nerve -> cone: H(p) lies in eps I; gluing fillers and degenerate simplices give H = 0; on 3-simplices the
      coherence class Z = g01 H123 + H013 - H012 g23 - H023 vanishes identically (m1 is injective on eps I: H^{-1} = 0)
-  M9 naturality: H(h_* p) = F1(H(p)) + F2(d2 p, d0 p)
+  M9 naturality: H(h_* p) = F1(H(p)) + F2(d2 p, d0 p)  (product action)
+  M10 the whiskering w_h of Conditionals Thm 2.3 (copy h on equal pairs) is strictly unital: w_h(1_f) = 1_{hf},
+      F2(1,a) = F2(a,1) = 0, and the arity-3 identity holds with it
+  M11 w_h is functorial for deterministic kernels (where w_h = pi_h) but not for stochastic ones: w_{h'} w_h != w_{hh'}
 """
 import itertools, random
 from fractions import Fraction as Fr
@@ -113,8 +116,8 @@ check("M4 A-infinity relations across objects: arity 2 (m1 F2 = defect, in I), a
 u = [F1(i, i, ident(fs[i])) - ident(gs[i]) for i in range(4)]
 ok = all(not x.is_zero_matrix for x in u) and all(inV(x, gs[i], gs[i]) and s_of(x, gs[i]) == 0 for i, x in enumerate(u))
 F2unit = D(0, 0, 1, ident(fs[0]), a)
-check("M5 units: F1(1_f) != 1_{hf}; the difference u_f lies in I (= m1(eps u_f)), and F2(1,a) != 0: F is cohomologically "
-      "unital, not strictly unital", ok and not F2unit.is_zero_matrix)
+check("M5 product action: pi_h(1_f) != 1_{hf}; the difference u_f lies in I (= m1(eps u_f)), and F2(1,a) != 0: "
+      "cohomologically unital, not strictly unital", ok and not F2unit.is_zero_matrix)
 
 # ------------------------------------------------------------------ M6 functoriality in h
 Z2 = [3, 2, 2, 3]
@@ -192,5 +195,28 @@ for i, j, k in itertools.product(range(2), range(3), range(2)):
 a01, a12, f1 = marg(p, (0, 1)), marg(p, (1, 2)), marg(p, (1,))
 lhs = Hp(hp)
 rhs = hh[0].T * Hp(p) * hh[2] + (hh[0].T * comp(a01, f1, a12) * hh[2] - comp(hh[0].T * a01 * hh[1], hh[1].T * f1, hh[1].T * a12 * hh[2]))
-check("M9 naturality of nerve -> cone under whiskering: H(h_* p) = F1(H(p)) + F2(d2 p, d0 p)", lhs == rhs)
+check("M9 naturality of nerve -> cone under the product action: H(h_* p) = F1(H(p)) + F2(d2 p, d0 p)", lhs == rhs)
+
+# ------------------------------------------------------------------ M10, M11 the whiskering of Thm 2.3
+def whisk(h, a):
+    n = a.shape[0]; m = h.shape[1]; out = sp.zeros(m, m)
+    for y in range(n):
+        for yp in range(n):
+            if y == yp:
+                for z in range(m): out[z, z] += a[y, y] * h[y, z]
+            else: out += a[y, yp] * h[y, :].T * h[yp, :]
+    return out
+f0 = fs[1]; hw = stoch(3, 3); g0 = hw.T * f0
+aa, bb, cc = mor(f0, f0), mor(f0, f0), mor(f0, f0)
+D = lambda x, y: whisk(hw, comp(x, f0, y)) - comp(whisk(hw, x), g0, whisk(hw, y))
+ok = whisk(hw, ident(f0)) == ident(g0) and D(ident(f0), aa).is_zero_matrix and D(aa, ident(f0)).is_zero_matrix
+ok &= inV(D(aa, bb), g0, g0) and s_of(D(aa, bb), g0) == 0 and not D(aa, bb).is_zero_matrix
+lhs = comp(whisk(hw, aa), g0, D(bb, cc)) - D(comp(aa, f0, bb), cc) + D(aa, comp(bb, f0, cc)) - comp(D(aa, bb), g0, whisk(hw, cc))
+ok &= lhs.is_zero_matrix
+check("M10 the whiskering w_h (copy on equal pairs) is strictly unital, F2(1,a) = F2(a,1) = 0, defects lie in I, arity-3 holds", ok)
+h2w = stoch(3, 2)
+hd = sp.Matrix([[1, 0, 0], [0, 0, 1], [0, 0, 1]]); hd2 = sp.Matrix([[0, 1], [1, 0], [1, 0]])
+check("M11 w_h is functorial for deterministic kernels (w_h = pi_h there) but not for stochastic ones",
+      whisk(hd2, whisk(hd, aa)) == whisk(hd * hd2, aa) and whisk(hd, aa) == hd.T * aa * hd
+      and whisk(h2w, whisk(hw, aa)) != whisk(hw * h2w, aa))
 print(f"\n{sum(res)}/{len(res)} checks passed")
