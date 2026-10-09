@@ -1,0 +1,31 @@
+== fibre
+facet cells ['11', '12', '13', '21', '23'] | forced lower bounds {'22': '3/100'}
+vertices 5 [('0', '13/100'), ('0', '2/5'), ('13/100', '0'), ('3/10', '0'), ('3/10', '1/10')]
+area (symplectic volume) 1331/20000
+== base: chambers, tear and break margins
+wall values f1 - g(J): ['1/10', '-3/100', '13/100', '-33/100', '-17/100', '-3/10'] | tear margin m_T = 3/100 | break margin = 27/100
+== entropy
+product (max-entropy) coupling (a11, a12) = 3/25 43/250 | H = 1.7506 nats = 2.5256 bits
+== toric
+surface Bl_2 CP^2 | self-intersections {'11': 0, '12': -1, '13': 0, '21': -1, '23': -1}
+Kaehler class coefficients f_i g_j on facets: {'11': '3/25', '12': '43/250', '13': '27/250', '21': '9/50', '23': '81/500'}
+== Floer
+  3 branes over (2/15, 2/15), smallest cells ['11', '12', '13'] = 2/15, level 1
+  1 branes over (13/100, 13/100), smallest cells ['11', '12', '23'] = 13/100, level 1
+  1 branes over (1/5, 1/10), smallest cells ['12', '13', '21'] = 1/10, level 1
+leximin ('2/15', '2/15') carries 3 | product carries 0 | smallest facet product ('27/250', '13') unique: True
+distinct critical points at T=e^-40: 5
+== real locus: chi -1 orientable False Maslov-1 half-discs from 3 (-1)-curves
+== rigidity of the 2x3 toric surfaces
+  CP^2         n=3: Demazure roots 6, h0(T)=8, chi(T)=14-2n=8, h1(T)=h0-chi=0, Ilten sum 0
+  CP^1 x CP^1  n=4: Demazure roots 4, h0(T)=6, chi(T)=14-2n=6, h1(T)=h0-chi=0, Ilten sum 0
+  F_1          n=4: Demazure roots 4, h0(T)=6, chi(T)=14-2n=6, h1(T)=h0-chi=0, Ilten sum 0
+  Bl_2         n=5: Demazure roots 2, h0(T)=4, chi(T)=14-2n=4, h1(T)=h0-chi=0, Ilten sum 0
+  Bl_3         n=6: Demazure roots 0, h0(T)=2, chi(T)=14-2n=2, h1(T)=h0-chi=0, Ilten sum 0
+== margins into Kaehler moduli
+  CP^2         dim H^2 = 1, rank of margins -> [omega] = 1
+  CP^1 x CP^1  dim H^2 = 2, rank of margins -> [omega] = 2
+  F_1          dim H^2 = 2, rank of margins -> [omega] = 2
+  Bl_2         dim H^2 = 3, rank of margins -> [omega] = 3
+  Bl_3         dim H^2 = 4, rank of margins -> [omega] = 3
+dP6: sum of normals (0, 0) | c1.[omega] = 1
