@@ -1,0 +1,19 @@
+PASS B1 discounting with reliability alpha gives exactly the band [alpha p, alpha p + 1 - alpha]
+PASS B2 tightened bounds max(lo_i, 1 - sum_{k!=i} hi_k), min(hi_i, 1 - sum_{k!=i} lo_k) are attained
+PASS B3 couplings of banded margins: cell bounds [max(0, lo_f + lo_g - 1), min(hi_f, hi_g)] after tightening
+PASS B4 TV distance from (f,g) to the walls equals min |f(I) - g(J)|; TV distance to the face p_y = 0 equals p_y   [example margins [0.231 0.413 0.356], [0.099 0.405 0.398 0.098]: distance 0.0083]
+PASS B5 upper entropy of a band = water-filling clip(c, lo, hi); lower entropy attained at a vertex
+PASS B6 |H(p) - H(q)| <= t log(n-1) + h(t) on 2000 random pairs, with equality at p = delta, q = (1-t, t/(n-1), ...)
+PASS B7 comonotone-coupling entropy has a d log(1/d) cusp at the wall f1 = g1 (one-sided slope grows like log 1/eps); it is smooth away from walls; product entropy smooth; |dH/dp_y| diverges as p_y -> 0   [one-sided slopes at eps = 1e-3, 1e-5, 1e-7: [7.55, 12.16, 16.76]]
+PASS B8 H(mean) = E_Pi H(rho) + I(model; outcome); H(gluing filler) - H(P) = I(X;Z|Y) with the same (X,Y), (Y,Z) margins
+PASS B9 conditioning commutes and is idempotent; Jeffrey updates do not commute (TV defect) but commute on a product law; a loop leaves a residue, keeps the odds ratio, and iterated fitting returns to the start   [commutator defect 0.1202, loop residue 0.0727, odds ratio 9.000 kept]
+PASS B10 dilation: P(X=1) is the point 1/2, yet P(X=1 | Y=y) ranges over [0, 1] for both y
+PASS B11 the TV diameter of a band shrinks by at least the Dobrushin coefficient under a kernel
+PASS B12 random walks with TV steps <= v never leave the chamber before ceil(m_T / v) steps
+PASS B13 min/max of p(I) over an element band in closed form; the sign test decides whether a band pair meets a wall
+PASS S1 G-test 2N I(X;Z|Y): size near 0.05 under X _||_ Z | Y, high power for a planted 8-point effect   [size 0.048, power 0.875 at N = 2000]
+PASS S2 MAR missingness: available-case tables are incompatible far beyond the sampling null; after IPW the inconsistency is of the same order as the sampling null of complete-at-random missingness; the contextual fraction drops with it   [L1 inconsistency 0.4394 (available cases); null median / 95%: MCAR 0.0206 / 0.0401, MAR + IPW 0.0151 / 0.0424; CF 0.2197 (available cases) vs 0.0209 (IPW, same sample), CF null 95% 0.0200]
+PASS S3 the chamber of planted margins is identified once N m_T^2 is large; errors are common when N m_T^2 is small   [m_T = 0.080; error rate by N m_T^2: {0.5: 0.23666666666666666, 4: 0.0, 16: 0.0}]
+PASS P1 the pilot numbers quoted in the paper match the saved outputs   [all match]
+
+17/17 checks passed

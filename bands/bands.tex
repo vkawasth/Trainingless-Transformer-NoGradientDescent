@@ -1,0 +1,999 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{mainthm}{Main results}
+
+\newcommand{\D}{\mathsf{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Cpl}{\operatorname{Cpl}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\T}{\mathsf T}
+\newcommand{\Hup}{\overline{H}}
+\newcommand{\Hlo}{\underline{H}}
+
+\title{Bands:\\
+Perturbation, Tearing and Breaking of Coupling Structures,\\ and the Entropy of Changing Probabilities}
+\author{Vinay K. Awasthi\\
+Department of Applied Mathematics and Statistics\\
+Johns Hopkins University\thanks{\texttt{check\_bands.py} (17 checks) and \texttt{check\_dynamics.py} (9 checks) verify numerically the statements proved here, the synthetic
+validation and every quoted number; results cited from the other papers are checked there. The pilots are reproduced by the
+scripts in the folder \texttt{pilot}.}}
+\date{October 8, 2026, draft 2}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Probabilities in practice are not fixed. They are revised as information arrives, and revised again when the information
+turns out to be unreliable. We model the state of knowledge as a \emph{band}, a closed convex set of distributions, typically
+given by elementwise limits $(\mathrm{lo},\mathrm{hi})$, and ask how far the algebraic and geometric structures of couplings
+tolerate perturbations of a band before they change. There are three regimes. Inside a chamber of margins the structures
+\emph{bend}: the gluing algebra keeps its type, the coupling polytope keeps its combinatorial type, and table counts stay
+polynomial. On a wall they \emph{tear}: the polytope degenerates, its vertex supports change, and for two-row tables the
+counts jump by explicit terms. At the boundary of the
+simplex they \emph{break}: an outcome loses its support and the algebra drops dimension. The total-variation distance to
+tearing is $m_T=\min\lvert f(I)-g(J)\rvert$ and to breaking is $m_B=\min_y f_y$, both exact. Entropy is continuous in all three
+regimes, and the regimes are told apart by its derivatives: the product coupling's entropy is smooth everywhere inside
+the simplex, a vertex coupling whose cell vanishes on a wall has a $d\log(1/d)$ cusp there, and at the boundary the gradient
+diverges. On bands, entropy becomes an interval whose upper end is a water-filling and whose lower end sits at a vertex.
+Information acts by a monoid of updates on bands, not a group: conditioning commutes and is idempotent, Jeffrey updates do not
+commute, discounting widens bands and noisy kernels contract them. The ratio of the margin to the speed of an update is a
+tear time, which lower-bounds the number of updates before a structure tears. Assembling the fibres of compatible laws into families
+over a band gives one polytope with a computable entropy interval; limits become compatibility (cones are compatible laws) and colimits
+assembly of fibres; and the
+parameter space splits into structural shards. Along explicit paths each structure is seen to bend, tear or break. A break has
+second-order effects: global compatibility can be lost only through a break of the maximum-entropy filler, with an early warning
+that is sharp in an example; a zero at level one of the tower removes a model for ever, while reliability at level three bounds how
+fast the calibrated view can change and prevents the break. Two pilots on public data, NHANES subgroups and
+COVID-19 ensemble forecasts with their revision history, show much of the predicted behaviour: bands shrink up an
+information ladder, narrow structural bands must be combined with sampling bands to predict new data, decisive bands cross
+walls by straddling them, small margins predict tearing, and forecasts built on data that was later heavily revised lose
+almost half their coverage. The speed term of the tear time does not yet improve on the margin. A protocol for clinical data separates
+the statements that are theorems from those that can fail, and it is validated on synthetic data with planted effects.
+\end{abstract}
+
+\tableofcontents
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+%=====================================================================
+
+The papers of this programme treat a distribution as given: a margin $f$, a coupling of $f$ with $g$, a posterior at some
+level of a tower. In practice the distribution is an estimate. It moves when new data arrive, and it moves again when old data
+are corrected. A forecast of a week's deaths is made four weeks ahead and revised three times before the week ends, and the counts it is scored
+against are themselves revised for weeks afterwards. A subgroup risk is known only within limits, and those limits narrow
+as more cross-tabulations are published.
+
+This paper asks three questions. How large a change of the distributions can each structure absorb before it changes?
+What does entropy, as a function on sets of distributions, do as they move? And what is the right notion of the rate at
+which information changes them? The setting is a \emph{band}: a closed convex set of distributions, in the simplest case all
+$p$ with $\mathrm{lo}\le p\le\mathrm{hi}$ (\cref{sec:bands}). A band is what the second level of the posterior tower
+\cite{Tower} looks like from the first, and reliability is a third level: discounting a law with reliability $\alpha$ gives
+exactly the band $[\alpha p,\alpha p+1-\alpha]$ (\cref{prop:discount}).
+
+\begin{mainthm}
+\leavevmode
+\begin{enumerate}[label=(\Alph*),leftmargin=*]
+\item \emph{Three regimes, with exact distances} (\cref{thm:distances,thm:regimes}). Structures bend inside a chamber,
+  tear on a wall and break at the boundary of the simplex; chambers are taken inside the open simplices. The total-variation distance from a pair of margins to the
+  nearest wall is $m_T=\min_{I,J}\lvert f(I)-g(J)\rvert$, and to the boundary is $m_B=\min_yf_y$.
+\item \emph{Tolerance of a band} (\cref{prop:bandsafe}). For elementwise bands the extremes of every event probability
+  have closed forms, so whether a band can tear is decided by finitely many sign checks.
+\item \emph{Entropy across the regimes} (\cref{prop:entropyregimes}). Entropy is continuous throughout. The product
+  coupling's entropy is smooth everywhere inside the simplex; the entropy of a vertex coupling has a $d\log(1/d)$ cusp
+  where one of its cells vanishes on a wall; at the boundary the gradient diverges. So tearing is visible to extremal
+  structures but not to the product coupling, and breaking to both.
+\item \emph{Entropy of a band} (\cref{prop:upper,prop:lower,prop:entropyspeed,prop:level2}). The upper entropy is a
+  water-filling, the lower entropy sits at a vertex, both move by at most $t\log(n-1)+h(t)$ when the band moves by
+  $t\le1-1/n$ in total variation, and the entropy of a mixture splits into expected entropy plus the information about which model holds.
+  The entropy gap between the conditionally independent gluing and a joint with the same margins is the conditional
+  mutual information.
+\item \emph{The update monoid} (\cref{prop:monoid,prop:dilation,prop:loop}). Updates of bands form a monoid. Conditioning on events
+  commutes and is idempotent; Jeffrey updates do not commute, but they preserve odds ratios, so a loop of them leaves a residue
+  that iterated fitting removes; discounting widens a band; a kernel contracts it by its Dobrushin coefficient; and
+  conditioning can dilate a band from a point to $[0,1]$.
+\item \emph{Tear time} (\cref{prop:teartime}). If each update moves the margins by at most $v$ in total variation, no
+  structure tears before $\lceil m_T/v\rceil$ updates.
+\item \emph{Families, limits, shards} (\cref{prop:family,def:shards,prop:updateregimes}). The family of fibres over a polyhedral band is
+  a polytope whose upper entropy is the sum of the margins' upper entropies; cones are compatible laws; breaking is created only by
+  conditioning, Jeffrey updates with a zero target and kernels with a zero column, and removed by kernels with positive entries.
+\item \emph{Stability along paths} (\cref{ex:path22,ex:path3}). Structure by structure, what bends, tears and breaks along a $2\times2$ path
+  through two walls and along the three-bit path.
+\item \emph{Second-order breaking} (\cref{thm:lossbybreak,prop:tolerance}). Compatibility is lost only through a break of the filler,
+  and the filler's break margin divided by $\lVert M^+\rVert$ is a tolerance, attained on part of the three-bit path.
+\item \emph{The tower under evidence} (\cref{ex:cromwell,prop:morph}). A level-one zero removes a model for ever; linear discounting with reliability $\alpha$
+  bounds the odds change per observation by $n/(1-\alpha)$ and prevents the break.
+\item \emph{Evidence} (\cref{sec:pilots,sec:protocol}). Two pilots on public data, and a test protocol for clinical
+  data in which theorems and falsifiable claims are kept apart, validated on synthetic data.
+\end{enumerate}
+\end{mainthm}
+
+\paragraph{What is not claimed.}
+\begin{itemize}[leftmargin=*,nosep]
+\item The dynamics of information is not a Galois action. Updates do not invert, so they form a monoid; its invertible
+  elements are relabellings, which supply symmetries and invariants but not the motion (\cref{rem:galois}).
+\item A loop of updates on margins does not exhibit a topological holonomy. It leaves a residue, but the updates
+  preserve the interaction parameters, and further fitting to the original margins removes the residue (\cref{prop:loop});
+  genuine holonomy needs updates that change interactions, and is left open.
+\item In the forecast pilot an analogue of the tear time predicted tearing, but no better than the margin alone
+  (\cref{sec:fhub}). Its speed term does not yet earn its place.
+\item Limits are not claimed to exist as universal cones: the category of finite probability spaces has no products, and we use
+  cones, compatible laws, with entropy choosing a canonical one. Our shards are unrelated to the shards of hyperplane arrangements.
+\item In-sample containment of the true value in the NHANES bands is a sanity check, not evidence; the out-of-sample
+  version is in \cref{sec:nhanes}.
+\item In data drawn from one classical population, a common joint distribution always exists. Incompatibility of observed
+  margins therefore measures selection between contexts, not contextuality of the kind in \cite{Conditionals}
+  (\cref{sec:protocol}).
+\end{itemize}
+
+\paragraph{Relation to the other papers.} The walls and chambers are those of \cite[Def.~6.3, Prop.~6.6]{Conditionals}, and the
+chamber-identification bound is \cite[Prop.~12.2]{Conditionals}. The gluing algebra and the table counts across walls are
+\cite[Thm.~2.2, Prop.~7.3]{Algebras}. The band as a level-two shadow and the Dobrushin contraction come from
+\cite[Prop.~9.14, Prop.~11.2]{Tower}. The precision ladder of \cite[Thm.~3.5]{Attribution} reappears as the information
+ladder of the NHANES pilot. The fixed-fibre geometry, constraint branes and torus branes, is in the companion note
+\cite{Bridges}; this paper supplies its dynamics. The parity horns and the signed-measure gluing are from \cite[Thm.~4.3]{Conditionals} and
+\cite[Prop.~35.1]{ThreeLayers}. Each of these papers can later gain a short subsection citing the part of this one it
+needs.
+
+%=====================================================================
+\section{Bands}\label{sec:bands}
+%=====================================================================
+
+Let $Y$ be a finite set with $n$ elements and $\D(Y)$ the simplex of distributions on it.
+
+\begin{definition}\label{def:band}
+A \emph{band} on $Y$ is a nonempty closed convex subset $B\subseteq\D(Y)$. An \emph{elementwise band} is
+$B(\mathrm{lo},\mathrm{hi})=\{p\in\D(Y):\mathrm{lo}\le p\le\mathrm{hi}\}$ for vectors $0\le\mathrm{lo}\le\mathrm{hi}\le1$; it is
+nonempty if and only if $\sum\mathrm{lo}\le1\le\sum\mathrm{hi}$. Its \emph{tightening} is
+\[
+\mathrm{lo}'_y=\max\Bigl(\mathrm{lo}_y,\ 1-\sum_{z\ne y}\mathrm{hi}_z\Bigr),\qquad
+\mathrm{hi}'_y=\min\Bigl(\mathrm{hi}_y,\ 1-\sum_{z\ne y}\mathrm{lo}_z\Bigr).
+\]
+\end{definition}
+
+Elementwise bands are the probability intervals of de Campos, Huete and Moral \cite{deCampos1994}, and general bands are
+credal sets in the sense of Walley \cite{Walley1991}.
+
+\begin{proposition}[Tightening and event probabilities]\label{prop:tighten}
+Let $B=B(\mathrm{lo},\mathrm{hi})$ be nonempty. Then $B(\mathrm{lo}',\mathrm{hi}')=B$, every tightened bound is attained by
+some $p\in B$, and for every event $I\subseteq Y$,
+\[
+\min_{p\in B}p(I)=\max\Bigl(\sum_{y\in I}\mathrm{lo}_y,\ 1-\sum_{y\notin I}\mathrm{hi}_y\Bigr),\qquad
+\max_{p\in B}p(I)=\min\Bigl(\sum_{y\in I}\mathrm{hi}_y,\ 1-\sum_{y\notin I}\mathrm{lo}_y\Bigr).
+\]
+\end{proposition}
+\begin{proof}
+For $p\in B$, $p(I)=1-p(I^c)\ge1-\sum_{I^c}\mathrm{hi}$ and $p(I)\ge\sum_I\mathrm{lo}$, so the stated minimum is a lower bound. It
+is attained by setting $p=\mathrm{hi}$ on $I^c$ and $p=\mathrm{lo}$ on $I$ and then distributing the remaining mass
+$1-\sum_I\mathrm{lo}-\sum_{I^c}\mathrm{hi}$, which has the sign that makes this possible, on $I$ if it is positive and on
+$I^c$ if it is negative, within the bounds; this is a greedy fill, possible because $\sum\mathrm{lo}\le1\le\sum\mathrm{hi}$. The
+maximum is symmetric. Singletons $I=\{y\}$ give the tightened bounds, which are therefore attained, and they cut out the same
+set.
+\end{proof}
+
+\begin{proposition}[Reliability gives a band]\label{prop:discount}
+Let $p\in\D(Y)$ and $\alpha\in[0,1]$. The set $\{\alpha p+(1-\alpha)q:q\in\D(Y)\}$ of laws obtained by trusting $p$ with
+reliability $\alpha$ and allowing anything otherwise, the credal set of Shafer's discounting \cite{Shafer1976}, is exactly
+the elementwise band $B(\alpha p,\ \alpha p+(1-\alpha)\mathbf 1)$.
+\end{proposition}
+\begin{proof}
+Each $\alpha p+(1-\alpha)q$ lies between $\alpha p$ and $\alpha p+(1-\alpha)$ coordinatewise. Conversely, if $r$ lies in
+the band and sums to $1$, then $q=(r-\alpha p)/(1-\alpha)$ is nonnegative and sums to $1$ (for $\alpha<1$; for $\alpha=1$ both
+sets are $\{p\}$).
+\end{proof}
+
+\paragraph{Bands from the tower.} A finitely supported law $\Pi=\sum_kw_k\delta_{\rho_k}$ on $\D(Y)$, a level-two element of the
+tower \cite{Tower}, generates the band $\operatorname{conv}\{\rho_k\}$, which contains the barycenter $\sum_kw_k\rho_k$. The
+band forgets the weights $w_k$, and that is the precise sense in which it is the level-one shadow of level two. A level-three
+law, a law on such $\Pi$, models doubt about the reliability of the level-two assessment; \cref{prop:discount} is the
+simplest instance, with $\Pi$ supported on $\{p\}$ and the discounting weight standing for the doubt.
+
+\paragraph{Banded margins.} When both margins are only known to lie in bands, the cells of their couplings are bounded by the
+Fréchet bounds taken at the extremes of the bands.
+
+\begin{proposition}[Fréchet bounds over bands]\label{prop:frechet}
+Let $F=B(\mathrm{lo}^f,\mathrm{hi}^f)$ and $G=B(\mathrm{lo}^g,\mathrm{hi}^g)$ be tightened. Over all $f\in F$, $g\in G$ and
+$\alpha\in\Cpl(f,g)$,
+\[
+\max\bigl(0,\ \mathrm{lo}^f_i+\mathrm{lo}^g_j-1\bigr)\ \le\ \alpha_{ij}\ \le\ \min\bigl(\mathrm{hi}^f_i,\ \mathrm{hi}^g_j\bigr),
+\]
+and both bounds are attained.
+\end{proposition}
+\begin{proof}
+For fixed margins the Fréchet bounds $\max(0,f_i+g_j-1)\le\alpha_{ij}\le\min(f_i,g_j)$ are sharp. They are monotone in
+$f_i$ and $g_j$, and the two bands are independent, so the extremes are attained at $f_i,g_j$ both minimal or both maximal,
+which is possible by \cref{prop:tighten}.
+\end{proof}
+
+%=====================================================================
+\section{Three regimes}\label{sec:regimes}
+%=====================================================================
+
+Let $f$ and $g$ be distributions on sets with $n$ and $m$ elements. A \emph{wall} is a hyperplane $f(I)=g(J)$ with $I,J$
+nonempty and proper, and the \emph{chambers} are the components of the complement of the walls in the product of the open
+simplices \cite[Def.~6.3]{Conditionals}. Off the open simplices the polytope can degenerate without any wall, which is the
+breaking regime.
+
+\begin{definition}\label{def:margins}
+The \emph{tear margin} of $(f,g)$ is $m_T(f,g)=\min_{I,J}\lvert f(I)-g(J)\rvert$, over nonempty proper $I,J$. The \emph{break
+margin} of $f$ is $m_B(f)=\min_yf_y$, and of the pair it is $\min(m_B(f),m_B(g))$. Distances between pairs are measured by
+$\TV(f,f')+\TV(g,g')$, with $\TV(p,q)=\frac12\sum\lvert p-q\rvert$.
+\end{definition}
+
+\begin{theorem}[Exact distances]\label{thm:distances}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item The distance from $(f,g)$ to the union of the walls is $m_T(f,g)$.
+\item The distance from $f$ to the face $\{p_y=0\}$ of the simplex is $f_y$, so the distance to its boundary is
+  $m_B(f)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) For any event, $\lvert f(I)-f'(I)\rvert\le\TV(f,f')$, so $f(I)-g(J)$ changes by at most $\TV(f,f')+\TV(g,g')$ and no
+pair closer than $m_T$ lies on a wall. Conversely, if $f(I)-g(J)=d>0$, moving mass $d$ from $I$ to $I^c$ in $f$ costs exactly
+$d$ in total variation and lands on the wall; this is possible because $f(I)\ge d$ and $I^c\ne\emptyset$. (ii) Moving the
+mass $f_y$ elsewhere costs $f_y$, and any $p$ with $p_y=0$ has $\TV(f,p)\ge f_y$.
+\end{proof}
+
+By \cite[Prop.~12.2]{Conditionals}, $N\ge2\log(2W/\eta)/m_T^2$ samples identify the chamber with probability at least
+$1-\eta$, where $W$ is the number of walls. So the tear margin is at once a geometric distance and a sample size.
+
+\begin{theorem}[Bending, tearing, breaking]\label{thm:regimes}
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Bending.} On the open simplex the gluing algebra $A_f$ is isomorphic to $\R\times M_{n-1}(\R)$ by an isomorphism
+  that depends continuously on $f$ \cite[Thm.~2.2]{Algebras}. On a chamber the coupling polytope $\Cpl(f,g)$ is simple and
+  of constant combinatorial type \cite[Thm.~6.4, Prop.~6.6]{Conditionals}; its vertices have constant supports, the
+  spanning trees of the complete bipartite graph that are feasible, each vertex is an affine function of $(f,g)$ with exactly
+  $n+m-1$ positive cells, and for two-row tables the number of integer tables is a single polynomial \cite[Prop.~7.3]{Algebras}.
+\item \emph{Tearing.} On a wall the coupling polytope is degenerate: some vertex has fewer than $n+m-1$ positive cells
+  \cite{DeLoeraKim2014}. Crossing the wall changes the set of feasible spanning trees, and with it the labelled structure of
+  the vertices; the number of vertices may or may not change (for $2\times2$ the polytope is a segment on both sides). For
+  $2\times m$ tables the change in the count of integer tables is one binomial term, and a corner cut of lattice depth $d$
+  removes $\binom{d+1}2$ tables \cite[Prop.~7.3]{Algebras}; in the $2\times3$ case of \cite[Prop.~10.6]{Conditionals} the area
+  changes by $\frac12s^2$.
+\item \emph{Breaking.} When $f_y\to0$, the gluing product $a\cdot b=a\,\diag(f)^{-1}b$ involves $\diag(f)^{-1}$ of norm $1/m_B$,
+  and the Fisher information of the multinomial family, $\diag(f)^{-1}$ on the tangent space, diverges. On the face
+  $f_y=0$ the algebra is replaced by $A_{f\vert_S}$ for the support $S$, of dimension $(\lvert S\rvert-1)^2+1$, strictly smaller.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) The isomorphism is the congruence $a\mapsto\diag(f)^{-1/2}a\,\diag(f)^{-1/2}$. For nondegenerate margins the transportation
+polytope is simple, and its vertices are the basic feasible solutions, whose supports are spanning trees of the complete bipartite
+graph. Removing an edge of a tree splits its nodes into a part containing rows $I$ and columns $J$ and the rest, and the flow on
+that edge is $\pm(f(I)-g(J))$, the sign depending on whether the edge leaves the part from a row or from a column. So which trees are
+feasible is decided by the signs of the wall functions, which are constant on a chamber, and each basic solution solves a fixed
+linear system in $(f,g)$. (ii) The same computation shows that on a wall some edge of some feasible tree carries flow $0$, so the
+corresponding vertex is degenerate; that degeneracy occurs exactly on the walls is classical \cite{DeLoeraKim2014}. The jumps are the
+cited results. (iii) Direct; the dimension formula is \cite[Thm.~2.2]{Algebras} applied to the support.
+\end{proof}
+
+\begin{proposition}[Tolerance of a band]\label{prop:bandsafe}
+Let $F$ and $G$ be elementwise bands for $f$ and $g$. The pair of bands meets no wall if and only if, for every wall $(I,J)$,
+either $\min_Ff(I)>\max_Gg(J)$ or $\max_Ff(I)<\min_Gg(J)$, with the extremes given by \cref{prop:tighten}. It meets no face of
+the simplex if and only if all tightened lower bounds are positive.
+\end{proposition}
+\begin{proof}
+The bands are independent, so the range of $f(I)-g(J)$ over $F\times G$ is the interval between $\min f(I)-\max g(J)$ and
+$\max f(I)-\min g(J)$, and it avoids $0$ exactly under the stated condition. The face statement is \cref{prop:tighten} for
+singletons.
+\end{proof}
+
+So the tolerance of a band is decided by $2(2^{n-1}-1)(2^m-2)$ closed-form numbers, one minimum and one maximum per wall,
+and the margin by which it is safe is the smallest gap among them.
+
+%=====================================================================
+\section{Entropy on bands and across the regimes}\label{sec:entropy}
+%=====================================================================
+
+Write $H(p)=-\sum p_y\log p_y$ and $h(t)=H(t,1-t)$.
+
+\begin{definition}\label{def:bandentropy}
+The \emph{upper} and \emph{lower entropy} of a band $B$ are $\Hup(B)=\max_BH$ and $\Hlo(B)=\min_BH$; their difference is the
+entropy that is due to imprecision rather than to randomness.
+\end{definition}
+
+\begin{proposition}[Upper entropy is a water-filling]\label{prop:upper}
+For an elementwise band, $\Hup$ is attained at the unique point $p_y=\operatorname{clip}(c,\mathrm{lo}_y,\mathrm{hi}_y)$, where
+$c$ is the level at which these values sum to $1$.
+\end{proposition}
+\begin{proof}
+$H$ is strictly concave, so the maximizer is unique and characterized by the Karush--Kuhn--Tucker conditions
+$-\log p_y-1-\lambda+\mu_y-\nu_y=0$ with $\mu_y\ge0$ active only at $\mathrm{lo}_y$ and $\nu_y\ge0$ active only at
+$\mathrm{hi}_y$. So $p_y=e^{-1-\lambda}$ wherever no bound is active, $p_y=\mathrm{lo}_y$ only if $e^{-1-\lambda}\le\mathrm{lo}_y$, and
+$p_y=\mathrm{hi}_y$ only if $e^{-1-\lambda}\ge\mathrm{hi}_y$; with $c=e^{-1-\lambda}$ this is the clip. Its sum is continuous and
+nondecreasing in $c$, so $c$ exists. Algorithms of this kind for credal sets are given by Abellán and Moral \cite{AbellanMoral2003}.
+\end{proof}
+
+\begin{proposition}[Lower entropy sits at a vertex]\label{prop:lower}
+$\Hlo$ of a polytope band is attained at a vertex. The vertices of an elementwise band are the points with every coordinate but
+at most one at a bound, so there are at most $n2^{n-1}$ of them.
+\end{proposition}
+\begin{proof}
+A concave function attains its minimum over a polytope at a vertex. A point of $B(\mathrm{lo},\mathrm{hi})$ with two coordinates
+strictly inside their bounds lies on a segment in $B$ obtained by trading mass between them, so it is not a vertex.
+\end{proof}
+
+\begin{proposition}[Entropy moves slowly]\label{prop:entropyspeed}
+If $\TV(p,q)=t\le1-1/n$, then $\lvert H(p)-H(q)\rvert\le t\log(n-1)+h(t)$, with equality for $p=\delta_y$ and
+$q=(1-t,\frac t{n-1},\dots)$ \cite{Zhang2007,Audenaert2007}. Consequently, if two bands are within Hausdorff distance $t$ in total
+variation with $t\le1-1/n$, their upper entropies and their lower entropies each differ by at most $t\log(n-1)+h(t)$.
+\end{proposition}
+\begin{proof}
+The first statement is the sharp continuity bound. The bound is increasing in $t$ on $[0,1-1/n]$, since its derivative
+$\log(n-1)+\log\frac{1-t}t$ is nonnegative there. For every $p\in B$ there is $p'\in B'$ within $t$, so
+$\Hup(B')\ge H(p)-t\log(n-1)-h(t)$; take the maximum over $p$, and argue symmetrically and likewise for minima.
+\end{proof}
+
+So an update that moves a band by $t$ in total variation changes its entropy interval by at most $t\log(n-1)+h(t)$: the rate of
+change of entropy is controlled by the rate of change of the band.
+
+\begin{proposition}[Entropy across the regimes]\label{prop:entropyregimes}
+\begin{enumerate}[label=(\roman*)]
+\item The entropy $H(f\otimes g)=H(f)+H(g)$ of the product coupling, the maximum-entropy coupling, is real-analytic on the
+  product of the open simplices. It does not see walls.
+\item Let $v(f,g)$ be a vertex of $\Cpl(f,g)$ on a chamber, and suppose that, as $(f,g)$ approaches a point of a wall along a
+  segment, one of its cells tends to $0$ while the others stay positive. With $t$ the distance along the segment,
+  $H(v(t))=H(v(0))+\kappa t\log(1/t)+O(t)$ for some $\kappa>0$, so its derivative in $t$ diverges like $\kappa\log(1/t)$: a cusp.
+\item As $f_y\to0$, $\partial H(f)/\partial f_y=-\log f_y-1$ diverges, and so does the corresponding derivative of the
+  product-coupling entropy $H(f)+H(g)$.
+\end{enumerate}
+So entropy is continuous in all three regimes. For a fixed vertex, bending is smooth, tearing is a logarithmic cusp, and
+breaking is a divergent gradient; the product coupling sees only the last.
+\end{proposition}
+\begin{proof}
+(i) is immediate. (ii) On the chamber $v$ is affine in $(f,g)$ by \cref{thm:regimes}(i), so the vanishing cell is $\kappa t$ with
+$\kappa>0$, and $-\kappa t\log(\kappa t)=-\kappa t\log t+O(t)$; the other cells stay positive, so their terms are smooth. (iii)
+Direct.
+\end{proof}
+
+\begin{example}
+For $2\times2$ couplings with $g=(0.3,0.7)$, the comonotone vertex has $\alpha_{11}=\min(f_1,0.3)$. Its entropy has one-sided slope
+$7.55$, $12.16$ and $16.76$ at distances $10^{-3}$, $10^{-5}$ and $10^{-7}$ past the wall $f_1=0.3$, growing by $\log100$ per factor
+$100$, while the entropy of the product coupling has equal one-sided slopes there (check B7).
+\end{example}
+
+The lower entropy of the coupling polytope, the minimum over its vertices, is a minimum of finitely many analytic functions on
+each chamber. It therefore has ordinary kinks inside chambers where the minimizing vertex changes: for $g=(0.3,0.7)$ the
+comonotone and countermonotone entropies cross at $f_1=0.5$, inside a chamber. It has a logarithmic cusp at a wall only when a
+minimizing vertex degenerates there, and it can be smooth across a wall otherwise. What distinguishes tearing is therefore the
+$\log(1/t)$ blow-up of a slope, not non-smoothness as such. The upper end of the entropy interval of the couplings, the product
+coupling, is blind to walls altogether.
+
+\begin{proposition}[Entropy of a mixture]\label{prop:level2}
+For $\Pi=\sum_kw_k\delta_{\rho_k}$ with barycenter $\bar\rho=\sum_kw_k\rho_k$,
+\[
+H(\bar\rho)=\sum_kw_kH(\rho_k)+I(K;X),
+\]
+where $(K,X)$ has law $w_k\rho_k(x)$. The first term is the expected entropy of the outcome under each model, the aleatoric
+part, and the second is the information the outcome carries about the model, the epistemic part.
+\end{proposition}
+\begin{proof}
+$H(X)=H(X\mid K)+I(K;X)$.
+\end{proof}
+
+\begin{proposition}[The gluing gap]\label{prop:gluinggap}
+Let $P$ be a law of $(X,Y,Z)$ and $F=P_{XY}P_{YZ}/P_Y$ the conditionally independent gluing of its margins, the canonical filler
+of \cite[Thm.~4.2]{Conditionals}. Then $F$ has the same $(X,Y)$ and $(Y,Z)$ margins as $P$, and
+\[
+H(F)-H(P)=I_P(X;Z\mid Y)\ \ge0 .
+\]
+\end{proposition}
+\begin{proof}
+$H(F)=H(X,Y)+H(Y,Z)-H(Y)$, and $H(P)=H(X,Y)+H(Y,Z)-H(Y)-I_P(X;Z\mid Y)$.
+\end{proof}
+
+So the filler maximizes entropy in its fibre for every $P$. What can be tested on data is not that, but the size of the gap.
+
+%=====================================================================
+\section{The update monoid}\label{sec:monoid}
+%=====================================================================
+
+An \emph{update} is a partial map from bands to bands: it sends a band $B$ to the closed convex hull of the images of its
+members, and it is defined when it is defined on every member. We consider four kinds: conditioning on an event $E$,
+$p\mapsto p(\cdot\mid E)$, defined when $p(E)>0$ throughout $B$; the Jeffrey update on a partition $\{E_i\}$ to target weights
+$q$, $p\mapsto\sum_iq_ip(\cdot\mid E_i)$ \cite{DiaconisZabell1982}, defined when every $p(E_i)>0$; discounting by reliability
+$\alpha$, which sends $p$ to the band of \cref{prop:discount}; and pushforward by a kernel. The hull is needed because the image
+of a convex band under a Jeffrey update need not be convex. Composition makes the updates a monoid of partial maps.
+
+\begin{proposition}[Properties of the monoid]\label{prop:monoid}
+\begin{enumerate}[label=(\roman*)]
+\item Conditioning on events commutes, $p(\cdot\mid E)(\cdot\mid E')=p(\cdot\mid E\cap E')$, and is idempotent.
+\item Jeffrey updates on two partitions do not commute in general. They commute at a law under which the two partitions are
+  independent.
+\item Discounting sends an elementwise band of width $w_y$ at $y$ to one of width $\alpha w_y+1-\alpha$. A kernel $K$ contracts the total-variation diameter of every
+  band by at least its Dobrushin coefficient $\eta(K)=\max_{y,y'}\TV(K_y,K_{y'})$.
+\item The invertible kernels are the permutations of $Y$. In the monoid $\operatorname{End}(f)$ of kernels that preserve $f$, the
+  invertible elements are the permutations $\sigma$ with $f\circ\sigma=f$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is direct. (ii) For the $2\times2$ law with rows $(0.30,0.10)$ and $(0.15,0.45)$, updating rows to $(0.6,0.4)$ and columns
+to $(0.35,0.65)$ in the two orders gives laws at total variation $0.120$ (check B9). If the partitions are independent, the law
+of the two partitions is preserved by both updates, and for $y\in E_i\cap F_j$, with all $p(E_i),p(F_j)>0$, either order gives
+$q_ir_j\,p(y)/(p(E_i)p(F_j))$, which is symmetric in the two updates. (iii) The
+first statement follows from \cref{prop:discount}, applied to the extreme points. For the second, $\TV(K^\T p,K^\T q)\le\eta(K)\TV(p,q)$ \cite{Dobrushin1956}, as in
+\cite[Prop.~11.2]{Tower}. (iv) A stochastic matrix with a stochastic inverse is a permutation matrix, and it preserves $f$ exactly
+when $f\circ\sigma=f$; $\operatorname{End}(f)$ is the monoid of \cite[Prop.~3.1]{Algebras}.
+\end{proof}
+
+\begin{proposition}[Dilation]\label{prop:dilation}
+Let $B$ be the band of laws of $(X,Y)\in\{0,1\}^2$ with $P(X=1)=P(Y=1)=\frac12$. The band for $P(X=1)$ is the point $\frac12$,
+but after conditioning on $Y=y$ it is $[0,1]$, for both values of $y$.
+\end{proposition}
+\begin{proof}
+$P(X=1\mid Y=1)=2p_{11}$ with $p_{11}\in[0,\frac12]$ free, and likewise for $Y=0$.
+\end{proof}
+
+This is the phenomenon of Seidenfeld and Wasserman \cite{SeidenfeldWasserman1993}: learning something can make every
+possible conclusion less certain. It is how unreliable information enters the formalism.
+
+\begin{proposition}[Loops of Jeffrey updates]\label{prop:loop}
+On positive two-way tables, Jeffrey updates on the row partition and on the column partition preserve every odds ratio
+$p_{ij}p_{kl}/(p_{il}p_{kj})$. A loop that moves the row margin to $q_1$, the column margin to $r_1$, and then back to the
+original $q_0$ and $r_0$ in general does not return to the starting law. Iterating the last two updates converges back to it.
+\end{proposition}
+\begin{proof}
+A row update multiplies each row by a constant and a column update each column, and both leave cross ratios unchanged. For
+the law in the proof of \cref{prop:monoid}, the loop ends at total variation $0.073$ from the start, with the odds ratio $9$ kept.
+Alternating the two updates is iterative proportional fitting, which converges to the unique law with the target margins and the
+given odds ratios, the information projection of Csiszár \cite{Csiszar1975}; the starting law is that law.
+\end{proof}
+
+So the residue of a loop persists if nothing more is done, but it lies entirely in the margins: the updates leave the interaction
+alone, and refitting the original margins removes it. A genuine holonomy, a loop
+that changes an invariant, needs updates that act on interactions, such as discounting towards a reference law, and we leave
+its study open.
+
+\begin{remark}[Not a Galois action]\label{rem:galois}
+The motion of information is not a Galois action, because updates cannot be undone: conditioning forgets and discounting
+widens. A Galois-type structure does appear in two places. The units of the update monoid are the relabellings of $Y$, and those that preserve $f$,
+the units of $\operatorname{End}(f)$, act on the structures over $f$ and preserve every quantity in this paper; their subgroups
+correspond to the partitions they preserve by a Galois connection. And the fibre-level counterpart of a Galois action, monodromy, is the loop question of
+\cref{prop:loop}.
+\end{remark}
+
+\begin{definition}\label{def:teartime}
+For a sequence of margin pairs in which each update moves the pair by at most $v$ in the distance of \cref{def:margins}, the
+\emph{tear time} is $\tau=m_T/v$, and the \emph{break time} is $m_B/v$.
+\end{definition}
+
+\begin{proposition}[Tear time]\label{prop:teartime}
+No structure of \cref{thm:regimes} tears before $\lceil m_T/v\rceil$ updates, and none breaks before $\lceil m_B/v\rceil$ updates.
+\end{proposition}
+\begin{proof}
+By \cref{thm:distances} the walls are at distance $m_T$ and the boundary at distance $m_B$, and each update covers at most $v$.
+\end{proof}
+
+The tear time is only a lower bound, because updates need not head for the nearest wall. Whether a ratio of margin to speed is
+a useful predictor is an empirical question, and \cref{sec:fhub} gives a mixed answer for a one-dimensional analogue.
+
+%=====================================================================
+\section{Families, limits and shards}\label{sec:families}
+%=====================================================================
+
+The paper so far moves one law, or one pair of margins, at a time. The structures of \cite{Bridges} live on fibres: for marginal
+data $m$, the fibre $C_m=\{\pi\in\D(X):M\pi=m\}$ of compatible joint laws, its maximum-entropy point and its toric and brane data.
+This section assembles the fibres into families, says what limits and colimits mean for them, and cuts the parameter space into
+regimes.
+
+\subsection{The family over a band}
+
+\begin{proposition}[Families over bands]\label{prop:family}
+Let $B$ be a band of marginal data.
+\begin{enumerate}[label=(\roman*)]
+\item The family $\mathcal P_B=\bigcup_{m\in B}C_m$ equals $\{\pi\in\D(X):M\pi\in B\}$, the preimage of $B$; it is a polytope when $B$ is.
+\item For couplings whose margins lie in elementwise bands $F$ and $G$, the upper entropy of $\mathcal P_B$ is $\Hup(F)+\Hup(G)$, attained at
+  the product of the two water-fillings of \cref{prop:upper}; the lower entropy is attained at a vertex.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is the definition of a preimage, and the preimage of a polytope under a linear map, intersected with the simplex, is a polytope.
+(ii) $H(\alpha)\le H(f)+H(g)$ for any coupling of $f$ and $g$, with equality at the product, and the product of the water-fillings lies
+in $\mathcal P_B$. The lower entropy is a concave minimum over a polytope.
+\end{proof}
+
+So the family is not merely a union of polytopes: over a polyhedral band, for example an elementwise one, it is one polytope, and
+over any convex band it is convex; its entropy interval is computable. In the lattice of subsets of $\D(X)$, a category different from
+the one used for limits below, $\mathcal P_B$ is the colimit, the union, of the fibres $C_m$ over $m\in B$: assembly of the fibres.
+
+\subsection{Limits as compatibility}
+
+Let local laws $m_S$ on $X_S$ be given for the sets $S$ of a cover, agreeing on overlaps. A \emph{cone} over this diagram, in the
+category of finite probability spaces and measure-preserving maps, is a probability space with measure-preserving maps to the local spaces, commuting with the marginal maps. Every cone pushes
+forward to one with apex $X$ and the coordinate projections as legs, and those are exactly the joint laws $\pi$ with $\pi_S=m_S$: the
+fibre $C_m$. The category has no products, and in general there is no universal cone, so ``the limit exists'' has
+to be read as ``a cone exists'': compatibility, or a global section in the sense of Abramsky and Brandenburger
+\cite{AbramskyBrandenburger2011}. Two refinements make it quantitative. Positive cones exist iff $C_m^\circ\ne\emptyset$, and then entropy
+selects a canonical cone, the maximum-entropy law, which is where the entropy brane meets the conormal brane of the constraint
+\cite[Thm.~3.1]{Bridges}. When no cone exists, the contextual fraction \cite{AbramskyBarbosaMansfield2017} measures the failure as one
+minus the largest weight $\lambda$ of a sub-normalized global section, $\lambda\pi_S\le m_S$ for all $S$.
+
+\subsection{Shards}
+
+\begin{definition}[Structural shards]\label{def:shards}
+Let $\Theta$ be a space of parameters $\theta$: marginal data $m$, possibly a pair of margins $(f,g)$ or a band of them, and
+possibly a kernel. Its \emph{signature} $\Sigma(\theta)$ has up to three components, each defined when the parameter has the relevant part:
+\begin{itemize}[leftmargin=*,nosep]
+\item $\sigma_{\mathrm{pos}}$: whether compatible laws exist and, if so, the support of a law in the relative interior of $C_m$ (the
+  smallest face of the simplex containing $C_m$); for a band, the set of such supports over its members;
+\item $\sigma_{\mathrm{wall}}$, for pairs of margins: the vector of signs of the wall functions $f(I)-g(J)$, with $0$ on a wall; for bands,
+  each entry is above, below or straddling, as in \cref{prop:bandsafe};
+\item $\sigma_{\mathrm{comp}}$, for kernels: deterministic, constant but not deterministic, or neither.
+\end{itemize} A \emph{structural shard}
+is a connected component of a level set of $\Sigma$. The \emph{interaction nerve} has the shards as vertices and a simplex for every set
+of shards whose closures share a point.
+\end{definition}
+
+The name is chosen for its picture, and the notion is unrelated to the shards of hyperplane arrangements \cite{Reading2011}. The
+stratification is multiaxial: the three components of $\Sigma$ change independently, so a parameter can sit in the interior of a chamber
+and still carry a stochastic kernel. Because $\sigma_{\mathrm{pos}}$ records the support, not only whether a positive law exists, the
+dimension of the fibre and of the gluing algebra is constant on a shard. On a shard the structures of \cref{thm:regimes} bend; between shards they tear or break; and
+the kernel class decides which compositions are geometric \cite[Thm.~5.1]{Bridges}.
+
+\begin{proposition}[Which updates move between shards]\label{prop:updateregimes}
+\begin{enumerate}[label=(\roman*)]
+\item Conditioning on an event $E$ with $p(E^c)>0$ breaks: it sets the probabilities outside $E$ to $0$.
+\item A Jeffrey update keeps the support of the law if all its targets are positive, and breaks if some target is $0$.
+\item Shafer discounting, which sends $p$ to the band $B(\alpha p,\alpha p+1-\alpha)$ of \cref{prop:discount}, keeps $\alpha p$ as the lower
+  envelope, so it neither breaks nor heals the lower envelope. Linear discounting towards the uniform law, $p\mapsto\alpha p+(1-\alpha)u$, heals:
+  afterwards every probability is at least $(1-\alpha)/n$.
+\item A kernel sends a full-support law to a full-support law iff no column of the kernel is zero, and sends every law to a full-support
+  law if all its entries are positive.
+\item Jeffrey updates, discounting and kernels can cross walls.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i)--(iv) are direct; in (iv), $(K^\T p)_j=\sum_yp_yK_{yj}$, and linear discounting is the kernel $\alpha I+(1-\alpha)J/n$, with all entries
+positive. For (v), these updates move the margins continuously in their parameters (targets, reliability, kernel entries), and the wall
+functions are continuous; for instance a kernel moves a margin $g$ to $K^\T g$, and for suitable $K$ this satisfies $f(I)=(K^\T g)(J)$.
+\end{proof}
+
+So among these updates, breaking is created only by conditioning, by Jeffrey updates with a zero target and by kernels with a zero
+column, and it is removed by kernels whose entries are positive, linear discounting towards the uniform law among them. Composition
+with a kernel that has no zero column can tear but never break, and in the $2\times2$ case it also contracts the moment segment by the
+Dobrushin coefficient \cite[Ex.~5.2]{Bridges}. Where the axes interact is visible here: a stochastic composition, an event of the
+$\sigma_{\mathrm{comp}}$ axis, moves the margins and can land them on a wall, an event of the $\sigma_{\mathrm{wall}}$ axis.
+
+%=====================================================================
+\section{Stability along paths}\label{sec:paths}
+%=====================================================================
+
+Two one-parameter families show what bends, what tears and what breaks, structure by structure.
+
+\begin{example}[A $2\times2$ path through two walls]\label{ex:path22}
+Fix $g=(0.3,0.7)$ and let $f=(f_1,1-f_1)$ run over $(0,1)$. The walls are $f_1=0.3$ and $f_1=0.7$, and the boundary points are $0$ and $1$.
+\begin{center}
+\begin{tabular}{p{5.4cm}p{5.6cm}p{3.2cm}}
+\toprule
+structure & along the path & regime\\
+\midrule
+gluing algebra $A_f\cong\R\times M_1(\R)$ & constant & bends throughout\\
+product coupling $\alpha_{11}=0.3f_1$ & linear & bends throughout\\
+moment segment, length $\min(f_1,0.3)-\max(0,f_1-0.7)$ & kinks at $0.3$ and $0.7$, length $\to0$ at the ends & tears, then breaks\\
+nonzero torus brane, at the Fréchet midpoint & $f_1/2$, then $0.15$, then $(f_1-0.4)/2$ & tears at both walls\\
+vertex entropies & $d\log(1/d)$ cusps at the walls & tear\\
+\bottomrule
+\end{tabular}
+\end{center}
+On the walls themselves the margins are degenerate and the toric statements of \cite{Bridges} apply on either side. The product
+coupling and the nonzero brane are different points except at $f_1=0.5$ in the middle chamber, and the slope of the brane's
+location jumps by $\mp\frac12$ at the two walls. As $f_1\to0$ the toric sphere $X_{f,g}$ shrinks to a point: the geometry breaks with the
+margin.
+\end{example}
+
+\begin{example}[The three-bit path]\label{ex:path3}
+For the pairwise disagreement $1-\varepsilon$ of \cite[Ex.~3.3]{Bridges}, the shards along $\varepsilon\in[0,1]$ are: $[0,\frac13)$, incompatible,
+with contextual fraction $1-3\varepsilon$; $\{\frac13\}$, compatible only on the boundary; $(\frac13,1)$, positive; and $\{1\}$, boundary
+again. On the positive shard the best minimum cell of a compatible law is $\min(\frac{3\varepsilon-1}4,\frac{1-\varepsilon}4)$, attained by the
+maximum-entropy filler, so the filler's break margin falls linearly to $0$ at both ends, while its Fisher form
+$\frac8{3\varepsilon-1}+\frac{24}{1-\varepsilon}$ blows up.
+\end{example}
+
+%=====================================================================
+\section{Second-order effects of breaking}\label{sec:secondorder}
+%=====================================================================
+
+A first-order break is a probability reaching $0$. Its second-order effects are what happens, as a consequence, to structures built
+on top: global compatibility, the higher levels of the tower, sample sizes, algebras and branes.
+
+\begin{theorem}[Compatibility is lost only through breaking]\label{thm:lossbybreak}
+Let $m(s)$ be a continuous path in the affine span of the achievable margins $Q=M(\D(X))$, compatible for $s<s^*$ and incompatible for
+$s>s^*$. Then $m(s^*)$ is compatible, every compatible law at $s^*$ lies on the boundary of the simplex, and the largest minimum cell
+of a compatible law, $\delta(m)=\max_{\pi\in C_m}\min_x\pi_x$, tends to $0$ as $s\uparrow s^*$.
+\end{theorem}
+\begin{proof}
+$Q$ is a polytope, so it is closed and $m(s^*)\in Q$. If some compatible law at $s^*$ had full support, then $m(s^*)$ would lie in
+$M(\D^\circ)$, which is the relative interior of $Q$ because a linear map carries the relative interior of a polytope onto that of its
+image \cite[Thm.~6.6]{Rockafellar1970}; the relative interior is open in the affine span, so $m(s)\in Q$ for $s$ slightly above $s^*$, a contradiction. The function
+$\delta$ is concave on $Q$, since convex combinations of compatible laws are compatible for the combined margins, and upper
+semicontinuous, since $C_m$ depends upper hemicontinuously on $m$; a concave function on a polytope is lower semicontinuous
+\cite{GaleKleeRockafellar1968}, so $\delta$ is continuous on $Q$, and $\delta(m(s^*))=0$.
+\end{proof}
+
+So a global section cannot disappear while the canonical filler is still strictly positive: the loss of the limit is always announced
+by a break of the filler. The next statement turns this into a margin.
+
+\begin{proposition}[Tolerance from the break margin]\label{prop:tolerance}
+Let $\pi$ be compatible with $m$ and have minimum cell $\delta$, and let $\kappa=\lVert M^+\rVert_{\infty\to\infty}$ for the pseudo-inverse
+$M^+$. Every change $\Delta m$ of the margins within the column space of $M$ that keeps the total mass of every table, with $\lVert\Delta m\rVert_\infty<\delta/\kappa$, leaves
+them compatible with a positive law. For pairwise tables of three bits $\kappa=\frac32$, and on the path of \cref{ex:path3}, for $\frac13<\varepsilon\le\frac12$, the bound
+$\frac{3\varepsilon-1}6$ equals the distance of the tables to the threshold.
+\end{proposition}
+\begin{proof}
+$\pi+M^+\Delta m$ has margins $m+\Delta m$, total mass $1$ because the all-ones vector lies in the row space of $M$ and every table keeps its
+mass, and all cells at least
+$\delta-\kappa\lVert\Delta m\rVert_\infty>0$. On the path, $\delta=\frac{3\varepsilon-1}4$ and each table entry moves by $\frac12$ per unit of $\varepsilon$.
+\end{proof}
+
+The second-order effects of a break are of five kinds.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item \emph{Global compatibility} is lost only through a break (\cref{thm:lossbybreak}), with a computable early warning
+  (\cref{prop:tolerance}).
+\item \emph{Higher levels of the tower.} A zero at level one removes a model at level two for ever, and reliability at level three
+  prevents it (\cref{sec:towerdyn}).
+\item \emph{Sample sizes.} With joint samples, positivity at distance $m$ from a break is confirmed, by seeing a rare cell, from $O(1/m)$
+  samples instead of $O(1/m^2)$, because the Fisher information diverges \cite[\S3]{Bridges}; with pairwise-only samples the rate stays
+  $O(1/m^2)$.
+\item \emph{Algebra and geometry.} Losing an outcome shrinks the gluing algebra from dimension $(n-1)^2+1$ to $(n-2)^2+1$; its Morita
+  type, that of two points, changes only when the last circulation goes ($n=2\to1$), where it becomes that of one point. The toric
+  manifold loses dimension, as in \cref{ex:path22}.
+\item \emph{A break that does not cascade.} When a middle probability $g_y$ of a chain tends to $0$, the conditional row $K_y$ of the second
+  coupling becomes undefined, yet the glued coupling stays continuous: changing $K_y$ moves it by at most $g_y$ in total variation. The break damages the
+  kernel, not the composite.
+\end{enumerate}
+
+%=====================================================================
+\section{The tower under evidence}\label{sec:towerdyn}
+%=====================================================================
+
+The tower's calibrated view of an outcome is a level-two law $\Pi=\sum_kw_k\delta_{\rho_k}$ over candidate models, its band
+$\operatorname{conv}\{\rho_k\}$ and its barycenter, the predictive law \cite{Tower}. Evidence $x$ updates the weights,
+$w_k\propto w_k\rho_k(x)$, which is conditioning at level two, and \cref{prop:level2} splits the entropy of the predictive law at every
+step into the expected entropy of the models and the epistemic term $I(K;X)$.
+
+\begin{example}[A break at level one removes a model for ever]\label{ex:cromwell}
+Take two models of a three-valued outcome (entropies in nats), $\rho_1=(0.5,0.5,0)$ and $\rho_2=(0.2,0.3,0.5)$, equal prior weights, and the observations
+$0,1,0,1,2,0,1,0$. The weight of model 1 and the epistemic term evolve as follows, without and with linear discounting of each model towards the
+uniform law with reliability $\alpha=0.9$:
+\begin{center}
+\begin{tabular}{lcccccccc}
+\toprule
+observation & $0$ & $1$ & $0$ & $1$ & $2$ & $0$ & $1$ & $0$\\
+\midrule
+$w_1$, plain & $0.714$ & $0.806$ & $0.912$ & $0.946$ & $0$ & $0$ & $0$ & $0$\\
+$I(K;X)$, plain & $0.214$ & $0.186$ & $0.120$ & $0.088$ & $0$ & $0$ & $0$ & $0$\\
+$w_1$, discounted & $0.694$ & $0.783$ & $0.891$ & $0.929$ & $0.473$ & $0.671$ & $0.764$ & $0.880$\\
+$I(K;X)$, discounted & $0.146$ & $0.125$ & $0.080$ & $0.057$ & $0.152$ & $0.150$ & $0.130$ & $0.085$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Without discounting, the first-order break in $\rho_1$ (the zero at outcome $2$) becomes a second-order break of the tower: one
+observation removes the model that held $95\%$ of the weight, the band collapses to a point, the epistemic term drops to $0$, and no
+later evidence can bring the model back, however strongly it favours it. This is Cromwell's rule seen as breaking. With discounting, the
+surprise halves the weight and raises the epistemic term from $0.057$ to $0.152$, so the calibrated view registers the conflict as
+uncertainty, and the weight recovers to $0.88$ as the later observations favour model 1.
+\end{example}
+
+\begin{proposition}[Reliability bounds how fast the calibrated view can morph]\label{prop:morph}
+If every model is linearly discounted towards the uniform law on $n$ outcomes with reliability $\alpha<1$, then each observation changes the
+odds between two models by a factor at most $1+\alpha n/(1-\alpha)\le n/(1-\alpha)$. So no weight reaches $0$ after finitely many observations,
+and the band of the calibrated view, the hull of the discounted models, stays at distance at least $(1-\alpha)/n$ from every face of the
+simplex: it cannot break. Weights may still tend to $0$ as evidence accumulates.
+\end{proposition}
+\begin{proof}
+Discounted probabilities lie between $(1-\alpha)/n$ and $\alpha+(1-\alpha)/n$, and the odds change by the ratio of two of them.
+\end{proof}
+
+Read through the tower, the three regimes of the paper become three behaviours of the calibrated view: it bends while evidence moves
+the weights, it tears when the predictive law crosses a decision wall, and it breaks when a level-one zero removes a model. Reliability at
+level three converts breaking into bending, at the price of a bounded speed.
+
+%=====================================================================
+\section{Evidence I: two pilots on public data}\label{sec:pilots}
+%=====================================================================
+
+\subsection{Subgroups as contexts: NHANES}\label{sec:nhanes}
+
+\paragraph{Data.} NHANES 2009--10 and 2011--12, as distributed in the R package \texttt{NHANES} \cite{NHANESpkg}: $10{,}730$ adults
+aged $20$ or more with blood pressure, body mass index and diabetes status, with examination weights and a stratified jackknife
+over primary sampling units for standard errors. Four attributes define $16$ subgroups: age $55$ or more, diabetes, overweight
+($\mathrm{BMI}\ge25$) and male sex. The outcome is high systolic pressure ($\ge140$ mmHg), with weighted prevalence $12.8\%$.
+
+\paragraph{The information ladder.} Suppose the sizes of all $16$ subgroups and the overall prevalence are known, and the outcome is
+known otherwise only through tables of the outcome with $k$ of the attributes. The risk of a subgroup then lies in a band, computed by linear-fractional
+programming over all joints with these tables. For the subgroup "55+, diabetic, overweight, male" ($462$ adults, risk $0.308$):
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+information & band for the subgroup & mean width, all $16$ subgroups\\
+\midrule
+sizes and overall prevalence & $[0,\ 1]$ & $0.95$\\
+outcome by one attribute at a time & $[0,\ 0.881]$ & $0.73$\\
+outcome by pairs of attributes & $[0.170,\ 0.430]$ & $0.33$\\
+outcome by triples of attributes & $[0.302,\ 0.311]$ & $0.04$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is the precision ladder of \cite[Thm.~3.5]{Attribution} on real data. Every band contains the subgroup's risk, but that holds by
+construction, since the bands are computed from the same joint table, and is only a sanity check. The test is out of sample:
+build the bands from the $2009$--$10$ tables and ask whether the $2011$--$12$ risks fall in them. With one or two attributes at a time
+$16$ and $15$ of the $16$ new risks fall inside. With triples none do: those bands are narrower than the sampling variation between
+cycles. When each new risk is given its own $95\%$ sampling interval, $12$ of $16$ intervals meet the triple-level bands. A structural
+band alone is overconfident once it is narrower than the sampling noise, which is the point of the next paragraph.
+
+\paragraph{Two kinds of imprecision.} With a risk threshold of $0.30$ as the wall, the structural band from the triples lies entirely
+above the wall, while the sampling band, $[0.25,0.37]$, straddles it. (Sampling bands are Wilson intervals with the
+design-based effective sample size $r(1-r)/\mathrm{se}^2$.) A tolerance measure has to carry both, the structural band
+of the information available and the sampling band of the estimate.
+
+\paragraph{Revision.} Between the two survey cycles the subgroup's risk moved from $0.25$ to $0.36$, outside its earlier $95\%$ band.
+Of the $16$ subgroups, $11$ landed inside their earlier bands. With the actual standard errors of both cycles, about $11.3$ of
+the $15$ subgroups with positive standard errors would be expected inside if nothing had changed, so $11$ is consistent with no
+change. Four subgroups changed status relative to the wall, between decisive and straddling, and none crossed it. One subgroup had $7$ members and no cases in $2009$--$10$; its survey standard error is
+exactly $0$, and the band collapses to a point. This is the breaking regime in practice: at the boundary of the simplex the
+design-based band is undefined, and we fall back to a count-based interval, $[0,0.35]$.
+
+\paragraph{Contexts and incompatibility.} Pairwise tables taken alternately from the two cycles are slightly incompatible, with least
+$L^1$ adjustment $0.084$, but less than tables taken alternately from two halves of the $2009$--$10$ cycle ($0.179$ in the
+median of $20$ random splits of its sampling units). Halves have half the sample size, which inflates their noise by about $\sqrt2$, and $0.179/\sqrt2\approx0.13$ still
+exceeds $0.084$. So the incompatibility is no larger than sampling noise, and for these tables the two cycles behave as one
+population (\cref{sec:protocol}). There is no full Simpson reversal among the
+attributes, but the effect of being overweight changes sign with age: $+4.5$ points under $55$ (standard error $0.7$) and $-3.3$
+points at $55$ or more ($1.8$), clear in the first stratum and borderline in the second.
+
+\subsection{Revised forecasts and revised data: the COVID-19 Forecast Hub}\label{sec:fhub}
+
+\paragraph{Data.} The ensemble forecasts of the US COVID-19 Forecast Hub \cite{Cramer2022}: weekly incident deaths for $56$ states
+and territories, forecast dates June 7, 2021 to March 21, 2022 (targets ending by March 26, so that every target has six weeks of
+later data revisions), horizons one to four weeks, $9{,}072$ forecasts given by $23$ quantiles. The truth file of the hub's repository was read at every forecast date, so we know what was known when; the final
+truth is the last state-level version (May 9, 2022). The band is the central $80\%$ interval, and each state's wall is its median
+weekly deaths over the period.
+
+\paragraph{Calibration and movement.} The bands cover the final value $78$--$80\%$ of the time at every horizon. Revising a forecast
+for a fixed week, as the horizon shrinks from four weeks to one, widens the band $26\%$ of the time, and $64\%$ of the time the new
+band is not contained in the old one: information moves bands as well as shrinking them.
+
+\paragraph{Tear time.} A band is decisive if it lies on one side of the wall, and it tears when its next revision is not on that side.
+The analogue of the tear time used here is one-dimensional: $\tau$ is the margin from the band to the wall, in deaths, divided by
+the latest movement of the median, in deaths per revision. It is defined for the $1{,}954$ decisive bands that have a later revision,
+an earlier one, and a median that moved; the four-week forecasts ($936$) have no earlier revision and $253$ medians did not move.
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+$\tau$ (weeks) & $<0.5$ & $0.5$--$1$ & $1$--$2$ & $2$--$4$ & $\ge4$\\
+\midrule
+share that tear at the next revision & $0.33$ & $0.20$ & $0.11$ & $0.10$ & $0.03$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The ranking of decisive bands by $\tau$ separates tearing from not tearing with area under the curve $0.78$. The relative margin
+alone does slightly better, $0.80$. So the speed term of $\tau$ adds nothing in this pilot, perhaps because a single movement is
+a noisy estimate of speed.
+
+\paragraph{Crossing by straddling.} Of all $3{,}143$ decisive bands with a later revision, only $3$ jumped from one side of the wall to the
+other. Bands cross walls by passing through a straddling state, the discrete counterpart of \cref{thm:distances}.
+
+\paragraph{Unreliable data.} Of $2{,}408$ state-weeks, $3.2\%$ were later revised by more than $25\%$. One-week-ahead forecasts made when
+the latest week was such a week covered the final value $43\%$ of the time ($95\%$ interval $33$--$55\%$), against $79\%$ otherwise
+($74$ and $2{,}278$ forecasts). The bands did not account for the possibility that their inputs would be revised. This is the strongest empirical
+reason for a reliability level above the band.
+
+\subsection{What the pilots support}
+
+They support the band picture in four ways: bands narrow with information and, combined with sampling bands, predict new data;
+decisive bands rarely jump across walls; small margins predict tearing; and unreliable inputs break calibrated bands. They do
+not yet support the tear time as more than a margin, and they do not test holonomy or dilation in the strict sense; the $26\%$ of
+forecast bands that widen are not dilations, because successive forecasts condition on different information.
+
+%=====================================================================
+\section{Evidence II: a protocol for clinical data}\label{sec:protocol}
+%=====================================================================
+
+Clinical records, for example MIMIC-IV \cite{MIMICIV}, offer transitions between patient states, measurements made on different
+subsets of patients, and timestamps for when each value was taken and when it was entered. The protocol below separates the
+statements that are theorems, which can only fail through errors of code or estimation, from those that could be false.
+
+\begin{enumerate}[leftmargin=*]
+\item \emph{Conditional reconstruction.} Estimate transition kernels between clinical states and validate them on held-out patients
+  and on a later period. This is a prerequisite, not evidence.
+\item \emph{Coupling geometry.} The dimension $(n-1)(m-1)$, the circulation space and the vertices of the coupling polytope follow from
+  the margins. The falsifiable part is where the observed joint sits: its tear margin, whether it lies on a face (structural
+  zeros), and whether patients whose margins lie near a wall are those whose classification changes between periods.
+\item \emph{The canonical filler.} By \cref{prop:gluinggap} the filler always maximizes entropy in its fibre. What can fail is the
+  claim that the gap $I(X;Z\mid Y)$ is small when $Y$ is the clinically meaningful intermediate state; it is tested by $2N\,I(X;Z\mid Y)$,
+  asymptotically $\chi^2$ with $(\lvert X\rvert-1)(\lvert Z\rvert-1)\lvert Y\rvert$ degrees of freedom.
+\item \emph{Higher-order compatibility.} If all tables come from the same patients, a common joint exists: the empirical one. So
+  incompatibility can only come from tables computed on different patients, which in clinical data mostly means available-case
+  analysis of tests ordered for sicker patients. The observed incompatibility is split into sampling (a simulated or bootstrap null), selection
+  (the part removed by inverse-probability weighting for being measured) and a residual that points to differences between
+  populations. The measure is fixed in advance: the contextual fraction of Abramsky, Barbosa and Mansfield
+  \cite{AbramskyBarbosaMansfield2017}, one minus the largest weight of a sub-normalized common joint below the tables, with the
+  least $L^1$ adjustment as a second measure. A successful filling does not count against the theory.
+\item \emph{The posterior tower.} That kernels preserve coherence and can only lower the secondary obstruction is a theorem
+  \cite[Prop.~9.14]{Tower}, \cite[Prop.~11.5]{Conditionals}. The falsifiable claim is that the estimated obstruction, tear margin or
+  tear time predicts deterioration or intervention beyond a standard severity score.
+\item \emph{Information arrival.} The two timestamps of each measurement reconstruct what was known at each moment, which is the
+  test of \cref{sec:fhub} at the level of a patient.
+\end{enumerate}
+
+The thresholds that define walls, the outcomes and the incompatibility measure are to be fixed before the data are examined. The
+credentialed data may not be sent to online services unless their handling meets the data use agreement \cite{PhysioNetLLM}, so the
+analysis is meant to run where the data are held.
+
+\paragraph{Synthetic validation.} Each test was run on synthetic data with a planted answer (checks S1--S3).
+\begin{itemize}[leftmargin=*,nosep]
+\item \emph{Test 3.} With $N=2000$ and $X\perp Z\mid Y$ the G-test rejects at level $0.05$ in $4.8\%$ of $400$ replicates; with a planted
+  effect of $8$ points it rejects in $88\%$ of $200$.
+\item \emph{Test 4.} A lab measured with probability $0.9$, $0.55$ or $0.2$ according to a covariate makes the available-case tables
+  incompatible: least $L^1$ adjustment $0.439$ and contextual fraction $0.220$, against a sampling null with median $0.021$ and
+  $95\%$ quantile $0.040$ when the lab is missing completely at random. Weighting by the inverse of the estimated probability of
+  measurement brings the contextual fraction of the same sample to $0.021$, about the $95\%$ quantile ($0.020$) of the contextual
+  fraction under the sampling null, and over repeated samples the weighted inconsistency has median $0.015$ and $95\%$ quantile
+  $0.042$, the same order as the sampling null. The decomposition recovers the planted selection.
+\item \emph{Walls.} For margins with tear margin $0.080$, the chamber is misidentified from $N$ samples in $24\%$, $0\%$ and $0\%$ of
+  $300$ replicates at $Nm_T^2=0.5$, $4$ and $16$. The bound of \cite[Prop.~12.2]{Conditionals}, about $Nm_T^2\ge11$ here for $95\%$, is
+  conservative.
+\end{itemize}
+
+%=====================================================================
+\section{Open problems}\label{sec:open}
+%=====================================================================
+
+\begin{enumerate}[leftmargin=*]
+\item \emph{Holonomy.} Find updates whose loops change an invariant of the law, for example combinations of discounting and Jeffrey
+  updates, and compute the holonomy as a function of the loop.
+\item \emph{A better tear time.} Estimate the speed from several revisions, and add the reliability of the inputs, to see whether
+  $\tau$ then beats the margin in the forecast data.
+\item \emph{Persistence over band width.} As a band widens, the set of chambers it meets grows. The resulting filtration of the chamber
+  complex is a persistence module; compute its barcodes for the pilots.
+\item \emph{Bands of bands.} Carry the three regimes to levels two and three of the tower, where a band is a set of laws on laws and
+  reliability is itself uncertain.
+\item \emph{Fisher--Rao margins.} Replace total variation by the Fisher--Rao distance, in which the boundary is at finite distance and
+  the break margin and the tear margin live in one metric.
+\item \emph{Degeneration of the toric family.} Along a path of margins, describe the limit of the toric manifold, its symplectic potential
+  and its nonzero branes at a wall and at the boundary, extending \cref{ex:path22}; and decide whether the positive real Lagrangian of
+  \cite{Bridges} extends to a compactification that keeps boundary-supported couplings.
+\item \emph{The interaction nerve.} Compute the interaction nerve of the shards for $2\times3$ margins with a kernel axis, and find
+  examples where a joint transition carries information that the separate axes do not.
+\item \emph{The five papers.} Add to each of the other papers a short subsection on its structures under bands.
+\end{enumerate}
+
+%=====================================================================
+\section{Computational checks}\label{sec:code}
+%=====================================================================
+
+\texttt{check\_bands.py} runs seventeen checks and \texttt{check\_dynamics.py} nine more, all passing. The first:
+\begin{itemize}[leftmargin=*,nosep]
+\item B1--B3: \cref{prop:discount,prop:tighten,prop:frechet}, by linear programming;
+\item B4, B13: \cref{thm:distances,prop:bandsafe};
+\item B5--B8: \cref{prop:upper,prop:lower,prop:entropyspeed,prop:entropyregimes,prop:level2,prop:gluinggap};
+\item B9--B12: \cref{prop:monoid,prop:dilation,prop:loop,prop:teartime};
+\item S1--S3: the synthetic validation of \cref{sec:protocol};
+\item P1: the quoted pilot numbers against the saved pilot outputs, and the synthetic and example numbers against this run.
+\end{itemize}
+The second: D1 (\cref{prop:family}); D2 (\cref{prop:updateregimes}); D3 and D4 (\cref{thm:lossbybreak,prop:tolerance}, on random paths
+and perturbations); D5 and D6 (\cref{ex:path22,ex:path3}); D7 and D8 (items (e) and (d) of \cref{sec:secondorder}); D9 (\cref{ex:cromwell,prop:morph},
+including the table).
+The pilots are reproduced by the scripts \texttt{nhanes\_pilot.py}, \texttt{fhub\_fetch.py} and \texttt{fhub\_pilot.py} in the
+folder \texttt{pilot}.
+
+\begin{thebibliography}{99}
+
+\bibitem{Algebras}
+V.~K. Awasthi, Coupling algebras: gluing, the square-zero cone and the ring of contingency tables. Technical report, Johns
+Hopkins University, October 2026. Draft 4.
+
+\bibitem{Attribution}
+V.~K. Awasthi, Precise attribution of model interventions: attribution sets, mechanism reach, path defects and gluing.
+Technical report, Johns Hopkins University, October 2026. Draft 5.
+
+\bibitem{Bridges}
+V.~K. Awasthi, Bridges: from probability and entropy to branes, with worked examples. Technical note, Johns Hopkins University,
+October 2026. Draft 1.
+
+\bibitem{Conditionals}
+V.~K. Awasthi, Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
+programme. Technical report, Johns Hopkins University, October 2026. Revised draft 4.
+
+\bibitem{ThreeLayers}
+V.~K. Awasthi, Three layers of realisation: hierarchy recovery, holonomy, information, contextuality and categorical
+dynamics. Technical report, Johns Hopkins University, revised October 2026. DOI: 10.13140/RG.2.2.24274.52163.
+
+\bibitem{Tower}
+V.~K. Awasthi, The three-level posterior tower: hierarchical {B}ayesian inference and mixed distributive laws.
+Technical report, Johns Hopkins University, October 2026. Revised version 10.
+
+\bibitem{AbellanMoral2003}
+J.~Abellán and S.~Moral, Maximum of entropy for credal sets. \emph{Int. J. Uncertainty, Fuzziness Knowledge-Based Systems}
+\textbf{11} (2003), 587--597.
+
+\bibitem{AbramskyBarbosaMansfield2017}
+S.~Abramsky, R.~S. Barbosa and S.~Mansfield, Contextual fraction as a measure of contextuality. \emph{Phys. Rev. Lett.}
+\textbf{119} (2017), 050504.
+
+\bibitem{AbramskyBrandenburger2011}
+S.~Abramsky and A.~Brandenburger, The sheaf-theoretic structure of non-locality and contextuality. \emph{New J. Phys.} \textbf{13}
+(2011), 113036.
+
+\bibitem{Audenaert2007}
+K.~M.~R. Audenaert, A sharp continuity estimate for the von {N}eumann entropy. \emph{J. Phys. A} \textbf{40} (2007), 8127--8136.
+
+\bibitem{Cramer2022}
+E.~Y. Cramer et al., Evaluation of individual and ensemble probabilistic forecasts of {COVID}-19 mortality in the {U}nited
+{S}tates. \emph{Proc. Natl. Acad. Sci. USA} \textbf{119} (2022), e2113561119.
+
+\bibitem{Csiszar1975}
+I.~Csiszár, {$I$}-divergence geometry of probability distributions and minimization problems. \emph{Ann. Probab.} \textbf{3}
+(1975), 146--158.
+
+\bibitem{deCampos1994}
+L.~M. de~Campos, J.~F. Huete and S.~Moral, Probability intervals: a tool for uncertain reasoning. \emph{Int. J. Uncertainty,
+Fuzziness Knowledge-Based Systems} \textbf{2} (1994), 167--196.
+
+\bibitem{DeLoeraKim2014}
+J.~A. De~Loera and E.~D. Kim, Combinatorics and geometry of transportation polytopes: an update. In \emph{Discrete Geometry and
+Algebraic Combinatorics}, Contemp. Math. 625, Amer. Math. Soc., 2014.
+
+\bibitem{DiaconisZabell1982}
+P.~Diaconis and S.~L. Zabell, Updating subjective probability. \emph{J. Amer. Statist. Assoc.} \textbf{77} (1982), 822--830.
+
+\bibitem{Dobrushin1956}
+R.~L. Dobrushin, Central limit theorem for nonstationary {M}arkov chains. {I}, {II}. \emph{Theory Probab. Appl.} \textbf{1} (1956),
+65--80 and 329--383.
+
+\bibitem{GaleKleeRockafellar1968}
+D.~Gale, V.~Klee and R.~T. Rockafellar, Convex functions on convex polytopes. \emph{Proc. Amer. Math. Soc.} \textbf{19} (1968), 867--873.
+
+\bibitem{MIMICIV}
+A.~E.~W. Johnson et al., {MIMIC-IV}, a freely accessible electronic health record dataset. \emph{Sci. Data} \textbf{10} (2023), 1.
+
+\bibitem{NHANESpkg}
+R.~Pruim, \emph{NHANES: Data from the US National Health and Nutrition Examination Study}. R package version 2.1.4.
+
+\bibitem{PhysioNetLLM}
+PhysioNet, Use of {MIMIC} data with large language models and online services.
+\url{https://physionet.org/news/post/llm-responsible-use/}.
+
+\bibitem{Reading2011}
+N.~Reading, Noncrossing partitions and the shard intersection order. \emph{J. Algebraic Combin.} \textbf{33} (2011), 483--530.
+
+\bibitem{Rockafellar1970}
+R.~T. Rockafellar, \emph{Convex Analysis}, Princeton University Press, 1970.
+
+\bibitem{SeidenfeldWasserman1993}
+T.~Seidenfeld and L.~Wasserman, Dilation for sets of probabilities. \emph{Ann. Statist.} \textbf{21} (1993), 1139--1154.
+
+\bibitem{Shafer1976}
+G.~Shafer, \emph{A Mathematical Theory of Evidence}, Princeton University Press, 1976.
+
+\bibitem{Walley1991}
+P.~Walley, \emph{Statistical Reasoning with Imprecise Probabilities}, Chapman and Hall, 1991.
+
+\bibitem{Zhang2007}
+Z.~Zhang, Estimating mutual information via {K}olmogorov distance. \emph{IEEE Trans. Inform. Theory} \textbf{53} (2007), 3280--3282.
+
+\end{thebibliography}
+\end{document}

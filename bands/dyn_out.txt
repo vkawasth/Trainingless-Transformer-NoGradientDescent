@@ -1,0 +1,11 @@
+PASS D1 upper entropy of the coupling family over banded margins = Hup(F) + Hup(G), at the product of the water-fillings
+PASS D2 conditioning breaks; Jeffrey with positive targets keeps the support, with a zero target breaks; linear discounting heals to min >= (1-alpha)/n while the Shafer band keeps the zero lower bound; a positive kernel heals; a kernel breaks a full-support law only through a zero column
+PASS D3 along paths from compatible to incompatible pairwise margins, the best minimum cell is 0 at the transition and positive before it   [transition points [0.398, 0.269, 0.509, 0.393, 0.341, 0.31]]
+PASS D4 every change of the margins within their span of sup-norm below delta/kappa keeps them compatible, with a positive joint; kappa = 3/2 for pairwise tables of three bits, and the bound is attained on the three-bit path   [delta 0.0565, kappa 1.500]
+PASS D6 three-bit shards: incompatible below 1/3, boundary at 1/3 and 1, positive between; the best minimum cell equals the filler's (3 eps - 1)/4 for eps <= 1/2 and vanishes at both ends
+PASS D5 2x2 path: the Floer-nontrivial point kinks exactly at the walls 0.3 and 0.7, the product is smooth there, they meet in the middle chamber only at f1 = 0.5, and the moment segment shrinks to a point at the boundary   [slope jumps [-0.5, 0.5]]
+PASS D7 gluing stays continuous as a middle probability vanishes: changing the undefined row K_y moves the result by at most 2 g_y
+PASS D8 breaking one outcome: dimension 5 -> 2 (n = 3 -> 2) with centre 2 -> 2; dimension 2 -> 1 (n = 2 -> 1) with centre 2 -> 1   [(dim, centre): n=3 (5, 2), n=2 (2, 2), n=1 (1, 1)]
+PASS D9 Cromwell: observing an outcome impossible under model 1 removes it for ever and sets the epistemic term to 0; with reliability 0.9 every weight stays positive and per-observation likelihood ratios are at most n/(1-alpha) = 30; H = E H + I at every step; the trajectories quoted in the paper   [weight of model 1 after the impossible outcome: plain 0.000, discounted 0.473; epistemic term before/after: plain 0.088/0.000, discounted 0.057/0.152]
+
+9/9 checks passed
