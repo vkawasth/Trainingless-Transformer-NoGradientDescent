@@ -1,0 +1,11 @@
+PASS G1 -d^2H(u,u) = sum u^2/p (finite differences, n = 3, 4, 6)
+PASS G2 the entropy graph meets the conormal of a marginal fibre at its max-entropy law, transversally; for chain margins at the gluing filler
+PASS W1 three bits: fibre = line along the parity vector; joint iff eps >= 1/3, positive joint iff 1/3 < eps < 1; max-entropy law (3eps-1)/4, (1-eps)/4; Fisher form 8/(3eps-1) + 24/(1-eps); contextual fraction 1 - 3 eps   [Fisher form at eps = 0.34, 0.35, 0.5: [436.4, 196.9, 64.0]]
+PASS S1 with joint (triple) samples the break at margin m is missed with probability (1 - 3m/2)^N, so N of order 1/m suffices; with pairwise-only samples misses persist until N m^2 is large   [m = 0.02; joint samples N = 25, 100, 400: observed [0.472, 0.059, 0.0], predicted [0.467, 0.048, 0.0]; pairwise only N = 25..1600: {25: 0.415, 100: 0.2595, 400: 0.0745, 1600: 0.0005}; Fisher information of eps (joint) at m: 77.3]
+PASS G3 det(Hess G) * prod(facet functions) stays bounded and positive at every vertex although row-1 cells are not facets   [range 0.0500 .. 0.0555]
+PASS W2 2x2: entropy potential critical at the product coupling t = 0.12, Guillemin's at 0.15; the only Floer-nontrivial fibre is over the Frechet midpoint 0.15; non-facet cells stay positive on the segment   [segment [0, 0.3], product 0.12]
+PASS G4 alpha -> alpha K preserves integer circulations iff K is deterministic or constant
+PASS W3 2x2: x K = lambda x with |lambda| the Dobrushin coefficient; the moment segment maps onto a segment |lambda| times as long; integral exactly for identity, swap, constant
+PASS W4 A_f has dimension (n-1)^2 + 1 and centre of dimension 2 (= HH^0), as for R x M_{n-1}(R), Morita equivalent to R x R
+
+9/9 checks passed

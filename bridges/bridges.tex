@@ -1,0 +1,414 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{mainthm}{Main results}
+
+\newcommand{\D}{\mathsf{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Cpl}{\operatorname{Cpl}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\T}{\mathsf T}
+\newcommand{\Hess}{\operatorname{Hess}}
+
+\title{Bridges:\\ From Probability and Entropy to Branes, with Worked Examples}
+\author{Vinay K. Awasthi\\
+Department of Applied Mathematics and Statistics\\
+Johns Hopkins University\thanks{\texttt{check\_bridges.py} (9 checks) verifies numerically the computable statements proved here, on examples
+and random instances, and every number in the worked examples. Propositions 4.2, 4.3 and the derived invariants in
+Proposition 6.1 rest on the cited literature; results cited from the other papers are checked there.}}
+\date{October 8, 2026, draft 1}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We construct the maps between five layers, probability, information geometry, entropy, couplings and symplectic branes,
+and test which structures they preserve. Entropy's negative Hessian is the Fisher metric. Marginal constraints become
+Lagrangian branes as conormal bundles, and the graph of the entropy differential meets such a brane exactly at the
+maximum-entropy law of the constraint, transversally because the Fisher metric is nondegenerate. When no positive law meets
+the constraint the brane is empty. In a worked example with three bits this happens exactly when the pairwise disagreement
+reaches $2/3$, the contextual fraction is $1-3\varepsilon$ below the threshold, and the Fisher form of the fibre blows up as
+the threshold is approached. Because a cell of the filler vanishes there, joint samples detect the boundary at distance $m$
+from $O(1/m)$ samples, while pairwise-only samples need $O(1/m^2)$. On the toric side,
+entropy is an admissible symplectic potential on the toric manifold of every nondegenerate coupling polytope, without the
+facet hypothesis of earlier work, so couplings are the points of a positive real Lagrangian and the bases of torus branes. When the
+toric manifold is Fano, only the torus branes at critical points of the disc potential are nonzero objects; for $2\times2$
+couplings this is the Fréchet midpoint, which is generally not the product coupling. Gluing with a fixed coupling acts on couplings linearly, and it preserves the lattice of the
+torus exactly when its kernel is deterministic or constant. So gluing with a non-constant stochastic kernel is not induced by a
+torus-equivariant correspondence, a defect related to, though not identical with, the defects of stochastic kernels found in
+other layers of the programme.
+\end{abstract}
+
+\tableofcontents
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+%=====================================================================
+
+The programme of which this note is part works with five layers:
+\begin{itemize}[leftmargin=*,nosep]
+\item probability distributions, which describe states and uncertainty;
+\item information geometry, which measures how distinguishable nearby states are;
+\item entropy, which supplies a potential and selects canonical distributions;
+\item coupling spaces, which describe compatible joint realizations \cite{Conditionals,Algebras};
+\item symplectic branes and their Fukaya-type categories, which could organize admissible structures, transformations and
+  their higher compositions \cite[\S\S7, 10]{Conditionals}.
+\end{itemize}
+The task is to construct the maps between the layers and to find out which structures they preserve. Each bridge below
+comes with a proof and a worked example in which every number can be checked by hand; the one bridge where data enter, the
+detection of a breaking point, comes with a synthetic test.
+
+\begin{mainthm}
+\leavevmode
+\begin{enumerate}[label=(\Alph*),leftmargin=*]
+\item \emph{Constraint branes} (\cref{thm:conormal}). The conormal bundle of a marginal constraint is a Lagrangian in the
+  cotangent bundle of the open simplex. The graph of $dH$ meets it in exactly one point, the maximum-entropy law of the
+  constraint, transversally; it misses it exactly when no positive law satisfies the constraint.
+\item \emph{Three bits} (\cref{ex:threebits}). For pairwise disagreement $1-\varepsilon$, a joint exists iff $\varepsilon\ge\frac13$, a
+  positive one iff $\frac13<\varepsilon<1$; the contextual fraction is $1-3\varepsilon$ below $\frac13$; the Fisher form of the fibre is
+  $\frac8{3\varepsilon-1}+\frac{24}{1-\varepsilon}$; and from joint samples the threshold is detected at distance $m$ with $O(1/m)$ samples.
+\item \emph{Toric branes} (\cref{thm:abreu,prop:realpositive,prop:floer}). On the toric manifold of every nondegenerate
+  coupling polytope, entropy is an admissible symplectic potential; couplings are the points of the positive real Lagrangian
+  and the bases of the torus branes; when the manifold is Fano, only torus branes at critical points of the disc potential
+  survive, which for $2\times2$ couplings is the Fréchet midpoint (\cref{ex:twobytwo}).
+\item \emph{Correspondences} (\cref{thm:integral,ex:gluetwo}). Gluing with a coupling whose kernel is $K$ maps lattice to
+  lattice iff $K$ is deterministic or constant, so a non-constant stochastic $K$ is not induced by an equivariant correspondence; in the $2\times2$ case it scales the moment segment by the Dobrushin coefficient.
+\item \emph{Categorical layer} (\cref{prop:morita}). The gluing algebra is Morita equivalent to $\R\times\R$, so all its derived
+  invariants are those of two points.
+\end{enumerate}
+\end{mainthm}
+
+\paragraph{What is not claimed.} We do not construct a functor from couplings to a Fukaya category. We show where the obvious
+candidates fail and why: in the cotangent bundle of the simplex, which is contractible, the entropy brane carries only its one
+intersection point; in the Fano case, torus branes over most couplings are zero objects; and gluing with a non-constant
+stochastic kernel is not induced by an equivariant correspondence of the kind defined in \cref{sec:correspondences}.
+Non-equivariant correspondences are not ruled out.
+
+%=====================================================================
+\section{From probability to geometry}\label{sec:geometry}
+%=====================================================================
+
+Let $\Delta^\circ$ be the open simplex of full-support distributions on $n$ points, with tangent space
+$T=\{u:\sum u_y=0\}$, and $H(p)=-\sum p_y\log p_y$.
+
+\begin{proposition}\label{prop:fisher}
+For $u,v\in T$, $-d^2H_p(u,v)=\sum_yu_yv_y/p_y$, the Fisher metric.
+\end{proposition}
+\begin{proof}
+$\partial^2H/\partial p_y\partial p_z=-\delta_{yz}/p_y$.
+\end{proof}
+
+The Fisher metric is symmetric, so it is not a symplectic form; the two structures coexist in the cotangent bundle, the
+metric on the base and the canonical form $\omega=\sum dp_y\wedge d\xi_y$ on $T^*\Delta^\circ$, and on the toric manifolds of
+\cref{sec:toric}, where the Fisher metric is twice the Kähler metric on the real section \cite[Prop.~6.5]{Conditionals}.
+
+%=====================================================================
+\section{Constraint branes in the cotangent bundle}\label{sec:conormal}
+%=====================================================================
+
+A marginal constraint fixes a linear image $Mp=b$ of the law. Its \emph{fibre} is $C=\{p\in\Delta:Mp=b\}$ and its open part is
+$C^\circ=C\cap\Delta^\circ$. The fibre is not Lagrangian, but its conormal bundle is, as for every submanifold
+\cite{McDuffSalamon2017}:
+\[
+N^*C^\circ=\{(p,\xi)\in T^*\Delta^\circ:p\in C^\circ,\ \xi\vert_{T_pC}=0\},\qquad T_pC=\ker M\cap T.
+\]
+The \emph{entropy brane} is the graph $L_H=\{(p,dH_p)\}$, an exact Lagrangian.
+
+\begin{theorem}[Conormal intersection]\label{thm:conormal}
+If $C^\circ\neq\emptyset$, then $L_H\cap N^*C^\circ$ is the single point over the maximum-entropy law $p^\star$ of $C$, and the
+intersection is transversal. If $C^\circ=\emptyset$, then $N^*C^\circ=\emptyset$ and the intersection is empty, although $C$ itself may
+be nonempty.
+\end{theorem}
+\begin{proof}
+A point $(p,dH_p)$ lies in $N^*C^\circ$ iff $dH_p$ vanishes on $T_pC$, that is, iff $p$ is a critical point of $H$ on the
+relatively open convex set $C^\circ$. $H$ is strictly concave, so there is at most one such point, and it is the maximizer of $H$
+over $C$; the maximizer lies in $C^\circ$ when $C^\circ\ne\emptyset$, because the derivative of $H$ in a direction that raises a
+vanishing coordinate is $+\infty$. Transversality of the graph of $dH$ to a conormal bundle at a point is nondegeneracy of the
+Hessian of $H\vert_C$ there, and by \cref{prop:fisher} that Hessian is minus the Fisher metric on $T_pC$, which is definite.
+\end{proof}
+
+\begin{corollary}\label{cor:filler}
+Suppose the margins admit a strictly positive joint law, so that $C^\circ\ne\emptyset$. For the chain margins $(X,Y)$ and $(Y,Z)$ the intersection point is the conditionally independent gluing
+$P_{XY}P_{YZ}/P_Y$, the canonical filler of \cite[Thm.~4.2]{Conditionals}. For pairwise margins of three variables it is the
+limit of iterative proportional fitting started at the uniform law \cite{Csiszar1975}.
+\end{corollary}
+\begin{proof}
+The gluing has the margins, and $\log$ of it is a sum of a function of $(x,y)$ and one of $(y,z)$, which is orthogonal to the
+kernel of the marginal map. The second statement is the maximum-entropy characterization of fitting.
+\end{proof}
+
+So the brane picture of compatibility is exact: a constraint is compatible with positive laws iff its brane is nonempty, and
+then it meets the entropy brane exactly once, at the canonical filler.
+
+\begin{example}[Three bits]\label{ex:threebits}
+Let $X_0,X_1,X_2$ be bits, each uniform, and let each pair disagree with probability $1-\varepsilon$, so that each pairwise table is
+$\bigl(\begin{smallmatrix}\varepsilon/2&(1-\varepsilon)/2\\(1-\varepsilon)/2&\varepsilon/2\end{smallmatrix}\bigr)$.
+\begin{enumerate}[label=(\roman*)]
+\item \emph{The fibre.} The kernel of the marginal map on $\R^8$ is spanned by the parity vector $x(s)=(-1)^{\lvert s\rvert}$, so the fibre
+  is a segment along $x$.
+\item \emph{Threshold.} Every assignment of three bits makes $0$ or $2$ of the three pairs disagree, so the expected number of
+  disagreeing pairs, $3(1-\varepsilon)$, is at most $2$: a joint exists iff $\varepsilon\ge\frac13$. At $\varepsilon=\frac13$ the only joint puts no
+  mass on $000$ and $111$, and at $\varepsilon=1$ the only joint lives on $000$ and $111$; in both cases $C^\circ=\emptyset$ and the brane is
+  empty. A positive joint exists iff $\frac13<\varepsilon<1$. The two ends are the breaking regime of \cite{Bands}.
+\item \emph{The filler.} For $\frac13<\varepsilon<1$ the maximum-entropy law gives $a=\frac{3\varepsilon-1}4$ to $000$ and $111$ and $b=\frac{1-\varepsilon}4$
+  to the six other assignments, since then $\sum_sx(s)\log p(s)=0$.
+\item \emph{Transversality and its loss.} The Fisher form of the fibre at the filler is
+  $\sum_sx(s)^2/p(s)=\frac8{3\varepsilon-1}+\frac{24}{1-\varepsilon}$, which is $64$ at $\varepsilon=\frac12$, $197$ at $0.35$ and $436$ at $0.34$, and
+  diverges at both ends: the intersection becomes infinitely steep before it disappears.
+\item \emph{Contextual fraction.} Below the threshold the contextual fraction of \cite{AbramskyBarbosaMansfield2017} is $1-3\varepsilon$.
+  A sub-normalized common joint $\lambda q$ below the tables puts at most $\varepsilon$ on the agreements of each pair, and every
+  assignment agrees on some pair, so $\lambda\le3\varepsilon$; the measure $3\varepsilon$ times the uniform law on the six assignments that agree on
+  exactly one pair attains it.
+\end{enumerate}
+\end{example}
+
+\paragraph{Synthetic test: detecting the boundary.} Take the positive law with $\varepsilon=\frac13+m$ and $N$ joint samples of the three bits,
+and estimate $\varepsilon$ by the mean agreement rate. Each sample agrees on one pair, or on three if it is $000$ or $111$, so $\hat\varepsilon\le\frac13$
+exactly when no all-equal sample appears, which happens with probability $(1-\frac32m)^N\approx e^{-3Nm/2}$. For $m=0.02$ and $N=25,100,400$ the
+verdict ``no positive filler'' was returned in $47\%$, $6\%$ and $0\%$ of $2000$ replicates, against $46.7\%$, $4.8\%$ and $0\%$ predicted. So
+$O(1/m)$ joint samples suffice. The reason is that the filler's cells on $000$ and $111$ vanish at the boundary: the Fisher information of
+$\varepsilon$ in the joint model, $\frac9{2(3\varepsilon-1)}+\frac3{2(1-\varepsilon)}$, diverges there, and the test reduces to seeing a rare cell.
+
+The rate depends on the design. In the usual contextuality design each pair is observed in its own samples, the agreement count of each
+pair is binomial, its Fisher information stays bounded at the boundary, and the misses decay only once $Nm^2$ is large: $42\%$, $26\%$, $7\%$
+and $0.05\%$ for $N=25,100,400,1600$. Interior walls behave in the same way; for them \cite[Prop.~12.2]{Conditionals} shows that $N$ of order
+$1/m^2$ suffices.
+
+%=====================================================================
+\section{Toric branes}\label{sec:toric}
+%=====================================================================
+
+For nondegenerate margins $f,g$, the coupling polytope $\Cpl(f,g)$ is Delzant for the lattice of integer circulations, and it is
+the moment polytope of a compact toric manifold $X_{f,g}$ \cite[Thm.~6.4]{Conditionals}, \cite{Delzant1988}. The fibre of the moment
+map over an interior coupling is a Lagrangian torus. A symplectic potential on the polytope determines a compatible toric
+Kähler structure when it satisfies Abreu's conditions \cite{Abreu2003}: it differs from Guillemin's potential
+$G_P=\frac12\sum_{\text{facets}}\ell\log\ell$ \cite{Guillemin1994} by a function smooth on the closed polytope, its Hessian is
+positive definite inside, and $\det(\Hess G)\prod_{\text{facets}}\ell$ is smooth and positive on the closed polytope.
+
+\begin{theorem}[Entropy is an admissible potential]\label{thm:abreu}
+For nondegenerate margins, every cell $\alpha_c$ is either a facet function of $\Cpl(f,g)$ or strictly positive on it, and
+$G=\frac12\sum_c\alpha_c\log\alpha_c=-\frac12H$ satisfies Abreu's conditions. Hence it defines a compatible toric Kähler structure on
+$X_{f,g}$ whose metric on the real section is half the Fisher metric, and whose potential has the product coupling as its unique
+critical point.
+\end{theorem}
+\begin{proof}
+The polytope is simple, and at each vertex exactly $(n-1)(m-1)$ cells vanish, as many as the dimension. At a vertex of a simple
+polytope given by a system in which exactly $d$ inequalities are tight, each tight inequality defines a facet. Every face on which
+$\alpha_c=0$ contains a vertex where it is tight, so $\alpha_c$ is a facet function or never vanishes. In the second case
+$\alpha_c\log\alpha_c$ is smooth on the polytope, so $G-G_P$ is smooth. The Hessian is $\frac12\sum_c u_c^2/\alpha_c$ on circulations, which is
+positive definite. Near a vertex, in Delzant coordinates in which the facets through it are $x_i\ge0$ (each cell
+function is primitive on the lattice of integer circulations, since a basic move takes the value $1$ on it, and distinct cells give
+distinct facets off the walls), $\Hess G=\frac12X^{-1}+S$
+with $X=\diag(x)$ and $S$ smooth and positive semidefinite, so $\det(\Hess G)\prod x_i=\det(\frac12I+XS)$ is smooth and at least
+$2^{-d}$. A boundary point is covered by the coordinates of a vertex of its minimal face, in which the remaining facet functions
+are positive factors. The critical point is computed in \cite[Prop.~6.5]{Conditionals}.
+\end{proof}
+
+This removes the hypothesis of \cite[Prop.~6.5]{Conditionals} that every cell be a facet. Guillemin's own potential is a
+different admissible potential, and when some cells are not facets its critical point may differ from the product coupling
+(\cref{ex:twobytwo}).
+
+\begin{proposition}[The positive real Lagrangian]\label{prop:realpositive}
+The positive real part $X_{f,g}^{>0}$, the fixed set of complex conjugation in the open torus orbit with positive coordinates, is a
+Lagrangian submanifold, and the moment map restricts to a homeomorphism of its closure onto $\Cpl(f,g)$ \cite{Fulton1993}. It meets the
+torus brane over each interior coupling in exactly one point. So the couplings are the points of one Lagrangian, and also the
+intersection points of that Lagrangian with the torus branes.
+\end{proposition}
+\begin{proof}
+Complex conjugation is antiholomorphic and preserves the torus-invariant Kähler form up to sign, so its fixed set is Lagrangian. The
+homeomorphism is the classical statement about the nonnegative part of a projective toric variety; a torus fibre meets the positive
+part in the single point whose angle coordinates are all zero.
+\end{proof}
+
+\begin{proposition}[Which torus branes survive]\label{prop:floer}
+Suppose $X_{f,g}$ is Fano. The torus brane over a coupling $u$, with a unitary local system, has nonzero Floer cohomology iff $u$ and the local system give a critical
+point of the disc potential $\mathfrak{PO}(u;y)=\sum_{\text{facets}}T^{\ell(u)}y^{\nu}$, the Cho--Oh formula for toric Fano manifolds
+\cite{ChoOh2006,FOOO2010}. All other torus branes are zero objects of the Fukaya category.
+\end{proposition}
+
+\begin{example}[$2\times2$ couplings]\label{ex:twobytwo}
+Let $f=(0.4,0.6)$ and $g=(0.3,0.7)$. With $t=\alpha_{11}$ the polytope is the segment $[0,0.3]$, the cells are
+$(t,\ 0.4-t,\ 0.3-t,\ 0.3+t)$, and $X_{f,g}=\mathbb{CP}^1$.
+\begin{enumerate}[label=(\roman*)]
+\item The facets are $t\ge0$ and $0.3-t\ge0$; the cells $0.4-t$ and $0.3+t$ stay at least $0.1$ and $0.3$, as \cref{thm:abreu} predicts.
+\item The entropy potential is critical at $t=0.12$, the product coupling $f_1g_1$; Guillemin's potential is critical at the midpoint
+  $t=0.15$. The two Kähler structures differ, although their symplectic forms agree.
+\item $\mathfrak{PO}=T^{t}y+T^{0.3-t}y^{-1}$ has a critical point with unitary $y$ only when both terms have equal valuation, $t=0.15$,
+  with $y=\pm1$. So the only
+  nonzero torus brane is over the Fréchet midpoint $\frac12(\max(0,f_1+g_1-1)+\min(f_1,g_1))$, the circle that divides the sphere into
+  equal areas. Here the brane over the product coupling is a zero object, as in \cite[Prop.~10.11]{Conditionals}. The two can
+  coincide: for $f=(0.4,0.6)$ and $g=(0.5,0.5)$ the segment is $[0,0.4]$ and the product coupling $0.2$ is also the midpoint and
+  Guillemin's critical point.
+\end{enumerate}
+\end{example}
+
+%=====================================================================
+\section{Correspondences: where gluing stops being geometric}\label{sec:correspondences}
+%=====================================================================
+
+Gluing with a fixed $\beta\in\Cpl(g,h)$ is the map $\alpha\mapsto\alpha\,\diag(g)^{-1}\beta=\alpha K$, where $K=\diag(g)^{-1}\beta$ is the
+kernel of $\beta$. It is linear, and it carries $\Cpl(f,g)$ into $\Cpl(f,h)$ with $h=K^\T g$. The tori of $X_{f,g}$ and $X_{f,h}$ have the
+integer circulations of the two shapes as weight lattices \cite[Thm.~6.4]{Conditionals}. Call a Lagrangian correspondence
+$\Gamma\subset X_{f,g}^-\times X_{f,h}$ \emph{equivariant} if it is connected and invariant under the torus $T_{f,h}$, acting on $X_{f,h}$ and on
+$X_{f,g}$ through a homomorphism $\psi\colon T_{f,h}\to T_{f,g}$, and say that it \emph{induces} a map $\Phi$ of polytopes if
+$(\mu(z),\mu(z'))=(\alpha,\Phi(\alpha))$ for points $(z,z')\in\Gamma$ over a full-dimensional set of $\alpha$. The moment map of the diagonal
+action is constant on the connected invariant Lagrangian $\Gamma$, so $\mu_{f,h}=d\psi^*\mu_{f,g}+c$ on $\Gamma$, and $\Phi$ has linear part
+$d\psi^*$, which maps weight lattice to weight lattice.
+
+\begin{theorem}[Integrality]\label{thm:integral}
+The linear map $x\mapsto xK$ carries integer $n\times m$ circulations to integer $n\times h$ circulations iff $K$ is deterministic,
+every row a vertex of the simplex, or constant, all rows equal. So gluing with a coupling whose kernel is stochastic and not constant
+is not induced by any equivariant Lagrangian correspondence in the sense above.
+\end{theorem}
+\begin{proof}
+Integer circulations are generated by the moves $(e_i-e_k)(e_j-e_l)^\T$, and such a move goes to $(e_i-e_k)(K_j-K_l)$. So the condition is
+that any two rows of $K$ differ by an integer vector. Two stochastic rows with integer difference are equal or are distinct vertices;
+if some row is not a vertex, every other row equals it.
+\end{proof}
+
+\begin{example}[$2\times2$ gluing]\label{ex:gluetwo}
+For $2\times2$ couplings the circulations form the line spanned by $x=\bigl(\begin{smallmatrix}1&-1\\-1&1\end{smallmatrix}\bigr)$, and
+$xK=\lambda x$ with $\lambda=K_{11}-K_{21}$. Its absolute value is the Dobrushin coefficient of $K$. The moment segment is carried onto a
+segment $\lvert\lambda\rvert$ times as long, so the map of moment polytopes contracts symplectic area by $\lvert\lambda\rvert$, and it is integral
+exactly for $\lambda\in\{1,-1,0\}$: the identity, the swap and a constant kernel. In \cref{ex:twobytwo}, a noisy relabelling with
+$K=\bigl(\begin{smallmatrix}0.9&0.1\\0.2&0.8\end{smallmatrix}\bigr)$ has $\lambda=0.7$ and shrinks the segment from length $0.3$ to $0.21$.
+\end{example}
+
+\begin{remark}[Related defects]\label{rem:split}
+Stochastic kernels cause related, though not identical, defects elsewhere in the programme: whiskering is functorial for
+deterministic kernels and fails for stochastic ones in general \cite[Thm.~10.2]{Conditionals}; squares of couplings and kernels
+compose for bijections and sufficient merges, and fail for some non-injective functions and some constant kernels
+\cite[Prop.~6.1]{Algebras}; and kernels contract bands by their Dobrushin coefficient \cite{Bands}. The class singled out differs from
+case to case; here constant kernels are on the good side, there they are not. What the cases share is that the defect is a
+circulation, or a contraction of the circulation space.
+\end{remark}
+
+%=====================================================================
+\section{The categorical layer}\label{sec:categorical}
+%=====================================================================
+
+Couplings can enter a categorical layer as morphisms or as objects, and each choice loses something.
+
+\begin{proposition}[Morita data]\label{prop:morita}
+The gluing algebra $A_f\cong\R\times M_{n-1}(\R)$ \cite[Thm.~2.2]{Algebras} is Morita equivalent to $\R\times\R$. Hence its
+category of perfect complexes is that of two points, $K_0(A_f)=\Z^2$, its Hochschild cohomology is $\R^2$ in degree $0$ (its centre, spanned
+by $P_f$ and $e_f$) and zero above, and its simple modules have dimensions $1$ and $n-1$.
+\end{proposition}
+\begin{proof}
+$M_{n-1}(\R)$ is Morita equivalent to $\R$, and Morita equivalence preserves derived categories, $K$-theory and Hochschild
+cohomology \cite{Keller2006}. The centre of a product of matrix algebras is the product of the centres.
+\end{proof}
+
+\begin{center}
+\begin{tabular}{p{3.2cm}p{4.6cm}p{6.2cm}}
+\toprule
+couplings as & composition & what survives\\
+\midrule
+morphisms (spans) & exactly gluing \cite{Algebras} & for functors that kill $e_f$ up to homotopy, only the mass \cite[Cor.~5.3]{Algebras}; derived invariants of two points\\
+torus branes & not equivariantly induced for non-constant stochastic kernels (\cref{thm:integral}) & in the Fano case, only critical points of $\mathfrak{PO}$ (\cref{prop:floer})\\
+points of $X^{>0}_{f,g}$ & none & all couplings, with positivity (\cref{prop:realpositive})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Positivity, where contextuality lives \cite[Cor.~5.3]{Algebras}, is invisible in the first two rows: linear spans forget it, and
+which torus branes survive is decided by the disc potential, not by positivity. It is kept in the third row. So the promising
+structure is the Floer theory between the positive real Lagrangian and the torus branes.
+
+%=====================================================================
+\section{Open problems}\label{sec:open}
+%=====================================================================
+
+\begin{enumerate}[leftmargin=*]
+\item \emph{Real and torus branes.} Compute $HF(X^{>0}_{f,g},L_u)$, or of the full real locus, with its products, and decide whether the
+  positivity of couplings survives in it.
+\item \emph{Non-equivariant correspondences.} \Cref{thm:integral} rules out equivariant ones. Is there a Lagrangian correspondence, not
+  torus-equivariant, whose composition matches gluing with a stochastic kernel?
+\item \emph{Bulk deformations.} With bulk deformation the set of nonzero torus branes changes. Is there a bulk class for which the
+  product coupling's brane is nonzero for all margins?
+\item \emph{Larger tables.} Locate the nonzero torus branes for $n\times m$ couplings, extending \cref{ex:twobytwo}; the computations of
+  \cite[Obs.~10.10]{Conditionals} point to the leximin coupling.
+\item \emph{The three-bit brane under noise.} Track the conormal brane of \cref{ex:threebits} as a family over $\varepsilon$, through the
+  threshold, as a first example of a brane that disappears at a breaking point.
+\end{enumerate}
+
+%=====================================================================
+\section{Computational checks}\label{sec:code}
+%=====================================================================
+
+\texttt{check\_bridges.py} runs nine checks, all passing: G1 (\cref{prop:fisher}); G2 (\cref{thm:conormal,cor:filler}); W1
+(\cref{ex:threebits}, all five parts); S1 (the synthetic detection test, with joint and with pairwise-only samples); G3 (\cref{thm:abreu}, the determinant condition at every vertex
+of an example with non-facet cells); W2 (\cref{ex:twobytwo}); G4 (\cref{thm:integral}); W3 (\cref{ex:gluetwo}); W4 (\cref{prop:morita}, the
+dimension and the centre).
+
+\begin{thebibliography}{99}
+
+\bibitem{Algebras}
+V.~K. Awasthi, Coupling algebras: gluing, the square-zero cone and the ring of contingency tables. Technical report, Johns
+Hopkins University, October 2026. Draft 4.
+
+\bibitem{Bands}
+V.~K. Awasthi, Bands: perturbation, tearing and breaking of coupling structures, and the entropy of changing probabilities.
+Technical report, Johns Hopkins University, October 2026. Draft 1.
+
+\bibitem{Conditionals}
+V.~K. Awasthi, Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
+programme. Technical report, Johns Hopkins University, October 2026. Revised draft 4.
+
+\bibitem{AbramskyBarbosaMansfield2017}
+S.~Abramsky, R.~S. Barbosa and S.~Mansfield, Contextual fraction as a measure of contextuality. \emph{Phys. Rev. Lett.}
+\textbf{119} (2017), 050504.
+
+\bibitem{Abreu2003}
+M.~Abreu, Kähler geometry of toric manifolds in symplectic coordinates. In \emph{Symplectic and Contact Topology}, Fields Inst.
+Commun. 35, Amer. Math. Soc., 2003, 1--24.
+
+\bibitem{ChoOh2006}
+C.-H. Cho and Y.-G. Oh, Floer cohomology and disc instantons of Lagrangian torus fibers in Fano toric manifolds. \emph{Asian J.
+Math.} \textbf{10} (2006), 773--814.
+
+\bibitem{Csiszar1975}
+I.~Csiszár, {$I$}-divergence geometry of probability distributions and minimization problems. \emph{Ann. Probab.} \textbf{3}
+(1975), 146--158.
+
+\bibitem{Delzant1988}
+T.~Delzant, Hamiltoniens périodiques et images convexes de l'application moment. \emph{Bull. Soc. Math. France} \textbf{116}
+(1988), 315--339.
+
+\bibitem{FOOO2010}
+K.~Fukaya, Y.-G. Oh, H.~Ohta and K.~Ono, Lagrangian Floer theory on compact toric manifolds {I}. \emph{Duke Math. J.} \textbf{151}
+(2010), 23--174.
+
+\bibitem{Fulton1993}
+W.~Fulton, \emph{Introduction to Toric Varieties}, Annals of Mathematics Studies 131, Princeton University Press, 1993.
+
+\bibitem{Guillemin1994}
+V.~Guillemin, Kaehler structures on toric varieties. \emph{J. Differential Geom.} \textbf{40} (1994), 285--309.
+
+\bibitem{Keller2006}
+B.~Keller, On differential graded categories. In \emph{Proceedings of the International Congress of Mathematicians, Madrid 2006},
+Vol.~II, European Mathematical Society, 2006, 151--190.
+
+\bibitem{McDuffSalamon2017}
+D.~McDuff and D.~Salamon, \emph{Introduction to Symplectic Topology}, 3rd ed., Oxford University Press, 2017.
+
+\end{thebibliography}
+\end{document}
