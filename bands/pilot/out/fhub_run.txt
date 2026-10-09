@@ -1,0 +1,85 @@
+{
+ "n_forecasts": 9072,
+ "states": 56,
+ "target_weeks": 42,
+ "final_vintage": "2022-05-09",
+ "coverage80_by_h": {
+  "1": 0.782,
+  "2": 0.795,
+  "3": 0.799,
+  "4": 0.778
+ },
+ "coverage50_by_h": {
+  "1": 0.545,
+  "2": 0.549,
+  "3": 0.554,
+  "4": 0.542
+ },
+ "revision_steps": 6562,
+ "fraction_bands_wider_after_update": 0.263,
+ "fraction_new_band_not_inside_old": 0.642,
+ "median_width_ratio_by_h": {
+  "1": 0.849,
+  "2": 0.88,
+  "3": 0.892
+ },
+ "tear_rate_by_tau": {
+  "[0.0, 0.5)": {
+   "n": 319,
+   "tear_rate": 0.332,
+   "flip_rate": 0.0
+  },
+  "[0.5, 1.0)": {
+   "n": 265,
+   "tear_rate": 0.2,
+   "flip_rate": 0.008
+  },
+  "[1.0, 2.0)": {
+   "n": 280,
+   "tear_rate": 0.111,
+   "flip_rate": 0.0
+  },
+  "[2.0, 4.0)": {
+   "n": 261,
+   "tear_rate": 0.1,
+   "flip_rate": 0.0
+  },
+  "[4.0, inf)": {
+   "n": 829,
+   "tear_rate": 0.031,
+   "flip_rate": 0.001
+  }
+ },
+ "auc_tear_from_small_tau": 0.778,
+ "auc_tear_from_small_relative_margin": 0.8,
+ "decisive_bands": 1954,
+ "tear_rate_overall": 0.124,
+ "h1_decisive_correct_side": 0.955,
+ "h4_decisive_correct_side": 0.925,
+ "backfill": {
+  "state_weeks": 2408,
+  "frac_revised_more_than_10pct": 0.05,
+  "frac_revised_more_than_25pct": 0.032,
+  "median_abs_rel_revision": 0.0,
+  "frac_revised_up": 0.048
+ },
+ "coverage80_h1_by_data_reliability": {
+  "revised_le_25pct": 0.793,
+  "revised_gt_25pct": 0.432,
+  "n_bad": 74,
+  "n_good": 2278,
+  "ci_bad": [
+   0.326,
+   0.546
+  ]
+ },
+ "forecast_dates_used": [
+  "2021-06-07",
+  "2022-03-21"
+ ],
+ "decisive_with_next": 3143,
+ "jumps_across_wall": 3,
+ "tau_sample_excluded_h4": 936,
+ "tau_sample_excluded_zero_speed": 253,
+ "n_locations": 56
+}

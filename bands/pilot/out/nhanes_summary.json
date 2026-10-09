@@ -1,0 +1,143 @@
+{
+ "n_adults": 10730,
+ "prevalence_Y": 0.1279915755968099,
+ "target": {
+  "cell": "55+, diabetic, overweight, male",
+  "n": 462,
+  "risk": 0.30766201792622594,
+  "se": 0.03161492466444746,
+  "bands": {
+   "0": [
+    0.0,
+    1.0
+   ],
+   "1": [
+    0.0,
+    0.8805
+   ],
+   "2": [
+    0.1699,
+    0.4304
+   ],
+   "3": [
+    0.3019,
+    0.3107
+   ]
+  }
+ },
+ "ladder_width_mean": {
+  "0": 0.9544948530572213,
+  "1": 0.7308028658274683,
+  "2": 0.332892666898144,
+  "3": 0.0372354104894857
+ },
+ "ladder_contains_truth": true,
+ "frechet_mass_target": [
+  0.0,
+  0.10784148644902619
+ ],
+ "true_mass_target": 0.02988309461378523,
+ "threshold": 0.3,
+ "sides": {
+  "below": 10,
+  "straddles": 6
+ },
+ "revision": {
+  "cells_new_estimate_inside_old_95band": 11,
+  "cells": 16,
+  "side_changes": [
+   {
+    "cell": "not 55+, diabetic, not overweight, male",
+    "side_0910": "below",
+    "side_1112": "straddles",
+    "r_0910": 0.033,
+    "r_1112": 0.087
+   },
+   {
+    "cell": "55+, not diabetic, overweight, not male",
+    "side_0910": "straddles",
+    "side_1112": "below",
+    "r_0910": 0.249,
+    "r_1112": 0.228
+   },
+   {
+    "cell": "55+, diabetic, not overweight, not male",
+    "side_0910": "above",
+    "side_1112": "straddles",
+    "r_0910": 0.413,
+    "r_1112": 0.364
+   },
+   {
+    "cell": "55+, diabetic, not overweight, male",
+    "side_0910": "below",
+    "side_1112": "straddles",
+    "r_0910": 0.136,
+    "r_1112": 0.253
+   }
+  ],
+  "bands_widened": 10,
+  "expected_inside_if_no_change_cells_with_se": 11.262449900918181,
+  "cells_with_positive_se_both": 15,
+  "crossed_wall": 0
+ },
+ "inconsistency": {
+  "same_cycle": 0.0,
+  "mixed_cycles": 0.08386175330935491,
+  "split_half_within_2009_10_median": 0.1790531929311444
+ },
+ "simpson": {
+  "full_reversals": [],
+  "sign_change_in_one_stratum": [
+   {
+    "exposure": "overweight",
+    "stratifier": "55+",
+    "rd_marginal": 0.035,
+    "rd_Z0": 0.045,
+    "se_Z0": 0.007,
+    "rd_Z1": -0.033,
+    "se_Z1": 0.018
+   },
+   {
+    "exposure": "male",
+    "stratifier": "55+",
+    "rd_marginal": 0.012,
+    "rd_Z0": 0.027,
+    "se_Z0": 0.006,
+    "rd_Z1": -0.002,
+    "se_Z1": 0.014
+   },
+   {
+    "exposure": "male",
+    "stratifier": "diabetic",
+    "rd_marginal": 0.012,
+    "rd_Z0": 0.013,
+    "se_Z0": 0.008,
+    "rd_Z1": -0.009,
+    "se_Z1": 0.03
+   }
+  ]
+ },
+ "out_of_sample_ladder": {
+  "inside": {
+   "0": 16,
+   "1": 16,
+   "2": 15,
+   "3": 0
+  },
+  "interval_meets_band": {
+   "0": 16,
+   "1": 16,
+   "2": 16,
+   "3": 12
+  },
+  "cells": 16
+ },
+ "target_sampling_band": [
+  0.24955919787917213,
+  0.372576302434664
+ ],
+ "target_revision": [
+  0.2524137478033625,
+  0.36238482354013624
+ ]
+}
