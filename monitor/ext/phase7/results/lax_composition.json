@@ -1,0 +1,9 @@
+{
+ "instances": 300,
+ "summarise_violations": 0,
+ "summarise_strict_cells": 611,
+ "summarise_cells": 895,
+ "impose_violations": 0,
+ "impose_strict_cells": 1158,
+ "impose_cells": 1158
+}

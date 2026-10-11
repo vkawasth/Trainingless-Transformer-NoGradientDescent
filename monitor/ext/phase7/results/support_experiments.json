@@ -1,0 +1,88 @@
+{
+ "E1": {
+  "vertex_sets_equal": 324,
+  "of": 500,
+  "toric_type_2x3": 84,
+  "of_2x3": 84,
+  "infeasible_by_lp": 200,
+  "of_infeasible": 200,
+  "holds": false
+ },
+ "E2": {
+  "a_exact": 418,
+  "a_of": 418,
+  "b_duals_on_bottleneck": 344,
+  "b_of": 418,
+  "b_share": 0.823,
+  "c_negative_cases": 582,
+  "c_share_differ": 0.4261,
+  "holds_a": true,
+  "holds_b": false
+ },
+ "E3": {
+  "a_lp_vs_closed_form": 4000,
+  "a_of": 4000,
+  "b_tci_le_tany": 200,
+  "b_of": 200,
+  "c_entropy_equality_iff_ci": 2600,
+  "c_of": 2600,
+  "c_share": 1.0,
+  "holds": true
+ },
+ "E4": {
+  "a_lp_vs_3cycle": 600,
+  "a_of": 600,
+  "contextual": 81,
+  "b_certificates_verified": 81,
+  "b_of": 81,
+  "c_gluable": 519,
+  "c_support_contextual": 124,
+  "c_share": 0.2389,
+  "c_examples": [
+   {
+    "tau": 0.01358,
+    "tau_local_max": 0.01697
+   },
+   {
+    "tau": 0.00783,
+    "tau_local_max": 0.01304
+   },
+   {
+    "tau": 0.00094,
+    "tau_local_max": 0.00472
+   },
+   {
+    "tau": 0.0064,
+    "tau_local_max": 0.01067
+   },
+   {
+    "tau": 0.00287,
+    "tau_local_max": 0.01435
+   }
+  ],
+  "holds": true
+ },
+ "E5": {
+  "a_floor_preserved": 500,
+  "a_of": 500,
+  "b_coarsening_no_shrink": 250,
+  "b_of": 250,
+  "c_stochastic_bound": 250,
+  "c_of": 250,
+  "c_share_shrinks": 0.02,
+  "tightness_share": 0.2741,
+  "holds": true
+ },
+ "E6": {
+  "a_replay_identical": 400,
+  "a_of": 400,
+  "b_classified": {
+   "supp": 20,
+   "glue": 20,
+   "comp": 20,
+   "evid": 20
+  },
+  "b_of_each": 20,
+  "holds": true
+ }
+}

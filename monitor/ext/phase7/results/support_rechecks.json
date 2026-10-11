@@ -1,0 +1,13 @@
+{
+ "E1_order_free": {
+  "equal_within_1e7": 500,
+  "of": 500,
+  "worst_hausdorff": 9.947423107448117e-09,
+  "holds": true
+ },
+ "E2b_gauge_invariant_exploratory": {
+  "binding_floors_in_bottleneck": 418,
+  "of": 418,
+  "share": 1.0
+ }
+}
