@@ -1,0 +1,311 @@
+{
+ "dataset": "Heart Disease (UCI), four sites",
+ "plan": "PREANALYSIS_AMENDMENT_OPEN_DATA.md (2026-10-10), Part III (illustration)",
+ "cohort": {
+  "cleveland": 303,
+  "hungarian": 294,
+  "switzerland": 123,
+  "va": 200
+ },
+ "D_contextuality_sites": {
+  "cleveland vs hungarian": {
+   "strata": {
+    "diagnosis 0": {
+     "naive_cf": 0.2238,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 164,
+     "nY": 187,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 164
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 187
+     }
+    },
+    "diagnosis 1": {
+     "naive_cf": 0.1136,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 139,
+     "nY": 106,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 139
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 106
+     }
+    }
+   },
+   "fisher": -0.0,
+   "df": 4,
+   "p": 1.0,
+   "contextual": false,
+   "bonferroni_6": false
+  },
+  "cleveland vs switzerland": {
+   "strata": {
+    "diagnosis 0": {
+     "naive_cf": 0.1921,
+     "deficit": 0.10366,
+     "contextual_point": true,
+     "p_boundary": 0.197,
+     "nX": 164,
+     "nY": 8,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 164
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 8
+     }
+    },
+    "diagnosis 1": {
+     "naive_cf": 0.1756,
+     "deficit": 0.03017,
+     "contextual_point": true,
+     "p_boundary": 0.1122,
+     "nX": 139,
+     "nY": 114,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 139
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 114
+     }
+    }
+   },
+   "fisher": 7.624,
+   "df": 4,
+   "p": 0.10637989491045427,
+   "contextual": false,
+   "bonferroni_6": false
+  },
+  "cleveland vs va": {
+   "strata": {
+    "diagnosis 0": {
+     "naive_cf": 0.407,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 164,
+     "nY": 32,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 164
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 32
+     }
+    },
+    "diagnosis 1": {
+     "naive_cf": 0.175,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 139,
+     "nY": 115,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 139
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 115
+     }
+    }
+   },
+   "fisher": -0.0,
+   "df": 4,
+   "p": 1.0,
+   "contextual": false,
+   "bonferroni_6": false
+  },
+  "hungarian vs switzerland": {
+   "strata": {
+    "diagnosis 0": {
+     "naive_cf": 0.3576,
+     "deficit": 0.04278,
+     "contextual_point": true,
+     "p_boundary": 0.3342,
+     "nX": 187,
+     "nY": 8,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 187
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 8
+     }
+    },
+    "diagnosis 1": {
+     "naive_cf": 0.215,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 106,
+     "nY": 114,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 106
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 114
+     }
+    }
+   },
+   "fisher": 2.192,
+   "df": 4,
+   "p": 0.7004496211113671,
+   "contextual": false,
+   "bonferroni_6": false
+  },
+  "hungarian vs va": {
+   "strata": {
+    "diagnosis 0": {
+     "naive_cf": 0.4621,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 187,
+     "nY": 32,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 187
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 32
+     }
+    },
+    "diagnosis 1": {
+     "naive_cf": 0.0824,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 106,
+     "nY": 115,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 106
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 115
+     }
+    }
+   },
+   "fisher": -0.0,
+   "df": 4,
+   "p": 1.0,
+   "contextual": false,
+   "bonferroni_6": false
+  },
+  "switzerland vs va": {
+   "strata": {
+    "diagnosis 0": {
+     "naive_cf": 0.4688,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 8,
+     "nY": 32,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 8
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 32
+     }
+    },
+    "diagnosis 1": {
+     "naive_cf": 0.2568,
+     "deficit": 0.0,
+     "contextual_point": false,
+     "p_boundary": 1.0,
+     "nX": 114,
+     "nY": 115,
+     "X": {
+      "suppressed": "a cell below 10",
+      "n": 114
+     },
+     "Y": {
+      "suppressed": "a cell below 10",
+      "n": 115
+     }
+    }
+   },
+   "fisher": -0.0,
+   "df": 4,
+   "p": 1.0,
+   "contextual": false,
+   "bonferroni_6": false
+  }
+ },
+ "E_missing_share_by_site": {
+  "cleveland": {
+   "trestbps": 0.0,
+   "chol": 0.0,
+   "fbs": 0.0,
+   "restecg": 0.0,
+   "thalach": 0.0,
+   "exang": 0.0,
+   "oldpeak": 0.0,
+   "slope": 0.0,
+   "ca": 0.013,
+   "thal": 0.007
+  },
+  "hungarian": {
+   "trestbps": 0.003,
+   "chol": 0.078,
+   "fbs": 0.027,
+   "restecg": 0.003,
+   "thalach": 0.003,
+   "exang": 0.003,
+   "oldpeak": 0.0,
+   "slope": 0.646,
+   "ca": 0.99,
+   "thal": 0.905
+  },
+  "switzerland": {
+   "trestbps": 0.016,
+   "chol": 0.0,
+   "fbs": 0.61,
+   "restecg": 0.008,
+   "thalach": 0.008,
+   "exang": 0.008,
+   "oldpeak": 0.049,
+   "slope": 0.138,
+   "ca": 0.959,
+   "thal": 0.423
+  },
+  "va": {
+   "trestbps": 0.28,
+   "chol": 0.035,
+   "fbs": 0.035,
+   "restecg": 0.0,
+   "thalach": 0.265,
+   "exang": 0.265,
+   "oldpeak": 0.28,
+   "slope": 0.51,
+   "ca": 0.99,
+   "thal": 0.83
+  }
+ },
+ "E_selection": {
+  "cf_available_case": 0.0597
+ }
+}
