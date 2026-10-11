@@ -1,0 +1,43 @@
+{
+ "source": "Cervantes & Dzhafarov (2018), arXiv:1711.00418, Tables 2-3",
+ "paper_reported": {
+  "correct_LHS": 0.452,
+  "correct_CI": [
+   0.226,
+   0.668
+  ],
+  "all_LHS": 0.279,
+  "all_CI": [
+   0.008,
+   0.506
+  ]
+ },
+ "correct_responses": {
+  "s_odd": 4.0,
+  "Delta": 1.548,
+  "LHS": 0.452,
+  "CNTX": 0.226,
+  "contextual_criterion": true,
+  "contextual_LP": true,
+  "bootstrap_CI_99_99": [
+   0.226,
+   0.668
+  ],
+  "share_LHS_le_0": 0.0,
+  "B": 100000
+ },
+ "all_responses": {
+  "s_odd": 3.3459,
+  "Delta": 1.0695,
+  "LHS": 0.2764,
+  "CNTX": 0.1382,
+  "contextual_criterion": true,
+  "contextual_LP": true,
+  "bootstrap_CI_99_99": [
+   0.012,
+   0.494
+  ],
+  "share_LHS_le_0": 2e-05,
+  "B": 100000
+ }
+}
