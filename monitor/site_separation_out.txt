@@ -1,0 +1,6 @@
+L1: wording effect on logit 'too little' (pooled): {'welfare': np.float64(-1.96), 'cities': np.float64(1.29), 'race': np.float64(0.34), 'crime': np.float64(0.51), 'drugs': np.float64(0.23), 'education': np.float64(-0.15), 'health': np.float64(0.07), 'environment': np.float64(-0.05), 'space': np.float64(0.0), 'defense': np.float64(-0.03), 'foreign aid': np.float64(0.09)} | years whose connection is not flat (Bonferroni over years): 24 of 24
+L3: 1320 system-years; naive CF median 0.119 (min 0.022); canonical CbD contextual at the point estimate in 523, with order-respecting cuts in 307, rank 2 in 93
+   posterior screen: max 1.0 | above 0.95: 25 | screen threshold 0.999962
+L2: 2640 tables; MI median 0.0237 bits; independence rejected (G > chi2_4 at 0.05/2640) in 1140
+dissociation (Bonferroni over 1320: |z| > 4.12, G-test at 0.05/2640): {'L1_and_L2': 340, 'L1_and_L2_not_flagged': 261, 'L1': 493, 'L2': 733}
+rank correlations across system-years: {'naiveCF_absPhi': 0.849, 'absPhi_MI': 0.135, 'naiveCF_MI': 0.236}

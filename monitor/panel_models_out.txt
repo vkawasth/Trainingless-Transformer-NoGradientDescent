@@ -1,0 +1,6 @@
+06 natfare 592 gap 0.0656 stable: G2 32.28 df 18 p 0.0204 boot 0.01 gap 0.1043 | drifting: G2 5.84 df 6 p 0.4419 boot 0.59 gap 0.0591 | markov: G2 5.86 df 6 p 0.4385 boot 0.78 gap 0.0584
+06 natfarey 605 gap 0.0631 stable: G2 77.74 df 18 p 0.0 boot 0.0 gap 0.0805 | drifting: G2 6.56 df 6 p 0.3637 boot 0.41 gap 0.0554 | markov: G2 9.52 df 6 p 0.1464 boot 0.64 gap 0.0411
+08 natfare 552 gap 0.0669 stable: G2 36.19 df 18 p 0.0067 boot 0.02 gap 0.1054 | drifting: G2 6.66 df 6 p 0.3537 boot 0.34 gap 0.0599 | markov: G2 7.76 df 6 p 0.2562 boot 0.49 gap 0.0521
+08 natfarey 641 gap 0.0688 stable: G2 35.75 df 18 p 0.0076 boot 0.04 gap 0.0816 | drifting: G2 5.51 df 6 p 0.4803 boot 0.58 gap 0.0653 | markov: G2 7.09 df 6 p 0.3129 boot 0.69 gap 0.0529
+10 natfare 604 gap 0.0817 stable: G2 25.86 df 18 p 0.1031 boot 0.12 gap 0.0944 | drifting: G2 2.89 df 6 p 0.8223 boot 0.78 gap 0.0785 | markov: G2 8.76 df 6 p 0.1876 boot 0.42 gap 0.0531
+10 natfarey 622 gap 0.0548 stable: G2 17.97 df 18 p 0.4573 boot 0.45 gap 0.067 | drifting: G2 2.78 df 6 p 0.8363 boot 0.87 gap 0.0526 | markov: G2 4.45 df 6 p 0.6158 boot 0.93 gap 0.0416

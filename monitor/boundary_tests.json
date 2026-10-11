@@ -1,0 +1,455 @@
+{
+ "flags": [
+  {
+   "year": 1985,
+   "a": "natrace",
+   "b": "natspac",
+   "deficit": 0.11285,
+   "p1": 0.006,
+   "p2": 0.0439,
+   "lam": 1.0
+  },
+  {
+   "year": 1987,
+   "a": "natheal",
+   "b": "natenvir",
+   "deficit": 0.02572,
+   "p1": 0.1956,
+   "p2": 0.3154,
+   "lam": 1.0
+  },
+  {
+   "year": 1988,
+   "a": "natcity",
+   "b": "nateduc",
+   "deficit": 0.02499,
+   "p1": 0.2036,
+   "p2": 0.2914,
+   "lam": 1.0
+  },
+  {
+   "year": 1988,
+   "a": "natcrime",
+   "b": "nateduc",
+   "deficit": 0.01234,
+   "p1": 0.3413,
+   "p2": 0.4731,
+   "lam": 1.0
+  },
+  {
+   "year": 1988,
+   "a": "nateduc",
+   "b": "natheal",
+   "deficit": 0.07516,
+   "p1": 0.0259,
+   "p2": 0.0379,
+   "lam": 1.0
+  },
+  {
+   "year": 1989,
+   "a": "natenvir",
+   "b": "natarms",
+   "deficit": 0.09349,
+   "p1": 0.002,
+   "p2": 0.024,
+   "lam": 1.0
+  },
+  {
+   "year": 1990,
+   "a": "natheal",
+   "b": "natenvir",
+   "deficit": 0.10255,
+   "p1": 0.006,
+   "p2": 0.014,
+   "lam": 1.0
+  },
+  {
+   "year": 1994,
+   "a": "natfare",
+   "b": "natheal",
+   "deficit": 0.06609,
+   "p1": 0.006,
+   "p2": 0.018,
+   "lam": 1.0
+  },
+  {
+   "year": 1994,
+   "a": "natfare",
+   "b": "natenvir",
+   "deficit": 0.05955,
+   "p1": 0.024,
+   "p2": 0.0359,
+   "lam": 1.0
+  },
+  {
+   "year": 1994,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.04551,
+   "p1": 0.008,
+   "p2": 0.0679,
+   "lam": 1.0
+  },
+  {
+   "year": 1996,
+   "a": "natfare",
+   "b": "natenvir",
+   "deficit": 0.0694,
+   "p1": 0.004,
+   "p2": 0.0439,
+   "lam": 1.0
+  },
+  {
+   "year": 1996,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.0822,
+   "p1": 0.004,
+   "p2": 0.018,
+   "lam": 1.0
+  },
+  {
+   "year": 1996,
+   "a": "natcrime",
+   "b": "natheal",
+   "deficit": 0.02067,
+   "p1": 0.1737,
+   "p2": 0.2754,
+   "lam": 1.0
+  },
+  {
+   "year": 2000,
+   "a": "natrace",
+   "b": "nataid",
+   "deficit": 0.03629,
+   "p1": 0.0798,
+   "p2": 0.1597,
+   "lam": 1.0
+  },
+  {
+   "year": 2000,
+   "a": "natcrime",
+   "b": "natarms",
+   "deficit": 0.02479,
+   "p1": 0.1637,
+   "p2": 0.2914,
+   "lam": 1.0
+  },
+  {
+   "year": 2002,
+   "a": "natfare",
+   "b": "nateduc",
+   "deficit": 0.01926,
+   "p1": 0.1896,
+   "p2": 0.3014,
+   "lam": 1.0
+  },
+  {
+   "year": 2002,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.10226,
+   "p1": 0.004,
+   "p2": 0.008,
+   "lam": 1.0
+  },
+  {
+   "year": 2004,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.06431,
+   "p1": 0.008,
+   "p2": 0.0419,
+   "lam": 1.0
+  },
+  {
+   "year": 2006,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.03659,
+   "p1": 0.0559,
+   "p2": 0.1437,
+   "lam": 1.0
+  },
+  {
+   "year": 2006,
+   "a": "natcrime",
+   "b": "nateduc",
+   "deficit": 0.01613,
+   "p1": 0.2455,
+   "p2": 0.3054,
+   "lam": 1.0
+  },
+  {
+   "year": 2008,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.03102,
+   "p1": 0.1317,
+   "p2": 0.2076,
+   "lam": 1.0
+  },
+  {
+   "year": 2012,
+   "a": "natfare",
+   "b": "natenvir",
+   "deficit": 0.03569,
+   "p1": 0.1277,
+   "p2": 0.2515,
+   "lam": 1.0
+  },
+  {
+   "year": 2014,
+   "a": "natdrug",
+   "b": "nateduc",
+   "deficit": 0.0261,
+   "p1": 0.1617,
+   "p2": 0.2455,
+   "lam": 1.0
+  },
+  {
+   "year": 2016,
+   "a": "nateduc",
+   "b": "natenvir",
+   "deficit": 0.02427,
+   "p1": 0.1737,
+   "p2": 0.2295,
+   "lam": 1.0
+  },
+  {
+   "year": 2021,
+   "a": "natdrug",
+   "b": "nataid",
+   "deficit": 0.00934,
+   "p1": 0.3792,
+   "p2": 0.4611,
+   "lam": 1.0
+  }
+ ],
+ "crime_drugs": [
+  {
+   "year": 1985,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.01887,
+   "p1": 0.2615,
+   "p2": 0.3613,
+   "lam": 1.0
+  },
+  {
+   "year": 1986,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.00248,
+   "p1": 0.6806,
+   "p2": 0.6687,
+   "lam": 1.0
+  },
+  {
+   "year": 1987,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.00097,
+   "p1": 0.7046,
+   "p2": 0.7285,
+   "lam": 0.9998
+  },
+  {
+   "year": 1988,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.00366,
+   "p1": 0.6068,
+   "p2": 0.6527,
+   "lam": 0.9999
+  },
+  {
+   "year": 1989,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.00838,
+   "p1": 0.479,
+   "p2": 0.521,
+   "lam": 1.0
+  },
+  {
+   "year": 1990,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.01481,
+   "p1": 0.3134,
+   "p2": 0.4212,
+   "lam": 1.0
+  },
+  {
+   "year": 1991,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.0,
+   "p1": 1.0,
+   "p2": 1.0
+  },
+  {
+   "year": 1993,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.02282,
+   "p1": 0.1976,
+   "p2": 0.3733,
+   "lam": 1.0
+  },
+  {
+   "year": 1994,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.04551,
+   "p1": 0.016,
+   "p2": 0.0539,
+   "lam": 1.0
+  },
+  {
+   "year": 1996,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.0822,
+   "p1": 0.004,
+   "p2": 0.014,
+   "lam": 1.0
+  },
+  {
+   "year": 1998,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.02206,
+   "p1": 0.1677,
+   "p2": 0.3034,
+   "lam": 1.0
+  },
+  {
+   "year": 2000,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.00788,
+   "p1": 0.491,
+   "p2": 0.525,
+   "lam": 1.0
+  },
+  {
+   "year": 2002,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.10226,
+   "p1": 0.002,
+   "p2": 0.01,
+   "lam": 1.0
+  },
+  {
+   "year": 2004,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.06431,
+   "p1": 0.01,
+   "p2": 0.0499,
+   "lam": 1.0
+  },
+  {
+   "year": 2006,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.03659,
+   "p1": 0.0838,
+   "p2": 0.1238,
+   "lam": 1.0
+  },
+  {
+   "year": 2008,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.03102,
+   "p1": 0.1577,
+   "p2": 0.2156,
+   "lam": 1.0
+  },
+  {
+   "year": 2010,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.01011,
+   "p1": 0.4711,
+   "p2": 0.5709,
+   "lam": 1.0
+  },
+  {
+   "year": 2012,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.0,
+   "p1": 1.0,
+   "p2": 1.0
+  },
+  {
+   "year": 2014,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.0,
+   "p1": 1.0,
+   "p2": 1.0
+  },
+  {
+   "year": 2016,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.01943,
+   "p1": 0.2056,
+   "p2": 0.3094,
+   "lam": 1.0
+  },
+  {
+   "year": 2018,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.01434,
+   "p1": 0.3154,
+   "p2": 0.4371,
+   "lam": 1.0
+  },
+  {
+   "year": 2021,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.01827,
+   "p1": 0.2156,
+   "p2": 0.2695,
+   "lam": 1.0
+  },
+  {
+   "year": 2022,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.00613,
+   "p1": 0.5928,
+   "p2": 0.6048,
+   "lam": 1.0
+  },
+  {
+   "year": 2024,
+   "a": "natcrime",
+   "b": "natdrug",
+   "deficit": 0.0,
+   "p1": 1.0,
+   "p2": 1.0
+  }
+ ],
+ "crime_drugs_fisher_p1": {
+  "stat": 77.88,
+  "df": 48,
+  "p": 0.004100995908414672
+ },
+ "crime_drugs_fisher_p2": {
+  "stat": 58.59,
+  "df": 48,
+  "p": 0.14074474144868293
+ },
+ "bonferroni": 3.787878787878788e-05,
+ "flags_surviving_bonferroni": []
+}

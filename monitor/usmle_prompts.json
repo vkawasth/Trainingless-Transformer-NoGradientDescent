@@ -1,0 +1,73 @@
+{
+ "n_items": 340,
+ "35M": {
+  "acc_intact": 0.635,
+  "acc_damaged": 0.624,
+  "lost": 0.071,
+  "gained": 0.059,
+  "excess": 0.118,
+  "disagree": 0.129
+ },
+ "35J": {
+  "acc_intact": 0.65,
+  "acc_damaged": 0.606,
+  "lost": 0.106,
+  "gained": 0.062,
+  "excess": 0.124,
+  "disagree": 0.168
+ },
+ "4M": {
+  "acc_intact": 0.882,
+  "acc_damaged": 0.85,
+  "lost": 0.068,
+  "gained": 0.035,
+  "excess": 0.071,
+  "disagree": 0.103
+ },
+ "4J": {
+  "acc_intact": 0.847,
+  "acc_damaged": 0.794,
+  "lost": 0.085,
+  "gained": 0.032,
+  "excess": 0.065,
+  "disagree": 0.118
+ },
+ "system M": {
+  "kind": "bend",
+  "stress": 16.0,
+  "crossed": []
+ },
+ "system J": {
+  "kind": "tear?",
+  "stress": 34.0,
+  "crossed": []
+ },
+ "35 March->June damaged": {
+  "acc_M": 0.624,
+  "acc_J": 0.606,
+  "lost": 0.082,
+  "masked": 0.065,
+  "excess": 0.129
+ },
+ "4 March->June damaged": {
+  "acc_M": 0.85,
+  "acc_J": 0.794,
+  "lost": 0.088,
+  "masked": 0.032,
+  "excess": 0.065
+ },
+ "35 damage cost June - March": {
+  "est": 0.032,
+  "ci": [
+   -0.015,
+   0.082
+  ]
+ },
+ "4 damage cost June - March": {
+  "est": 0.021,
+  "ci": [
+   -0.015,
+   0.056
+  ]
+ }
+}

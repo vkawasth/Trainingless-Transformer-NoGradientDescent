@@ -1,0 +1,864 @@
+{
+ "USMLE": {
+  "n_items": 340,
+  "margins": {
+   "35M": [
+    0.6352941176470588,
+    0.36470588235294116,
+    0.0
+   ],
+   "35J": [
+    0.65,
+    0.34705882352941175,
+    0.0029411764705882353
+   ],
+   "4M": [
+    0.8823529411764706,
+    0.11470588235294117,
+    0.0029411764705882353
+   ],
+   "4J": [
+    0.8470588235294118,
+    0.15294117647058825,
+    0.0
+   ]
+  },
+  "regime": {
+   "kind": "tear?",
+   "stress": 19.0,
+   "change": 0.056,
+   "tear_margin_March": 0.003,
+   "walls_crossed": [],
+   "walls_maybe": [
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ]
+   ]
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.0059,
+   "Delta": 0.1,
+   "CNTX": 0.0,
+   "direct_A": 0.0147,
+   "direct_B": 0.0353
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 6
+  },
+  "churn": {
+   "35": {
+    "agree": 0.829,
+    "max_agree": 0.982,
+    "excess": 0.153,
+    "acc_M": 0.635,
+    "acc_J": 0.65,
+    "lost": 0.076,
+    "gained": 0.091,
+    "masked": 0.076,
+    "excess_binary": 0.153
+   },
+   "4": {
+    "agree": 0.941,
+    "max_agree": 0.962,
+    "excess": 0.021,
+    "acc_M": 0.882,
+    "acc_J": 0.847,
+    "lost": 0.047,
+    "gained": 0.012,
+    "masked": 0.012,
+    "excess_binary": 0.024
+   }
+  }
+ },
+ "OPINIONQA": {
+  "n_items": 1506,
+  "margins": {
+   "35M": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "35J": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "4M": [
+    0.9794156706507304,
+    0.0,
+    0.020584329349269587
+   ],
+   "4J": [
+    0.24701195219123506,
+    0.0,
+    0.7529880478087649
+   ]
+  },
+  "regime": {
+   "kind": "bend",
+   "stress": 35.58,
+   "change": 0.732,
+   "tear_margin_March": 0.021,
+   "walls_crossed": [],
+   "walls_maybe": []
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 1.4648,
+   "Delta": 1.4648,
+   "CNTX": 0.0,
+   "direct_A": 0.0,
+   "direct_B": 0.7324
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 2
+  },
+  "churn": {
+   "35": {
+    "agree": 1.0,
+    "max_agree": 1.0,
+    "excess": 0.0,
+    "acc_M": 1.0,
+    "acc_J": 1.0,
+    "lost": 0.0,
+    "gained": 0.0,
+    "masked": 0.0,
+    "excess_binary": 0.0
+   },
+   "4": {
+    "agree": 0.266,
+    "max_agree": 0.268,
+    "excess": 0.001,
+    "acc_M": 0.979,
+    "acc_J": 0.247,
+    "lost": 0.733,
+    "gained": 0.001,
+    "masked": 0.001,
+    "excess_binary": 0.001
+   }
+  }
+ },
+ "SENSITIVEQ": {
+  "n_items": 100,
+  "margins": {
+   "35M": [
+    0.02,
+    0.0,
+    0.98
+   ],
+   "35J": [
+    0.08,
+    0.0,
+    0.92
+   ],
+   "4M": [
+    0.21,
+    0.0,
+    0.79
+   ],
+   "4J": [
+    0.05,
+    0.0,
+    0.95
+   ]
+  },
+  "regime": {
+   "kind": "tear?",
+   "stress": 1.16,
+   "change": 0.22,
+   "tear_margin_March": 0.19,
+   "walls_crossed": [],
+   "walls_maybe": [
+    [
+     [
+      0
+     ],
+     [
+      0
+     ]
+    ]
+   ]
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.28,
+   "Delta": 0.44,
+   "CNTX": 0.0,
+   "direct_A": 0.06,
+   "direct_B": 0.16
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 2
+  },
+  "churn": {
+   "35": {
+    "agree": 0.94,
+    "max_agree": 0.94,
+    "excess": 0.0,
+    "acc_M": 0.02,
+    "acc_J": 0.08,
+    "lost": 0.0,
+    "gained": 0.06,
+    "masked": 0.0,
+    "excess_binary": 0.0
+   },
+   "4": {
+    "agree": 0.84,
+    "max_agree": 0.84,
+    "excess": 0.0,
+    "acc_M": 0.21,
+    "acc_J": 0.05,
+    "lost": 0.16,
+    "gained": 0.0,
+    "masked": 0.0,
+    "excess_binary": 0.0
+   }
+  }
+ },
+ "PRIME_FULL": {
+  "n_items": 1000,
+  "margins": {
+   "35M": [
+    0.529,
+    0.471,
+    0.0
+   ],
+   "35J": [
+    0.76,
+    0.193,
+    0.047
+   ],
+   "4M": [
+    0.84,
+    0.156,
+    0.004
+   ],
+   "4J": [
+    0.511,
+    0.489,
+    0.0
+   ]
+  },
+  "regime": {
+   "kind": "tear",
+   "stress": 152.75,
+   "change": 0.611,
+   "tear_margin_March": 0.004,
+   "walls_crossed": [
+    [
+     [
+      0
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      2
+     ]
+    ]
+   ],
+   "walls_maybe": [
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ]
+   ]
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.004,
+   "Delta": 1.12,
+   "CNTX": 0.0,
+   "direct_A": 0.231,
+   "direct_B": 0.329
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 6
+  },
+  "churn": {
+   "35": {
+    "agree": 0.4,
+    "max_agree": 0.722,
+    "excess": 0.322,
+    "acc_M": 0.529,
+    "acc_J": 0.76,
+    "lost": 0.173,
+    "gained": 0.404,
+    "masked": 0.173,
+    "excess_binary": 0.346
+   },
+   "4": {
+    "agree": 0.374,
+    "max_agree": 0.667,
+    "excess": 0.293,
+    "acc_M": 0.84,
+    "acc_J": 0.511,
+    "lost": 0.476,
+    "gained": 0.147,
+    "masked": 0.147,
+    "excess_binary": 0.294
+   }
+  }
+ },
+ "COUNTAHAPPYNUMBER": {
+  "n_items": 500,
+  "margins": {
+   "35M": [
+    0.306,
+    0.658,
+    0.036
+   ],
+   "35J": [
+    0.482,
+    0.358,
+    0.16
+   ],
+   "4M": [
+    0.836,
+    0.07,
+    0.094
+   ],
+   "4J": [
+    0.352,
+    0.648,
+    0.0
+   ]
+  },
+  "regime": {
+   "kind": "tear",
+   "stress": 25.82,
+   "change": 0.878,
+   "tear_margin_March": 0.034,
+   "walls_crossed": [
+    [
+     [
+      0
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      2
+     ]
+    ]
+   ],
+   "walls_maybe": [
+    [
+     [
+      0,
+      2
+     ],
+     [
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      2
+     ]
+    ]
+   ]
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.224,
+   "Delta": 1.32,
+   "CNTX": 0.0,
+   "direct_A": 0.176,
+   "direct_B": 0.484
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 6
+  },
+  "churn": {
+   "35": {
+    "agree": 0.43,
+    "max_agree": 0.7,
+    "excess": 0.27,
+    "acc_M": 0.306,
+    "acc_J": 0.482,
+    "lost": 0.14,
+    "gained": 0.316,
+    "masked": 0.14,
+    "excess_binary": 0.28
+   },
+   "4": {
+    "agree": 0.354,
+    "max_agree": 0.422,
+    "excess": 0.068,
+    "acc_M": 0.836,
+    "acc_J": 0.352,
+    "lost": 0.538,
+    "gained": 0.054,
+    "masked": 0.054,
+    "excess_binary": 0.108
+   }
+  }
+ },
+ "ARC": {
+  "n_items": 467,
+  "margins": {
+   "35M": [
+    0.10920770877944326,
+    0.8886509635974305,
+    0.0021413276231263384
+   ],
+   "35J": [
+    0.14132762312633834,
+    0.8586723768736617,
+    0.0
+   ],
+   "4M": [
+    0.24411134903640258,
+    0.7558886509635975,
+    0.0
+   ],
+   "4J": [
+    0.2698072805139186,
+    0.7301927194860813,
+    0.0
+   ]
+  },
+  "regime": {
+   "kind": "bend",
+   "stress": 27.0,
+   "change": 0.058,
+   "tear_margin_March": 0.002,
+   "walls_crossed": [],
+   "walls_maybe": []
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.0385,
+   "Delta": 0.1156,
+   "CNTX": 0.0,
+   "direct_A": 0.0321,
+   "direct_B": 0.0257
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 6
+  },
+  "churn": {
+   "35": {
+    "agree": 0.931,
+    "max_agree": 0.968,
+    "excess": 0.036,
+    "acc_M": 0.109,
+    "acc_J": 0.141,
+    "lost": 0.017,
+    "gained": 0.049,
+    "masked": 0.017,
+    "excess_binary": 0.034
+   },
+   "4": {
+    "agree": 0.91,
+    "max_agree": 0.974,
+    "excess": 0.064,
+    "acc_M": 0.244,
+    "acc_J": 0.27,
+    "lost": 0.032,
+    "gained": 0.058,
+    "masked": 0.032,
+    "excess_binary": 0.064
+   }
+  }
+ },
+ "LEETCODE_EASY": {
+  "n_items": 50,
+  "margins": {
+   "35M": [
+    0.22,
+    0.78,
+    0.0
+   ],
+   "35J": [
+    0.02,
+    0.98,
+    0.0
+   ],
+   "4M": [
+    0.52,
+    0.48,
+    0.0
+   ],
+   "4J": [
+    0.1,
+    0.9,
+    0.0
+   ]
+  },
+  "regime": {
+   "kind": "bend",
+   "stress": 2.38,
+   "change": 0.62,
+   "tear_margin_March": 0.26,
+   "walls_crossed": [],
+   "walls_maybe": []
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.52,
+   "Delta": 1.24,
+   "CNTX": 0.0,
+   "direct_A": 0.2,
+   "direct_B": 0.42
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 2
+  },
+  "churn": {
+   "35": {
+    "agree": 0.8,
+    "max_agree": 0.8,
+    "excess": 0.0,
+    "acc_M": 0.22,
+    "acc_J": 0.02,
+    "lost": 0.2,
+    "gained": 0.0,
+    "masked": 0.0,
+    "excess_binary": 0.0
+   },
+   "4": {
+    "agree": 0.5,
+    "max_agree": 0.58,
+    "excess": 0.08,
+    "acc_M": 0.52,
+    "acc_J": 0.1,
+    "lost": 0.46,
+    "gained": 0.04,
+    "masked": 0.04,
+    "excess_binary": 0.08
+   }
+  }
+ },
+ "HOTPOTQA": {
+  "n_items": 7405,
+  "margins": {
+   "35M": [
+    0.22336259284267387,
+    0.3193787981093856,
+    0.4572586090479406
+   ],
+   "35J": [
+    0.13814989871708305,
+    0.1824442943956786,
+    0.6794058068872384
+   ],
+   "4M": [
+    0.012018906144496962,
+    0.13058744091829844,
+    0.8573936529372046
+   ],
+   "4J": [
+    0.3702903443619176,
+    0.574341661039838,
+    0.05536799459824443
+   ]
+  },
+  "regime": {
+   "kind": "tear",
+   "stress": 12.68,
+   "change": 1.024,
+   "tear_margin_March": 0.081,
+   "walls_crossed": [
+    [
+     [
+      0
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      2
+     ]
+    ],
+    [
+     [
+      0
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      0,
+      1
+     ],
+     [
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      1
+     ],
+     [
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "walls_maybe": []
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.1075,
+   "Delta": 0.887,
+   "CNTX": 0.0,
+   "direct_A": 0.0852,
+   "direct_B": 0.3583
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 6
+  },
+  "churn": {
+   "35": {
+    "agree": 0.566,
+    "max_agree": 0.778,
+    "excess": 0.211,
+    "acc_M": 0.223,
+    "acc_J": 0.138,
+    "lost": 0.127,
+    "gained": 0.042,
+    "masked": 0.042,
+    "excess_binary": 0.084
+   },
+   "4": {
+    "agree": 0.13,
+    "max_agree": 0.198,
+    "excess": 0.068,
+    "acc_M": 0.012,
+    "acc_J": 0.37,
+    "lost": 0.004,
+    "gained": 0.362,
+    "masked": 0.004,
+    "excess_binary": 0.008
+   }
+  }
+ }
+}

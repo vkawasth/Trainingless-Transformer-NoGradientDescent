@@ -1,0 +1,160 @@
+{
+ "adults 20+": {
+  "n": {
+   "2009_10": 5991,
+   "2011_12": 5233
+  },
+  "diabetes": {
+   "2009_10": 0.1024,
+   "2011_12": 0.1107
+  },
+  "bmi": {
+   "2009_10": [
+    0.3086,
+    0.3333,
+    0.3582
+   ],
+   "2011_12": [
+    0.3098,
+    0.3393,
+    0.3509
+   ]
+  },
+  "regime": "bend",
+  "stress": 0.08,
+  "tear_margin": 0.2062,
+  "break_margin": 0.1024,
+  "crossed": [],
+  "cbd_contextual": false,
+  "s": 0.002,
+  "Delta": 0.0314,
+  "split_contextual": false,
+  "split_deficit": 0.0,
+  "diabetes_risk_if_obese": {
+   "2009_10": 0.1776,
+   "2011_12": 0.1843
+  }
+ },
+ "age 55+": {
+  "n": {
+   "2009_10": 2378,
+   "2011_12": 2034
+  },
+  "diabetes": {
+   "2009_10": 0.2094,
+   "2011_12": 0.206
+  },
+  "bmi": {
+   "2009_10": [
+    0.248,
+    0.3576,
+    0.3944
+   ],
+   "2011_12": [
+    0.2794,
+    0.3572,
+    0.3634
+   ]
+  },
+  "regime": "bend",
+  "stress": 0.9,
+  "tear_margin": 0.0386,
+  "break_margin": 0.2094,
+  "crossed": [],
+  "cbd_contextual": false,
+  "s": 0.0246,
+  "Delta": 0.0688,
+  "split_contextual": false,
+  "split_deficit": 0.0,
+  "diabetes_risk_if_obese": {
+   "2009_10": 0.3142,
+   "2011_12": 0.3107
+  }
+ },
+ "USMLE": {
+  "n_items": 340,
+  "margins": {
+   "35M": [
+    0.6352941176470588,
+    0.36470588235294116,
+    0.0
+   ],
+   "35J": [
+    0.65,
+    0.34705882352941175,
+    0.0029411764705882353
+   ],
+   "4M": [
+    0.8823529411764706,
+    0.11470588235294117,
+    0.0029411764705882353
+   ],
+   "4J": [
+    0.8470588235294118,
+    0.15294117647058825,
+    0.0
+   ]
+  },
+  "regime": {
+   "kind": "tear?",
+   "stress": 19.0,
+   "change": 0.056,
+   "tear_margin_March": 0.003,
+   "walls_crossed": [],
+   "walls_maybe": [
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ]
+   ]
+  },
+  "breaks": {
+   "35": [],
+   "4": []
+  },
+  "cbd": {
+   "contextual": false,
+   "lp_contextual": false,
+   "s_odd": 0.0059,
+   "Delta": 0.1,
+   "CNTX": 0.0,
+   "direct_A": 0.0147,
+   "direct_B": 0.0353
+  },
+  "cbd_split": {
+   "contextual": false,
+   "deficit": 0.0,
+   "n_splits": 6
+  },
+  "churn": {
+   "35": {
+    "agree": 0.829,
+    "max_agree": 0.982,
+    "excess": 0.153,
+    "acc_M": 0.635,
+    "acc_J": 0.65,
+    "lost": 0.076,
+    "gained": 0.091,
+    "masked": 0.076,
+    "excess_binary": 0.153
+   },
+   "4": {
+    "agree": 0.941,
+    "max_agree": 0.962,
+    "excess": 0.021,
+    "acc_M": 0.882,
+    "acc_J": 0.847,
+    "lost": 0.047,
+    "gained": 0.012,
+    "masked": 0.012,
+    "excess_binary": 0.024
+   }
+  }
+ }
+}
