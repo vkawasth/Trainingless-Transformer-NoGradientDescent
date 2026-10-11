@@ -1,0 +1,262 @@
+{
+ "strand": "ie",
+ "plan": "PREANALYSIS_AMENDMENT_C19PRC_UK.md / _IE.md (2026-10-10)",
+ "info": {
+  "D_ctx_waves": "(2, 4, 5)",
+  "outcome": "W4_Suicidal_Ideation_1week",
+  "no_codes": "[0.0]"
+ },
+ "cohort": {
+  "W1": {
+   "n": 1041,
+   "D": 1041,
+   "A": 1041
+  },
+  "W2": {
+   "n": 1032,
+   "D": 1032,
+   "A": 1032
+  },
+  "W3": {
+   "n": 534,
+   "D": 534,
+   "A": 534
+  },
+  "W4": {
+   "n": 1098,
+   "D": 1098,
+   "A": 1098
+  },
+  "W5": {
+   "n": 1110,
+   "D": 1110,
+   "A": 1110
+  }
+ },
+ "A_coupling_geometry": {
+  "tables": {
+   "W1": {
+    "suppressed": "a cell below 10",
+    "n": 1041
+   },
+   "W2": {
+    "suppressed": "a cell below 10",
+    "n": 1032
+   },
+   "W3": {
+    "suppressed": "a cell below 10",
+    "n": 534
+   },
+   "W4": {
+    "suppressed": "a cell below 10",
+    "n": 1098
+   },
+   "W5": {
+    "suppressed": "a cell below 10",
+    "n": 1110
+   }
+  },
+  "steps": [
+   {
+    "frm": "W1",
+    "to": "W2",
+    "kind": "tear?",
+    "stress": 8.81,
+    "tear_margin": 0.0067,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W2",
+    "to": "W3",
+    "kind": "tear?",
+    "stress": 3.59,
+    "tear_margin": 0.0097,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W3",
+    "to": "W4",
+    "kind": "tear?",
+    "stress": 18.09,
+    "tear_margin": 0.0056,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W4",
+    "to": "W5",
+    "kind": "tear?",
+    "stress": 8.95,
+    "tear_margin": 0.0146,
+    "walls_crossed": []
+   }
+  ],
+  "mutual_information_bits": {
+   "W1": 0.4824,
+   "W2": 0.5352,
+   "W3": 0.5196,
+   "W4": 0.5525,
+   "W5": 0.5448
+  }
+ },
+ "B1_composition_W1_W3": {
+  "n": 418,
+  "gap_bits": 0.0617,
+  "gap_ci": [
+   0.0451,
+   0.1349
+  ],
+  "markov_null95": 0.0373,
+  "p_markov": 0.0024937655860349127,
+  "latent_models": {
+   "stable": {
+    "G2": 33.24,
+    "df": 18,
+    "p": 0.015607529251794877,
+    "gap_implied": 0.1004,
+    "min_class": 0.182
+   },
+   "drifting": {
+    "G2": 10.88,
+    "df": 6,
+    "p": 0.09225720116971048,
+    "gap_implied": 0.0467,
+    "min_class": 0.185
+   },
+   "markov": {
+    "G2": 13.09,
+    "df": 6,
+    "p": 0.04160237300024061,
+    "gap_implied": 0.0364,
+    "min_class": 0.154
+   }
+  },
+  "tv_K13_vs_K12K23": [
+   0.054,
+   0.1426,
+   0.0977
+  ],
+  "churn_12": {
+   "agree": 0.701,
+   "max_agree": 0.9665,
+   "excess": 0.2656
+  },
+  "decision": {
+   "answers_not_glued": true,
+   "latent_markov_fits": false
+  }
+ },
+ "B2_four_waves": {
+  "waves": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "n": 327,
+  "latent_markov_shared": {
+   "G2": 64.2,
+   "df": 54,
+   "p_boot": 0.44776119402985076,
+   "min_class": 0.22,
+   "n": 327
+  },
+  "latent_markov_free_response": {
+   "G2": 59.79,
+   "df": 36,
+   "p_boot": 0.31683168316831684,
+   "min_class": 0.166,
+   "n": 327
+  },
+  "decision": "latent Markov suffices"
+ },
+ "B3_all_waves_gaps": {
+  "n": 271,
+  "gaps": {
+   "I(D1;D3|D2)": {
+    "gap": 0.0657,
+    "markov_null95": 0.0587,
+    "p_markov": 0.02493765586034913
+   },
+   "I(D2;D4|D3)": {
+    "gap": 0.148,
+    "markov_null95": 0.0565,
+    "p_markov": 0.0024937655860349127
+   },
+   "I(D3;D5|D4)": {
+    "gap": 0.1128,
+    "markov_null95": 0.0572,
+    "p_markov": 0.0024937655860349127
+   }
+  }
+ },
+ "C_path_outcome": "not estimable: n=318, yes=8",
+ "D_panel_conditioning": {
+  "strata": {
+   "W2": {
+    "naive_cf": 0.1438,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 506,
+    "nY": 526,
+    "X": {
+     "suppressed": "a cell below 10",
+     "n": 506
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 526
+    }
+   },
+   "W4": {
+    "naive_cf": 0.1519,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 416,
+    "nY": 682,
+    "X": {
+     "suppressed": "a cell below 10",
+     "n": 416
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 682
+    }
+   },
+   "W5": {
+    "naive_cf": 0.1361,
+    "deficit": 0.03996,
+    "contextual_point": true,
+    "p_boundary": 0.0623,
+    "nX": 390,
+    "nY": 720,
+    "X": {
+     "suppressed": "a cell below 10",
+     "n": 390
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 720
+    }
+   }
+  },
+  "fisher": 5.55,
+  "df": 6,
+  "p": 0.4754136940691227,
+  "contextual": false
+ },
+ "E_attrition": {
+  "n_all": 1041,
+  "n_measured": 534,
+  "measured_share": 0.513,
+  "cf_available_case": 0.031,
+  "cf_after_ipw": 0.0,
+  "null_median": 0.0415,
+  "null_95": 0.0694,
+  "p_available": 0.7855361596009975,
+  "p_ipw": 1.0,
+  "cf_after_secondary_weights": 0.017,
+  "decision": "no incompatibility beyond sampling"
+ }
+}
