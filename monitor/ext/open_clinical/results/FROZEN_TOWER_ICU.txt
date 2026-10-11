@@ -1,0 +1,5 @@
+# PREANALYSIS_TOWER_ICU.md: adapter checks (results/synth_tower_icu.txt) first, then one run each of tower and interchange, 2026-10-10. Frozen before tower_icu_explore.py was written.
+d818d4a2ac133e8b6c8c49f5c9722876ff1a5b85d2e425afa5f2c79396b6ab6b  PREANALYSIS_TOWER_ICU.md
+d612f7ced7902e8695d1d953d1fa13e2ccc97d4f091d62a8929bdf173246eb29  results/synth_tower_icu.txt
+4e4c076f481c874ad4232dc9b3b133de987e0526e67116ff0dd91770bf59e6a7  results/tower_icu.json
+4f1de24f59b050da273772bc9d98213f711497e79adf0cf98ab8e178d9a6ddb1  results/interchange_icu.json

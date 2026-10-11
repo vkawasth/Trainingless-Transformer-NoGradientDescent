@@ -1,0 +1,44 @@
+{
+ "negative_control": {
+  "kind": "bend",
+  "stress": 0.826,
+  "expected": "bend, stress < 1"
+ },
+ "replication": {
+  "B_not_glued": {
+   "A": true,
+   "B": true,
+   "replicated": true
+  },
+  "B_latent_markov": {
+   "A": true,
+   "B": false,
+   "replicated": false
+  },
+  "C_multiset": {
+   "A": true,
+   "B": true,
+   "replicated": true
+  },
+  "C_order": {
+   "A": false,
+   "B": false,
+   "replicated": true
+  },
+  "D_contextual": {
+   "A": false,
+   "B": false,
+   "replicated": true
+  },
+  "D_sofa_contextual": {
+   "A": false,
+   "B": false,
+   "replicated": true
+  },
+  "E": {
+   "A": "selection explains the incompatibility",
+   "B": "selection explains the incompatibility",
+   "replicated": true
+  }
+ }
+}

@@ -1,0 +1,2176 @@
+{
+ "plan": "PREANALYSIS_TOWER_ICU.md (2026-10-10)",
+ "same_population": {
+  "arm": "same population",
+  "n_fit": 4000,
+  "n_evidence": 2000,
+  "n_test": 2000,
+  "base_rate_fit": 0.1385,
+  "death_rate_evidence": 0.143,
+  "death_rate_test": 0.141,
+  "logloss_tower": 0.37644,
+  "logloss_flat": 0.37643,
+  "logloss_each_model": {
+   "M0": 0.4068,
+   "M1": 0.40389,
+   "M2": 0.39186,
+   "M3": 0.37643,
+   "M4": 0.392
+  },
+  "delta": -8e-06,
+  "delta_ci": [
+   -6.2e-05,
+   4.8e-05
+  ],
+  "level3_earns_keep": false,
+  "posterior_models": {
+   "M0": 0.0,
+   "M1": 0.0,
+   "M2": 0.0,
+   "M3": 1.0,
+   "M4": 0.0
+  },
+  "posterior_alpha": {
+   "0.0": 0.0,
+   "0.25": 0.0,
+   "0.5": 0.0,
+   "0.75": 0.0001,
+   "0.9": 0.0473,
+   "1.0": 0.9526
+  },
+  "mass_alpha_below_1": 0.0474,
+  "calibration": {
+   "predicted": 0.1411,
+   "observed": 0.141
+  },
+  "coherence_max_err": 7.006492321624085e-46,
+  "condS_agreement_200": 2.4147350785597155e-14,
+  "g_H1_test": [
+   0.1202,
+   0.2525,
+   0.6273
+  ],
+  "f_ka": [
+   [
+    0.1385,
+    0.1385,
+    0.1385,
+    0.1385,
+    0.1385,
+    0.1385
+   ],
+   [
+    0.1385,
+    0.13865,
+    0.13879,
+    0.13894,
+    0.13903,
+    0.13909
+   ],
+   [
+    0.1385,
+    0.13869,
+    0.13888,
+    0.13907,
+    0.13919,
+    0.13926
+   ],
+   [
+    0.1385,
+    0.13928,
+    0.14007,
+    0.14085,
+    0.14132,
+    0.14164
+   ],
+   [
+    0.1385,
+    0.13866,
+    0.13881,
+    0.13897,
+    0.13906,
+    0.13913
+   ]
+  ],
+  "surface_observed": "F_1 = Bl_1 CP^2",
+  "walls_observed": [
+   1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1
+  ],
+  "surface_decided": true,
+  "surface_top": {
+   "surface": "F_1 = Bl_1 CP^2",
+   "prob": 1.0
+  },
+  "tears_of_tube": [],
+  "tube": [
+   {
+    "n": 0,
+    "f1_level1": 0.13908,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.2,
+     0.2,
+     0.2,
+     0.2,
+     0.2
+    ],
+    "level3_alpha_weights": [
+     0.1667,
+     0.1667,
+     0.1667,
+     0.1667,
+     0.1667,
+     0.1667
+    ]
+   },
+   {
+    "n": 50,
+    "f1_level1": 0.13952,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.1047,
+     0.0957,
+     0.116,
+     0.3599,
+     0.3237
+    ],
+    "level3_alpha_weights": [
+     0.0872,
+     0.1226,
+     0.1628,
+     0.1982,
+     0.2121,
+     0.217
+    ]
+   },
+   {
+    "n": 100,
+    "f1_level1": 0.14086,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0156,
+     0.0193,
+     0.0406,
+     0.8509,
+     0.0736
+    ],
+    "level3_alpha_weights": [
+     0.013,
+     0.0324,
+     0.089,
+     0.2087,
+     0.3018,
+     0.3551
+    ]
+   },
+   {
+    "n": 150,
+    "f1_level1": 0.14093,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0103,
+     0.0097,
+     0.0194,
+     0.873,
+     0.0876
+    ],
+    "level3_alpha_weights": [
+     0.0086,
+     0.0239,
+     0.0773,
+     0.2052,
+     0.3112,
+     0.3738
+    ]
+   },
+   {
+    "n": 200,
+    "f1_level1": 0.14126,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0019,
+     0.0019,
+     0.0123,
+     0.9666,
+     0.0174
+    ],
+    "level3_alpha_weights": [
+     0.0015,
+     0.0066,
+     0.0373,
+     0.1644,
+     0.3268,
+     0.4635
+    ]
+   },
+   {
+    "n": 250,
+    "f1_level1": 0.14132,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0008,
+     0.0008,
+     0.0013,
+     0.9856,
+     0.0115
+    ],
+    "level3_alpha_weights": [
+     0.0006,
+     0.0037,
+     0.0296,
+     0.1588,
+     0.3322,
+     0.4751
+    ]
+   },
+   {
+    "n": 300,
+    "f1_level1": 0.14144,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.9994,
+     0.0006
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0002,
+     0.0072,
+     0.1009,
+     0.3205,
+     0.5712
+    ]
+   },
+   {
+    "n": 350,
+    "f1_level1": 0.14142,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.9988,
+     0.0011
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0003,
+     0.0092,
+     0.1181,
+     0.3351,
+     0.5374
+    ]
+   },
+   {
+    "n": 400,
+    "f1_level1": 0.14145,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.9994,
+     0.0006
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0001,
+     0.0049,
+     0.0927,
+     0.3207,
+     0.5815
+    ]
+   },
+   {
+    "n": 450,
+    "f1_level1": 0.14148,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0022,
+     0.07,
+     0.3049,
+     0.6228
+    ]
+   },
+   {
+    "n": 500,
+    "f1_level1": 0.14153,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0003,
+     0.0321,
+     0.2469,
+     0.7206
+    ]
+   },
+   {
+    "n": 550,
+    "f1_level1": 0.14155,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0002,
+     0.0237,
+     0.2263,
+     0.7499
+    ]
+   },
+   {
+    "n": 600,
+    "f1_level1": 0.14154,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0002,
+     0.0288,
+     0.2455,
+     0.7254
+    ]
+   },
+   {
+    "n": 650,
+    "f1_level1": 0.14156,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0001,
+     0.0167,
+     0.2075,
+     0.7758
+    ]
+   },
+   {
+    "n": 700,
+    "f1_level1": 0.14156,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0153,
+     0.2033,
+     0.7814
+    ]
+   },
+   {
+    "n": 750,
+    "f1_level1": 0.14155,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0001,
+     0.0214,
+     0.2289,
+     0.7496
+    ]
+   },
+   {
+    "n": 800,
+    "f1_level1": 0.14157,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0117,
+     0.1893,
+     0.7989
+    ]
+   },
+   {
+    "n": 850,
+    "f1_level1": 0.14157,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0101,
+     0.1809,
+     0.809
+    ]
+   },
+   {
+    "n": 900,
+    "f1_level1": 0.14156,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0136,
+     0.2031,
+     0.7833
+    ]
+   },
+   {
+    "n": 950,
+    "f1_level1": 0.14156,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0134,
+     0.2046,
+     0.782
+    ]
+   },
+   {
+    "n": 1000,
+    "f1_level1": 0.14156,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0124,
+     0.2061,
+     0.7815
+    ]
+   },
+   {
+    "n": 1050,
+    "f1_level1": 0.14158,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0073,
+     0.174,
+     0.8186
+    ]
+   },
+   {
+    "n": 1100,
+    "f1_level1": 0.14159,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0044,
+     0.1484,
+     0.8472
+    ]
+   },
+   {
+    "n": 1150,
+    "f1_level1": 0.14159,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0031,
+     0.1309,
+     0.8661
+    ]
+   },
+   {
+    "n": 1200,
+    "f1_level1": 0.1416,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.002,
+     0.1142,
+     0.8838
+    ]
+   },
+   {
+    "n": 1250,
+    "f1_level1": 0.1416,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0014,
+     0.1012,
+     0.8974
+    ]
+   },
+   {
+    "n": 1300,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0012,
+     0.0949,
+     0.9039
+    ]
+   },
+   {
+    "n": 1350,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0009,
+     0.0861,
+     0.913
+    ]
+   },
+   {
+    "n": 1400,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0008,
+     0.0856,
+     0.9136
+    ]
+   },
+   {
+    "n": 1450,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0006,
+     0.081,
+     0.9184
+    ]
+   },
+   {
+    "n": 1500,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0006,
+     0.0782,
+     0.9213
+    ]
+   },
+   {
+    "n": 1550,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0004,
+     0.0727,
+     0.9269
+    ]
+   },
+   {
+    "n": 1600,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0006,
+     0.0807,
+     0.9187
+    ]
+   },
+   {
+    "n": 1650,
+    "f1_level1": 0.14161,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0004,
+     0.0702,
+     0.9295
+    ]
+   },
+   {
+    "n": 1700,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0002,
+     0.057,
+     0.9428
+    ]
+   },
+   {
+    "n": 1750,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0001,
+     0.0477,
+     0.9522
+    ]
+   },
+   {
+    "n": 1800,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0001,
+     0.0486,
+     0.9512
+    ]
+   },
+   {
+    "n": 1850,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0001,
+     0.0435,
+     0.9564
+    ]
+   },
+   {
+    "n": 1900,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0001,
+     0.0393,
+     0.9606
+    ]
+   },
+   {
+    "n": 1950,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0001,
+     0.0454,
+     0.9545
+    ]
+   },
+   {
+    "n": 2000,
+    "f1_level1": 0.14162,
+    "surface_level1": "F_1 = Bl_1 CP^2",
+    "walls": [
+     1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "F_1 = Bl_1 CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0,
+     0.0001,
+     0.0473,
+     0.9526
+    ]
+   }
+  ]
+ },
+ "shift": {
+  "arm": "shift: surgical -> medical/coronary",
+  "n_fit": 1942,
+  "n_evidence": 1013,
+  "n_test": 1013,
+  "base_rate_fit": 0.102,
+  "death_rate_evidence": 0.1698,
+  "death_rate_test": 0.1836,
+  "logloss_tower": 0.48012,
+  "logloss_flat": 0.48028,
+  "logloss_each_model": {
+   "M0": 0.50702,
+   "M1": 0.51016,
+   "M2": 0.49205,
+   "M3": 0.48028,
+   "M4": 0.50259
+  },
+  "delta": 0.000156,
+  "delta_ci": [
+   -0.000866,
+   0.001225
+  ],
+  "level3_earns_keep": false,
+  "posterior_models": {
+   "M0": 0.0,
+   "M1": 0.0,
+   "M2": 0.0,
+   "M3": 1.0,
+   "M4": 0.0
+  },
+  "posterior_alpha": {
+   "0.0": 0.0,
+   "0.25": 0.0,
+   "0.5": 0.0028,
+   "0.75": 0.1556,
+   "0.9": 0.4022,
+   "1.0": 0.4394
+  },
+  "mass_alpha_below_1": 0.5606,
+  "calibration": {
+   "predicted": 0.1315,
+   "observed": 0.1836
+  },
+  "coherence_max_err": 0.0,
+  "condS_agreement_200": 2.220446049250313e-14,
+  "g_H1_test": [
+   0.1488,
+   0.2426,
+   0.6086
+  ],
+  "f_ka": [
+   [
+    0.10196,
+    0.10196,
+    0.10196,
+    0.10196,
+    0.10196,
+    0.10196
+   ],
+   [
+    0.10196,
+    0.10176,
+    0.10157,
+    0.10138,
+    0.10126,
+    0.10118
+   ],
+   [
+    0.10196,
+    0.10807,
+    0.11419,
+    0.12031,
+    0.12398,
+    0.12643
+   ],
+   [
+    0.10196,
+    0.10945,
+    0.11695,
+    0.12445,
+    0.12894,
+    0.13194
+   ],
+   [
+    0.10196,
+    0.10055,
+    0.09913,
+    0.09772,
+    0.09688,
+    0.09631
+   ]
+  ],
+  "surface_observed": "F_1 = Bl_1 CP^2",
+  "walls_observed": [
+   1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1
+  ],
+  "surface_decided": true,
+  "surface_top": {
+   "surface": "CP^2",
+   "prob": 1.0
+  },
+  "tears_of_tube": [],
+  "tube": [
+   {
+    "n": 0,
+    "f1_level1": 0.1074,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.2,
+     0.2,
+     0.2,
+     0.2,
+     0.2
+    ],
+    "level3_alpha_weights": [
+     0.1667,
+     0.1667,
+     0.1667,
+     0.1667,
+     0.1667,
+     0.1667
+    ]
+   },
+   {
+    "n": 50,
+    "f1_level1": 0.12444,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0222,
+     0.0301,
+     0.1692,
+     0.755,
+     0.0235
+    ],
+    "level3_alpha_weights": [
+     0.0185,
+     0.0424,
+     0.098,
+     0.1996,
+     0.2864,
+     0.3551
+    ]
+   },
+   {
+    "n": 100,
+    "f1_level1": 0.12222,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0347,
+     0.0425,
+     0.1004,
+     0.7602,
+     0.0621
+    ],
+    "level3_alpha_weights": [
+     0.0289,
+     0.0612,
+     0.1228,
+     0.211,
+     0.2693,
+     0.3067
+    ]
+   },
+   {
+    "n": 150,
+    "f1_level1": 0.12731,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0048,
+     0.0055,
+     0.0227,
+     0.9561,
+     0.0108
+    ],
+    "level3_alpha_weights": [
+     0.004,
+     0.0175,
+     0.0734,
+     0.2054,
+     0.3137,
+     0.3861
+    ]
+   },
+   {
+    "n": 200,
+    "f1_level1": 0.12841,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0009,
+     0.0012,
+     0.011,
+     0.985,
+     0.002
+    ],
+    "level3_alpha_weights": [
+     0.0007,
+     0.0068,
+     0.0516,
+     0.1963,
+     0.3283,
+     0.4162
+    ]
+   },
+   {
+    "n": 250,
+    "f1_level1": 0.12947,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0018,
+     0.998,
+     0.0001
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.001,
+     0.0206,
+     0.1508,
+     0.3343,
+     0.4932
+    ]
+   },
+   {
+    "n": 300,
+    "f1_level1": 0.12944,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0013,
+     0.9986,
+     0.0001
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0008,
+     0.0198,
+     0.1549,
+     0.3387,
+     0.4858
+    ]
+   },
+   {
+    "n": 350,
+    "f1_level1": 0.12998,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0003,
+     0.9997,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0001,
+     0.0082,
+     0.1141,
+     0.3279,
+     0.5497
+    ]
+   },
+   {
+    "n": 400,
+    "f1_level1": 0.12952,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0004,
+     0.9996,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0003,
+     0.0152,
+     0.1526,
+     0.3458,
+     0.486
+    ]
+   },
+   {
+    "n": 450,
+    "f1_level1": 0.12967,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0001,
+     0.9999,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0002,
+     0.0109,
+     0.1417,
+     0.3473,
+     0.4999
+    ]
+   },
+   {
+    "n": 500,
+    "f1_level1": 0.12848,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0002,
+     0.9998,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0009,
+     0.0371,
+     0.2405,
+     0.3603,
+     0.3613
+    ]
+   },
+   {
+    "n": 550,
+    "f1_level1": 0.12882,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0003,
+     0.0238,
+     0.2206,
+     0.3701,
+     0.3853
+    ]
+   },
+   {
+    "n": 600,
+    "f1_level1": 0.12885,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0002,
+     0.0214,
+     0.2194,
+     0.3734,
+     0.3856
+    ]
+   },
+   {
+    "n": 650,
+    "f1_level1": 0.12972,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0053,
+     0.1384,
+     0.3668,
+     0.4895
+    ]
+   },
+   {
+    "n": 700,
+    "f1_level1": 0.12957,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0061,
+     0.1541,
+     0.3765,
+     0.4633
+    ]
+   },
+   {
+    "n": 750,
+    "f1_level1": 0.1294,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.007,
+     0.1714,
+     0.3846,
+     0.4369
+    ]
+   },
+   {
+    "n": 800,
+    "f1_level1": 0.12933,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0068,
+     0.1788,
+     0.391,
+     0.4234
+    ]
+   },
+   {
+    "n": 850,
+    "f1_level1": 0.12925,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0069,
+     0.1865,
+     0.3954,
+     0.4112
+    ]
+   },
+   {
+    "n": 900,
+    "f1_level1": 0.12985,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.002,
+     0.1222,
+     0.3811,
+     0.4947
+    ]
+   },
+   {
+    "n": 950,
+    "f1_level1": 0.12979,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.002,
+     0.1284,
+     0.3876,
+     0.4819
+    ]
+   },
+   {
+    "n": 1000,
+    "f1_level1": 0.12957,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0026,
+     0.1504,
+     0.4003,
+     0.4467
+    ]
+   },
+   {
+    "n": 1013,
+    "f1_level1": 0.12953,
+    "surface_level1": "CP^2",
+    "walls": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "surface_posterior": {
+     "CP^2": 1.0
+    },
+    "level2_model_weights": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "level3_alpha_weights": [
+     0.0,
+     0.0,
+     0.0028,
+     0.1556,
+     0.4022,
+     0.4394
+    ]
+   }
+  ]
+ }
+}

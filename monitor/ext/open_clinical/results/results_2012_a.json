@@ -1,0 +1,472 @@
+{
+ "dataset": "PhysioNet Challenge 2012, set A",
+ "plan": "PREANALYSIS_AMENDMENT_OPEN_DATA.md (2026-10-10), Part I",
+ "cohort": {
+  "records": 4000,
+  "with_H1_H2_H3": 3753,
+  "with_creatinine": 3901,
+  "with_lactate": 1957,
+  "deaths": 554,
+  "by_icu": {
+   "1": 577,
+   "2": 874,
+   "3": 1481,
+   "4": 1068
+  }
+ },
+ "A_coupling_geometry": {
+  "tables": {
+   "coronary": {
+    "proportions": [
+     [
+      0.0417,
+      0.0399,
+      0.0471
+     ],
+     [
+      0.1141,
+      0.0725,
+      0.0489
+     ],
+     [
+      0.3678,
+      0.1866,
+      0.0815
+     ]
+    ],
+    "n": 552
+   },
+   "cardiac surgery": {
+    "suppressed": "a cell below 10",
+    "n": 812
+   },
+   "medical": {
+    "proportions": [
+     [
+      0.0712,
+      0.0363,
+      0.0538
+     ],
+     [
+      0.149,
+      0.0741,
+      0.0654
+     ],
+     [
+      0.3539,
+      0.0938,
+      0.1025
+     ]
+    ],
+    "n": 1376
+   },
+   "surgical": {
+    "proportions": [
+     [
+      0.0467,
+      0.0218,
+      0.0169
+     ],
+     [
+      0.146,
+      0.0338,
+      0.0169
+     ],
+     [
+      0.5581,
+      0.1043,
+      0.0556
+     ]
+    ],
+    "n": 1007
+   }
+  },
+  "steps": [
+   {
+    "frm": "coronary",
+    "to": "cardiac surgery",
+    "kind": "tear",
+    "stress": 8.25,
+    "tear_margin": 0.0489,
+    "walls_crossed": [
+     [
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      [
+       0,
+       2
+      ],
+      [
+       0
+      ]
+     ]
+    ]
+   },
+   {
+    "frm": "coronary",
+    "to": "medical",
+    "kind": "tear?",
+    "stress": 3.69,
+    "tear_margin": 0.0489,
+    "walls_crossed": []
+   },
+   {
+    "frm": "coronary",
+    "to": "surgical",
+    "kind": "tear?",
+    "stress": 6.32,
+    "tear_margin": 0.0489,
+    "walls_crossed": []
+   },
+   {
+    "frm": "cardiac surgery",
+    "to": "medical",
+    "kind": "tear",
+    "stress": 21.9,
+    "tear_margin": 0.0148,
+    "walls_crossed": [
+     [
+      [
+       0,
+       2
+      ],
+      [
+       0
+      ]
+     ]
+    ]
+   },
+   {
+    "frm": "cardiac surgery",
+    "to": "surgical",
+    "kind": "tear?",
+    "stress": 14.56,
+    "tear_margin": 0.0148,
+    "walls_crossed": []
+   },
+   {
+    "frm": "medical",
+    "to": "surgical",
+    "kind": "bend",
+    "stress": 14.36,
+    "tear_margin": 0.024,
+    "walls_crossed": []
+   }
+  ],
+  "mutual_information_bits": {
+   "coronary": 0.0333,
+   "cardiac surgery": 0.0034,
+   "medical": 0.0216,
+   "surgical": 0.015
+  },
+  "toric_2x3": {
+   "coronary": {
+    "facets": [
+     "11",
+     "12",
+     "13"
+    ],
+    "surface": "CP^2",
+    "decided": false
+   },
+   "cardiac surgery": {
+    "facets": [
+     "11",
+     "12",
+     "13",
+     "23"
+    ],
+    "surface": "F_1",
+    "decided": false
+   },
+   "medical": {
+    "facets": [
+     "11",
+     "12",
+     "13"
+    ],
+    "surface": "CP^2",
+    "decided": false
+   },
+   "surgical": {
+    "facets": [
+     "11",
+     "12",
+     "13"
+    ],
+    "surface": "CP^2",
+    "decided": false
+   }
+  }
+ },
+ "B_composition": {
+  "n": 3753,
+  "gap_bits": 0.0165,
+  "gap_ci": [
+   0.0121,
+   0.026
+  ],
+  "markov_null95": 0.0039,
+  "p_markov": 0.0024937655860349127,
+  "latent_models": {
+   "stable": {
+    "G2": 150.93,
+    "df": 18,
+    "p": 4.910261921668837e-23,
+    "gap_implied": 0.0508,
+    "min_class": 0.101
+   },
+   "drifting": {
+    "G2": 9.87,
+    "df": 6,
+    "p": 0.13032873467271514,
+    "gap_implied": 0.0153,
+    "min_class": 0.105
+   },
+   "markov": {
+    "G2": 10.97,
+    "df": 6,
+    "p": 0.0891761153346204,
+    "gap_implied": 0.0156,
+    "min_class": 0.153
+   }
+  },
+  "tv_K13_vs_K12K23": [
+   0.0825,
+   0.0445,
+   0.0355
+  ],
+  "churn_12": {
+   "agree": 0.5811,
+   "max_agree": 0.9662,
+   "excess": 0.385
+  },
+  "decision": {
+   "answers_not_glued": true,
+   "latent_markov_fits": true
+  }
+ },
+ "C_path_outcome": {
+  "n": 3753,
+  "outcome_rate": 0.1396,
+  "bits_gained_x1": 0.0029,
+  "bits_gained_multiset": 0.0025,
+  "bits_gained_path": -0.0027,
+  "p_multiset_vs_x1": 0.02348825587206397,
+  "p_order_vs_multiset": 0.9710144927536232
+ },
+ "D_contextuality_icu": {
+  "strata": {
+   "H1=shock": {
+    "naive_cf": 0.2125,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 224,
+    "nY": 87,
+    "X": {
+     "proportions": [
+      [
+       0.2098,
+       0.0625
+      ],
+      [
+       0.2277,
+       0.1429
+      ],
+      [
+       0.1429,
+       0.2143
+      ]
+     ],
+     "n": 224
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 87
+    }
+   },
+   "H1=borderline": {
+    "naive_cf": 0.1522,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 402,
+    "nY": 207,
+    "X": {
+     "proportions": [
+      [
+       0.0871,
+       0.0498
+      ],
+      [
+       0.1841,
+       0.1667
+      ],
+      [
+       0.2363,
+       0.2761
+      ]
+     ],
+     "n": 402
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 207
+    }
+   },
+   "H1=stable": {
+    "naive_cf": 0.1329,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 770,
+    "nY": 741,
+    "X": {
+     "proportions": [
+      [
+       0.0299,
+       0.0325
+      ],
+      [
+       0.0753,
+       0.0961
+      ],
+      [
+       0.3636,
+       0.4026
+      ]
+     ],
+     "n": 770
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 741
+    }
+   }
+  },
+  "fisher": -0.0,
+  "df": 6,
+  "p": 1.0,
+  "contextual": false
+ },
+ "D_sensitivity_sofa": {
+  "strata": {
+   "SOFA 0-4": {
+    "naive_cf": 0.1125,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 481,
+    "nY": 354,
+    "X": {
+     "suppressed": "a cell below 10",
+     "n": 481
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 354
+    }
+   },
+   "SOFA 5-8": {
+    "naive_cf": 0.2714,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 471,
+    "nY": 403,
+    "X": {
+     "proportions": [
+      [
+       0.0807,
+       0.0425
+      ],
+      [
+       0.1189,
+       0.1231
+      ],
+      [
+       0.2081,
+       0.4268
+      ]
+     ],
+     "n": 471
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 403
+    }
+   },
+   "SOFA 9+": {
+    "naive_cf": 0.1399,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 396,
+    "nY": 230,
+    "X": {
+     "proportions": [
+      [
+       0.0455,
+       0.0859
+      ],
+      [
+       0.0429,
+       0.2449
+      ],
+      [
+       0.0657,
+       0.5152
+      ]
+     ],
+     "n": 396
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 230
+    }
+   }
+  },
+  "fisher": -0.0,
+  "df": 6,
+  "p": 1.0,
+  "contextual": false
+ },
+ "E_selection": {
+  "n_all": 3747,
+  "n_measured": 1862,
+  "measured_share": 0.4969,
+  "cf_available_case": 0.0453,
+  "cf_after_ipw": -0.0,
+  "null_median": 0.0218,
+  "null_95": 0.0365,
+  "p_available": 0.012468827930174564,
+  "p_ipw": 1.0,
+  "decision": "selection explains the incompatibility"
+ },
+ "_HR_counts": [
+  [
+   212,
+   106,
+   122
+  ],
+  [
+   646,
+   211,
+   153
+  ],
+  [
+   1636,
+   394,
+   267
+  ]
+ ]
+}
