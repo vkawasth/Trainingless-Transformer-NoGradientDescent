@@ -1,0 +1,43 @@
+{
+ "r4": {
+  "acted": 116,
+  "credal_accuracy": 0.8621,
+  "nb_same_coverage_accuracy": 0.8621,
+  "overlap": 97,
+  "difference_ci": [
+   -0.0488,
+   0.0407
+  ]
+ },
+ "r5": {
+  "acted": 71,
+  "credal_accuracy": 0.8873,
+  "nb_same_coverage_accuracy": 0.8873,
+  "overlap": 71,
+  "difference_ci": [
+   0.0,
+   0.0
+  ]
+ },
+ "all_three_agree": 0.3676,
+ "r5_hedges_gold_inside": {
+  "S+N": {
+   "n": 19,
+   "gold_inside": 18,
+   "share": 0.9474
+  },
+  "S+C+N": {
+   "n": 184,
+   "gold_inside": 184,
+   "share": 1.0
+  },
+  "S+C": {
+   "n": 66,
+   "gold_inside": 60,
+   "share": 0.9091
+  }
+ },
+ "r5_asserted_labels": [
+  "N"
+ ]
+}

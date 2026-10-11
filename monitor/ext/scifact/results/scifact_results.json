@@ -1,0 +1,177 @@
+{
+ "plan": "PREANALYSIS_SCIFACT.md",
+ "baselines": {
+  "r1": {
+   "accuracy": 0.6471,
+   "macro_f1": 0.5882
+  },
+  "r2": {
+   "accuracy": 0.6088,
+   "macro_f1": 0.5348
+  },
+  "r3": {
+   "accuracy": 0.6676,
+   "macro_f1": 0.6086
+  }
+ },
+ "credal": {
+  "r4 kappa": {
+   "coverage": 0.3412,
+   "acted": 116,
+   "accuracy_when_acting": 0.8621
+  },
+  "r4 kappa+floor": {
+   "coverage": 0.2676,
+   "acted": 91,
+   "accuracy_when_acting": 0.9011
+  },
+  "r5 kappa": {
+   "coverage": 0.2088,
+   "acted": 71,
+   "accuracy_when_acting": 0.8873
+  },
+  "r5 kappa+floor": {
+   "coverage": 0.2088,
+   "acted": 71,
+   "accuracy_when_acting": 0.8873
+  },
+  "r6 kappa": {
+   "coverage": 0.0,
+   "acted": 0,
+   "accuracy_when_acting": null
+  },
+  "r6 kappa+floor": {
+   "coverage": 0.0,
+   "acted": 0,
+   "accuracy_when_acting": null
+  }
+ },
+ "hypotheses": {
+  "H1": {
+   "value": 0.2197,
+   "ci": [
+    0.1475,
+    0.2891
+   ],
+   "holds": true
+  },
+  "H2": {
+   "value": 0.0651,
+   "ci": [
+    -0.0682,
+    0.2148
+   ],
+   "n_r4_only": 45,
+   "underpowered": false,
+   "holds": false
+  },
+  "H3": {
+   "value": 0.5886,
+   "ci": [
+    0.5257,
+    0.6552
+   ],
+   "holds": true
+  },
+  "H4": {
+   "value": -0.0566,
+   "aurc_r3": 0.1924,
+   "aurc_r5": 0.249,
+   "ci": [
+    -0.088,
+    -0.0283
+   ],
+   "holds": false
+  }
+ },
+ "descriptive": {
+  "train_cv_accuracy": [
+   0.6061,
+   0.5245,
+   0.5517
+  ],
+  "best_single": "V1 sentence cues",
+  "verifier_agreement_dev": 0.3676,
+  "multi_abstract_claims": 24,
+  "decided_support_contradict_conflicts": 0,
+  "r4_weakest_link_by_verifier": {
+   "correct": [
+    20,
+    0,
+    80
+   ],
+   "incorrect": [
+    1,
+    0,
+    15
+   ]
+  },
+  "thin_support_share": 0.0529,
+  "dev_pairs": 340,
+  "dev_label_counts": [
+   138,
+   71,
+   131
+  ]
+ },
+ "channels": {
+  "per_verifier": [
+   [
+    [
+     256,
+     33,
+     81
+    ],
+    [
+     115,
+     43,
+     36
+    ],
+    [
+     85,
+     12,
+     258
+    ]
+   ],
+   [
+    [
+     204,
+     69,
+     97
+    ],
+    [
+     160,
+     10,
+     24
+    ],
+    [
+     84,
+     3,
+     268
+    ]
+   ],
+   [
+    [
+     227,
+     28,
+     115
+    ],
+    [
+     89,
+     32,
+     73
+    ],
+    [
+     84,
+     23,
+     248
+    ]
+   ]
+  ],
+  "prior_counts": [
+   370,
+   194,
+   355
+  ]
+ }
+}

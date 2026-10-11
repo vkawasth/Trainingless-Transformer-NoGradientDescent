@@ -1,0 +1,1 @@
+PASS {"frechet_contains_truth": true, "credal_reduces_to_bayes": true, "band_coverage": true, "product_inside_frechet": true}
