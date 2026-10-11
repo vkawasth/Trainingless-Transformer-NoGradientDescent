@@ -1,0 +1,11 @@
+# experiments.py run once 2026-10-11. Deviations: (1) E1 failed as run (324/500) because the pre-registered comparator sorted rounded vertex rows, which is order-sensitive; rechecks.py compares the same 500 instances order-free: 500/500 within 1e-7 (worst 1e-8). (2) E2b failed (0.823 < 0.99): duals on margin equalities are defined only up to a gauge (u+c, v-c), so the criterion was ill-posed; the exploratory gauge-invariant check (binding floor cells lie in the bottleneck row/column) holds in 418/418.
+2200043183808802863c2bb4cdc9e750de74aa6e2ea1914e566e25219d557d58  PREANALYSIS_SUPPORT.md
+16629ebcf60749aeb6440f2d6047e9747f954b3702bdfd5ee749ea4ca2f8a4b1  experiments.py
+e0b967dd60188ccee8a87565f68e57576230716bf13d16ae52d9ea66b2122250  rechecks.py
+5d39547acd794dec3e69bd46af06ea469741646aeda82930a69efbb97a3d9dfb  results/support_experiments.json
+e160360d4fbdf737c2cb2275f328a41ced2c4a9e90797cdb0e9b2a9a98f4969c  results/support_rechecks.json
+d37155484b2524faa21448dd3e531988a812eff4303034b4fd20cec1e989cc7c  results/support_checks.txt
+8e7c72ada64ee1b4dab08bc7d3911ceedcdd447f7ef80d0601ee9df465060bea  results/decide_checks.txt
+# exploratory, after the pre-registered run: lax composition of floor summarisation and policy imposition (Proposition prop:fibred(3))
+c238333f018339026e943bf61b5fc978bd39a47658a77c2e6452010ac1f92f7d  lax_composition.py
+b58f2cfcaf138f4d106dd622fa299a0287c8ce1ab8745a4ea18797dad48b6545  results/lax_composition.json

@@ -1,0 +1,4 @@
+# code hashed before experiments.py was run (2026-10-11)
+1a510bc041e9c359b78117f4c946ca576e1a90c7d0d06d34a7da05670aa2c621  support.py
+a17a97cac7e912875390c29b3a097dfbc812612bf2767f2c127123f324fe9f8b  decide.py
+d37155484b2524faa21448dd3e531988a812eff4303034b4fd20cec1e989cc7c  results/support_checks.txt
