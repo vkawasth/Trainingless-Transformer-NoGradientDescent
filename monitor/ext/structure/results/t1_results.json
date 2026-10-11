@@ -1,0 +1,208 @@
+{
+ "test": "T1",
+ "n": 13,
+ "passed": 13,
+ "items": [
+  {
+   "test": "sequential tower (condS, one observation at a time) equals the batch closed form at every step",
+   "expected": "exact at n = 1..200",
+   "observed": "200 steps exact",
+   "passed": true
+  },
+  {
+   "test": "coherence at every step: mu(Omega) = Pi, mu(Pi) = rho, D(q) Sigma = Pi",
+   "expected": "exact",
+   "observed": "200 steps",
+   "passed": true
+  },
+  {
+   "test": "posterior after N = 200 (descriptive)",
+   "expected": "reported",
+   "observed": {
+    "truth_mass": 0.4855,
+    "reliability": {
+     "1": 0.3362,
+     "9/10": 0.4855,
+     "7/10": 0.1783
+    },
+    "model": {
+     "1": 0.0,
+     "2": 0.0,
+     "3": 1.0,
+     "4": 0.0
+    }
+   },
+   "passed": true
+  },
+  {
+   "test": "conditioning commutes with pooling (Tower Prop. 9.12)",
+   "expected": "context of lambda(Cond M) = sigma(Cond(pooled))",
+   "observed": "exact",
+   "passed": true
+  },
+  {
+   "test": "Bands Ex. 9.1 reproduced to three decimals",
+   "expected": {
+    "w_plain": [
+     0.714,
+     0.806,
+     0.912,
+     0.946,
+     0,
+     0,
+     0,
+     0
+    ],
+    "I_plain": [
+     0.214,
+     0.186,
+     0.12,
+     0.088,
+     0,
+     0,
+     0,
+     0
+    ],
+    "w_disc": [
+     0.694,
+     0.783,
+     0.891,
+     0.929,
+     0.473,
+     0.671,
+     0.764,
+     0.88
+    ],
+    "I_disc": [
+     0.146,
+     0.125,
+     0.08,
+     0.057,
+     0.152,
+     0.15,
+     0.13,
+     0.085
+    ]
+   },
+   "observed": {
+    "w_plain": [
+     0.714,
+     0.806,
+     0.912,
+     0.946,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "I_plain": [
+     0.214,
+     0.186,
+     0.12,
+     0.088,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "w_disc": [
+     0.694,
+     0.783,
+     0.891,
+     0.929,
+     0.473,
+     0.671,
+     0.764,
+     0.88
+    ],
+    "I_disc": [
+     0.146,
+     0.125,
+     0.08,
+     0.057,
+     0.152,
+     0.15,
+     0.13,
+     0.085
+    ]
+   },
+   "passed": true
+  },
+  {
+   "test": "entropy split H(rho) = sum_k w_k H(rho_k) + I(K;X) at every step (Bands Prop. 4.7)",
+   "expected": "|error| < 1e-12",
+   "observed": "16 steps",
+   "passed": true
+  },
+  {
+   "test": "plain tower: weight of the zero model is exactly 0 from the first observation equal to 2 on",
+   "expected": "0 from step 1",
+   "observed": {
+    "first_two_at_step": 1,
+    "zero_from": 1,
+    "stays_zero": true
+   },
+   "passed": true
+  },
+  {
+   "test": "with reliability < 1 no weight is ever 0, and odds move per step by at most 1 + alpha n/(1 - alpha) (Bands Prop. 9.2)",
+   "expected": "min weight > 0; bound holds",
+   "observed": {
+    "min_weight": "1.119e-35"
+   },
+   "passed": true
+  },
+  {
+   "test": "level 1: the removed model asserted after the break fails first at level 1; LP distance = certificate margin",
+   "expected": "level 1, d1 = margin > 0",
+   "observed": {
+    "level": 1,
+    "d1": 0.4,
+    "certificate_margin": 0.4
+   },
+   "passed": true
+  },
+  {
+   "test": "level 2: the pre-break level-two state asserted after the break fails first at level 2, d2 = 2 x weight of the removed model",
+   "expected": "level 2 (barycenter in conv S1), d2 = 1/2",
+   "observed": {
+    "barycenter": [
+     "3/8",
+     "2/5",
+     "9/40"
+    ],
+    "d1_of_barycenter": 0.0,
+    "level": 2,
+    "d2": "1/2",
+    "proj_distance": "1/2"
+   },
+   "passed": true
+  },
+  {
+   "test": "level 3: collapsing the reliability level, x3 = delta_Pi, fails first at level 3 with d3 = 2",
+   "expected": "level 3, d3 = 2",
+   "observed": {
+    "level": 3,
+    "d3": "2",
+    "Pi_in_S2": false
+   },
+   "passed": true
+  },
+  {
+   "test": "control: the true tower (rho, Pi, Omega) has a coherent lift",
+   "expected": "failure level infinity",
+   "observed": {
+    "level": "inf"
+   },
+   "passed": true
+  },
+  {
+   "test": "additional control: the discounted zero model is admissible in the reliability tower",
+   "expected": "level infinity",
+   "observed": {
+    "level": "inf"
+   },
+   "passed": true
+  }
+ ]
+}

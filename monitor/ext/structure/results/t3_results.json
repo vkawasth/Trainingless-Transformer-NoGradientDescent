@@ -1,0 +1,242 @@
+{
+ "test": "T3",
+ "n": 21,
+ "passed": 21,
+ "items": [
+  {
+   "test": "Kleisli composite (monad code) equals the matrix product, all composable pairs",
+   "expected": "equal on all",
+   "observed": "195/195 equal",
+   "passed": true
+  },
+  {
+   "test": "Kleisli composition associative on all triples",
+   "expected": "associative",
+   "observed": "2197 triples",
+   "passed": true
+  },
+  {
+   "test": "identity kernel is a two-sided unit",
+   "expected": "unit",
+   "observed": "all kernels",
+   "passed": true
+  },
+  {
+   "test": "(h o k)^# = h^# k^# on laws",
+   "expected": "equal",
+   "observed": "195 pairs x 5 laws",
+   "passed": true
+  },
+  {
+   "test": "k^# o mu = mu o D(k^#) (Kleisli extensions are algebra maps)",
+   "expected": "equal",
+   "observed": "15 kernels x 5 elements of D^2",
+   "passed": true
+  },
+  {
+   "test": "kernels with a stochastic inverse are exactly the six permutations",
+   "expected": [
+    "perm012",
+    "perm021",
+    "perm102",
+    "perm120",
+    "perm201",
+    "perm210"
+   ],
+   "observed": [
+    "perm012",
+    "perm021",
+    "perm102",
+    "perm120",
+    "perm201",
+    "perm210"
+   ],
+   "passed": true
+  },
+  {
+   "test": "full-support law stays full support iff no zero column",
+   "expected": "iff",
+   "observed": "15 kernels x 20 laws",
+   "passed": true
+  },
+  {
+   "test": "kernels with positive entries send every law, vertices included, to full support",
+   "expected": "heal",
+   "observed": "all positive kernels",
+   "passed": true
+  },
+  {
+   "test": "the kernels that break are those with a zero column",
+   "expected": [
+    "zerocol_0",
+    "zerocol_1"
+   ],
+   "observed": [
+    "zerocol_0",
+    "zerocol_1"
+   ],
+   "passed": true
+  },
+  {
+   "test": "TV(K^T p, K^T q) <= eta(K) TV(p, q), all kernels and pairs",
+   "expected": "<= 1",
+   "observed": "max ratio 1.0000",
+   "passed": true
+  },
+  {
+   "test": "2x2: |K11 - K21| = eta(K) on the binary family (Bridges Ex. 6.2)",
+   "expected": "equal",
+   "observed": "six kernels",
+   "passed": true
+  },
+  {
+   "test": "copy whiskering functorial for every pair of deterministic kernels",
+   "expected": "defect 0",
+   "observed": "48 pairs x 5 couplings",
+   "passed": true
+  },
+  {
+   "test": "product action functorial for every pair",
+   "expected": "pi_{hh'} = pi_{h'} pi_h",
+   "observed": "195 pairs x 3 couplings",
+   "passed": true
+  },
+  {
+   "test": "copy whiskering not functorial for stochastic pairs",
+   "expected": "fails in general",
+   "observed": {
+    "constant then constant": "4/4 pairs fail",
+    "constant then stochastic_full": "6/6 pairs fail",
+    "constant then stochastic_zero_column": "4/4 pairs fail",
+    "stochastic_full then constant": "6/6 pairs fail",
+    "stochastic_full then stochastic_full": "9/9 pairs fail",
+    "stochastic_full then stochastic_zero_column": "6/6 pairs fail",
+    "stochastic_zero_column then constant": "4/4 pairs fail",
+    "stochastic_zero_column then stochastic_full": "6/6 pairs fail",
+    "stochastic_zero_column then stochastic_zero_column": "4/4 pairs fail"
+   },
+   "passed": true
+  },
+  {
+   "test": "binary family: functoriality defect at the swap coupling equals the sympy formula",
+   "expected": "entry (0,1) = -2*e**2*(e - 1)**2",
+   "observed": [
+    {
+     "eps": "0",
+     "defect_01": "0",
+     "formula_01": "0",
+     "match": true,
+     "at_diagonal": "0"
+    },
+    {
+     "eps": "1/10",
+     "defect_01": "-81/5000",
+     "formula_01": "-81/5000",
+     "match": true,
+     "at_diagonal": "0"
+    },
+    {
+     "eps": "1/4",
+     "defect_01": "-9/128",
+     "formula_01": "-9/128",
+     "match": true,
+     "at_diagonal": "0"
+    },
+    {
+     "eps": "1/2",
+     "defect_01": "-1/8",
+     "formula_01": "-1/8",
+     "match": true,
+     "at_diagonal": "0"
+    },
+    {
+     "eps": "3/4",
+     "defect_01": "-9/128",
+     "formula_01": "-9/128",
+     "match": true,
+     "at_diagonal": "0"
+    },
+    {
+     "eps": "1",
+     "defect_01": "0",
+     "formula_01": "0",
+     "match": true,
+     "at_diagonal": "0"
+    }
+   ],
+   "passed": true
+  },
+  {
+   "test": "F2(beta_r, alpha_s) = t(eps)(1-2s)(1-2r)[[-1,1],[1,-1]] on the grid",
+   "expected": "t(1/10)=369/2500, t(1/2)=1/4",
+   "observed": {
+    "cases": 216,
+    "t_0_1": "369/2500",
+    "t_0_5": "1/4",
+    "max_at_swap": "1/4"
+   },
+   "passed": true
+  },
+  {
+   "test": "constant kernel: F2 = (tr a tr b - tr(b.a))(diag q - q q^T)",
+   "expected": "exact",
+   "observed": "2 kernels x 190 pairs",
+   "passed": true
+  },
+  {
+   "test": "w_h unital for every kernel; pi_h unital exactly for the deterministic ones",
+   "expected": "w always; pi iff deterministic",
+   "observed": {
+    "pi_unital": [
+     "merge_01_2",
+     "merge_0_12",
+     "perm012",
+     "perm021",
+     "perm102",
+     "perm120",
+     "perm201",
+     "perm210"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "test": "x -> xK integral on circulations iff K deterministic or constant",
+   "expected": "predicted from the class label",
+   "observed": {
+    "integral": [
+     "const_a",
+     "const_b",
+     "merge_01_2",
+     "merge_0_12",
+     "perm012",
+     "perm021",
+     "perm102",
+     "perm120",
+     "perm201",
+     "perm210"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "test": "2x2 gluing: circulation scaled by lambda = K11 - K21, integral iff lambda in {1, -1, 0}",
+   "expected": "eps 0, 1/2, 1 integral",
+   "observed": {
+    "0": "1",
+    "1": "-1",
+    "1/10": "4/5",
+    "1/2": "0",
+    "1/4": "1/2",
+    "3/4": "-1/2"
+   },
+   "passed": true
+  },
+  {
+   "test": "library agrees with bands/extra/whisker.py (w, pi, glue)",
+   "expected": "<= 1e-12",
+   "observed": "max abs difference 1.11e-16",
+   "passed": true
+  }
+ ]
+}

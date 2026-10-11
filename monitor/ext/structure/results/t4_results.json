@@ -1,0 +1,120 @@
+{
+ "test": "T4",
+ "n": 3,
+ "passed": 3,
+ "items": [
+  {
+   "test": "interchange holds for bijections and sufficient merges, fails for a non-sufficient merge, a constant and a stochastic kernel; defect a circulation",
+   "expected": "Algebras Prop. 6.1",
+   "observed": {
+    "bijection perm120; identities": {
+     "holds": true,
+     "defect_l1": "0",
+     "circulation": true
+    },
+    "bijection perm120; stochastic outer kernels": {
+     "holds": true,
+     "defect_l1": "0",
+     "circulation": true
+    },
+    "bijection perm201, generic couplings; identities": {
+     "holds": true,
+     "defect_l1": "0",
+     "circulation": true
+    },
+    "bijection perm201, generic couplings; stochastic outer kernels": {
+     "holds": true,
+     "defect_l1": "0",
+     "circulation": true
+    },
+    "sufficient merge {0,1}|{2}; identities": {
+     "holds": true,
+     "defect_l1": "0",
+     "circulation": true
+    },
+    "sufficient merge {0,1}|{2}; stochastic outer kernels": {
+     "holds": true,
+     "defect_l1": "0",
+     "circulation": true
+    },
+    "non-sufficient merge {0,1}|{2}; identities": {
+     "holds": false,
+     "defect_l1": "47890282761842769029315641850351/263671875000000000000000000000000",
+     "circulation": true
+    },
+    "non-sufficient merge {0,1}|{2}; stochastic outer kernels": {
+     "holds": false,
+     "defect_l1": "1123183977001157476460110424147500230433/271571579296875000000000000000000000000000",
+     "circulation": true
+    },
+    "constant kernel const_a; identities": {
+     "holds": false,
+     "defect_l1": "48478247066086819845078759266851/263671875000000000000000000000000",
+     "circulation": true
+    },
+    "constant kernel const_a; stochastic outer kernels": {
+     "holds": false,
+     "defect_l1": "481866359495007918465796924770498443/76198535156250000000000000000000000000",
+     "circulation": true
+    },
+    "stochastic kernel full_0; identities": {
+     "holds": false,
+     "defect_l1": "260798580204527798460331715923140802345727/1470912735498046875000000000000000000000000",
+     "circulation": true
+    },
+    "stochastic kernel full_0; stochastic outer kernels": {
+     "holds": false,
+     "defect_l1": "22039761852071974904220865280208039575449814707/3485648385738960644531250000000000000000000000000",
+     "circulation": true
+    }
+   },
+   "passed": true
+  },
+  {
+   "test": "sweep l_t = (1-t)I + t J/2: defect = ((1-(1-t)^2)/4)[[-1,1],[1,-1]], zero only at t = 0",
+   "expected": "exact",
+   "observed": [
+    {
+     "t": "0",
+     "c": "0",
+     "match": true
+    },
+    {
+     "t": "1/10",
+     "c": "19/400",
+     "match": true
+    },
+    {
+     "t": "1/4",
+     "c": "7/64",
+     "match": true
+    },
+    {
+     "t": "1/2",
+     "c": "3/16",
+     "match": true
+    },
+    {
+     "t": "3/4",
+     "c": "15/64",
+     "match": true
+    },
+    {
+     "t": "1",
+     "c": "1/4",
+     "match": true
+    }
+   ],
+   "passed": true
+  },
+  {
+   "test": "vertical composition: gluing strictly associative and unital; cost subadditive; cost >= TV (Conditionals Thm. 2.3(i))",
+   "expected": "exact",
+   "observed": {
+    "triples": 216,
+    "pairs": 100
+   },
+   "passed": true
+  }
+ ]
+}

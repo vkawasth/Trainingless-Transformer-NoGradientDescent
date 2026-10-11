@@ -1,0 +1,181 @@
+{
+ "test": "T2",
+ "n": 4,
+ "passed": 3,
+ "items": [
+  {
+   "test": "Tower Table 2 reproduced on 30 random instances per law",
+   "expected": {
+    "shift law": {
+     "U": "fails",
+     "Co": "holds",
+     "M": "fails",
+     "Cm": "fails"
+    },
+    "averaging law": {
+     "U": "holds",
+     "Co": "holds",
+     "M": "holds",
+     "Cm": "fails"
+    },
+    "base-relative lambda^B": {
+     "U": "holds",
+     "Co": "holds",
+     "M": "holds",
+     "Cm": "holds"
+    }
+   },
+   "observed": {
+    "shift law": {
+     "U": "fails (30/30 violations)",
+     "Co": "holds (0/30 violations)",
+     "M": "fails (30/30 violations)",
+     "Cm": "fails (30/30 violations)"
+    },
+    "averaging law": {
+     "U": "holds (0/30 violations)",
+     "Co": "holds (0/30 violations)",
+     "M": "holds (0/30 violations)",
+     "Cm": "fails (30/30 violations)"
+    },
+    "base-relative lambda^B": {
+     "U": "holds (0/30 violations)",
+     "Co": "holds (0/30 violations)",
+     "M": "holds (0/30 violations)",
+     "Cm": "holds (0/30 violations)"
+    }
+   },
+   "passed": true
+  },
+  {
+   "test": "failure sizes on the paper counterexamples: l1 = 2 at level one; 0 after the barycenter for the shift law (Tower Thm. 8.3)",
+   "expected": "shift (U), (M): 2 then 0; averaging (Cm): 2",
+   "observed": {
+    "shift (U)": [
+     "2",
+     "0"
+    ],
+    "shift (M)": [
+     "2",
+     "0"
+    ],
+    "averaging (Cm)": [
+     "2",
+     "None"
+    ]
+   },
+   "passed": true,
+   "note": "shift (M) level-one size is reported as computed; the paper states only that the two sides differ"
+  },
+  {
+   "test": "planted law lambda^B_eps: (U), (Co), (Cm), naturality and coherence hold for every eps; (M) fails exactly for eps > 0",
+   "expected": "(M) violations > 0 iff eps > 0",
+   "observed": [
+    {
+     "eps": "0",
+     "violations": {
+      "U": 0,
+      "Co": 0,
+      "M": 0,
+      "Cm": 0,
+      "natural": 0,
+      "coherent": 0
+     }
+    },
+    {
+     "eps": "1/100",
+     "violations": {
+      "U": 0,
+      "Co": 0,
+      "M": 11,
+      "Cm": 0,
+      "natural": 0,
+      "coherent": 0
+     }
+    },
+    {
+     "eps": "1/10",
+     "violations": {
+      "U": 0,
+      "Co": 0,
+      "M": 13,
+      "Cm": 0,
+      "natural": 0,
+      "coherent": 0
+     }
+    },
+    {
+     "eps": "1/4",
+     "violations": {
+      "U": 0,
+      "Co": 0,
+      "M": 17,
+      "Cm": 0,
+      "natural": 0,
+      "coherent": 0
+     }
+    },
+    {
+     "eps": "1/2",
+     "violations": {
+      "U": 0,
+      "Co": 0,
+      "M": 12,
+      "Cm": 0,
+      "natural": 0,
+      "coherent": 0
+     }
+    },
+    {
+     "eps": "1",
+     "violations": {
+      "U": 0,
+      "Co": 0,
+      "M": 0,
+      "Cm": 0,
+      "natural": 0,
+      "coherent": 0
+     }
+    }
+   ],
+   "passed": false
+  },
+  {
+   "test": "planted law: level-one (M) defect equals (eps/6) ||(rho1+rho2)/2 - rho3||_1 for every eps",
+   "expected": "exact, 0 at eps = 0",
+   "observed": [
+    {
+     "eps": "0",
+     "defect": "0",
+     "closed_form": "0"
+    },
+    {
+     "eps": "1/100",
+     "defect": "1/12600",
+     "closed_form": "1/12600"
+    },
+    {
+     "eps": "1/10",
+     "defect": "1/1260",
+     "closed_form": "1/1260"
+    },
+    {
+     "eps": "1/4",
+     "defect": "1/504",
+     "closed_form": "1/504"
+    },
+    {
+     "eps": "1/2",
+     "defect": "1/252",
+     "closed_form": "1/252"
+    },
+    {
+     "eps": "1",
+     "defect": "1/126",
+     "closed_form": "1/126"
+    }
+   ],
+   "passed": true
+  }
+ ]
+}
