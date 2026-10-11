@@ -1,0 +1,4 @@
+# run once 2026-10-11 (after the path-only deviation above)
+92d6aee10a25f10854c9102c78da188381bdfeb7fa75167ac53bcb0aff056254  PREANALYSIS_SCIFACT_CONFORMAL.md
+5f0b163a90c13eb64e4a85594d8a1769b24a5588edcfc6d7fb1040877e2a4692  results/scifact_results.json
+956d61df7c1d88bb756d4a7f3ab582a975b8a253026f1a195e88f077a22c820b  results/scifact_decisions.json

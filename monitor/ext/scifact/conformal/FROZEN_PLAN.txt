@@ -1,0 +1,4 @@
+# plan fixed 13:36 (first hash), amendment 1 appended 13:39 before any dev run (second hash). File renamed from PREANALYSIS_SCIFACT.md when moved to conformal/.
+# data: data.tar.gz as supplied, SHA-256 11c621288d41ac144d29b13b0f8503b3820b7d6e8b1f6ff24dff335c196d76be (kept outside the monitor folder at /home/claude/monitor_data_sf)
+# original (pre-amendment) plan hash: 09c62b5261c5731963c044252b2920dd8fff8beec69df6e50500e5ff8382d71c
+92d6aee10a25f10854c9102c78da188381bdfeb7fa75167ac53bcb0aff056254  PREANALYSIS_SCIFACT_CONFORMAL.md

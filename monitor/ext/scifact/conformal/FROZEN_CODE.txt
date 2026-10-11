@@ -1,0 +1,8 @@
+# code hashed before the dev run
+32dcef0b0c1aa435793df3b0066e4213c39aeeabe9fce1311f4c3019fc297a87  scifact_decide.py
+a17a97cac7e912875390c29b3a097dfbc812612bf2767f2c127123f324fe9f8b  ../phase7/decide.py
+# first launch killed by the tool's 10-minute limit before writing or printing any result; relaunched unchanged in the background
+# deviation (paths only, before any dev output was seen): the files were moved to conformal/ after an earlier, independent SciFact analysis was found in ext/scifact
+# (frozen 13:22, from an earlier branch of this session; its plan file had been overwritten by mine and was restored byte-identical from the transcript).
+# The data path now points to the identical copy outside the monitor folder, and the phase7 import path was adjusted. No other change.
+303851a04b64d28547d16ef7c33cf8ae360114079b8a070730cbeddc1dba7750  scifact_decide.py
