@@ -1,0 +1,58 @@
+{
+ "x_only": {
+  "available_case": {
+   "cf": 0.1813,
+   "n": 6000,
+   "measured_share": 0.5077
+  },
+  "X-only": {
+   "cf": 0.0064,
+   "null95": 0.0172,
+   "null_median": 0.0077,
+   "p": 0.6138613861386139,
+   "consistent": true
+  },
+  "Y-only": {
+   "cf": 0.1637,
+   "null95": 0.0133,
+   "null_median": 0.0064,
+   "p": 0.009900990099009901,
+   "consistent": false
+  },
+  "external": {
+   "cf": 0.1813,
+   "null95": 0.0164,
+   "null_median": 0.0088,
+   "p": 0.009900990099009901,
+   "consistent": false
+  }
+ },
+ "external": {
+  "available_case": {
+   "cf": 0.0172,
+   "n": 6000,
+   "measured_share": 0.5448
+  },
+  "X-only": {
+   "cf": 0.0194,
+   "null95": 0.0117,
+   "null_median": 0.0065,
+   "p": 0.009900990099009901,
+   "consistent": false
+  },
+  "Y-only": {
+   "cf": 0.0162,
+   "null95": 0.0117,
+   "null_median": 0.0064,
+   "p": 0.009900990099009901,
+   "consistent": false
+  },
+  "external": {
+   "cf": 0.0138,
+   "null95": 0.0241,
+   "null_median": 0.014,
+   "p": 0.5247524752475248,
+   "consistent": true
+  }
+ }
+}

@@ -1,0 +1,160 @@
+{
+ "plan": "PREANALYSIS_PHASE4.md WP2",
+ "B": 200,
+ "physionet_set_a": {
+  "available_case": {
+   "cf": 0.0453,
+   "n": 3747,
+   "measured_share": 0.4969
+  },
+  "cell": {
+   "cf": 0.0,
+   "note": "0 by construction; not a test"
+  },
+  "X-only": {
+   "cf": 0.0396,
+   "null95": 0.0162,
+   "null_median": 0.0074,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "Y-only": {
+   "cf": 0.0264,
+   "null95": 0.0163,
+   "null_median": 0.0073,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "external": {
+   "cf": 0.0682,
+   "null95": 0.0205,
+   "null_median": 0.0123,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "X+external": {
+   "cf": 0.0624,
+   "null95": 0.0186,
+   "null_median": 0.0092,
+   "p": 0.004975124378109453,
+   "consistent": false
+  }
+ },
+ "physionet_set_b": {
+  "available_case": {
+   "cf": 0.0391,
+   "n": 3769,
+   "measured_share": 0.502
+  },
+  "cell": {
+   "cf": 0.0,
+   "note": "0 by construction; not a test"
+  },
+  "X-only": {
+   "cf": 0.0334,
+   "null95": 0.0148,
+   "null_median": 0.007,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "Y-only": {
+   "cf": 0.0314,
+   "null95": 0.0146,
+   "null_median": 0.0071,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "external": {
+   "cf": 0.0552,
+   "null95": 0.0219,
+   "null_median": 0.0118,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "X+external": {
+   "cf": 0.0485,
+   "null95": 0.0196,
+   "null_median": 0.0091,
+   "p": 0.004975124378109453,
+   "consistent": false
+  }
+ },
+ "diabetes130": {
+  "available_case": {
+   "cf": 0.0937,
+   "n": 101766,
+   "measured_share": 0.1672
+  },
+  "cell": {
+   "cf": 0.0,
+   "note": "0 by construction; not a test"
+  },
+  "X-only": {
+   "cf": 0.0163,
+   "null95": 0.0072,
+   "null_median": 0.0032,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "Y-only": {
+   "cf": 0.0926,
+   "null95": 0.008,
+   "null_median": 0.0035,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "external": {
+   "cf": 0.0965,
+   "null95": 0.0091,
+   "null_median": 0.0052,
+   "p": 0.004975124378109453,
+   "consistent": false
+  },
+  "X+external": {
+   "cf": 0.0182,
+   "null95": 0.0076,
+   "null_median": 0.0039,
+   "p": 0.004975124378109453,
+   "consistent": false
+  }
+ },
+ "c19prc_uk_attrition": {
+  "available_case": {
+   "cf": 0.0546,
+   "n": 2025,
+   "measured_share": 0.5758
+  },
+  "cell": {
+   "cf": 0.0,
+   "note": "0 by construction; not a test"
+  },
+  "X-only": {
+   "cf": 0.0118,
+   "null95": 0.017,
+   "null_median": 0.0084,
+   "p": 0.19402985074626866,
+   "consistent": true
+  },
+  "Y-only": {
+   "cf": 0.0216,
+   "null95": 0.0172,
+   "null_median": 0.0082,
+   "p": 0.009950248756218905,
+   "consistent": false
+  },
+  "external": {
+   "cf": 0.0198,
+   "null95": 0.0234,
+   "null_median": 0.0147,
+   "p": 0.1890547263681592,
+   "consistent": true
+  },
+  "X+external": {
+   "cf": 0.0096,
+   "null95": 0.0208,
+   "null_median": 0.0091,
+   "p": 0.47761194029850745,
+   "consistent": true
+  }
+ }
+}

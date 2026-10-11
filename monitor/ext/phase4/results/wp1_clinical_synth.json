@@ -1,0 +1,42 @@
+{
+ "geometric": {
+  "logloss_B1": 0.66917,
+  "logloss_B2": 0.62859,
+  "logloss_S1": 0.59,
+  "logloss_S2": 0.59533,
+  "delta_B2_S2": 0.033312,
+  "ci_B2_S2": [
+   0.024447,
+   0.042495
+  ],
+  "delta_B1_S1": 0.079219,
+  "ci_B1_S1": [
+   0.067351,
+   0.091155
+  ],
+  "geometry_forecasts_beyond_margins": true,
+  "n_train": 3500,
+  "n_test": 3500,
+  "events_test": 2138
+ },
+ "marginal": {
+  "logloss_B1": 0.43524,
+  "logloss_B2": 0.44268,
+  "logloss_S1": 0.43758,
+  "logloss_S2": 0.44587,
+  "delta_B2_S2": -0.003193,
+  "ci_B2_S2": [
+   -0.005517,
+   -0.00104
+  ],
+  "delta_B1_S1": -0.00235,
+  "ci_B1_S1": [
+   -0.004437,
+   -0.000336
+  ],
+  "geometry_forecasts_beyond_margins": false,
+  "n_train": 3500,
+  "n_test": 3500,
+  "events_test": 594
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "plan": "PREANALYSIS_PHASE4.md WP1b",
+ "min_respondents": 200,
+ "result": {
+  "logloss_B1": 0.68264,
+  "logloss_B2": 0.68942,
+  "logloss_S1": 0.6446,
+  "logloss_S2": 0.64875,
+  "delta_B2_S2": 0.040795,
+  "ci_B2_S2": [
+   0.020013,
+   0.062067
+  ],
+  "delta_B1_S1": 0.037726,
+  "ci_B1_S1": [
+   0.017409,
+   0.057926
+  ],
+  "geometry_forecasts_beyond_margins": true,
+  "n_train": 1320,
+  "n_test": 1100,
+  "event_rate_train": 0.528,
+  "event_rate_test": 0.576,
+  "systems": 110
+ },
+ "descriptive": {
+  "event_rate_by_prev_change": {
+   "0": 0.42,
+   "1": 0.655
+  },
+  "event_rate_by_tear_margin_quartile": {
+   "0": 0.707,
+   "1": 0.628,
+   "2": 0.532,
+   "3": 0.332
+  },
+  "vertex_counts": {
+   "9": 49,
+   "12": 947,
+   "15": 976,
+   "18": 448
+  }
+ }
+}

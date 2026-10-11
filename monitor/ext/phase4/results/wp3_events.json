@@ -1,0 +1,286 @@
+{
+ "plan": "PREANALYSIS_PHASE4.md WP3",
+ "physionet_death": {
+  "blow_up": {
+   "crude": {
+    "n_event": 1812,
+    "rate_with": 0.1507,
+    "rate_without": 0.1399,
+    "diff": 0.0108,
+    "p": 0.2613693153423288
+   },
+   "within_margin_risk_deciles": {
+    "n_event": 1812,
+    "rate_with": 0.1507,
+    "rate_without": 0.1399,
+    "diff": 0.0108,
+    "p": 0.4592703648175912
+   }
+  },
+  "blow_down": {
+   "crude": {
+    "n_event": 2494,
+    "rate_with": 0.146,
+    "rate_without": 0.1407,
+    "diff": 0.0052,
+    "p": 0.519240379810095
+   },
+   "within_margin_risk_deciles": {
+    "n_event": 2494,
+    "rate_with": 0.146,
+    "rate_without": 0.1407,
+    "diff": 0.0052,
+    "p": 0.6921539230384808
+   }
+  },
+  "chamber_flip": {
+   "crude": {
+    "n_event": 5694,
+    "rate_with": 0.1449,
+    "rate_without": 0.135,
+    "diff": 0.0098,
+    "p": 0.30884557721139433
+   },
+   "within_margin_risk_deciles": {
+    "n_event": 5694,
+    "rate_with": 0.1449,
+    "rate_without": 0.135,
+    "diff": 0.0098,
+    "p": 0.42328835582208896
+   }
+  },
+  "break_appears": {
+   "crude": {
+    "n_event": 2606,
+    "rate_with": 0.1374,
+    "rate_without": 0.1451,
+    "diff": -0.0078,
+    "p": 0.39280359820089955
+   },
+   "within_margin_risk_deciles": {
+    "n_event": 2606,
+    "rate_with": 0.1374,
+    "rate_without": 0.1451,
+    "diff": -0.0078,
+    "p": 0.4147926036981509
+   }
+  },
+  "break_heals": {
+   "crude": {
+    "n_event": 1647,
+    "rate_with": 0.1336,
+    "rate_without": 0.1449,
+    "diff": -0.0114,
+    "p": 0.2513743128435782
+   },
+   "within_margin_risk_deciles": {
+    "n_event": 1647,
+    "rate_with": 0.1336,
+    "rate_without": 0.1449,
+    "diff": -0.0114,
+    "p": 0.27786106946526734
+   }
+  }
+ },
+ "physionet_n": 7560,
+ "gss_partisan": {
+  "year_steps": 22,
+  "spearman_flip_share_vs_abs_d_rep": 0.346,
+  "p": 0.11044477761119441,
+  "table": [
+   {
+    "year": 1986,
+    "next_year": 1987,
+    "flip_share": 0.5636,
+    "d_rep": 0.0095
+   },
+   {
+    "year": 1987,
+    "next_year": 1988,
+    "flip_share": 0.3818,
+    "d_rep": 0.0048
+   },
+   {
+    "year": 1988,
+    "next_year": 1989,
+    "flip_share": 0.5,
+    "d_rep": 0.0214
+   },
+   {
+    "year": 1989,
+    "next_year": 1990,
+    "flip_share": 0.4364,
+    "d_rep": 0.0199
+   },
+   {
+    "year": 1990,
+    "next_year": 1991,
+    "flip_share": 0.5909,
+    "d_rep": -0.002
+   },
+   {
+    "year": 1991,
+    "next_year": 1993,
+    "flip_share": 0.7818,
+    "d_rep": -0.0242
+   },
+   {
+    "year": 1993,
+    "next_year": 1994,
+    "flip_share": 0.5545,
+    "d_rep": -0.0095
+   },
+   {
+    "year": 1994,
+    "next_year": 1996,
+    "flip_share": 0.4273,
+    "d_rep": -0.0077
+   },
+   {
+    "year": 1996,
+    "next_year": 1998,
+    "flip_share": 0.5727,
+    "d_rep": -0.0284
+   },
+   {
+    "year": 1998,
+    "next_year": 2000,
+    "flip_share": 0.4909,
+    "d_rep": -0.0025
+   },
+   {
+    "year": 2000,
+    "next_year": 2002,
+    "flip_share": 0.4909,
+    "d_rep": 0.0055
+   },
+   {
+    "year": 2002,
+    "next_year": 2004,
+    "flip_share": 0.5455,
+    "d_rep": 0.0152
+   },
+   {
+    "year": 2004,
+    "next_year": 2006,
+    "flip_share": 0.5,
+    "d_rep": -0.0342
+   },
+   {
+    "year": 2006,
+    "next_year": 2008,
+    "flip_share": 0.3182,
+    "d_rep": 0.0011
+   },
+   {
+    "year": 2008,
+    "next_year": 2010,
+    "flip_share": 0.6818,
+    "d_rep": -0.0082
+   },
+   {
+    "year": 2010,
+    "next_year": 2012,
+    "flip_share": 0.6091,
+    "d_rep": 0.0022
+   },
+   {
+    "year": 2012,
+    "next_year": 2014,
+    "flip_share": 0.6091,
+    "d_rep": -0.0044
+   },
+   {
+    "year": 2014,
+    "next_year": 2016,
+    "flip_share": 0.6,
+    "d_rep": 0.0125
+   },
+   {
+    "year": 2016,
+    "next_year": 2018,
+    "flip_share": 0.6545,
+    "d_rep": 0.0326
+   },
+   {
+    "year": 2018,
+    "next_year": 2021,
+    "flip_share": 0.7091,
+    "d_rep": -0.0703
+   },
+   {
+    "year": 2021,
+    "next_year": 2022,
+    "flip_share": 0.5909,
+    "d_rep": 0.0615
+   },
+   {
+    "year": 2022,
+    "next_year": 2024,
+    "flip_share": 0.4909,
+    "d_rep": -0.01
+   }
+  ]
+ },
+ "llm_hallucination_proxy": {
+  "note": "8 tasks; descriptive only, no test",
+  "rows": [
+   {
+    "task": "USMLE",
+    "regime": "tear?",
+    "walls_crossed": 0,
+    "d_incorrect": 0.01,
+    "d_invalid": 0.0
+   },
+   {
+    "task": "OPINIONQA",
+    "regime": "bend",
+    "walls_crossed": 0,
+    "d_incorrect": 0.0,
+    "d_invalid": 0.366
+   },
+   {
+    "task": "SENSITIVEQ",
+    "regime": "tear?",
+    "walls_crossed": 0,
+    "d_incorrect": 0.0,
+    "d_invalid": 0.05
+   },
+   {
+    "task": "PRIME_FULL",
+    "regime": "tear",
+    "walls_crossed": 4,
+    "d_incorrect": 0.027,
+    "d_invalid": 0.021
+   },
+   {
+    "task": "COUNTAHAPPYNUMBER",
+    "regime": "tear",
+    "walls_crossed": 7,
+    "d_incorrect": 0.139,
+    "d_invalid": 0.015
+   },
+   {
+    "task": "ARC",
+    "regime": "bend",
+    "walls_crossed": 0,
+    "d_incorrect": -0.028,
+    "d_invalid": -0.001
+   },
+   {
+    "task": "LEETCODE_EASY",
+    "regime": "bend",
+    "walls_crossed": 0,
+    "d_incorrect": 0.31,
+    "d_invalid": 0.0
+   },
+   {
+    "task": "HOTPOTQA",
+    "regime": "tear",
+    "walls_crossed": 12,
+    "d_incorrect": 0.153,
+    "d_invalid": -0.29
+   }
+  ]
+ }
+}
