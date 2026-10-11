@@ -1,0 +1,37 @@
+{
+ "B1_answers_not_glued": {
+  "UK": true,
+  "IE": true,
+  "replicated": true
+ },
+ "B1_latent_markov_3waves": {
+  "UK": true,
+  "IE": false,
+  "replicated": false
+ },
+ "B2_latent_markov_4waves": {
+  "UK": "latent Markov suffices",
+  "IE": "latent Markov suffices",
+  "replicated": true
+ },
+ "C_multiset": {
+  "UK": true,
+  "IE": "not estimable",
+  "replicated": "n/a"
+ },
+ "C_order": {
+  "UK": false,
+  "IE": "not estimable",
+  "replicated": "n/a"
+ },
+ "D_contextual": {
+  "UK": false,
+  "IE": false,
+  "replicated": true
+ },
+ "E": {
+  "UK": "selection explains the incompatibility",
+  "IE": "no incompatibility beyond sampling",
+  "replicated": false
+ }
+}

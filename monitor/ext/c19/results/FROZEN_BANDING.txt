@@ -1,0 +1,5 @@
+# banding interchange test (PREANALYSIS_BANDING_INTERCHANGE.md, plan sha256 3d2d26e7...): synthetic adapter check and calibration run first, then one run per strand, 2026-10-10
+3d2d26e7eebbd3fb8510721de5cca79215aca9eb9341ffe7a82fbf43a5e280e7  PREANALYSIS_BANDING_INTERCHANGE.md
+be7fe4a06ffb6a2df6ca4a0d993a2c0623be6bebbabaf3a009b3993a31f7cf2a  results/banding_uk.json
+3a51f83053e68f322feacd89e75aaa5d80509015536dae4600c0cd7c1ec1d53e  results/banding_ie.json
+da880b93f4c8c563a49cdb3caa7d7303d54b4881b4be7c5c4958230cac8a8481  results/banding_calibration.json

@@ -1,0 +1,20 @@
+{
+ "0.0": {
+  "primary": 1,
+  "secondary": 0,
+  "monitor_banded_null": 20,
+  "reps": 20
+ },
+ "0.2": {
+  "primary": 17,
+  "secondary": 18,
+  "monitor_banded_null": 20,
+  "reps": 20
+ },
+ "0.6": {
+  "primary": 20,
+  "secondary": 20,
+  "monitor_banded_null": 20,
+  "reps": 20
+ }
+}

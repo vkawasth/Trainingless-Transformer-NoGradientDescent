@@ -1,0 +1,373 @@
+{
+ "strand": "uk",
+ "plan": "PREANALYSIS_AMENDMENT_C19PRC_UK.md / _IE.md (2026-10-10)",
+ "info": {
+  "D_ctx_waves": "(3, 4, 6)",
+  "outcome": "W6_Suicide_Ideation (lifetime item)"
+ },
+ "cohort": {
+  "W1": {
+   "n": 2025,
+   "D": 2025,
+   "A": 2025
+  },
+  "W2": {
+   "n": 1406,
+   "D": 1406,
+   "A": 1406
+  },
+  "W3": {
+   "n": 2019,
+   "D": 2019,
+   "A": 2019
+  },
+  "W4": {
+   "n": 3867,
+   "D": 3867,
+   "A": 3867
+  },
+  "W5": {
+   "n": 2520,
+   "D": 2520,
+   "A": 2520
+  },
+  "W6": {
+   "n": 2058,
+   "D": 2058,
+   "A": 2058
+  }
+ },
+ "A_coupling_geometry": {
+  "tables": {
+   "W1": {
+    "proportions": [
+     [
+      0.4938,
+      0.0825,
+      0.0158
+     ],
+     [
+      0.0563,
+      0.0899,
+      0.0405
+     ],
+     [
+      0.0153,
+      0.0459,
+      0.16
+     ]
+    ],
+    "n": 2025
+   },
+   "W2": {
+    "suppressed": "a cell below 10",
+    "n": 1406
+   },
+   "W3": {
+    "suppressed": "a cell below 10",
+    "n": 2019
+   },
+   "W4": {
+    "proportions": [
+     [
+      0.4779,
+      0.0403,
+      0.0049
+     ],
+     [
+      0.0781,
+      0.0895,
+      0.0243
+     ],
+     [
+      0.0256,
+      0.0747,
+      0.1846
+     ]
+    ],
+    "n": 3867
+   },
+   "W5": {
+    "proportions": [
+     [
+      0.5345,
+      0.0401,
+      0.0044
+     ],
+     [
+      0.0849,
+      0.0972,
+      0.0226
+     ],
+     [
+      0.0187,
+      0.056,
+      0.1417
+     ]
+    ],
+    "n": 2520
+   },
+   "W6": {
+    "proportions": [
+     [
+      0.5219,
+      0.0267,
+      0.0049
+     ],
+     [
+      0.0656,
+      0.1079,
+      0.018
+     ],
+     [
+      0.0126,
+      0.0588,
+      0.1837
+     ]
+    ],
+    "n": 2058
+   }
+  },
+  "steps": [
+   {
+    "frm": "W1",
+    "to": "W2",
+    "kind": "tear?",
+    "stress": 33.26,
+    "tear_margin": 0.003,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W2",
+    "to": "W3",
+    "kind": "tear?",
+    "stress": 172.67,
+    "tear_margin": 0.0007,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W3",
+    "to": "W4",
+    "kind": "tear?",
+    "stress": 89.38,
+    "tear_margin": 0.0005,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W4",
+    "to": "W5",
+    "kind": "tear?",
+    "stress": 9.88,
+    "tear_margin": 0.0127,
+    "walls_crossed": []
+   },
+   {
+    "frm": "W5",
+    "to": "W6",
+    "kind": "tear?",
+    "stress": 6.68,
+    "tear_margin": 0.0115,
+    "walls_crossed": []
+   }
+  ],
+  "mutual_information_bits": {
+   "W1": 0.4564,
+   "W2": 0.4683,
+   "W3": 0.5324,
+   "W4": 0.5332,
+   "W5": 0.5124,
+   "W6": 0.6579
+  }
+ },
+ "B1_composition_W1_W3": {
+  "n": 950,
+  "gap_bits": 0.0567,
+  "gap_ci": [
+   0.0398,
+   0.0979
+  ],
+  "markov_null95": 0.0164,
+  "p_markov": 0.0024937655860349127,
+  "latent_models": {
+   "stable": {
+    "G2": 33.85,
+    "df": 18,
+    "p": 0.013129101297544226,
+    "gap_implied": 0.0973,
+    "min_class": 0.167
+   },
+   "drifting": {
+    "G2": 4.91,
+    "df": 6,
+    "p": 0.5549685388856069,
+    "gap_implied": 0.0534,
+    "min_class": 0.165
+   },
+   "markov": {
+    "G2": 5.34,
+    "df": 6,
+    "p": 0.5013510552389424,
+    "gap_implied": 0.0493,
+    "min_class": 0.149
+   }
+  },
+  "tv_K13_vs_K12K23": [
+   0.0504,
+   0.1359,
+   0.1598
+  ],
+  "churn_12": {
+   "agree": 0.7389,
+   "max_agree": 0.9505,
+   "excess": 0.2116
+  },
+  "decision": {
+   "answers_not_glued": true,
+   "latent_markov_fits": true
+  }
+ },
+ "B2_four_waves": {
+  "waves": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "n": 771,
+  "latent_markov_shared": {
+   "G2": 50.64,
+   "df": 54,
+   "p_boot": 0.8855721393034826,
+   "min_class": 0.14,
+   "n": 771
+  },
+  "latent_markov_free_response": {
+   "G2": 48.03,
+   "df": 36,
+   "p_boot": 0.7227722772277227,
+   "min_class": 0.109,
+   "n": 771
+  },
+  "decision": "latent Markov suffices"
+ },
+ "B3_all_waves_gaps": {
+  "n": 582,
+  "gaps": {
+   "I(D1;D3|D2)": {
+    "gap": 0.0573,
+    "markov_null95": 0.0262,
+    "p_markov": 0.0024937655860349127
+   },
+   "I(D2;D4|D3)": {
+    "gap": 0.0661,
+    "markov_null95": 0.0261,
+    "p_markov": 0.0024937655860349127
+   },
+   "I(D3;D5|D4)": {
+    "gap": 0.0742,
+    "markov_null95": 0.0275,
+    "p_markov": 0.0024937655860349127
+   },
+   "I(D4;D6|D5)": {
+    "gap": 0.0994,
+    "markov_null95": 0.0273,
+    "p_markov": 0.0024937655860349127
+   }
+  }
+ },
+ "C_path_outcome": {
+  "n": 600,
+  "outcome_rate": 0.2333,
+  "bits_gained_x1": 0.0474,
+  "bits_gained_multiset": 0.063,
+  "bits_gained_path": 0.0446,
+  "p_multiset_vs_x1": 0.0004997501249375312,
+  "p_order_vs_multiset": 0.5717141429285357,
+  "outcome": "W6_Suicide_Ideation (lifetime item)"
+ },
+ "D_panel_conditioning": {
+  "strata": {
+   "W3": {
+    "naive_cf": 0.1613,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 1166,
+    "nY": 853,
+    "X": {
+     "suppressed": "a cell below 10",
+     "n": 1166
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 853
+    }
+   },
+   "W4": {
+    "naive_cf": 0.2016,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 1796,
+    "nY": 292,
+    "X": {
+     "proportions": [
+      [
+       0.5228,
+       0.0362,
+       0.0056
+      ],
+      [
+       0.0757,
+       0.0874,
+       0.0228
+      ],
+      [
+       0.0256,
+       0.0657,
+       0.1581
+      ]
+     ],
+     "n": 1796
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 292
+    }
+   },
+   "W6": {
+    "naive_cf": 0.3075,
+    "deficit": 0.0,
+    "contextual_point": false,
+    "p_boundary": 1.0,
+    "nX": 1643,
+    "nY": 415,
+    "X": {
+     "suppressed": "a cell below 10",
+     "n": 1643
+    },
+    "Y": {
+     "suppressed": "a cell below 10",
+     "n": 415
+    }
+   }
+  },
+  "fisher": -0.0,
+  "df": 6,
+  "p": 1.0,
+  "contextual": false
+ },
+ "E_attrition": {
+  "n_all": 2025,
+  "n_measured": 1166,
+  "measured_share": 0.5758,
+  "cf_available_case": 0.0546,
+  "cf_after_ipw": 0.0,
+  "null_median": 0.0277,
+  "null_95": 0.0473,
+  "p_available": 0.014962593516209476,
+  "p_ipw": 1.0,
+  "cf_after_secondary_weights": 0.0125,
+  "decision": "selection explains the incompatibility"
+ }
+}

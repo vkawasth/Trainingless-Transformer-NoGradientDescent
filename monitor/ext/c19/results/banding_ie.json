@@ -1,0 +1,42 @@
+{
+ "strand": "ie",
+ "plan": "PREANALYSIS_BANDING_INTERCHANGE.md (2026-10-10)",
+ "n": 418,
+ "banded_gap_bits": 0.0617,
+ "raw_gap_bits": 1.4918,
+ "banded_markov_null95": 0.0367,
+ "p_banded_markov": 0.0024937655860349127,
+ "raw_markov_null95_of_banded_gap": 0.0554,
+ "raw_markov_median_of_banded_gap": 0.0325,
+ "p_raw_markov": 0.022443890274314215,
+ "decomposition": {
+  "identity_err": 0.0,
+  "tv_total": 0.0821,
+  "tv_raw": 0.0576,
+  "tv_interchange": 0.0301,
+  "share_interchange": 0.3409,
+  "interchange_is_circulation": true
+ },
+ "tv_raw_null95": 0.0397,
+ "p_tv_raw": 0.007481296758104738,
+ "sufficiency": {
+  "D1": {
+   "per_band_p": [
+    0.0,
+    0.2807,
+    0.5589
+   ],
+   "fisher_p": 7.99362871890688e-05
+  },
+  "D3": {
+   "per_band_p": [
+    0.0,
+    0.2238,
+    0.6655
+   ],
+   "fisher_p": 9.333032691881296e-05
+  }
+ },
+ "decision_primary": "raw chain has memory that banding does not explain",
+ "decision_secondary": "raw composition failure detected"
+}
