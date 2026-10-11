@@ -408,6 +408,75 @@ check("WP4: H1 (evidence floor 2/3), H2 (family 3/3), H3 (no harm) hold; family 
       and round(vf('R0b shift A surgical -> B medical/coronary', 'T-fam')['surface_posterior']['F_1 = Bl_1 CP^2'], 3) == 0.895)
 check("phase 4 planted checks all PASS", all(open(os.path.join('ext', 'phase4', 'results', f)).read().startswith('PASS') for f in ('wp1_gss_synth.txt', 'wp3_synth.txt', 'wp4_tower_synth.txt')))
 
+P5 = lambda f: E('phase5', 'results', f)
+check("phase 5: plan and results match their frozen hashes", frozen_list('phase5', 'FROZEN_PLAN.txt') and frozen_list('phase5', 'FROZEN_A.txt') and frozen_list('phase5', 'FROZEN_B.txt'))
+cm = P5('context_map.json'); g5 = cm['gss']
+check("context map: invariance rejected (Bonferroni) for welfare, crime, cities, health only; welfare types differ 23/24, 16 explained; ICU rejected both sets, cardiac surgery CP^2 vs invariant F1 (decided in B)",
+      sorted(k for k, v in g5.items() if not k.startswith('_') and v['rejected_bonferroni']) == ['cities', 'crime', 'health', 'welfare']
+      and (g5['welfare']['toric']['differ'], g5['welfare']['toric']['explained'], g5['welfare']['toric']['decided_both']) == (23, 16, 0)
+      and all(cm['icu'][s]['p'] < 1e-15 and int(cm['icu'][s]['df']) == 9 for s in ('set_a', 'set_b'))
+      and cm['icu']['set_b']['toric']['cardiac surgery'] == {'n': 726, 'type_observed': 'CP^2', 'type_invariant': 'F_1 = Bl_1 CP^2', 'chamber_decided': True})
+bg = P5('boundary_geometry.json')
+check("boundary geometry: no forecast of death (CI spans 0); 71% of day-2 systems recover full-type posterior mass > 1/2; 8.7 walls decided on average",
+      not bg['death']['boundary_geometry_forecasts'] and bg['death']['ci'][0] < 0 < bg['death']['ci'][1] and bg['descriptive']['share_with_posterior_full_type_mass_over_half'] == 0.711
+      and bg['descriptive']['decided_walls_day2_mean'] == 8.72 and open(os.path.join('ext', 'phase5', 'results', 'boundary_geometry_synth.txt')).read().startswith('PASS')
+      and open(os.path.join('ext', 'phase5', 'results', 'context_map_synth.txt')).read().startswith('PASS'))
+
+P6 = lambda f: E('phase6', 'results', f)
+check("phase 6: plan, trajectories and recursive training match their frozen hashes", frozen_list('phase6', 'FROZEN_PLAN.txt') and frozen_list('phase6', 'FROZEN_TRAJ.txt') and frozen_list('phase6', 'FROZEN_RT.txt'))
+check("phase 6 tracker planted checks PASS (Pythagoras, fan types 3x3 and 2x3, fan dimension, wall crossing, break time)", open(os.path.join('ext', 'phase6', 'results', 'tracker_checks.txt')).read().startswith('PASS'))
+tj = P6('trajectories.json'); from collections import Counter
+fc6 = Counter(r.get('fan_change') for s_ in tj['gss'].values() for r in s_[1:])
+check("collapse tracker: GSS 1824 same / 356 blow-up / 350 blow-down, 18 decided changes; ICU decedents 15 vertices throughout, survivors 15 then 12; tower R0b and R2 cross twice",
+      (fc6['same'], fc6['blow-up'], fc6['blow-down']) == (1824, 356, 350) and sum(r.get('decided_flips', 0) > 0 for s_ in tj['gss'].values() for r in s_) == 18
+      and [r['fan']['vertices'] for r in tj['icu']['decedents']] == [15] * 8 and [r['fan']['vertices'] for r in tj['icu']['survivors']] == [15] + [12] * 7
+      and {k.split()[0]: v['fan_changes'] for k, v in tj['tower'].items()} == {'R0a': 0, 'R0b': 2, 'R1': 0, 'R2': 2, 'R3': 0, 'R4': 0}
+      and all(0.88 <= d['margin'] / d['total'] <= 0.98 for d in tj['icu']['between_groups']))
+ft = P6('forecast_test.json')
+check("forecast test: 11 decided test events (underpowered), no gain; secondary tear time 0.0167 (-0.0006, 0.0329), both 0.0169 (0.0002, 0.0338)",
+      ft['decided']['events_test'] == 11 and ft['decided']['underpowered'] and not any(ft['decided'][m]['forecasts'] for m in ('B+inter', 'B+tear', 'B+both'))
+      and ft['secondary_point_estimate']['B+tear']['ci'] == [-0.000631, 0.032914] and ft['secondary_point_estimate']['B+both']['forecasts']
+      and not ft['secondary_point_estimate']['B+inter']['forecasts'])
+rt = P6('recursive_training.json')
+check("recursive training: P1 holds (eta = 1), P2 fails (0.885 absorbed, partial 0.027 p 0.065), P3 fails, P4 holds (all replicates), P5 fails (0.58, lead 2)",
+      rt['P1_contraction']['holds'] and rt['P1_contraction']['eta'] == 1.0 and not rt['P2_breaks']['holds'] and rt['P2_breaks']['share_broken_absorbing_by_g20'] == 0.8853
+      and rt['P2_breaks']['partial_spearman_given_level'] == 0.027 and not rt['P3_fresh_data']['holds'] and rt['P4_invariance']['holds']
+      and rt['P4_invariance']['share_g20_above_g1'] == 1.0 and not rt['P5_early_warning']['holds'] and rt['P5_early_warning']['share_among_drops'] == 0.58
+      and rt['P5_early_warning']['median_lead'] == 2.0)
+check("phase 6 is in the paper (section, both figures, recursive subsection)", all(k in open('validation.tex').read() for k in ('label{sec:collapse}', 'label{sec:recursive}', 'fig_collapse_trajectories', 'fig_recursive')))
+
+P7 = lambda f: E('phase7', 'results', f)
+check("phase 7: plan, code-before-run and results match their frozen hashes", frozen_list('phase7', 'FROZEN_PLAN.txt') and frozen_list('phase7', 'FROZEN_CODE.txt') and frozen_list('phase7', 'FROZEN_RESULTS.txt'))
+check("phase 7 planted checks PASS (decision layer, support floors)", all(open(os.path.join('ext', 'phase7', 'results', f)).read().startswith('PASS') for f in ('decide_checks.txt', 'support_checks.txt')))
+sx, sr = P7('support_experiments.json'), P7('support_rechecks.json')
+check("support floors: E1 324/500 as run, 500/500 order-free (deviation), 84/84 toric, 200/200 infeasible; E2 418/418 exact, duals 0.823 (fails), gauge-invariant 418/418",
+      (sx['E1']['vertex_sets_equal'], sx['E1']['toric_type_2x3'], sx['E1']['of_2x3'], sx['E1']['infeasible_by_lp']) == (324, 84, 84, 200) and not sx['E1']['holds']
+      and sr['E1_order_free']['holds'] and sx['E2']['a_exact'] == sx['E2']['a_of'] == 418 and sx['E2']['b_share'] == 0.823 and not sx['E2']['holds_b']
+      and sr['E2b_gauge_invariant_exploratory']['share'] == 1.0 and sx['E2']['c_share_differ'] == 0.4261)
+check("gluing: E3 4000/4000, 200/200, 2600/2600; E4 600/600 vs 3-cycle, 81 certificates verified, 124 of 519 support-contextual; E5 holds (shrink 2%, tight 27%); E6 400 replays, 80/80 typed",
+      sx['E3']['holds'] and (sx['E3']['a_of'], sx['E3']['c_of']) == (4000, 2600) and sx['E4']['holds'] and (sx['E4']['contextual'], sx['E4']['c_gluable'], sx['E4']['c_support_contextual']) == (81, 519, 124)
+      and sx['E5']['holds'] and sx['E5']['c_share_shrinks'] == 0.02 and sx['E5']['tightness_share'] == 0.2741 and sx['E6']['holds'] and sx['E6']['a_of'] == 400)
+check("phase 7 is in the paper (section, proposition, references)", all(k in open('validation.tex').read() for k in ('label{sec:support}', 'label{prop:reducedmargins}', 'bibitem{AraujoEtAl2013}', 'bibitem{SupportAmbience}')))
+
+lx = P7('lax_composition.json')
+check("ambience 2-category (exploratory): summarising between steps never exceeds the composite floor (0/300), strictly lower in 611/895 cells; imposing first higher in 1158/1158",
+      (lx['summarise_violations'], lx['summarise_strict_cells'], lx['summarise_cells'], lx['impose_violations'], lx['impose_strict_cells'], lx['impose_cells']) == (0, 611, 895, 0, 1158, 1158)
+      and all(k in open('validation.tex').read() for k in ('label{sec:fibred}', 'label{prop:fibred}', 'Why not other ways', 'bibitem{MacLaneMoerdijk1992}', 'bibitem{Fritz2020}')))
+
+def frozen_any(folder, listing):
+    ls = [l for l in open(os.path.join('ext', folder, listing)).read().split('\n') if l and not l.startswith('#')]
+    return all(sha256(open(os.path.join('ext', folder, l.split()[1]), 'rb').read()).hexdigest() == l.split()[0] for l in ls)
+check("SciFact: both analyses match their frozen hashes (analysis 1 plan restored byte-identical)", frozen_any('scifact', 'FROZEN_RESULTS.txt') and frozen_any('scifact/conformal', 'FROZEN_PLAN.txt') and frozen_any('scifact/conformal', 'FROZEN_RESULTS.txt'))
+s1, s2 = E('scifact', 'results', 'scifact_results.json'), E('scifact/conformal', 'results', 'scifact_results.json')
+check("SciFact analysis 1: H1 holds (0.887 on 21%), H2 fails, H3 holds (AUC 0.59), H4 fails (AURC 0.249 vs 0.192); NB 0.668",
+      s1['hypotheses']['H1']['holds'] and not s1['hypotheses']['H2']['holds'] and s1['hypotheses']['H3']['holds'] and not s1['hypotheses']['H4']['holds']
+      and s1['credal']['r5 kappa']['accuracy_when_acting'] == 0.8873 and s1['credal']['r5 kappa']['coverage'] == 0.2088 and s1['baselines']['r3']['accuracy'] == 0.6676
+      and (s1['hypotheses']['H4']['aurc_r5'], s1['hypotheses']['H4']['aurc_r3']) == (0.249, 0.1924))
+check("SciFact analysis 2 (conformal): P1 holds (0 wrong, misses 3.5%), P2 fails (4/340), P3-P5 hold; act-and-wrong within every guarantee",
+      s2['P1']['holds'] and s2['P1']['act_and_wrong'] == 0 and s2['P1']['some_source_misses'] == 0.0353 and not s2['P2']['holds'] and s2['P1']['acted'] == 4
+      and s2['P3']['holds'] and s2['P4']['holds'] and s2['P5']['holds'] and all(x['three_sources']['act_and_wrong_rate'] <= x['alpha_total'] for x in s2['amendment1_risk_coverage'])
+      and 'label{sec:scifact}' in open('validation.tex').read())
+
 # 6. tables -----------------------------------------------------------------------------------------------------
 saved = {t: open(t).read() for t in ('tab_llm.tex', 'tab_gss.tex', 'tab_panels.tex', 'tab_usmle.tex', 'tab_panelmodels.tex')}
 rc, _ = run('make_tables.py')

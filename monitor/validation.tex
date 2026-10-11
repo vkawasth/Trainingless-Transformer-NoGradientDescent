@@ -7,6 +7,8 @@
 \usepackage{xurl}
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
 \usepackage[nameinlink]{cleveref}
 
@@ -61,7 +63,7 @@ panel, although the answers do not compose: composition failure in the answers i
 state, though at these sample sizes the test has limited power against longer memory. No category broke at the $1\%$ level. The algebraic backbone, which no public data can reach, is tested on
 synthetic data with closed-form ground truth and planted failures. Kleisli composition, the three-level tower, its mixed distributive
 law and the interchange of couplings with kernels behave exactly as stated, and every predicted failure appears at its predicted place
-with its predicted size. The one exception is instructive: a random-instance check is blind to a planted failure. On real panels one theorem of the backbone, the interchange law, shows that banding inflates the composition failure: the monitor's null is $41$--$51\%$ too small, although the failure survives the correction.  A three-level tower fitted on PhysioNet is idle at its reliability level between random halves of one population, as it should be. Under a shift between units it cannot represent the shift as specified, and its own lifting certificate measures the gap. Its Fano tubes, the toric types of the predicted system, show this as a confidently wrong chamber. With a family of floors, a posterior over binary channels, the tower's reliability level earns its keep in every pre-registered shift between ICU unit types and harms nowhere. The geometry of GSS item pairs forecasts their next chamber change beyond the margins, while per-stay ICU systems are almost all broken and their geometry forecasts nothing. Selection models not built on the triangle cells fit the UK panel's attrition and fail for ICU lactate and diabetic HbA1c. We explain why the other deeper layers are not yet activated by the data. We state
+with its predicted size. The one exception is instructive: a random-instance check is blind to a planted failure. On real panels one theorem of the backbone, the interchange law, shows that banding inflates the composition failure: the monitor's null is $41$--$51\%$ too small, although the failure survives the correction.  A three-level tower fitted on PhysioNet is idle at its reliability level between random halves of one population, as it should be. Under a shift between units it cannot represent the shift as specified, and its own lifting certificate measures the gap. Its Fano tubes, the toric types of the predicted system, show this as a confidently wrong chamber. With a family of floors, a posterior over binary channels, the tower's reliability level earns its keep in every pre-registered shift between ICU unit types and harms nowhere. The geometry of GSS item pairs forecasts their next chamber change beyond the margins, while per-stay ICU systems are almost all broken and their geometry forecasts nothing. Selection models not built on the triangle cells fit the UK panel's attrition and fail for ICU lactate and diabetic HbA1c. The map from information to outcome is tested for context invariance as membership in a toric variety. Four of eleven GSS items, and ICU unit types, leave it, and the toric type of the answer $\times$ outcome system records where. Point polytopes at the boundary turn out to be mostly artefacts of zero counts: their geometry is recoverable from a posterior, but it does not forecast death. A tracker built on the family of coupling polytopes and their normal fans shows the approach to a wall before the one decided survey tear and in the physiology of ICU patients who die. In recursive training with known truth, the clearest sign of destroyed information is the contexts' steady departure from the invariance variety, which fresh data cap; three of five pre-registered predictions fail, and we report them. A decision layer on the same geometry turns sources of known reliability into auditable decisions, with a support threshold, the weakest link and a typed record of why a conclusion fails to glue. Support floors on cells preserve the toric geometry exactly, by a shift to reduced margins, and a new obstruction appears: families that glue, but not with the floor. The ambience is carried by the total category of a functor from contexts into posets: policies act as an idempotent comonad on each fibre, summarising by floors as an idempotent monad, and their failure to commute with transport is a computable oplax 2-cell. On real scientific claims (SciFact) with weak verifiers, the layer is right when it acts and its wrong acts stay within a conformal guarantee, but it rarely acts, and its margin ranks pairs worse than plain confidence. We explain why the other deeper layers are not yet activated by the data. We state
 where the programme falls short and list every dataset used across its ten papers.
 \end{abstract}
 
@@ -1341,6 +1343,564 @@ onset and GSS chamber changes. Right: gain of each reliability level of the towe
 \end{figure}
 
 %=====================================================================
+\section{The context-to-outcome map, and geometry at the boundary}\label{sec:contextmap}
+%=====================================================================
+
+Several systems in this paper carry the same information in several contexts:
+\begin{itemize}[leftmargin=*,nosep]
+\item one spending item in two wordings;
+\item one pressure band in four kinds of unit;
+\item one question under two prompts.
+\end{itemize}
+The natural object is a map from (context, information) to a probability of an outcome, and the natural question is whether it depends
+on the context. Algebraic geometry states this exactly. With context $C$, information $A$ and outcome $O$, \emph{context invariance}
+$P(O\mid A,C)=P(O\mid A)$ is the conditional-independence model $O\perp C\mid A$. It is a toric variety in the simplex of
+$C\times A\times O$ tables, cut out by the binomials $p_{cao}\,p_{c'ao'}-p_{cao'}\,p_{c'ao}$. Its distance from the data, the divergence
+of the information projection, is $I(O;C\mid A)$, and twice the sample size times it (in nats) is the $G^2$ test. When invariance fails,
+the binomials say where: at which level of the information the context changes the outcome map. The plan, its planted checks and
+frozen results are in \texttt{ext/phase5}. The planted check held its size ($12$ rejections in $200$) and located a planted change at
+the right answer level.
+
+\paragraph{GSS: wording, answer and party.} Wording is randomized, so here a failure of invariance is a causal effect of the wording on
+what an answer means politically.
+\begin{itemize}[leftmargin=*,nosep]
+\item \emph{Seven items are invariant.} For race, drugs, education, environment, space, defense and foreign aid, the wording changes how people answer but not what their answer says about their party.
+\item \emph{Four items are not} (Bonferroni over eleven): welfare (mean $0.0126$ bits per year), crime, cities and health.
+\item \emph{Where welfare fails.} The failure sits at ``about right'' ($58\%$ of its $G^2$). Saying welfare spending is about right is a
+  different political statement from saying assistance to the poor is about right.
+\end{itemize}
+The toric decomposition makes this geometric (\cref{fig:contextmap}, right).
+\begin{itemize}[leftmargin=*,nosep]
+\item The answer $\times$ party coupling polytope of welfare has a different toric type in the two wordings in $23$ of $24$ years:
+  usually $18$ vertices for ``welfare'' and $12$ or $15$ for ``assistance to the poor''.
+\item In $16$ of those $23$ years the invariant map reproduces both types. There the change of toric surface is carried by the answer
+  margins alone, as direct influence.
+\item In the other $7$ the context changes the geometry through the outcome map itself.
+\item No welfare chamber is decided on the bands in both wordings in any year. The toric types are point estimates, while the invariance
+  test, which does not depend on the chamber, is decisive.
+\end{itemize}
+
+\paragraph{ICU: unit type, first-window pressure and death.} Invariance fails in both sets ($G^2=119$ and $141$ on $9$ df;
+$0.022$ and $0.026$ bits). Its geometry shows how.
+\begin{itemize}[leftmargin=*,nosep]
+\item In cardiac surgery the observed death $\times$ pressure system is $\mathbb{CP}^2$, while the invariant map would make it
+  $\mathbb F_1$. In set~B that chamber is decided on the bands.
+\item In medical units it is the reverse.
+\item The reason is that the death rate given borderline pressure is $2$--$3\%$ after cardiac surgery and $21\%$ in medical units.
+  The same reading means different things in different units, and the Fano surface of the unit's system records it.
+\end{itemize}
+
+\begin{figure}[!htbp]
+\centering\includegraphics[width=\linewidth]{figs/fig_context_map.pdf}
+\caption{Left: distance of each GSS item's wording $\times$ answer $\times$ party table from the invariance variety $O\perp C\mid A$ (mean
+over $24$ years); filled when invariance is rejected. Right: toric type of the welfare answer $\times$ party system in each wording,
+observed (lines) and under the invariant map (circles).}\label{fig:contextmap}
+\end{figure}
+
+\paragraph{Geometry at the boundary.} Per-stay ICU day systems usually have an empty band, and half have a point polytope
+(\cref{sec:forecast}). A genuine point polytope carries no coupling information: when a margin is a single category the coupling is
+fixed. That is a theorem, not a failure of the method. But most of these points are not genuine. A band with no hours in $22$ is a
+zero count, not a zero probability. We re-ran the forecast of death with three boundary-aware readings:
+\begin{itemize}[leftmargin=*,nosep]
+\item the Dirichlet posterior over toric types;
+\item the walls decided on the bands, i.e.\ the family over the band, which is a full-dimensional polytope \cite[Prop.~6.1]{Bands};
+\item the face stratum, the torus orbit in which a broken system lies.
+\end{itemize}
+What the readings recover:
+\begin{itemize}[leftmargin=*,nosep]
+\item $71\%$ of day-two systems put more than half their posterior mass on full-support toric types, mostly the $12$-vertex type.
+\item On average $8.7$ of the $18$ walls are decided.
+\item The point polygons are therefore largely an artefact of the point estimate, and the geometry behind them is recoverable.
+\end{itemize}
+It still does not forecast death beyond a flexible function of the margins: gain $-0.0014$, interval $(-0.0052, 0.0023)$. The planted
+check showed why such tests are hard: averaging over the posterior makes the geometric features smooth in the counts, so a flexible
+margin model approximates them. The first planted check, with a weaker effect, could not detect it; it was replaced before the run by a
+stronger one matched to the data, which did. So the boundary is not a dead end for the geometry. For this outcome, at this resolution, it
+is a dead end for prediction.
+
+%=====================================================================
+\section{Tracking the approach to collapse: a family of cones, and recursive training}\label{sec:collapse}
+%=====================================================================
+
+A trajectory of systems traces a path of margins. Over a path, the coupling polytopes form a family whose union is again a polytope
+\cite[Prop.~6.1]{Bands}, and each member's normal fan (a cone at each vertex) changes only where the path meets a wall. The walls
+$f(I)=g(J)$ form the chamber complex of the marginal map. So the approach to collapse can be read off the path:
+\begin{itemize}[leftmargin=*,nosep]
+\item a \emph{bend} keeps the fan;
+\item a \emph{tear} crosses a wall, and the fan gains or loses a cone: a blow-up or blow-down (for $2\times3$ systems, of a toric surface);
+\item a \emph{break} reaches the boundary, and the fan drops dimension.
+\end{itemize}
+We built a tracker that reports, at every step of any trajectory:
+\begin{itemize}[leftmargin=*,nosep]
+\item the chamber, with signed wall distances and their band intervals;
+\item tear and break margins, velocity, and tear and break times \cite[Def.~3.1, Thm.~3.2, Def.~5.7]{Bands};
+\item the drift $D(p_t\Vert p_{t-1})$, split exactly by Csiszár's Pythagorean identity into \emph{interaction drift} $D(p_t\Vert p^*)$
+  and \emph{margin drift} $D(p^*\Vert p_{t-1})$, with $p^*$ the I-projection of $p_{t-1}$ onto $p_t$'s margins;
+\item the normal-fan type: dimension, vertices (maximal cones) and facets (rays);
+\item a Dirichlet posterior over chambers.
+\end{itemize}
+Margin drift says who carries which information; interaction drift says what the information means. The plan
+(\texttt{ext/phase6/PREANALYSIS\_COLLAPSE.md}) was fixed before anything was computed. Its planted checks passed:
+\begin{itemize}[leftmargin=*,nosep]
+\item the Pythagorean identity to $3\times10^{-13}$;
+\item fan types against the existing toric code;
+\item a planted wall crossing found at the right step;
+\item a planted break detected.
+\end{itemize}
+Two checks had their specifications corrected before any real run. One rank-tolerance bug, which reported a dimension of $5$ for some
+$3\times3$ systems, was found in the first trajectory run; it was fixed, a dimension check was added, and all trajectories were rerun.
+
+\subsection{Five trajectories}
+\begin{itemize}[leftmargin=*,nosep]
+\item \emph{GSS, $110$ item-pair systems over $40$ years.} Across $2{,}530$ steps the fan is unchanged in $1{,}824$, blows up in $356$ and
+  blows down in $350$. Only $18$ steps carry a decided chamber change. The run-up to the decided welfare $\times$ race tear (wording Y,
+  2014$\to$2016) is visible in advance (\cref{fig:collapsetraj}, top left):
+  \begin{itemize}[nosep]
+  \item the tear margin shrinks from $0.018$ (2010) to $0.013$ (2012) and $0.006$ (2014);
+  \item the tear time falls to $0.09$ steps, the smallest since 2008, when the path passed within $0.0002$ of a wall and the point fan dipped to $12$ vertices without any decided change;
+  \item the posterior probability of the modal chamber drops to $0.48$ in 2014;
+  \item interaction drift peaks in 2012 ($0.031$ bits, against a median of $0.006$);
+  \item after the tear the chamber is decided ($0.99$) and the fan has lost three cones ($15\to12$).
+  \end{itemize}
+\item \emph{C19PRC waves.} Depression $\times$ anxiety keeps the same $15$-vertex fan through all waves in both countries. It sits very
+  close to a wall (UK tear margin $0.0005$--$0.013$) without a decided change.
+\item \emph{The tower's evidence paths.} Hypothesis change is motion through chambers. In the two shift arms with a mortality rise
+  (R0b, R2), the level-one prediction crosses the wall $f_1=g_0$ twice as evidence accrues, and the fan alternates between
+  $\mathbb{CP}^2$ and $\mathbb F_1$. In the same-population arm and in R4 it stays in one chamber.
+\item \emph{ICU decedents against survivors.} In $6$-hour windows over $48$ hours, the decedents' pressure $\times$ heart-rate system
+  hugs a wall after the first window: tear margin $0.001$--$0.018$, against $0.020$--$0.046$ for survivors. It keeps a $15$-vertex fan,
+  where the survivors' drops to $12$ after the first window. Neither group approaches the boundary (break margins about $0.04$--$0.06$). The two groups, the same
+  information in two outcome contexts, differ by $0.05$--$0.08$ bits per window, of which $88$--$98\%$ is margin drift.
+\item \emph{LLM retraining (two points).}
+  \begin{itemize}[nosep]
+  \item Happy numbers and ARC \emph{break}: the fan drops dimension because a category empties.
+  \item HotpotQA \emph{blows up} ($9\to12$ vertices).
+  \item Primes makes four decided wall crossings with the same fan.
+  \item In every task the drift is overwhelmingly in the margins (up to $3.4$ bits), with interaction drift $0.003$--$0.04$ bits.
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}[!htbp]
+\centering\includegraphics[width=\linewidth]{figs/fig_collapse_trajectories.pdf}
+\caption{The tracker on four trajectories. Top left: the GSS welfare $\times$ race system (wording Y), signed value of the wall
+nearest in 2014 with its band interval; the circle marks the decided chamber change. Top right: tear margin of ICU pressure $\times$
+heart-rate systems in $6$-hour windows, decedents and survivors. Bottom left: the tower's level-one paths relative to the wall
+$f_1=g_0$, with the interval from the pressure band. Bottom right: the March-to-June drift of the LLM systems split into margin and
+interaction parts (bits, symmetric log scale).}\label{fig:collapsetraj}
+\end{figure}
+
+\paragraph{The forecasting test.} Does interaction drift, or tear time, forecast the next \emph{decided} chamber change beyond plain
+margin velocity? The test set has only $11$ such events, below the pre-registered minimum of $15$. The test is underpowered, and
+neither predictor adds anything: gains $-0.0001$, with intervals spanning $0$. On the secondary target, point-estimate chamber changes
+($634$ test events):
+\begin{itemize}[leftmargin=*,nosep]
+\item tear time adds $0.017$, with an interval $(-0.001, 0.033)$ just touching $0$;
+\item tear time with interaction drift adds $0.017$, $(0.0002, 0.034)$;
+\item interaction drift alone adds nothing.
+\end{itemize}
+So distance to the walls carries the forecast, while the meaning-change part of the drift does not, at least not for the GSS.
+
+\subsection{Recursive training with known truth}\label{sec:recursive}
+
+\paragraph{Design.} A model of an outcome $y$ (eight values) given information $x$ (six values) in three contexts was retrained on its
+own samples for $20$ generations: $200$ samples per cell, $50$ replicates. The truth satisfies context invariance, and some outcome
+categories are rare tails. Fresh real data were mixed in at $0$, $5$, $10$ and $25\%$; a variant passed each generation through a
+paraphrase kernel. Five predictions were fixed in advance; two hold and three fail (\cref{fig:recursive}).
+\begin{enumerate}[leftmargin=*]
+\item \emph{Contraction: holds, but trivially.} The paraphrase kernel's Dobrushin coefficient is $1$: it shifts outcomes to neighbours
+  without mixing distant ones. The planned bound therefore reduced to ``no increase beyond noise''. The model's distinguishability of
+  $x$ falls from $0.70$ to $0.24$ over $20$ generations, inside an exploratory sharper bound from the coefficients of the composite
+  kernels $K^g$.
+\item \emph{Breaks in finite time, forecast by break time: fails.}
+  \begin{itemize}[nosep]
+  \item Without fresh data, $88.5\%$ of tail categories are absorbed at zero by generation $20$, just short of the planned $90\%$; $36\%$
+    are zero already in the model fitted to real data, a break caused by finite data alone.
+  \item Break time correlates with the remaining time to the break (Spearman $0.33$), but the level alone does better ($0.48$).
+  \item Given the level, break time adds nothing ($0.03$, $p=0.065$).
+  \end{itemize}
+\item \emph{Fresh data prevents absorbing breaks: fails as stated.}
+  \begin{itemize}[nosep]
+  \item Bands Prop.~9.2 guarantees a floor $\lambda P_0$ for the training law, not for a model fitted to $200$ samples.
+  \item Categories rarer than about $1/(\lambda\cdot200)$ are zero most of the time whatever $\lambda$ is: $29$--$38\%$ of tracks have
+    three consecutive zeros with fresh data, against $44\%$ without.
+  \item Exploratory: the qualitative claim holds. Without fresh data a zero never recovers; with fresh data zeros recover at $7$--$19\%$
+    per generation, and persistent zeros fall from $37\%$ to $16$, $11$ and $5\%$.
+  \end{itemize}
+\item \emph{Contexts drift off the invariance variety: holds, decisively.}
+  \begin{itemize}[nosep]
+  \item Without fresh data, the model's $I(Y;C\mid X)$, its distance from the toric variety $Y\perp C\mid X$, grows steadily from
+    $0.016$ to $0.18$ bits, in every replicate.
+  \item With fresh data it plateaus at $0.09$, $0.058$ and $0.03$ bits for $5$, $10$ and $25\%$.
+  \item Retraining contexts on their own outputs makes the same information mean different things in different contexts. That is
+    the ``bogus information'' of the question, measured exactly, and fresh data cap it.
+  \end{itemize}
+\item \emph{Certificates warn before accuracy drops: fails.}
+  \begin{itemize}[nosep]
+  \item The tower-style certificate against held-out real data (the distance to the held-out band plus the Cromwell mass the model has
+    zeroed) rises steadily from the first generation.
+  \item But accuracy also falls from the first generation, and its first $5$-point drop comes at a median generation of $2$ (range $1$--$10$).
+  \item The certificate crosses its null threshold strictly first in $58\%$ of replicates, short of the planned $80\%$; the median lead
+    is $2$ generations.
+  \end{itemize}
+\end{enumerate}
+
+\begin{figure}[!htbp]
+\centering\includegraphics[width=\linewidth]{figs/fig_recursive.pdf}
+\caption{Recursive training with known truth ($50$ replicates). Top left: the model's distance from the context-invariance variety,
+$I(Y;C\mid X)$, by fresh-data share. Top right: share of true outcome categories the model has at zero. Bottom left: mean accuracy and
+mean certificate against held-out real data without fresh data; the dashed line is the certificate's null threshold. Bottom right:
+distinguishability of the information under a paraphrase kernel, with the planned and the sharper bound.}\label{fig:recursive}
+\end{figure}
+
+\paragraph{What this shows.} The tracker turns any trajectory into a sequence of chambers, fans and drifts, and on real data it shows
+approach to a wall before a tear. It did so for welfare $\times$ race, for the decedents' physiology, and for the tower's hypotheses.
+In recursive training, the clearest signal of information being destroyed is not the loss of tails, which finite data cause from the
+start. It is the steady departure of the contexts from the invariance variety. That departure has no counterpart in accuracy and is
+invisible to any single-context metric, and fresh data bound it in proportion to their share. What did not work as predicted:
+\begin{itemize}[leftmargin=*,nosep]
+\item break time as a forecaster beyond the level;
+\item Prop.~9.2 as a finite-sample floor;
+\item the certificate as an early warning with a large lead.
+\end{itemize}
+Each needs a sharper statement or a longer horizon, and the analysis does not go beyond these results.
+
+%=====================================================================
+\section{Ambient support geometry: deciding under uncertainty with floors, typed obstructions and replayable records}\label{sec:support}
+
+The tracker of \cref{sec:collapse} describes; a decision has to be made from it. This section integrates the proposal
+\emph{Ambient Support Geometry: Presheaves, Positive Support Floors, and Local-to-Global Obstructions} \cite{SupportAmbience} into the
+programme, sharpens it where the data and the mathematics allow, replaces its comonadic layer by a fibred, locally posetal
+2-category, and reports a pre-registered test of its experimental programme (\texttt{ext/phase7}, plan
+\texttt{PREANALYSIS\_SUPPORT.md}, hash frozen before any experiment; code hashed before the run).
+
+\subsection{Support as a policy, and the local-first principle}
+A probability model normally lets a coordinate approach zero. In applications the question is often not whether an outcome is
+possible, but whether it has enough support to be relied on: a rare event may be possible and still too weakly supported for a
+particular decision, while a strict floor can be wrong when rare but real outcomes must be kept. The threshold therefore belongs
+to the ambient decision context, not to probability alone. Following the proposal, a decision combines four pieces of information:
+\begin{enumerate}[leftmargin=*,nosep]
+\item a \emph{support policy}: which outcomes or events must have probability at least a chosen floor;
+\item the \emph{local probability geometry}: margins, conditionals and coupling constraints;
+\item \emph{provenance}: which observations, assumptions and policy choices led to the decision;
+\item an \emph{obstruction signature}: the weakest support margin, and any local-to-global or composition failure.
+\end{enumerate}
+The aim is not to force every local structure into a global model, but to make each local conclusion auditable and to expose
+where the chain from evidence to outcome becomes fragile. A global emergent object may not exist, or may exist only under
+assumptions the evidence does not justify; so a global model is not the default data structure. Each context carries its own
+local probability object, policy and evidence trail; restriction says what remains visible in a smaller context; compatibility
+asks whether local objects agree on overlaps; gluing asks whether compatible local objects come from one global object. This is the
+use-case for a presheaf $F:\mathcal C^{\mathrm{op}}\to\mathbf{Set}$ (or to constraint objects or records), with restriction maps
+$\rho^U_V:F(U)\to F(V)$ for $V\subseteq U$. A presheaf asserts no global section; in an AMB measurement scenario a compatible family
+that fails to extend is a contextuality witness, meaningful precisely because local compatibility does not force a global section
+\cite{AbramskyMansfieldBarbosa2012}.
+
+\subsection{Floors and the coupling polytope}
+For margins $f\in\Delta(X)$, $g\in\Delta(Y)$ and floors $\tau\ge0$ on a set $D$ of designated cells, the support-constrained polytope is
+\begin{equation}\label{eq:Ptau}
+P_\tau(f,g)=\{\pi\in P(f,g):\pi_{xy}\ge\tau_{xy}\text{ for }(x,y)\in D\};
+\end{equation}
+more generally one may floor events, $\pi(E_k)\ge\tau_k$.
+
+\begin{remark}[Two thresholds]\label{rem:thresholds}
+A floor has probability units, $0\le\tau\le1$. A safety factor such as ``$1.1$'' is dimensionless: relative to a baseline floor
+$\tau^{(0)}$ it means $\tau\ge1.1\,\tau^{(0)}$; it is not a probability of $1.1$. The decision layer below also uses a \emph{relative}
+threshold $\kappa$ between competing actions, $q_x\ge\kappa q_y$: the wall $q_x=q_y$ replaced by the binomial $q_x=\kappa q_y$. A
+multiplicative constant keeps the binomial form (a translate of the toric variety); an additive one, $p^u-p^v=c$, does not. Both
+thresholds are implemented and kept apart.
+\end{remark}
+
+\begin{proposition}[Feasibility is policy-relative \cite{SupportAmbience}]
+$P_\tau(f,g)$ is a possibly empty polytope. If it is empty, the margins and the policy cannot hold together; this does not by itself
+make the data false: the floor may be too strong, the margins uncertain, or the cells unsuitable for a common guarantee.
+\end{proposition}
+
+The proposal cautions that truncation ``need not preserve the original toric fan''. For floors on cells it does, exactly:
+\begin{proposition}\label{prop:reducedmargins}
+Let $f'=f-\tau\mathbf 1_D\mathbf 1$ and $g'=g-\mathbf 1^\top\tau\mathbf 1_D$ be the reduced margins. Then
+$\pi\mapsto\pi-\tau\mathbf 1_D$ is a bijection from $P_\tau(f,g)$ onto $P(f',g')$. Hence $P_\tau$ is non-empty iff $f',g'\ge0$; its
+normal fan is that of $P(f',g')$; its walls are $f'(I)=g'(J)$; and the largest common margin above the floors with weights $w$,
+\begin{equation}\label{eq:headroom}
+\delta^\star=\max\{\delta:\pi\in P(f,g),\ \pi_{xy}\ge\tau_{xy}+w_{xy}\delta\ \text{on }D\},
+\end{equation}
+equals $\min$ over rows and columns of (margin $-$ floors)/(weights) whenever that value is non-negative, with a row or a column as
+the bottleneck.
+\end{proposition}
+\begin{proof}On $D$, $\pi\ge\tau$ is $\pi-\tau\mathbf 1_D\ge0$; off $D$ the shift is zero; the margins shift by the row and column sums
+of $\tau\mathbf 1_D$. A transportation polytope with non-negative margins of equal total is non-empty. For \eqref{eq:headroom} apply
+the same shift with $\tau+w\delta$; it is valid while $\tau+w\delta\ge0$.\end{proof}
+So a floor alone can cross a wall: a policy can tear a system. On the uniform $2\times3$ hexagon a floor on one cell crosses two walls at $\tau=\tfrac16$ and breaks the system at $\tau=\tfrac13$ \cite[Ex.~6.10]{Conditionals}. Floors on events give general polytopes, and the proposal's caution
+applies to them. The support obstruction for cell floors needs no optimisation: its certificate reads ``this row carries $f_x$, but
+its floors demand more''; with margins known only to their bands, a floor is decided-feasible when the lower band ends cover the
+floor sums. The weakest link is kept as a typed signature, not a single score,
+\[
+\mathfrak O=(\mathfrak O_{\mathrm{supp}},\mathfrak O_{\mathrm{glue}},\mathfrak O_{\mathrm{comp}},\mathfrak O_{\mathrm{evid}}),
+\]
+recording support shortfall, failure to glue, failure to compose and inadequate or conflicting evidence. Its components have
+different mathematical types, and combining them requires an explicit normalisation and decision policy.
+
+\subsection{Chains, presheaves, and two vocabularies kept apart}
+The proposal's ``spring leaf'' is a \emph{local constraint chain}: a path of contexts $U_0\leftarrow U_1\leftarrow\cdots\leftarrow U_n$
+with local states $s_i\in F(U_i)$, restriction or transport maps between them, and a support slack and obstruction recorded at each
+stage. A conclusion is carried forward only while the compatibility conditions hold; when they fail, the chain records where and
+why, instead of inventing a global state. A chain follows one route; a presheaf records all routes, and two routes that transport
+a conclusion differently give a path-dependence (holonomy) diagnostic \cite{HolonomyNote}.
+
+Two vocabularies are used side by side. On the AMB side \cite{AbramskyMansfieldBarbosa2012}, a measurement scenario has contexts and
+an assignment presheaf, and a compatible family that fails to extend is a contextuality witness. On Vigneaux's side
+\cite{Vigneaux2019,BaudotBennequin2015}, an information structure has observables with a conditioning action, and information
+functionals such as entropy live there. The support ambience attaches floors, bands, provenance and obstruction records to each
+context, which enriches the local data but does not identify the two coefficient systems. In particular the support indicator
+(positive section $\mapsto1$, empty $\mapsto0$) is not additive, so it is not a morphism of abelian coefficient systems and induces
+no map of cohomologies; nor does a holonomy cocycle of known transformations become the AMB obstruction because both are local. The
+division of labour is: the presheaf says what local states exist and how they restrict; the floored polytope, which assignments
+meet the constraints; the conditioning action, how information functionals respond to conditioning; the AMB extension test,
+whether compatible support sections extend \cite{Vorobev1962}; provenance, which evidence and policies produced the result.
+
+\subsection{Carrying the ambience: a fibred, locally posetal 2-category}\label{sec:fibred}
+The proposal carries the ambient record $a=(m,\tau,\mathcal E,\mathcal G,\mathcal D)$ (constraints, floors, evidence, gluing rules,
+decision policy) by an informal comonad $C_a(Y)=Y\times A_a$, and leaves its laws and its transport rule open. The programme already
+carries the tower's context in the way this asks for. Over each finite base $B$ the context sits in a reader comonad
+$\mathsf C^B(Y)=Y\times A_B$; every Markov kernel $k$ transports it by a comonad morphism $\mathrm{id}\times A_k$, functorially on
+the Kleisli category \cite[Prop.~9.14]{Tower}; and the category of elements of $B\mapsto A_B^{\mathrm{coh}}$ is a split
+opfibration over the Kleisli category, along whose lifts the comonads are carried \cite[Prop.~3.3]{Conditionals}, certificates pull
+back and failure levels can only rise \cite[Thm.~3.1]{Conditionals}. So the proposal's comonad, read correctly, is that family:
+one comonad per context, carried along transports. What the ambience adds is \emph{order}: the fibres of the existing opfibration are
+sets of points (coherent contexts), and a support policy needs sets of laws ordered by strength. The construction below is the
+posetal enlargement of the existing one; its laws are immediate, and its content is the transport rule.
+
+\begin{definition}[Ambience functor and its total category]\label{def:ambience}
+Let $\mathcal C$ have contexts as objects and transports as morphisms $t:U\to V$: marginalisations (restriction to fewer
+variables), deterministic maps and Markov kernels $K_t$ on cells. Let $\mathcal A(U)$ be the poset of closed convex feasible sets
+$S\subseteq\Delta(X_U)$ (credal sets, floored polytopes), each carrying its record, ordered by inclusion: $S\le S'$ if $S\subseteq S'$,
+so an arrow is a \emph{weakening}. Transport acts by images, $t_!S=K_tS$. The ambience's total category $\int\!\mathcal A$ (its
+Grothendieck construction \cite{MacLaneMoerdijk1992,Johnstone2002}) has objects $(U,S)$ and an arrow $(U,S)\to(V,S')$ for each
+$t:U\to V$ with $t_!S\subseteq S'$. The projection $\pi:\int\!\mathcal A\to\mathcal C$ is an opfibration whose fibres are posets.
+Restricted to kernels and to singletons $S=\{\rho\}$ at level one, it is the level-one part of the discrete opfibration of
+\cite[Prop.~3.3]{Conditionals}.
+\end{definition}
+
+\begin{proposition}\label{prop:fibred}
+\begin{enumerate}[leftmargin=*,nosep]
+\item Images compose strictly, $(st)_!=s_!t_!$, so $\mathcal A:\mathcal C\to\mathbf{Pos}$ is a functor. A decision is a path in
+  $\int\!\mathcal A$; its replay is the composite, which depends only on the recorded path.
+\item Imposing a policy, $\iota_\tau(S)=S\cap\{\pi\ge\tau\}$, is an idempotent comonad on each fibre (an interior operator:
+  $\iota_\tau S\subseteq S$, $\iota_\tau\iota_\tau=\iota_\tau$); summarising a set by its floors,
+  $\sigma(S)=\{\pi\in\Delta:\pi\ge\min_S\pi\}$, is an idempotent monad (a closure operator: $S\subseteq\sigma S$, $\sigma\sigma=\sigma$).
+  The counit, comultiplication and unit laws hold trivially in a poset.
+\item Neither commutes with transport, and the failures point one way:
+  $t_!\,\iota_\tau S\subseteq t_!S\cap\{\pi\ge K_t\tau\}$ and $\sigma\, s_!\,\sigma\, t_!S\supseteq\sigma\,(st)_!S$. Imposing a policy
+  before transport certifies at least as much as pushing the floor forward; summarising between steps certifies at most as much
+  as carrying the set. Each inclusion is a 2-cell: on floor boxes, $t\mapsto\sigma\circ t_!$ is a normal oplax functor into posets
+  \cite[Prop.~10.24]{Tower}.
+\item On a discrete (op)fibration (a $\mathbf{Set}$-valued ambience, whose fibres have only identity arrows) every fibred comonad is
+  the identity: a counit $c(a)\to a$ inside a discrete fibre forces $c(a)=a$. This is why the programme carries comonads
+  \emph{alongside} its discrete opfibration, as a family $\mathsf C^B$ joined by comonad morphisms, and not \emph{on} it.
+\end{enumerate}
+\end{proposition}
+\begin{proof}(1) $K_sK_t=K_{st}$, and the composite of a path is determined by its arrows. (2) Intersection with a fixed set and
+taking the floor box are deflationary-idempotent and inflationary-idempotent; in a poset every such operator is a comonad,
+respectively a monad. (3) If $\pi\in S$ and $\pi\ge\tau$ then $K_t\pi\in K_tS$ and $K_t\pi\ge K_t\tau$, since $K_t\ge0$; and
+$\sigma t_!S\supseteq t_!S$ gives $s_!\sigma t_!S\supseteq(st)_!S$, then apply the monotone $\sigma$. (4) Immediate.\end{proof}
+
+So the structure is a 2-category fibred over the contexts and \emph{locally posetal}: 0-cells are contexts with their feasible
+sets, 1-cells are transport laws (the image $t_!$, the naive pushed floor $K_t\tau$, the tight floor $\min_{t_!S}$), and 2-cells are
+inclusions between them. The naive floor sits below the tight one: in the pre-registered transport experiment (E5 below) the two
+agree for only $27\%$ of target cells. In an exploratory run of $300$ random two-step chains (\texttt{lax\_composition.py}) the
+stepwise-summarised floor fell strictly below the composite floor in $611$ of $895$ target cells and never above it, and imposing
+the policy first certified strictly more than the transported floors combined with the pushed floor (their componentwise
+maximum) in all $1{,}158$ cells. The consequence for the weakest
+link is precise: carrying sets, transport loses nothing; certification is lost where a set is summarised by floors, or where a
+policy is pushed forward instead of imposed. Along a whole leaf-spring chain of transports and vertical steps this becomes a
+theorem \cite[Thm.~10.26]{Tower}: certification is path-independent, it is lost only at summaries and weakenings, the loss splits
+exactly into non-negative contributions, one per summary, and imposing early and summarising late certifies most. The proposal's intuition of a comonadic layer survives in this modest form, policy
+imposition as an interior operator on each fibre, while its open obligation, the transport law, becomes the oplax comparison of
+\cref{prop:fibred}(3), which can be computed. The ordered total category and its floors are now part of the theory papers
+\cite[Def.~3.5, Prop.~3.6]{Conditionals}, \cite[Section~10.7]{Tower}. The ambience is deliberately a \emph{prestack}, not a stack: descent is not imposed,
+because the failure of descent is the information.
+
+\paragraph{Why not other ways.} Each alternative below was considered and rejected for the stated reason.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.66\linewidth}}
+\toprule
+Alternative & Why not, or what it is good for\\
+\midrule
+Product (reader) comonad $Y\times A$ & Used, not rejected: it is the tower's per-base comonad $\mathsf C^B$, carried along kernels by comonad morphisms \cite[Prop.~9.14]{Tower}. With one fixed parameter, as in the proposal's $Y\times A_a$, it cannot follow a change of context and keeps no history.\\
+Fibred comonad on $\int\!A$, $A$ set-valued & Trivial by \cref{prop:fibred}(4): discrete fibres admit no non-identity counit; hence the family of comonads above.\\
+A general (non-posetal) 2-category, natural transformations as 2-cells & Coherence obligations without content: the fibres are posets of feasible sets, so 2-cells are inclusions and every diagram of 2-cells commutes. The quantitative counterpart is the graded shadow of \cite[Thm.~7.8]{Attribution}, a strict 2-category enriched in Lawvere metric spaces; with couplings as 2-cells the witness layer is neither a 2-category \cite[Thm.~7.6]{Attribution} nor a double category, strict or lax \cite{Algebras}. The oplax comparison here is of a functor into posets, not of those layers.\\
+Sheaf or stack & Imposes descent, i.e.\ that compatible families glue; here the failure to glue is the datum to be recorded.\\
+Topos and internal logic & Not needed: support is graded by headroom, not by truth values, and nothing uses a subobject classifier.\\
+A single global model (Bayesian network, global joint) & Presupposes the global section whose existence is in question.\\
+Writer monad (an append-only log) & Records history but not what restriction means; it is how the records are stored (\texttt{support.record}), not the mathematics.\\
+Markov category \cite{Fritz2020} & The natural home for the 1-cells (composing kernels); it carries neither policies nor gluing data, and can serve as $\mathcal C$.\\
+A scalar confidence score & Flattens the four obstruction types; a shortfall, a Farkas vector, a holonomy and a lying source are different evidence.\\
+A cohomology map AMB $\to$ Vigneaux & Blocked: the support indicator is not additive (above).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[blk/.style={draw=black!60,rounded corners=3pt,thick,minimum width=0.74\linewidth,text width=0.72\linewidth,minimum height=0.8cm,align=center,font=\small},
+  arr/.style={-{Stealth[length=2.3mm]},thick,black!60},every node/.style={font=\small}]
+  \node[blk,fill=blue!8] (amb) at (0,4.5) {Ambience over contexts: a path in $\int\!\mathcal A$ (constraints $m$, floors $\tau$, evidence $\mathcal E$, policy $\mathcal D$)};
+  \node[blk,fill=teal!10] (poly) at (0,3.0) {Local feasible geometry: credal set from sources, intersected with $P_\tau$ (\cref{prop:reducedmargins})};
+  \node[blk,fill=blue!8] (diag) at (0,1.5) {Diagnostics: headroom and bottleneck; gluing LP with Farkas vector; holonomy; evidence repair};
+  \node[blk,fill=orange!12] (dec) at (0,0) {Record: act / hedge / refuse, with $\kappa^\star$, weakest link, typed $\mathfrak O$, SHA-256 for replay};
+  \draw[arr] (amb)--(poly); \draw[arr] (poly)--(diag); \draw[arr] (diag)--(dec);
+  \draw[arr,dashed] (dec.east) to[bend right=50] node[right,align=left,font=\footnotesize]{recorded update:\\new floor or evidence\\$=$ a new arrow\\in $\int\!\mathcal A$} (amb.east);
+\end{tikzpicture}
+\caption{The decision architecture of \cite{SupportAmbience}, with its comonadic layer replaced by the total category of the ambience.
+Feedback changes the ambience only through a recorded arrow, so every decision replays from its path.}\label{fig:architecture}
+\end{figure}
+
+\subsection{The decision layer}
+\paragraph{Sources, reliabilities and the credal set.} Each source $c$ reports counts over its own outcomes, with a reliability $r_c$
+(or an interval, whose low end is used) and, where its context legitimately changes the outcomes, a known map $T_c$. Writing
+$P_c=r_cT_cq+(1-r_c)F_c$ with $F_c$ unrestricted, the band of $P_c$ bounds the true outcome law $q$ from above and below; all sources
+together give a polytope $Q$, intersected with the policy's floors. When the sources contradict each other $Q$ is empty, a regional
+failure to glue: an elastic linear program names the conflicting sources and outcomes, every single exclusion that would restore
+consistency is listed, and by default the least reliable of these is excluded, with the largest reliability its data allow recorded
+($\mathfrak O_{\mathrm{evid}}$). A floor the sources cannot support is reported, with its shortfall and binding bounds, not imposed
+($\mathfrak O_{\mathrm{supp}}$). Each decision is one linear program per pair of actions; the output carries the strength
+$\kappa^*$, a trace that splits the worst-case margin exactly among the sources by duality, the binding bounds, the weakest link
+(for each source, the reliability below which the decision fails), the thinnest cell, and which source's further data would help most.
+
+\paragraph{A worked example (synthetic).} Three answers $a,b,c$; four sources: a reference text ($r=0.9$), a forum ($r=0.3$, whose
+falsehoods push $c$), a paraphrase set ($r\in[0.6,0.7]$, pushing $b$), and self-generated text claiming $r=0.8$ but carrying no true
+signal. The self-generated source is found to contradict the others (its data allow at most $r=0.03$) and is excluded. ``Assert $a$''
+is then supported up to $\kappa^*=1.68$: the layer acts at $\kappa=1.1$ and $1.5$ and hedges between $a$ and $b$ at $\kappa=2$. The
+decision does not depend on the reference text at all; it rests on the forum's upper bound on $b$ (the forum is mostly wrong but
+rarely says $b$), so its weakest link is the forum, whose reliability must stay above $0.235$ (stated $0.3$) at $\kappa=1.1$.
+
+\paragraph{A decision record.} The proposal's illustrative record, filled in from a real run (one register, $r=1$, counts
+$600/300/100$ over $a,b,c$; policy: $c$ at least $0.30$):
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.7\linewidth}}
+\toprule
+Field & Record\\
+\midrule
+Decision & Support obstruction: no action\\
+Policy & $q_c\ge0.30$\\
+Active constraint & the floor on $c$ (bottleneck)\\
+Witness & the register's band forces $q_c\le0.125$ (dual $-1$ on its upper bound for $c$)\\
+Weakest link & shortfall $0.175$\\
+Provenance & source counts, reliabilities and policy version, hashed\\
+Next action & revise the floor, revise the evidence, or defer\\
+\bottomrule
+\end{tabular}
+\end{center}
+With the floor at $0.05$ instead, the layer acts (``assert $a$'') with headroom $0.075$ on the floor, the same bound binding.
+
+\subsection{Entropy, Fisher geometry and the three gluing statuses}
+A floor changes the admissible region; it does not turn a toric equation into one with a positive constant (\cref{rem:thresholds}).
+On the interior of the simplex, entropy and the Fisher metric are regular, and a floor keeps the floored coordinates away from the
+boundary, which can only improve regularity on the constrained region; by \cref{prop:reducedmargins} cell floors keep the toric
+type of the reduced margins, while the Fano property and the disc potential still have to be checked for each new polytope. For
+gluing, with $(X,Y)$ and $(Y,Z)$ margins fixed, every filler satisfies $H(X,Y,Z)\le H(X,Y)+H(Y,Z)-H(Y)$, with equality exactly when
+$X\perp Z\mid Y$. A floor can exclude this maximum-entropy filler while other fillers survive, so three statuses are kept apart: a
+filler exists; a filler meets the policy; the maximum-entropy filler is among the admissible ones.
+
+\subsection{The pre-registered programme}
+The proposal's minimal experimental programme was pre-registered and run once; two checks failed as specified and are reported
+with their corrections.
+\begin{itemize}[leftmargin=*,nosep]
+\item \emph{E1, floored geometry.} In $500$ random floored systems ($2\times2$ to $3\times4$, random designated cells), the vertices,
+  enumerated independently, are the shifted vertices of the reduced-margin polytope in all $500$ (worst discrepancy $10^{-8}$), and
+  the $2\times3$ toric surfaces agree in $84$ of $84$; all $200$ systems with a negative reduced margin are infeasible. As run, the
+  check reported $324$ of $500$, because its comparator sorted rounded vertex lists, which is order-sensitive; the order-free
+  comparison of the same instances is a reported deviation.
+\item \emph{E2, weakest link.} The closed form of \cref{prop:reducedmargins} equals the linear program in all $418$ cases with
+  headroom. The planned check on the duals failed ($82\%$ against $99\%$): duals on margin equalities are defined only up to adding a
+  constant to the rows and subtracting it from the columns. The gauge-invariant version (the binding floors lie in the bottleneck
+  row or column) holds in $418$ of $418$. Without headroom the closed form does not apply; it differs in $43\%$ of cases.
+\item \emph{E3, the chain $X-Y-Z$} ($200$ binary instances, $20$ floors each). A floored filler exists iff $\tau\le\min\pi/2$ over the
+  two given tables ($4{,}000$ of $4{,}000$). The conditional-independence filler meets the floor iff
+  $\tau\le\tau_{CI}=\min_{x,y,z}\pi(x,y)\pi(y,z)/\pi(y)$, always the smaller threshold ($200$ of $200$), and the maximum entropy over
+  admissible fillers attains the bound exactly when $\tau\le\tau_{CI}$ ($2{,}600$ of $2{,}600$). Between the two thresholds a
+  floor-meeting filler exists, but not the least committal one.
+\item \emph{E4, the cyclic cover} $(X,Y),(Y,Z),(Z,X)$. Gluability by linear program agrees with the $3$-cycle inequalities
+  \cite{AraujoEtAl2013} in $600$ of $600$ families; all $81$ contextual families come with a Farkas vector, verified independently. Of
+  the $519$ gluable families, $124$ ($24\%$) are \emph{support-contextual}: every local table meets its floor, the family glues, and
+  yet no global section meets the floor. This is a new obstruction type, a recorded witness rather than a cohomology class. For the binary triangle it has a closed form: a floored global section exists iff every pairwise cell is at least $2\tau$ and the $3$-cycle inequalities hold with right side $1-8\tau$ \cite[Thm.~4.8]{Conditionals}, so support-contextuality is the band between those inequalities at $\tau$ and at $0$; the triangle with cells $000$ and $111$ empty and the rest $\tfrac16$ is support-contextual at every $\tau\in(0,\tfrac1{12}]$ \cite[Ex.~4.9]{Conditionals}.
+\item \emph{E5, transport.} Floors push forward through any non-negative kernel: $\pi\ge\tau$ implies $K\pi\ge K\tau$ ($500$ of $500$).
+  Under deterministic coarsening the slack of a state never shrinks ($250$ of $250$); under a stochastic kernel it stays above the
+  smallest row sum of $K$ times the original slack ($250$ of $250$) and shrinks in $2\%$ of cases. The pushed floor is the tight one
+  for $27\%$ of target cells: the 2-cell of \cref{prop:fibred} is usually not an identity.
+\item \emph{E6, records.} All $400$ recorded decisions ($100$ problems, each through three changes of floor, evidence and $\kappa$)
+  replay bit-identically from their records, and $20$ planted obstructions of each type are classified to that type alone ($80$ of
+  $80$).
+\end{itemize}
+
+\subsection{Real retrieval data: SciFact}\label{sec:scifact}
+SciFact \cite{Wadden2020} pairs $1{,}409$ expert-written scientific claims with $5{,}183$ abstracts, labelled SUPPORT, CONTRADICT or
+not enough information (NEI) per claim--abstract pair. We used oracle abstracts: $919$ training pairs and $340$ dev pairs (gold
+$138/71/131$); the unlabelled test split was not used. The sources are three weak classical verifiers trained on the training split.
+Pretrained inference models could not be loaded here, so the sources are much weaker than modern ones, and every result below should
+be read as a test of the decision layer under weak evidence. Two pre-registered analyses were run; the first comes from an earlier
+branch of this work, and the second was planned without knowledge of the first's results.
+
+\paragraph{Analysis 1: channels and credal rules} (\texttt{ext/scifact}, plan frozen before any model was fitted). Each verifier's
+confusion channel, and their joint channel over the $27$ output patterns, were estimated by five-fold cross-validation on the
+training split, with bands; credal rules assert a label when its lower posterior beats every rival's upper posterior by
+$\kappa=1.1$.
+\begin{itemize}[leftmargin=*,nosep]
+\item Baselines: best single verifier $64.7\%$ accurate, majority vote $60.9\%$, naive Bayes $66.8\%$ (macro-F1 $0.61$).
+\item The credal rule on the empirical joint channel acts on $21\%$ of pairs and is $88.7\%$ accurate when it acts, against naive
+  Bayes's $66.8\%$ on all pairs: \emph{H1 holds} (difference $0.22$, interval $0.15$--$0.29$). The rule that assumes independent
+  errors acts on $34\%$ at $86.2\%$; the rule with no dependence assumption (Fréchet bounds) never acts.
+\item \emph{H2 fails}: the pairs on which the independence rule acts but the joint-channel rule does not were not measurably worse
+  (difference $0.07$, interval $-0.07$--$0.21$, $45$ pairs).
+\item \emph{H3 holds}: the strength $\kappa^*$ ranks correct above incorrect labels (AUC $0.59$, interval $0.53$--$0.66$).
+\item \emph{H4 fails}, against the geometry: ranked by $\kappa^*$, the area under the risk--coverage curve is \emph{larger} than when
+  ranked by naive Bayes's confidence ($0.249$ against $0.192$, interval of the difference $-0.088$ to $-0.028$).
+\item Exploratory: at the same coverage the credal gate picks the same pairs as confidence thresholding ($71$ of $71$), and it only
+  ever asserts NEI. Its hedges contain the gold label in $95\%$ (SUPPORT or NEI), $100\%$ (all three) and $91\%$ (SUPPORT or
+  CONTRADICT) of cases. No dev claim with several abstracts produced a decided SUPPORT on one and a decided CONTRADICT on another.
+\end{itemize}
+
+\paragraph{Analysis 2: conformal reliabilities and the decision layer} (\texttt{ext/scifact/conformal}). Here each verifier's
+reliability is the conformal quantile of the probability it gives the true label on a held-out calibration quarter of the training
+split, at level $0.05/3$. Then the credal set of \cref{sec:support} contains the truth whenever every source covers it, and acting on a
+wrong label is impossible at $\kappa\ge1$, so $P(\text{act and wrong})\le0.05$: a finite-sample guarantee, under exchangeability,
+that needs no model of how the verifiers' errors depend on each other.
+\begin{itemize}[leftmargin=*,nosep]
+\item \emph{P1 holds}: no wrong act on dev; some source missed the truth on $3.5\%$ of pairs, within the $5\%$ bound.
+\item \emph{P2 fails}, decisively: the reliabilities are $0.056$, $0.039$ and $0$, the credal set is nearly the whole simplex, and the
+  layer acts on $4$ of $340$ pairs ($1.2\%$, all NEI, all correct).
+\item \emph{P3 holds}: three sources act on $4$ pairs at the same guarantee where the best single source acts on $1$, and that one is
+  wrong. \emph{P4 holds} only formally ($4$ pairs; interval $0$--$0.5$). \emph{P5 holds}: the best verifier is $47$ points more
+  accurate on the pairs the layer acts on than on those it hedges (interval $0.41$--$0.52$).
+\item Risk--coverage (an amendment fixed before the dev run, after a dry run on training pairs): at total levels $0.05$, $0.10$,
+  $0.20$ and $0.30$ the layer acts on $1\%$, $2\%$, $9\%$ and $16\%$ of pairs, and its act-and-wrong rate ($0$, $0.003$, $0.038$,
+  $0.059$) stays inside every guarantee. Its accuracy when acting falls to $57\%$ at level $0.20$: the guarantee bounds wrong acts
+  over all pairs, not the error rate among acts.
+\end{itemize}
+A disclosure: when the second plan was written, its author did not know of the first analysis, and its plan file overwrote the
+first's in the project folder. The original was restored byte-identical from the session record and all of its frozen hashes verify;
+the second analysis's files were moved to their own folder, with only two file paths changed before its single run.
+
+\paragraph{What SciFact says.} With weak sources, the decision layer behaves as designed and is honest about it: it is right when it
+acts, it hedges on the hard pairs, its hedges usually contain the truth, and with conformal reliabilities its wrong acts stay within a
+guarantee that assumes nothing about dependence. It is also nearly useless at a $95\%$ guarantee, its margin ranks pairs worse than
+plain confidence, and both analyses act almost only on NEI. Stronger verifiers are needed before support floors, weakest links or
+support-contextuality can be tested on real claims.
+
+\subsection{Claims and limits}
+\paragraph{Proposed in \cite{SupportAmbience}.} Support floors as ambient parameters; a presheaf of local probability, support and
+provenance data; weakest-link and typed-obstruction diagnostics; a context-carrying layer for history.
+\paragraph{Immediate.} A coupling polytope cut by finitely many support inequalities is a possibly empty polytope; the max--min
+program is linear; presheaves encode restriction without asserting a global section.
+\paragraph{Established here.} Cell floors are reduced margins (\cref{prop:reducedmargins}), so the toric and chamber machinery applies
+unchanged and the weakest link has a closed form; the ambience is a functor into posets whose total category carries history and
+replay, policy imposition and floor summarisation are an idempotent comonad and monad on its fibres, and their interaction with
+transport is oplax (\cref{prop:fibred}; \cite[Thm.~10.26]{Tower} for whole chains); E3--E6 hold as pre-registered, E1 and E2 after documented corrections; support-contextuality
+occurs in a quarter of random gluable triangles.
+\paragraph{Not established.} Floors on events and on cyclic covers have no closed form and use linear programs; the weakest link is
+computed one source at a time; a falsehood shared by every source is not separable from the truth and shows only as a wide credal
+set; the AMB and Vigneaux cohomologies are not unified, and the non-additivity of the support indicator argues that no direct map
+exists; floors have not yet been tried in the recursive-training experiment, where they are a candidate repair for its failed
+prediction~3. On real claims (SciFact, \cref{sec:scifact}) the layer is right when it acts but, with weak classical verifiers, rarely acts.
+
 \section{Why the deeper machinery is not yet activated}\label{sec:activation}
 %=====================================================================
 
@@ -1408,6 +1968,8 @@ selection as fibres & a measurement map with missingness & lactate, HbA1c, attri
 gluing algebra, square-zero cone \cite{Algebras} & -- (structure of 2-cells) & -- & collapses (\cite[Cor.~5.3]{Algebras}) & only its chain-level defects, through interchange and whiskering\\
 toric surfaces, branes, entropy brane \cite{Bridges} & margins near walls or the boundary; an outcome to predict & real $2\times3$ and $3\times3$ margins; the tower's predicted margins; per-stay ICU systems & a diagnostic in the tower; forecasts GSS chamber changes; no forecast of ICU death (\cref{sec:forecast}) & nondegenerate per-unit systems (finer time grids), and a decided-tear target\\
 Floer theory of couplings \cite{Bridges} & as above, plus a question about pairs of couplings & computed for small cases & descriptive & a comparison of couplings across contexts whose answer depends on Floer data\\
+context-invariance variety $O\perp C\mid A$ (toric) & the same information in several contexts, and an outcome & GSS wordings $\times$ party; ICU units $\times$ pressure $\times$ death & active (\cref{sec:contextmap}) & randomized contexts with outcomes in clinical data\\
+boundary strata, families over bands & systems with empty categories & per-stay ICU day systems & active: geometry recovered, no forecast (\cref{sec:contextmap}) & longer windows, finer grids\\
 precision ladder \cite{Attribution} & sources with known supports & none & not used & attribution of a mixture to known sources (e.g.\ sites) with an unmodelled part\\
 \end{longtable}}
 
@@ -1418,6 +1980,9 @@ because we did not yet ask the questions that would need them. Several activatio
 \item the interchange correction, on the C19PRC and ICU bands (\cref{sec:interchange,sec:towericu});
 \item a tower over PhysioNet with Fano tubes of its gradations, and a generalized reliability level that replicates (\cref{sec:towericu,sec:gentower});
 \item geometry as a forecaster (\cref{sec:forecast});
+\item the context-invariance variety and boundary-aware geometry (\cref{sec:contextmap});
+\item a family-of-cones tracker of the approach to collapse, and recursive training with known truth (\cref{sec:collapse});
+\item ambient support geometry: a decision layer with support floors, typed obstructions and replayable records, carried by a fibred, locally posetal 2-category (\cref{sec:support,sec:fibred});
 \item restricted selection models (\cref{sec:restricted});
 \item a structural-event pipeline (\cref{sec:events}).
 \end{itemize}
@@ -1633,6 +2198,7 @@ Validation (this paper) & LLM drift: GPT-3.5 and GPT-4, March and June 2023, eig
  & C19PRC-UK waves 1--6, $2{,}025$ at wave 1 & public (OSF) & four-wave latent composition, panel conditioning, attrition, banding interchange test, restricted selection models & \cite{McBride2021}, \url{https://osf.io/v2zur}\\
  & C19PRC Ireland (Mental Health ASAP) waves 1--5, $1{,}041$ at wave 1 & public (OSF) & replication of the C19PRC-UK analyses & \cite{SpikolIE}\\
  & MIMIC-IV & credentialed & not analysed; pre-registered kit tested on synthetic data & \cite{MIMICIV}\\
+ & SciFact, $1{,}409$ claims and $5{,}183$ abstracts ($340$ dev pairs) & public (CC BY-NC 2.0), kept outside the code archive & decision layer on real claims: credal channels, conformal reliabilities, guarantee and coverage & \cite{Wadden2020}\\
  & T1--T4: kernel library, tower with a Cromwell model and reliabilities ($200$ observations), contexts, couplings & synthetic, frozen & structural backbone with planted failures & \texttt{ext/structure/}\\
  & synthetic data in the layouts of PhysioNet 2012, Diabetes 130, Heart Disease, C19PRC and MIMIC-IV, with planted answers & synthetic & tests of every adapter before the real data & \texttt{ext/}\\
 Bands & NHANES 2009--10 and 2011--12, $10{,}730$ adults, $16$ subgroups & public & information ladder, out-of-sample bands, barcodes & \cite{NHANESpkg}\\
@@ -1707,7 +2273,7 @@ work of \cref{sec:positive,sec:clinical,sec:panels6}: the plans (\texttt{PREANAL
 (\texttt{open\_clinical/challenge2012.py}, \texttt{diabetes130.py}, \texttt{heart.py}; \texttt{c19/c19.py} with the four-wave model
 \texttt{latentT.py}; \texttt{snowqueen/snowqueen.py}), their synthetic tests with planted answers, the frozen results with their hashes,
 the post-review checks (\texttt{c19/b2\_equal\_starts.py}, the four-wave rerun and its power; \texttt{snowqueen/cbd\_split\_power.py},
-the planted check of canonical CbD), the tower and Fano tubes on PhysioNet and the ICU interchange recheck (\texttt{open\_clinical/tower\_icu.py}, with its exploratory follow-up \texttt{tower\_icu\_explore.py}; figure by \texttt{make\_fig\_fano.py}), the banding interchange test (\texttt{c19/banding\_interchange.py}), phase 4 (\texttt{phase4/}: plan, \texttt{geom.py}, \texttt{wp1\_clinical.py}, \texttt{wp1\_gss.py}, \texttt{wp2\_selection.py}, \texttt{structural\_events.py}, \texttt{wp4\_tower.py}, their planted checks and frozen results; figure by \texttt{make\_fig\_phase4.py}), the structural tests T1--T4 (\texttt{structure/}, with their plan, frozen data and frozen
+the planted check of canonical CbD), the tower and Fano tubes on PhysioNet and the ICU interchange recheck (\texttt{open\_clinical/tower\_icu.py}, with its exploratory follow-up \texttt{tower\_icu\_explore.py}; figure by \texttt{make\_fig\_fano.py}), the banding interchange test (\texttt{c19/banding\_interchange.py}), phase 4 (\texttt{phase4/}: plan, \texttt{geom.py}, \texttt{wp1\_clinical.py}, \texttt{wp1\_gss.py}, \texttt{wp2\_selection.py}, \texttt{structural\_events.py}, \texttt{wp4\_tower.py}, their planted checks and frozen results; figure by \texttt{make\_fig\_phase4.py}), phase 6 (\texttt{phase6/}: \texttt{fan\_tracker.py}, \texttt{trajectories.py}, \texttt{recursive\_training.py}, plan and frozen results; figures by \texttt{make\_fig\_collapse.py}), phase 7 (\texttt{phase7/}: \texttt{decide.py}, \texttt{support.py}, \texttt{experiments.py}, \texttt{rechecks.py}, plan and frozen results), phase 5 (\texttt{phase5/}: \texttt{context\_map.py}, \texttt{boundary\_geometry.py}, plan and frozen results; figure by \texttt{make\_fig\_context.py}), the structural tests T1--T4 (\texttt{structure/}, with their plan, frozen data and frozen
 results), and the MIMIC-IV kit (\texttt{mimic\_kit/}). \texttt{check\_monitor.py} reruns
 the unit tests and the fast analyses, verifies the saved outputs of the slow ones, checks \cref{prop:stress,prop:churn} on every reported
 change, and pins every number quoted in the text. The data are public: the LLM-drift answers from the authors' repository, the GSS through
@@ -1722,6 +2288,7 @@ We thank the people who collected and released the data used here:
   \texttt{gssr} package;
 \item the U.S.~Centers for Disease Control and Prevention for NHANES, and R.~Pruim for the \texttt{NHANES} package;
 \item PhysioNet and the organizers of the PhysioNet/Computing in Cardiology Challenge 2012;
+\item D.~Wadden and colleagues at the Allen Institute for AI for SciFact;
 \item B.~Strack and colleagues, and the UCI Machine Learning Repository, for the Diabetes 130-US Hospitals data;
 \item A.~Janosi (Hungarian Institute of Cardiology, Budapest), W.~Steinbrunn (University Hospital Zurich), M.~Pfisterer (University
   Hospital Basel) and R.~Detrano (V.A.~Medical Center, Long Beach, and the Cleveland Clinic Foundation) for the Heart Disease data, collected
@@ -1888,6 +2455,39 @@ D.~E. Wiley and J.~A. Wiley, The estimation of measurement error in panel data. 
 \bibitem{Yan2021}
 S.~Yan, Y.~Xiong, K.~Kundu, S.~Yang, S.~Deng, M.~Wang, W.~Xia and S.~Soatto, Positive-congruent training: towards regression-free model
 updates. In \emph{Proc. CVPR}, 2021, 14299--14308.
+
+\bibitem{AbramskyMansfieldBarbosa2012}
+S.~Abramsky, S.~Mansfield and R.~S. Barbosa, The cohomology of non-locality and contextuality. \emph{EPTCS} \textbf{95} (2012), 1--14.
+
+\bibitem{AraujoEtAl2013}
+M.~Ara\'ujo, M.~T. Quintino, C.~Budroni, M.~Terra Cunha and A.~Cabello, All noncontextuality inequalities for the $n$-cycle scenario. \emph{Phys. Rev. A} \textbf{88} (2013), 022118.
+
+\bibitem{SupportAmbience}
+Ambient support geometry: presheaves, positive support floors, and local-to-global obstructions. Programme proposal, 11 October 2026.
+
+\bibitem{Vigneaux2019}
+J.-P. Vigneaux, \emph{Topology of Statistical Systems: A Cohomological Approach to Information Theory}. Ph.D. thesis, Universit\'e Paris Diderot, 2019.
+
+\bibitem{BaudotBennequin2015}
+P.~Baudot and D.~Bennequin, The homological nature of entropy. \emph{Entropy} \textbf{17} (2015), 3253--3318.
+
+\bibitem{Fritz2020}
+T.~Fritz, A synthetic approach to Markov kernels, conditional independence and theorems on sufficient statistics. \emph{Adv. Math.} \textbf{370} (2020), 107239.
+
+\bibitem{HolonomyNote}
+Holonomy obstructions for composed local operations, and why they succeed where marginal obstructions fail. Programme manuscript, draft September 2026.
+
+\bibitem{Johnstone2002}
+P.~T. Johnstone, \emph{Sketches of an Elephant: A Topos Theory Compendium}, vol.~1. Oxford University Press, 2002.
+
+\bibitem{MacLaneMoerdijk1992}
+S.~Mac~Lane and I.~Moerdijk, \emph{Sheaves in Geometry and Logic}. Springer, 1992.
+
+\bibitem{Vorobev1962}
+N.~N. Vorob'ev, Consistent families of measures and their extensions. \emph{Theory Probab. Appl.} \textbf{7} (1962), 147--163.
+
+\bibitem{Wadden2020}
+D.~Wadden, S.~Lin, K.~Lo, L.~L. Wang, M.~van Zuylen, A.~Cohan and H.~Hajishirzi, Fact or fiction: verifying scientific claims. In \emph{Proc. EMNLP} (2020), 7534--7550.
 
 \end{thebibliography}
 \end{document}
