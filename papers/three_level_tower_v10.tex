@@ -1665,6 +1665,110 @@ $\{1,\dots,N\}$ and, for a prime $p$, let $E_p=\{n:p\nmid n\}$.
   same observations.
 \end{enumerate}
 
+\subsection{Support floors, policies and leaf-spring chains}\label{sec:floors}
+
+The level-one sets of this section are convex sets of posteriors: $L_1$, $E_1$, or any credal set produced by evidence. A decision
+layer built on them \cite[Section~14]{Awasthi-Validation} adds a \emph{support policy}, a floor $\tau\in\mathbb R_{\ge0}^B$ that a
+posterior must clear on chosen outcomes, and it reports conclusions as \emph{floors}, the coordinatewise lower bounds a set
+certifies. This subsection records how policies and floors interact with the stochastic change of base of \cref{cor:stoch-adm}.
+Write $\mathcal K(B)$ for the closed convex subsets of $\D B$, ordered by inclusion; an arrow $L\to L'$ means $L\subseteq L'$, a
+weakening. For a kernel $k\colon B\to\D(B')$, $k^\#$ acts on $\mathcal K(B)$ by images and on floors linearly,
+$(k^\#\tau)(b')=\sum_b\tau(b)k(b)(b')$.
+
+\begin{definition}[Policies and summaries]\label{def:policy}
+For a floor $\tau$, the \emph{policy} is $\iota_\tau(L)=L\cap\{\rho\ge\tau\}$. The \emph{floor} of $L$ is $m(L)=\min_{\rho\in L}\rho$,
+coordinatewise, and its \emph{summary} is the floor box $\sigma(L)=\{\rho\in\D B:\rho\ge m(L)\}$. A set is a \emph{box} if
+$\sigma(L)=L$.
+\end{definition}
+
+\begin{proposition}[Interior and closure]\label{prop:interior}
+$\iota_\tau$ is an interior operator and $\sigma$ a closure operator on $\mathcal K(B)$: both are monotone and idempotent, with
+$\iota_\tau L\subseteq L\subseteq\sigma L$. Hence, in the poset $\mathcal K(B)$ viewed as a category, $\iota_\tau$ is an idempotent
+comonad and $\sigma$ an idempotent monad, and their laws hold trivially.
+\end{proposition}
+\begin{proof}
+Intersection with a fixed set is deflationary, idempotent and monotone. For $\sigma$: $L\subseteq\sigma L$; the floor of the box
+$\{\rho\ge m\}$ is $m$ (each coordinate attains $m_b$ at the vertex $m+(1-\sum m)\delta_{b'}$ with $b'\ne b$, or equals $m_b$
+when $|B|=1$), so $\sigma\sigma=\sigma$; and $L\subseteq L'$ gives $m(L)\ge m(L')$, so $\sigma L\subseteq\sigma L'$. In a poset a
+counit or unit is an inequality and every diagram commutes.
+\end{proof}
+
+\begin{proposition}[Transport of policies and floors]\label{prop:floortransport}
+Let $k\colon B\to\D(B')$ and $h\colon B'\to\D(B'')$ be kernels and $L\in\mathcal K(B)$.
+\begin{enumerate}[label=(\roman*)]
+\item Images compose strictly: $(h\circ k)^\#L=h^\#k^\#L$, so $B\mapsto\mathcal K(B)$, $k\mapsto k^\#$ is a functor on the
+  Kleisli category, and its category of elements is an opfibration with posetal fibres that contains the discrete opfibration of
+  \cite[Prop.~3.3]{Conditionals} at level one as the singletons.
+\item Floors push forward soundly: $\rho\ge\tau$ implies $k^\#\rho\ge k^\#\tau$; and imposing a policy before transport is
+  stronger than pushing its floor forward: $k^\#\iota_\tau L\subseteq\iota_{k^\#\tau}(k^\#L)$.
+\item On boxes, $F(k)=\sigma\circ k^\#$ is a normal oplax functor into posets: $F(\eta_B)=\id$ and
+  $F(h\circ k)L\subseteq F(h)F(k)L$. The inclusion can be strict.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) $(h\circ k)^\#=h^\#k^\#$ (\cref{prop:stoch-base}(iii)); a category of elements of a functor into posets is an opfibration
+whose fibres are those posets, and singletons $\{\rho\}$ with $\rho\in A^{\mathrm{coh}}_B$ at level one embed the discrete one.
+(ii) $k^\#$ is linear with non-negative coefficients; if $\rho\in L$ and $\rho\ge\tau$ then $k^\#\rho\in k^\#L$ and
+$k^\#\rho\ge k^\#\tau$. (iii) $\eta_B^\#=\id$ and boxes are fixed by $\sigma$. Since $k^\#L\subseteq\sigma k^\#L$ and $h^\#$ and
+$\sigma$ are monotone, $\sigma h^\#k^\#L\subseteq\sigma h^\#\sigma k^\#L$. A strict case is in the example below.
+\end{proof}
+
+\begin{definition}[Leaf-spring chain]\label{def:leafspring}
+A \emph{leaf-spring chain} from $(B_0,L_0)$ is a finite word of steps, each either a \emph{transport} $k_i\colon B_{i-1}\to\D(B_i)$,
+acting by $k_i^\#$, or a \emph{vertical} step at the current base: a policy $\iota_\tau$, a summary $\sigma$, or a weakening
+$L\mapsto\operatorname{conv}(L\cup W)$. Its end set is the result of applying the steps in order. A conclusion certified by the
+chain is a lower bound $\min_{\rho\in L_{\mathrm{end}}}\langle f,\rho\rangle$ for a function $f$ on the final base.
+\end{definition}
+
+The name records the picture of the proposal behind \cite[Section~14]{Awasthi-Validation}: each segment carries part of the load to the
+next while flexing locally. Transports are the cocartesian arrows of the opfibration of \cref{prop:floortransport}(i), vertical steps
+are arrows (or, for a policy, a coreflection) inside one fibre.
+
+\begin{theorem}[Leaf-spring chains]\label{thm:leafspring}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Path independence.} A chain without vertical steps has end set $(k_n\circ\cdots\circ k_1)^\#L_0$: it depends only on
+  the composite kernel. Two chains with the same composite and no vertical steps certify exactly the same conclusions.
+\item \emph{Monotonicity.} Inserting a summary or a weakening anywhere enlarges the end set, so every certified lower bound can
+  only fall; inserting a policy shrinks it, so certified lower bounds can only rise. Certification is lost only at summaries and
+  weakenings, never at a transport.
+\item \emph{Ordering rule.} Among chains with the same transports, one policy on $B_0$ and summaries, the summarised end set is
+  smallest when the policy is imposed first and the only summary is taken last. Imposing first is also contained in imposing the
+  pushed floor at the end: $(k_n\cdots k_1)^\#\iota_\tau L_0\subseteq\iota_{(k_n\cdots k_1)^\#\tau}\big((k_n\cdots k_1)^\#L_0\big)$.
+\item \emph{Attribution of lost certification.} For a chain with summaries at positions $j_1<\dots<j_r$ and a function $f$, let
+  $c_s$ be the bound certified when the first $s$ summaries are removed. Then $c_0\le c_1\le\cdots\le c_r$, and the loss
+  $c_r-c_0=\sum_s(c_s-c_{s-1})$ is a sum of non-negative contributions, one per summary.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) is \cref{prop:floortransport}(i). (ii) All steps are monotone maps of posets, summaries and weakenings are inflationary and
+policies deflationary, so the end set is monotone in each inserted step. (iii) Moving a policy earlier shrinks the end set by
+\cref{prop:floortransport}(ii) applied step by step; removing an intermediate summary shrinks it by (ii), and a final summary is
+common to all summarised end sets. The displayed inclusion is \cref{prop:floortransport}(ii) for the composite kernel.
+(iv) Removing a summary shrinks the end set by (ii), so each $c_s-c_{s-1}\ge0$; the sum telescopes.
+\end{proof}
+
+So the weakest link of a chain is never a transport: it is a vertical step, and the telescoping of (iv) assigns the loss to the
+summaries. The decomposition depends on the order in which summaries are removed, as any sequential attribution does; a symmetric
+(Shapley) attribution would average over orders. Path dependence, two routes with the same composite that certify differently,
+can likewise arise only from the placement of vertical steps. This parallels \cref{cor:stoch-adm}: transport never manufactures an
+obstruction, and here it never loses a certificate; what is lost is lost by summarising.
+
+\begin{example}[One chain, exactly]\label{ex:leafspring}
+Take the kernels $k\colon\{0,1\}\to\D\{u,v,w\}$ and $h\colon\{u,v,w\}\to\D\{P,Q\}$ of \cite[Section~11]{Awasthi-Family},
+$k(0)=(\tfrac12,\tfrac14,\tfrac14)$, $k(1)=(\tfrac15,\tfrac15,\tfrac35)$, $h(u)=\delta_P$, $h(v)=(\tfrac12,\tfrac12)$, $h(w)=\delta_Q$,
+and the credal segment $L$ between $\eta=(\tfrac12,\tfrac12)$ and $x_1=(\tfrac7{10},\tfrac3{10})$.
+\begin{itemize}[leftmargin=*,nosep]
+\item $k^\#L$ is the segment from $(\tfrac7{20},\tfrac9{40},\tfrac{17}{40})$ to $(\tfrac{41}{100},\tfrac{47}{200},\tfrac{71}{200})$,
+  with floor $(\tfrac7{20},\tfrac9{40},\tfrac{71}{200})$.
+\item Carried as a set to $\{P,Q\}$, the chain certifies $\rho(Q)\ge\tfrac{189}{400}$; summarised after $k$, it certifies only
+  $\tfrac{187}{400}$. The summary costs $\tfrac1{200}$, and $F(h\circ k)\subsetneq F(h)F(k)$.
+\item With the policy $\rho(0)\ge\tfrac35$ imposed on $\{0,1\}$ before $k$, the floor on $\{u,v,w\}$ is
+  $(\tfrac{19}{50},\tfrac{23}{100},\tfrac{71}{200})$. Pushing the floor forward instead, $k^\#\tau=(\tfrac3{10},\tfrac3{20},\tfrac3{20})$,
+  certifies only $(\tfrac7{20},\tfrac9{40},\tfrac{71}{200})$: imposing first gains $\tfrac3{100}$ on $u$ and $\tfrac1{200}$ on $v$.
+\end{itemize}
+\end{example}
+
 %=====================================================================
 \section{A synthetic illustration: ensembles, hallucination tests and label noise}\label{sec:synthetic}
 %=====================================================================
@@ -2126,7 +2230,7 @@ are:
   coupling polytopes used in \cite{Awasthi-Attribution,Conditionals};
 \item \texttt{synthetic\_examples.py}: the synthetic data of \cref{sec:synthetic}, of
   \cite[Section~12]{Conditionals} and of \cite[Section~15]{Awasthi-Family}. It is seeded, runs in about twenty
-  seconds and checks its own claims (8 checks). It writes \texttt{results.json} and nine CSV files:
+  seconds and checks its own claims (8 checks). The generated files are also archived at \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/blob/main/coupling/synthetic_data.zip}. It writes \texttt{results.json} and nine CSV files:
   \begin{itemize}[nosep]
   \item \texttt{triage\_samples}, \texttt{chamber\_identification}, \texttt{independence\_tests};
   \item \texttt{two\_models\_samples}, \texttt{horn\_studies};
@@ -2205,6 +2309,7 @@ identification \cite{Manski1990}; spiked random-matrix thresholds \cite{BBP2005}
 \item Absolute tower: shift law natural and (Co), fails (U), (M), (Cm); averaging law natural,
   (U), (Co), (M), fails (Cm). The unit axiom excludes point-mass hierarchy at level one (proved).
 \item Composite identifiability trivializes $\Hyp$; the ``iff'' holds under nondegeneracy alone (proved).
+\item Support floors: policies are interior and summaries closure operators on level-one credal sets; floors push forward soundly, policies imposed before transport certify more, and floor summaries form a normal oplax functor; along a leaf-spring chain certification is path-independent and is lost only at summaries, with an exact attribution (proved, with an exact example).
 \end{enumerate}
 
 %=====================================================================
@@ -2336,6 +2441,11 @@ not been established, so we state the low recovery rate without attributing it t
 %=====================================================================
 \section{Changes from earlier versions}\label{app:changes}
 %=====================================================================
+
+\paragraph{Addition to version 10 (October 2026).} New \cref{sec:floors}: support policies and floor summaries on level-one
+credal sets, their transport along kernels, and leaf-spring chains (\cref{prop:interior,prop:floortransport,thm:leafspring},
+\cref{ex:leafspring}); new script \texttt{check\_support\_floors.py}. It is the last subsection of \cref{sec:lifting}, so no
+earlier or later numbering changes.
 
 \paragraph{Version 10.}
 \begin{enumerate}[leftmargin=*,label=(\alph*)]
@@ -2532,6 +2642,12 @@ cancellation example of \cref{prop:pool-obstr}; and that canonical contexts lie 
 tower. The linear programs are solved in floating point; all other checks are exact. All 17 checks
 pass.
 
+For \cref{sec:floors}, \texttt{check\_support\_floors.py} checks, in exact rational arithmetic on random credal polygons and
+kernels between bases of sizes two and three: \cref{prop:interior}; \cref{prop:floortransport}(ii) and (iii), with $93$ strict
+cases of the policy inclusion and $132$ strict oplax comparisons in $300$ trials each; \cref{thm:leafspring}(i)--(iv); and
+\cref{ex:leafspring}. It also checks the floored gluing of the binary triangle and the floored hexagon used in
+\cite{Conditionals,Awasthi-Family}. All checks pass.
+
 For \cref{sec:coalg}, \texttt{check\_coalgebras.py} checks that coalgebra structures are of the form
 $\langle\id,g\rangle$ with coassociativity automatic; the cofree adjunction bijection; that $\eta$ and
 $\mu$ are maps over $A_B$ for the lifted monad; the recovery of $\lambda^B$ from the cofree coalgebra;
@@ -2585,18 +2701,23 @@ S.~Abramsky, S.~Mansfield, and R.~S. Barbosa.
 V.~K. Awasthi.
 \newblock Precise attribution of model interventions: attribution sets, mechanism reach, path defects
 and gluing.
-\newblock Technical report, Johns Hopkins University, October 2026. Draft 5.
+\newblock Technical report, Johns Hopkins University, October 2026. Draft 5. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/precise_attribution}.
 
 \bibitem{Conditionals}
 V.~K. Awasthi.
 \newblock Conditionals, couplings and toric geometry: kernels, the coupling nerve, cumulants and a {F}ukaya
 programme.
-\newblock Technical report, Johns Hopkins University, October 2026. Revised draft 4.
+\newblock Technical report, Johns Hopkins University, October 2026. Revised draft 4. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/conditionals}.
+
+\bibitem{Awasthi-Validation}
+V.~K. Awasthi.
+\newblock Empirical site separation: bending, tearing, contextuality and holonomy in a national survey, retrained language models and clinical data.
+\newblock Technical report, Johns Hopkins University, October 2026. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent}.
 
 \bibitem{Awasthi-Family}
 V.~K. Awasthi.
 \newblock Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability.
-\newblock Companion paper, Johns Hopkins University, October 2026.
+\newblock Companion paper, Johns Hopkins University, October 2026. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/coupling}.
 
 \bibitem{Awasthi-Hierarchy}
 V.~K. Awasthi.
@@ -2614,7 +2735,7 @@ V.~K. Awasthi.
 V.~K. Awasthi.
 \newblock Three layers of realisation: hierarchy recovery, holonomy, information and contextuality.
 \newblock Technical report, Johns Hopkins University, September 2026.
-\newblock DOI: 10.13140/RG.2.2.24274.52163.
+\newblock DOI: 10.13140/RG.2.2.24274.52163. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/AMB-Vigneaux/}.
 
 \bibitem{Blanchard2010}
 G.~Blanchard, G.~Lee, and C.~Scott.

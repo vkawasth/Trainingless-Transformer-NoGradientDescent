@@ -38,7 +38,7 @@ Kernels, the Coupling Nerve, Cumulants and a Fukaya Programme\\[4pt]
 \large Revised draft 4}
 \author{Vinay K. Awasthi\\
 Department of Applied Mathematics and Statistics\\
-Johns Hopkins University\thanks{Verification scripts are listed in \cref{sec:code}; the worked examples are
+Johns Hopkins University\thanks{Code and checks: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/conditionals}. Verification scripts are listed in \cref{sec:code}; the worked examples are
 in the companion \cite{Awasthi-Family}.}}
 \date{October 6, 2026}
 
@@ -224,6 +224,33 @@ The proof of \cref{thm:fibre} uses one fact beyond naturality: Kleisli extension
 $\D$-algebras. All other components of $A_k$ are pushforwards along functions. So the strict integrability of
 each fibre and the transport between fibres are compatible.
 
+\paragraph{Ordered fibres: support policies.} A decision layer needs sets of laws ordered by strength, not single contexts
+\cite[Section~14]{Awasthi-Validation}. At level one this is a posetal enlargement of $\mathcal E$.
+
+\begin{definition}[The ordered total category]\label{def:ordered}
+Let $\mathcal K(B)$ be the closed convex subsets of $\D B$ ordered by inclusion, with $k\colon B\to\D(B')$ acting by images $k^\#$.
+Let $\mathcal E_{\le}$ have objects $(B,L)$ with $L\in\mathcal K(B)$ and an arrow $(B,L)\to(B',L')$ for each kernel $k$ with
+$k^\#L\subseteq L'$.
+\end{definition}
+
+\begin{proposition}[Ordered fibres]\label{prop:ordered}
+The projection $\mathcal E_{\le}\to\Kl(\D)$ is an opfibration whose fibres are the posets $\mathcal K(B)$, with cocartesian
+lifts $k\colon(B,L)\to(B',k^\#L)$. Singletons $\{\rho\}$ with $\rho$ the level-one component of a coherent context embed the
+level-one part of $\mathcal E$ (\cref{prop:opfib}). Policies $L\mapsto L\cap\{\rho\ge\tau\}$ and floor summaries are an
+idempotent comonad and an idempotent monad on each fibre; they do not commute with transport, and the comparisons are
+inclusions: floors push forward soundly, policies imposed before transport certify more, and floor summaries form a normal oplax
+functor \cite[Prop.~10.23, Prop.~10.24]{Awasthi-Tower}. Along a chain of transports and vertical steps, certification is
+path-independent and is lost only at summaries \cite[Thm.~10.26]{Awasthi-Tower}.
+\end{proposition}
+\begin{proof}
+$(h\circ k)^\#=h^\#k^\#$, so $B\mapsto\mathcal K(B)$ is a functor into posets, and its category of elements is an opfibration
+with these fibres. Singletons are preserved by $k^\#$. The rest is proved in the cited results.
+\end{proof}
+
+A fibred comonad on the discrete opfibration $\mathcal E$ itself would be trivial, since a counit inside a discrete fibre is an
+identity. This is why the tower's comonads are carried \emph{alongside} $\mathcal E$, as the family $\C^B$ joined by the comonad
+morphisms of \cref{thm:fibre}(ii), and why a policy can be a non-trivial comonad only on ordered fibres.
+
 %=====================================================================
 \section{Layer III: the coupling nerve}\label{sec:nerve}
 %=====================================================================
@@ -325,6 +352,65 @@ the computation in the companion.
 So the toric regime of the nerve is exactly the 1-simplices and the 2-horns. Boundary fillings leave it, and higher
 horns can be empty.
 
+\paragraph{Gluing under a support floor.} A support policy asks more of a filler than existence. With a floor $\tau$ on every cell
+of the global table, three statuses separate: a filler exists; a filler meets the floor; the maximum-entropy filler is among those
+that do. A new obstruction appears between the first two.
+
+\begin{definition}[Support-contextuality]\label{def:suppctx}
+A compatible family on a cover is \emph{support-contextual at floor $\tau$} if it glues, every local table meets the local floor
+implied by $\tau$ (each local cell at least $\tau$ times the number of global cells over it), and no global section has every cell
+at least $\tau$.
+\end{definition}
+
+\begin{proposition}[The chain]\label{prop:floorchain}
+For binary $X-Y-Z$ with fixed $(X,Y)$ and $(Y,Z)$ tables $\pi_{XY},\pi_{YZ}$, a filler with all eight cells at least $\tau$ exists iff
+$\tau\le\tau_{\mathrm{any}}=\tfrac12\min(\min\pi_{XY},\min\pi_{YZ})$, and the conditional product, the maximum-entropy filler with
+$H(X,Y,Z)=H(X,Y)+H(Y,Z)-H(Y)$, meets the floor iff $\tau\le\tau_{CI}=\min_{x,y,z}\pi_{XY}(x,y)\pi_{YZ}(y,z)/\pi_Y(y)$. Always
+$\tau_{CI}\le\tau_{\mathrm{any}}$. A chain is never support-contextual.
+\end{proposition}
+\begin{proof}
+Given $Y=y$ the filler is a $2\times2$ coupling of $\pi_{XY}(\cdot,y)$ and $\pi_{YZ}(y,\cdot)$; with all cells floored it is the coupling
+polytope of the reduced margins (\cref{prop:reducedmargins}), non-empty iff each reduced margin is non-negative, that is
+$\pi_{XY}(x,y)\ge2\tau$ and $\pi_{YZ}(y,z)\ge2\tau$. The conditional product is one filler, so $\tau_{CI}\le\tau_{\mathrm{any}}$; its
+cells are the displayed products. The local floor is the same condition as $\tau\le\tau_{\mathrm{any}}$.
+\end{proof}
+
+\begin{theorem}[The binary triangle under a floor]\label{thm:floortriangle}
+Let binary $X_0,X_1,X_2$ carry consistent tables on the contexts $\{0,1\},\{1,2\},\{2,0\}$, with correlations
+$E_{ij}=\mathbb E[(-1)^{X_i+X_j}]$. For $c\in\{0,1\}^3$ let $\bar c$ be its complement and
+\[
+A_c=1-\tfrac12\sum_{\{i,j\}}P\big(X_i\oplus X_j\ne c_i\oplus c_j\big)=\tfrac14\Big(1-\sum_{\{i,j\}}\gamma_{ij}E_{ij}\Big),\qquad
+\gamma_{ij}=-(-1)^{c_i+c_j},
+\]
+a function of the pairwise tables. Then a global section with every cell at least $\tau\ge0$ exists iff every pairwise cell is at
+least $2\tau$ and $A_c\ge2\tau$ for the four pairs $\{c,\bar c\}$; equivalently
+\[
+\sum_{\{i,j\}}\gamma_{ij}E_{ij}\le1-8\tau\qquad\text{for every }\gamma\text{ with an odd number of }-1\text{s}.
+\]
+At $\tau=0$ these are the $3$-cycle noncontextuality inequalities \cite{AraujoEtAl2013}. The family is support-contextual at $\tau$
+exactly when every pairwise cell is at least $2\tau$, all four inequalities hold at $\tau=0$, and one fails at $\tau$.
+\end{theorem}
+\begin{proof}
+The pairwise-margin map on $\mathbb R^{\{0,1\}^3}$ has rank $7$ and kernel spanned by $\chi(c)=(-1)^{c_0+c_1+c_2}$, so the global
+sections of a gluable family are $J+s\chi$ for $s$ in an interval. A floored section exists iff
+$\max_s\min_c(J_c+s\chi_c)\ge\tau$. With four slopes $+1$ and four $-1$ the maximum of the minimum is
+$\tfrac12\min\{J_c+J_{c'}:\chi(c)=1,\chi(c')=-1\}$, and these sums do not depend on $s$. Cells of opposite parity differ in one
+coordinate or in all three. If in one, $J_c+J_{c'}$ is a cell of the context of the other two variables. If in all three,
+$c'=\bar c$ and $J_c+J_{\bar c}$ is the probability that the variables, after flipping those with $c_i=1$, are all equal. A
+non-constant binary triple disagrees on exactly two of the three pairs, so this probability is
+$1-\tfrac12\sum P(\text{disagree})=A_c$; with $P(X_i\oplus X_j\ne e)=\tfrac12(1-(-1)^eE_{ij})$ it is the displayed affine form, and
+$A_c\ge2\tau$ is the stated inequality. The sign vectors $\gamma$ have product $-1$, an odd number of $-1$s. The case $\tau=0$ is
+gluability, and the last sentence is \cref{def:suppctx} with local floor $2\tau$.
+\end{proof}
+
+\begin{example}[A support-contextual triangle]\label{ex:suppctx}
+Let the global table put $0$ on $000$ and $111$ and $\tfrac16$ on the other six cells, and give the cover its three pairwise
+tables. Every pairwise cell is $\tfrac16$ or $\tfrac13$, so the local floor holds for every $\tau\le\tfrac1{12}$, and the family glues.
+But $A_{000}=J_{000}+J_{111}=0$ on every global section, so no global section meets any positive floor: the family is
+support-contextual at every $\tau\in(0,\tfrac1{12}]$. The other three $A_c$ equal $\tfrac13$. In the pre-registered experiment of
+\cite[Section~14]{Awasthi-Validation}, $124$ of $519$ random gluable triangles were support-contextual at some tested floor.
+\end{example}
+
 %=====================================================================
 \section{Layer IV: cumulants and the square-zero cone}\label{sec:linear}
 %=====================================================================
@@ -372,6 +458,13 @@ arity $n$ the equation has terms $F_{n-1}(\dots,ab,\dots)$, $m_1F_n$ and $F_i\cd
 some $F_k$ with $k\ge3$, so all vanish. For $n=4$ the only survivor is $F_2\cdot F_2\in\varepsilon^2I=0$.
 The script checks the identity on random inputs only as a unit test of the code.
 \end{proof}
+
+\begin{remark}
+The gluing algebra splits as $A_f\cong\mathbb R\times M_{n-1}(\mathbb R)$, with the product coupling and $\operatorname{diag}(f)-f\otimes f$ as
+central idempotents. The functor of \cref{thm:sqzero} is the only one with first component $h_*$, for every mass-preserving
+linear map in place of $h_*$, and up to homotopy it is the mass \cite{Awasthi-Algebras}. So the coupling information is
+chain-level.
+\end{remark}
 
 \begin{remark}
 The proof does not use the general theory of \cite{HPT1,HPT2}, where the higher components of the cumulant
@@ -529,6 +622,29 @@ $\Lambda$ above, its facet normals are $\pm e_1$, $\pm e_2$ and $\pm(e_1+e_2)$. 
 $\mathbb{CP}^2$ blown up at three points, the del Pezzo surface of degree $6$. All six entries of the
 product coupling equal $\tfrac16$, so it is the equidistant point. The case $3\times4$ (uniform) gives a
 Delzant polytope of dimension $6$ with $96$ vertices and all $12$ cells facets, again monotone.
+\end{example}
+
+\begin{proposition}[Support floors are reduced margins]\label{prop:reducedmargins}
+Let $\tau\ge0$ on a set $D$ of cells, $f'=f-\tau\mathbf 1_D\mathbf 1$ and $g'=g-\mathbf 1^\top\tau\mathbf 1_D$. Then
+$\pi\mapsto\pi-\tau\mathbf 1_D$ is a bijection from $\Cpl_\tau(f,g)=\{\pi\in\Cpl(f,g):\pi\ge\tau\text{ on }D\}$ onto $\Cpl(f',g')$.
+Hence $\Cpl_\tau(f,g)$ is non-empty iff $f',g'\ge0$; it is a translate of a (rescaled) coupling polytope, so its normal fan, its
+toric type and its chamber are those of $(f',g')$, and its walls are $f'(I)=g'(J)$. The largest common margin $\delta$ with
+$\pi\ge\tau+w\delta$ on $D$ is $\min$ over rows and columns of (margin $-$ floors)/(weights) whenever that value is
+non-negative.
+\end{proposition}
+\begin{proof}
+On $D$, $\pi\ge\tau$ is $\pi-\tau\mathbf 1_D\ge0$; off $D$ the shift is zero; the margins shift by the row and column sums of
+$\tau\mathbf 1_D$, and a transportation polytope with non-negative margins of equal total is non-empty. Replace $\tau$ by
+$\tau+w\delta$ for the last statement, valid while $\tau+w\delta\ge0$.
+\end{proof}
+
+\begin{example}[A policy tears the del Pezzo surface]\label{ex:policytear}
+In \cref{ex:dp6} put a floor $\tau$ on the single cell $(0,0)$. The reduced margins are $(\tfrac12-\tau,\tfrac12)$ and
+$(\tfrac13-\tau,\tfrac13,\tfrac13)$, and the two walls $f'_0=g'_1$ and $f'_0=g'_2$ are crossed together at $\tau=\tfrac16$. The
+floored polytope is a hexagon for $\tau<\tfrac16$ and a quadrilateral, of type $\mathbb F_1$, for $\tfrac16<\tau<\tfrac13$: the policy
+alone performs the two blow-downs of \cref{prop:chambers}. At $\tau=\tfrac13$ the reduced margin $g'_0$ vanishes and the polytope
+loses dimension: the policy breaks the system. Floors on events $\pi(E)\ge\tau$, by contrast, give general polytopes. Exact vertices are in
+\texttt{check\_support\_floors.py}.
 \end{example}
 
 %=====================================================================
@@ -1111,7 +1227,8 @@ draft, \cref{sec:experimental} settles or reduces each:
   $(I,J)$.
 \item \emph{Higher horns:} the parity horns have contextual fraction $1-2^{2-n}$ for every $n$ (\cref{thm:higherhorn}). Open:
   a closed form for the best approximate fillers $\varepsilon^*(n)$, which increase and stay below $\frac12$ for $n\le8$.
-\item \emph{Multi-object cone:} positive on the 2-skeleton (\cref{thm:multicone,prop:nervecone}). Open: a target with
+\item \emph{Multi-object cone:} positive on the 2-skeleton (\cref{thm:multicone,prop:nervecone}); the square-zero cone is
+  homotopically trivial, so homotopy-invariant information is only the mass \cite{Awasthi-Algebras}. Open: a target with
   $H^{-1}\ne0$ that sees 3-simplex obstructions, which is \cref{conj:ainfty}(i).
 \item \emph{The tower:} horn obstructions are secondary obstructions of encoded claims (\cref{thm:horntower}). Open: a
   proof that $d(x_1,E_1)=2\varepsilon^*$ for symmetric horns, and an encoding of level three.
@@ -1147,9 +1264,11 @@ All checks pass.
   \item \texttt{check\_across\_wall.py} (7 checks): \cref{prop:acrosswall};
   \item \texttt{check\_fukaya\_probe.py} (6 checks) and \texttt{fukaya\_scan.py}: \cref{prop:fukmono}, \cref{obs:fukoff}.
   \item \texttt{check\_tower\_horns.py} (9 checks): \cref{thm:horntower,cor:levels,prop:infobound,prop:o3transport}.
-  \item \texttt{synthetic\_examples.py} (8 checks, with CSV data): the numbers of \cref{sec:stats}.
+  \item \texttt{synthetic\_examples.py} (8 checks, with CSV data): the numbers of \cref{sec:stats}. The CSV files are archived at \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/blob/main/coupling/synthetic_data.zip}.
   \end{itemize}
 \end{itemize}
+
+\texttt{check\_support\_floors.py} checks \cref{prop:ordered} through the tower's floor results, \cref{thm:floortriangle} (closed form against a linear program on $300$ random families, and the antipodal sums against the global tables, exactly), \cref{ex:suppctx} and \cref{ex:policytear} in exact arithmetic. All checks pass.
 
 \appendix
 %=====================================================================
@@ -1224,23 +1343,28 @@ The items below record the remaining corrections to the first draft.
 
 \begin{thebibliography}{99}
 
+\bibitem{Awasthi-Algebras}
+V.~K. Awasthi.
+\newblock Coupling algebras: gluing, the square-zero cone and the ring of contingency tables.
+\newblock Technical report, Johns Hopkins University, October 2026. Draft 1. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/coupling_algebra}.
+
 \bibitem{Awasthi-Attribution}
 V.~K. Awasthi.
 \newblock Precise attribution of model interventions: attribution sets, mechanism reach, path defects
 and gluing.
-\newblock Technical report, Johns Hopkins University, October 2026. Draft 5.
+\newblock Technical report, Johns Hopkins University, October 2026. Draft 5. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/precise_attribution}.
 
 \bibitem{Awasthi-ThreeLayers}
 V.~K. Awasthi.
 \newblock Three layers of realisation: hierarchy recovery, holonomy, information, contextuality and categorical dynamics.
 \newblock Technical report, Johns Hopkins University, September 2026, revised October 2026.
-\newblock DOI: 10.13140/RG.2.2.24274.52163.
+\newblock DOI: 10.13140/RG.2.2.24274.52163. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/AMB-Vigneaux/}.
 
 \bibitem{Awasthi-Tower}
 V.~K. Awasthi.
 \newblock The three-level posterior tower: hierarchical {B}ayesian inference and mixed distributive laws.
 \newblock Technical report, Johns Hopkins University, October 2026. Revised version 10. An earlier
-version is posted as DOI 10.13140/RG.2.2.29743.50088.
+version is posted as DOI 10.13140/RG.2.2.29743.50088. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/Heirarchical_posteriors}.
 
 \bibitem{Agresti2013}
 A.~Agresti, \emph{Categorical Data Analysis}, 3rd ed., Wiley, 2013.
@@ -1250,10 +1374,20 @@ D.~Arcara and A.~Bertram.
 \newblock Bridgeland-stable moduli spaces for {$K$}-trivial surfaces (with an appendix by M.~Lieblich).
 \newblock \emph{Journal of the European Mathematical Society}, 15(1):1--38, 2013.
 
+\bibitem{Awasthi-Validation}
+V.~K. Awasthi.
+\newblock Empirical site separation: bending, tearing, contextuality and holonomy in a national survey, retrained language models and clinical data.
+\newblock Technical report, Johns Hopkins University, October 2026.
+
+\bibitem{AraujoEtAl2013}
+M.~Ara\'ujo, M.~T. Quintino, C.~Budroni, M.~Terra Cunha and A.~Cabello.
+\newblock All noncontextuality inequalities for the $n$-cycle scenario.
+\newblock \emph{Phys. Rev. A} 88 (2013), 022118.
+
 \bibitem{Awasthi-Family}
 V.~K. Awasthi.
 \newblock Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability.
-\newblock Companion paper, Johns Hopkins University, October 2026.
+\newblock Companion paper, Johns Hopkins University, October 2026. Code: \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/coupling}.
 
 \bibitem{BMT2014}
 A.~Bayer, E.~Macr\`i, and Y.~Toda.
