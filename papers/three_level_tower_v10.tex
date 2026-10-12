@@ -2187,6 +2187,66 @@ additional structure, such as the certificates of \cref{thm:cert1,prop:cert23}, 
 orients all three Beck defects of the absolute tower in the same direction is left open.
 \end{remark}
 
+The three defects can be compared through one operation, pooling, and this settles which orders can and cannot help.
+
+\begin{definition}[Coordinatewise pooling]\label{def:pooling}
+Let $Q,Q'$ be finitely supported laws on a product $K_1\times\cdots\times K_r$ of convex sets. $Q$ is a \emph{pooling} of $Q'$ if
+there are random elements $(U_1,\dots,U_r)\sim Q'$ on a finite probability space and sub-$\sigma$-algebras $G_1,\dots,G_r$ such that
+$(\mathbb E[U_1\mid G_1],\dots,\mathbb E[U_r\mid G_r])\sim Q$. It is \emph{strict} if $Q\ne Q'$.
+\end{definition}
+
+With $r=1$ this is the convex order of Strassen's theorem. With $r\ge2$ each coordinate is pooled on its own $\sigma$-algebra, so a
+context can be averaged across samples while the samples are kept; the joint convex order of \cref{prop:cx-comult} forbids exactly
+that.
+
+\begin{proposition}[What pooling sees]\label{prop:pooling-sees}
+Read each axiom of \cref{def:mixed} left to right as written. On level-one components:
+\begin{enumerate}[label=(\roman*)]
+\item for the shift law $\ls$, the left side of (U) is a pooling of its right side, and the right side of (M) is a pooling of its left
+  side (\cref{prop:cx-beck}), strictly under the conditions stated there;
+\item for both $\ls$ and $\lb$, on the instances of \cref{prop:cx-comult} the left side $L$ of (Cm) is a strict pooling of the right
+  side $R$: keep the sample coordinate ($G_1$ everything) and pool the context coordinate ($G_2$ trivial);
+\item a strict pooling strictly lowers $\sum_jQ\lVert U_j\rVert_2^2$, so no strict pooling holds in both directions.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) Pooling with $r=1$ is the convex order, and the martingale couplings in the proof of \cref{prop:cx-beck} are conditional
+expectations onto $\sigma(\text{nothing})$ and $\sigma(\ell)$. (ii) If $(P,e_i)$ has probability $a_i$, then $\mathbb E[e\mid\text{trivial}]=\sum_ia_ie_i$,
+and $L$ is the law of $(P,\sum_ia_ie_i)$. (iii) Conditional expectation is an orthogonal projection in $L^2$, and it is the identity
+only if $U_j$ is already $G_j$-measurable.
+\end{proof}
+
+\begin{theorem}[Pooling-monotone enrichments]\label{thm:pooling-monotone}
+Let $\preceq$ be a preorder on the level-one components that contains every strict pooling in one direction and not its reverse:
+$Q\prec Q'$ for every strict pooling $Q$ of $Q'$, or $Q'\prec Q$ for every one. Then:
+\begin{enumerate}[label=(\roman*)]
+\item the (U) and (M) defects of $\ls$ have opposite orientations, so $\ls$ is not a lax or oplax law for $\preceq$;
+\item on the instances of \cref{prop:cx-comult}, the (Cm) defect is comparable, with $L\prec R$ or $R\prec L$. Since the averaging law
+  $\lb$ satisfies (U), (Co) and (M) strictly (\cref{thm:avg}) and fails only (Cm) (\cref{thm:avg-comult}), its only defect there is a 2-cell of one orientation.
+\end{enumerate}
+This applies to the convex order (where (ii) fails, since the convex order does not contain coordinatewise poolings), to
+coordinatewise pooling itself, and, for (i), to any order of spread that strictly orders a law against its barycentric
+coarsenings, such as the concave order (second-order stochastic dominance). The ambience's set order (inclusion of support hulls,
+\cref{sec:floors}) is monotone under pooling, since hulls can only shrink, but it also fails (ii): the two sides of (Cm) have
+incomparable hulls. Liftability relative to a fixed admissibility datum orients the (U) defect either way, depending on the datum.
+\end{theorem}
+\begin{proof}
+(i) By \cref{prop:pooling-sees}(i) the left side of (U) is strictly below its right side, and the left side of (M) strictly above
+its right side, in the same direction of $\preceq$; (iii) excludes the reverse comparisons. (ii) is \cref{prop:pooling-sees}(ii).
+For the set order: pooling maps each atom into the hull of the atoms it averages, so hulls shrink; on the instance of
+\cref{prop:cx-comult}, $(\delta_0,e)$ is not in the hull $\{(t,(1-t)e_0+te_1)\}$ of $R$ and $(\delta_0,e_0)$ is not in the hull of $L$. For
+liftability with $\rho=(\tfrac12,\tfrac12)$: with $S_1=\{\rho\}$ only $\delta_\rho$ lifts, and with $S_1=\{\delta_0,\delta_1\}$ only
+$\D(\eta)\rho$ lifts.
+\end{proof}
+
+So the comparability obstruction of \cref{prop:cx-comult} is an artefact of the joint convex order: averaging one coordinate at a
+time removes it, and at level one it turns the averaging law's single defect into a 2-cell. The orientation obstruction of
+\cref{prop:cx-orient} is not an artefact. In (U) the shift law pools on the left; in (M) it pools on the right. Every order that
+reads pooling monotonically therefore orients the two oppositely. An enrichment that makes $\ls$ lax or oplax must either be
+non-monotone under pooling, or identify a state with its poolings, which would identify the committed and inherited regimes of
+\cref{sec:lifting} that the tower exists to separate. Whether the averaging law's (Cm) 2-cell persists beyond level one, where the
+context is transported by $\E_3(j_{\D X,e})$, is open. Exact checks are in \texttt{check\_lift\_order.py}.
+
 %=====================================================================
 \section{Empirical setup}
 %=====================================================================
@@ -2298,6 +2358,8 @@ identification \cite{Manski1990}; spiked random-matrix thresholds \cite{BBP2005}
   so two-dimensional monad theory adds nothing here. The naive convex-order relaxation of the
   absolute tower fails: unit and multiplication comparisons have opposite orientations and the
   comultiplication defect is incomparable (proved, with exact certificates).
+  Coordinatewise pooling removes the comparability obstruction: at level one, the averaging law's only defect, (Cm), becomes a 2-cell of one
+  orientation. The orientation obstruction of the shift law holds for every order monotone under pooling (proved; exact checks).
 \item The absolute tower grows to $\D^4X$ under $\D$ (\cref{rem:growth}).
 \item $\C_\E(X)=X\times\E(X)$ is a comonad for every $\E$; $\C_3$ is an instance (proved).
 \item $(\Hyp,q)$ with $q$ natural; $J=\Hyp(j)$ satisfies CL1--CL3; $K^{[k]}$ is natural and coheres
@@ -2325,7 +2387,9 @@ identification \cite{Manski1990}; spiked random-matrix thresholds \cite{BBP2005}
 \item Is there an enrichment in which all Beck defects of $\ls$ or $\lb$ are witnessed by 2-cells of
   one orientation, giving a genuine lax or oplax law? The convex order does not work
   (\cref{cor:cx-fails}); \cref{rem:lift-order} suggests comparing coherent lifts instead, and shows
-  that the naive liftability preorder degenerates.
+  that the naive liftability preorder degenerates. \Cref{thm:pooling-monotone} narrows the question. No order that is monotone under
+  pooling can do it for $\ls$. For $\lb$, coordinatewise pooling orients the (Cm) defect at level one, so the open part is whether
+  it does so at levels two and three.
 \item Specify a 2-category with non-identity 2-cells and a 2-monad extending $\D$ to it, as in
   \cref{sec:2d}, and determine whether flexibility, strictification or 2-monadicity results then say
   anything about the coherent context algebra.
@@ -2441,6 +2505,11 @@ not been established, so we state the low recovery rate without attributing it t
 %=====================================================================
 \section{Changes from earlier versions}\label{app:changes}
 %=====================================================================
+
+\paragraph{Second addition to version 10 (October 2026).} \Cref{def:pooling}, \cref{prop:pooling-sees} and
+\cref{thm:pooling-monotone} at the end of \cref{sec:cx}: coordinatewise pooling, which removes the comparability obstruction and
+orients the averaging law's (Cm) defect at level one, and a no-go for every pooling-monotone enrichment of the shift law. Open
+problem 3 is sharpened accordingly. New script \texttt{check\_lift\_order.py}. No numbering changes.
 
 \paragraph{Addition to version 10 (October 2026).} New \cref{sec:floors}: support policies and floor summaries on level-one
 credal sets, their transport along kernels, and leaf-spring chains (\cref{prop:interior,prop:floortransport,thm:leafspring},
@@ -2641,6 +2710,10 @@ the minimax identity of \cref{thm:cert1} by solving the primal and dual linear p
 cancellation example of \cref{prop:pool-obstr}; and that canonical contexts lie in the committed
 tower. The linear programs are solved in floating point; all other checks are exact. All 17 checks
 pass.
+
+For \cref{def:pooling,prop:pooling-sees,thm:pooling-monotone}, \texttt{check\_lift\_order.py} verifies, in exact arithmetic on
+$300$ random instances of each comparison ($900$ strict comparisons), the pooling witnesses, the strict decrease of the second
+moment, the orientation pattern, the failure of the set order on (Cm), and the two liftability data. All checks pass.
 
 For \cref{sec:floors}, \texttt{check\_support\_floors.py} checks, in exact rational arithmetic on random credal polygons and
 kernels between bases of sizes two and three: \cref{prop:interior}; \cref{prop:floortransport}(ii) and (iii), with $93$ strict
