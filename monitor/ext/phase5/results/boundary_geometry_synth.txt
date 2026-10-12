@@ -1,0 +1,1 @@
+PASS planted posterior-type dependence: delta 0.052802 CI [0.041206, 0.06425]; broken share 0.50

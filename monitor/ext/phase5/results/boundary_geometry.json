@@ -1,0 +1,31 @@
+{
+ "plan": "PREANALYSIS_CONTEXT_MAP.md Part B",
+ "death": {
+  "logloss_B2": 0.40619,
+  "logloss_S2b": 0.40754,
+  "delta": -0.001386,
+  "ci": [
+   -0.005231,
+   0.002332
+  ],
+  "boundary_geometry_forecasts": false,
+  "n_train": 3758,
+  "n_test": 3802,
+  "events_test": 549
+ },
+ "descriptive": {
+  "mean_posterior_type_day2_setA": {
+   "18": 0.01,
+   "15": 0.088,
+   "12": 0.546
+  },
+  "share_point_estimate_broken_day2_setA": 0.988,
+  "share_with_posterior_full_type_mass_over_half": 0.711,
+  "decided_walls_day2_mean": 8.72,
+  "decided_flips_share": 0.007,
+  "death_by_decided_flip": {
+   "0": 0.141,
+   "1": 0.074
+  }
+ }
+}
