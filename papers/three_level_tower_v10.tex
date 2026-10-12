@@ -2244,8 +2244,52 @@ time removes it, and at level one it turns the averaging law's single defect int
 \cref{prop:cx-orient} is not an artefact. In (U) the shift law pools on the left; in (M) it pools on the right. Every order that
 reads pooling monotonically therefore orients the two oppositely. An enrichment that makes $\ls$ lax or oplax must either be
 non-monotone under pooling, or identify a state with its poolings, which would identify the committed and inherited regimes of
-\cref{sec:lifting} that the tower exists to separate. Whether the averaging law's (Cm) 2-cell persists beyond level one, where the
-context is transported by $\E_3(j_{\D X,e})$, is open. Exact checks are in \texttt{check\_lift\_order.py}.
+\cref{sec:lifting} that the tower exists to separate. Exact checks are in \texttt{check\_lift\_order.py}. Both questions
+left by \cref{thm:pooling-monotone}, the averaging law beyond level one and orders that are not monotone under pooling, are settled
+next.
+
+\begin{theorem}[The averaging law at every level]\label{thm:avg-all-levels}
+For $M=\sum_ia_i\delta_{(x_i,c_i)}$ put $e_i=\E_3(\eta_X)c_i$ and $\bar e=\sum_ia_ie_i$. The two sides of (Cm) for $\lb$ have the same
+first component $(\sum_ia_i\delta_{x_i},\bar e)$, and their context components in $\E_3(\C_3\D X)$ are
+\[
+\text{left}=\sum_ia_i\,\E_3(j_{\D X,\bar e})(e_i),\qquad \text{right}=\sum_ia_i\,\E_3(j_{\D X,e_i})(e_i),
+\]
+at every level and in the shadow. So the left side is the right side with each sample's label $e_i$ replaced by the pooled label
+$\bar e$. Let $\sqsubseteq$ be the transitive closure, on each $\C_3\C_3\D X$, of the relation \emph{left is obtained from right by
+replacing labels by their conditional expectation on a sub-$\sigma$-algebra of the sample index}, with first components equal. Then
+$\sqsubseteq$ is a partial order; the (Cm) defect satisfies $\text{left}\sqsubseteq\text{right}$ for every $M$, strictly whenever two
+labels differ; and the relation is natural in $X$. Since (U), (Co) and (M) hold exactly (\cref{thm:avg}), every Beck defect of $\lb$
+is a 2-cell of one orientation for $\sqsubseteq$, compared pointwise.
+\end{theorem}
+\begin{proof}
+The first components agree by (Co) and naturality. The right side is computed in the proof of \cref{thm:avg-comult}. For the left,
+$\delta_{\D X}(\lb M)$ has context $\kappa_{\D X}(\bar e)=\E_3(j_{\D X,\bar e})(\bar e)$, and $\E_3(j_{\D X,\bar e})$ is affine, so it equals
+$\sum_ia_i\E_3(j_{\D X,\bar e})(e_i)$. Replacing labels by a conditional expectation strictly lowers $\sum w\lVert\ell\rVert^2$,
+summed over the atoms $(y,\ell)$ of every component, unless the labels are already measurable, by Jensen's inequality. This sum is a
+function of the element, so the transitive closure has no cycles and is antisymmetric. Naturality: $\C_3\C_3\D f$ maps $j_{\D X,\ell}$
+to $j_{\D Y,\E_3(\D f)\ell}$, and $\E_3(\D f)$ is affine, so it commutes with conditional expectations of labels.
+\end{proof}
+
+\begin{proposition}[No order for the shift law]\label{prop:shift-swap}
+Let $X=\{0,1\}$, $\rho=\sum_ka_k\delta_k$ with both $a_k>0$, and let $c=(\rho,\Pi,\Omega,\Sigma)$ with $\Pi=\sum_ka_k\delta_{\sigma_k}$,
+$\Omega=\sum_ka_k\delta_{\tau_k}$ and $\Sigma=\sum_ka_k\delta_{h_k}$, where the hypotheses $h_k$ have point-mass predictives. Let $M'$ be the
+one-group sample $\delta_{\sum_ka_k\delta_{(x,c_k)}}$ with $c_k=(\delta_k,\D(\eta)\sigma_k,\D^2(\eta)\tau_k,\delta_{h_k})$. Then, as full
+elements of $\C_3\D X$, the two sides of (U) for $\ls$ at $(x,c)$ are the two sides of (M) at $M'$, with left and right exchanged.
+Hence, in any preorder on $\C_3\D X$ under which both defects are 2-cells of the same orientation (compared pointwise), the two sides
+of (U) are equivalent. They are distinct whenever $\rho$ is not a point mass, so in a partial order $\ls$ is neither lax nor oplax.
+\end{proposition}
+\begin{proof}
+At each component, the left side of (U) records the context itself and the right side its image under $\E_3(\eta)$, while the two
+sides of (M) record the samples' contexts and their pooled image under $\E_3(\mu)$. With the stated choices these coincide in exchanged
+roles. The equalities are checked in exact arithmetic for the first component, the three levels and the shadow, on $50$ random
+choices of the data (\texttt{check\_cm\_levels.py}).
+\end{proof}
+
+So the two laws separate cleanly. The averaging law is a law up to one oriented family of 2-cells, label pooling, at every level.
+The shift law is blocked by its own structure: one instance of (U) is an instance of (M) read backwards, so no partial order can
+orient both. What remains for the averaging law is coherence: an order on every set, under which $\D$ and $\C_3$ act monotonically on
+hom-sets and the structure maps are monotone, that restricts to $\sqsubseteq$ on these targets. That is the 2-categorical setting of
+open problem 4, now with a candidate order.
 
 %=====================================================================
 \section{Empirical setup}
@@ -2359,7 +2403,9 @@ identification \cite{Manski1990}; spiked random-matrix thresholds \cite{BBP2005}
   absolute tower fails: unit and multiplication comparisons have opposite orientations and the
   comultiplication defect is incomparable (proved, with exact certificates).
   Coordinatewise pooling removes the comparability obstruction: at level one, the averaging law's only defect, (Cm), becomes a 2-cell of one
-  orientation. The orientation obstruction of the shift law holds for every order monotone under pooling (proved; exact checks).
+  orientation. At every level and in the shadow, the averaging law's (Cm) defect is label pooling, a strict partial order natural in
+  $X$, so all of $\lb$'s Beck defects are 2-cells of one orientation. For the shift law one instance of (U) is an instance of (M) with
+  the sides exchanged, so no partial order can orient both (proved; exact checks).
 \item The absolute tower grows to $\D^4X$ under $\D$ (\cref{rem:growth}).
 \item $\C_\E(X)=X\times\E(X)$ is a comonad for every $\E$; $\C_3$ is an instance (proved).
 \item $(\Hyp,q)$ with $q$ natural; $J=\Hyp(j)$ satisfies CL1--CL3; $K^{[k]}$ is natural and coheres
@@ -2388,8 +2434,9 @@ identification \cite{Manski1990}; spiked random-matrix thresholds \cite{BBP2005}
   one orientation, giving a genuine lax or oplax law? The convex order does not work
   (\cref{cor:cx-fails}); \cref{rem:lift-order} suggests comparing coherent lifts instead, and shows
   that the naive liftability preorder degenerates. \Cref{thm:pooling-monotone} narrows the question. No order that is monotone under
-  pooling can do it for $\ls$. For $\lb$, coordinatewise pooling orients the (Cm) defect at level one, so the open part is whether
-  it does so at levels two and three.
+  pooling can do it for $\ls$, and by \cref{prop:shift-swap} no partial order at all can. For $\lb$, label pooling orients its only
+  defect at every level (\cref{thm:avg-all-levels}). The open part is coherence: an order-enriched setting in which $\D$ and $\C_3$
+  are locally monotone and which restricts to label pooling.
 \item Specify a 2-category with non-identity 2-cells and a 2-monad extending $\D$ to it, as in
   \cref{sec:2d}, and determine whether flexibility, strictification or 2-monadicity results then say
   anything about the coherent context algebra.
@@ -2505,6 +2552,10 @@ not been established, so we state the low recovery rate without attributing it t
 %=====================================================================
 \section{Changes from earlier versions}\label{app:changes}
 %=====================================================================
+
+\paragraph{Third addition to version 10 (October 2026).} \Cref{thm:avg-all-levels} and \cref{prop:shift-swap} at the end
+of \cref{sec:cx}: the averaging law's (Cm) defect is label pooling at every level, and no partial order orients both of the shift
+law's defects. Open problem 3 is updated. New script \texttt{check\_cm\_levels.py}. No numbering changes.
 
 \paragraph{Second addition to version 10 (October 2026).} \Cref{def:pooling}, \cref{prop:pooling-sees} and
 \cref{thm:pooling-monotone} at the end of \cref{sec:cx}: coordinatewise pooling, which removes the comparability obstruction and
@@ -2714,6 +2765,11 @@ pass.
 For \cref{def:pooling,prop:pooling-sees,thm:pooling-monotone}, \texttt{check\_lift\_order.py} verifies, in exact arithmetic on
 $300$ random instances of each comparison ($900$ strict comparisons), the pooling witnesses, the strict decrease of the second
 moment, the orientation pattern, the failure of the set order on (Cm), and the two liftability data. All checks pass.
+
+\texttt{check\_cm\_levels.py}, built on the definitions of \texttt{check\_tower.py}, checks \cref{thm:avg-all-levels} on $60$
+random samples ($57$ with distinct labels): the representation of both sides at levels one, two and three and in the shadow, the
+strict decrease, and naturality along an injective and a non-injective map. It also checks the exchanged pair of
+\cref{prop:shift-swap} in every component, on $50$ random choices of the weights, laws and hypotheses. All checks pass.
 
 For \cref{sec:floors}, \texttt{check\_support\_floors.py} checks, in exact rational arithmetic on random credal polygons and
 kernels between bases of sizes two and three: \cref{prop:interior}; \cref{prop:floortransport}(ii) and (iii), with $93$ strict
