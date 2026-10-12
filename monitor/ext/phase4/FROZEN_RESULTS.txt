@@ -1,0 +1,12 @@
+# phase 4 (PREANALYSIS_PHASE4.md, sha256 98a4d19c...): each real analysis run once, 2026-10-10. Deviations: WP2 planted external design changed before the real run; WP3 real run executed in the same command as its first adapter check (whose planted confounding was too weak), the check was then redone.
+98a4d19c5e5c98e362be74fbbe164dba5aa9a8d4c9405604c3f10b7660200395  PREANALYSIS_PHASE4.md
+0bf8c49a2bbfd24e7bc2834eed4ce15184d3c42b5d7c8e7b60baf95262315787  results/wp1_clinical.json
+127069feb05e66c4395ffe113cb69e4ed35a4afd5e32e021d680a14525601790  results/wp1_clinical_synth.json
+ca29c6c18474a8e5865f1fc6f0f3d6e6f9211fc9026d75e1f08af54c369f4ce0  results/wp1_gss.json
+2f9acb02faa121bb2a3621951f57b4c690655337edee2e5ac350be2b3be88ea8  results/wp1_gss_synth.txt
+39742bbbf59d63b524cf0bb38a160d90b519e17b4e824a64acb953560a7c7249  results/wp2_selection.json
+e9d004b689726b7c2fa5f5c03a4e738c770192f0579eaa7cb85e005bc7cdb6e6  results/wp2_selection_synth.json
+1b702f14013ef49560cb4a1b66aacf25de8503d0f93a21c5d9523b6ea5d383bf  results/wp3_events.json
+81c5112c05aaf7a2a12d56370097a44df642185f509a0de2643179aef879b67c  results/wp3_synth.txt
+dc43a2a27af93a4c4c22d9aa70f7673a4cbf7cbc5738aa2d8e9d0d8a6dbbff49  results/wp4_tower.json
+2f9acb02faa121bb2a3621951f57b4c690655337edee2e5ac350be2b3be88ea8  results/wp4_tower_synth.txt
