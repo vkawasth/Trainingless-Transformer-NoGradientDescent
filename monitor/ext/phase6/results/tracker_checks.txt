@@ -1,0 +1,1 @@
+PASS {"pythagoras": true, "fan_3x3": true, "fan_dim_3x3": true, "fan_2x3": true, "wall_crossing": true, "break_time": true} (check specs corrected before any real run: two walls in the 2x2 path; break time non-increasing. fan_dim_3x3 added after the first trajectory run exposed a rank-tolerance bug in the fan dimension; trajectories rerun)

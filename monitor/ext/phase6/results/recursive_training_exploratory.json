@@ -1,0 +1,18 @@
+{
+ "0.0": {
+  "share_zero_from_g10_to_g20": 0.3715,
+  "recovery_rate_per_zero_generation": 0.0
+ },
+ "0.05": {
+  "share_zero_from_g10_to_g20": 0.1631,
+  "recovery_rate_per_zero_generation": 0.0668
+ },
+ "0.1": {
+  "share_zero_from_g10_to_g20": 0.1096,
+  "recovery_rate_per_zero_generation": 0.107
+ },
+ "0.25": {
+  "share_zero_from_g10_to_g20": 0.051,
+  "recovery_rate_per_zero_generation": 0.1929
+ }
+}

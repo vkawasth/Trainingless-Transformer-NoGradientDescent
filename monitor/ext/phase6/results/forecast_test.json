@@ -1,0 +1,77 @@
+{
+ "decided": {
+  "B+inter": {
+   "gain": -0.000122,
+   "ci": [
+    -0.0005,
+    0.000221
+   ],
+   "forecasts": false
+  },
+  "B+tear": {
+   "gain": -9.9e-05,
+   "ci": [
+    -0.00034,
+    0.00014
+   ],
+   "forecasts": false
+  },
+  "B+both": {
+   "gain": -5.9e-05,
+   "ci": [
+    -0.000474,
+    0.000338
+   ],
+   "forecasts": false
+  },
+  "events_train": 7,
+  "events_test": 11,
+  "n_train": 1320,
+  "n_test": 1100,
+  "underpowered": true
+ },
+ "secondary_point_estimate": {
+  "B+inter": {
+   "gain": -5.3e-05,
+   "ci": [
+    -0.000178,
+    6.8e-05
+   ],
+   "forecasts": false
+  },
+  "B+tear": {
+   "gain": 0.016697,
+   "ci": [
+    -0.000631,
+    0.032914
+   ],
+   "forecasts": false
+  },
+  "B+both": {
+   "gain": 0.016897,
+   "ci": [
+    0.000208,
+    0.033753
+   ],
+   "forecasts": true
+  },
+  "events_train": 697,
+  "events_test": 634,
+  "n_train": 1320,
+  "n_test": 1100
+ },
+ "descriptive": {
+  "event_rate_by_tear_time_quartile": {
+   "0": 0.0099,
+   "1": 0.0066,
+   "2": 0.0066,
+   "3": 0.0066
+  },
+  "event_rate_by_interaction_quartile": {
+   "0": 0.0066,
+   "1": 0.0066,
+   "2": 0.0083,
+   "3": 0.0083
+  }
+ }
+}
