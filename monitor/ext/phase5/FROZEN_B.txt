@@ -1,0 +1,3 @@
+# Part B run once 2026-10-11; its first planted check (weaker effect, 24% broken) failed to show power and was replaced before the run by a stronger, data-like check that passed
+41b912d66f77e72b4d63abb7c4c6e5f096db359753431cd5ae2a513bd7214f4f  results/boundary_geometry.json
+0a1e25a02abebe50e87f7b46938a2cba5495085e030287b5ea31c925d47ecf35  results/boundary_geometry_synth.txt

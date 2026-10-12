@@ -1,0 +1,4 @@
+# Part A run once 2026-10-11 after its planted check passed
+6b45e91e90b0ca2e426b63ca43972acc2e6437d9816d7d2870644c92cc4f8c39  PREANALYSIS_CONTEXT_MAP.md
+4497d2c544b8f285a269faf1221b53e020bc3428a737f43219507be0185617bb  results/context_map.json
+da2fbfce34b596d056724ba513e58f632f980d3bd845751c85b14cb09215d2b9  results/context_map_synth.txt
