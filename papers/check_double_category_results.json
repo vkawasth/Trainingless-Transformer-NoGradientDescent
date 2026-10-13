@@ -1,0 +1,26 @@
+[
+  {
+    "label": "two-point base",
+    "n": 2,
+    "n_trials": 300,
+    "interchange": 300,
+    "U_defect": 300,
+    "cm_defect": 300
+  },
+  {
+    "label": "three-point base",
+    "n": 3,
+    "n_trials": 300,
+    "interchange": 300,
+    "U_defect": 300,
+    "cm_defect": 300
+  },
+  {
+    "label": "four-point base",
+    "n": 4,
+    "n_trials": 300,
+    "interchange": 300,
+    "U_defect": 300,
+    "cm_defect": 300
+  }
+]

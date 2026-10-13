@@ -1,0 +1,29 @@
+[
+  {
+    "label": "two-point base",
+    "n": 2,
+    "n_trials": 300,
+    "different": 0,
+    "interchange_strict": 300,
+    "interchange_fails": 0,
+    "double_composition": 300
+  },
+  {
+    "label": "three-point base",
+    "n": 3,
+    "n_trials": 300,
+    "different": 0,
+    "interchange_strict": 300,
+    "interchange_fails": 0,
+    "double_composition": 300
+  },
+  {
+    "label": "four-point base",
+    "n": 4,
+    "n_trials": 300,
+    "different": 0,
+    "interchange_strict": 300,
+    "interchange_fails": 0,
+    "double_composition": 300
+  }
+]

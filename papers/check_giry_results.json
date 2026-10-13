@@ -1,0 +1,50 @@
+[
+  {
+    "label": "two-point base",
+    "n": 2,
+    "n_trials": 300,
+    "interchange": 300,
+    "L_idempotent": 300,
+    "R_idempotent": 300,
+    "L_barycenter": 300,
+    "R_barycenter": 300,
+    "3cell": 300,
+    "disintegration_probability": 300
+  },
+  {
+    "label": "three-point base",
+    "n": 3,
+    "n_trials": 300,
+    "interchange": 300,
+    "L_idempotent": 300,
+    "R_idempotent": 300,
+    "L_barycenter": 300,
+    "R_barycenter": 300,
+    "3cell": 300,
+    "disintegration_probability": 300
+  },
+  {
+    "label": "four-point base",
+    "n": 4,
+    "n_trials": 300,
+    "interchange": 300,
+    "L_idempotent": 300,
+    "R_idempotent": 300,
+    "L_barycenter": 300,
+    "R_barycenter": 300,
+    "3cell": 300,
+    "disintegration_probability": 300
+  },
+  {
+    "label": "five-point base",
+    "n": 5,
+    "n_trials": 300,
+    "interchange": 300,
+    "L_idempotent": 300,
+    "R_idempotent": 300,
+    "L_barycenter": 300,
+    "R_barycenter": 300,
+    "3cell": 300,
+    "disintegration_probability": 300
+  }
+]

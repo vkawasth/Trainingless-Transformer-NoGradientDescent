@@ -1,0 +1,50 @@
+[
+  {
+    "label": "two-point base",
+    "n": 2,
+    "n_trials": 300,
+    "A_interchange": 300,
+    "A_L_idempotent": 300,
+    "A_R_idempotent": 300,
+    "B_interchange_4": 300,
+    "B_interchange_5": 300,
+    "B_L4_idempotent": 300,
+    "B_R4_idempotent": 300,
+    "B_L5_idempotent": 300,
+    "B_R5_idempotent": 300,
+    "B_coherence": 300,
+    "C_3cell_trivial": 300
+  },
+  {
+    "label": "three-point base",
+    "n": 3,
+    "n_trials": 300,
+    "A_interchange": 300,
+    "A_L_idempotent": 300,
+    "A_R_idempotent": 300,
+    "B_interchange_4": 300,
+    "B_interchange_5": 300,
+    "B_L4_idempotent": 300,
+    "B_R4_idempotent": 300,
+    "B_L5_idempotent": 300,
+    "B_R5_idempotent": 300,
+    "B_coherence": 300,
+    "C_3cell_trivial": 300
+  },
+  {
+    "label": "four-point base",
+    "n": 4,
+    "n_trials": 300,
+    "A_interchange": 300,
+    "A_L_idempotent": 300,
+    "A_R_idempotent": 300,
+    "B_interchange_4": 300,
+    "B_interchange_5": 300,
+    "B_L4_idempotent": 300,
+    "B_R4_idempotent": 300,
+    "B_L5_idempotent": 300,
+    "B_R5_idempotent": 300,
+    "B_coherence": 300,
+    "C_3cell_trivial": 300
+  }
+]

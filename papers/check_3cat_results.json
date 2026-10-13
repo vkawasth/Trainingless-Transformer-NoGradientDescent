@@ -1,0 +1,2702 @@
+[
+  {
+    "trial": 0,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 1,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 2,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 3,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 4,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 5,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 6,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 7,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 8,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 9,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 10,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 11,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 12,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 13,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 14,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 15,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 16,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 17,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 18,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 19,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 20,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 21,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 22,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 23,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 24,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 25,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 26,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 27,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 28,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 29,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 30,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 31,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 32,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 33,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 34,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 35,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 36,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 37,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 38,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 39,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 40,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 41,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 42,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 43,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 44,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 45,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 46,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 47,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 48,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 49,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 50,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 51,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 52,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 53,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 54,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 55,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 56,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 57,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 58,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 59,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 60,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 61,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 62,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 63,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 64,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 65,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 66,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 67,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 68,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 69,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 70,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 71,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 72,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 73,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 74,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 75,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 76,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 77,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 78,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 79,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 80,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 81,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 82,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 83,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 84,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 85,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 86,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 87,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 88,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 89,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 90,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 91,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 92,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 93,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 94,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 95,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 96,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 97,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 98,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 99,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 100,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 101,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 102,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 103,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 104,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 105,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 106,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 107,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 108,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 109,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 110,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 111,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 112,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 113,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 114,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 115,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 116,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 117,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 118,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 119,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 120,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 121,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 122,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 123,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 124,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 125,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 126,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 127,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 128,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 129,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 130,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 131,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 132,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 133,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 134,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 135,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 136,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 137,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 138,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 139,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 140,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 141,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 142,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 143,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 144,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 145,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 146,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 147,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 148,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 149,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 150,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 151,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 152,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 153,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 154,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 155,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 156,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 157,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 158,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 159,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 160,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 161,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 162,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 163,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 164,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 165,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 166,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 167,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 168,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 169,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 170,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 171,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 172,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 173,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 174,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 175,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 176,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 177,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 178,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 179,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 180,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 181,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 182,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 183,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 184,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 185,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 186,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 187,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 188,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 189,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 190,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 191,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 192,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 193,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 194,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 195,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 196,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 197,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 198,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 199,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 200,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 201,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 202,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 203,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 204,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 205,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 206,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 207,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 208,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 209,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 210,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 211,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 212,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 213,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 214,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 215,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 216,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 217,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 218,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 219,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 220,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 221,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 222,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 223,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 224,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 225,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 226,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 227,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 228,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 229,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 230,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 231,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 232,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 233,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 234,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 235,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 236,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 237,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 238,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 239,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 240,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 241,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 242,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 243,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 244,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 245,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 246,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 247,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 248,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 249,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 250,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 251,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 252,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 253,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 254,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 255,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 256,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 257,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 258,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 259,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 260,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 261,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 262,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 263,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 264,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 265,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 266,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 267,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 268,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 269,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 270,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 271,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 272,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 273,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 274,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 275,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 276,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 277,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 278,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 279,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 280,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 281,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 282,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 283,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 284,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 285,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 286,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 287,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 288,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 289,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 290,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 291,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 292,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 293,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 294,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 295,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 296,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 297,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 298,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  },
+  {
+    "trial": 299,
+    "coherent": true,
+    "o1_nonzero": true,
+    "beta1_idempotent": true,
+    "beta1_measurable": true,
+    "beta1_fixes_measurable": true,
+    "beta1_is_identity": false
+  }
+]
