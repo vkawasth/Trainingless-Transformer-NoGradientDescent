@@ -2270,6 +2270,15 @@ function of the element, so the transitive closure has no cycles and is antisymm
 to $j_{\D Y,\E_3(\D f)\ell}$, and $\E_3(\D f)$ is affine, so it commutes with conditional expectations of labels.
 \end{proof}
 
+\paragraph{Why the transitive closure.} The closure in \cref{thm:avg-all-levels} is genuinely needed. On the sample index, a two-step
+label pooling $E_{G_2}E_{G_1}$ is again a single conditional expectation iff $E_{G_1}$ and $E_{G_2}$ commute. For finite partitions
+that holds iff $G_1$ and $G_2$ are conditionally independent given their meet $G_1\wedge G_2$, the finest common coarsening. The
+product is then $E_{G_1\wedge G_2}$; the product is never $E_{G_1\vee G_2}$ unless $G_1=G_2$. In general the two-step relation is
+strictly larger than the one-step one, and $(E_{G_2}E_{G_1})^n\to E_{G_1\wedge G_2}$ at the rate given by the Friedrichs angle. Nothing
+in this section composes conditional expectations onto distinct $\sigma$-algebras as if the product were a conditional expectation.
+Proofs, and the canonical form of the left and right shadows that this suggests, are in the companion paper \emph{Shadows, Fibres
+and Secants of the Posterior Tower}.
+
 \begin{proposition}[No order for the shift law]\label{prop:shift-swap}
 Let $X=\{0,1\}$, $\rho=\sum_ka_k\delta_k$ with both $a_k>0$, and let $c=(\rho,\Pi,\Omega,\Sigma)$ with $\Pi=\sum_ka_k\delta_{\sigma_k}$,
 $\Omega=\sum_ka_k\delta_{\tau_k}$ and $\Sigma=\sum_ka_k\delta_{h_k}$, where the hypotheses $h_k$ have point-mass predictives. Let $M'$ be the
@@ -2552,6 +2561,11 @@ not been established, so we state the low recovery rate without attributing it t
 %=====================================================================
 \section{Changes from earlier versions}\label{app:changes}
 %=====================================================================
+
+\paragraph{Fourth addition to version 10 (October 2026).} An unnumbered paragraph after \cref{thm:avg-all-levels} explains why
+its order is a transitive closure: a composite of two label poolings is one pooling only under conditional independence given the
+meet, and its product is then the pooling onto the meet, never onto the join. This version never uses the false identity
+$P_BP_A=P_{A\vee B}$; the paragraph records the correct statement. No numbering changes.
 
 \paragraph{Third addition to version 10 (October 2026).} \Cref{thm:avg-all-levels} and \cref{prop:shift-swap} at the end
 of \cref{sec:cx}: the averaging law's (Cm) defect is label pooling at every level, and no partial order orients both of the shift

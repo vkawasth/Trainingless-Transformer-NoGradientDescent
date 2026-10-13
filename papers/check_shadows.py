@@ -39,6 +39,10 @@ Part D  moment varieties
       (order 2 fills the plane, so second moments cannot see mixtures)
   D2  affine statistics are constant on barycentre fibres: regrouping a mixture of mixtures does not change its moments
 Part E  E1 the Kleisli-to-convex functor T is fully faithful on finite simplices (affine maps = stochastic matrices)
+        E2 T preserves Kleisli composition and is l1 non-expansive
+Part G  G1 the Gaussian-model fusion identity (discrete channels)
+        G2 naturality of shadows along measure-preserving maps that pull back the partitions
+        G3 star space functorial along context maps with D(f) injective on supp Pi; canonical shadows natural
 """
 from fractions import Fraction as F
 import itertools, random, hashlib, json, os, sys
@@ -545,6 +549,90 @@ for t in range(50):
     p, q, s = rand_P(nx), rand_P(nx), F(rng.randint(0, 4), 4)
     okE &= T([s * a + (1 - s) * b for a, b in zip(p, q)]) == [s * a + (1 - s) * b for a, b in zip(T(p), T(q))]
 check("E1 affine maps of finite simplices are exactly stochastic matrices (T fully faithful)", okE)
+
+okE2 = True
+for t in range(100):
+    nx, ny, nz = rng.randint(1, 4), rng.randint(1, 4), rng.randint(1, 4)
+    K = [rand_P(ny) for _ in range(nx)]; L = [rand_P(nz) for _ in range(ny)]
+    TK = lambda p: [sum(p[x] * K[x][y] for x in range(nx)) for y in range(ny)]
+    TL = lambda p: [sum(p[y] * L[y][z] for y in range(ny)) for z in range(nz)]
+    LK = [[sum(K[x][y] * L[y][z] for y in range(ny)) for z in range(nz)] for x in range(nx)]
+    p, q = rand_P(nx), rand_P(nx)
+    okE2 &= [sum(p[x] * LK[x][z] for x in range(nx)) for z in range(nz)] == TL(TK(p))
+    okE2 &= sum(abs(a - b) for a, b in zip(TK(p), TK(q))) <= sum(abs(a - b) for a, b in zip(p, q))
+check("E2 T preserves Kleisli composition and is l1 non-expansive", okE2)
+
+# ============================================================ Part G: restored material
+okG1 = True
+for t in range(200):
+    H = [0, 1, 2]; pi = rand_P(3)
+    chL = [rand_P(3) for _ in H]; chR = [rand_P(3) for _ in H]
+    for xl in range(3):
+        for xr in range(3):
+            qL = [pi[h] * chL[h][xl] for h in H]; s1 = sum(qL); qL = [a / s1 for a in qL]
+            qR = [pi[h] * chR[h][xr] for h in H]; s2 = sum(qR); qR = [a / s2 for a in qR]
+            qLR = [pi[h] * chL[h][xl] * chR[h][xr] for h in H]; s3 = sum(qLR); qLR = [a / s3 for a in qLR]
+            fu = [qL[h] * qR[h] / pi[h] for h in H]; s4 = sum(fu); fu = [a / s4 for a in fu]
+            okG1 &= fu == qLR
+check("G1 fusion identity Q_LR = Fuse(Q_L, Q_R) under X_L, X_R conditionally independent given H", okG1)
+
+okG2 = True
+for t in range(200):
+    # f: I -> I' measure preserving (I' = cells of a random map), partitions A', B' on I' pulled back
+    n2 = rng.randint(2, 5); P2 = rand_P(n2)
+    n = rng.randint(n2, n2 + 4); fmap = list(range(n2)) + [rng.randrange(n2) for _ in range(n - n2)]
+    # split the mass of each i' among its preimages
+    P = [F(0)] * n
+    for i2 in range(n2):
+        pre = [i for i in range(n) if fmap[i] == i2]; ws = [F(rng.randint(1, 4)) for _ in pre]
+        for i, wgt in zip(pre, ws): P[i] = P2[i2] * wgt / sum(ws)
+    A2 = rand_part(n2, 3); B2 = rand_part(n2, 3)
+    A = canon([A2[fmap[i]] for i in range(n)]); B = canon([B2[fmap[i]] for i in range(n)])
+    Z2 = [tuple(F(rng.randint(0, 6)) for _ in range(2)) for _ in range(n2)]
+    Z = [Z2[fmap[i]] for i in range(n)]
+    for a, a2 in ((A, A2), (B, B2)):
+        lhs = apply(Emat(a, P), Z); rhs = [apply(Emat(a2, P2), Z2)[fmap[i]] for i in range(n)]
+        okG2 &= lhs == rhs
+check("G2 naturality: E_{f^-1 A'}(Z' o f) = (E_{A'} Z') o f for measure-preserving f", okG2)
+
+okG3 = True; ntested = 0
+Yb = ("a", "b")
+for t in range(40):
+    ctx = star_context()
+    fm = {0: "a", 1: "a", 2: "b"} if t % 2 else {0: "a", 1: "b", 2: "b"}
+    Df = lambda r: Dmap(fm.get, r)
+    atoms = [r for r, _ in ctx["Pi"].items()]
+    if len(set(Df(r) for r in atoms)) < len(atoms): continue   # need Df injective on supp Pi
+    ntested += 1
+    phi = lambda pt: (Dmap(Df, pt[0]), Df(pt[1]), pt[2], fm[pt[3]])
+    push = {}
+    for pt, w in zip(ctx["idx"], ctx["P"]): push[phi(pt)] = push.get(phi(pt), 0) + w
+    # star space of the pushed-forward context
+    Om2 = Dmap(lambda Pt: Dmap(Df, Pt), ctx["Om"]); Pi2 = mu(Om2)
+    Sig2 = Dmap(lambda h: (h[0], Df(h[1])), ctx["Sig"])
+    star2 = {}
+    for Pt, wo in Om2.items():
+        for r, wr in Pt.items():
+            for (th, r2), ws in Sig2.items():
+                if r2 != r: continue
+                for x, wx in r.items():
+                    star2[(Pt, r, th, x)] = star2.get((Pt, r, th, x), 0) + wo * wr * (ws / Pi2.m[r]) * wx
+    okG3 &= push == star2
+    # naturality of L_c and R_c along phi: pulled-back partitions agree
+    idx = ctx["idx"]; P = ctx["P"]
+    keys2 = list(push.keys()); pos = {k: i for i, k in enumerate(keys2)}; P2 = [push[k] for k in keys2]
+    for leaves in (["lev2"], ["hyp"]):
+        cols = {"lev2": 0, "hyp": 2}
+        lab = canon([tuple([repr(pt[1])] + [repr(pt[cols[l]]) for l in leaves]) for pt in idx])
+        lab2 = canon([tuple([repr(k[1])] + [repr(k[cols[l]]) for l in leaves]) for k in keys2])
+        pulled = canon([lab2[pos[phi(pt)]] for pt in idx])
+        okG3 &= pulled == lab
+        Z2 = [tuple(F(rng.randint(0, 5)) for _ in range(2)) for _ in keys2]
+        lhs = apply(Emat(lab, P), [Z2[pos[phi(pt)]] for pt in idx])
+        rhs = [apply(Emat(lab2, P2), Z2)[pos[phi(pt)]] for pt in idx]
+        okG3 &= lhs == rhs
+check("G3 star space is functorial along context maps with Df injective on supp Pi; L_c, R_c are natural", okG3 and ntested > 5,
+      f"{ntested} context maps")
 
 npass = sum(OUT.values()); print(f"\n{npass}/{len(OUT)} checks pass")
 blob = json.dumps(OUT, sort_keys=True).encode()

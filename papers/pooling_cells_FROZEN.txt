@@ -1,0 +1,8 @@
+# check_pooling_cells.py run 2026-10-13: PASS
+3b1bc16ca40fbbff204f0cd7b03c76157f8563d7bdbf7946bf4fdf9ef9a9b8a1  check_pooling_cells.py
+7e3bf24ae47a96e94590956320894618572043bbc957a5f555550cb1b847c68f  check_tower.py
+58467deddbc1e7c7b04cabdd60ac2248d3fcdb940d19174231cab354b2e770a5  check_cm_levels.py
+# the original note's scripts, as supplied (scripts 2 and 3 reproduce the note's hashes a9522a9b..., 48f3183d...; script 1 gives 0c3cd416..., not the note's 145e3d73...)
+bb1bd6e2c56fa027251f8bf811844496126d71400b562abe8861158b44145177  check_3cat.py
+ee859d44428bc3976e0908f65a95fe233007793791855bd3fea8b709b4bab153  b2.py
+008dcc709de07ee1a5e5b18d72c34eb0dd5973a60e62d09f13d97d480fb2f616  b3.py
