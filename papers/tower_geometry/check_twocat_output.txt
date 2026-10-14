@@ -6,5 +6,8 @@ PASS TC5 martingale orientation fails on the counterexample, holds when labels a
 PASS TC6 level-one output of delta(x,c) has context marginal delta_c, so the context-marginal order forces c0 = c1   [200 random points]
 PASS TC7 the context-marginal order identifies laws whose D(epsilon) images are incomparable, so D(epsilon) is not monotone
 PASS TC8 pointwise-related maps give related pushforwards in the Barr lifting (first step of delta-monotonicity)   [300 random relations and maps]
+PASS TC9 vertical composition by conditional product is associative and unital (diagonal coupling)   [300 random cases]
+PASS TC10 whiskering is not functorial on vertical composites; every failure has c > 0, and c = 0 laws agree   [differ in 500 of 500 random cases]
+PASS TC11 the forced comultiplication 2-cell of lambda-bar is a coupling of the two sides, and its label projection is the identity   [200 random samples]
 
-8/8 checks passed
+11/11 checks passed

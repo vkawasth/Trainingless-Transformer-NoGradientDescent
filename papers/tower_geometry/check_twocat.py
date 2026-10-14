@@ -17,6 +17,13 @@
       equivalent) have label marginals delta_{delta_0} and delta_{delta_1}, which are incomparable
   TC8 the first step of delta-monotonicity for label-preserving liftings: if j(y) R j'(y) for every y, then D(j)(p) and D(j')(p) are
       related in the Barr lifting of R, for every p (linear programming, 300 random relations and maps)
+  TC9  the coupling 2-category: vertical composition of couplings by conditional product is associative and unital, with the
+       diagonal coupling as identity (300 random cases)
+  TC10 whiskering is not functorial: pushing a glued coupling forward along a non-injective map differs from gluing the pushed-forward
+       couplings in most random cases; every difference comes with a Beck-Chevalley defect c > 0 for the windows sigma(hX,hY),
+       sigma(hY,hZ) of the pushed law, and when that law is built conditionally independent given hY the two agree (500 cases each)
+  TC11 counit coherence of lambda-bar's comultiplication 2-cell: pushing the forced coupling (label, own context) -> (label, pooled
+       context) forward along the label projection gives the diagonal coupling, i.e. the identity 2-cell (200 random samples)
 Run: python check_twocat.py   (from the folder that contains check_tower.py)
 """
 import io, os, contextlib, itertools
@@ -165,5 +172,58 @@ for _ in range(300):
     ok &= barr(P, Q, R)
 check("TC8 pointwise-related maps give related pushforwards in the Barr lifting (first step of delta-monotonicity)", ok,
       "300 random relations and maps")
+
+# TC9-TC11: the coupling 2-category
+def glue(w1, w2):
+    py = w1.sum(0); return np.einsum("xy,yz->xz", w1 / np.where(py > 0, py, 1)[None, :], w2)
+ok = True
+for _ in range(300):
+    n = rng.integers(2, 5); g = [rng.dirichlet(np.ones(n)) for _ in range(4)]
+    def coup(a, b):                                                # a random coupling of g[a] and g[b] (rows a, columns b)
+        K = rng.dirichlet(np.ones(n), n); w = g[a][:, None] * K   # w has row marginal g[a]; fix the columns by IPF
+        for _ in range(500):
+            w *= (g[b] / w.sum(0))[None, :]; w *= (g[a] / w.sum(1))[:, None]
+        return w
+    w1, w2, w3 = coup(0, 1), coup(1, 2), coup(2, 3)
+    ok &= np.abs(glue(glue(w1, w2), w3) - glue(w1, glue(w2, w3))).max() < 1e-9
+    ident = np.diag(g[1]); ok &= np.abs(glue(w1, ident) - w1).max() < 1e-9 and np.abs(glue(ident, w2) - w2).max() < 1e-9
+check("TC9 vertical composition by conditional product is associative and unital (diagonal coupling)", ok, "300 random cases")
+
+def cdefect(Q):
+    """Q[hx, hy, hz]: max over hy of the largest non-trivial singular value of the normalised (hx, hz) table given hy."""
+    c = 0.0
+    for b in range(Q.shape[1]):
+        T = Q[:, b, :]; m = T.sum()
+        if m <= 0: continue
+        T = T / m; r, k = T.sum(1), T.sum(0); keep_r, keep_k = r > 0, k > 0
+        K = T[np.ix_(keep_r, keep_k)] / np.sqrt(np.outer(r[keep_r], k[keep_k]))
+        sv = np.linalg.svd(K, compute_uv=False)
+        if len(sv) > 1: c = max(c, sv[1])
+    return c
+differ = 0; ok = True; ok_ci = True
+for _ in range(500):
+    n = 4; gy = rng.dirichlet(np.ones(n)); K1 = rng.dirichlet(np.ones(n), n); K2 = rng.dirichlet(np.ones(n), n)
+    P = np.einsum("y,yx,yz->xyz", gy, K1, K2)                     # glued law: X _||_ Z | Y
+    h = rng.integers(0, 2, n); h[0], h[1] = 0, 1                   # non-injective, onto {0, 1}
+    H = np.eye(2)[h]
+    Q = np.einsum("xyz,xa,yb,zc->abc", P, H, H, H)                 # law of (hX, hY, hZ)
+    lhs = Q.sum(1)                                                 # h_*(w1 ; w2), the composite coupling of the endpoints
+    rhs = glue(Q.sum(2), Q.sum(0))                                 # (h_* w1) ; (h_* w2), glued along the coarse middle
+    d = np.abs(lhs - rhs).max()
+    if d > 1e-9:
+        differ += 1; ok &= cdefect(Q) > 1e-9
+    gy2 = rng.dirichlet(np.ones(2)); Q2 = np.einsum("b,ba,bc->abc", gy2, rng.dirichlet(np.ones(2), 2), rng.dirichlet(np.ones(2), 2))
+    ok_ci &= np.abs(Q2.sum(1) - glue(Q2.sum(2), Q2.sum(0))).max() < 1e-12 and cdefect(Q2) < 1e-9
+check("TC10 whiskering is not functorial on vertical composites; every failure has c > 0, and c = 0 laws agree", ok and ok_ci and differ > 300,
+      f"differ in {differ} of 500 random cases")
+
+ok = True
+for _ in range(200):
+    M = rM(X); L1, R1, e = sides(M)
+    forced = Dist([(((lab, c), (lab, e)), p) for (lab, c), p in R1.items()])          # (label, own context) -> (label, pooled)
+    proj = Dmap(lambda pr: (pr[0][0], pr[1][0]), forced)                               # push both ends along the label projection
+    ok &= all(a == b for a, b in proj.m) and Dmap(lambda pr: pr[1], forced) == L1 and Dmap(lambda pr: pr[0], forced) == R1
+check("TC11 the forced comultiplication 2-cell of lambda-bar is a coupling of the two sides, and its label projection is the identity",
+      ok, "200 random samples")
 
 print(f"\n{sum(results)}/{len(results)} checks passed")

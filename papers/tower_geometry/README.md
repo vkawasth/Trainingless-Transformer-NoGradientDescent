@@ -9,13 +9,13 @@ Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDesc
 
 | Path | What it is |
 |---|---|
-| `tower_geometry.tex`, `tower_geometry.pdf` | The paper (54 pp). Builds with `pdflatex` (run twice). Figures are read from `atlas/figs/`. |
+| `tower_geometry.tex`, `tower_geometry.pdf` | The paper (55 pp). Builds with `pdflatex` (run twice). Figures are read from `atlas/figs/`. |
 | `check_tower.py` | Tower definitions, imported verbatim by `check_shadows.py`. |
 | `check_shadows.py` | 30 checks: algebra of conditional expectations, shadows, martingale, categorical structure (§§3–8). |
 | `check_tropical.py` | 8 checks: positive tropicalisation, Berkovich factorisation, secants (§§11–12). |
 | `check_cohomology.py` | 10 checks: the L² presheaf, Beck–Chevalley, gluing, tropical fibre nerves (§§14–15). |
 | `check_hallucination.py` | 9 checks: the three-token model (§16). |
-| `check_twocat.py` | 8 checks (TC1–TC8): coupling liftings, the convex order is not a Barr lifting, the comultiplication cell of λ̄, δ-monotonicity for label-preserving orders, and the failure of the context-marginal order — the no-go theorem of §6.8, run on the tower code itself. |
+| `check_twocat.py` | 11 checks (TC1–TC11): coupling liftings, the convex order is not a Barr lifting, the comultiplication cell of λ̄, the no-go theorem of §6.8, and the coupling 2-category of §6.9 (associativity, whiskering fails exactly with a Beck–Chevalley defect, counit coherence), run on the tower code itself. |
 | `check_infogeom.py` | 5 checks: the unified coefficient system (§14.2): tangent presheaf, Laplacian gap 1 − c, KL Pythagoras, local KL ≈ ½Σσ², signed versus positive sections. |
 | `check_barr.py` | 4 checks: D, η and μ are monotone for the Barr lifting (Lemma 6.11), with negative controls and a counterexample to the converse. |
 | `check_places.py` | 9 checks: the context presheaf over the Berkovich spectrum M(ℤ) (§17), and the explorer's numbers. |
@@ -36,7 +36,7 @@ python atlas/fig_places.py # regenerate the M(Z) figure
 pdflatex tower_geometry.tex && pdflatex tower_geometry.tex
 ```
 
-Every check prints `PASS`/`FAIL` per item and a final count. All 99 checks pass (90 for the paper, 9 for the companion note).
+Every check prints `PASS`/`FAIL` per item and a final count. All 102 checks pass (93 for the paper, 9 for the companion note).
 
 ## The hallucination studies (`halluc_study/`)
 
