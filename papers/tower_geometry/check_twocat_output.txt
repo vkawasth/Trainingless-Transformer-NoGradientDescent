@@ -1,0 +1,7 @@
+PASS TC1 (Cm) cell: pooled context e on the left, own contexts E3(eta)(c_k) on the right, e their mixture, equal label marginals   [200 random samples]
+PASS TC2 any two relative-interior points u, v of a polytope S satisfy v = a u + (1-a) w with a in (0,1), w in S   [300 random cases; smallest a needed 3.9e-03]
+PASS TC3 convex order relates point masses only when equal, yet is not equality, so it is no Barr lifting
+PASS TC4 martingale lifting: mixtures of martingale couplings are martingale couplings (mu monotone); compositions too (preorder)   [200 instances each]
+PASS TC5 martingale orientation fails on the counterexample, holds when labels and contexts are decorrelated, and only sometimes otherwise; the context marginals are always ordered   [holds in 30 of 200 random samples]
+
+5/5 checks passed
