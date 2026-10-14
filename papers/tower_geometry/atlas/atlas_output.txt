@@ -1,0 +1,8 @@
+algebra: (np.float64(1.875), np.float64(2.0), [np.float64(0.5), np.float64(0.125), np.float64(0.03125), np.float64(0.0078125), np.float64(0.001953125), np.float64(0.00048828125), np.float64(0.0001220703125), np.float64(3.0517578125e-05)])
+tower energies: [np.float64(0.3358), np.float64(0.3766), np.float64(0.472), 1.0]
+secant fibre points: 329
+tropical max deviation from tropical limit: {0.3: 1.602069449542931, 0.01: 0.4506672254623537, 1e-06: 0.13119892418174395}
+walls done
+fibres: [('generic', ['1/2', '1', '0'], 4, 2, 0, [2, 0]), ('collision', ['0', '1', '2'], 20, 130, 568, [1, 0])]
+betti map: Counter({(0, 0): 236, (2, 0): 209, (1, 0): 13, (1, None): 1})
+hallucination stream: [(np.int64(1), np.float64(0.301), np.False_, None), (np.int64(2), np.float64(0.298), np.False_, None), (np.int64(3), np.float64(0.296), np.False_, None), (np.int64(4), np.float64(0.302), np.False_, None), (np.int64(5), np.float64(0.31), np.False_, None), (np.int64(6), np.float64(0.32), np.False_, None), (np.int64(7), np.float64(0.332), np.False_, None), (np.int64(8), np.float64(0.337), np.True_, np.float64(0.4837)), (np.int64(9), np.float64(0.343), np.True_, np.float64(0.4577)), (np.int64(10), np.float64(0.3512), np.True_, np.float64(0.4235)), (np.int64(11), np.float64(0.37), np.True_, np.float64(0.3514)), (np.int64(12), np.float64(0.387), np.True_, np.float64(0.292))]
