@@ -1,0 +1,320 @@
+<title>Three-Token Context Sheaf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a control strip (the epsilon phase line) over a 3x2 grid, one panel per layer, read left-to-right from information to outcome */
+:root{
+  --bg:#f3f5f7; --panel:#ffffff; --ink:#18222d; --muted:#5b6876; --line:#d5dce3;
+  --accent:#2b5fa8; --accent-soft:#dbe6f5;
+  --bad:#c2410c; --bad-soft:#fbe3d6; --good:#0f7b6c; --good-soft:#d4efe9; --gold:#a16207;
+  --display:"Literata",Georgia,serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161c; --panel:#18202a; --ink:#e4e9ef; --muted:#97a3b0; --line:#2c3743;
+  --accent:#7aa7e6; --accent-soft:#1f2f45; --bad:#f08a5d; --bad-soft:#3a2219; --good:#4cc3ad; --good-soft:#15312c; --gold:#e0b453; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161c; --panel:#18202a; --ink:#e4e9ef; --muted:#97a3b0; --line:#2c3743;
+  --accent:#7aa7e6; --accent-soft:#1f2f45; --bad:#f08a5d; --bad-soft:#3a2219; --good:#4cc3ad; --good-soft:#15312c; --gold:#e0b453; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 48px;display:grid;gap:22px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lede{max-width:72ch;color:var(--muted);margin:6px 0 0}
+.map{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:.82rem;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--panel)}
+.chip b{font-weight:600}
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:12px}
+.ctrl{display:grid;grid-template-columns:minmax(150px,220px) 1fr 70px;gap:12px;align-items:center}
+.ctrl label{font-weight:600}
+.ctrl label small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+.ctrl output{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.presets button{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:4px 10px;cursor:pointer}
+.presets button:hover{border-color:var(--accent)}
+.presets button:focus-visible{outline:2px solid var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.ctrl{grid-template-columns:1fr 60px}.ctrl label{grid-column:1/-1}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px 16px;min-width:0;display:grid;gap:8px;align-content:start}
+.eyebrow{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.panel h2{font-family:var(--display);font-weight:500;font-size:1.12rem;margin:0}
+.panel p{margin:0;color:var(--muted);font-size:.88rem}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:var(--mono);fill:var(--ink)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.88rem}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.verdict{border-radius:8px;padding:10px 12px;font-weight:600}
+.verdict.bad{background:var(--bad-soft);color:var(--bad)} .verdict.good{background:var(--good-soft);color:var(--good)} .verdict.mid{background:var(--accent-soft);color:var(--accent)}
+.rows{display:grid;gap:6px}
+.row{display:grid;grid-template-columns:1fr auto;gap:10px;font-size:.88rem;border-bottom:1px solid var(--line);padding-bottom:5px}
+.row span:last-child{font-family:var(--mono);text-align:right}
+.pill{display:inline-block;border-radius:999px;padding:0 8px;font-size:.78rem;font-family:var(--body);font-weight:600}
+.pill.bad{background:var(--bad-soft);color:var(--bad)} .pill.good{background:var(--good-soft);color:var(--good)} .pill.mid{background:var(--accent-soft);color:var(--accent)}
+.reading{font-size:.9rem;color:var(--ink);background:var(--bg);border-radius:8px;padding:10px 12px}
+.foot{color:var(--muted);font-size:.82rem;max-width:90ch}
+.foot code{font-family:var(--mono);font-size:.8rem}
+@media (prefers-reduced-motion:no-preference){.dot{transition:cx .15s,cy .15s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Three-token context sheaf</h1>
+    <p class="lede">A model is asked about three yes/no claims X₀, X₁, X₂, two at a time, in separate prompts. Each pair agrees with probability ε.
+      Everything below is one object: a presheaf of probability spaces on the lattice of contexts. Move ε and the position inside the fibre,
+      and watch each layer change together.</p>
+    <div class="map" aria-label="How the layers map to panels">
+      <span class="chip"><b>Information</b> · which variables a context sees</span>
+      <span class="chip"><b>Contextual data</b> · tables on each window</span>
+      <span class="chip"><b>Probability</b> · global laws in the fibre</span>
+      <span class="chip"><b>Algebraic geometry</b> · marginal polytope and its faces</span>
+      <span class="chip"><b>Flow</b> · conditional expectations</span>
+      <span class="chip"><b>Outcome</b> · glue or obstruction</span>
+    </div>
+  </header>
+
+  <section class="controls" aria-label="Controls">
+    <div class="ctrl">
+      <label for="eps">Pairwise agreement ε<small>P(Xᵢ = Xⱼ) in every pair context</small></label>
+      <input id="eps" type="range" min="0.10" max="0.98" step="0.005" value="0.40">
+      <output id="epsOut" for="eps">0.400</output>
+    </div>
+    <svg id="phase" viewBox="0 0 1000 92" role="img" aria-label="Phase line over epsilon"></svg>
+    <div class="ctrl">
+      <label for="pos">Position in the fibre<small>global law J + s·χ, s from one end to the other</small></label>
+      <input id="pos" type="range" min="-1" max="1" step="0.01" value="0">
+      <output id="posOut" for="pos">0.00</output>
+    </div>
+    <div class="presets" aria-label="Presets">
+      <button type="button" data-e="0.25" data-t="0">Hallucination: ε = 0.25</button>
+      <button type="button" data-e="0.3333" data-t="0">Wall: ε = 1/3</button>
+      <button type="button" data-e="0.40" data-t="0">Liftable, coupled: ε = 0.40</button>
+      <button type="button" data-e="0.50" data-t="0">Beck–Chevalley: ε = 1/2</button>
+      <button type="button" data-e="0.80" data-t="0.7">Strong agreement, off-centre</button>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="panel">
+      <div class="eyebrow">1 · Information and contextual data</div>
+      <h2>The context lattice</h2>
+      <svg id="lattice" viewBox="0 0 340 250" role="img" aria-label="Lattice of contexts"></svg>
+      <p>Each window holds a 2×2 table (shade = probability). Downward arrows are restrictions. The highlighted square
+        X₀X₁ ← X₁ → X₁X₂ is the one Beck–Chevalley is tested on.</p>
+    </article>
+
+    <article class="panel">
+      <div class="eyebrow">2 · Algebraic geometry</div>
+      <h2>Marginal polytope</h2>
+      <svg id="poly" viewBox="0 0 340 260" role="img" aria-label="Marginal polytope in disagreement coordinates"></svg>
+      <p>Coordinates dᵢⱼ = P(Xᵢ ≠ Xⱼ). The marginal map sends the simplex of global laws onto this tetrahedron, the convex hull of the
+        four deterministic patterns. The data point moves along the diagonal. Below ε = 1/3 it leaves through the shaded face.</p>
+    </article>
+
+    <article class="panel">
+      <div class="eyebrow">3 · Probability</div>
+      <h2>The fibre over the data</h2>
+      <svg id="bars" viewBox="0 0 340 230" role="img" aria-label="Probabilities of the eight joint outcomes"></svg>
+      <p>The eight atoms of the global law. Moving inside the fibre adds s·χ, with χ = (−1)^(x₀+x₁+x₂) (darker bars rise, lighter fall).
+        Outside the polytope no s works: the closest candidate puts negative mass on 000 and 111.</p>
+    </article>
+
+    <article class="panel">
+      <div class="eyebrow">4 · Flow</div>
+      <h2>Conditional expectations</h2>
+      <svg id="flow" viewBox="0 0 340 200" role="img" aria-label="Beck–Chevalley defect across the fibre"></svg>
+      <dl class="kv" id="flowkv"></dl>
+      <p>The defect ‖E_A E_B − E_{A∧B}‖ = c is the largest conditional correlation of X₀ and X₂ given X₁. The curve shows it across the fibre.</p>
+    </article>
+
+    <article class="panel">
+      <div class="eyebrow">5 · Support faces</div>
+      <h2>Which face the law sits on</h2>
+      <svg id="face" viewBox="0 0 340 170" role="img" aria-label="Support pattern"></svg>
+      <p>The zero pattern of the law fixes the face of the simplex it lies on: the support-level (tropical) shadow. At the ends of the fibre an
+        atom vanishes and the law drops to a lower face.</p>
+    </article>
+
+    <article class="panel">
+      <div class="eyebrow">6 · Outcome</div>
+      <h2>Glue or obstruction</h2>
+      <div id="verdict" class="verdict"></div>
+      <div class="rows" id="rows"></div>
+      <div class="reading" id="reading"></div>
+    </article>
+  </div>
+
+  <p class="foot">Exact formulas: with a = (3ε−1)/4 and b = (1−ε)/4, the fibre is p = J + s·χ with J(000) = J(111) = a and every other atom b,
+    for |s| ≤ min(a, b). It is non-empty iff ε ≥ 1/3, the certificate is Φ = Σ P(Xᵢ ≠ Xⱼ) ≤ 2, and at s = 0 the defect is c = |2ε−1|/(2ε).
+    These match checks L1–L8 in <code>check_hallucination.py</code> and Section 16 of <em>Shadows, Fibres and Secants of the Posterior Tower</em>.</p>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const $=id=>document.getElementById(id);
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;if(parent)parent.appendChild(e);return e}
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const ATOMS=[0,1,2,3,4,5,6,7].map(i=>[(i>>2)&1,(i>>1)&1,i&1]);   // x0 x1 x2
+const ones=x=>x[0]+x[1]+x[2];
+
+function model(eps,t){
+  const a=(3*eps-1)/4,b=(1-eps)/4,m=Math.min(a,b),feasible=a>=-1e-12;
+  const s=feasible&&m>0?t*m:0;
+  const p=ATOMS.map(x=>{const k=ones(x);return k===0?a+s:k===3?a-s:k===1?b-s:b+s});
+  return {a,b,m,s,p,feasible};
+}
+function condStats(p){
+  let cmax=0,cbarN=0,cbarD=0,cmi=0,valid=0;
+  for(const x1 of [0,1]){
+    const T=[[0,0],[0,0]];ATOMS.forEach((x,i)=>{if(x[1]===x1)T[x[0]][x[2]]+=Math.max(p[i],0)});
+    const n=T[0][0]+T[0][1]+T[1][0]+T[1][1];if(n<=1e-15)continue;
+    const r0=T[0][0]+T[0][1],r1=T[1][0]+T[1][1],c0=T[0][0]+T[1][0],c1=T[0][1]+T[1][1];
+    if(Math.min(r0,r1,c0,c1)>1e-12){const f=Math.abs(T[0][0]*T[1][1]-T[0][1]*T[1][0])/Math.sqrt(r0*r1*c0*c1);cmax=Math.max(cmax,f);cbarN+=n*f;cbarD+=n;valid++}
+    for(const i of [0,1])for(const j of [0,1]){const q=T[i][j];if(q>1e-15){const ri=i?r1:r0,cj=j?c1:c0;cmi+=q*Math.log2(q*n/(ri*cj))}}
+  }
+  return {c:cmax,cbar:cbarD?cbarN/cbarD:0,cmi,valid};
+}
+
+/* ---------- phase line ---------- */
+function drawPhase(eps){
+  const s=$("phase");s.innerHTML="";const X=e=>40+(e-0.1)/(0.98-0.1)*920;
+  el("rect",{x:X(0.1),y:30,width:X(1/3)-X(0.1),height:18,fill:css("--bad-soft")},s);
+  el("rect",{x:X(1/3),y:30,width:X(0.98)-X(1/3),height:18,fill:css("--good-soft")},s);
+  el("text",{x:(X(0.1)+X(1/3))/2,y:43,"text-anchor":"middle","font-size":12,fill:css("--bad")},s,"obstructed: no global law");
+  el("text",{x:(X(1/3)+X(0.98))/2,y:43,"text-anchor":"middle","font-size":12,fill:css("--good")},s,"liftable: the fibre is a segment");
+  // fibre width and min defect curves
+  let w="",cmin="";for(let e=0.1;e<=0.98+1e-9;e+=0.005){const M=model(e,0);const width=M.feasible?2*Math.max(M.m,0):0;
+    let best=1;if(M.feasible){for(let t=-1;t<=1.0001;t+=0.05){best=Math.min(best,condStats(model(e,t).p).c)}}else best=NaN;
+    w+=(w?"L":"M")+X(e).toFixed(1)+","+(28-width*90).toFixed(1);if(!isNaN(best))cmin+=(cmin?"L":"M")+X(e).toFixed(1)+","+(28-best*24).toFixed(1)}
+  el("path",{d:w,fill:"none",stroke:css("--good"),"stroke-width":1.6},s);
+  el("path",{d:cmin,fill:"none",stroke:css("--accent"),"stroke-width":1.6,"stroke-dasharray":"4 3"},s);
+  [[1/3,"1/3"],[0.5,"1/2"]].forEach(([e,l])=>{el("line",{x1:X(e),x2:X(e),y1:4,y2:54,stroke:css("--muted"),"stroke-width":1},s);el("text",{x:X(e),y:68,"text-anchor":"middle","font-size":12,fill:css("--muted")},s,"ε = "+l)});
+  [0.1,0.2,0.6,0.7,0.8,0.9].forEach(e=>el("text",{x:X(e),y:68,"text-anchor":"middle","font-size":11,fill:css("--muted")},s,e.toFixed(1)));
+  el("line",{x1:X(eps),x2:X(eps),y1:2,y2:56,stroke:css("--ink"),"stroke-width":2},s);
+  el("text",{x:44,y:86,"font-size":11,fill:css("--good")},s,"— fibre length 2·min(a,b)");
+  el("text",{x:250,y:86,"font-size":11,fill:css("--accent")},s,"- - smallest defect c in the fibre (0 only at ε = 1/2)");
+}
+
+/* ---------- lattice ---------- */
+function drawLattice(M,eps){
+  const s=$("lattice");s.innerHTML="";const ink=css("--ink"),mut=css("--muted"),acc=css("--accent");
+  const top=[170,30],W={"X₀X₁":[60,118],"X₁X₂":[170,118],"X₀X₂":[280,118]},S={"X₀":[60,215],"X₁":[170,215],"X₂":[280,215]};
+  const edges=[["X₀X₁","X₀"],["X₀X₁","X₁"],["X₁X₂","X₁"],["X₁X₂","X₂"],["X₀X₂","X₀"],["X₀X₂","X₂"]];
+  const defs=el("defs",{},s);const mk=el("marker",{id:"ar",viewBox:"0 0 8 8",refX:7,refY:4,markerWidth:6,markerHeight:6,orient:"auto"},defs);el("path",{d:"M0,0L8,4L0,8z",fill:mut},mk);
+  const mk2=el("marker",{id:"ar2",viewBox:"0 0 8 8",refX:7,refY:4,markerWidth:6,markerHeight:6,orient:"auto"},defs);el("path",{d:"M0,0L8,4L0,8z",fill:acc},mk2);
+  for(const k in W){el("line",{x1:top[0],y1:top[1]+16,x2:W[k][0],y2:W[k][1]-26,stroke:M.feasible?mut:css("--bad"),"stroke-width":1.2,"stroke-dasharray":M.feasible?"":"4 3","marker-end":"url(#ar)"},s)}
+  edges.forEach(([a,b])=>{const hi=(a==="X₀X₁"&&b==="X₁")||(a==="X₁X₂"&&b==="X₁");
+    el("line",{x1:W[a][0],y1:W[a][1]+26,x2:S[b][0],y2:S[b][1]-14,stroke:hi?acc:mut,"stroke-width":hi?2.2:1.2,"marker-end":hi?"url(#ar2)":"url(#ar)"},s)});
+  // top node
+  el("rect",{x:top[0]-82,y:top[1]-16,width:164,height:32,rx:6,fill:M.feasible?css("--good-soft"):css("--bad-soft"),stroke:M.feasible?css("--good"):css("--bad"),"stroke-dasharray":M.feasible?"":"5 3"},s);
+  el("text",{x:top[0],y:top[1]-1,"text-anchor":"middle","font-size":12,"font-weight":600},s,"X₀X₁X₂");
+  el("text",{x:top[0],y:top[1]+11,"text-anchor":"middle","font-size":10,fill:M.feasible?css("--good"):css("--bad")},s,M.feasible?"global sections: a segment":"no global section");
+  // windows with 2x2 tables
+  const P=[[eps/2,(1-eps)/2],[(1-eps)/2,eps/2]];
+  for(const k in W){const [x,y]=W[k];el("rect",{x:x-42,y:y-26,width:84,height:52,rx:6,fill:css("--panel"),stroke:(k==="X₀X₂")?mut:acc,"stroke-width":(k==="X₀X₂")?1:1.8},s);
+    el("text",{x:x-36,y:y-12,"font-size":11,"font-weight":600},s,k);
+    for(const i of[0,1])for(const j of[0,1]){el("rect",{x:x+2+j*18,y:y-20+i*18,width:16,height:16,fill:acc,"fill-opacity":(0.08+1.6*P[i][j]).toFixed(3),stroke:css("--line")},s)}
+    el("text",{x:x-36,y:y+8,"font-size":10,fill:mut},s,"agree");el("text",{x:x-36,y:y+19,"font-size":10},s,eps.toFixed(3))}
+  for(const k in S){const [x,y]=S[k];el("rect",{x:x-26,y:y-14,width:52,height:28,rx:6,fill:k==="X₁"?css("--accent-soft"):css("--panel"),stroke:k==="X₁"?acc:mut},s);
+    el("text",{x:x,y:y-1,"text-anchor":"middle","font-size":12,"font-weight":600},s,k);el("text",{x:x,y:y+10,"text-anchor":"middle","font-size":9,fill:mut},s,"½ / ½")}
+  el("text",{x:330,y:245,"text-anchor":"end","font-size":9,fill:mut},s,"meet A∧B = σ(X₁)");
+}
+
+/* ---------- polytope ---------- */
+function proj([u,v,w]){return [130+160*(0.92*u-0.55*v+0.05*w), 240-160*(0.86*w+0.12*u+0.42*v)]}
+function drawPoly(eps){
+  const s=$("poly");s.innerHTML="";const mut=css("--muted"),bad=css("--bad"),acc=css("--accent");
+  const V={O:[0,0,0],A:[1,1,0],B:[1,0,1],C:[0,1,1]};const pV={};for(const k in V)pV[k]=proj(V[k]);
+  const pts=a=>a.map(k=>pV[k].join(",")).join(" ");
+  el("polygon",{points:pts(["A","B","C"]),fill:bad,"fill-opacity":0.16,stroke:bad,"stroke-width":1.4},s);
+  [["O","A"],["O","B"],["O","C"],["A","B"],["B","C"],["A","C"]].forEach(([a,b])=>el("line",{x1:pV[a][0],y1:pV[a][1],x2:pV[b][0],y2:pV[b][1],stroke:mut,"stroke-width":1.1},s));
+  const lab={O:["all agree · 000",-8,14,"end"],A:["X₁ odd",8,4,"start"],B:["X₀ odd",0,-8,"middle"],C:["X₂ odd",-8,-6,"end"]};
+  for(const k in lab){el("circle",{cx:pV[k][0],cy:pV[k][1],r:3.5,fill:css("--ink")},s);el("text",{x:pV[k][0]+lab[k][1],y:pV[k][1]+lab[k][2],"font-size":10,"text-anchor":lab[k][3]},s,lab[k][0])}
+  // diagonal
+  const d0=proj([1,1,1]),d1=proj([0,0,0]);el("line",{x1:d0[0],y1:d0[1],x2:d1[0],y2:d1[1],stroke:acc,"stroke-width":1,"stroke-dasharray":"3 3"},s);
+  const cr=proj([2/3,2/3,2/3]);el("circle",{cx:cr[0],cy:cr[1],r:3,fill:"none",stroke:bad,"stroke-width":1.5},s);
+  el("text",{x:cr[0]+7,y:cr[1]+12,"font-size":9,fill:bad},s,"ε = 1/3");
+  el("text",{x:d0[0]+4,y:d0[1]-4,"font-size":9,fill:mut},s,"ε = 0");
+  const d=1-eps,p=proj([d,d,d]);el("circle",{class:"dot",cx:p[0],cy:p[1],r:6,fill:eps>=1/3-1e-9?acc:bad,stroke:css("--panel"),"stroke-width":2},s);
+  el("text",{x:330,y:236,"text-anchor":"end","font-size":10,fill:mut},s,"Φ = d₀₁+d₁₂+d₀₂ = "+(3*d).toFixed(3)+(3*d>2+1e-9?"  > 2":"  ≤ 2"));
+  el("text",{x:330,y:252,"text-anchor":"end","font-size":10,fill:bad},s,"shaded face: Φ = 2");
+}
+
+/* ---------- fibre bars ---------- */
+function drawBars(M){
+  const s=$("bars");s.innerHTML="";const mut=css("--muted"),acc=css("--accent"),bad=css("--bad");
+  const y0=150,H=230,scale=v=>v*H;  // 0.5 -> 115
+  el("line",{x1:20,x2:330,y1:y0,y2:y0,stroke:mut},s);
+  [0.1,0.2,0.3,0.4,0.5].forEach(v=>{el("line",{x1:20,x2:330,y1:y0-scale(v),y2:y0-scale(v),stroke:css("--line"),"stroke-width":0.6},s);el("text",{x:18,y:y0-scale(v)+3,"font-size":8,"text-anchor":"end",fill:mut},s,v.toFixed(1))});
+  ATOMS.forEach((x,i)=>{const v=M.p[i],xx=30+i*37.5,neg=v<0,plus=ones(x)%2===0;
+    const h=Math.min(Math.abs(scale(v)),70+ (neg?0:60));
+    el("rect",{x:xx,y:neg?y0:y0-h,width:26,height:Math.max(h,0.5),fill:neg?bad:acc,"fill-opacity":neg?0.8:(plus?0.95:0.45)},s);
+    el("text",{x:xx+13,y:y0+(neg?h+12:14),"text-anchor":"middle","font-size":10},s,x.join(""));
+    el("text",{x:xx+13,y:neg?y0+h+24:y0-h-4,"text-anchor":"middle","font-size":8.5,fill:neg?bad:mut},s,v.toFixed(3))});
+  el("text",{x:330,y:222,"text-anchor":"end","font-size":9,fill:mut},s,M.feasible?("s = "+M.s.toFixed(4)+"   |s| ≤ "+Math.max(M.m,0).toFixed(4)):"no s gives a law: a = "+M.a.toFixed(3)+" < 0");
+}
+
+/* ---------- flow ---------- */
+function drawFlow(M,eps,t){
+  const s=$("flow");s.innerHTML="";const mut=css("--muted"),acc=css("--accent");
+  const X=v=>40+(v+1)/2*280,Y=v=>165-v*140;
+  el("line",{x1:40,x2:320,y1:165,y2:165,stroke:mut},s);el("line",{x1:40,x2:40,y1:20,y2:165,stroke:mut},s);
+  [0,0.5,1].forEach(v=>el("text",{x:35,y:Y(v)+3,"text-anchor":"end","font-size":9,fill:mut},s,v.toFixed(1)));
+  el("text",{x:40,y:182,"font-size":9,fill:mut},s,"one end");el("text",{x:320,y:182,"text-anchor":"end","font-size":9,fill:mut},s,"other end");
+  el("text",{x:180,y:182,"text-anchor":"middle","font-size":9,fill:mut},s,"s = 0");
+  if(!M.feasible){el("text",{x:180,y:95,"text-anchor":"middle","font-size":12,fill:css("--bad")},s,"no fibre: nothing to flow on");return}
+  let d="",dm="";for(let u=-1;u<=1.0001;u+=0.02){const st=condStats(model(eps,u).p);d+=(d?"L":"M")+X(u).toFixed(1)+","+Y(st.c).toFixed(1);dm+=(dm?"L":"M")+X(u).toFixed(1)+","+Y(Math.min(st.cmi,1)).toFixed(1)}
+  el("path",{d,fill:"none",stroke:acc,"stroke-width":2},s);
+  el("path",{d:dm,fill:"none",stroke:css("--gold"),"stroke-width":1.4,"stroke-dasharray":"4 3"},s);
+  const st=condStats(M.p);el("circle",{class:"dot",cx:X(t),cy:Y(st.c),r:5,fill:acc,stroke:css("--panel"),"stroke-width":2},s);
+  el("text",{x:46,y:28,"font-size":9,fill:acc},s,"— defect c");el("text",{x:120,y:28,"font-size":9,fill:css("--gold")},s,"- - I(X₀;X₂ | X₁), bits");
+}
+
+/* ---------- support face ---------- */
+function drawFace(M){
+  const s=$("face");s.innerHTML="";const mut=css("--muted"),acc=css("--accent"),bad=css("--bad");
+  const zero=M.p.map(v=>Math.abs(v)<1e-9),neg=M.p.map(v=>v< -1e-9);
+  ATOMS.forEach((x,i)=>{const cx=30+i*40,cy=50;el("circle",{cx,cy,r:14,fill:neg[i]?css("--bad-soft"):zero[i]?css("--panel"):acc,"fill-opacity":zero[i]||neg[i]?1:0.85,stroke:neg[i]?bad:zero[i]?mut:acc,"stroke-dasharray":zero[i]?"3 2":""},s);
+    el("text",{x:cx,y:cy+30,"text-anchor":"middle","font-size":10},s,x.join(""))});
+  const k=M.p.filter(v=>v>1e-9).length;
+  el("text",{x:10,y:118,"font-size":11},s,M.feasible?("support: "+k+" of 8 atoms  ·  face of dimension "+(k-1)):"not a law: 000 and 111 would need negative mass");
+  const val=M.p.map(v=>v>1e-9?(-Math.log10(v)).toFixed(1):"∞");
+  el("text",{x:10,y:138,"font-size":9.5,fill:mut},s,"−log₁₀ p (valuation pattern): "+(M.feasible?val.join("  "):"—"));
+  el("text",{x:10,y:158,"font-size":9.5,fill:mut},s,M.feasible?(k<8?"on a wall: the law has dropped to a lower face":"interior: all 8 atoms are live"):"outside the positive part: the tropical fibre is empty");
+}
+
+/* ---------- outcome ---------- */
+function drawOutcome(M,eps){
+  const st=condStats(M.p),v=$("verdict"),rows=$("rows"),r=$("reading");
+  const Phi=3*(1-eps);
+  if(!M.feasible){v.className="verdict bad";v.textContent="Obstructed: the three answers cannot come from one belief state"}
+  else if(st.c<1e-6){v.className="verdict good";v.textContent="Liftable, and the windows glue canonically (Beck–Chevalley holds)"}
+  else{v.className="verdict mid";v.textContent="Liftable, but the windows stay coupled through X₁ (Beck–Chevalley fails)"}
+  const pill=(ok,t)=>`<span class="pill ${ok===true?"good":ok===false?"bad":"mid"}">${t}</span>`;
+  rows.innerHTML=[
+    ["Certificate Φ = Σ P(Xᵢ ≠ Xⱼ)",Phi.toFixed(3)+" "+pill(Phi<=2+1e-9,Phi<=2+1e-9?"≤ 2":"> 2")],
+    ["Global laws (Ȟ⁰)",M.feasible?(M.m>1e-9?"segment "+pill(true,"many"):"one point "+pill(null,"wall")):pill(false,"none")],
+    ["Defect c = ‖E_AE_B − E_A∧B‖",M.feasible?st.c.toFixed(3)+" "+pill(st.c<1e-6,st.c<1e-6?"commute":"no"):"—"],
+    ["Conditional information I(X₀;X₂|X₁)",M.feasible?st.cmi.toFixed(4)+" bits":"—"],
+    ["Gluing complex Ȟ¹ = 0 (c < 1)",M.feasible?pill(st.c<1-1e-9,st.c<1-1e-9?"yes":"no"):"—"]
+  ].map(([a,b])=>`<div class="row"><span>${a}</span><span>${b}</span></div>`).join("");
+  r.textContent=!M.feasible
+    ?"Read as a language model: asked about each pair separately, it agrees too rarely for any single assignment of truth values to explain all three answers. The violated inequality Φ ≤ 2 is a finite witness. This is a hallucination in the sense of Section 16."
+    :st.c<1e-6
+    ?"Read as a language model: the pairwise answers come from one belief state, and once X₁ is known the other two carry no further information about each other. Evidence from the two windows can be combined by the simple rule."
+    :"Read as a language model: a single belief state explains the answers, but X₀ and X₂ share something that X₁ does not screen off. Combining the windows needs the full joint law, and the defect c measures how much the simple rule gets wrong.";
+}
+
+function render(){
+  const eps=parseFloat($("eps").value),t=parseFloat($("pos").value);
+  $("epsOut").textContent=eps.toFixed(3);$("posOut").textContent=t.toFixed(2);
+  const M=model(eps,t);$("pos").disabled=!M.feasible||M.m<=1e-9;
+  drawPhase(eps);drawLattice(M,eps);drawPoly(eps);drawBars(M);drawFlow(M,eps,t);drawFace(M);drawOutcome(M,eps);
+}
+$("eps").addEventListener("input",render);$("pos").addEventListener("input",render);
+document.querySelectorAll(".presets button").forEach(b=>b.addEventListener("click",()=>{$("eps").value=b.dataset.e;$("pos").value=b.dataset.t;render()}));
+$("phase").addEventListener("click",ev=>{const r=$("phase").getBoundingClientRect();const x=(ev.clientX-r.left)/r.width*1000;const e=0.1+(x-40)/920*(0.88);if(e>=0.1&&e<=0.98){$("eps").value=e.toFixed(3);render()}});
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+render();
+</script>
