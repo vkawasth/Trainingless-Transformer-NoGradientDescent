@@ -1,0 +1,27 @@
+smoke: {'items': 300, 'auroc': 0.9922444444444445, 'lo': 0.9864823611111112, 'hi': 0.9965668055555555}
+smoke test passed
+{
+ "eps0.25": {
+  "E": [
+   -0.495,
+   -0.4785,
+   -0.5275
+  ],
+  "violation": 0.5009999999999999,
+  "lo": 0.4535,
+  "hi": 0.548,
+  "obstructed": true
+ },
+ "eps0.45": {
+  "E": [
+   -0.0955,
+   -0.106,
+   -0.0825
+  ],
+  "violation": -0.716,
+  "lo": -0.768,
+  "hi": -0.663,
+  "obstructed": false
+ }
+}
+smoke test passed (V = 2(1-3eps): 0.5 at eps = 0.25; no violation at eps = 0.45)
