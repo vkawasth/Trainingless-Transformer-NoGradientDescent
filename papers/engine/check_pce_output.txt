@@ -1,0 +1,8 @@
+PASS P1 three-token: incoherent iff eps < 1/3; width 2 min(a, b) above; unique at eps = 1/3   [max width error 5.6e-17]
+PASS P2 certificates are >= 0 on every deterministic assignment and < 0 on the data; radius 0 for families from a global law   [75 incoherent of 300 random compatible families]
+PASS P3 three-level split: total = between + within + noise, all non-negative   [500 random hierarchies]
+PASS P4 defect 0 for the Markov glue, positive for generic laws; equals |2eps-1|/(2eps) on the section J
+PASS P5 KL-ball radius: 0.0424 bits for the independent coupling, 0 for the garbling (companion Example 8)   [0.0424 bits]
+PASS P6 decisions: flag incoherent, flag wide non-unique on request, answer when confident, abstain below threshold
+
+6/6 checks passed

@@ -1,0 +1,50 @@
+{
+ "D1_incoherence_detection": {
+  "25": {
+   "incoherent_share": 0.25,
+   "auroc_radius": 0.5786666666666667,
+   "auroc_averaged_confidence": 0.46373333333333333
+  },
+  "100": {
+   "incoherent_share": 0.255,
+   "auroc_radius": 0.7458876167916831,
+   "auroc_averaged_confidence": 0.5223713646532439
+  },
+  "400": {
+   "incoherent_share": 0.24,
+   "auroc_radius": 0.8413514254385965,
+   "auroc_averaged_confidence": 0.39686129385964913
+  },
+  "1600": {
+   "incoherent_share": 0.245,
+   "auroc_radius": 0.9213407217191513,
+   "auroc_averaged_confidence": 0.44424922286795515
+  }
+ },
+ "D2_nonunique": {
+  "interval_contains_truth": 1.0,
+  "point_equals_truth": 0.0,
+  "point_abs_error_median": 0.09233291067421862,
+  "point_abs_error_max": 0.36372270188597317
+ },
+ "D3_world_A_blind_spots": {
+  "accuracy": 0.6826666666666666,
+  "auroc_baseline": 0.7765661928834033,
+  "auroc_engine": 0.8106976677389706,
+  "logloss_gain_bits": 0.03588657004821743,
+  "ci": [
+   0.017198761434337597,
+   0.05231507459510437
+  ]
+ },
+ "D3_world_B_null": {
+  "accuracy": 0.708,
+  "auroc_baseline": 0.7301088237064555,
+  "auroc_engine": 0.7306967984934086,
+  "logloss_gain_bits": -0.0003870963100682537,
+  "ci": [
+   -0.002152392428625796,
+   0.001238313195968521
+  ]
+ }
+}
