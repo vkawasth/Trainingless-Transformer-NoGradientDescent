@@ -3,5 +3,8 @@ PASS TC2 any two relative-interior points u, v of a polytope S satisfy v = a u +
 PASS TC3 convex order relates point masses only when equal, yet is not equality, so it is no Barr lifting
 PASS TC4 martingale lifting: mixtures of martingale couplings are martingale couplings (mu monotone); compositions too (preorder)   [200 instances each]
 PASS TC5 martingale orientation fails on the counterexample, holds when labels and contexts are decorrelated, and only sometimes otherwise; the context marginals are always ordered   [holds in 30 of 200 random samples]
+PASS TC6 level-one output of delta(x,c) has context marginal delta_c, so the context-marginal order forces c0 = c1   [200 random points]
+PASS TC7 the context-marginal order identifies laws whose D(epsilon) images are incomparable, so D(epsilon) is not monotone
+PASS TC8 pointwise-related maps give related pushforwards in the Barr lifting (first step of delta-monotonicity)   [300 random relations and maps]
 
-5/5 checks passed
+8/8 checks passed

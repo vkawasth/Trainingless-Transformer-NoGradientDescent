@@ -11,6 +11,12 @@
   TC5  martingale orientation of the (Cm) cell: it fails on the paper's counterexample, holds whenever every label has the same
       conditional mean context (a decorrelated example), and holds in only some random samples; the context marginals are always
       ordered, delta_e <=cx sum_k a_k delta_{E3(eta)(c_k)}
+  TC6 the level-one output of delta(x, c) has context marginal equal to the point mass at c (200 random points), so under any order
+      that compares level-one laws by the convex order of their context marginals, delta(x, c0) <= delta(x, c1) forces c0 = c1
+  TC7 the context-marginal order breaks monotonicity of D(epsilon): two level-one laws with the same context marginal (hence
+      equivalent) have label marginals delta_{delta_0} and delta_{delta_1}, which are incomparable
+  TC8 the first step of delta-monotonicity for label-preserving liftings: if j(y) R j'(y) for every y, then D(j)(p) and D(j')(p) are
+      related in the Barr lifting of R, for every p (linear programming, 300 random relations and maps)
 Run: python check_twocat.py   (from the folder that contains check_tower.py)
 """
 import io, os, contextlib, itertools
@@ -122,5 +128,42 @@ held = sum(r[0] for r in rand); marg = all(r[1] for r in rand)
 check("TC5 martingale orientation fails on the counterexample, holds when labels and contexts are decorrelated, and only sometimes "
       "otherwise; the context marginals are always ordered", (not ce) and dec and 0 < held < 200 and marg,
       f"holds in {held} of 200 random samples")
+
+# TC6
+rpoint = ns["rpoint"]
+ok = True
+for _ in range(200):
+    pt = rpoint(X); x, c = pt
+    ok &= all(cc == c for (_, cc) in dlt(pt)[1][0].m)
+check("TC6 level-one output of delta(x,c) has context marginal delta_c, so the context-marginal order forces c0 = c1", ok,
+      "200 random points")
+
+# TC7
+c = ctx(delta(0))
+L = Dist([((delta(0), c), F(1))]); Lp = Dist([((delta(1), c), F(1))])        # same context marginal, different labels
+same_ctx = Dmap(lambda t: t[1], L) == Dmap(lambda t: t[1], Lp)
+lab, labp = Dmap(lambda t: t[0], L), Dmap(lambda t: t[0], Lp)               # D(epsilon) images: point masses at delta_0, delta_1
+pts = np.array([[1.0, 0.0], [0.0, 1.0]])                                    # delta_0, delta_1 as points of the simplex
+incomparable = not mart([1], [1], pts[[0]], pts[[1]]) and not mart([1], [1], pts[[1]], pts[[0]])
+check("TC7 the context-marginal order identifies laws whose D(epsilon) images are incomparable, so D(epsilon) is not monotone",
+      same_ctx and lab != labp and incomparable)
+
+# TC8
+def barr(P, Q, R):
+    pairs = [(i, j) for i in range(len(P)) for j in range(len(Q)) if R[i, j]]
+    if not pairs: return False
+    A = np.zeros((len(P) + len(Q), len(pairs)))
+    for k, (i, j) in enumerate(pairs): A[i, k] = 1; A[len(P) + j, k] = 1
+    return linprog(np.zeros(len(pairs)), A_eq=A, b_eq=np.concatenate([P, Q]), bounds=(0, None), method="highs").status == 0
+ok = True
+for _ in range(300):
+    ny, nz = rng.integers(2, 6), rng.integers(2, 7)
+    R = rng.random((nz, nz)) < 0.3; np.fill_diagonal(R, True)
+    jmap = rng.integers(0, nz, ny); jp = np.array([rng.choice(np.flatnonzero(R[jmap[y]])) for y in range(ny)])  # j(y) R j'(y)
+    p = rng.dirichlet(np.ones(ny))
+    P = np.bincount(jmap, weights=p, minlength=nz); Q = np.bincount(jp, weights=p, minlength=nz)
+    ok &= barr(P, Q, R)
+check("TC8 pointwise-related maps give related pushforwards in the Barr lifting (first step of delta-monotonicity)", ok,
+      "300 random relations and maps")
 
 print(f"\n{sum(results)}/{len(results)} checks passed")
