@@ -112,8 +112,9 @@ obstruction is supported at the archimedean place, the only one that carries ord
 finds that the disagreement detector adds information beyond answer length and that the within-sample windows fail Beck--Chevalley
 through item-level difficulty. For three agents reporting towers about one state, convex order ranks their information (Blackwell), the
 agent-level entropy term measures distance from a common prior, two overlapping pairs of logs always reconcile while three can fail
-with a cycle certificate, and chain pooling is exact under Beck--Chevalley. Eight scripts check every finite claim (30, 8, 10, 9, 9, 4 and
-6 checks, and 7 Monte Carlo checks of the statistical test), all passing. Code, figures and an interactive explorer are at
+with a cycle certificate, and chain pooling is exact under Beck--Chevalley. A pooling rule beats the better agent iff it lies in a KL ball around the
+Bayes pool whose radius is the conditional information the other agent adds; in the Blackwell (garbling) case the ball is a point. Eight
+scripts check every finite claim (30, 8, 10, 9, 9, 4 and 8 checks, and 7 Monte Carlo checks of the statistical test), all passing. Code, figures and an interactive explorer are at
 \url{https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/papers}.
 \end{abstract}
 
@@ -1897,6 +1898,62 @@ formula. Check AG6: on 200 laws built with this independence the error is below 
 positive.
 \end{proof}
 
+\subsection*{Pooling a more and a less informed agent}
+A pooling rule $F$ maps a pair of reports $(q_i,q_j)$ to a posterior $F(q_i,q_j)$, item by item. Its expected log loss is
+$\mathrm{loss}(F)=\EE[-\log F(q_i,q_j)(X)]$; the loss of agent $i$ alone is $\mathrm{loss}(q_i)$. Let $q^*=P(X\mid q_i,q_j)$ be the Bayes pool.
+
+\begin{proposition}[Which pooling rules beat the better agent]\label{prop:agents-pool-kl}
+For every joint law of $(X,S_i,S_j)$ and every pooling rule $F$,
+\[
+\mathrm{loss}(q_i)-\mathrm{loss}(F)\;=\;I(X;q_j\mid q_i)\;-\;\EE\,\mathrm{KL}\bigl(q^*\,\big\|\,F(q_i,q_j)\bigr).
+\]
+\begin{enumerate}[label=(\alph*)]
+\item $F$ is weakly better than agent $i$ iff $\EE\,\mathrm{KL}(q^*\|F)\le I(X;q_j\mid q_i)$, and strictly worse iff the reverse strict
+  inequality holds. The good rules form a KL ball around the Bayes pool, whose radius is what $j$ adds beyond $i$.
+\item The radius vanishes iff $X\perp q_j\mid q_i$. For a full-support law this is Beck--Chevalley for the windows $\sigma(X,q_i)$ and
+  $\sigma(q_i,q_j)$ (\cref{thm:bc}).
+\item \emph{Blackwell case.} If $S_j$ is a garbling of $S_i$, the radius is $0$ and $q^*=q_i$. A rule is weakly better than agent $i$ only
+  if $F(q_i,q_j)=q_i$ almost surely, and every other rule is strictly worse, by exactly $\EE\,\mathrm{KL}(q_i\|F)$. This covers linear pooling,
+  logarithmic pooling and products of experts whenever they move off $q_i$.
+\item \emph{The Blackwell order alone does not decide.} $\Pi_j\cx\Pi_i$ constrains the two towers separately, while the radius depends on
+  the coupling of the signals. With the same towers, the radius can be $0$ or positive (\cref{ex:agents-pool}).
+\item The same holds for every strictly proper scoring rule, with KL replaced by its divergence. For the Brier score $(X-F)^2$ the identity
+  reads $\mathrm{loss}(q_i)-\mathrm{loss}(F)=\EE(q^*-q_i)^2-\EE(q^*-F)^2$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Given $(q_i,q_j)$, $X$ has law $q^*$, so $\EE[-\log F(X)\mid q_i,q_j]=H(q^*)+\mathrm{KL}(q^*\|F)$. Subtract the same identity for $F=q_i$ and
+use $\EE\,\mathrm{KL}(q^*\|q_i)=I(X;q_j\mid q_i)$. This gives the identity and (a). (b) $I(X;q_j\mid q_i)=0$ iff $X\perp q_j\mid q_i$; with full
+support the meet of the two windows is $\sigma(q_i)$. (c) A garbling makes $X\perp S_j\mid S_i$, hence $q^*=q_i$; the identity then gives the
+gap $\EE\,\mathrm{KL}(q_i\|F)$, which is positive unless $F=q_i$ almost surely. (d) is \cref{ex:agents-pool}. (e) Repeat the argument with
+$\EE[(X-F)^2\mid q^*]=q^*(1-q^*)+(q^*-F)^2$, or with the Bregman divergence of any strictly proper score. Check AG7 verifies the identity
+and its Brier form on 300 random laws with four rules each; check AG8 verifies (c) on 200 random garblings.
+\end{proof}
+
+\begin{example}[Same towers, different answers]\label{ex:agents-pool}
+Let $\rho=\tfrac12$, agent $i$ have accuracy $0.8$ and agent $j$ accuracy $0.65$, so $\Pi_j\cx\Pi_i$. Expected log loss in bits:
+\begin{center}\small
+\begin{tabular}{lcccc}\toprule
+coupling of the signals & $i$ alone & Bayes pool & linear pool & log pool\\\midrule
+$S_j$ = $S_i$ flipped w.p.\ $\tfrac14$ (garbling) & 0.722 & 0.722 & 0.779 & 0.770\\
+$S_j$ independent of $S_i$ given $X$ & 0.722 & 0.679 & 0.756 & 0.747\\\bottomrule
+\end{tabular}
+
+Both pools use equal weights $\tfrac12,\tfrac12$.
+\end{center}
+In the first row nothing beats $i$. In the second the Bayes pool gains $0.042$ bits, the radius $I(X;q_j\mid q_i)$, while both equal-weight
+pools are still worse than $i$: they lie outside the ball (check AG8).
+\end{example}
+
+When only pairwise logs are available, the coupling is known only up to the gluing fibre of \cref{prop:agents-glue}, and the radius ranges
+over an interval.
+
+\begin{problem}[The radius over the fibre]\label{op:radius}
+Given the towers $\Pi_i$, $\Pi_j$ and the observed logs, compute the smallest and largest values of $I(X;q_j\mid q_i)$ over all couplings in
+the gluing fibre. If the largest is $0$, no consistent coupling lets $j$ help, and every rule other than $F=q_i$ is strictly worse; if the
+smallest is positive, the Bayes pool helps under every consistent coupling.
+\end{problem}
+
 \paragraph{What the towers alone cannot give.} Each tower describes one agent's uncertainty about $X$. None of them says what agent $1$
 believes about agent $2$. That needs agent $1$ to report a law over agent $2$'s posteriors, which is a further tower whose
 ``predictors'' are the other agents. The tests above then apply one level up. Without such reports, statements about beliefs about
@@ -2054,7 +2111,7 @@ TruthfulQA \cite{Lin2022TruthfulQA} can supply claim triples for Study~3 once mo
 \item \texttt{check\_tropical.py} has 8 checks, in exact Puiseux arithmetic except the floating-point ranks in T6 and T7.
 \item \texttt{check\_cohomology.py} has 10 checks, exact except H2.
 \item \texttt{check\_hallucination.py} has 9 checks, exact except L4b, L5 and L7.
-\item \texttt{check\_agents.py} has 6 checks (AG1--AG6) of \cref{sec:agents}, exact except the information quantities and linear programs.
+\item \texttt{check\_agents.py} has 8 checks (AG1--AG8) of \cref{sec:agents}, exact except the information quantities and linear programs.
 \item \texttt{check\_barr.py} has 4 checks (R1--R4) of \cref{lem:barr}, by linear-programming feasibility on random instances, with negative controls and a counterexample to the converse of (d).
 \item \texttt{check\_places.py} has 9 checks (M1--M8, E1), exact except the floating-point $I$ in E1.
 \item \texttt{check\_bc\_test.py} has 7 Monte Carlo checks (S1--S6) of the finite-sample Beck--Chevalley test of \cref{sec:empirical}.
@@ -2080,7 +2137,7 @@ H1--H5 & \cref{thm:bc}; \cref{thm:gluing}(b, d); \cref{prop:not-iso}\\
 K1--K5 & \cref{thm:nerve,thm:hw-topology}; \cref{prop:local-lifts}(b); \cref{fig:betti}\\
 L1--L8 & \cref{prop:three-bit,prop:windows,prop:halluc-trop}; the token stream of \cref{fig:hallucination}\\
 R1--R4 & \cref{lem:barr}\\
-AG1--AG6 & \cref{prop:agents-prior,prop:agents-blackwell,prop:agents-glue,prop:agents-pool}; \cref{ex:agents}\\
+AG1--AG8 & \cref{prop:agents-prior,prop:agents-blackwell,prop:agents-glue,prop:agents-pool,prop:agents-pool-kl}; \cref{ex:agents,ex:agents-pool}\\
 M1--M8, E1 & \cref{prop:places-centre,prop:places-order,prop:places-bc}; \cref{rem:places-topology}; \cref{fig:places,fig:explorer}\\
 S1--S6 & the permutation test of \cref{sec:empirical}: size, power, centre enlargement, replica of \cref{tab:study2}\\
 \bottomrule
@@ -2148,7 +2205,7 @@ closure is needed. A two-step label pooling $E_{G_2}E_{G_1}$ is one conditional 
   at the trivial seminorm, finite places measure the defect by valuations, and positivity, hence the hallucination obstruction, lives
   only at the archimedean place.
 \end{itemize}
-The open problems are \cref{op:twocat,op:general,op:ident,op:order,op:cech,op:hybrid}, and \cref{conj:wall}.
+The open problems are \cref{op:twocat,op:general,op:ident,op:order,op:cech,op:hybrid,op:radius}, and \cref{conj:wall}.
 
 \appendix
 %=====================================================================

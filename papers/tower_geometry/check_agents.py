@@ -15,6 +15,11 @@ linear programs (HiGHS), whose answers are compared with exact criteria where on
       the chain (12, 23) glues, but the triangle is infeasible; the cycle inequality d13 <= d12 + d23 fails by exactly 2/5
   AG6 pooling: the chain rule P(X,A1,A2) P(X,A2,A3) / P(X,A2) reproduces P(X | A1,A2,A3) exactly when A1 _||_ A3 | (X,A2) (200 random
       laws, error < 1e-12, c = 0); for generic laws it fails (200 random laws, error > 0 and the defect c > 0 in each)
+  AG7 pooling identity: for random joint laws of (X, S_i, S_j) and random pooling rules F (linear, logarithmic, arbitrary),
+      loss(q_i) - loss(F) = I(X; q_j | q_i) - E KL(q* || F) for log loss, and the analogue with squared distance for the Brier score
+      (error < 1e-12; 300 laws x 4 rules each)
+  AG8 the Blackwell (garbling) case: I(X; q_j | q_i) = 0, and every rule that moves off q_i is strictly worse, by E KL(q_i || F);
+      the worked example (accuracies 0.8 and 0.65) gives the table of Example 18.7
 Run: python check_agents.py
 """
 from fractions import Fraction as F
@@ -168,5 +173,60 @@ for _ in range(200):
     e, c = pool_error(P); ok_not &= e > 1e-6 and c > 1e-6
 check("AG6 chain pooling is exact when A1 _||_ A3 | (X, A2), and fails for generic laws: error < 1e-12 with c = 0 (200 laws), error > 0 with c > 0 (200 generic laws)",
       ok_ci and ok_not)
+
+# AG7, AG8: pooling a more and a less informed agent
+def post_tables(P):
+    """P[x, si, sj] > 0 -> q_i[si], q_j[sj], q*[si, sj] (probability of X = 1)."""
+    qi = P[1].sum(1) / P.sum((0, 2)); qj = P[1].sum(0) / P.sum((0, 1)); qs = P[1] / P.sum(0)
+    return qi, qj, qs
+def logloss(P, F):
+    return float(sum(P[x, a, b] * -math.log(F[a, b] if x else 1 - F[a, b]) for x in (0, 1) for a in range(P.shape[1]) for b in range(P.shape[2])))
+def brier(P, F):
+    return float(sum(P[x, a, b] * (x - F[a, b]) ** 2 for x in (0, 1) for a in range(P.shape[1]) for b in range(P.shape[2])))
+def kl(p, q): return p * math.log(p / q) + (1 - p) * math.log((1 - p) / (1 - q))
+def rules(qi, qj, r):
+    QI, QJ = np.meshgrid(qi, qj, indexing="ij")
+    lin = 0.5 * QI + 0.5 * QJ
+    u, v = np.sqrt(QI * QJ), np.sqrt((1 - QI) * (1 - QJ)); logp = u / (u + v)
+    return {"q_i": QI, "linear": lin, "log": logp, "arbitrary": r.uniform(0.05, 0.95, QI.shape)}
+ok7 = True
+for _ in range(300):
+    ni, nj = rng.integers(2, 5, 2)
+    P = rng.dirichlet(np.ones(2 * ni * nj)).reshape(2, ni, nj)
+    qi, qj, qs = post_tables(P); m = P.sum(0)
+    I = sum(m[a, b] * kl(qs[a, b], qi[a]) for a in range(ni) for b in range(nj))       # I(X; q_j | q_i) = E KL(q* || q_i)
+    Ib = sum(m[a, b] * (qs[a, b] - qi[a]) ** 2 for a in range(ni) for b in range(nj))
+    QI = np.repeat(qi[:, None], nj, 1)
+    for name, F in rules(qi, qj, rng).items():
+        lhs = logloss(P, QI) - logloss(P, F)
+        rhs = I - sum(m[a, b] * kl(qs[a, b], F[a, b]) for a in range(ni) for b in range(nj))
+        lhs_b = brier(P, QI) - brier(P, F)
+        rhs_b = Ib - sum(m[a, b] * (qs[a, b] - F[a, b]) ** 2 for a in range(ni) for b in range(nj))
+        ok7 &= abs(lhs - rhs) < 1e-12 and abs(lhs_b - rhs_b) < 1e-12
+check("AG7 loss(q_i) - loss(F) = I(X;q_j|q_i) - E KL(q*||F) (log loss) and the Brier analogue, 300 laws x 4 rules", ok7)
+
+ok8 = True; table = {}
+for _ in range(200):                                           # random garblings: S_j depends on X only through S_i
+    ni, nj = rng.integers(2, 5, 2)
+    px = rng.dirichlet(np.ones(2)); K = rng.dirichlet(np.ones(ni), size=2); G = rng.dirichlet(np.ones(nj), size=ni)
+    P = np.einsum("x,xa,ab->xab", px, K, G)
+    qi, qj, qs = post_tables(P); m = P.sum(0); QI = np.repeat(qi[:, None], nj, 1)
+    ok8 &= np.abs(qs - QI).max() < 1e-12                       # Bayes pool = q_i, so I(X; q_j | q_i) = 0
+    for name, F in rules(qi, qj, rng).items():
+        gap = logloss(P, F) - logloss(P, QI)
+        ekl = sum(m[a, b] * kl(qi[a], F[a, b]) for a in range(ni) for b in range(nj))
+        ok8 &= abs(gap - ekl) < 1e-12 and (name == "q_i" or gap > 1e-9)
+for label, coupling in (("garbling", "g"), ("independent", "i")):
+    P = np.zeros((2, 2, 2))
+    for x, a, b in itertools.product((0, 1), repeat=3):
+        pa = 0.8 if a == x else 0.2
+        pb = (0.75 if b == a else 0.25) if coupling == "g" else (0.65 if b == x else 0.35)
+        P[x, a, b] = 0.5 * pa * pb
+    qi, qj, qs = post_tables(P); R = rules(qi, qj, rng); QI = R["q_i"]
+    bits = lambda F: logloss(P, F) / math.log(2)
+    table[label] = dict(alone=bits(QI), bayes=bits(qs), linear=bits(R["linear"]), log=bits(R["log"]))
+ok8 &= abs(table["garbling"]["bayes"] - table["garbling"]["alone"]) < 1e-12 and table["independent"]["alone"] - table["independent"]["bayes"] > 0.04
+check("AG8 garbling: Bayes pool = q_i and every other rule is worse by exactly E KL(q_i||F) (200 garblings); worked table", ok8,
+      "; ".join(f"{k}: " + ", ".join(f"{n} {v:.3f}" for n, v in d.items()) for k, d in table.items()))
 
 print(f"\n{sum(results)}/{len(results)} checks passed")
