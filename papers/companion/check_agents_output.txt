@@ -1,0 +1,11 @@
+PASS AG1 Bayes plausibility: the barycentre of every agent's tower is the common prior (200 random signal structures)
+PASS AG2 H(rho_bar) = I(X;agent) + sum w I(X;q_i) + sum w E H(q_i); I(X;agent) = 0 iff a common prior
+PASS AG3 garbling implies convex order (150 garblings); stop-loss and martingale-coupling LP agree on 300 pairs   [agreement 300/300; 192 comparable, 108 not]
+PASS AG4 example: c <cx a, b incomparable with a and c; mutual information still ranks them a > b > c   [towers a={'1/5': '1/2', '4/5': '1/2'}, b={'0': '1/10', '1': '1/10', '1/2': '4/5'}, c={'7/20': '1/2', '13/20': '1/2'}; I(X;q) bits a=0.278, b=0.200, c=0.066]
+PASS AG5 each pair feasible and the chain glues, the triangle is infeasible; cycle inequality d13 <= d12 + d23 fails by 2/5   [violation 2/5]
+PASS AG6 chain pooling is exact when A1 _||_ A3 | (X, A2), and fails for generic laws: error < 1e-12 with c = 0 (200 laws), error > 0 with c > 0 (200 generic laws)
+PASS AG7 loss(q_i) - loss(F) = I(X;q_j|q_i) - E KL(q*||F) (log loss) and the Brier analogue, 300 laws x 4 rules
+PASS AG8 garbling: Bayes pool = q_i and every other rule is worse by exactly E KL(q_i||F) (200 garblings); worked table   [garbling: alone 0.722, bayes 0.722, linear 0.779, log 0.770; independent: alone 0.722, bayes 0.679, linear 0.756, log 0.747]
+PASS AG9 excess decision error <= 2 E|q*-F| <= sqrt(2 E KL(q*||F)); <= sqrt(2 I(X;q_j|q_i)) for every rule in the KL ball   [2000 laws, 1268 rules in the ball; largest ratios 0.630 and 0.453]
+
+9/9 checks passed
