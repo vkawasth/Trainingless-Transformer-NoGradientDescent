@@ -1,0 +1,6 @@
+PASS R1 barD(Delta) = equality; barD R ; barD S within barD(R;S); barD(preorder) is a preorder   [187 negative controls rejected]
+PASS R2 D is monotone along relation-preserving maps
+PASS R3 delta_x barD(R) delta_y iff x R y
+PASS R4 mu is monotone for barD (200 instances); the converse fails (explicit counterexample)
+
+4/4 checks passed

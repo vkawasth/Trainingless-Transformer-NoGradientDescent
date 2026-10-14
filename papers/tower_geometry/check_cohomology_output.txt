@@ -1,0 +1,13 @@
+PASS H1 Beck-Chevalley for the meet square <=> conditional independence given the meet  [199 CI, 101 not]
+PASS H2 the Beck-Chevalley defect has norm equal to the Friedrichs cosine c
+PASS H3 finite dimensions: every compatible pair glues (rank of (E_A,E_B) = dim of compatible pairs)
+PASS H4 the canonical gluing f_A + f_B - E_C f_A works for all compatible pairs iff Beck-Chevalley holds
+PASS H5 restriction E_G: L2(G') -> L2(G), G strictly coarser: surjective, never injective
+PASS K1 every nonempty cell/face has an exact rational witness, every empty one an exact Farkas certificate  [generic: 6 witnesses, 64 certificates; collision: 718 witnesses, 104 certificates]
+PASS K2 Betti numbers of the nerve: generic (2,0), collision (1,0)  [{'generic': [2, 0], 'collision': [1, 0]}]
+PASS K3 component swap preserves the generic fibre and exchanges its two components
+PASS K4 lifts are fibrewise convex (convex combinations of lifts with one valuation pattern are lifts)
+PASS K5 scanned targets: b1 = 0 wherever computed; b0 = 1 exactly on the collision locus, b0 = 2 elsewhere in the secant  [459 targets, types {'[0, 0]': 236, '[1, 0]': 13, '[2, 0]': 209, '[1, None]': 1}, b1 not computed (cover > 24 cells) at 1]
+
+10/10 checks pass
+results SHA-256: e4a0cae1c0f75a6248a113827bd00f82c2cf37ba7e019b68880456ee85eb43d6
