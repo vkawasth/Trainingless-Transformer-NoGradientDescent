@@ -9,15 +9,16 @@ Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDesc
 
 | Path | What it is |
 |---|---|
-| `tower_geometry.tex`, `tower_geometry.pdf` | The paper (50 pp). Builds with `pdflatex` (run twice). Figures are read from `atlas/figs/`. |
+| `tower_geometry.tex`, `tower_geometry.pdf` | The paper (52 pp). Builds with `pdflatex` (run twice). Figures are read from `atlas/figs/`. |
 | `check_tower.py` | Tower definitions, imported verbatim by `check_shadows.py`. |
 | `check_shadows.py` | 30 checks: algebra of conditional expectations, shadows, martingale, categorical structure (§§3–8). |
-| `check_tropical.py` | 8 checks: positive tropicalisation, Berkovich factorisation, secants (§§9–10). |
-| `check_cohomology.py` | 10 checks: the L² presheaf, Beck–Chevalley, gluing, tropical fibre nerves (§§12–13). |
+| `check_tropical.py` | 8 checks: positive tropicalisation, Berkovich factorisation, secants (§§11–12). |
+| `check_cohomology.py` | 10 checks: the L² presheaf, Beck–Chevalley, gluing, tropical fibre nerves (§§14–15). |
 | `check_hallucination.py` | 9 checks: the three-token model (§16). |
 | `check_barr.py` | 4 checks: D, η and μ are monotone for the Barr lifting (Lemma 6.11), with negative controls and a counterexample to the converse. |
 | `check_places.py` | 9 checks: the context presheaf over the Berkovich spectrum M(ℤ) (§17), and the explorer's numbers. |
-| `check_bc_test.py` | 7 Monte Carlo checks of the finite-sample Beck–Chevalley test used in §18 (size, power, centre enlargement, Study 2 replica). |
+| `check_agents.py` | 6 checks: three agents (§18): common prior, Blackwell ranking, reconciling pairwise logs with a cycle certificate, chain pooling. |
+| `check_bc_test.py` | 7 Monte Carlo checks of the finite-sample Beck–Chevalley test used in §19 (size, power, centre enlargement, Study 2 replica). |
 | `check_*_output.txt` | The output of each script as run for the paper. |
 | `atlas/` | `atlas.py` draws Figs 1–8, `fig_places.py` draws the M(ℤ) figure, `fibre_scan.py` computes the Betti map; `fibre_topology.py` is shared. |
 | `explorer/context_sheaf.html` | Interactive explorer of the three-token example. Open it in any browser; no install, no network needed except for web fonts. |
@@ -27,13 +28,13 @@ Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDesc
 
 ```bash
 pip install -r requirements.txt
-./run_checks.sh            # runs all seven check scripts (about 2 minutes)
+./run_checks.sh            # runs all eight check scripts (about 2 minutes)
 python atlas/atlas.py      # regenerate Figs 1-8 into atlas/figs/
 python atlas/fig_places.py # regenerate the M(Z) figure
 pdflatex tower_geometry.tex && pdflatex tower_geometry.tex
 ```
 
-Every check prints `PASS`/`FAIL` per item and a final count. All 77 checks pass.
+Every check prints `PASS`/`FAIL` per item and a final count. All 83 checks pass.
 
 ## The hallucination studies (`halluc_study/`)
 
