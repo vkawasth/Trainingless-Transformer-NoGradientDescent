@@ -23,6 +23,7 @@ Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDesc
 | `check_*_output.txt` | The output of each script as run for the paper. |
 | `atlas/` | `atlas.py` draws Figs 1–8, `fig_places.py` draws the M(ℤ) figure, `fibre_scan.py` computes the Betti map; `fibre_topology.py` is shared. |
 | `companion/` | Companion note *Pooling Informed Agents* (`pooling_agents.tex/.pdf`, 5 pp), its 9 checks (`check_agents.py`) and figure script (`fig_agents.py`). |
+| `engine/` | The Posterior Coherence Engine (`pce` package), its 6 checks, synthetic demonstrations, the pre-registered Study 4 and a 5-page report (`engine/report/pce_report.pdf`). |
 | `explorer/context_sheaf.html` | Interactive explorer of the three-token example. Open it in any browser; no install, no network needed except for web fonts. |
 | `halluc_study/` | Pre-registration (`PREREG_hallucination.md`) and Amendment 1, both with frozen SHA-256 hashes; Study 1 script and results; Study 2 sampler, kit, analysis, samples and results; Study 3 kit. |
 
@@ -30,13 +31,13 @@ Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDesc
 
 ```bash
 pip install -r requirements.txt
-./run_checks.sh            # runs all ten check scripts, including the companion's (about 2 minutes)
+./run_checks.sh            # runs all eleven check scripts, including the companion's (about 2 minutes)
 python atlas/atlas.py      # regenerate Figs 1-8 into atlas/figs/
 python atlas/fig_places.py # regenerate the M(Z) figure
 pdflatex tower_geometry.tex && pdflatex tower_geometry.tex
 ```
 
-Every check prints `PASS`/`FAIL` per item and a final count. All 103 checks pass (94 for the paper, 9 for the companion note).
+Every check prints `PASS`/`FAIL` per item and a final count. All 109 checks pass (94 for the paper, 9 for the companion note, 6 for the engine).
 
 ## The hallucination studies (`halluc_study/`)
 
