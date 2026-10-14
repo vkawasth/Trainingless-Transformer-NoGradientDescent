@@ -24,6 +24,10 @@
        sigma(hY,hZ) of the pushed law, and when that law is built conditionally independent given hY the two agree (500 cases each)
   TC11 counit coherence of lambda-bar's comultiplication 2-cell: pushing the forced coupling (label, own context) -> (label, pooled
        context) forward along the label projection gives the diagonal coupling, i.e. the identity 2-cell (200 random samples)
+  TC12 explicit coherent counterexample to the martingale orientation: c_i = (delta_i, delta_{delta_i}, delta_{delta_{delta_i}},
+       delta_{(t, delta_i)}) for i = 0, 1 are coherent (mu Pi = rho, mu Omega = Pi, shadow consistent), M = 1/2 delta_{(0,c_0)} +
+       1/2 delta_{(0,c_1)}; the (Cm) cell's two sides differ, the label delta_0 comes only from item 0, so the conditional mean context
+       given that label is E3(eta)(c_0), while the pooled context is e = 1/2 E3(eta)(c_0) + 1/2 E3(eta)(c_1) != E3(eta)(c_0) (exact)
 Run: python check_twocat.py   (from the folder that contains check_tower.py)
 """
 import io, os, contextlib, itertools
@@ -225,5 +229,23 @@ for _ in range(200):
     ok &= all(a == b for a, b in proj.m) and Dmap(lambda pr: pr[1], forced) == L1 and Dmap(lambda pr: pr[0], forced) == R1
 check("TC11 the forced comultiplication 2-cell of lambda-bar is a coupling of the two sides, and its label projection is the identity",
       ok, "200 random samples")
+
+# TC12
+mu_, Hyp = ns["mu"], ns["Hyp"]
+def coherent_ctx(i):
+    rho = delta(i); Pi = delta(rho); Om = delta(Pi); Sig = delta(("t", rho))
+    return (rho, Pi, Om, Sig)
+c0, c1 = coherent_ctx(0), coherent_ctx(1)
+coh = all(mu_(c[1]) == c[0] and mu_(c[2]) == c[1] and Dmap(lambda h: h[1], c[3]) == c[1] for c in (c0, c1))
+M = Dist([((0, c0), F(1, 2)), ((0, c1), F(1, 2))])
+lhs = dlt(lam_bar(M)); rhs = C(lam_bar)(lam_bar(Dmap(dlt, M)))
+L1, R1, e = sides(M)
+h0, h1 = E(eta)(c0), E(eta)(c1)
+from_item0 = {lab for (lab, c), p in R1.items() if c == h0}; from_item1 = {lab for (lab, c), p in R1.items() if c == h1}
+cond_mean_0 = Emix([(F(1), h0)])                                   # the only right-side point with label delta_0 has context h0
+ok = coh and lhs != rhs and from_item0 == {delta(0)} and from_item1 == {delta(1)} and e == Emix([(F(1, 2), h0), (F(1, 2), h1)]) \
+     and cond_mean_0 != e and h0 != h1
+check("TC12 coherent counterexample: the label delta_0 comes only from item 0, its conditional mean context E3(eta)(c_0) differs from e",
+      ok, "exact arithmetic")
 
 print(f"\n{sum(results)}/{len(results)} checks passed")

@@ -9,5 +9,6 @@ PASS TC8 pointwise-related maps give related pushforwards in the Barr lifting (f
 PASS TC9 vertical composition by conditional product is associative and unital (diagonal coupling)   [300 random cases]
 PASS TC10 whiskering is not functorial on vertical composites; every failure has c > 0, and c = 0 laws agree   [differ in 500 of 500 random cases]
 PASS TC11 the forced comultiplication 2-cell of lambda-bar is a coupling of the two sides, and its label projection is the identity   [200 random samples]
+PASS TC12 coherent counterexample: the label delta_0 comes only from item 0, its conditional mean context E3(eta)(c_0) differs from e   [exact arithmetic]
 
-11/11 checks passed
+12/12 checks passed
