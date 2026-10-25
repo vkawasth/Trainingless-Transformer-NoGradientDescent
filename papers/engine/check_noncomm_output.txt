@@ -1,0 +1,10 @@
+PASS NC1 commuting observables: no order effects, Kirkwood-Dirac on the top rung, one context, lam* = 1
+PASS NC2 |order effect| <= ||[P, Q]|| and the QQ equality holds (300 random pairs, dimensions 2-6)   [largest ratio 0.884]
+PASS NC3 commuting cliques = the four Bell contexts; tables agree on overlaps; lam* = 2 - sqrt 2 at Tsirelson; lam* < 1 needs [A0, A1] != 0   [lam* = 0.585786 (2 - sqrt 2 = 0.585786); at phi = 0 lam* = 1.000]
+PASS NC4 Kirkwood-Dirac: exact marginals, Im q = tr([B_b, A_a] rho)/2i; commuting R>=0, real non-commuting R, complex C   [commuting: R>=0 (nonpositivity 0.000); real (Z, X): R (nonpositivity 0.200); complex (Z, Y): C (nonpositivity 0.300)]
+PASS NC5 loop phase: arg tr(P1 P2 P3) = (signed solid angle)/2 for spin-1/2; real projections give a real invariant   [max error 4.9e-15]
+PASS NC6 non-abelian holonomy of projected loops: U1 U2 != U2 U1; the dense limit converges   [||[U1, U2]|| = 1.623, N=400 vs 800: 2.3e-04]
+PASS NC7 Zeno dragging: success cos(Th/2N)^(4jN) -> 1 (exact for j = 1/2, 1, 3/2); commuting projections cannot steer   [j=0.5: N=1 0.500 -> N=64 0.990, j=1.0: N=1 0.250 -> N=64 0.981, j=1.5: N=1 0.125 -> N=64 0.971]
+PASS NC8 path dependence: the dense loop phase is j * Omega (sign by orientation): paths with equal success differ by a geometric phase   [j=0.5: Omega=1.571, phase 0.785 vs 0.785; j=0.5: Omega=0.785, phase 0.393 vs 0.393; j=1.0: Omega=1.571, phase 1.571 vs 1.571; j=1.0: Omega=0.785, phase 0.785 vs 0.785]
+
+8/8 checks passed

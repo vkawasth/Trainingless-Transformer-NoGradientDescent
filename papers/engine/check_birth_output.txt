@@ -1,0 +1,7 @@
+PASS BR1 Rep_3: no birth points; singular points exist; nearby models never violate CHSH   [16 singular points, 160 nearby models, max CHSH - 2 = 9.8e-15]
+PASS BR2 Rep_4: every birth point is singular; most singular points are not birth points   [3876 classical points; 4 birth points (all singular); 244 singular points]
+PASS BR3 CHSH violations appear near birth points only   [birth: 0.37 of 100 nearby models contextual; non-birth singular: 0.00 of 750; smooth: 0.00 of 750]
+PASS BR4 birth curve: CHSH = 2 sqrt(1 + sin^2 t) = 2 + t^2 + O(t^4), from a birth point   [largest deviation 1.8e-15]
+PASS BR5 Rep_5: every classical point containing a birth block is singular   [64 such points]
+
+5/5 checks passed

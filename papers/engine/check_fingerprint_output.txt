@@ -1,0 +1,9 @@
+PASS FP1 local box -> classical   [lam* 1.000]
+PASS FP2 Tsirelson box -> quantum, not classical   [lam* 0.5858, quantum 1.0000]
+PASS FP3 PR box -> beyond quantum
+PASS FP4 setting-dependent marginals from a local model -> direct influence only   [direct 0.800, c 0.0e+00]
+PASS FP5 PR component plus direct influence -> contextual beyond direct influence; Kujala-Dzhafarov agrees   [direct 0.160, c 0.440, KD (True, 3.2, 0.31999999999999984)]
+PASS FP6 level two: genuine mixture -> R>=0, signed mixture -> R, Det < 0 -> C   [labels ['R>=0', 'R', 'C']]
+PASS FP7 fractions ordered (lam* <= quantum <= 1); local post-processing never decreases lam*   [10 random boxes]
+
+7/7 checks passed

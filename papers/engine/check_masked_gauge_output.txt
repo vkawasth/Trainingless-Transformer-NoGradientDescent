@@ -1,0 +1,3 @@
+PASS MK7 linear ambiguity of masked directions = max(0, 3 (3 - dim V) - h_A)   [R^3, h=1: 0 (predicted 0); R^3, h=2: 0 (predicted 0); plane, h=1: 2 (predicted 2); plane, h=2: 1 (predicted 1); plane, h=3: 0 (predicted 0); line, h=2: 4 (predicted 4); line, h=3: 3 (predicted 3)]
+
+1/1 checks passed

@@ -1,0 +1,9 @@
+PASS QG1 hypotheses of the paper: evaluation, coefficient-irreducible, minimal line system, irreducible linearisation (atom), f(0) > 0 iff full rank, unsignatured, free set at level 2   [window [0, 1]: pencil algebra 36/36; window [1]: pencil algebra 36/36; window [0, 2]: pencil algebra 36/36]
+PASS QG2 walls: boundary points lie on det f_w = 0 of the active window (Prop. 2.21) and are regular real points (non-zero gradient); every window is active somewhere (positivity-minimal)   [smallest |grad det| at a boundary point 3.43e-03 over 60 points]
+PASS QG3 classical limit: for diagonal windows the quantum fraction equals the classical lam*   [largest |lam_Q - lam*| 8.1e-12 over 12 families]
+PASS QG4 dephasing bound: lam_Q <= lam* of the tables in every product basis (6 random families x 20 bases); Werner triangle: lam_Q = min(1, 3(1-p)/2) = lam*(Z basis), full gluing iff p <= 1/3   [smallest gap to the best sampled basis per family: 0.009, 0.023, 0.007, 0.016, 0.004, 0.017]
+PASS QG5 the semidefinite dual (Y_w >= 0 with sum_w Y_w (x) I >= I) certifies each quantum fraction   [largest duality gap 6.9e-10]
+PASS QG6 pure single-actor explanations: the best found is feasible and below the mixed fraction   [p=0.2: pure >= 0.511, mixed 1.000; p=0.5: pure >= 0.397, mixed 0.750; p=0.8: pure >= 0.177, mixed 0.300]
+PASS QG7 Werner formula proved: Tr_3 Pi_{3/2} = (4/3) Pi_trip, Tr_3 Pi_{1/2} = (2/3) Pi_trip + 2 Pi_sing; the invariant two-variable LP gives min(1, 3(1-p)/2), its optimiser is feasible, and it equals the SDP and the Z-basis lam* for p in [-1/3, 0.95]   [24 values of p]
+
+7/7 checks passed

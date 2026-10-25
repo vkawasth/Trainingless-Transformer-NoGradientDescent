@@ -1,0 +1,8 @@
+PASS NP1 NPA reproduces Tsirelson's bound 2 sqrt 2 at levels 1, 1+AB, 2   [level 1: 2.828427125, level 1+AB: 2.828427125, level 2: 2.828427125]
+PASS NP2 isotropic PR boxes: lam* = 2(1-v); quantum fraction 1 up to v = 1/sqrt 2, then (1-v)/(1-1/sqrt 2); Tsirelson box 2-sqrt 2 vs 1; PR box 0   [21 values of v in [0.5, 1]; largest deviation from the formulas 4.2e-10]
+PASS NP3 hierarchy ordered: lam* <= NPA(2) <= NPA(1+AB) <= NPA(1) <= 1 (12 random no-signalling boxes)   [e.g. 0.942, 1.000, 1.000, 1.000]
+PASS NP4 data processing: local post-processing of outcomes never decreases lam* (theorem) or the quantum fraction (numerical)   [smallest increase: classical -1.11e-16, quantum -7.75e-12 over 10 boxes]
+PASS NP5 holonomy vs dimension: UV = qVU has invertible n x n solutions iff q^n = 1 (clock-shift when N | n); none for irrational phase   [q=e^(2pi i/3), n=2: min residual 1.41; q=e^(2pi i/3), n=3: min residual 2.8e-07; q=e^(2pi i/3), n=4: min residual 1.04; q=e^(2pi i sqrt2), n=2: min residual 0.753; q=e^(2pi i sqrt2), n=3: min residual 0.871]
+PASS NP6 Peres-Mermin: cliques = six lines; no global +-1 assignment (Kochen-Specker); every state's tables are compatible (linear gap 0, signed section) yet lam* = 0 (Gleason without points)   [line products [1, 1, 1, -1, 1, 1]; consistent assignments 0; 6 states: rung R, lam* 0]
+
+6/6 checks passed

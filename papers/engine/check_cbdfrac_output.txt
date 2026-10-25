@@ -1,0 +1,11 @@
+PASS CF1 n-cycle relaxation reproduces n cos(pi/n) (n = 4, 6, 8)   [n=4, level 1+E: 2.828427; n=4, level 2: 2.828427; n=6, level 1+E: 5.196152; n=6, level 2: 5.196152; n=8, level 1+E: 7.391036]
+PASS CF2 lam_C,cbd = 1 - CNTF = 1 - c on cyclic systems (rank 3, 4, 5; 24 random systems)   [largest deviation 1.6e-15; 10 of 24 contextual, c up to 0.560]
+/home/claude/paper/unified/engine/pce/cbdfrac.py:160: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr.solve(solver=solver) if solver != "SCS" else pr.solve(solver="SCS", eps=1e-9, max_iters=200000)
+PASS CF3 consistently connected: lam_C,cbd = lam*, lam_Q,cbd(bipartite) = lam_Q; minimal commutation is larger (8 boxes)   [largest deviation 4.2e-07; minimal commutation strictly larger on 3 of 8]
+PASS CF4 lam_C,cbd = 1 iff c = 0 (12 signalling systems)   [6 noncontextual (all lam_C,cbd = 1), 6 contextual (max lam_C,cbd 0.668)]
+PASS CF5 lam* <= lam_C,cbd <= lam_Q,cbd(bipartite) <= lam_Q,cbd(minimal) <= 1; lam_Q <= lam_Q,cbd(bipartite) (10 signalling boxes)   [e.g. 0.407, 0.450, 0.645, 0.974, 0.601]
+PASS CF6 quantum model with direct influence: lam_Q,cbd = 1 (levels 1+E and 2) while lam_C,cbd < 1 and lam_Q < 1   [eps 0.02: lam_C,cbd 0.620, lam_Q,cbd 1.00000/1.00000, lam_Q 0.990; eps 0.05: lam_C,cbd 0.671, lam_Q,cbd 1.00000/1.00000, lam_Q 0.975]
+PASS CF7 PR box with direct influence stays beyond quantum (lam_Q,cbd < 1); fractions invariant under recoding   [lam_C,cbd 0.580, lam_Q,cbd 0.580; recoding deviation 1.5e-04]
+
+7/7 checks passed
