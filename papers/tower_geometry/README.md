@@ -23,7 +23,7 @@ Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDesc
 | `check_*_output.txt` | The output of each script as run for the paper. |
 | `atlas/` | `atlas.py` draws Figs 1–8, `fig_places.py` draws the M(ℤ) figure, `fibre_scan.py` computes the Betti map; `fibre_topology.py` is shared. |
 | `companion/` | Companion note *Pooling Informed Agents* (`pooling_agents.tex/.pdf`, 5 pp), its 9 checks (`check_agents.py`) and figure script (`fig_agents.py`). |
-| `engine/` | The Posterior Coherence Engine (`pce` package), its 6 checks, synthetic demonstrations, the pre-registered Study 4 and a 5-page report (`engine/report/pce_report.pdf`). |
+| `engine/` | The Posterior Coherence Engine (`pce` package), its 7 checks, synthetic demonstrations, a doctor–lawyer worked case, the pre-registered Study 4 and a 6-page report (`engine/report/pce_report.pdf`). |
 | `explorer/context_sheaf.html` | Interactive explorer of the three-token example. Open it in any browser; no install, no network needed except for web fonts. |
 | `halluc_study/` | Pre-registration (`PREREG_hallucination.md`) and Amendment 1, both with frozen SHA-256 hashes; Study 1 script and results; Study 2 sampler, kit, analysis, samples and results; Study 3 kit. |
 
@@ -37,7 +37,7 @@ python atlas/fig_places.py # regenerate the M(Z) figure
 pdflatex tower_geometry.tex && pdflatex tower_geometry.tex
 ```
 
-Every check prints `PASS`/`FAIL` per item and a final count. All 109 checks pass (94 for the paper, 9 for the companion note, 6 for the engine).
+Every check prints `PASS`/`FAIL` per item and a final count. All 320 checks pass (94 for the paper, 9 for the companion note, 217 for the engine: 7 coherence, 8 in-context learning, 8 integration, 8 context complex, 8 cohomology on the fibres, 8 lift, 7 Gerstenhaber-Schack and tolerances, 7 places, 7 overlap algebra, 7 level-two overlap, 8 cover, 8 perturbation, 8 walls and chambers, 7 contextuality beyond direct influence, 8 toric experts, 8 non-commuting updates, 8 filtered gluability and vineyards, 6 large complexes and the join rule, 9 partial gluing and level two, 6 scheme structure, 6 ladder of base semirings, 8 non-commutativity, 7 masked measurements, 7 quantum graded gluing, 6 categorical home, 7 origin fingerprint, 7 consistified fractions, 7 perturbations, 6 observable algebra, 5 birth of contextuality).
 
 ## The hallucination studies (`halluc_study/`)
 
