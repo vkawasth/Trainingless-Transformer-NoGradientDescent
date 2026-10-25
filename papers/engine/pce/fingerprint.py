@@ -15,6 +15,12 @@ origin is the smallest class that explains everything, with the direct-influence
         level2          the two-actor rung of a full three-variable binary table, if joint3 is given ("R>=0", "R", "C", ...)
         origin          a label: classical / quantum, not classical / beyond quantum / direct influence only /
                         contextual beyond direct influence / contextual (quantum status not computed)
+        with direct influence (pairwise binary windows, linear gap > 0), also
+        lam_classical_cbd, lam_quantum_cbd   fractions of the consistified system (pce.cbdfrac); parties as in lam_quantum_cbd
+                        (default: bipartite when bell is given, else minimal commutation)
+        shares          1 - lam* split into direct influence, quantum-explainable contextuality, beyond quantum
+        origin_cbd      direct influence only / quantum-type contextuality with direct influence / beyond quantum, allowing
+                        direct influence
 """
 from __future__ import annotations
 import numpy as np
@@ -23,7 +29,7 @@ from .ladder import level1, level2_m3
 from .cbd import signalling, cbd
 
 
-def fingerprint(domains, windows, bell=None, joint3=None, tol=1e-6):
+def fingerprint(domains, windows, bell=None, joint3=None, tol=1e-6, parties="auto", qtol=1e-4):
     out = {}
     try:
         s, _ = signalling(windows); out["signalling"] = {str(k): float(v) for k, v in s.items()}; out["direct"] = float(sum(s.values()))
@@ -40,6 +46,14 @@ def fingerprint(domains, windows, bell=None, joint3=None, tol=1e-6):
         out["lam_quantum"] = float(npa_fraction(P, "1+AB"))
     if joint3 is not None:
         r = level2_m3(joint3); out["level2"] = r["rung"]; out["level2_negativity"] = r["negativity2"]; out["level2_imag"] = r["imag"]
+    if out["linear_gap"] > tol and out["cbd_c"] is not None and all(len(w.vars) == 2 and np.asarray(w.table).shape == (2, 2) for w in windows):
+        from .cbdfrac import lam_classical_cbd, lam_quantum_cbd, bipartite
+        pt = (bipartite if bell is not None else None) if parties == "auto" else parties
+        lc = lam_classical_cbd(windows); lq = lam_quantum_cbd(windows, parties=pt)
+        out["lam_classical_cbd"] = lc; out["lam_quantum_cbd"] = lq
+        out["shares"] = {"direct_influence": lc - out["lam_classical"], "quantum_contextual": lq - lc, "beyond_quantum": 1 - lq}
+        out["origin_cbd"] = ("direct influence only" if lc > 1 - tol else
+                             "quantum-type contextuality with direct influence" if lq > 1 - qtol else "beyond quantum, allowing direct influence")
     if out["linear_gap"] > tol:
         if out["cbd_c"] is not None and out["cbd_c"] > tol: out["origin"] = "contextual beyond direct influence"
         else: out["origin"] = "direct influence only"
