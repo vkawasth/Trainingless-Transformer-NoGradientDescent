@@ -1,0 +1,2 @@
+/home/claude/paper/unified/engine/study8_snowqueen/../pce/npa.py:83: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr = cp.Problem(cp.Maximize(lam), cons); pr.solve(solver="SCS", eps=1e-9, max_iters=200000); return float(pr.value)
