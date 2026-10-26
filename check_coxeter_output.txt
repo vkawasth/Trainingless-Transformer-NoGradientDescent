@@ -1,0 +1,8 @@
+PASS CX1 chordal graphs: no obstructed point in Rep_2 or Rep_3   [P4: 136+816 points; star: 136+816 points; paw: 136+816 points; diamond: 136+816 points]
+PASS CX2 chordless cycles: no obstructed direct sum of characters at n = 2, obstructed points at n = 3; exact certificate for C4   [C4: 16 of 816 points obstructed at n=3; C5: 160 of 5984 points obstructed at n=3; C6: 1024 of 45760 points obstructed at n=3; C4 certificate: one vector extends, one does not]
+PASS CX3 C4: obstructed points of Rep_3 = Kunneth cup-product prediction; dim H^1 = tangent - orbit   [agreement at 816 of 816 points]
+PASS CX4 all graphs on 4 and 5 vertices: an obstructed point in Rep_3 iff not chordal   [45 classes, 8 non-chordal]
+PASS CX5 NPA: chordal -> quantum = classical on random correlator functionals; non-chordal -> the n-cycle quantum bound minus k - 2   [largest chordal gap 2.9e-09]
+PASS CX6 exact certificates for C5 and C6; the C4 singular point extended trivially stays singular in every 5-vertex graph containing an induced C4   [C5: certified, C6: certified]
+
+6/6 checks passed
