@@ -1,0 +1,9 @@
+PASS BL1 support at zero budget = lam_C,cbd (disagreement form = cellwise form)   [14 systems, largest deviation 8.9e-16]
+PASS BL2 cyclic: lam(r) = min(1, 1 - c + r)   [14 systems (13 contextual), largest deviation 2.5e-14]
+PASS BL3 lam(r) nondecreasing and concave (non-cyclic system)   [lam(0) = 0.730, saturates at r = 0.28]
+PASS BL4 grading: the connexion on both contextual cycles (B3) carries the whole profile; the others stall; price 1 then 0   [B3 alone reaches 1.000; best other connexion alone 0.760]
+PASS BL5 data ball: c_min(0) = c, nonincreasing; max lam over the ball = 1 - c_min (Snow Queen, all responses)   [c_min: 0.138, 0.106, 0.074, 0.042, 0.010, 0.000]
+PASS BL6 level two: rung changes are sign changes of Delta, Det or a box coordinate; the fibre is continuous between walls   [to R: walls at t = 0.320, 0.721; to C: walls at t = 0.182, 0.371, 0.489]
+PASS BL7 level two: data ball stays in the mixture rung below the wall distance, not above twice it   [wall distance 0.0310; share R>=0 at 0.9x: 1.000, at 2x: 0.881]
+
+7/7 checks passed

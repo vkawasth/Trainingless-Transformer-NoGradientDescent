@@ -1,0 +1,10 @@
+PASS TS1 covers: lam* decreases and event intervals shrink as windows are added to a cover   [110 nested pairs of covers]
+PASS TS2 acyclic covers glue when overlaps agree; with direct influence a tree can fail   [60 random trees glue; worked example t3: tree AB+AC has lam* = 0.953 (A's marginal differs between AB and AC)]
+PASS TS3 awareness growth never raises lam*, and coarsening maps E_alpha(after) into E_alpha(before)   [worked example t1 -> t2: drift 7e-18, lam* 0.860 -> 0.860; 25 random refinements (largest change +1.1e-16); 20 vertices pushed forward]
+PASS TS4 new windows never raise lam*; a pendant with a matching marginal leaves it unchanged, a mismatched one can lower it   [worked example: t0 -> t1 1.000 -> 0.860, t3 -> t4 0.8740 -> 0.8740; 20 random systems, mismatched pendant lowered lam* in 11]
+PASS TS5 drift: |lam*(t') - lam*(t)| <= m d   [worked example t2 -> t3: d = 0.0473, change +0.0140 <= 0.1418; 30 random drifts, largest ratio 0.67]
+PASS TS6 robust values are attained lower bounds; the requirement holds on the robustness interval; frontiers are non-dominated
+PASS TS7 selection hazard: choosing the cover after seeing the data inflates apparent glueability, and can make an act look good enough   [40 structureless systems: the best proper sub-cover glues 0.26 more on average; in 7 of them no act is good enough on all windows but one is on a sub-cover chosen afterwards]
+PASS TS8 worked example: lam* over time, the decision sequence, expiry at t2 by awareness growth, hypothesis support   [lam* 1.000, 0.860, 0.860, 0.874, 0.874; acts triple, triple, pair, pair, pair; support of 'triple harm <= 0.60' 1.000, 0.860, 0.849, 0.847, 0.847]
+
+8/8 checks passed

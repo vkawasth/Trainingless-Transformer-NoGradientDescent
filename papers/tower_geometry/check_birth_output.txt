@@ -1,0 +1,13 @@
+PASS BR1 Rep_3: no birth points; singular points exist; nearby models never violate CHSH   [16 singular points, 160 nearby models, max CHSH - 2 = 9.8e-15]
+PASS BR2 Rep_4: every birth point is singular; most singular points are not birth points   [3876 classical points; 4 birth points (all singular); 244 singular points]
+PASS BR3 CHSH violations appear near birth points only   [birth: 0.37 of 100 nearby models contextual; non-birth singular: 0.00 of 750; smooth: 0.00 of 750]
+PASS BR4 birth curve: CHSH = 2 sqrt(1 + sin^2 t) = 2 + t^2 + O(t^4), from a birth point   [largest deviation 1.8e-15]
+PASS BR5 Rep_5: every classical point containing a birth block is singular   [64 such points]
+PASS BR6 C5: the witness over Hermitian Rep_3 reaches the quantum 5-cycle bound (KCBS in a qutrit)   [0.944272 vs 0.944272]
+PASS BR7 C5, Rep_3: exactly one class of classical points gives birth to contextual models, it does so at second order, and it is a smooth point   [33 classes; birth class of 160 points, witness 7.5e-03, 6.8e-04, 7.3e-05 at eps 0.1, 0.03, 0.01; tangent dim 10 = nearby [10]; extends to third order]
+PASS BR8 C5, Rep_3: the singular class gives no birth; birth and singularity are disjoint   [singular class of 160 points: tangent dim 10 > nearby [8], max nearby witness 1.3e-09]
+PASS BR9 Rep_3(C5): near the birth class every model is irreducible and contextual; near the singular class every model is 2+1 and none is   [birth: commutant dims [1], contextual share 1.00; singular: commutant dims [2] (2 blocks), contextual share 0.00]
+PASS BR10 a degenerating block of size >= 3 is necessary for birth but not sufficient (Rep_3 and Rep_4); irreducible models are often noncontextual   [Rep_3: 6 classes with irreducible neighbours, 1 birth; Rep_4: 99 with a block >= 3, 29 birth; global Rep_3 sample: 11 of 104 irreducible models contextual]
+PASS BR11 Rep_4(C5): birth and singularity overlap only partly   [242 classes (52360 points): singular 20 (4360), birth 29 (6160), both 5 (840)]
+
+11/11 checks passed

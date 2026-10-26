@@ -1,0 +1,5 @@
+PASS INV1 the first-order term vanishes at every classical point (CHSH Rep_4, KCBS Rep_3 and Rep_4)   [67 + 33 + 242 classes; largest first-order coefficient 6.2e-14]
+PASS INV2 Lambda_2 > 0 exactly at the birth classes: CHSH Rep_4 (1/2) and KCBS Rep_3 (3/4); it matches the observed growth constant   [agreement CHSH 67/67, KCBS Rep_3 33/33; KCBS: Lambda_2 0.7500 vs local max / eps^2 0.7469]
+PASS INV3 KCBS Rep_4: Lambda_2 > 0 implies birth; the other birth classes are higher order (witness ~ d^p, p > 2.5)   [25 second-order birth classes (Lambda_2 in [0.262, 0.265, 0.302, 0.333, 0.433, 0.75]), 0 false positives among 213 classes without birth; 4 higher-order birth classes with exponents 4.12, 2.97, 3.04, 2.79]
+
+3/3 checks passed
