@@ -1,0 +1,15 @@
+PASS WE0 the eight cells are 0.333, 0.127, 0.189, 0.031, 0.171, 0.109, 0.027, 0.013
+PASS WE1 level one: s in [-P(111), min chi<0 cells] = [-0.013, 0.027]; triple harm 0.667 + s in [0.654, 0.694]
+PASS WE2 level two: mu = (0.32, 0.26, 0.28); m_ij = (-0.0432, 0.0324, -0.0288); m_012 = 0.002592; v = sqrt(0.24)(0.45, -0.4, 0.3); r0 = -0.2/sqrt(0.24)
+PASS WE3 the segment's walls are a2,A = 0 and a1,B = 0; the triple harm runs over [0.66077, 0.66925] (the main note's grid gave [0.6613, 0.6687])   [walls t = 0.688919, 1.326807; interval [0.660769, 0.66925]]
+PASS WE4 ladder: Delta_m > 0, Det = m_012^2 + 4 Delta_m > 0, w1 w2 = Delta_m / Det = 0.24
+PASS WE5 genuine pair tables glue (lam* = 1); with population 2's BC trial lam* = 0.86 and the B margins differ (0.26 vs 0.40; linear gap 0.28)   [lam* 1.0000, 0.8600]
+PASS WE6 Stanley-Reisner: the fibre ideal over a product law has Groebner basis {w1(1 - w1) d_i d_j} and equals (w1) cap (w2) cap (d1,d2) cap (d1,d3) cap (d2,d3)   [Groebner basis: ['d1*d2*w1**2 - d1*d2*w1', 'd1*d3*w1**2 - d1*d3*w1', 'd2*d3*w1**2 - d2*d3*w1']]
+PASS WE7 decision: pre-probe the set rule picks the pair (worst 0.332 > 0.33075); the oracle picks the triple (0.333 > 0.332); switch at triple harm 0.668
+PASS WE8 value of the probe: Wald gap 0 (saddle); max regret T 0.00125, P 0.00723; Savage picks the triple before the probe; regret VOI 0.00125
+PASS WE9 settling radius d = 0.001 / |v_T| (harm gap over slope) and n* = (z tau / d)^2   [d = 0.1575, n* = 25028]
+PASS WE10 vertex attack: copies of one record flip the pre-probe decision; first-order and exact budgets agree to within 10%   [record 111, first order 0.00186, exact 0.00187]
+PASS WE11 hidden channel: eps* = (0.668 - 0.667)/0.027 = 0.0370 and eps_det = (0.66925 - 0.667)/0.027 = 0.0833, as bisection on the pipeline finds   [eps* 0.0370, eps_det 0.0833]
+PASS WE12 one line: harm coordinates model part [0.66077, 0.66925] inside positivity part [0.654, 0.694]; the hidden channel never leaves the top rung   [rung change needs 0.0541 of record 011]
+PASS WE13 past eps_det the triple contradicts the pairs: the post-probe fibre is empty
+14/14 passed

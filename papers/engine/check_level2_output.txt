@@ -1,0 +1,11 @@
+PASS LV1 graded explanations exist iff alpha <= lam*, and prediction intervals shrink as more structure is saved   [60/60 incoherent]
+PASS LV2 conflicting trials: lam* = 0.86; the most probable explanation stays in the interval; at lam* both populations' truths are inside   [interval at lam* [0.594, 0.681], truths 0.667, 0.612]
+PASS LV3 exact second derivative of the latent-class map (Taylor error falls like eps^3)   [largest error at eps = 1e-3: 7.2e-09]
+PASS LV4 generic points regular (rank 2m+1); vanishing weight: free shape, no obstruction; coinciding types: l_2 != 0   [ranks: generic 7, vanishing weight 4, coincidence 3; |kappa| on random kernel vectors >= 0.128]
+PASS LV5 tangent cone at a coincidence = union of branches (weights; split along one variable), each an exact path; mixed splits obstructed   [|kappa| on two-variable splits >= 0.037]
+PASS LV6 crossing the independence locus: types separate like sqrt(s) (two Puiseux branches); on the other side no two-type explanation   [gap/sqrt(s) = 1.0000; residuals for s < 0: 0.0004, 0.0008, 0.0017, 0.0035]
+PASS LV7 role exchange: with 3 variables it must pass a singularity; with 4 a regular loop swaps the labels (Z/2 monodromy); full loop identity   [smallest singular value along the loop: m=3 3.1e-06, m=4 0.0072]
+PASS LV8 latent structure sharpens prediction: the two-type interval (exact, ends at the box walls) sits inside the level-one interval, contains the truth, >= 3x narrower; the grid trace lies inside it   [level one [0.654, 0.694], two types [0.66077, 0.66925] (grid [0.6613, 0.6687]), truth 0.667]
+PASS LV9 level-two graded gluing: beyond the fold two types save lam*_2 < 1, three types fit exactly; conflicting trials lam*_2 = lam*   [lam*_2: s=-0.0025: 0.9990, s=-0.005: 0.9926, s=-0.01: 0.9960, s=-0.02: 0.9919, s=-0.04: 0.9836; three-type residual 2.8e-17; drug 0.8600]
+
+9/9 checks passed

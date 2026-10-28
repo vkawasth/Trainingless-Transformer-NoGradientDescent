@@ -1,0 +1,10 @@
+PASS DS1 E[u] along the segment = U(r); three-variable slope = v_T x top Walsh coefficient   [1.7e-16, 0.0e+00]
+PASS DS3 degree: three variables affine, four variables quadratic with leading coefficient v_T x top Walsh   [0.0e+00]
+PASS DS2 worst value over the segment = walls (+ one interior critical point for four variables)   [max err 7.2e-12; 3 interior minima seen]
+PASS DS4 info-gap horizon = margin/|beta| or saturated   [max err 8.7e-13; 122 saturated of 200]
+PASS DS5 saturation tie broken by nominal value; info-gap and set rule can differ   [horizons [inf, inf]; picks act 0; 23/400 decisions differ]
+PASS DS6 set rule invariant on the fibre; info-gap with a pair-chosen nominal is not (midpoint in r vs in t)   [2/300 decisions change with the parametrisation]
+PASS DS7 the set rule changes only at a wall-value crossing of u0 or a crossing of worst values   [2/2 change points explained]
+PASS DS8 settling radius: bisection = closed form min_j g_j / gamma_j   [16 decisions, max err 4.0e-11]
+PASS DS9 sd of rhat = tau/sqrt(n) (10%), plug-in tauhat unbiased (5%)   [sd ratio - 1: [ 0.014  0.008 -0.004]; tauhat ratio - 1: [0.005 0.003 0.001]]
+9/9 passed

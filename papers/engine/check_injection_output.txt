@@ -1,0 +1,12 @@
+PASS IN1 a product injection is a third latent type; tetrads break unless the injected mean moves along v   [mix err 2.8e-17; generic |tetrad| >= 3.2e-05; along v 2.9e-18]
+PASS IN2 the slope along any injected law is sum_x Q(x) IF(x)   [max rel err 3.0e-09]
+PASS IN3 vertex attack: exact/first-order budget -> 1 as the margin shrinks; random injections do not beat it   [median |ratio-1|: margin 1e-2 0.005, 1e-3 0.0001; random beats 0/120]
+PASS IN4 hidden channel: kernel of the pair-marginal map = span(chi); R and the pre-probe act unchanged; rhat moves by eps s / v_T   [kernel dim 1, |cos| 1.000000; max rhat err 9.3e-15]
+PASS IN5 flip and detection budgets eps* and eps_det agree with bisection on the pipeline   [40 flips checked, max rel err 1.0e-06]
+PASS IN6 m = 4: chi_S injection moves only m_S, by 2 eps s; rhat_S moves by 2 eps s / v_S   [max err 8.4e-15]
+PASS IN7 tangent-stealthy injection moves the tetrads at second order, a vertex attack at first; the frontier is concave   [stealthy slopes [1.99 1.99 1.99 1.99]; vertex slopes [0.98 0.98 0.98 0.98]]
+PASS IN8 tetrad Jacobian rank 2 (generic), 2 (every single coincidence), 1 (every pair of coincidences), 0 (merge)   [ranks (2, 2, 1, 0)]
+PASS IN9 one line: pair fibre = P + s chi; the hiding segment lies on it, strictly inside the positivity segment
+PASS IN10 one geometry (m = 4): pair fibre dim 5; model-invisible directions = the hiding segment's tangent; a single channel is seen by a second triple   [dims [5, 5, 5, 5]; single-channel slopes [1. 1. 1. 1.]; tangent slopes [2. 2. 2. 2.]]
+PASS IN11 obstruction: zero (bent stealth to third order) at generic and single-coincidence truths; non-zero on the two-coincidence stratum   [generic: max obstruction 0.0e+00, bent slopes 2.97-3.01; one: max obstruction 0.0e+00, bent slopes 2.98-3.00; two: max obstruction 2.1e-01, bent slopes 1.99-2.02]
+11/11 passed
