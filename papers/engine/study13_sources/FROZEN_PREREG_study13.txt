@@ -1,0 +1,8 @@
+Frozen 2026-10-28 (Study 13 registration, before any registered design of H1-H5 was simulated)
+f43c1833a77be5816ae7b97b3316ce65a97f851420652eae587914993fbc700b  PREREG_study13.md
+1712e3446dbaa60daa79348bd65ba831ecbd1ad2fbfdc6c5d3ab5430c1b1e040  run_study13.py
+5aaba23861aff6b129f4e0149b710dbe94eb667e219f4468f52de9cc474fa205  design13.py
+16630ba892b7827d134b5cde49e74ddc1616bf54df3d357c019611ebba989d67  ../pce/sources.py
+9a0c1852effc136905e246d6f3d10ae766a413149d87738a466994258f0219d1  ../pce/segment_decision.py
+ab059275e4c6caf84da470ebd8a70657050ea31b138be88815e6a9792ee81e75  ../pce/injection.py
+8879fde9a4f5f94de17f12823ff25d88c852ccc411549d3c1730306e7d17157c  ../pce/lab.py

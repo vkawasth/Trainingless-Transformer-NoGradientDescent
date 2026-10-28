@@ -1,0 +1,107 @@
+A0 500 {'naive': 0.318, 'glue': 0.324, 'drop_C_triple': 0.242, 'write_off_C': 0.2535} 19s
+A0 1000 {'naive': 0.491, 'glue': 0.49, 'drop_C_triple': 0.3605, 'write_off_C': 0.3715} 18s
+A0 2000 {'naive': 0.73, 'glue': 0.7185, 'drop_C_triple': 0.567, 'write_off_C': 0.566} 18s
+A0 4000 {'naive': 0.935, 'glue': 0.9235, 'drop_C_triple': 0.855, 'write_off_C': 0.841} 19s
+A0 8000 {'naive': 0.999, 'glue': 0.9945, 'drop_C_triple': 0.982, 'write_off_C': 0.9775} 18s
+A1 500 {'naive': 0.094, 'glue': 0.159, 'drop_C_triple': 0.237, 'write_off_C': 0.2525} 20s
+A1 1000 {'naive': 0.177, 'glue': 0.25, 'drop_C_triple': 0.3695, 'write_off_C': 0.3705} 20s
+A1 2000 {'naive': 0.406, 'glue': 0.4615, 'drop_C_triple': 0.585, 'write_off_C': 0.592} 19s
+A1 4000 {'naive': 0.742, 'glue': 0.743, 'drop_C_triple': 0.847, 'write_off_C': 0.8305} 19s
+A1 8000 {'naive': 0.9755, 'glue': 0.9495, 'drop_C_triple': 0.9795, 'write_off_C': 0.978} 19s
+A1b 500 {'naive': 0.048, 'glue': 0.1675, 'drop_C_triple': 0.246, 'write_off_C': 0.265} 18s
+A1b 1000 {'naive': 0.09, 'glue': 0.2725, 'drop_C_triple': 0.39, 'write_off_C': 0.3965} 18s
+A1b 2000 {'naive': 0.234, 'glue': 0.4485, 'drop_C_triple': 0.6075, 'write_off_C': 0.591} 18s
+A1b 4000 {'naive': 0.5685, 'glue': 0.687, 'drop_C_triple': 0.8485, 'write_off_C': 0.8365} 19s
+A1b 8000 {'naive': 0.9415, 'glue': 0.9175, 'drop_C_triple': 0.9885, 'write_off_C': 0.9805} 18s
+A3 500 {'naive': 0.091, 'glue': 0.3055, 'drop_C_triple': 0.2325, 'write_off_C': 0.2595} 19s
+A3 1000 {'naive': 0.171, 'glue': 0.4655, 'drop_C_triple': 0.37, 'write_off_C': 0.386} 18s
+A3 2000 {'naive': 0.3975, 'glue': 0.703, 'drop_C_triple': 0.587, 'write_off_C': 0.587} 17s
+A3 4000 {'naive': 0.756, 'glue': 0.9245, 'drop_C_triple': 0.8625, 'write_off_C': 0.8445} 18s
+A3 8000 {'naive': 0.981, 'glue': 0.994, 'drop_C_triple': 0.9905, 'write_off_C': 0.985} 19s
+A2 500 {'naive': 0.018, 'glue': 0.206, 'drop_C_triple': 0.2265, 'write_off_C': 0.2535} 18s
+A2 1000 {'naive': 0.0045, 'glue': 0.356, 'drop_C_triple': 0.367, 'write_off_C': 0.382} 18s
+A2 2000 {'naive': 0.001, 'glue': 0.598, 'drop_C_triple': 0.6035, 'write_off_C': 0.5955} 19s
+A2 4000 {'naive': 0.0005, 'glue': 0.853, 'drop_C_triple': 0.858, 'write_off_C': 0.84} 19s
+A2 8000 {'naive': 0.0, 'glue': 0.98, 'drop_C_triple': 0.9835, 'write_off_C': 0.9795} 19s
+{
+ "H1": true,
+ "H1_detail": {
+  "share_within_0.05": 1.0,
+  "max_gap": 0.03137000000000001,
+  "cells": 100
+ },
+ "H2": true,
+ "H2_detail": {
+  "glue_wrong_max": 0.0195,
+  "naive_wrong_A2_at_largest_N": 0.8765,
+  "glue_vs_oracle_under_A2_right_gap_N>=48k": 0.00550000000000006
+ },
+ "H3": true,
+ "H3_detail": {
+  "n_half": {
+   "A0": {
+    "emp": 24739.18686193971,
+    "pred": 24570.976161048966,
+    "ratio": 1.0068459103858234
+   },
+   "A1": {
+    "emp": 52773.0630872883,
+    "pred": 52960.03105492026,
+    "ratio": 0.9964696401435627
+   },
+   "A1b": {
+    "emp": 55749.82668070141,
+    "pred": 56594.3701227231,
+    "ratio": 0.9850772534407517
+   }
+  },
+  "oracle_beats_glue_under_A1b": true
+ },
+ "H4": true,
+ "H4_detail": {
+  "A3_adv_batch_removed": [
+   0.9635,
+   0.9675,
+   0.97,
+   0.9675,
+   0.972
+  ],
+  "A3_C_dropped": [
+   0.0135,
+   0.017,
+   0.0135,
+   0.0135,
+   0.011
+  ],
+  "A3_vs_A0_glue_right_gap": [
+   0.018500000000000016,
+   0.024499999999999966,
+   0.01550000000000007,
+   0.0010000000000000009,
+   0.000500000000000056
+  ],
+  "A0_any_source_dropped": [
+   0.042,
+   0.038,
+   0.041,
+   0.0395,
+   0.044
+  ],
+  "A0_glue_vs_naive_right_gap": [
+   0.006000000000000005,
+   0.0010000000000000009,
+   0.011499999999999955,
+   0.011500000000000066,
+   0.0044999999999999485
+  ]
+ },
+ "H5": true,
+ "H5_detail": {
+  "worst_case_right_at_largest_N": {
+   "naive": 0.0,
+   "glue": 0.9175,
+   "drop_C_triple": 0.9795,
+   "write_off_C": 0.9775
+  }
+ }
+}

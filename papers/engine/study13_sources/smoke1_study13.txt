@@ -1,0 +1,109 @@
+A0 500 {'naive': 0.9466666666666667, 'glue': 0.9316666666666666, 'drop_C_triple': 0.8783333333333333, 'write_off_C': 0.8766666666666667} 5s
+A0 1000 {'naive': 1.0, 'glue': 0.9966666666666667, 'drop_C_triple': 0.9866666666666667, 'write_off_C': 0.9866666666666667} 5s
+A0 2000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A0 4000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A0 8000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A1 500 {'naive': 0.76, 'glue': 0.7583333333333333, 'drop_C_triple': 0.855, 'write_off_C': 0.8433333333333334} 6s
+A1 1000 {'naive': 0.985, 'glue': 0.9616666666666667, 'drop_C_triple': 0.995, 'write_off_C': 0.9916666666666667} 5s
+A1 2000 {'naive': 1.0, 'glue': 0.995, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 6s
+A1 4000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A1 8000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A1b 500 {'naive': 0.535, 'glue': 0.725, 'drop_C_triple': 0.875, 'write_off_C': 0.8583333333333333} 6s
+A1b 1000 {'naive': 0.95, 'glue': 0.915, 'drop_C_triple': 0.9866666666666667, 'write_off_C': 0.9916666666666667} 5s
+A1b 2000 {'naive': 1.0, 'glue': 0.9916666666666667, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 6s
+A1b 4000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 6s
+A1b 8000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A3 500 {'naive': 0.7816666666666666, 'glue': 0.9116666666666666, 'drop_C_triple': 0.8616666666666667, 'write_off_C': 0.8566666666666667} 5s
+A3 1000 {'naive': 0.9816666666666667, 'glue': 0.9866666666666667, 'drop_C_triple': 0.99, 'write_off_C': 0.985} 5s
+A3 2000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A3 4000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A3 8000 {'naive': 1.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 5s
+A2 500 {'naive': 0.018333333333333333, 'glue': 0.8766666666666667, 'drop_C_triple': 0.8783333333333333, 'write_off_C': 0.8766666666666667} 6s
+A2 1000 {'naive': 0.01, 'glue': 0.99, 'drop_C_triple': 0.9916666666666667, 'write_off_C': 0.99} 5s
+A2 2000 {'naive': 0.0, 'glue': 0.9966666666666667, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 6s
+/usr/local/lib/python3.13/dist-packages/numpy/lib/_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+A2 4000 {'naive': 0.0016666666666666668, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 6s
+A2 8000 {'naive': 0.0, 'glue': 1.0, 'drop_C_triple': 1.0, 'write_off_C': 1.0} 6s
+{
+ "H1": true,
+ "H1_detail": {
+  "share_within_0.05": 1.0,
+  "max_gap": 0.03667500000000001,
+  "cells": 100
+ },
+ "H2": false,
+ "H2_detail": {
+  "glue_wrong_max": 0.0,
+  "naive_wrong_A2_at_largest_N": 0.4483333333333333,
+  "glue_vs_oracle_under_A2_right_gap_N>=48k": 0.0033333333333332993
+ },
+ "H3": true,
+ "H3_detail": {
+  "n_half": {
+   "A0": {
+    "emp": 12000.0,
+    "pred": 12000.0,
+    "ratio": 1.0
+   },
+   "A1": {
+    "emp": 12000.0,
+    "pred": 12000.0,
+    "ratio": 1.0
+   },
+   "A1b": {
+    "emp": 12000.0,
+    "pred": 12000.0,
+    "ratio": 1.0
+   }
+  },
+  "oracle_beats_glue_under_A1b": true
+ },
+ "H4": true,
+ "H4_detail": {
+  "A3_adv_batch_removed": [
+   0.9783333333333334,
+   0.965,
+   0.9633333333333334,
+   0.975,
+   0.965
+  ],
+  "A3_C_dropped": [
+   0.011666666666666667,
+   0.013333333333333334,
+   0.013333333333333334,
+   0.011666666666666667,
+   0.023333333333333334
+  ],
+  "A3_vs_A0_glue_right_gap": [
+   0.020000000000000018,
+   0.010000000000000009,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "A0_any_source_dropped": [
+   0.04666666666666667,
+   0.04166666666666667,
+   0.04666666666666667,
+   0.03666666666666667,
+   0.041666666666666664
+  ],
+  "A0_glue_vs_naive_right_gap": [
+   0.015000000000000013,
+   0.0033333333333332993,
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "H5": true,
+ "H5_detail": {
+  "worst_case_right_at_largest_N": {
+   "naive": 0.0,
+   "glue": 1.0,
+   "drop_C_triple": 1.0,
+   "write_off_C": 1.0
+  }
+ }
+}
