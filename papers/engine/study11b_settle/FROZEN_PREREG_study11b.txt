@@ -1,0 +1,6 @@
+Frozen 2026-10-27 (Study 11b registration, before any registered design was simulated)
+089ce79f71c2f04c2dcd822be9563a5c104e8d206018cd26449ff364e6b83654  PREREG_study11b.md
+874f4de8cc6a33c9f277ae584d9293b446769937ee75de80b6001d829b0e5e4f  run_study11b.py
+00590246f7ae87b8a8fcb1d0abb109bf71830cf6857fc484e2389d7870dd99ab  design11b.py
+9a0c1852effc136905e246d6f3d10ae766a413149d87738a466994258f0219d1  ../pce/segment_decision.py
+8879fde9a4f5f94de17f12823ff25d88c852ccc411549d3c1730306e7d17157c  ../pce/lab.py
