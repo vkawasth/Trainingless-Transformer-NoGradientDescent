@@ -1,0 +1,8 @@
+Frozen 2026-10-28 (Study 12 registration, before any registered design of H1-H4 was simulated)
+2e64b88b063a5c2212700eb4b1a45245a2104c73266f3098a3036add1471eae6  PREREG_study12.md
+70ff8e5b3311ffab6204736ab1ada6eb480a938c82fa1a991e29891f711add18  run_study12.py
+966cfef4401e0fb3414e671c8fd8e057f11afb3e97a4b71dfdde9f7a475f0140  design12.py
+ab059275e4c6caf84da470ebd8a70657050ea31b138be88815e6a9792ee81e75  ../pce/injection.py
+9a0c1852effc136905e246d6f3d10ae766a413149d87738a466994258f0219d1  ../pce/segment_decision.py
+8879fde9a4f5f94de17f12823ff25d88c852ccc411549d3c1730306e7d17157c  ../pce/lab.py
+00590246f7ae87b8a8fcb1d0abb109bf71830cf6857fc484e2389d7870dd99ab  ../study11b_settle/design11b.py
