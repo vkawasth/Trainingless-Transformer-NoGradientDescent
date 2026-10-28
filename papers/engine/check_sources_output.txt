@@ -1,0 +1,11 @@
+PASS SR1 batch-level hidden channel: pairs exactly unchanged, m_T moves by eps s   [max |dm - eps s| 1.4e-17]
+PASS SR2 Tier 1: genuine sections glue (lambda* = 1); 1 - lambda* = eps TV(P, Q) <= eps   [max |1 - lambda* - eps TV| 1.5e-16]
+PASS SR3 pooling = monad multiplication: attacked family and eta(pooled) have one image; pooled budget for the source = eps* / pi   [eps* = 0.0370, source share needed 0.1111]
+PASS SR4 Theorem J(1): pooled shift = a sqrt(pi / (1 - pi)) pooled se for every K_C, K, n   [max error 4.4e-16]
+PASS SR5 G's triple part is (m_T error) / v_T: its variance equals sigma_m^2 / v_T^2 = the triple part of tau^2   [max rel. error 4.0e-11]
+PASS SR6 Theorem J(2): glue never settles wrong beyond Phi(B - z); naive pooling under a fixed share settles wrong w.p. -> 1   [glue wrong [0.0189, 0.0115, 0.0001, 0.0] <= 0.395; naive wrong [0.056, 0.374, 0.885, 1.0]]
+PASS SR7 Theorem J(3): with no adversary glue's right-rate crosses 1/2 at (z tau / d)^2 (within 5%); under the tuned adversary between that and the never-exposed bound ((z tau + B sigma_m / |v_T|) / d)^2, within 15% of the bound   [a = 0.00: model N 1/2 24586, formula 24399; a = 1.55: model N 1/2 53252, formula 59357]
+PASS SR8 a concentrated attack is localised at the batch level (dropped >= 0.9, source kept); a fixed share is removed (batch or source level) w.p. -> 1   [batch dropped [0.973, 0.973, 0.973], source dropped [0.014, 0.014, 0.014]; fixed share caught [0.705, 0.996, 0.998]]
+PASS SR9 two sources cannot localise a gluing failure (no z statistics, nothing dropped); three can
+PASS SR10 sampled batches agree with the Gaussian model on an invented truth (right-rate within 0.08 for every rule)   [naive: 0.437 vs 0.427; glue: 0.600 vs 0.610; drop_C_triple: 0.777 vs 0.787; write_off_C: 0.770 vs 0.780]
+10/10 passed

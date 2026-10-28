@@ -12,4 +12,9 @@ PASS WE10 vertex attack: copies of one record flip the pre-probe decision; first
 PASS WE11 hidden channel: eps* = (0.668 - 0.667)/0.027 = 0.0370 and eps_det = (0.66925 - 0.667)/0.027 = 0.0833, as bisection on the pipeline finds   [eps* 0.0370, eps_det 0.0833]
 PASS WE12 one line: harm coordinates model part [0.66077, 0.66925] inside positivity part [0.654, 0.694]; the hidden channel never leaves the top rung   [rung change needs 0.0541 of record 011]
 PASS WE13 past eps_det the triple contradicts the pairs: the post-probe fibre is empty
-14/14 passed
+PASS WE14 the cells are exact three-decimal rationals; the line is a Delzant segment of lattice length 0.040 with facet values 0.027 and 0.013 at the truth (the channel capacities)
+PASS WE15 the Birch binomial restricted to the line is a cubic (the s^4 terms cancel) with exactly one real root in the segment, s = -0.00305: the maximum-entropy law   [roots [(-0.003048+0j), (-0.009276-0.086323j), (-0.009276+0.086323j)]]
+PASS WE16 Cayley's hyperdeterminant restricted to the line is exactly m_ABC^2 + 4 Delta_m (a monic quadratic); its roots are a complex-conjugate pair, so the line never leaves the real rank-2 locus   [Det(s) = s**2 + 81*s/15625 + 6561/39062500]
+PASS WE17 the moment coordinate is the third cumulant: m_ABC(P + s chi) = 0.002592 + s exactly
+PASS WE18 the maximum-entropy point lies inside the hiding segment and below the decision boundary (harm 0.6640 < 0.668); the monotone midpoint is s = 0.007 (harm 0.674)
+19/19 passed

@@ -1,0 +1,10 @@
+PASS CL1 settling <=> one chamber (150 random designs)   [80 single-chamber, 70 two-chamber]
+PASS CL2 Savage: exact probe worth R(M), positive iff two chambers; a plateau probe is worth 0
+PASS CL3 Wald: exact probe worth W_post - W(M) >= 0, positive iff two chambers and strictly opposite slopes   [31 positive]
+PASS CL4 forward budgets are margin / capacity (vertex and hidden channel), equal to bisection   [max gap 7.4e-11 over 120]
+PASS CL5 observer's block = water-filling = LP; it is margin / (c - min l) exactly when the lowest cell holds the removed mass   [max gap 3.1e-16; closed form attained in 60 of 60 (margin 0.01)]
+PASS CL6 worked example: one margin 0.001 over five capacities (0.873, 0.027, 0.128, 0.014; sigma for sampling); the model attains 1/128   [vertex 0.00115; hidden 0.03704; observer 0.00781; observer_line 0.07143; settling n 25028]
+PASS CL7 relevance: with l(chi) = 0 the hidden channel never moves the decision; with l(chi) != 0 the budget is finite
+PASS CL8 two boundaries: a stealth window exists iff the wall lies inside the hiding segment   [70 designs with a window]
+PASS CL9 beyond the line: with pair tables kept the budget is margin over the support function of the pair fibre (an LP); at m = 3 it is the hidden channel; at m = 4 the full fibre gives no more room than m = 3, but more than a single channel   [m = 3: 0.0370; m = 4 full fibre: 0.0370 (bisection 0.0370); m = 4 single chi_ABC channel: 0.0505]
+9/9 passed

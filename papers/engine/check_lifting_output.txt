@@ -1,0 +1,11 @@
+PASS LF1 arrangement: U_T - U_P = 0.128 - P(001); boundary at s = 0.001 inside the hiding segment; at m = 4 chambers are chi_ABC slabs   [gradient along the fibre / chi_ABC coordinate: -2.0000]
+PASS LF2 act lift: alpha* = 0.853 on T, worst regret 0.00107 (15% below 0.00125); the lifted rule is continuous, the pure rule jumps   [a = 0.00125, b = 0.00723, alpha* = 0.8526, value 0.001066; largest step of the lifted rule 0.0010]
+PASS LF3 adversarial lift: the block reaches the other chamber at eps = 1/128 with a genuine two-type law; the pair line needs 1/14   [eps = 0.007812; P'(001) = 0.128000; line 0.07143; forward hidden channel 0.0370]
+PASS LF4 dilation: P(C) = 0.28 on the whole segment; every P(C | A, B) is an interval; the triple pins a point inside each   [AB=00: [0.263, 0.281] (truth 0.276); AB=01: [0.131, 0.169] (truth 0.141); AB=10: [0.381, 0.412] (truth 0.389); AB=11: [0.169, 0.381] (truth 0.325)]
+PASS LF5 EVSI(n): zero for n <= 100, convex on [300, 1500], rising to EVPI; at c = 1e-9 the optimum is interior, the marginal value at 0 is 0   [EVPI 9.239e-05; EVSI(1e5) 8.855e-05; optimal n 18119 with net value 5.381e-05]
+PASS LF6 Savage worst regret falls from 0.00125 toward 0; the Wald value stays below the pre-probe 0.332 at every n and tends to it   [Savage [0.001218, 0.001162, 0.000824, 0.000262, 2.6e-05]; Wald deficit [3.01e-05, 9.4e-06, 3e-06, 9e-07, 1e-07]]
+PASS LF7 blow-up of the merge: at v = 0, rho^2 at n^-1/2 and |v| at n^-1/4; away from the merge both n^-1/2   [slopes at the merge [-0.498, -0.245], away [-0.512, -0.511]]
+PASS LF8 backtracking beats forward-only acceptance: the worst constant-dose adversary moves the pool less when late failures revoke   [forward-only 1.05 se at (rounds, dose) (8, 1.25), flagged 0.74; backtracking 0.57 se at (8, 0.75), flagged 0.34]
+PASS LF9 rectangularity as gluing: VOI = -0.1 < 0 under C; recursive value = maxmin over rect(C); bound -osc d_H = -0.3 holds   [ex ante 0.100, with information 0.000, d_H 0.300]
+PASS LF10 exact stability: every batch family on the line is the compression of an honest labelled law with shares (m_b - m) / s
+10/10 passed

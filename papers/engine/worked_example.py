@@ -7,7 +7,7 @@ a1 = (0.5, 0.1, 0.4), a2 = (0.05, 0.5, 0.1) for harms A, B, C. Every number prin
 Steps: 0 the law; 1 level one; 2 level two (moments, v, r, the segment and its walls); 3 the ladder; 4 the tower; 5 gluing and the
 per-window contrast (population 2's BC trial); 6 Stanley-Reisner; 7 the decision (Theorem D, Theorem C); 8 the probe and settling;
 9 the vertex attack (Theorem E); 10 the hidden channel (Theorem F); 11 one line (Theorem H) and the ladder under injection;
-12 what breaks.
+12 what breaks; 13 the toric reading (boundary fibre, Kaehler data, Birch point, hyperdeterminant, moment map).
 """
 import itertools, json, os, sys
 import numpy as np
@@ -159,6 +159,46 @@ check("WE12 one line: harm coordinates model part [0.66077, 0.66925] inside posi
 o = IJ.pipeline(IJ.mix(P, Q, e_det + 0.01), acts, u0)
 OUT["breaks"] = {"post_beyond_det": o["post"], "Delta_m_unchanged": True}
 check("WE13 past eps_det the triple contradicts the pairs: the post-probe fibre is empty", o["post"] == "empty")
+
+# 13 the toric reading (the coupling-polytope companion): the line is the boundary fibre of shape 2x2x2, a Delzant segment, CP^1
+cellsQ = [sp.Rational(str(round(P[x], 3))) for x in X]                       # the cells are exact three-decimal rationals
+S_ = sp.Symbol("s"); line = [c + S_ * int(h) for c, h in zip(cellsQ, chi)]; A_ = dict(zip(["".join(map(str, x)) for x in X], line))
+ok_exact = all(abs(float(c) - P[x]) < 1e-15 for c, x in zip(cellsQ, X))
+s_lo_q, s_hi_q = -min(c for c, h in zip(cellsQ, chi) if h > 0), min(c for c, h in zip(cellsQ, chi) if h < 0)
+length = s_hi_q - s_lo_q
+# Birch point: the no-three-way-interaction (maximum-entropy) law on the line; the binomial p000 p011 p101 p110 = p001 p010 p100 p111
+birch = sp.expand(A_["000"] * A_["011"] * A_["101"] * A_["110"] - A_["001"] * A_["010"] * A_["100"] * A_["111"])
+bpoly = sp.Poly(birch, S_); broots = [complex(r) for r in bpoly.nroots()]; breal = [r.real for r in broots if abs(r.imag) < 1e-12 and float(s_lo_q) < r.real < float(s_hi_q)]
+# Cayley's hyperdeterminant along the line
+a = A_
+det = (a["000"]**2*a["111"]**2 + a["001"]**2*a["110"]**2 + a["010"]**2*a["101"]**2 + a["100"]**2*a["011"]**2
+       - 2*(a["000"]*a["001"]*a["110"]*a["111"] + a["000"]*a["010"]*a["101"]*a["111"] + a["000"]*a["100"]*a["011"]*a["111"]
+            + a["001"]*a["010"]*a["101"]*a["110"] + a["001"]*a["100"]*a["011"]*a["110"] + a["010"]*a["100"]*a["011"]*a["101"])
+       + 4*(a["000"]*a["011"]*a["101"]*a["110"] + a["001"]*a["010"]*a["100"]*a["111"]))
+dpoly = sp.Poly(sp.expand(det), S_); m0q = sp.Rational(str(round(m123, 6)))
+Dmq = sp.Rational(str(round(Dm, 12))); target_det = sp.Poly(sp.expand((m0q + S_) ** 2 + 4 * Dmq), S_)
+droots = [complex(r) for r in dpoly.nroots()]
+mono = (s_lo_q + s_hi_q) / 2
+s_me = breal[0] if breal else None
+OUT["toric"] = {"fibre": "boundary fibre of shape 2x2x2 (all three 2-margins fixed): a Delzant segment, toric manifold CP^1",
+                "lattice_direction": "chi (entries +-1, primitive)", "s_range": [str(s_lo_q), str(s_hi_q)], "lattice_length": str(length),
+                "facet_values_at_truth": [str(s_hi_q), str(-s_lo_q)], "vertex_zero_cells": {"s_plus": "110", "s_minus": "111"},
+                "near_wall_cell_011_at_s_plus": str(cellsQ[3] - s_hi_q),
+                "birch_cubic": [str(c) for c in bpoly.all_coeffs()], "birch_roots": [[r.real, r.imag] for r in broots], "birch_s": s_me,
+                "birch_harm": None if s_me is None else 0.667 + s_me, "odds_ratio_truth": float(np.prod([P[x] for x, h in zip(X, chi) if h < 0]) / np.prod([P[x] for x, h in zip(X, chi) if h > 0])),
+                "hyperdet_quadratic": [str(c) for c in dpoly.all_coeffs()], "hyperdet_roots": [[r.real, r.imag] for r in droots],
+                "monotone_midpoint_s": str(mono), "monotone_harm": float(sp.Rational("0.667") + mono),
+                "moment_coordinate": "s = m_ABC - 0.002592 (the third cumulant, shifted)"}
+check("WE14 the cells are exact three-decimal rationals; the line is a Delzant segment of lattice length 0.040 with facet values 0.027 and 0.013 at the truth (the channel capacities)",
+      ok_exact and length == sp.Rational("0.04") and s_hi_q == sp.Rational("0.027") and -s_lo_q == sp.Rational("0.013"))
+check("WE15 the Birch binomial restricted to the line is a cubic (the s^4 terms cancel) with exactly one real root in the segment, s = -0.00305: the maximum-entropy law",
+      bpoly.degree() == 3 and len(breal) == 1 and abs(breal[0] + 0.0030484) < 1e-6, f"roots {[complex(round(r.real, 6), round(r.imag, 6)) for r in broots]}")
+check("WE16 Cayley's hyperdeterminant restricted to the line is exactly m_ABC^2 + 4 Delta_m (a monic quadratic); its roots are a complex-conjugate pair, so the line never leaves the real rank-2 locus",
+      dpoly.degree() == 2 and all(abs(float(c1) - float(c2)) < 1e-15 for c1, c2 in zip(dpoly.all_coeffs(), target_det.all_coeffs())) and all(abs(r.imag) > 1e-3 for r in droots),
+      f"Det(s) = {dpoly.as_expr()}")
+check("WE17 the moment coordinate is the third cumulant: m_ABC(P + s chi) = 0.002592 + s exactly", all(abs(moments(IJ.as_law(IJ.as_vec(P) + t * chi, 3))[2]((0, 1, 2)) - (m123 + t)) < 1e-15 for t in (-0.01, 0.0, 0.02)))
+check("WE18 the maximum-entropy point lies inside the hiding segment and below the decision boundary (harm 0.6640 < 0.668); the monotone midpoint is s = 0.007 (harm 0.674)",
+      s_me is not None and OUT["level2"]["interval"][0] < 0.667 + s_me < OUT["level2"]["interval"][1] and 0.667 + s_me < 0.668 and mono == sp.Rational("0.007"))
 
 json.dump(OUT, open(os.path.join(HERE, "..", "lab", "worked_example.json"), "w"), indent=1, default=float)
 print(f"{sum(results)}/{len(results)} passed")

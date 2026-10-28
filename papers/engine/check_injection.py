@@ -24,6 +24,12 @@ the observed law is P_eps = (1 - eps) P + eps Q.
   IN11 obstruction (Theorem G(4)): at a generic truth and at a single coincidence every first-order tetrad-stealthy direction extends
       (obstruction 0; a bent injection keeps the tetrads to third order), while on the singular stratum (two coincidences) the
       obstruction is non-zero and the tetrads move at second order along every bent injection
+  IN12 the second-triple defence (Corollary): on the stated m = 4 truth, half-capacity chi_{012} injection at eps = 0.05 moves
+      rhat_{012} by exactly 2 eps s / v_S (0.629 -> 0.533) and leaves the other three triples at 0.629
+  IN13 the stealth-tilt frontier's closed form (Theorem G(2)) on Study 12's H4 truth: the dual min over lambda equals the LP at every
+      delta; optimal injections use at most three records; the frontier has exactly two breakpoints (0.219 and 2.744)
+  IN14 channel capacity (Corollary): cap_+ and cap_- are the rarest cells of each sign of chi_S; on Study 11's m = 4 truth G the order
+      of the triples by |v_S|/sigma_S equals their order by the smallest largest shift 2 cap / |v_S|
   IN8 strata: the tetrad Jacobian has rank 2 at a generic truth and at one coincidence (v_i = 0), rank 1 when two coordinates of v
       vanish, rank 0 at the merge (v = 0): first-order stealthy directions grow on the strata
 Run: python check_injection.py
@@ -218,5 +224,41 @@ for name, (b1, b2) in {"generic": ([.8, .3, .7, .25], [.2, .7, .15, .7]), "one":
 check("IN11 obstruction: zero (bent stealth to third order) at generic and single-coincidence truths; non-zero on the two-coincidence stratum",
       res["generic"][0] < 1e-6 and res["one"][0] < 1e-6 and res["generic"][1] > 2.8 and res["one"][1] > 2.8 and min(o for o in [res["two"][0]]) > 1e-3 and res["two"][2] < 2.6,
       "; ".join(f"{k}: max obstruction {v[0]:.1e}, bent slopes {v[1]:.2f}-{v[2]:.2f}" for k, v in res.items()))
+
+# IN12
+P = law(.35, np.array([.8, .3, .7, .25]), np.array([.2, .7, .15, .7])); mu, M, mS = moments(P); v = fit_v(mu, M); S = (0, 1, 2)
+lo, hi = IJ.stealth_range(P, S); s_ = 0.5 * hi; e = 0.05; Q = IJ.as_law(IJ.as_vec(P) + s_ * IJ.chi(4, S), 4)
+mu2, M2, mS2 = moments(IJ.mix(P, Q, e)); v2 = fit_v(mu2, M2)
+rb = {T: mS(T) / np.prod(v[list(T)]) for T in itertools.combinations(range(4), 3)}; ra = {T: mS2(T) / np.prod(v2[list(T)]) for T in rb}
+ok12 = abs(ra[S] - rb[S] - 2 * e * s_ / np.prod(v[list(S)])) < 1e-10 and all(abs(ra[T] - rb[T]) < 1e-10 for T in rb if T != S) and abs(rb[S] - 0.629) < 1e-3 and abs(ra[S] - 0.5333) < 1e-3
+check("IN12 second-triple defence: chi_S moves r_S alone, by 2 eps s / v_S", ok12, f"r_012 {rb[S]:.4f} -> {ra[S]:.4f}; others {[round(ra[T], 4) for T in rb if T != S]}")
+
+# IN13
+sys.path.insert(0, os.path.join(HERE, "study12_inject")); sys.path.insert(0, os.path.join(HERE, "study11b_settle"))
+import design12 as _D12, run_study12 as _R12
+from scipy.optimize import linprog
+T_ = _D12.tetrad_design(); P4 = T_["P"]; Nj = IJ.tetrad_jacobian(P4)
+tiltF = lambda X: (lambda mu, M, mS: mS((0, 1, 2)) / np.prod(fit_v(mu, M)[:3]))(*moments(X)); tilt = IJ.influence(tiltF, P4).ravel()
+_, SigT = _R12.tetrad_stat(_R12.exact_tabs(P4, _R12.PAIRS4)); Nw = np.linalg.solve(np.linalg.cholesky(SigT), Nj)
+def dual(d):
+    A_ = [np.r_[-Nw[:, x], Nw[:, x], -1.0] for x in range(Nw.shape[1])]
+    return linprog(np.r_[d * np.ones(4), 1.0], A_ub=np.array(A_), b_ub=-tilt, bounds=[(0, None)] * 4 + [(None, None)], method="highs").fun
+ds = np.linspace(0, 3.2, 161); prim = [IJ.stealth_tilt_lp(P4, tilt, Nw, d) for d in ds]
+gap = max(abs(p_[0] - dual(d)) for p_, d in zip(prim, ds)); supp = max(int(np.sum(p_[1] > 1e-9)) for p_ in prim)
+vals = np.array([p_[0] for p_ in prim]); sl = np.diff(vals) / np.diff(ds); idx = np.where(np.abs(np.diff(sl)) > 1e-4)[0]
+kinks = int(len(idx) and 1 + np.sum(np.diff(idx) > 1)); kink_at = [round(float(ds[i + 1]), 2) for i in idx]
+check("IN13 frontier closed form: dual = LP at every delta; at most three records; two breakpoints", gap < 1e-8 and supp <= 3 and kinks == 2,
+      f"max |primal - dual| {gap:.1e}; largest support {supp}; breakpoints {kinks} near {kink_at}")
+
+# IN14
+P = law(0.30, np.array([.70, .30, .80, .55]), np.array([.20, .65, .10, .25])); mu, M, mS = moments(P); v = fit_v(mu, M); rows = []
+for S in itertools.combinations(range(4), 3):
+    lo, hi = IJ.stealth_range(P, S); c_ = IJ.chi(4, S); p_ = IJ.as_vec(P)
+    capok = abs(hi - p_[c_ < 0].min()) < 1e-15 and abs(-lo - p_[c_ > 0].min()) < 1e-15
+    vS = abs(np.prod(v[list(S)])); sig = np.sqrt(sum(P[x] * np.prod([(x[i] - mu[i]) for i in S]) ** 2 for x in IJ.outcomes(4)))
+    rows.append((S, vS / sig, 2 * max(hi, -lo) / vS, capok))
+o1 = [r_[0] for r_ in sorted(rows, key=lambda r_: -r_[1])]; o2 = [r_[0] for r_ in sorted(rows, key=lambda r_: r_[2])]
+check("IN14 capacity = rarest cell of each sign; best probe = hardest to poison (same order of triples) on truth G", all(r_[3] for r_ in rows) and o1 == o2,
+      "; ".join(f"{''.join(map(str, r_[0]))}: |v|/sigma {r_[1]:.3f}, shift {r_[2]:.1f}" for r_ in rows))
 
 print(f"{sum(results)}/{len(results)} passed")

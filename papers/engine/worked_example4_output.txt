@@ -1,0 +1,17 @@
+PASS W4-1 the ABC face is the three-variable example exactly; all four faces share r = -0.408 (one latent coordinate)   [ABC: r -0.408248, ABD: r -0.408248, ACD: r -0.408248, BCD: r -0.408248]
+PASS W4-2 each face's hyperdeterminant m_S^2 + 4 Delta_S is positive on its whole line (Delta_S > 0 on every face)
+PASS W4-3 the global pairwise maximum-entropy law has exactly the six pair tables and no interactions of order >= 3 (log-linear in pairs)
+PASS W4-4 marginalising induces three-way interaction: the global maximum-entropy law's faces are not their own Birch points (odds ratios != 1)   [face odds ratios ABC 0.9770, ABD 0.9851, ACD 0.9604, BCD 0.9649]
+PASS W4-5 the pair fibre is 5-dimensional; the four triple characters and the four-way character span a sublattice of index 16, and a saturated basis (entries 0, +-1) exists
+PASS W4-6 at this truth the fibre is a simple, smooth (Delzant) polytope with 20 vertices and 9 facets: a smooth toric 5-fold with Euler characteristic 20   [facet cells ['0011', '0110', '0111', '1001', '1011', '1100', '1101', '1110', '1111']; volume 1.274e-08]
+PASS W4-6b the f-vector is [20, 50, 54, 31, 9, 1]; the h-vector, which gives the Betti numbers b_0, b_2, ..., b_10 of the toric 5-fold, is [1, 4, 5, 5, 4, 1]: symmetric (Dehn-Sommerville / Poincare duality) and summing to 20
+PASS W4-6c five of the six two-face projections are products of the faces' lines; ACD x BCD is not: its corners are cut, so those two faces' three-way moments are coupled   [{"ACDxBCD": {"hull_vertices": [[-0.02216, 0.02232], [-0.02216, -0.02168], [0.05184, -0.02168], [0.05184, 0.02032], [0.04984, 0.02232]], "area_ratio": 0.999386, "box": [[-0.02216, 0.05184], [-0.02168, 0.02232]]}}]
+PASS W4-7 the Kaehler data at the truth are the probabilities of the nine facet cells, and every cell with a facet is a cell of positive probability
+PASS W4-8 the model is a conic arc in the fibre: three linear equations r_S = r_S' and the quadric m_ABCD = v_ABCD (r^2 + 1) hold at the truth
+PASS W4-9 the fourth harm's walls are slack here (t in [0.408, 1.633] contains [0.689, 1.327]): R4 = R3 and the ABC harm interval is unchanged   [R4 = [-0.7626, 0.5731] vs R3 = [-0.7626, 0.5731]; ABC harm [0.66077, 0.66925]]
+PASS W4-10 with four variables the decision is unchanged (pair before the probe, triple at the truth), and the ABC channel's capacity on 16 cells is smaller than on 8   [capacity 0.0099 (vs 0.027); eps* 0.0505; wall at 0.1136]
+PASS W4-11 a second triple sees the ABC channel: at n = 1e5 the difference test reaches its critical value before the decision flips   [sd of rhat_ABC - rhat_ABD 0.0470; test at eps 0.0296 vs flip at 0.0505]
+PASS W4-13 the model-invisible injection (observed law = the two-type law at r) has exact budget 1 - min_x law_r(x)/P(x); on three variables it reproduces 0.037   [four variables: flip at 0.1826, wall at 0.4219]
+PASS W4-12 chambers: a2D = 0.5 and 0.7 give smooth fibres; a2D = 0.6 lies on a wall (not simple); a1D = 0.3 gives a simple orbifold (vertex index 2)   [{"0.5": {"vertices": 20, "simple": true, "vertex_dets": [1], "facets": 9}, "0.6": {"vertices": 17, "simple": false, "vertex_dets": [0, 1], "facets": 9}, "0.7": {"vertices": 20, "simple": true, "vertex_dets": [1], "facets": 9}, "0.3,0.7": {"vertices": 28, "simple": true, "vertex_dets": [1, 2], "facets": 10}}]
+PASS W4-14 on 50 random laws and two-type truths the four-variable pair fibre is always simple and never smooth (an orbifold)
+16/16 passed

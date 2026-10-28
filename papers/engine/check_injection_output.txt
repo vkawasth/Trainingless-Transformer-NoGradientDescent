@@ -9,4 +9,7 @@ PASS IN8 tetrad Jacobian rank 2 (generic), 2 (every single coincidence), 1 (ever
 PASS IN9 one line: pair fibre = P + s chi; the hiding segment lies on it, strictly inside the positivity segment
 PASS IN10 one geometry (m = 4): pair fibre dim 5; model-invisible directions = the hiding segment's tangent; a single channel is seen by a second triple   [dims [5, 5, 5, 5]; single-channel slopes [1. 1. 1. 1.]; tangent slopes [2. 2. 2. 2.]]
 PASS IN11 obstruction: zero (bent stealth to third order) at generic and single-coincidence truths; non-zero on the two-coincidence stratum   [generic: max obstruction 0.0e+00, bent slopes 2.97-3.01; one: max obstruction 0.0e+00, bent slopes 2.98-3.00; two: max obstruction 2.1e-01, bent slopes 1.99-2.02]
-11/11 passed
+PASS IN12 second-triple defence: chi_S moves r_S alone, by 2 eps s / v_S   [r_012 0.6290 -> 0.5333; others [np.float64(0.629), np.float64(0.629), np.float64(0.629)]]
+PASS IN13 frontier closed form: dual = LP at every delta; at most three records; two breakpoints   [max |primal - dual| 1.2e-14; largest support 3; breakpoints 2 near [0.2, 0.22, 2.74, 2.76]]
+PASS IN14 capacity = rarest cell of each sign; best probe = hardest to poison (same order of triples) on truth G   [012: |v|/sigma 0.097, shift 4.6; 013: |v|/sigma 0.043, shift 10.8; 023: |v|/sigma 0.083, shift 5.9; 123: |v|/sigma 0.060, shift 7.7]
+14/14 passed
