@@ -1,0 +1,266 @@
+"""Study 11 (frozen with PREREG_study11.md): the latent-actor lab. Writes results_study11.json (and arrays for the figures)."""
+import itertools, json, os, sys, warnings
+import numpy as np
+from scipy.stats import spearmanr
+warnings.filterwarnings("ignore")
+HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.join(HERE, ".."))
+from pce.lab import law, moments, sample_moments, fit_v, segment, explanation, r_of_t, t_of_r, event_prob, interval, pin_r
+
+OUT = {}
+COND = {"G": (0.30, (.70, .30, .80, .55), (.20, .65, .10, .25)), "A": (0.30, (.70, .30, .80, .55), (.20, .65, .10, .55)),
+        "D": (0.30, (.70, .60, .80, .55), (.20, .30, .10, .25)), "M": (0.30, (.45, .40, .50, .35), (.45, .40, .50, .35)),
+        "X": (0.0, (.90, .90, .90, .90), (.45, .40, .50, .35))}
+TRIPLES = list(itertools.combinations(range(4), 3))
+E3 = lambda x: float(x[0] or x[1] or x[2])                 # any harm among variables 0, 1, 2
+ALL4 = lambda x: float(all(x))
+U0 = 0.05
+def u_treat(pE): return 1 - 1.2 * pE                       # E[u] of "treat"; "nothing" has 0
+
+
+def exact(cond):
+    w, a1, a2 = COND[cond]; P = law(w, a1, a2); mu, M, mS = moments(P); v = fit_v(mu, M)
+    vt = np.sqrt(w * (1 - w)) * (np.array(a1) - np.array(a2))
+    if np.dot(v, vt) < 0: v = -v
+    return P, mu, M, mS, v, vt
+
+
+def seg_curve(mu, v, event, k=81):
+    lo, hi = segment(mu, v); ts = np.exp(np.linspace(np.log(lo), np.log(hi), k))
+    return ts, np.array([event_prob(law(*explanation(mu, v, t)), event) for t in ts])
+
+
+def voi_exact(mu, v, S, event=E3):
+    if abs(np.prod([v[i] for i in S])) < 1e-12: return 0.0
+    ts, ps = seg_curve(mu, v, event)
+    before = max(0.0, u_treat(ps.max()))                    # best act's worst case over the segment
+    after_worst = min(max(0.0, u_treat(p)) for p in ps)     # adversary picks the truth, the probe reveals it
+    return float(after_worst - before)
+
+
+def random_truth(rng, m=4):
+    while True:
+        w = rng.uniform(.15, .45); a1 = rng.uniform(.1, .9, m); a2 = rng.uniform(.1, .9, m)
+        if np.all(np.abs(a1 - a2) > 0.1): return w, a1, a2
+
+
+if __name__ == "__main__":
+    # ---------------- 11a design check
+    rng = np.random.default_rng(7); ranks = []
+    for m in (3, 4, 5):
+        def Fm(th, wins):
+            w = th[0]; a1 = th[1:1 + m]; a2 = th[1 + m:]
+            return np.array([w * np.prod(a1[list(S)]) + (1 - w) * np.prod(a2[list(S)]) for S in wins])
+        sing = [(i,) for i in range(m)]; pairs = list(itertools.combinations(range(m), 2)); th = np.r_[0.35, rng.uniform(.1, .9, 2 * m)]; h = 1e-6
+        def rk(wins):
+            J = np.array([(Fm(th + h * e, wins) - Fm(th - h * e, wins)) / (2 * h) for e in np.eye(2 * m + 1)]).T
+            sv = np.linalg.svd(J, compute_uv=False); return int((sv > 1e-7 * sv[0]).sum())
+        ranks.append([m, rk(sing + pairs), rk(sing + pairs + [(0, 1, 2)])])
+    Q1 = all(a == 2 * m and b == 2 * m + 1 for m, a, b in ranks)
+    Q2 = True; Q3 = True; curves = {}
+    for c in ("G", "A", "D"):
+        P, mu, M, mS, v, vt = exact(c); ts, pE = seg_curve(mu, v, E3); _, p4 = seg_curve(mu, v, ALL4); rs = r_of_t(ts)
+        lin = np.max(np.abs(np.polyval(np.polyfit(rs, pE, 1), rs) - pE)); q4 = np.max(np.abs(np.polyval(np.polyfit(rs, p4, 2), rs) - p4))
+        l4 = np.max(np.abs(np.polyval(np.polyfit(rs, p4, 1), rs) - p4))
+        Q2 &= lin < 1e-10 and q4 < 1e-10 and l4 > 1e-6
+        Q3 &= abs(pE.min() - min(pE[0], pE[-1])) < 1e-12 and abs(pE.max() - max(pE[0], pE[-1])) < 1e-12
+        curves[c] = {"r": rs.tolist(), "pE": pE.tolist(), "p4": p4.tolist(), "r_true": float(r_of_t(np.sqrt((1 - COND[c][0]) / COND[c][0]))),
+                     "pE_true": event_prob(P, E3), "residual_linear_pE": float(lin), "residual_quadratic_p4": float(q4), "residual_linear_p4": float(l4)}
+    OUT["11a"] = {"Q1_ranks": ranks, "Q1": bool(Q1), "Q2": bool(Q2), "Q3": bool(Q3), "curves": curves}
+    print("11a", {k: OUT["11a"][k] for k in ("Q1_ranks", "Q1", "Q2", "Q3")}, flush=True)
+
+    # ---------------- 11b relations
+    rng = np.random.default_rng(11); g = np.sign(rng.normal(size=(4, 4))); g = np.triu(g, 1); g = g + g.T
+    svals = np.logspace(-6, -3, 7)
+    def refit(M, s, G=g):
+        Mp = M + s * G; return fit_v(np.zeros(4), Mp)
+    def exponent(resp): return float(np.polyfit(np.log(svals), np.log(np.maximum(resp, 1e-300)), 1)[0])
+    rel = {}
+    for c in ("G", "D", "A", "M"):
+        P, mu, M, mS, v, vt = exact(c); resp = []
+        for s in svals:
+            vh = refit(M, s)
+            if np.dot(vh, v) < 0: vh = -vh
+            resp.append(np.linalg.norm(vh - v) if c in ("G", "D") else (abs(vh[3]) if c == "A" else np.linalg.norm(vh)))
+        rel[c] = {"exponent": exponent(np.array(resp)), "responses": [float(x) for x in resp]}
+    PX = law(*COND["X"]); PM = law(*COND["M"]); xm_diff = float(np.max(np.abs(PX - PM)))
+    R1 = all(0.9 <= rel[c]["exponent"] <= 1.1 for c in ("G", "D")); R2 = 0.9 <= rel["A"]["exponent"] <= 1.1
+    R3 = 0.4 <= rel["M"]["exponent"] <= 0.6; R4 = xm_diff < 1e-12
+    nullexp = []
+    for _ in range(200):
+        w, a1, a2 = random_truth(rng); P = law(w, a1, a2); mu, M, _ = moments(P); v0 = fit_v(mu, M); resp = []
+        for s in svals:
+            vh = refit(M, s)
+            if np.dot(vh, v0) < 0: vh = -vh
+            resp.append(np.linalg.norm(vh - v0))
+        nullexp.append(exponent(np.array(resp)))
+    nullexp = np.array(nullexp); R5 = (np.mean((nullexp >= .85) & (nullexp <= 1.15)) >= .99 and rel["M"]["exponent"] < .75
+                                        and all(rel[c]["exponent"] >= .75 for c in ("G", "A", "D")))
+    P, mu, M, mS, v, vt = exact("A"); sens = {}
+    for (j, k) in itertools.combinations(range(4), 2):
+        G1 = np.zeros((4, 4)); G1[j, k] = G1[k, j] = 1.0; vh = refit(M, 1e-6, G1)
+        if np.dot(vh, v) < 0: vh = -vh
+        sens[f"{j}{k}"] = float(abs(vh[3] - v[3]) / 1e-6)
+    R6 = all((sens[key] < 1e-6) if "3" not in key else (sens[key] > 1e-2) for key in sens)
+    OUT["11b"] = {"relations": rel, "X_minus_M": xm_diff, "null_exponents": nullexp.tolist(), "null_share_in_band": float(np.mean((nullexp >= .85) & (nullexp <= 1.15))),
+                  "support_A": sens, "R1": bool(R1), "R2": bool(R2), "R3": bool(R3), "R4": bool(R4), "R5": bool(R5), "R6": bool(R6)}
+    print("11b", {k: v_ for k, v_ in OUT["11b"].items() if k in ("R1", "R2", "R3", "R4", "R5", "R6")}, {c: round(rel[c]["exponent"], 3) for c in rel}, flush=True)
+
+    # ---------------- 11c probe loop
+    rng = np.random.default_rng(13); ns = [300, 1000, 3000, 10000, 30000, 100000]; reps = 300
+    PG, muG, MG, mSG, vG, vtG = exact("G"); rG = r_of_t(np.sqrt((1 - COND["G"][0]) / COND["G"][0]))
+    loG, hiG = segment(muG, vG); width_true = r_of_t(hiG) - r_of_t(loG)
+    PA = law(*COND["A"]); PMm = law(*COND["M"])
+    oracle = int(np.argmax([abs(np.prod(vtG[list(S)])) for S in TRIPLES]))
+    lc = {"n": ns, "rmse_r_G": [], "width_G": [], "rmse_v3_A": [], "norm_v_M": [], "agree_G": [], "pick3_A": []}
+    for n in ns:
+        er = []; wd = []; e3 = []; nm = []; ag = []; p3 = []
+        for _ in range(reps):
+            mu, M, tr = sample_moments(PG, n, rng, [(0, 1, 2)]); vh = fit_v(mu, M)
+            if np.dot(vh, vtG) < 0: vh = -vh
+            rh = pin_r(vh, tr[(0, 1, 2)], (0, 1, 2)); er.append((rh - rG) ** 2 if rh is not None else np.nan)
+            lo, hi = segment(mu, vh); wd.append(r_of_t(hi) - r_of_t(lo) if np.isfinite(hi) and hi > lo else np.nan)
+            ag.append(int(np.argmax([abs(np.prod(vh[list(S)])) for S in TRIPLES]) == oracle))
+            mu, M, _ = sample_moments(PA, n, rng); vh = fit_v(mu, M); e3.append(vh[3] ** 2)
+            p3.append(int(3 in TRIPLES[int(np.argmax([abs(np.prod(vh[list(S)])) for S in TRIPLES]))]))
+            mu, M, _ = sample_moments(PMm, n, rng); nm.append(np.linalg.norm(fit_v(mu, M)))
+        lc["rmse_r_G"].append(float(np.sqrt(np.nanmean(er)))); lc["width_G"].append(float(np.nanmean(wd))); lc["rmse_v3_A"].append(float(np.sqrt(np.mean(e3))))
+        lc["norm_v_M"].append(float(np.mean(nm))); lc["agree_G"].append(float(np.mean(ag))); lc["pick3_A"].append(float(np.mean(p3)))
+        print("  n", n, {k: round(lc[k][-1], 4) for k in lc if k != "n"}, flush=True)
+    sl = lambda y: float(np.polyfit(np.log(ns), np.log(y), 1)[0])
+    L1 = -0.6 <= sl(lc["rmse_r_G"]) <= -0.4; L2 = abs(lc["width_G"][-1] - width_true) <= 0.1 * width_true and width_true > 0.5
+    L3 = -0.6 <= sl(lc["rmse_v3_A"]) <= -0.4; L4 = -0.32 <= sl(lc["norm_v_M"]) <= -0.18
+    L5 = all(a >= 0.9 for n, a in zip(ns, lc["agree_G"]) if n >= 10000) and all(1 - p >= 0.95 for n, p in zip(ns, lc["pick3_A"]) if n >= 3000)
+    voi = {}
+    for c in ("G", "A", "M"):
+        P, mu, M, mS, v, vt = exact(c)
+        if c == "M": voi[c] = [0.0 for S in TRIPLES]       # v = 0: no probe pins anything; the law is a product
+        else: voi[c] = [voi_exact(mu, v, S) for S in TRIPLES]
+    L6 = (all(abs(voi["A"][i]) < 1e-9 for i, S in enumerate(TRIPLES) if 3 in S) and len({round(voi["A"][i], 9) for i, S in enumerate(TRIPLES) if 3 not in S}) == 1
+          and len({round(x, 9) for x in voi["G"]}) == 1 and all(x == 0 for x in voi["M"])
+          and all(x >= -1e-12 for c in voi for x in voi[c]))
+    # L7 graded VOI
+    rho = []; pooled = []
+    for _ in range(300):
+        w, a1, a2 = random_truth(rng); P = law(w, a1, a2); mu, M, mSf = moments(P); v = fit_v(mu, M)
+        vt = np.sqrt(w * (1 - w)) * (a1 - a2); v = v if np.dot(v, vt) >= 0 else -v
+        ts, ps = seg_curve(mu, v, E3); rs = r_of_t(ts); before = max(0.0, u_treat(ps.max())); rtrue = r_of_t(np.sqrt((1 - w) / w)); row = []
+        for S in TRIPLES:
+            vS = abs(np.prod(v[list(S)]))
+            ex2 = sum(P[x] * np.prod([(x[i] - mu[i]) for i in S]) ** 2 for x in itertools.product((0, 1), repeat=4))
+            se = np.sqrt(ex2 / 1000) / vS; inside = (rs >= rtrue - 2 * se) & (rs <= rtrue + 2 * se)
+            after = max(0.0, u_treat(ps[inside].max())) if inside.any() else max(0.0, u_treat(np.interp(rtrue, rs, ps)))
+            row.append((vS, after - before))
+        vs_, vo_ = zip(*row); pooled += row
+        if max(vo_) > 1e-12 and len(set(np.round(vo_, 12))) > 1:
+            rr = spearmanr(vs_, vo_).correlation
+            if np.isfinite(rr): rho.append(rr)
+    L7 = len(rho) > 0 and float(np.mean(rho)) >= 0.8
+    # L8 negative VOI at level one
+    from timesheaf_example import POP1, A_TYPES, ACTS, U0 as U0s
+    from pce.level2 import lcm_law
+    from pce import Window
+    from pce.timesheaf import System, robustness
+    D2 = {"A": 2, "B": 2, "C": 2}; AB1 = POP1.sum(axis=2); AC1 = POP1.sum(axis=1)
+    S0 = System(D2, [Window(("A", "B"), AB1), Window(("A", "C"), AC1)]); h0 = max(robustness(S0, u, U0s) for u in ACTS.values())
+    grid = np.linspace(0, 1, 21); h1s = []
+    for pi in grid:
+        P2 = lcm_law(np.array([pi, 1 - pi]), A_TYPES); S1 = System(D2, [Window(("A", "B"), AB1), Window(("A", "C"), AC1), Window(("B", "C"), P2.sum(axis=0))])
+        h1s.append(max(robustness(S1, u, U0s) for u in ACTS.values()))
+    L8 = any(h < h0 - 1e-9 for h in h1s)
+    OUT["11c"] = {"curves": lc, "slopes": {k: sl(lc[k]) for k in ("rmse_r_G", "rmse_v3_A", "norm_v_M")}, "width_true_G": float(width_true), "voi_exact": voi,
+                  "L7_mean_within_truth_spearman": float(np.mean(rho)) if rho else None, "L7_truths": len(rho),
+                  "L7_pooled_spearman": float(spearmanr([a for a, b in pooled], [b for a, b in pooled]).correlation),
+                  "L8_h0": float(h0), "L8_h1": [float(h) for h in h1s], "L8_pi": grid.tolist(),
+                  "L1": bool(L1), "L2": bool(L2), "L3": bool(L3), "L4": bool(L4), "L5": bool(L5), "L6": bool(L6), "L7": bool(L7), "L8": bool(L8)}
+    print("11c", {k: OUT["11c"][k] for k in ("slopes", "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L7_mean_within_truth_spearman", "L7_pooled_spearman")}, flush=True)
+
+    # ---------------- 11d disclosure game
+    rng = np.random.default_rng(12); truths = []
+    for _ in range(2000):
+        w = rng.uniform(.03, .5); a1 = rng.uniform(.2, .9, 3); a2 = rng.uniform(.02, .35, 3); truths.append((w, a1, a2))
+    E = lambda x: float(x[0] or x[1] or x[2]); Pben = law(0.5, [.05] * 3, [.05] * 3)
+    rows = []
+    for w, a1, a2 in truths:
+        P = law(w, a1, a2); mu, M, _ = moments(P); v = fit_v(mu, M); iv = interval(mu, v, E, n=81)
+        Pq = 0.5 * P + 0.5 * Pben; muq, Mq, _ = moments(Pq); vq = fit_v(muq, Mq); ivq = interval(muq, vq, E, n=81)
+        rows.append({"p": event_prob(P, E), "lo": iv[0], "hi": iv[1], "mid": 0.5 * (iv[0] + iv[1]), "q_hi": ivq[1], "q_mid": 0.5 * (ivq[0] + ivq[1])})
+    tau = float(np.median([r["p"] for r in rows])); harmful = np.array([r["p"] > tau for r in rows])
+    def decide(strategy, policy, r):
+        exact_p = r["p"]
+        if policy == "M": return exact_p <= tau, True
+        if policy == "R":
+            if strategy in ("F", "S"): return exact_p <= tau, True
+            return r["hi"] <= tau, False
+        if strategy == "F": return exact_p <= tau, True
+        if strategy == "P": return (r["mid"] if policy == "N" else r["hi"]) <= tau, False
+        if strategy == "Q": return (r["q_mid"] if policy == "N" else r["q_hi"]) <= tau, False
+        if strategy == "S":
+            without = (r["mid"] if policy == "N" else r["hi"]) <= tau; withd = exact_p <= tau
+            return (withd, True) if withd >= without else (without, False)
+    game = {}; disclosed_safe = {}
+    for st in "FPQS":
+        for po in "NKMR":
+            res = [decide(st, po, r) for r in rows]; appr = np.array([a for a, d in res]); disc = np.array([d for a, d in res])
+            game[f"{st}{po}"] = {"false_approval": float(np.mean(appr[harmful])), "false_rejection": float(np.mean(~appr[~harmful])),
+                                 "disclosure_rate_safe": float(np.mean(disc[~harmful])), "disclosure_rate_harmful": float(np.mean(disc[harmful]))}
+    D1 = game["PN"]["false_approval"] > 0; D2 = game["PK"]["false_approval"] == 0 and game["PK"]["false_rejection"] > 0
+    D3 = all(game[f"{s}M"]["false_approval"] == 0 and game[f"{s}M"]["false_rejection"] == 0 for s in "FPQS") and all(game[f"F{p}"]["false_approval"] == 0 and game[f"F{p}"]["false_rejection"] == 0 for p in "NKMR")
+    D4 = game["QK"]["false_approval"] > 0
+    D5 = game["QR"]["false_approval"] == game["PK"]["false_approval"] and game["QR"]["false_rejection"] == game["PK"]["false_rejection"]
+    D6 = game["SK"]["disclosure_rate_safe"] == 1.0 and game["SK"]["false_approval"] == 0 and game["SK"]["false_rejection"] == 0
+    D7 = game["SN"]["false_approval"] > 0
+    widths = {"P": float(np.mean([r["hi"] - r["lo"] for r in rows]))}
+    OUT["11d"] = {"tau": tau, "game": game, "hiding_width_mean": widths, "rows": rows,
+                  "D1": bool(D1), "D2": bool(D2), "D3": bool(D3), "D4": bool(D4), "D5": bool(D5), "D6": bool(D6), "D7": bool(D7)}
+    print("11d", {k: OUT["11d"][k] for k in ("tau", "D1", "D2", "D3", "D4", "D5", "D6", "D7")}, flush=True)
+    for k, v_ in game.items(): print("   ", k, {a: round(b, 3) for a, b in v_.items()})
+
+    # ---------------- illustrations
+    # I1 contextual bandit
+    rng = np.random.default_rng(21); theta = np.zeros(2); A_ = np.eye(2) * 1.0; b_ = np.zeros(2); rew_bandit = []; rew_rule = []; rew_rand = []
+    for ep in range(3000):
+        w, a1, a2 = random_truth(rng)
+        if ep % 2 == 1:
+            a2 = a2.copy(); k_ = int(rng.integers(4)); a2[k_] = a1[k_]      # half the episodes: one coincident variable
+        P = law(w, a1, a2); mu, M, _ = moments(P); v = fit_v(mu, M); vt = np.sqrt(w * (1 - w)) * (a1 - a2); v = v if np.dot(v, vt) >= 0 else -v
+        mus, Ms, _ = sample_moments(P, 3000, rng); vh = fit_v(mus, Ms)
+        feats = [np.array([1.0, abs(np.prod(vh[list(S)])) * 100]) for S in TRIPLES]
+        ts, ps = seg_curve(mu, v, E3, k=41); rs = r_of_t(ts); before = max(0.0, u_treat(ps.max())); rtrue = r_of_t(np.sqrt((1 - w) / w))
+        def reward(S):
+            vS = abs(np.prod(v[list(S)]))
+            if vS < 1e-12: return 0.0
+            ex2 = sum(P[x] * np.prod([(x[i] - mu[i]) for i in S]) ** 2 for x in itertools.product((0, 1), repeat=4))
+            se = np.sqrt(ex2 / 1000) / vS; inside = (rs >= rtrue - 2 * se) & (rs <= rtrue + 2 * se)
+            after = max(0.0, u_treat(ps[inside].max())) if inside.any() else max(0.0, u_treat(np.interp(rtrue, rs, ps)))
+            return after - before
+        eps = max(0.02, 0.1 * (1 - ep / 3000)); th = np.linalg.solve(A_, b_)
+        k = int(rng.integers(4)) if rng.uniform() < eps else int(np.argmax([th @ f for f in feats]))
+        rk_ = reward(TRIPLES[k]); A_ += np.outer(feats[k], feats[k]); b_ += rk_ * feats[k]
+        rew_bandit.append(rk_); rew_rule.append(reward(TRIPLES[int(np.argmax([f[1] for f in feats]))])); rew_rand.append(reward(TRIPLES[int(rng.integers(4))]))
+    I1 = np.mean(rew_bandit[-500:]) >= 0.95 * np.mean(rew_rule[-500:]) and np.mean(rew_bandit[-500:]) > np.mean(rew_rand[-500:])
+    # I2 inspection game
+    k = 0.3; Rg = np.array([[-1.0, -k], [0.0, -k]]); Sp = np.array([[1.0, -0.5], [0.0, 0.0]])   # rows: sponsor hide/honest; cols: regulator trust/skeptic
+    # mixed equilibrium: sponsor hides w.p. x*, regulator skeptic w.p. y*
+    ystar = 1 / 1.5; xstar = k / 1.0
+    x, y = 0.9, 0.1; traj = [(x, y)]; lr = 0.05
+    for _ in range(2000):
+        gx = (1 - y) * (Sp[0, 0] - Sp[1, 0]) + y * (Sp[0, 1] - Sp[1, 1]); gy = x * (Rg[0, 1] - Rg[0, 0]) + (1 - x) * (Rg[1, 1] - Rg[1, 0])
+        x = float(np.clip(x + lr * gx, 0, 1)); y = float(np.clip(y + lr * gy, 0, 1)); traj.append((x, y))
+    d0 = np.hypot(traj[0][0] - xstar, traj[0][1] - ystar); dT = np.hypot(traj[-1][0] - xstar, traj[-1][1] - ystar)
+    dmin_late = min(np.hypot(a - xstar, b - ystar) for a, b in traj[-500:])
+    # Stackelberg: regulator commits to y slightly above ystar (sponsor then prefers honesty); sponsor best-responds by gradient
+    yc = ystar + 0.05; xs = 0.9; trajS = [(xs, yc)]
+    for _ in range(2000):
+        gx = (1 - yc) * (Sp[0, 0] - Sp[1, 0]) + yc * (Sp[0, 1] - Sp[1, 1]); xs = float(np.clip(xs + lr * gx, 0, 1)); trajS.append((xs, yc))
+    I2 = dT >= d0 - 1e-9 and trajS[-1][0] < 1e-6
+    # I3 catch-up
+    fa = [i for i, r in enumerate(rows) if harmful[i] and r["mid"] <= tau]; rng = np.random.default_rng(31)
+    rounds = [int(rng.geometric(0.2)) for _ in fa]
+    I3 = 4 <= np.mean(rounds) <= 6
+    OUT["illustrations"] = {"I1": bool(I1), "I1_last500": {"bandit": float(np.mean(rew_bandit[-500:])), "rule": float(np.mean(rew_rule[-500:])), "random": float(np.mean(rew_rand[-500:]))},
+                            "I1_curves": {"bandit": rew_bandit, "rule": rew_rule, "random": rew_rand},
+                            "I2": bool(I2), "I2_d0": float(d0), "I2_dT": float(dT), "I2_traj": traj[::5], "I2_trajS": trajS[::5], "I2_eq": [xstar, ystar],
+                            "I3": bool(I3), "I3_mean_rounds": float(np.mean(rounds)), "I3_rounds": rounds}
+    print("illustrations", {k: OUT["illustrations"][k] for k in ("I1", "I1_last500", "I2", "I2_d0", "I2_dT", "I3", "I3_mean_rounds")}, flush=True)
+    json.dump(OUT, open(os.path.join(HERE, "results_study11.json"), "w"), default=float)
+    print("done")

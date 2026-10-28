@@ -1,0 +1,28 @@
+11a {'Q1_ranks': [[3, 6, 7], [4, 8, 9], [5, 10, 11]], 'Q1': True, 'Q2': False, 'Q3': True}
+11b {'R1': True, 'R2': True, 'R3': True, 'R4': True, 'R5': True, 'R6': True} {'G': 1.002, 'D': 0.999, 'A': 1.002, 'M': 0.5}
+  n 300 {'rmse_r_G': 0.6739, 'width_G': 1.5826, 'rmse_v3_A': 0.0337, 'norm_v_M': 0.3517, 'agree_G': 0.63, 'pick3_A': 0.0}
+  n 1000 {'rmse_r_G': 0.3177, 'width_G': 1.6026, 'rmse_v3_A': 0.0167, 'norm_v_M': 0.2594, 'agree_G': 0.8133, 'pick3_A': 0.0}
+  n 3000 {'rmse_r_G': 0.1846, 'width_G': 1.6241, 'rmse_v3_A': 0.01, 'norm_v_M': 0.1967, 'agree_G': 0.9367, 'pick3_A': 0.0}
+  n 10000 {'rmse_r_G': 0.1126, 'width_G': 1.6209, 'rmse_v3_A': 0.0053, 'norm_v_M': 0.1474, 'agree_G': 0.9967, 'pick3_A': 0.0}
+  n 30000 {'rmse_r_G': 0.0575, 'width_G': 1.6153, 'rmse_v3_A': 0.0031, 'norm_v_M': 0.1106, 'agree_G': 1.0, 'pick3_A': 0.0}
+  n 100000 {'rmse_r_G': 0.0327, 'width_G': 1.6183, 'rmse_v3_A': 0.0017, 'norm_v_M': 0.0815, 'agree_G': 1.0, 'pick3_A': 0.0}
+11c {'slopes': {'rmse_r_G': -0.512796922067412, 'rmse_v3_A': -0.5061629958733271, 'norm_v_M': -0.2510962856951603}, 'L1': True, 'L2': True, 'L3': True, 'L4': True, 'L5': True, 'L6': True, 'L7': False, 'L8': False, 'L7_mean_within_truth_spearman': 0.7952803908129323, 'L7_pooled_spearman': 0.23735150324333867}
+11d {'tau': 0.5891231246113202, 'D1': True, 'D2': True, 'D3': True, 'D4': True, 'D5': True, 'D6': True, 'D7': True}
+    FN {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    FK {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    FM {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    FR {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    PN {'false_approval': 0.005, 'false_rejection': 0.004, 'disclosure_rate_safe': 0.0, 'disclosure_rate_harmful': 0.0}
+    PK {'false_approval': 0.0, 'false_rejection': 0.028, 'disclosure_rate_safe': 0.0, 'disclosure_rate_harmful': 0.0}
+    PM {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    PR {'false_approval': 0.0, 'false_rejection': 0.028, 'disclosure_rate_safe': 0.0, 'disclosure_rate_harmful': 0.0}
+    QN {'false_approval': 0.999, 'false_rejection': 0.0, 'disclosure_rate_safe': 0.0, 'disclosure_rate_harmful': 0.0}
+    QK {'false_approval': 0.999, 'false_rejection': 0.0, 'disclosure_rate_safe': 0.0, 'disclosure_rate_harmful': 0.0}
+    QM {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    QR {'false_approval': 0.0, 'false_rejection': 0.028, 'disclosure_rate_safe': 0.0, 'disclosure_rate_harmful': 0.0}
+    SN {'false_approval': 0.005, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 0.995}
+    SK {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    SM {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+    SR {'false_approval': 0.0, 'false_rejection': 0.0, 'disclosure_rate_safe': 1.0, 'disclosure_rate_harmful': 1.0}
+illustrations {'I1': True, 'I1_last500': {'bandit': 0.00015862279498514643, 'rule': 0.00015915721542129614, 'random': 6.873227393144776e-05}, 'I2': False, 'I2_d0': 0.8252945602093299, 'I2_dT': 0.3299450865080126, 'I3': True, 'I3_mean_rounds': 4.8}
+done
