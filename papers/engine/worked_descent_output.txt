@@ -1,0 +1,12 @@
+PASS WD1 the nerve of the pair cover is a hollow triangle (three vertices, three edges, no 2-simplex; b1 = 1)   [[['AB'], ['BC'], ['AC'], ['AB', 'BC'], ['AB', 'AC'], ['BC', 'AC']]]
+PASS WD2 Cech complex: dims 12, 6, 1; ranks of d0, d1 = 5, 1; H^0 = 7, H^1 = H^2 = 0   [dims [12, 6, 1], ranks [5, 1], H [np.int64(7), np.int64(0), np.int64(0)]]
+PASS WD3 marginal map: rank 7 onto ker d0, kernel spanned by chi_ABC
+PASS WD4 D1: the drug example glues (lambda* = 1, inequality value below 2); the liar cycle does not (lambda* = 0, value 3)   [truth's value 1.404]
+PASS WD5 D2: product 4.031e-5 > 0, class 0, sigma (+, -, +); the exactly-one-harm law has M_ij = -1/9 and class 1   [product 4.0311e-05]
+PASS WD6 D3: coker B = 0 at m = 3; |v| = (0.2205, 0.1960, 0.1470) = sqrt(0.24) (0.45, 0.40, 0.30)
+PASS WD7 D4: the segment R = [-0.763, 0.573]; a law with both classes zero whose walls cross (t_lo > t_hi)   [{'mu': [0.382365, 0.459317, 0.462596], 'v': [-0.229387, 0.502817, -0.329824], 't_lo': 1.094706, 't_hi': 1.075308}]
+PASS WD8 D5 (m = 3): r0 = -0.408 in R; at eps = 0.10 > eps_det = 0.0833 rhat leaves R   [rhat at 0.10: -0.8335]
+PASS WD9 four variables, D3: coker B has dimension 2; log tetrads vanish on the truth; a product law injected at 0.1 keeps the signs and breaks them   [injected log tetrads [-1.648273, -0.48662]]
+PASS WD10 four variables, D5: the four r_S agree on the truth; chi_ABC at eps = 0.05 moves r_ABC only   [{'r_truth': {'ABC': 0.408248, 'ABD': 0.408248, 'ACD': 0.408248, 'BCD': 0.408248}, 'r_injected': {'ABC': 0.486212, 'ABD': 0.408248, 'ACD': 0.408248, 'BCD': 0.408248}}]
+PASS WD11 labels: energy of delta^0 m_T = K (between + within) on one A1b replicate; C's statistic stays under c_s   [z = {'C': 1.5257222581621914, 'G1': -0.587842824678924, 'G2': -0.9378794334832677}, dropped None]
+11/11 passed

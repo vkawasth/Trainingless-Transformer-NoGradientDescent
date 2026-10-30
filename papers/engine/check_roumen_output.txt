@@ -1,0 +1,6 @@
+PASS RO1 the cyclic (signed) test passes on every compatible family: false positives on the liar and the noisy liar   [max residual 8.9e-16 over 34 values of q]
+PASS RO2 the order-cohomology test (literal H^1_<= of P(X), restricted along i) fails exactly for q < 2/3 and agrees with lambda* = 1 everywhere   [fails at q = [np.float64(0.0), np.float64(0.033), np.float64(0.067)]...; first pass at q = 0.6667]
+PASS RO3 the literal order-cohomology test equals the marginal-problem LP (Proposition 10.4) on 200 random compatible families   [127 of 200 glue]
+PASS CA1 whole-record injection = a soft intervention on the provenance node of E -> X: the observed law is P_eps on every window
+PASS CA2 per-window injection is not one causal model: injecting into AB alone breaks gluing (lambda* < 1); one intervention keeps lambda* = 1   [per-window lambda* 0.778; single intervention 1.000]
+5/5 passed

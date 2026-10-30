@@ -1,0 +1,5 @@
+PASS QU1 dephasing commutes with partial trace (a retraction of the quantum marginal problem onto the classical one)   [max deviation 0.0e+00]
+PASS QU2 a quantum global state for diagonal marginals dephases to a classical law with the same marginals; so classical and quantum gluing agree on diagonal families, and the liar cycle glues in neither
+PASS QU3 non-uniqueness grows: the classical kernel of K is 1-dimensional (chi_ABC = -Z Z Z on the diagonal); the quantum kernel is spanned by the 27 weight-3 Pauli strings   [classical kernel 1; quantum kernel 27 (of 64)]
+PASS QU4 the classical fibre's characteristic number: lattice length 0.040 (area of the toric CP^1 over 2 pi); the hidden channel moves the point (s shifts by eps s) but not the length   [length 0.040; after injection [-0.01435, 0.02565]]
+4/4 passed

@@ -1,0 +1,7 @@
+PASS MK1 the drug law is the composite of w, copy and three kernels; the two walls are other factorisations with the same pairs and a different triple   [wall triple harms [0.66925, 0.660769]]
+PASS MK2 Fisher information about s: 0 in every pair window, sum 1/P(x) = 177.41 in the triple; efficient sd 0.0751 < sigma_m 0.0797   [triple 177.408]
+PASS MK3 de Finetti: mixing measure (3/4, 1/4), not a Dirac; mu(pi) = P_0.05 exactly (same rhat as whole-pool injection, inside the stealth window); exchangeability fails only across the adversarial batch   [rhat -0.6209; defect 0.0028]
+PASS MK4 the Dirac test: Var_pi(m_T) = (3/16)(0.0054)^2 = 5.47e-6, zero iff pi is a Dirac   [5.4675e-06]
+PASS MK5 Blackwell on the slice: noisy = exact G, none = noisy G0; Bayes 0.334327 <= 0.334327 <= 0.334744 (noisy on a plateau); maxmin all 0.332; fixed rule 0.331875   [Bayes {'none': 0.334326923076923, 'noisy': 0.334326923076923, 'exact': 0.33474358974358964}; maxmin {'none': 0.33199999999999996, 'noisy': 0.33199999999999996, 'exact': 0.33199999999999996}]
+PASS MK6 Blackwell monotonicity for Bayes and for ex-ante maxmin over 300 random problems and garblings   [maxmin strictly better in 176]
+6/6 passed
