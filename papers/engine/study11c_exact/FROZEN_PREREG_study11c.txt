@@ -1,0 +1,7 @@
+Frozen 2026-10-29 (Study 11c registration, before any registered design was simulated)
+ddbe948619545148251217506f755f1dca618bd9cca9d9a8d2fb5ae6d3314f00  PREREG_study11c.md
+b187ae4265088c24fa0f617a1f0cd1cda990a911210191f37758206df77a6056  run_study11c.py
+90f6568ee43d4616e97e6c86675da9dc7f337393deb22dbe253dbf2733f21b43  ../pce/ehrhart.py
+9a0c1852effc136905e246d6f3d10ae766a413149d87738a466994258f0219d1  ../pce/segment_decision.py
+8879fde9a4f5f94de17f12823ff25d88c852ccc411549d3c1730306e7d17157c  ../pce/lab.py
+00590246f7ae87b8a8fcb1d0abb109bf71830cf6857fc484e2389d7870dd99ab  ../study11b_settle/design11b.py
