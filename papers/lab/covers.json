@@ -1,0 +1,141 @@
+{
+ "factor_dims": {
+  "C3": [
+   0,
+   0
+  ],
+  "C4": [
+   1,
+   1
+  ],
+  "C4+diag": [
+   0,
+   0
+  ],
+  "C5": [
+   0,
+   0
+  ],
+  "P4": [
+   1,
+   1
+  ],
+  "star": [
+   1,
+   1
+  ],
+  "two edges": [
+   2,
+   2
+  ],
+  "triangle+edge": [
+   1,
+   1
+  ],
+  "triangle+isolated": [
+   0,
+   0
+  ],
+  "K4": [
+   0,
+   0
+  ],
+  "K5": [
+   0,
+   0
+  ]
+ },
+ "zoo": {
+  "C3": {
+   "b": 0,
+   "dim": 1,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "C4": {
+   "b": 1,
+   "dim": 2,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "C4+diag": {
+   "b": 0,
+   "dim": 1,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "C5": {
+   "b": 0,
+   "dim": 1,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "P4": {
+   "b": 1,
+   "dim": 2,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "star": {
+   "b": 1,
+   "dim": 2,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "two edges": {
+   "b": 2,
+   "dim": 3,
+   "sheets": 2,
+   "feasible": 2,
+   "full": 2
+  },
+  "triangle+edge": {
+   "b": 1,
+   "dim": 2,
+   "sheets": 2,
+   "feasible": 2,
+   "full": 2
+  },
+  "triangle+isolated": {
+   "b": 1,
+   "dim": 2,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "K4": {
+   "b": 0,
+   "dim": 1,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  },
+  "K5": {
+   "b": 0,
+   "dim": 1,
+   "sheets": 1,
+   "feasible": 1,
+   "full": 1
+  }
+ },
+ "K3": {
+  "y": [
+   -0.37263159084948,
+   0.28277526172761824
+  ],
+  "lab_t": [
+   0.6889189901577688,
+   1.3268069440075547
+  ]
+ },
+ "killed_sheet": [
+  3,
+  -1
+ ]
+}

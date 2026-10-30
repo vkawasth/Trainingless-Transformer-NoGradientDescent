@@ -1,0 +1,103 @@
+{
+ "lobes": {
+  "bowtie": {
+   "df": 1,
+   "df_at_centre": 0,
+   "lobes": 2
+  },
+  "windmill": {
+   "df": 2,
+   "df_at_centre": 0,
+   "lobes": 3
+  },
+  "two 4-cycles at 0": {
+   "df": 2,
+   "df_at_centre": 2,
+   "lobes": 0
+  },
+  "triangle + 4-cycle at 0": {
+   "df": 1,
+   "df_at_centre": 1,
+   "lobes": 1
+  }
+ },
+ "r0": {
+  "two triangles + triples": {
+   "generic": 2,
+   "r0": 4,
+   "pred_generic": 2,
+   "pred_r0": 4
+  },
+  "K4 + triples": {
+   "generic": 2,
+   "r0": 2,
+   "pred_generic": 2,
+   "pred_r0": 2
+  }
+ },
+ "bowtie_strata": [
+  {
+   "stratum": "generic",
+   "latent_rank": 6,
+   "hiding_dim": 0,
+   "tests_df": 2,
+   "sheets": 1
+  },
+  {
+   "stratum": "v_0 = 0",
+   "latent_rank": 6,
+   "hiding_dim": 0,
+   "tests_df": 2,
+   "sheets": 1
+  },
+  {
+   "stratum": "v_1 = 0",
+   "latent_rank": 6,
+   "hiding_dim": 0,
+   "tests_df": 2,
+   "sheets": 1
+  },
+  {
+   "stratum": "v_2 = 0",
+   "latent_rank": 3,
+   "hiding_dim": 3,
+   "tests_df": 1,
+   "sheets": 1
+  },
+  {
+   "stratum": "v_3 = 0",
+   "latent_rank": 6,
+   "hiding_dim": 0,
+   "tests_df": 2,
+   "sheets": 1
+  },
+  {
+   "stratum": "v_4 = 0",
+   "latent_rank": 6,
+   "hiding_dim": 0,
+   "tests_df": 2,
+   "sheets": 1
+  },
+  {
+   "stratum": "v_0 = v_2 = 0",
+   "latent_rank": 3,
+   "hiding_dim": 3,
+   "tests_df": 1,
+   "sheets": 1
+  },
+  {
+   "stratum": "r = 0",
+   "latent_rank": 6,
+   "hiding_dim": 0,
+   "tests_df": 2,
+   "sheets": 1
+  },
+  {
+   "stratum": "merge",
+   "latent_rank": 0,
+   "hiding_dim": 6,
+   "tests_df": 0,
+   "sheets": 1
+  }
+ ]
+}

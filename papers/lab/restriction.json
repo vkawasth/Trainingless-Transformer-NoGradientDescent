@@ -1,0 +1,70 @@
+{
+ "sheet_universality": {
+  "vertex": [
+   25,
+   16
+  ],
+  "edge": [
+   45,
+   36
+  ],
+  "interior": [
+   81,
+   81
+  ]
+ },
+ "sheet_min": {
+  "z": [
+   0.040021353836768254,
+   -0.6665841019018333
+  ],
+  "value": 0.05114711538461536,
+  "active": [
+   [
+    3,
+    "+"
+   ],
+   [
+    3,
+    "-"
+   ]
+  ]
+ },
+ "facet_shift": [
+  -1.9642778487205523,
+  -0.3409028065171071,
+  -0.416663194457989,
+  -0.416663194457989,
+  0.41666319443578453,
+  0.416663194457989,
+  -0.41666319451350015,
+  -0.4166631945023979
+ ],
+ "pooling_stats": {
+  "near truth, sd 0.02": {
+   "safe": 150,
+   "flip inside the domain": 0,
+   "leaves the domain": 0
+  },
+  "near truth, sd 0.06": {
+   "safe": 78,
+   "flip inside the domain": 0,
+   "leaves the domain": 72
+  },
+  "anywhere (Dirichlet)": {
+   "safe": 43,
+   "flip inside the domain": 0,
+   "leaves the domain": 107
+  }
+ },
+ "pooling_pairs": 450,
+ "td5_certificate": {
+  "act_P": 1,
+  "act_Q": 1,
+  "roots_q": 0,
+  "roots_h": 2,
+  "deg_q": 6,
+  "deg_h": 6,
+  "safe": false
+ }
+}

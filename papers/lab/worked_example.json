@@ -1,0 +1,281 @@
+{
+ "cells": {
+  "000": 0.333,
+  "001": 0.127,
+  "010": 0.189,
+  "011": 0.031,
+  "100": 0.171,
+  "101": 0.109,
+  "110": 0.027,
+  "111": 0.013
+ },
+ "level1": {
+  "triple_harm": 0.667,
+  "s_lo": -0.013,
+  "s_hi": 0.027,
+  "interval": [
+   0.654,
+   0.694
+  ],
+  "chi_minus_cells": [
+   "000",
+   "011",
+   "101",
+   "110"
+  ],
+  "chi_plus_cells": [
+   "001",
+   "010",
+   "100",
+   "111"
+  ]
+ },
+ "level2": {
+  "mu": [
+   0.32,
+   0.26,
+   0.28
+  ],
+  "m01": -0.0432,
+  "m02": 0.0324,
+  "m12": -0.0288,
+  "m012": 0.002592,
+  "v": [
+   0.220454,
+   -0.195959,
+   0.146969
+  ],
+  "vT": -0.006349,
+  "r0": -0.408248,
+  "t0": 0.816497,
+  "R": [
+   -0.76263,
+   0.573118
+  ],
+  "walls": [
+   {
+    "t": 0.688919,
+    "r": -0.76263,
+    "w1": 0.678146,
+    "a1": [
+     0.471875,
+     0.125,
+     0.38125
+    ],
+    "a2": [
+     0.0,
+     0.544444,
+     0.066667
+    ],
+    "triple_harm": 0.66925
+   },
+   {
+    "t": 1.326807,
+    "r": 0.573118,
+    "w1": 0.362264,
+    "a1": [
+     0.6125,
+     0.0,
+     0.475
+    ],
+    "a2": [
+     0.153846,
+     0.407692,
+     0.169231
+    ],
+    "triple_harm": 0.660769
+   }
+  ],
+  "harm_line": [
+   0.664408,
+   -0.006349
+  ],
+  "interval": [
+   0.660769,
+   0.66925
+  ],
+  "grid_interval_main_note": [
+   0.6613,
+   0.6687
+  ]
+ },
+ "ladder": {
+  "Delta_m": 4.0310783999999997e-05,
+  "Det": 0.0001679616,
+  "w1w2": 0.24,
+  "rung": "R>=0 (genuine mixture)"
+ },
+ "gluing": {
+  "lam_genuine": 1.0,
+  "lam_conflict": 0.86,
+  "P_B_pop1": 0.26,
+  "P_B_pop2": 0.4,
+  "linear_gap": 0.28
+ },
+ "stanley_reisner": {
+  "groebner": [
+   "d1*d2*w1**2 - d1*d2*w1",
+   "d1*d3*w1**2 - d1*d3*w1",
+   "d2*d3*w1**2 - d2*d3*w1"
+  ],
+  "facets": [
+   "{w1,d1,d2,d3}",
+   "{w2,d1,d2,d3}",
+   "{w1,w2,d1}",
+   "{w1,w2,d2}",
+   "{w1,w2,d3}"
+  ],
+  "minimal_nonfaces": [
+   "{w1,w2,di,dj}"
+  ],
+  "d_truth": [
+   0.45,
+   -0.4,
+   0.3
+  ],
+  "w1w2_truth": 0.24
+ },
+ "decision": {
+  "b": 0.872,
+  "u0": 0.3,
+  "P_A_or_B": 0.54,
+  "U_T_line": [
+   0.335592,
+   0.006349
+  ],
+  "U_P": 0.332,
+  "U_T_truth": 0.333,
+  "worst_T": 0.33075,
+  "worst_P": 0.332,
+  "pre_probe_act": "P",
+  "oracle_act": "T",
+  "r_c": -0.565751,
+  "harm_at_switch": 0.668,
+  "wald_gap": 0.0,
+  "max_regret_T": 0.00125,
+  "max_regret_P": 0.007231,
+  "regret_voi": 0.00125,
+  "savage_act": "T",
+  "horizons": [
+   "inf",
+   "inf"
+  ],
+  "settling_radius": 0.157503
+ },
+ "probe": {
+  "tau": 12.712862,
+  "n_star": 25028.0,
+  "halfwidth_1e4": 0.249172,
+  "halfwidth_1e5": 0.078795
+ },
+ "vertex_attack": {
+  "record": "111",
+  "first_order_budget": 0.001864,
+  "exact_budget": 0.001873,
+  "margin": 0.00125
+ },
+ "hidden_channel": {
+  "s": 0.027,
+  "Q_cells": {
+   "000": 0.306,
+   "001": 0.154,
+   "010": 0.216,
+   "011": 0.004,
+   "100": 0.198,
+   "101": 0.082,
+   "110": 0.0,
+   "111": 0.04
+  },
+  "shift_r_per_eps": -4.252586,
+  "eps_star": 0.037037,
+  "eps_det": 0.083333,
+  "eps_half_n1e5": 0.018508,
+  "eps_star_bisection": 0.037037,
+  "eps_det_bisection": 0.083333
+ },
+ "one_line": {
+  "model_part_mT": [
+   -0.003639,
+   0.004842
+  ],
+  "positivity_part_mT": [
+   -0.010408,
+   0.029592
+  ],
+  "m0": 0.002592,
+  "model_part_harm": [
+   0.660769,
+   0.66925
+  ],
+  "positivity_part_harm": [
+   0.654,
+   0.694
+  ],
+  "rung_kept_by_hidden_channel": true,
+  "rung_change_budget": 0.054054,
+  "rung_change_record": "011"
+ },
+ "breaks": {
+  "post_beyond_det": "empty",
+  "Delta_m_unchanged": true
+ },
+ "toric": {
+  "fibre": "boundary fibre of shape 2x2x2 (all three 2-margins fixed): a Delzant segment, toric manifold CP^1",
+  "lattice_direction": "chi (entries +-1, primitive)",
+  "s_range": [
+   "-13/1000",
+   "27/1000"
+  ],
+  "lattice_length": "1/25",
+  "facet_values_at_truth": [
+   "27/1000",
+   "13/1000"
+  ],
+  "vertex_zero_cells": {
+   "s_plus": "110",
+   "s_minus": "111"
+  },
+  "near_wall_cell_011_at_s_plus": "1/250",
+  "birch_cubic": [
+   "-1",
+   "-27/1250",
+   "-37971/5000000",
+   "-143613/6250000000"
+  ],
+  "birch_roots": [
+   [
+    -0.0030484421824511325,
+    0.0
+   ],
+   [
+    -0.009275778908774434,
+    -0.086322688641135
+   ],
+   [
+    -0.009275778908774434,
+    0.086322688641135
+   ]
+  ],
+  "birch_s": -0.0030484421824511325,
+  "birch_harm": 0.6639515578175489,
+  "odds_ratio_truth": 0.569365570194414,
+  "hyperdet_quadratic": [
+   "1",
+   "81/15625",
+   "6561/39062500"
+  ],
+  "hyperdet_roots": [
+   [
+    -0.002592,
+    -0.012698154826587996
+   ],
+   [
+    -0.002592,
+    0.012698154826587996
+   ]
+  ],
+  "monotone_midpoint_s": "7/1000",
+  "monotone_harm": 0.674,
+  "moment_coordinate": "s = m_ABC - 0.002592 (the third cumulant, shifted)"
+ }
+}

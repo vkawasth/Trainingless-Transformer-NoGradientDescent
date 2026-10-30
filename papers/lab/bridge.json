@@ -1,0 +1,31 @@
+{
+ "real": {
+  "bowtie_solutions": 2,
+  "G2": 2,
+  "liar_best_residual": 0.030000028875645582
+ },
+ "nesting": {
+  "algebraic but not real": "triangle with c01 c12 c02 < 0 (invisible class)",
+  "real but not positive": "two edges, w = 0.9, relative sheet",
+  "algebraic and real but no explanation in the simplex": "triangle with c01 scaled below lambda* = 0.3115"
+ },
+ "walls": {
+  "vertex": [
+   [
+    2,
+    "-"
+   ],
+   [
+    3,
+    "-"
+   ]
+  ],
+  "edge": [
+   [
+    3,
+    "-"
+   ]
+  ],
+  "interior": []
+ }
+}

@@ -1,0 +1,215 @@
+{
+ "sheets": {
+  "K3+012": {
+   "dim": 1,
+   "sheets": 1,
+   "finite": true,
+   "solutions": 2
+  },
+  "two triangles + both triples": {
+   "dim": 1,
+   "sheets": 1,
+   "finite": true,
+   "solutions": 2
+  },
+  "two triangles + one triple": {
+   "dim": 2,
+   "sheets": 2,
+   "finite": true,
+   "solutions": 4
+  },
+  "bowtie": {
+   "dim": 1,
+   "sheets": 1,
+   "finite": true,
+   "solutions": 2
+  },
+  "K4 + triples": {
+   "dim": 1,
+   "sheets": 1,
+   "finite": true,
+   "solutions": 2
+  },
+  "C4 + 012 + 123": {
+   "dim": 1,
+   "sheets": 1,
+   "finite": true,
+   "solutions": 2
+  }
+ },
+ "parity_rule": {
+  "window_012": false,
+  "window_02": true,
+  "window_0123": false,
+  "through_r": true
+ },
+ "pair_split": {
+  "C3": {
+   "b1": 1,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 0,
+   "codim": 0
+  },
+  "C4": {
+   "b1": 1,
+   "invisible": 0,
+   "nonbipartite": 0,
+   "visible": 1,
+   "codim": 1
+  },
+  "C4+diag": {
+   "b1": 2,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 1,
+   "codim": 1
+  },
+  "C5": {
+   "b1": 1,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 0,
+   "codim": 0
+  },
+  "P4": {
+   "b1": 0,
+   "invisible": 0,
+   "nonbipartite": 0,
+   "visible": 0,
+   "codim": 0
+  },
+  "two edges": {
+   "b1": 0,
+   "invisible": 0,
+   "nonbipartite": 0,
+   "visible": 0,
+   "codim": 0
+  },
+  "triangle+edge": {
+   "b1": 1,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 0,
+   "codim": 0
+  },
+  "bowtie": {
+   "b1": 2,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 1,
+   "codim": 1
+  },
+  "K4": {
+   "b1": 3,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 2,
+   "codim": 2
+  },
+  "K5": {
+   "b1": 6,
+   "invisible": 1,
+   "nonbipartite": 1,
+   "visible": 5,
+   "codim": 5
+  },
+  "two triangles": {
+   "b1": 2,
+   "invisible": 2,
+   "nonbipartite": 2,
+   "visible": 0,
+   "codim": 0
+  }
+ },
+ "sign_patterns": {
+  "C4+012": {
+   "n": 5,
+   "codim": 1,
+   "passing": 16,
+   "model": 16,
+   "invisible": 0
+  },
+  "K4 pairs": {
+   "n": 6,
+   "codim": 2,
+   "passing": 16,
+   "model": 8,
+   "invisible": 1
+  },
+  "bowtie": {
+   "n": 8,
+   "codim": 2,
+   "passing": 64,
+   "model": 32,
+   "invisible": 1
+  },
+  "fan": {
+   "n": 10,
+   "codim": 4,
+   "passing": 64,
+   "model": 32,
+   "invisible": 1
+  },
+  "K4 triples": {
+   "n": 10,
+   "codim": 5,
+   "passing": 32,
+   "model": 16,
+   "invisible": 1
+  },
+  "strip3": {
+   "n": 12,
+   "codim": 4,
+   "passing": 256,
+   "model": 128,
+   "invisible": 1
+  },
+  "K3 pairs": {
+   "n": 3,
+   "codim": 0,
+   "passing": 8,
+   "model": 4,
+   "invisible": 1
+  }
+ },
+ "syzygy_signs": {
+  "bowtie": {
+   "gens": 3,
+   "codim": 2,
+   "rank_Q": 1,
+   "rank_2": 1,
+   "tests_rank_2": 2
+  },
+  "fan": {
+   "gens": 7,
+   "codim": 4,
+   "rank_Q": 3,
+   "rank_2": 3,
+   "tests_rank_2": 4
+  },
+  "K4 triples": {
+   "gens": 10,
+   "codim": 5,
+   "rank_Q": 5,
+   "rank_2": 5,
+   "tests_rank_2": 5
+  },
+  "strip3": {
+   "gens": 9,
+   "codim": 4,
+   "rank_Q": 5,
+   "rank_2": 5,
+   "tests_rank_2": 4
+  }
+ },
+ "ladder": {
+  "counts": {
+   "(1, 1)": 522,
+   "(0, 0)": 592,
+   "(1, 0)": 22,
+   "(0, 1)": 2
+  },
+  "example_01": "([(0, 1), (0, 4), (1, 4), (0, 1, 4), (2, 3), (2, 5), (3, 5)], (2, 3, 5))"
+ }
+}

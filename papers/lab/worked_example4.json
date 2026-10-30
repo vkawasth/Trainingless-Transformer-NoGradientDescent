@@ -1,0 +1,345 @@
+{
+ "cells": {
+  "0000": "1809/10000",
+  "0001": "1521/10000",
+  "0010": "921/10000",
+  "0011": "349/10000",
+  "0100": "657/10000",
+  "0101": "1233/10000",
+  "0110": "153/10000",
+  "0111": "157/10000",
+  "1000": "1323/10000",
+  "1001": "387/10000",
+  "1010": "867/10000",
+  "1011": "223/10000",
+  "1100": "171/10000",
+  "1101": "99/10000",
+  "1110": "99/10000",
+  "1111": "31/10000"
+ },
+ "faces": {
+  "ABC": {
+   "capacity_plus": 0.027,
+   "capacity_minus": 0.013,
+   "m_S": 0.002592,
+   "v_S": -0.006349,
+   "r_S": -0.408248,
+   "odds_ratio": 0.569366,
+   "birch_s": -0.003048,
+   "Delta_m": 4.031078399999998e-05,
+   "Det_roots_imag": 0.012698,
+   "Det_positive_on_line": true
+  },
+  "ABD": {
+   "capacity_plus": 0.027,
+   "capacity_minus": 0.013,
+   "m_S": -0.00432,
+   "v_S": 0.010582,
+   "r_S": -0.408248,
+   "odds_ratio": 1.449296,
+   "birch_s": 0.002331,
+   "Delta_m": 0.00011197440000000004,
+   "Det_roots_imag": 0.021164,
+   "Det_positive_on_line": true
+  },
+  "ACD": {
+   "capacity_plus": 0.0486,
+   "capacity_minus": 0.0254,
+   "m_S": 0.00324,
+   "v_S": -0.007936,
+   "r_S": -0.408248,
+   "odds_ratio": 0.521921,
+   "birch_s": -0.005567,
+   "Delta_m": 6.298559999999994e-05,
+   "Det_roots_imag": 0.015873,
+   "Det_positive_on_line": true
+  },
+  "BCD": {
+   "capacity_plus": 0.0252,
+   "capacity_minus": 0.0188,
+   "m_S": -0.00288,
+   "v_S": 0.007055,
+   "r_S": -0.408248,
+   "odds_ratio": 1.13237,
+   "birch_s": 0.000866,
+   "Delta_m": 4.976639999999999e-05,
+   "Det_roots_imag": 0.014109,
+   "Det_positive_on_line": true
+  }
+ },
+ "three_way": {
+  "truth_odds_ratios": {
+   "ABC": 0.569366,
+   "ABD": 1.449296,
+   "ACD": 0.521921,
+   "BCD": 1.13237
+  },
+  "global_maxent_face_odds_ratios": {
+   "ABC": 0.976976,
+   "ABD": 0.985134,
+   "ACD": 0.960422,
+   "BCD": 0.964889
+  },
+  "global_maxent_m_S": {
+   "ABC": -0.000336,
+   "ABD": -0.001892,
+   "ACD": -0.001992,
+   "BCD": -0.001764
+  },
+  "face_birch_m_S": {
+   "ABC": -0.000456,
+   "ABD": -0.001989,
+   "ACD": -0.002327,
+   "BCD": -0.002014
+  },
+  "truth_four_way_odds_ratio": 0.507011,
+  "global_maxent_cells": [
+   0.185313,
+   0.150615,
+   0.085259,
+   0.038812,
+   0.06652,
+   0.119552,
+   0.016908,
+   0.01702,
+   0.126771,
+   0.0413,
+   0.094656,
+   0.017272,
+   0.017396,
+   0.012532,
+   0.007176,
+   0.002896
+  ]
+ },
+ "fibre": {
+  "dimension": 5,
+  "chi_lattice_index": 16,
+  "saturated_basis_index": 1,
+  "vertices": 20,
+  "simple": true,
+  "smooth_Delzant": true,
+  "facet_cells": [
+   "0011",
+   "0110",
+   "0111",
+   "1001",
+   "1011",
+   "1100",
+   "1101",
+   "1110",
+   "1111"
+  ],
+  "non_facet_cells": [
+   "0000",
+   "0001",
+   "0010",
+   "0100",
+   "0101",
+   "1000",
+   "1010"
+  ],
+  "kaehler_facet_values": {
+   "0011": "349/10000",
+   "0110": "153/10000",
+   "0111": "157/10000",
+   "1001": "387/10000",
+   "1011": "223/10000",
+   "1100": "171/10000",
+   "1101": "99/10000",
+   "1110": "99/10000",
+   "1111": "31/10000"
+  },
+  "lattice_volume": 1.2736000000000016e-08,
+  "normalised_volume": 1.5283200000000019e-06,
+  "euler_characteristic": 20,
+  "f_vector": [
+   20,
+   50,
+   54,
+   31,
+   9,
+   1
+  ],
+  "h_vector_betti": [
+   1,
+   4,
+   5,
+   5,
+   4,
+   1
+  ],
+  "two_face_projections_are_products": {
+   "ABCxABD": true,
+   "ABCxACD": true,
+   "ABCxBCD": true,
+   "ABDxACD": true,
+   "ABDxBCD": true,
+   "ACDxBCD": false
+  }
+ },
+ "fibre_cut": {
+  "ACDxBCD": {
+   "hull_vertices": [
+    [
+     -0.02216,
+     0.02232
+    ],
+    [
+     -0.02216,
+     -0.02168
+    ],
+    [
+     0.05184,
+     -0.02168
+    ],
+    [
+     0.05184,
+     0.02032
+    ],
+    [
+     0.04984,
+     0.02232
+    ]
+   ],
+   "area_ratio": 0.999386,
+   "box": [
+    [
+     -0.02216,
+     0.05184
+    ],
+    [
+     -0.02168,
+     0.02232
+    ]
+   ]
+  }
+ },
+ "model": {
+  "R4": [
+   -0.76263,
+   0.573118
+  ],
+  "R3": [
+   -0.76263,
+   0.573118
+  ],
+  "walls4": [
+   {
+    "w1": 0.678146,
+    "a1": [
+     0.471875,
+     0.125,
+     0.38125,
+     0.23125
+    ],
+    "a2": [
+     0.0,
+     0.544444,
+     0.066667,
+     0.755556
+    ]
+   },
+   {
+    "w1": 0.362264,
+    "a1": [
+     0.6125,
+     0.0,
+     0.475,
+     0.075
+    ],
+    "a2": [
+     0.153846,
+     0.407692,
+     0.169231,
+     0.584615
+    ]
+   }
+  ],
+  "abc_harm_interval_4": [
+   0.660769,
+   0.66925
+  ],
+  "abc_harm_interval_3": [
+   0.660769,
+   0.66925
+  ],
+  "conic": "m_S = v_S r (four triples), m_ABCD = v_ABCD (r^2 + 1)",
+  "v_S": {
+   "ABC": -0.006349,
+   "ABD": 0.010582,
+   "ACD": -0.007936,
+   "BCD": 0.007055
+  },
+  "v_ABCD": 0.001555,
+  "m_ABCD": 0.001814,
+  "D_walls_t": [
+   0.408248,
+   1.632993
+  ]
+ },
+ "decision4_model_channel": {
+  "eps_star": 0.182629,
+  "eps_wall": 0.421875,
+  "eps_star_3var_check": 0.037037
+ },
+ "decision4": {
+  "pre_probe_act": "P",
+  "oracle_act": "T",
+  "r_c": -0.565751,
+  "capacity16_plus": 0.0099,
+  "capacity8_plus": 0.027,
+  "capacity16_in_face_units": 0.0198,
+  "shift_r_per_eps": 3.118563,
+  "eps_star": 0.050505,
+  "eps_wall": 0.113636,
+  "mABC_range_fibre": [
+   -0.010408,
+   0.029592
+  ],
+  "mABC_truth": 0.002592,
+  "sd_rdiff_n1e5": 0.047048,
+  "eps_second_triple_n1e5": 0.029569
+ },
+ "chambers": {
+  "0.5": {
+   "vertices": 20,
+   "simple": true,
+   "vertex_dets": [
+    1
+   ],
+   "facets": 9
+  },
+  "0.6": {
+   "vertices": 17,
+   "simple": false,
+   "vertex_dets": [
+    0,
+    1
+   ],
+   "facets": 9
+  },
+  "0.7": {
+   "vertices": 20,
+   "simple": true,
+   "vertex_dets": [
+    1
+   ],
+   "facets": 9
+  },
+  "0.3,0.7": {
+   "vertices": 28,
+   "simple": true,
+   "vertex_dets": [
+    1,
+    2
+   ],
+   "facets": 10
+  }
+ },
+ "random_fibres": {
+  "simple": 50,
+  "smooth": 0,
+  "n": 50
+ }
+}
