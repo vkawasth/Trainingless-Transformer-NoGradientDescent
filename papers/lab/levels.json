@@ -1,0 +1,80 @@
+{
+ "witnesses": {
+  "liar": {
+   "sign": [
+    1
+   ],
+   "dim_mod": 0
+  },
+  "c4": {
+   "modulus": [
+    -0.3465735902799725
+   ]
+  },
+  "both": {
+   "sign": [
+    0,
+    1
+   ],
+   "modulus": [
+    -0.3465735902799725
+   ]
+  }
+ },
+ "torsor": {
+  "triangle": [
+   2,
+   2
+  ],
+  "two triangles": [
+   4,
+   4
+  ],
+  "K4": [
+   2,
+   2
+  ]
+ },
+ "transitions": {
+  "generic": {
+   "h0": {
+    "sign_dim": 1,
+    "scale_dim": 0
+   },
+   "dim": 1
+  },
+  "v2=0": {
+   "h0": {
+    "sign_dim": 1,
+    "scale_dim": 1
+   },
+   "support": true,
+   "dim": 2
+  },
+  "zero between non-zero": {
+   "support": false
+  },
+  "dead sheet certificate": {
+   "walls": [
+    "a1[0] >= 0",
+    "a1[1] >= 0",
+    "a2[2] >= 0",
+    "a2[3] >= 0"
+   ],
+   "sum": -1.6039808729710439
+  }
+ },
+ "law_vs_factorisation": {
+  "liar_laws": 73,
+  "beyond_lambda_star": {
+   "glues": true,
+   "algebraic_levels": true,
+   "positivity_fails": true
+  }
+ },
+ "helly": {
+  "tested": 400,
+  "empty": 14,
+  "witnessed_by_a_pair": 14
+ }
+}

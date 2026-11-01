@@ -1,0 +1,182 @@
+\section{What does not matter: the decision-relevant quotient}\label{sec:relevance}
+A decision maker who seeks certain outcomes needs to know what it can safely ignore. There are two different reasons to remove
+something.
+\begin{itemize}
+\item \emph{Infeasible:} an explanation is not a law (signed mass, or parameters outside $[0,1]$). Positivity removes it: the
+  marginal-problem programme and the walls.
+\item \emph{Irrelevant:} an explanation is a perfectly good law, but it cannot change the act. This section is about the second.
+\end{itemize}
+Fix acts $a$ with utilities $u_a$ on outcomes, window tables $O$, and the fibre $F(O)=\{P\ge0:KP=O\}$ of laws they allow (\cref{thm:N}).
+
+\begin{proposition}[the decision-relevant quotient]\label{prop:relevance}
+\begin{enumerate}
+\item[(1)] \emph{Gauge.} If every $u_a$ is a function of observable outcomes, expected utilities depend only on the law. So every
+  freedom of the realisation groupoid (labels, frames, bipartite scales \cite[Proposition ``the prestack of realisations'']{CoversCompanion})
+  is irrelevant to the decision. An act indexed by a latent type (``treat type $1$'') is not invariant, and where the label holonomy is
+  non-trivial it is not even globally defined.
+\item[(2)] \emph{Directions.} Let $\rho(P)=(\langle u_a-u_b,P\rangle)_{a,b}$. Only the polytope $\rho(F(O))$ matters: the act is settled iff
+  $\rho(F(O))$ lies in one chamber, and a probe has value iff it splits $\rho(F(O))$ across a wall. Every direction of $\ker K\cap\ker\rho$
+  is irrelevant. The decision-relevant dimension of the fibre is $\operatorname{rank}(\rho|_{\ker K})\le(\text{number of acts})-1$.
+\item[(3)] \emph{Data.} A window is \emph{decision-redundant} if removing it leaves every range $\{\langle u_a-u_b,Q\rangle:Q\in F(O)\}$
+  unchanged; each range is two linear programmes. Removing redundant windows one at a time gives a decision-sufficient subcover.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $E_P[u_a]$ is a function of $P$, and every realisation in a fibre of the realisation functor has the same $P$. A latent-indexed
+utility depends on the label, which the groupoid moves. (2) $\langle u_a-u_b,Q\rangle$ is constant along $\ker\rho$, and the optimal act
+depends only on the signs of these differences. (3) The settled act, and the value of any probe, depend on $F(O)$ only through these
+ranges. Check RL3 compares the criterion with $200$ fibre points per problem.
+\end{proof}
+
+At $m=4$ the pair cover hides a five-dimensional kernel ($\chi_S$ for the five sets $S$ of size at least $3$). A two-act problem sees
+exactly one direction of it, a three-act problem two, and an act on a pair event none, so the pairs alone settle it (RL2). For an act that
+pays on the event $\{X_0=X_1=X_2=1\}$, the triple window $\{0,1,2\}$ alone is decision-sufficient: all six pairs and the other triple can be
+dropped (RL4).
+
+\paragraph{Decision value is a coboundary.} Vigneaux's information cohomology \cite{Vigneaux2020} assigns to each observable $X$ a set
+$Q_X$ of laws, and lets observables act on functions of laws by conditioning, $(Y.f)(P)=\sum_yP(Y{=}y)\,f(P\mid Y{=}y)$. Shannon entropy
+generates its first cohomology. For a decision with losses $\ell_a$, the Bayes risk $R(P)=\min_aE_P\ell_a$ is a generalised entropy
+\cite{DeGroot1962,GrunwaldDawid2004}.
+
+\begin{proposition}[decision value and irrelevance]\label{prop:vigneaux}
+\begin{enumerate}
+\item[(1)] The value of observing $X$ before deciding, $V[X]=R-X.R$, satisfies the cocycle (chain-rule) identity
+  $V[XY]=V[X]+X.V[Y]$.
+\item[(2)] The two-type family, and every $k$-type latent class family, is stable under marginalisation and under conditioning on
+  observed variables. It is therefore an admissible coefficient set in Vigneaux's sense, except that it is curved: Vigneaux takes
+  $Q_X$ to be a simplicial subcomplex of the simplex.
+\item[(3)] \emph{Irrelevance.} $V[X](P)=0$ iff one act is optimal under every conditional $P\mid X{=}x$. So $X$ is irrelevant on a family $Q$
+  exactly when $V[X]$ vanishes on $Q$, the kernel of the decision cocycle.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $V[XY]=R-XY.R$, and $XY.R=X.(Y.R)$ because conditioning on $XY$ is conditioning on $X$ and then on $Y$. Hence
+$V[XY]=(R-X.R)+X.(R-Y.R)$. (2) Conditioning a $k$-type law on $X_i=x$ multiplies $w_z$ by $P(X_i=x\mid z)$ and renormalises, and it fixes
+$X_i$; the result is again $k$-type. (3) $R(P)=\min_a\sum_xP(x)E_{P|x}\ell_a\ge\sum_xP(x)\min_aE_{P|x}\ell_a$, with equality iff one $a$ attains
+every inner minimum (RL5, RL6).
+\end{proof}
+
+\paragraph{Under ambiguity the coboundary breaks.} When the decision maker holds a set of laws, here the hiding segment
+$\{P+s\chi\}$, and decides by maxmin \cite{GilboaSchmeidler1989}, two values of observing $X$ compete. One is the ex-ante maxmin over
+policies $x\mapsto a$. The other is the worst-case value of the policy chosen after $X$ by prior-by-prior updating. For a rectangular set
+they agree \cite{EpsteinSchneider2003}: in $300$ random problems the gap is below $10^{-15}$ (RL7).
+
+The hiding segment is not rectangular. $\chi$ sums to zero over the other variables, so moving along the segment leaves the law of any
+single variable fixed, but it moves the conditionals for $X=0$ and $X=1$ together, through the one parameter $s$. Updating treats them as
+free, which is the rectangular hull of the segment. Updating then loses value in $110$ of $300$ random three-act problems (up to $0.23$),
+and in $24$ of them observing $X$ is worth less than not observing it (RL8). The lab's hidden channel is therefore itself a source of
+dynamic inconsistency. \Cref{prop:rect} bounds its price by the distance to the rectangular hull.
+
+\subsection{Inversion}\label{sec:inversion}
+Of the three things one might call inversion, one is new here and needed; the other two are already present.
+\begin{itemize}
+\item \emph{Bayesian inversion} reverses a process. It is the operator added below.
+\item \emph{Covariant involutions} reverse an orientation and keep arrows. The label swap inverts the weight odds,
+  $t\mapsto1/t$ ($r\mapsto-r$, $v\mapsto-v$). The sign group $G_2$ and the canonical flip $c$ of the tangent companion are further examples.
+  These exist and need no new axioms.
+\item \emph{Additive inverses} of feasible directions are not imposed. A feasible cone is a group exactly at relative-interior points
+  \cite[Theorem ``the cone structure'']{TangentCompanion}, and the one-sided boundary information is what the corner theorems use.
+\end{itemize}
+For a law $p$ on $X$ and a kernel $K:X\to Y$, write $q=pK$. The \emph{Bayesian inverse} is $K^\dagger_p:Y\to X$,
+$K^\dagger_p(x\mid y)=p(x)K(y\mid x)/q(y)$, defined where $q(y)>0$ \cite{ChoJacobs2019,Fritz2020}.
+
+\begin{proposition}[inversion]\label{prop:inversion}
+\begin{enumerate}
+\item[(1)] $(q,K^\dagger_p)$ has the coupling of $(p,K)$ with its factors swapped. On the support of $p$, $(K^\dagger_p)^\dagger_q=K$, and
+  $(LK)^\dagger_p=K^\dagger_p\,L^\dagger_q$ $q$-almost surely.
+\item[(2)] Inversion is a partial map, defined exactly where $q(y)>0$. It is a morphism of the lab's restriction category, and its domain
+  ends at a positivity wall.
+\item[(3)] The conditioning operator of \cref{prop:vigneaux} is integration along the inverse of the marginal map $X$:
+  $C_Xf(P)=\sum_xP(X{=}x)\,f\bigl(X^\dagger_P(x)\bigr)$. The chain rule $C_XC_Y=C_{XY}$ is (1) applied to the composite of marginal maps.
+\item[(4)] For a $k$-type realisation, the posterior over types given a record is the inverse of the realisation kernel. Relabelling
+  permutes it, so posterior-predictive decisions on observables are invariant, as \cref{prop:relevance}(1) requires.
+\item[(5)] \emph{The defect sandwich.} For a finite set of laws $F$, an observable $X$ and utilities $u$, let $\operatorname{ante}(F)$ be
+  the ex-ante maxmin value over policies $X\to\Delta(A)$. Let $D_X(F)$ be its excess over the worst case, on $F$, of the policy chosen
+  by prior-by-prior updating. Let $\operatorname{Rect}_X(F)$ be the rectangular hull (every marginal of $X$ in $F$ pasted with, independently
+  for each $x$, every conditional of $F$ given $x$). Then
+  \[
+  0\ \le\ D_X(F)\ \le\ \operatorname{ante}(F)-\operatorname{ante}\bigl(\operatorname{Rect}_X(F)\bigr),
+  \]
+  and both vanish when $F$ is rectangular. The right side is the geometric defect of the value functional, and the bound is attained in some
+  cases and strict in others.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1)--(4) are direct from the formula (checks IV1--IV4). (5) Write $\pi$ for the updated policy. $F$ and $\operatorname{Rect}_X(F)$ have
+the same conditional sets, so $\pi$ maximises $g_x(a)=\inf_{b\in F_x}E_b[u_a]$ for every $x$. On the rectangular hull the worst case
+separates: $\inf_{P\in\operatorname{Rect}}\sum_xP(x)E_{P|x}[u_{\sigma(x)}]=\inf_m\sum_xm(x)\,g_x(\sigma(x))$. Because $m\ge0$, a policy maximising each
+$g_x$ maximises every such sum, so $\pi$ is ex-ante optimal on the hull: $\operatorname{ante}(\operatorname{Rect})=\inf_{\operatorname{Rect}}E[u_\pi]$, the Epstein--Schneider
+identity \cite{EpsteinSchneider2003}. Since $F\subseteq\operatorname{Rect}_X(F)$, $\inf_FE[u_\pi]\ge\operatorname{ante}(\operatorname{Rect})$, and
+$\operatorname{ante}(F)\ge\inf_FE[u_\pi]$ by definition. Check IV5 finds no violation in $300$ problems (hiding segments, random non-rectangular sets
+and rectangular sets), with the hull identity exact to $10^{-15}$. IV6 finds the bound attained in $54$ of the $97$ cases with $D>0$.
+\end{proof}
+
+\paragraph{Inversion and the one-sided geometry.} Bayesian inversion reverses the flow of information. It does not reverse the
+orientation of a feasible cone, and the next result shows it respects that orientation. Write $\mathrm{post}_y(P)=P(\cdot\mid Y{=}y)$.
+
+\begin{proposition}[inversion, feasibility and decision walls]\label{prop:invgeom}
+\begin{enumerate}
+\item[(1)] \emph{Inside the data it is affine.} If $Y$ lies in an observed window, $q(y)=P(Y{=}y)$ is constant on the fibre $F(O)$, so
+  $\mathrm{post}_y$ is affine there. It maps the hiding polytope to a polytope, face to face, and pulls each decision wall back to the
+  conditional wall $\{\langle(u_a-u_b)\mathbf 1_{Y=y},P\rangle=0\}$, a hyperplane. The act after observing $y$ is settled iff the image of
+  $F(O)$ lies in one chamber.
+\item[(2)] \emph{In general it is linear-fractional.} $\mathrm{post}_y(\lambda A+(1-\lambda)B)=\mu\,\mathrm{post}_y(A)+(1-\mu)\,\mathrm{post}_y(B)$ with
+  $\mu=\lambda q_A(y)/(\lambda q_A(y)+(1-\lambda)q_B(y))$. So segments go to segments, reweighted.
+\item[(3)] \emph{It preserves one-sidedness.} Its derivative, $D\,\mathrm{post}_y[u]=(u\mathbf 1_{Y=y}-\mathrm{post}_y(P)\,u(Y{=}y))/q(y)$, maps
+  feasible directions at $P$ to feasible directions at $\mathrm{post}_y(P)$. At second order it is the conditioning map of the tangent
+  companion's second-order subcategory, and it satisfies the necessary condition at every order \cite[Proposition ``order $k$'']{TangentCompanion}.
+\item[(4)] \emph{It creates no pooling flips.} If the posteriors of $A$ and $B$ choose the same act, so does the posterior of every mixture,
+  because decision chambers are convex and (2) maps the chord into the segment between them. A curved decision functional can flip under
+  pooling \cite[Proposition ``pooling paradox $=$ curvature'']{TangentCompanion}; inversion cannot.
+\item[(5)] \emph{The one obstruction is the domain wall.} As $q(y)\to0$, $\|D\,\mathrm{post}_y\|$ grows exactly like $1/q(y)$. An injected
+  share $\varepsilon$ on a rare outcome moves the posterior by order $\varepsilon/q(y)$. This is the inversion-side reason why rare records
+  are cheap targets (\cref{thm:E}).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $\mathrm{post}_y(P)=P\mathbf 1_{Y=y}/q(y)$ with $q(y)$ fixed by $O$; then $\langle u_a-u_b,\mathrm{post}_y(P)\rangle=\langle(u_a-u_b)\mathbf 1_{Y=y},P\rangle/q(y)$.
+(2) Expand the numerator and the denominator. (3) Differentiate the quotient. Where $\mathrm{post}_y(P)$ has a zero cell, $P$ has one too,
+so $u$ is non-negative there, and the formula gives $u_{\text{cell}}/q(y)\ge0$; the entries sum to $0$. (4) Chambers
+$\{Q:\langle u_a-u_b,Q\rangle\ge0\ \forall b\}$ are convex. (5) The derivative is the quotient above. Checks IV7--IV10 confirm (1)--(5): errors
+$10^{-16}$; no flip in $9{,}212$ mixtures; $\|D\|\,q(y)$ constant over four decades.
+\end{proof}
+
+On operator cones, Dahlqvist, Danos, Garnier and Kammar show that inversion of kernels is an adjunction between $L^1$- and $L^\infty$-cones
+\cite{DahlqvistDanosGarnierKammar2016}. That is the setting in which the function-space reading below would become a theorem.
+
+So the dynamic defect of \cref{sec:relevance} and the geometric defect of rectangularisation are related, not equal. The dynamic defect is
+squeezed between $0$ and the geometric one, and it vanishes when the belief set is rectangular. In the function-space reading, the objects
+are fibres $F$ with their act payoffs $f_a(P)=\langle u_a,P\rangle$, and the morphisms are the operators that kernels induce. Conditioning is
+$C_X$, built from inversion; robust aggregation is $f\mapsto\inf_Ff$. The defect measures how far conditioning and aggregation fail to
+commute. A comparison natural transformation between the two composites, and the claim that it is invertible exactly on rectangular
+sets, would be the categorical form; we have not constructed it.
+
+\begin{proposition}[wall-crossing for the value of a probe]\label{prop:wallcross}
+For losses $\ell_a$ and an observable $X$,
+\[
+V[X](P)=\min_a\langle\ell_a,P\rangle-\sum_x\min_a\langle\ell_a\mathbf 1_{X=x},P\rangle ,
+\]
+a difference of concave piecewise-linear functions of $P$. Its kinks lie on the decision walls $\{\langle\ell_a-\ell_b,P\rangle=0\}$ and on
+the conditional walls $\{\langle(\ell_a-\ell_b)\mathbf 1_{X=x},P\rangle=0\}$. Crossing a wall where the active act changes from $b$ to $a$, the gradient
+of $V$ jumps by $\ell_a-\ell_b$ (on an unconditional wall) or by $-(\ell_a-\ell_b)\mathbf 1_{X=x}$ (on a conditional wall).
+\end{proposition}
+
+\begin{proof}
+$P(X{=}x)\,R(P\mid X{=}x)=\min_a\langle\ell_a\mathbf 1_{X=x},P\rangle$, because conditioning divides every expected loss by the same
+$P(X{=}x)$. Each minimum of linear functions is concave and piecewise linear, with gradient the active vector. Check RL9 confirms the
+identity to $10^{-15}$, and finds $25$ kinks along $40$ chords of hiding segments, each on a predicted wall with the predicted jump.
+\end{proof}
+
+\paragraph{What to remove, and what not to.}
+\begin{itemize}
+\item \emph{Remove:} the realisation gauge, for observable decisions; the directions of $\ker K\cap\ker\rho$; decision-redundant windows;
+  observables with $V[X]=0$ on the family; positivity walls that miss the decision-relevant polytope.
+\item \emph{Keep:} walls that cross $\rho(F(O))$, which decide whether the act settles; the algebraic obstructions (sign, modulus,
+  holonomy) whenever the decision relies on the latent model or is indexed by a latent type; and, under ambiguity, the coupling that makes
+  the belief set non-rectangular.
+\end{itemize}
+The linear Čech data are irrelevant to \emph{gluing laws} (\cref{prop:csd}); they are not irrelevant to every decision.

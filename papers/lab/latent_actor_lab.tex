@@ -73,17 +73,21 @@ Part II turns to an actor who adds records to tilt the decision, with no relatio
   decision's sensitivity are three separate conclusions with separate sources (positivity; the $\mathbb Z/2$ class and the walls; margin over
   capacity), and each can fail without the others.
 \end{itemize}
-Five pre-registered studies test the quantitative claims, and one example is worked through every step by hand
+Six pre-registered studies test the quantitative claims, and one example is worked through every step by hand
 (\cref{sec:example}). In Study 11, twenty-one of the twenty-four registered predictions held, and the
 three that failed are reported together with what they show. In Study 11b, all four predictions about settling held. In Study 11c, three of four predictions about an exact conditional probe on the lattice of tables held; the one that failed shows that an exact interval's conservativeness can cancel its efficiency gain at $n^*$. In Study 12, all four predictions about injection held: about $6\%$ of injected
 records flips a mandated-triple decision without a single replicate being flagged. In Study 13, all five predictions about a
 sometimes-adversarial source held: pooling is tilted in $88\%$ of replicates, while the gluing filter never settles wrongly more than
-$2\%$ of the time and is only delayed. The paper is written for three readerships: decision theory under severe
+$2\%$ of the time and is only delayed. Study 14 applies the source band to published trials of intravenous magnesium in
+myocardial infarction: before ISIS-4 the evidence was statistically settled for treatment at clinically meaningful thresholds but not
+decision-settled, and the registered test that it was not decision-settled even at zero benefit failed, by $0.12$ standard errors. The paper is written for three readerships: decision theory under severe
 uncertainty, Bayesian persuasion and verifiable disclosure, and machine learning with reinforcement learning and adversarial training.
 \end{abstract}
 
 \newpage
 \section*{How to read this paper}
+Symbols shared with the two companions are collected in \cref{app:symbols}, and the status of every main statement (proved,
+verified, conjectured or open) in \cref{app:status}.
 \begin{table}[!h]\centering\small
 \begin{tabular}{p{0.24\linewidth}p{0.3\linewidth}p{0.38\linewidth}}\toprule
 If you work on & read & because\\\midrule
@@ -91,12 +95,25 @@ decisions under severe uncertainty, value of information & \cref{sec:setup,sec:A
 persuasion and disclosure & \cref{sec:setup,sec:A,sec:C,sec:game,sec:F} & the hiding set is a segment, the regulator's minimal mandate is one named triple, and unravelling and pooling are computed; a sponsor who runs the triple can tilt it through a channel no table check sees\\[2pt]
 machine learning, RL, GANs & \cref{sec:setup,sec:B,sec:lab,sec:ml,sec:inj,sec:study12} & data poisoning solved in a small model (vertex attack, stealth--tilt frontier); tempo as sample complexity, with rates $0$, $n^{-1/2}$ and $n^{-1/4}$; a bandit learns the closed-form probe; the regulator--sponsor game rotates like GAN training unless the regulator commits\\[2pt]
 anyone who wants to follow the computations & \cref{sec:example,sec:example4} & one example (the main note's drug example) worked through every theorem, with hand checks, ending in its toric geometry and its descent complex and filtration ($\mathbb{CP}^1$, the Birch point, the hyperdeterminant); then a fourth variable, in stages (a smooth toric 5-fold, induced three-way interactions, the second-triple defence)\\[2pt]
-data from several sources; robustness, federated learning & \cref{sec:sources,sec:study13,sec:lift} & a trusted source that is sometimes adversarial: gluing on two covers, bands of fixed width in standard errors, tilt turned into delay (Study 13); lifting the decision maker's singularities, dilation, the value of a probe in its size, backtracking, rectangularity as gluing\\[2pt]
+data from several sources; robustness, federated learning & \cref{sec:sources,sec:study13,sec:study14,sec:lift} & a trusted source that is sometimes adversarial: gluing on two covers, bands of fixed width in standard errors, tilt turned into delay (Study 13); the band on published trials of magnesium (Study 14); lifting the decision maker's singularities, dilation, the value of a probe in its size, backtracking, rectangularity as gluing\\[2pt]
 anyone who wants the whole paper in one statement & \cref{sec:capstone,sec:scope} & chambers, slices and gauges: one margin over many capacities\\[2pt]
 algebraic geometry, sheaves and descent & \cref{sec:descent,sec:csd} & local spectra over the contexts; what each level of the tower fails to separate and what obstructs descent there; what the CSD framework's obstruction classes can and cannot see on these data\\[2pt]
 categorical probability & \cref{sec:markov} & the model as a string diagram, sufficiency on the fibre, de Finetti for batches, Blackwell's order, all worked by hand\\\bottomrule
 \end{tabular}
 \caption{Reading guide.}\label{tab:guide}
+\bigskip
+\begin{tabular}{p{0.3\linewidth}p{0.08\linewidth}p{0.17\linewidth}p{0.33\linewidth}}\toprule
+result & types & cover & variables\\\midrule
+A hiding segment, B tempo, C probe & 2 & pair ($+$ triple) & $m\ge3$\\
+D decision; settling & 2 & pair & any $m$; settling $m=3$\\
+E slopes, vertex attack; J bands & any & any & any\\
+F hidden channel; G, H & 2 & pair & F: $m=3$ (part 4 any $m$); G: $m=4$; H: $m=3,4$\\
+K lifting; L margin over capacity & any (parts) & any & any; L(1), (2), (5) at $m=3$\\
+M descent: sign and modulus classes & 2 & any pair graph & any\\
+ring of tables (\cref{sec:ehrhart}) & 2 & pair & $m=3$\\\bottomrule
+\end{tabular}
+\caption{Where each main result is proved, in brief. \Cref{tab:scope} gives the full version, with why each result extends and what is
+open.}\label{tab:scopeshort}
 \end{table}
 
 \section{The lab}\label{sec:intro}
@@ -146,6 +163,13 @@ $[u_{\min},u_{\max}]$. Two kinds of cover are used: the \emph{pair cover} (all s
 ``treat'', with $u=1-1.2\,[E]$ where $E$ is any harm among three variables, against ``nothing'' with $u=0$.
 
 \section{Theorem A: the hiding segment}\label{sec:A}
+\begin{center}\fbox{\begin{minipage}{0.93\textwidth}\small
+\textbf{In numbers (the worked example, \cref{sec:example}, Steps 0--2).}\ Truth $w=0.6$, $a_1=(0.5,0.1,0.4)$, $a_2=(0.05,0.5,0.1)$; $P(000)=0.333$. Pair covariances $m_{AB}=-0.0432$, $m_{AC}=0.0324$,
+$m_{BC}=-0.0288$ give $v=(0.220,-0.196,0.147)$ and $v_T=-0.006349$. The truth sits at $r_0=-0.408$; the walls are $r\in[-0.763,0.573]$,
+where a type's harm on $A$ or $B$ reaches $0$. Along the segment the triple harm is $0.6644-0.006349\,r$, in $[0.6608,0.6693]$.
+Nothing about decisions or probes is needed for this. \emph{Check it:} \texttt{python engine/worked\_example.py}, assertions WE0--WE3.
+\end{minipage}}\end{center}
+
 \begin{theorem}[hiding segment]\label{thm:A}
 Let $m\ge3$, and suppose at least three coordinates of $v$ are non-zero.
 \begin{enumerate}
@@ -308,6 +332,13 @@ a conflicting window, over a family of populations. It never falls except by vac
 \end{figure}
 
 \section{Theorem D: the decision on the segment}\label{sec:D}
+\begin{center}\fbox{\begin{minipage}{0.93\textwidth}\small
+\textbf{In numbers (Steps 7--8).}\ With $v_T$ and the walls from Theorem A's box: the triple $T$ has $U_T(r)=0.3356+0.006349\,r$ and the pair $P$ has $U_P=0.332$ on the
+whole segment. Wall check: $T$'s worst value is $0.33075<0.332$, so the set rule picks $P$; at the truth $U_T=0.333>0.332$, so the oracle
+picks $T$. The settling radius is $d=(0.333-0.332)/0.006349=0.1575$, and with $\tau=12.71$ the decision settles at
+$n^*=(1.96\cdot12.71/0.1575)^2\approx25\,000$. \emph{Check it:} assertions WE7--WE9.
+\end{minipage}}\end{center}
+
 Theorems A--C say what is hidden, how fast it is revealed and what a probe is worth. They do not say how to choose an act on the
 segment, whether that choice is stable, or when the evidence settles it. This section does, for two types on the pair cover.
 
@@ -647,6 +678,13 @@ then set by the sign of the influence difference, as in degenerate perturbation 
 point mass approaching $\varepsilon^*_1$ as the margin shrinks, and no random injected law beating it.
 
 \section{Theorem F: the hidden channel}\label{sec:F}
+\begin{center}\fbox{\begin{minipage}{0.93\textwidth}\small
+\textbf{In numbers (Steps 9--10).}\ Before the probe the margin is $0.332-0.33075=0.00125$; the cheapest record to inject is $111$, at $0.187\%$. The hidden channel injects
+$Q=P+0.027\chi$ (cells $0.306,0.154,0.216,0.004,0.198,0.082,0,0.040$): every pair table is unchanged, the apparent triple harm is
+$0.667+0.027\varepsilon$, the decision flips at $\varepsilon^*=0.037$ and the triple contradicts the pairs only at
+$\varepsilon_{\det}=0.083$. The stealth window is $[0.037,0.083)$. \emph{Check it:} assertions WE10--WE13.
+\end{minipage}}\end{center}
+
 Write $\chi_S(x)=\prod_{i\in S}(2x_i-1)$.
 
 \begin{theorem}[the hidden channel]\label{thm:F}
@@ -1177,6 +1215,13 @@ label switch. (d) The labelled layer: the triple moments of the $24$ batches of 
 shifts (arrows) stay under the source threshold.}\label{fig:descent}
 \end{figure}
 
+\begin{center}\fbox{\begin{minipage}{0.93\textwidth}\small
+\textbf{Check it yourself.}\ Run \texttt{python engine/worked\_example.py} (a few seconds). Each assertion is tagged with its step: Step 0, WE0; Step 1,
+WE1; Step 2, WE2--WE3; Step 3, WE4; Step 5, WE5; Step 6, WE6; Step 7, WE7--WE8; Step 8, WE9; Step 9, WE10; Step 10, WE11; Step 11, WE12;
+Step 12, WE13; Step 13, WE14--WE18. For instance WE0 asserts $P(000)=0.333$, WE2 that $v=\sqrt{0.24}\,(0.45,-0.40,0.30)$ and $r_0=-0.40825$, and WE9
+that $n^*=(z\tau/d)^2\approx25\,000$. Step 14 is checked by \texttt{engine/worked\_descent.py} (WD1--WD10).
+\end{minipage}}\end{center}
+
 \section{The example with four variables, in stages}\label{sec:example4}
 Add a fourth harm $D$ to the example of \cref{sec:example}, with probabilities $0.2$ and $0.7$ in the two types; everything else is
 unchanged. The computation is staged so that each stage adds one layer of structure, and so that the three-variable interactions show
@@ -1306,6 +1351,11 @@ $D_5$, and each ring holds a witness that passes every earlier stage and fails t
 example (black) and its witness (red): $\lambda^*$; the cycle product; the log tetrads (four variables); the segment length; the
 spread of $r_S$ over the triples (four variables). The dashed line is the stage's requirement.}\label{fig:filtration}
 \end{figure}
+
+\begin{center}\fbox{\begin{minipage}{0.93\textwidth}\small
+\textbf{Check it yourself.}\ Run \texttt{python engine/worked\_example4.py}. Its assertions W4-1 to W4-14 follow the stages of this section in order; W4-1
+checks that the $ABC$ face is the three-variable example exactly, with $r=-0.408$ on all four faces.
+\end{minipage}}\end{center}
 
 \section{Part II, continued. Sources: a trusted source that is sometimes adversarial}\label{sec:sources}
 Theorems E--H let the adversary inject into the whole pool, and the regulator sees only the pooled tables. In practice data arrive from
@@ -1506,6 +1556,8 @@ buys is priced in standard errors, not in records. \emph{Machine learning}: this
 \cite{BlanchardEtAl2017}. Theorem~\ref{thm:J}(2) is a
 bound on the ``a little is enough'' attack \cite{BaruchEtAl2019}, exact for one coordinate. The median of sources is the
 coordinate-wise median aggregator \cite{YinEtAl2018}.
+
+\input{sec_magnesium}
 
 \section{Lifting: the decision maker's patchwork}\label{sec:lift}
 The decision maker meets singularities wherever a map it relies on stops being smooth:
@@ -1871,7 +1923,8 @@ For the pair cover with $m=3$ or $4$, and for the triple cover with $m=4$:
   and the image of the simplex is the marginal polytope. When the nerve has a cycle these differ, and the difference is the contextual
   families. Example: $A=B$, $B=C$, $A\ne C$ with uniform margins. It has zero Čech energy, extends to a signed law with least negative
   mass $1/2$, and has $\lambda^*=0$: it is strongly contextual. The certificate is the dual witness of the gluing linear programme, a
-  Bell-type inequality, and it is not a cohomology class.
+  Bell-type inequality, and it is not a cohomology class. In effect-algebra terms the question is one of state extension, and its
+  linear programme is exactly Roumen's precone test (see ``Roumen's order cohomology'' in \cref{sec:markov}).
 \end{enumerate}
 \end{proposition}
 
@@ -1970,7 +2023,9 @@ Two latent types.
   H^1_+(\Gamma;\mathbb R^\times)=C^1/\delta^+C^0\cong H^1(\Gamma;\mathbb Z/2)\oplus\operatorname{coker}B,
   \]
   which is $\mathbb Z/2$ on the triangle and $(\mathbb Z/2)^3\oplus\mathbb R^2$ on $K_4$. The ladder's rung and the tetrads are the
-  two summands. The gluing of images is ordinary; realizability is not.
+  two summands. This group is the incidence class group $H^1_{\mathrm{inc}}(\Gamma)$ of the covers companion
+  \cite[Section ``Stratified descent'']{CoversCompanion}, there defined for any graph and on every support stratum; we keep the
+  name $H^1_+$ only where the connected case is meant. The gluing of images is ordinary; realizability is not.
 \end{enumerate}
 \end{theorem}
 
@@ -2130,6 +2185,14 @@ The lab's contribution is therefore not a new equivalence between comonadic desc
 and calculation, inside one realization problem, of four phenomena: the kernel, positivity, provenance, and the latent automorphisms. It
 also pins down the degree and the meaning of the source-labelled discrepancy.
 
+\paragraph{Law descent and factorisation descent.} The signed-measure \v{C}ech complex of this section decides whether windows glue
+to a signed global law, and it is acyclic: law descent has no algebraic obstruction, only positivity. Whether the pair data admit
+two-type latent factors is a different question, decided by the multiplicative incidence complex
+$(\delta v)_{ij}=v_iv_j$ of the covers companion \cite[Section ``Stratified descent'']{CoversCompanion}. Its degree-one class splits as
+$H^1(\Gamma;\mathbb Z/2)\oplus\operatorname{coker}B$, which matches the decomposition in Theorem M on connected pair graphs, and its
+support and positivity levels are separate tests. The two descents can fail independently: laws with $M_{01}M_{02}M_{12}<0$ glue but
+have no factorisation, and the triangle past $\lambda^*=0.3115$ glues and factorises but has no two-type explanation.
+
 \section{Relation to the CSD framework}\label{sec:csd}
 The Categorified Spectral Duality (CSD) programme \cite{ChangCSD2026} builds, for an admissible operator-semantic system
 $A=(\mathcal O_A,\mathcal C_A,\tau_A,\rho_A)$, a spectral stack $\operatorname{Spec}(A)$ by operadic syntactic realization, a left Kan
@@ -2271,7 +2334,9 @@ Work in $\mathsf{FinStoch}$, finite sets and stochastic matrices.
   I\xrightarrow{\ w\ }Z\xrightarrow{\ \mathrm{copy}\ }Z\otimes Z\otimes Z\xrightarrow{\ K_A\otimes K_B\otimes K_C\ }X_A\otimes X_B\otimes X_C,
   \]
   with $Z$ a two-point object. This says that $A$, $B$ and $C$ are conditionally independent given $Z$. The hiding segment is the set of
-  such factorisations with fixed pair marginals.
+  such factorisations with fixed pair marginals. Such factorisations and the isomorphisms of $Z$ between them form a groupoid of realisations. Over a cover they form a
+  prestack, not a stack: descent data can fail to glue through an $S_k$ holonomy even when the tables glue
+  \cite[Proposition ``the prestack of realisations'']{CoversCompanion}.
 \item[(2)] \emph{Sufficiency on the line.} For the family $P_s=P+s\chi_{ABC}$, every pair window is ancillary for $s$: its Fisher
   information is $0$. The triple window carries $I(s)=\sum_x\chi(x)^2/P(x)=\sum_x1/P(x)$ at $s=0$. The pair tables are therefore not
   sufficient for the hidden coordinate, which is Fritz's synthetic sufficiency \cite{Fritz2020} read on the fibre.
@@ -2371,7 +2436,14 @@ at most six: globally, pooled data fail mostly by acquiring the triangle's negat
 
 \paragraph{Roumen's order cohomology.} Roumen \cite{Roumen2017} studies classical realizability as the extension of a state
 $\sigma$ on an effect algebra $E$ along a weak injective morphism $i:E\hookrightarrow F$. Here $E$ is generated by the windows' outcome
-events, $F=\mathcal P(X)$ with $X=\{0,1\}^3$, and $i$ sends an event to its cylinder set. His two constructions match the two sides of
+events, $F=\mathcal P(X)$ with $X=\{0,1\}^3$, and $i$ sends an event to its cylinder set. We borrow his vocabulary, not his machinery.
+In the Boolean effect algebra $\mathcal P(X)$ the \emph{partial sum} $A\boxplus B=A\cup B$ is defined when $A\cap B=\varnothing$, and the
+\emph{orthocomplement} is $A^\perp=X\setminus A$. A window $S$ partitions $X$ into cylinder events, one per outcome on $S$, and such a
+partition is a \emph{test}. A \emph{state} is a map to $[0,1]$ that sends $X$ to $1$ and $\boxplus$ to $+$; on $\mathcal P(X)$ the states are
+exactly the probability laws, and a window table is a state restricted to the window's test. Two distinctions keep the layers apart.
+The fixed-moment fibre $F(O)$ of \cref{thm:N}(i) (not Roumen's $F$) is a subset of the state space (the laws with the given window tables), not the whole of it; and the
+hiding segment is the image of the two-type model inside that fibre. State extension decides whether $F(O)$ is non-empty. Whether
+it meets the hiding segment is the separate latent-model question of \cref{thm:N}(ii). His two constructions match the two sides of
 \cref{prop:csd}(1) exactly.
 \begin{itemize}
 \item \emph{Cyclic cohomology is the real-linear case.} If $\sigma$ extends, the connecting class $\partial(j(\sigma))$ vanishes
@@ -2393,6 +2465,26 @@ full-support contextuality, but it is not a linearisation that escapes \cref{pro
 coefficients, and computing it is the lab's linear programme. It is the precise sense in which the positivity obstruction becomes
 cohomological once the coefficients are ordered. Its obstruction lives in relative degree $2$, which shows again that the degree of an
 obstruction is a property of the complex chosen, not of the phenomenon.
+
+\paragraph{Covers as test spaces, and what partial addition does not see.} A cover is a Foulis--Randall test space
+\cite{FoulisRandall1972}: each window is a test, its outcomes are the cylinder events, and compatible window tables are exactly the
+states on it. Staton and Uijlen embed effect algebras fully faithfully in a presheaf category and read non-locality and contextuality
+in slices of it, which links this view to the sheaf-theoretic one \cite{StatonUijlen2015}. In that setting Roumen's order cohomology
+is a test for extending a state, and on classical windows it reduces to the marginal problem, as computed above. Three things are outside
+its reach, and we say so to prevent a misreading.
+\begin{itemize}
+\item \emph{Pooling.} Pooling data sets is a convex mixture of states, which is always defined. Partial addition adds disjoint
+  \emph{events} inside one algebra. When pooling fails in the lab, the pooled law has left a model's image or a hiding sheet. That is
+  geometry, not orthogonality.
+\item \emph{Order.} Partial addition is commutative and associative, so it cannot express order. Order needs a sequential product
+  \cite{GudderGreechie2002}, and on classical events the natural one is the meet, which commutes. The lab's order effects come instead
+  from conditioning on overlapping windows ($E_AE_B\ne E_BE_A$), from non-commuting updates of a decision, and from restriction followed
+  by lifting.
+\item \emph{Realisations and decisions.} State extension is the law layer. The label and frame holonomies of the covers companion
+  \cite[Proposition ``the prestack of realisations'']{CoversCompanion} and the decision walls are separate layers, and an effect-algebra
+  class does not detect them.
+\end{itemize}
+Effect algebras would do real work on non-Boolean windows, such as the qubit windows of \cref{prop:quantum}, where the events do not form a Boolean algebra.
 
 \paragraph{Injection as a soft intervention.} Categorical causal models \cite{YinZhang2022} and partial Markov categories
 \cite{DiLavoreRomanSobocinski2025} give a language for interventions and updates. In the lab the correspondence is exact once the causal
@@ -2464,14 +2556,36 @@ The theorem is stated for two types, the pair cover and three variables. Parts o
 linearity and positivity. Its extension to more types, where the model part is a non-convex secant variety and the label switch becomes
 the symmetric group $S_k$, and to other covers, is open.
 
+\input{sec_relevance}
+
 \section{Relation to the geometry, and open problems}\label{sec:open}
 \Cref{thm:A} rests on the moment normal form and the Stanley--Reisner structure of the latent fibre in \cite{PG}. Its strata, where
 types agree on variables or merge, are the hiding places the theorems measure.
 
 At level one, gluing tables along observed separators is Sullivant's toric fibre product
 \cite{Sullivant2007,EngstromKahleSullivant2014}. The latent model needs gluing along a hidden separator, because the type is in every
-window. A rule for that case would say which covers identify the actors and would extend \cref{thm:A} beyond the pair cover. We do not
-know one.
+window. A rule for that case would say which covers identify the actors and would extend \cref{thm:A} beyond the pair cover. The covers
+companion now gives one for windows that share an overlap (global $S_k$ descent by stacking the window tables, with Kruskal's condition), and
+for cycles of windows the label holonomy decides gluing \cite[Theorems ``$S_k$ descent'' and ``label holonomy'']{CoversCompanion}. Covers whose
+pieces are not identified nodes remain open.
+
+\paragraph{Decision walls: a programme.} Three arrangements meet in the lab, and the open problems are about how they meet.
+\begin{itemize}
+\item \emph{Decision walls} $W_{ab}=\{\langle u_a-u_b,P\rangle=0\}$ are hyperplanes in the space of laws. Settling, probe value and
+  redundancy are statements about where $\rho(F(O))$ sits among them (\cref{prop:relevance}), and the value of a probe is piecewise
+  linear with kinks exactly on them and on their conditional versions (\cref{prop:wallcross}).
+\item \emph{Positivity walls} bound the fibre and, in parameter space, the sheets (the covers companion's Phases IV--V). Pulled back
+  through the model, decision walls become curved, and curvature is what makes pooling flip a decision \cite{TangentCompanion}.
+\item \emph{Chambers of the ring of tables.} The table count has its own chambers in data space, and the median settling size is not a
+  wall crossing (\cref{sec:ehrhart}).
+\end{itemize}
+Open:
+\begin{itemize}
+\item the chamber complex of the joint arrangement of decision and positivity walls in parameter space, on a general cover;
+\item the decision-identifiable region (chambers in which every relative explanation lies on the same side of every decision wall), and
+  how it compares with the parameter-identifiable region;
+\item a wall-crossing formula for the robust value under ambiguity, where the coboundary identity fails (\cref{sec:relevance}).
+\end{itemize}
 
 \paragraph{Related work.} Deciding over the set of parameters that the data cannot distinguish is the programme of partial
 identification \cite{Manski2000,Stoye2009,GiacominiKitagawa2021,MontielOleaQiuStoye2023,Manski2025}. Identified sets of discrete models with
@@ -2537,8 +2651,10 @@ comonadic form & any & any cover & any & classical theorems; the lab uses their 
 CSD no-go & any & covers with a cycle & any & counterexamples on the triangle; degrees computed for the pair covers\\
 quantum marginal problem & --- & qubit windows & any & dephasing retraction general; the kernel count ($27$) is for three qubits\\
 Markov categories & any & any & any & factorisation for $k$ types is a $k$-point object; Blackwell and de Finetti as cited\\
+what does not matter (\cref{sec:relevance}) & any & any & any & gauge, relevant directions, redundant windows, decision value as a coboundary: general; the hiding segment's non-rectangularity at $m=3$\\
+Study 14 (\cref{sec:study14}) & --- & trials as sources & --- & the band identity only (fixed-effect inverse variance, independent trials); no latent model\\
 Ring of contingency tables (\cref{sec:ehrhart}) & 2 & pair & $m=3$ & fibre and Gr\"obner statements hold for any table model; the hiding set, $\tau_c$ and Study 11c are for three binary variables\\
-Tangent structure \cite{TangentCompanion} & any & polyhedra & any & cone structure on any polyhedron with affine maps; universality iff relative interior; jets proved on the $m=4$ tetrad scheme\\
+Tangent structure \cite{TangentCompanion} & any & polyhedra & any & a weakened tangent structure ((T1)--(T5)) on any polyhedron with affine maps; universality (T6) iff relative interior; the full structure on the open simplex and, as jets, on the $m=4$ tetrad scheme\\
 Roumen's order cohomology & any & any & any & his Theorem~10.5; equals the marginal-problem LP\\
 N: assembly & 2 & pair & $m=3$ & as its parts\\\bottomrule
 \end{longtable}}
@@ -2548,7 +2664,9 @@ over capacity, the relevance criterion, the source band, the descent kernel and 
 geometry of the two-type model need its parametrisation. These are the hiding segment, the tempos, settling, the closed forms of the
 hidden channel, and realizability. They are proved for two types, mostly on the pair cover, and some only for three or four variables.
 Two companion projects take up the narrow results. One builds the tangent structure \cite{TangentCompanion}; it is now written. The other develops the
-two-type theory on arbitrary covers, with a three-type computation as a proof of concept for $S_k$ descent.
+two-type theory on arbitrary covers \cite{CoversCompanion}, with a three-type computation as a proof of concept for $S_k$ descent. Together they form one
+chain, pair graph $\to$ sign sheet $\to$ positivity polytope $\to$ tangent cone $\to$ decision sensitivity: the covers paper builds
+the first three links and the tangent paper the last two.
 
 \section{Limits}
 \begin{itemize}
@@ -2583,6 +2701,12 @@ two-type theory on arbitrary covers, with a three-type computation as a proof of
   settling constraints and the $m=3$ estimator; \texttt{engine/check\_decision\_segment.py} runs checks DS1--DS9.
 \item Study 11b is in \texttt{engine/study11b\_settle/}: \texttt{PREREG\_study11b.md}, \texttt{FROZEN\_PREREG\_study11b.txt},
   \texttt{design11b.py}, \texttt{run\_study11b.py} (with a frozen text copy), \texttt{results\_study11b.json}.
+\item \Cref{sec:relevance} is checked in \texttt{engine/check\_relevance.py} (RL1--RL9; module \texttt{engine/pce/relevance.py}) and
+  \texttt{engine/check\_inversion.py} (IV1--IV10; module \texttt{engine/pce/inversion.py}).
+\item Study 14 is in \texttt{engine/study14\_magnesium/}: \texttt{PREREG\_study14.md}, \texttt{FROZEN\_PREREG\_study14.txt},
+  \texttt{run\_study14.py} (with a frozen text copy), \texttt{data\_study14.csv} (published counts, each row cited),
+  \texttt{EXTRACTION\_NOTES.md}, \texttt{DEVIATIONS\_study14.md}, \texttt{results\_study14.json}, and the post-run exploratory
+  \texttt{explore\_study14.py}; the figure is \texttt{lab/fig\_magnesium.py}.
 \item Study 11c is in \texttt{engine/study11c\_exact/}: \texttt{PREREG\_study11c.md}, \texttt{FROZEN\_PREREG\_study11c.txt},
   \texttt{run\_study11c.py} (with a frozen text copy), \texttt{results\_study11c.json}; the ring-of-tables checks are
   \texttt{engine/check\_ehrhart.py} (EH1--EH7) with \texttt{engine/pce/ehrhart.py}, and the figure is \texttt{lab/fig\_ehrhart.py}.
@@ -2598,6 +2722,9 @@ two-type theory on arbitrary covers, with a three-type computation as a proof of
 \item \texttt{lab/fig\_lab.py} draws every figure.
 \item The pairwise proposition is check SC7 of \cite{PG}.
 \end{itemize}\par}
+
+\input{../shared/symbols}
+\input{../shared/status}
 
 \begin{thebibliography}{99}\small
 \bibitem{Coupling} V.~K. Awasthi, Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability, technical report, October 2026 (revised).
@@ -2677,6 +2804,7 @@ two-type theory on arbitrary covers, with a three-type computation as a proof of
 \bibitem{ChenEtAl2025} L.~Chen, T.~Fritz, T.~Gonda, A.~Klingler and A.~Lorenzin, The Aldous--Hoover theorem in categorical probability, \emph{Algebr. Stat.} \textbf{16} (2025) 131--174; arXiv:2411.12840.
 \bibitem{FritzGondaPerroneRischel2023} T.~Fritz, T.~Gonda, P.~Perrone and E.~F.~Rischel, Representable Markov categories and comparison of statistical experiments in categorical probability, arXiv:2010.07416.
 \bibitem{CouplingAlgebras} V.~K.~Awasthi, Coupling algebras: gluing, the square-zero cone and the ring of contingency tables, technical report, Johns Hopkins University, October 2026, draft 4.
+\bibitem{CoversCompanion} V.~K.~Awasthi, Two latent types on arbitrary covers, Part I: pair graphs, sign sheets and hiding polytopes, companion paper, 2026.
 \bibitem{TangentCompanion} V.~K.~Awasthi, A tangent structure for injected data: feasible cones, universality at corners, and jets on the tetrad scheme, companion paper, 2026.
 \bibitem{CockettCruttwell2014} J.~R.~B.~Cockett and G.~S.~H.~Cruttwell, Differential structure, tangent structure, and SDG, \emph{Appl. Categ. Structures} \textbf{22} (2014) 331--417.
 \bibitem{Roumen2017} F.~Roumen, Cohomology of effect algebras, \emph{EPTCS} \textbf{236} (2017) 174--201; arXiv:1602.00567.
@@ -2709,5 +2837,19 @@ two-type theory on arbitrary covers, with a three-type computation as a proof of
 
 \bibitem{DrtonPlummer2017} M.~Drton and M.~Plummer, A Bayesian information criterion for singular models, \emph{J. R. Stat. Soc. Ser. B} \textbf{79} (2017) 323--380.
 
+\bibitem{Teo1991} K.~K.~Teo, S.~Yusuf, R.~Collins, P.~H.~Held and R.~Peto, Effects of intravenous magnesium in suspected acute myocardial infarction: overview of randomised trials, \emph{BMJ} \textbf{303} (1991) 1499--1503.
+\bibitem{Woods1992} K.~L.~Woods, S.~Fletcher, C.~Roffe and Y.~Haider, Intravenous magnesium sulphate in suspected acute myocardial infarction: results of the second Leicester Intravenous Magnesium Intervention Trial (LIMIT-2), \emph{Lancet} \textbf{339} (1992) 1553--1558.
+\bibitem{ISIS41995} ISIS-4 Collaborative Group, ISIS-4: a randomised factorial trial assessing early oral captopril, oral mononitrate, and intravenous magnesium sulphate in 58\,050 patients with suspected acute myocardial infarction, \emph{Lancet} \textbf{345} (1995) 669--685.
+\bibitem{YusufTeoWoods1993} S.~Yusuf, K.~Teo and K.~Woods, Intravenous magnesium in acute myocardial infarction: an effective, safe, simple, and inexpensive treatment, \emph{Circulation} \textbf{87} (1993) 2043--2046.
+\bibitem{EggerDaveySmith1995} M.~Egger and G.~Davey Smith, Misleading meta-analysis, \emph{BMJ} \textbf{310} (1995) 752--754.
+\bibitem{EggerSmithAltman2001} M.~Egger, G.~Davey Smith and D.~G.~Altman (eds.), \emph{Systematic Reviews in Health Care: Meta-analysis in Context}, 2nd ed., BMJ Books, 2001, Table 18.2.
+\bibitem{FoulisRandall1972} D.~J.~Foulis and C.~H.~Randall, Operational statistics. I. Basic concepts, \emph{J. Math. Phys.} \textbf{13} (1972) 1667--1675.
+\bibitem{StatonUijlen2015} S.~Staton and S.~Uijlen, Effect algebras, presheaves, non-locality and contextuality, in \emph{ICALP 2015}, Lecture Notes in Computer Science \textbf{9135}, Springer, 2015, 401--413.
+\bibitem{GudderGreechie2002} S.~Gudder and R.~Greechie, Sequential products on effect algebras, \emph{Rep. Math. Phys.} \textbf{49} (2002) 87--111.
+\bibitem{Vigneaux2020} J.~P.~Vigneaux, Information structures and their cohomology, \emph{Theory Appl. Categ.} \textbf{35} (2020) 1476--1529.
+\bibitem{DeGroot1962} M.~H.~DeGroot, Uncertainty, information, and sequential experiments, \emph{Ann. Math. Statist.} \textbf{33} (1962) 404--419.
+\bibitem{GrunwaldDawid2004} P.~D.~Gr\"unwald and A.~P.~Dawid, Game theory, maximum entropy, minimum discrepancy and robust Bayesian decision theory, \emph{Ann. Statist.} \textbf{32} (2004) 1367--1433.
+\bibitem{ChoJacobs2019} K.~Cho and B.~Jacobs, Disintegration and Bayesian inversion via string diagrams, \emph{Math. Struct. Comput. Sci.} \textbf{29} (2019) 938--971.
+\bibitem{DahlqvistDanosGarnierKammar2016} F.~Dahlqvist, V.~Danos, I.~Garnier and O.~Kammar, Bayesian inversion by $\omega$-complete cone duality, in \emph{CONCUR 2016}, LIPIcs \textbf{59} (2016) 1:1--1:15.
 \end{thebibliography}
 \end{document}

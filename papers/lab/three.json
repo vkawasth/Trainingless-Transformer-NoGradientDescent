@@ -1,0 +1,41 @@
+{
+ "TH1": {
+  "max_error": 5.446976203415943e-12,
+  "max_window_residual": 1.7119639039719914e-13
+ },
+ "TH4": {
+  "ranks": [
+   14,
+   14
+  ],
+  "family_residual": 5.551115123125783e-17
+ },
+ "TH5": {
+  "two_overlap": [
+   15,
+   15,
+   15
+  ],
+  "collinear_private": [
+   16,
+   16,
+   16
+  ]
+ },
+ "TH9": {
+  "kruskal": [
+   [
+    3,
+    2,
+    3
+   ]
+  ],
+  "overlap_agreement": 5.551115123125783e-17,
+  "ordinary_law_exists": true,
+  "holonomy": [
+   1,
+   2,
+   0
+  ]
+ }
+}
