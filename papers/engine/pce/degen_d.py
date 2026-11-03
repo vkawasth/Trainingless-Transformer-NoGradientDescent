@@ -79,3 +79,33 @@ def degeneracy_gap(poly, face, box=6.0):
     grid = np.linspace(-box, box, 25); best = min(itertools.product(grid, repeat=d - 1), key=lambda u: r(np.array(u)))
     res = minimize(r, np.array(best, float), method="Nelder-Mead", options=dict(xatol=1e-12, fatol=1e-14, maxiter=4000))
     return float(res.fun)
+
+
+# ------------------------------------------------------------------------------------------------ charts of a positive-orthant modification
+# Example 63 near its degenerate plane: chart A of the blow-up of the z-axis, x = x, y = x(1 + u), z = z, followed by the toric
+# modification of (x, |u|, z) given by a unimodular fan compatible with the wall 2 w_u + w_z = 2 w_x of the residual monomial ideal (u^2 z, x^2).
+EX63_FAN = [((1, 1, 0), (0, 1, 0), (0, 0, 1)), ((1, 0, 2), (1, 1, 0), (0, 0, 1)), ((1, 0, 1), (1, 1, 0), (1, 0, 2)), ((1, 0, 0), (1, 1, 0), (1, 0, 1))]
+
+
+def wall_form(v): return 2 * v[1] + v[2] - 2 * v[0]
+
+
+def ex63_chart(cone, sign, y):
+    """(x, u, z) and the original (X, Y, Z) at chart coordinates y (positive reals or 0), u = sign * prod y^(v_u)"""
+    x = 1.0; u = float(sign); z = 1.0
+    for g, yj in zip(cone, y): x *= yj ** g[0]; u *= yj ** g[1]; z *= yj ** g[2]
+    return (x, u, z), (x, x * (1 + u), z)
+
+
+def ex63_residual_share(cone, sign, y):
+    """the normalised residual vector's first entry r1 / (r1 + r2), with f1 = x^2 u^2 z and f2 = x^4 (1 + u)^2 divided by their common
+    monomial; well defined on the closure of the positive chart, including the exceptional fibre"""
+    d = [wall_form(g) for g in cone]; (x, u, z), _ = ex63_chart(cone, sign, y)
+    if all(dj >= 0 for dj in d):                                             # f1 = (common) * y^d, f2 = (common) * (1 + u)^2
+        r1 = 1.0
+        for dj, yj in zip(d, y): r1 *= yj ** dj
+        r2 = (1 + u) ** 2
+    else:                                                                    # all d <= 0: f1 = common, f2 = common * y^(-d) (1 + u)^2
+        r1 = 1.0; r2 = (1 + u) ** 2
+        for dj, yj in zip(d, y): r2 *= yj ** (-dj)
+    return r1 / (r1 + r2)
