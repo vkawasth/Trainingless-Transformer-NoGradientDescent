@@ -1,0 +1,772 @@
+\documentclass[11pt]{article}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,enumitem,graphicx,xcolor,longtable,array}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}\newtheorem{example}[theorem]{Example}
+\definecolor{stUsed}{HTML}{E8E8E8}\definecolor{stAdapted}{HTML}{D6E6F7}\definecolor{stDerived}{HTML}{FBE7C4}\definecolor{stCited}{HTML}{F2DCDC}\definecolor{stNew}{HTML}{DDF1DD}
+\newcommand{\R}{\mathbb R}
+\setlength{\emergencystretch}{3em}
+\title{Conditioned States as Toric K\"ahler Data\\[2pt]\large A companion note to ``Probability, Context and Differentiation: The Layers''\\ \normalsize (working draft)}
+\author{Vinay K Awasthi\\ Johns Hopkins University\\ \texttt{vawasth1@jh.edu}}
+\date{November 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The central point of this note is that \emph{leading-order balance identifies candidates, not the selected state}. Let $Q$ be a compact
+Delzant polytope with potential $W_T=\sum_kT^{-\lambda_k}y^{v_k}$. The unique positive critical point $y_T$ (Galkin's lemma) has a valuation
+$u^*$, and at $u^*$ the leading terms of $W_T$ balance with positive weights: Birch's theorem at target $0$. The converse fails. On the
+Hirzebruch surface $F_1$ the leading terms balance along a whole segment, and higher-order terms select one point of it. Critical points that
+are not positive give only a signed or complex linear dependence, not a law. The positive orthant is the ascending Lefschetz thimble of $y_T$,
+so $e^{-W/\hbar}\,dy/y$ on it is a probability law. We prove a tropical limit for this law, with $\hbar=T^h$ and in the coordinates
+$\log y/\log T$. Below the max--min level $h^*$ it tends to the uniform law on the shrunk polytope $Q_h$, which is the Duistermaat--Heckman measure when $h=0$.
+At and above $h^*$ it concentrates on $\operatorname{argmax}\min_k\ell_k$, a set that contains every candidate and $u^*$. On $F_1$ the mass at level $h^*$ is uniform on the
+candidate segment, and the selection appears only at the next max--min level. Around these results the note records the classical toric
+K\"ahler dictionary in probabilistic terms: the Fisher metric, relative entropy, Duistermaat--Heckman, and the positive Lagrangian section. For Fano $X_Q$, the
+Floer theorem of Cho and Oh, cited and not proved, turns this into a statement about torus fibres. Everything is worked exactly on
+$\mathbb{CP}^2$ and $F_1$. Finally, soft evidence of size $n$ shifts the exponents, $\lambda\mapsto\lambda-(n/N)\rho$. The max--min level is a linear programme over the
+laws on the facets with mean exponent zero, and data can change the leading structure only along the circuits of $\{v_k\}$. $\mathbb{CP}^2$ has none.
+$F_1$ has one, with its wall at $\alpha=1/3$, inside the K\"ahler cone. There the selected valuation moves continuously, while the leading set, the
+dimension of the candidate set and the mechanism of selection all jump. Part~II reads this back on contingency tables. A log-linear model carries
+two configurations, its cells, whose relations are the moves between tables, and its facets, which build $W$. The $r\times c$ independence model has
+$(r-1)(c-1)$ moves but exactly one circuit of facets. Its wall is at $cL_1=rL_2$, which square tables sit on and other tables do not. Its selected
+fibre never moves, so its wall, unlike that of $F_1$, changes no Floer data. Finally, one $2\times3$ coupling polytope is followed through every layer, with
+pictures. Its Tier~A law is Fisher's noncentral hypergeometric family. Its selected coupling is the leximin one, because the best smallest cell is
+$\min(f_i/m,\,g_j/n)$. Its positive thimble interpolates from the uniform law on couplings to that coupling. And moving one count across a leximin
+wall, inside a K\"ahler chamber, changes its leading cells and its Floer fibres. A ledger records every operation with its status and its checks;
+$30$ numerical checks and $3$ ledger checks corroborate the statements.
+\end{abstract}
+
+\part{The geometry}
+\section{What this note does and does not do}
+The layers paper ends its toric section with an outlook remark: the precise dictionary is between conditioned states and moment fibres,
+not between sources and Lagrangians \cite[Remark ``outlook: a symplectic reading'']{Layers}. This note makes that remark exact in two places
+and leaves the rest open. Its components have different status.
+\begin{center}\small
+\begin{tabular}{p{0.46\linewidth}p{0.16\linewidth}p{0.3\linewidth}}\toprule
+component & status & source\\\midrule
+\rowcolor{stUsed} toric K\"ahler structure, moment map, Fisher metric, symplectic potential, Duistermaat--Heckman & Used & \cite{Guillemin1994,Abreu2003,DuistermaatHeckman1982,AmariNagaoka2000}\\
+\rowcolor{stUsed} Birch's theorem; relative interiors of convex hulls & Used & \cite{Birch1963,Rockafellar1970}\\
+\rowcolor{stUsed} one positive critical point (\cref{thm:bridge}(1)); the positive locus as a Lefschetz thimble & Used & Galkin's lemma \cite{Galkin2014}; \cite{GGI2016,Iritani2009}\\
+\rowcolor{stUsed} the valuation $u^*$ maximises $\min_k\ell_k$; a recursive construction of $u^*$ & Used & \cite[Thm.~1.2]{JuddRietsch2019}; \cite{FOOO2010}\\
+\rowcolor{stDerived} the bridge (\cref{thm:bridge}(2)--(4)): leading-order balance, candidates versus selection, the sign split & Derived & this note\\
+\rowcolor{stAdapted} the orthant is the ascending thimble $J_+$; Laplace concentration (\cref{prop:thimble}) & Adapted & \cite{Galkin2014,GGI2016}\\
+\rowcolor{stNew} the tropical limit of the thimble law (\cref{thm:tropical}) and its $F_1$ levels (\cref{ex:levels}) & New & this note\\
+\rowcolor{stUsed} linear-programming duality, strict complementarity; regular subdivisions and secondary fans & Used & \cite{Schrijver1986,GKZ1994,MaclaganSturmfels2015}\\
+\rowcolor{stDerived} soft evidence as $\lambda-s\rho$; the balance programme; candidates $=$ relative interior of $\operatorname{argmax}$ (\cref{conv:data,prop:balancelp}) & Derived & this note\\
+\rowcolor{stNew} where data can act: circuits, least evidence, the $F_1$ wall (\cref{cor:where,ex:F1wall}) & New & this note\\
+\rowcolor{stUsed} coupling polytopes are Delzant; K\"ahler class $=$ product coupling; chambers and blow-ups & Used & \cite{Awasthi2026Cpl}\\
+\rowcolor{stAdapted} Tier~A on the fibre is Fisher's noncentral hypergeometric family (\cref{prop:hypergeom}) & Adapted & \cite{Fisher1935,BishopFienbergHolland1975}\\
+\rowcolor{stNew} the max--min coupling $\min(f_i/m,g_j/n)$; leximin walls; the one-count example (\cref{thm:maxmincoupling,ex:onecount}) & New & this note\\
+\rowcolor{stCited} Floer cohomology of toric fibres and the potential $W$ & Cited, not proved & \cite{ChoOh2006,FOOO2010}\\
+Novikov weights against the environment orders of the layers paper; decision, contextuality and VOI walls & Open & \cref{sec:outlook}\\\bottomrule
+\end{tabular}
+\end{center}
+Two probability structures must be kept apart. The measures in this note live on \emph{conditioned states}, points of the polytope. They
+are not the source weights $\pi_l$ of the layers paper. The uniform measure of \cref{prop:kahler}(5) is a prior on states, not on sources.
+
+\section{Tier A: the toric K\"ahler structure of conditioned states}
+\paragraph{Setting.} Let $S=\{S_i\}\subset\mathbb Z^d$ be a finite support whose affine span is $\R^d$, with coefficients $c_i>0$. In log coordinates $u=\log x$ put
+\[
+\varphi(u)=\log\sum_ic_ie^{\langle S_i,u\rangle},\qquad q_i(u)=\frac{c_ie^{\langle S_i,u\rangle}}{\sum_jc_je^{\langle S_j,u\rangle}} ,
+\]
+so $q(u)$ is the monomial law of the layers paper and $\mu(u)=\sum_iq_iS_i$ is its moment map. On the torus $(\mathbb C^*)^d$, write $z_j=e^{(u_j+i\theta_j)/2}$.
+
+\begin{proposition}[the toric K\"ahler data]\label{prop:kahler}
+\begin{enumerate}
+\item[(1)] $F(z)=\varphi(\log|z|^2)$ is a K\"ahler potential for a torus-invariant K\"ahler form $\omega$ on $(\mathbb C^*)^d$, the pullback of the Fubini--Study form by the
+  monomial map $z\mapsto[\sqrt{c_i}\,z^{S_i}]$. In the coordinates $(u,\theta)$, up to the normalising constant of one's convention,
+  $\omega=\sum_{j,k}\varphi_{jk}(u)\,du_j\wedge d\theta_k$, and the moment map of the rotation action is $\nabla\varphi=\mu$.
+\item[(2)] \emph{Fisher information is the metric.} The Hessian $\varphi_{jk}=\operatorname{Cov}_{q(u)}(S)_{jk}$ is the Fisher information of the exponential family
+  $q(u)$ in its natural parameter, and the K\"ahler metric is $\sum\varphi_{jk}(du_jdu_k+d\theta_jd\theta_k)$.
+\item[(3)] \emph{The positive real locus is a Lagrangian section.} $\{\theta=0\}$ is Lagrangian, and it meets each moment fibre $\mu^{-1}(p)$, $p$ in the interior
+  of $Q=\operatorname{conv}(S)$, in exactly one point (Birch).
+\item[(4)] \emph{The symplectic potential is a relative entropy.} The Legendre dual $\psi(p)=\sup_u(\langle p,u\rangle-\varphi(u))$ equals $\sum_iq_i\log(q_i/c_i)$ evaluated at
+  the exponential-family law $q=q(u(p))$. That law is the unique minimiser of $D(q\Vert c)=\sum_iq_i\log(q_i/c_i)$ among the laws on $S$ with mean $p$; many other laws
+  have mean $p$. So $\psi(p)=\min\{D(q\Vert c):\sum_i q_iS_i=p\}$, the entropy of the minimiser relative to the weights $c$, with the sign reversed. Moreover $\nabla\psi(p)=u(p)$ and $\operatorname{Hess}\psi=(\operatorname{Hess}\varphi)^{-1}$, the
+  Fisher information in the expectation parameter.
+\item[(5)] \emph{Duistermaat--Heckman.} The pushforward of the Liouville measure $\omega^d/d!$ by $\mu$ is $(2\pi)^d$ times Lebesgue measure on the interior of $Q$. In
+  natural parameters it has density $\det\operatorname{Hess}\varphi$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+These are classical. For (1), see \cite{Guillemin1994,Abreu2003} and \cite[Section~4.2]{Fulton1993}. (2) holds because $\varphi$ is the log-partition
+function of the exponential family \cite{AmariNagaoka2000}. (3): on $\{\theta=0\}$ every $d\theta_k$ vanishes, and a moment fibre is $\{u(p)\}\times T^d$, which meets $\theta=0$
+once because $u(p)$ is unique \cite{Birch1963}. (4) is Legendre duality for a strictly convex function, and $\langle p,u\rangle-\varphi(u)=\sum_iq_i\log(q_i/c_i)$ at
+$\mu(u)=p$. That $q(u(p))$ minimises $D(\cdot\Vert c)$ under the mean constraint is the Lagrange (Gibbs) characterisation of exponential families \cite{AmariNagaoka2000}. (5) is the change of variables $p=\nabla\varphi(u)$, whose Jacobian is $\operatorname{Hess}\varphi$ \cite{DuistermaatHeckman1982}; the $\theta$-integral gives $(2\pi)^d$.
+Checks: KB1 checks (1)--(2) on $30$ random supports, against finite differences. KB2 checks (4) on $20$ supports. KB3 checks (5) by comparing
+$\int\det\operatorname{Hess}\varphi\,du$ over boxes with the areas of their moment images.
+\end{proof}
+
+In general this structure lives on the open orbit $(\mathbb C^*)^d$ only. A Delzant polytope $Q$ determines a compact symplectic toric
+manifold $X_Q$ \cite{Delzant1988}, but a metric built from an arbitrary support need not extend smoothly to it. It does extend in one case. Suppose $S$ is the set of
+lattice points of a Delzant lattice polytope $Q$. On a smooth projective toric variety an ample line bundle is very ample \cite[Section~3.4]{Fulton1993}.
+So the monomial map extends to an embedding of $X_Q$ in $\mathbb P^{|S|-1}$, and $\omega$ is the restriction of the Fubini--Study form; the weights $c_i$ act by a diagonal
+automorphism. The polytope of
+the layers paper's blueprint is not Delzant: its vertex at $(1,1)$ has determinant $3$. So the blueprint gives an orbifold, and the examples
+below are $\mathbb{CP}^2$ and $F_1$.
+
+\section{The bridge}\label{sec:bridge}
+\paragraph{Setting.} Let $Q=\{p:\ell_k(p)=\langle v_k,p\rangle-\lambda_k\ge0,\ k=1,\dots,m\}$ be a compact Delzant polytope, with primitive inward facet normals $v_k$. Its
+potential, in the convention of Hori--Vafa and Cho--Oh \cite{HoriVafa2000,ChoOh2006}, is
+\[
+W_T(y)=\sum_kT^{-\lambda_k}y^{v_k},\qquad y\in(\mathbb C^*)^n,\ 0<T<1 .
+\]
+A family of critical points $y_T$ has \emph{valuation} $u=\lim_{T\to0}\log|y_T|/\log T$ when the limit exists. At $u$, the term $k$ has order $\ell_k(u)$, and the
+\emph{leading terms} are $K(u)=\{k:\ell_k(u)\text{ minimal}\}$. Say the leading terms \emph{balance} at $u$ if $0=\sum_{k\in K(u)}a_kv_k$ for some $a_k>0$.
+
+\begin{lemma}[balance is Birch at target zero]\label{lem:balance}
+For vectors $v_k$, $k\in K$, the following are equivalent:
+\begin{itemize}
+\item there are weights $a_k>0$ with $\sum_ka_kv_k=0$;
+\item there is a law $q$ with $q_k>0$ for every $k\in K$ and mean $\sum_kq_kv_k=0$;
+\item $0$ lies in the relative interior of $\operatorname{conv}\{v_k:k\in K\}$.
+\end{itemize}
+When they hold, the positive monomial law with support $\{v_k\}$ and mean $0$ is unique, up to the torus directions orthogonal to the span of the
+differences (Birch).
+\end{lemma}
+
+\begin{proof}
+Normalising the weights gives the first equivalence. The relative interior of the convex hull of finitely many points is the set of their
+convex combinations with all coefficients positive \cite[Theorem~6.9]{Rockafellar1970}. Uniqueness is Birch's theorem \cite{Birch1963}, which is
+\cite[Theorem ``the toric realization''(1)]{Layers} with target $0$.
+\end{proof}
+
+\begin{theorem}[the Birch bridge]\label{thm:bridge}
+Let the $\lambda_k$ be rational.
+\begin{enumerate}
+\item[(1)] \emph{One positive critical point} (Galkin's lemma \cite{Galkin2014}; Used). For each $T\in(0,1)$, $W_T$ has exactly one critical point $y_T$ in the positive torus $(0,\infty)^n$. A positive $y$ is
+  critical iff the law $w_k\propto T^{-\lambda_k}y^{v_k}$ of the terms of $W_T$ has mean exponent $\sum_kw_kv_k=0$: Birch at target $0$.
+\item[(2)] \emph{Its valuation balances.} The valuation $u^*$ of $y_T$ exists. As $T\to0$ the law $w$ tends to a law supported exactly on $K(u^*)$, with positive weights and
+  mean $0$. So the leading terms balance at $u^*$.
+\item[(3)] \emph{Candidates versus selection.} The converse of (2) fails: the set of points where the leading terms balance can be larger than
+  $\{u^*\}$, and higher-order terms select $u^*$ among them.
+\item[(4)] \emph{The sign split.} At the valuation of a critical point that is not positive, the leading coefficients $\rho_k$ of the surviving terms give
+  a linear dependence $0=\sum_{K}\rho_kv_k$ with every $\rho_k\ne0$, real of either sign or complex. Unlike the positive case, this dependence
+  does not define a probability law, and the leading terms there need not balance.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) In log coordinates $b=\log y$, $\log W_T(e^b)=\log\sum_kT^{-\lambda_k}e^{\langle v_k,b\rangle}$ is strictly convex. Its Hessian is the covariance of the $v_k$ under $w$, which is positive definite because the
+$v_k$ \emph{affinely} span $\R^n$. Indeed the $v_k$ of a compact polytope positively span $\R^n$, so $0$ lies in the interior of $\operatorname{conv}\{v_k\}$, which is therefore full-dimensional.
+Positive spanning also makes the function coercive: every direction increases some term. It therefore has exactly one critical point. Since $W_T>0$
+there, a critical point of $\log W_T$ is a critical point of $W_T$, and its gradient is the mean of $w$. (2) Write $T=\tau^N$, with $N$ a common
+denominator of the $\lambda_k$. The positive critical point is a semialgebraic function of $\tau$, so it has a Puiseux expansion with positive leading
+coefficients \cite{BochnakCosteRoy1998}, and its valuation exists. The weights $w_k$ then have orders $\ell_k(u^*)$ in $T$, up to a common shift, so they
+concentrate on $K(u^*)$. The limits are strictly positive on every $k\in K(u^*)$, namely $w_k\to\rho_k/\sum_{j\in K(u^*)}\rho_j$, where the $\rho_k>0$ are the leading
+coefficients of the positive Puiseux series $T^{-\lambda_k}y_T^{v_k}$. That strict positivity is what places $0$ in the relative interior. This is the arc-limit theorem of the layers paper. The mean stays $0$ in the limit; apply
+\cref{lem:balance}. Judd and Rietsch prove that the valuation satisfies tropical critical conditions of this kind for complete positive Laurent
+polynomials over generalised Puiseux series \cite{JuddRietsch2019}. (3) is \cref{ex:F1}(b). (4) The same expansion, with complex leading coefficients $\rho_k$, gives $0=\sum_{K}\rho_kv_k$ with every
+$\rho_k\ne0$. \Cref{ex:F1}(a) shows a real critical point with one negative coordinate, whose leading terms admit no positive balance.
+The checks below corroborate these statements; they are not proofs.
+KB4 checks (1)--(2) on $\mathbb{CP}^2$ and on $F_1$ at five blow-up sizes, from four starts each. KB5 checks (3) at exact rational points. KB6
+finds all four critical points of $F_1$ in $80$-digit arithmetic and checks (4).
+\end{proof}
+
+\section{The Floer reading}\label{sec:floer}
+For a compact toric Fano manifold $X_Q$, Cho and Oh show that the potential of the Lagrangian torus fibres is exactly $W$, with no
+corrections, and that a fibre $L(u)$ has non-vanishing Floer cohomology for some local system iff a critical point of $W$ has valuation $u$
+\cite{ChoOh2006}. Fukaya, Oh, Ohta and Ono extend the picture to all compact toric manifolds, where $W$ acquires corrections \cite{FOOO2010}.
+We use only the Fano statement, and we prove nothing about Floer cohomology. Both examples below are Fano: $\mathbb{CP}^2$, and $F_1$, the blow-up of
+$\mathbb{CP}^2$ at a point, which is a del Pezzo surface. The Hirzebruch surfaces $F_n$ with $n\ge2$ are not Fano.
+
+\begin{corollary}[the probabilistic fibre]\label{cor:fibre}
+On a compact toric Fano manifold, exactly one critical point of $W$ is positive. Its valuation determines \emph{one} torus fibre $L(u^*)$ with
+non-vanishing Floer cohomology, not the only one. At $u^*$, the terms of $W$ of least order form a conditioned law with mean exponent $0$.
+Other critical points, including non-positive ones, may determine further fibres with non-vanishing Floer cohomology, but those are not
+represented by the positive probabilistic law. The fibre $L(u^*)$, a Lagrangian torus, is a different object from the positive real
+Lagrangian section of \cref{prop:kahler}(3), which meets it once.
+\end{corollary}
+
+\begin{proof}
+Combine \cref{thm:bridge}(1)--(2) with the cited theorem.
+\end{proof}
+
+\begin{example}[$\mathbb{CP}^2$]\label{ex:CP2}
+Here $v=(1,0),(0,1),(-1,-1)$ and $\lambda=(0,0,-1)$, so $W_T=y_1+y_2+T/(y_1y_2)$. The critical points are $y_1=y_2$ with $y_1^3=T$: three of them, one positive, all
+with valuation $(\tfrac13,\tfrac13)$, the barycentre. There all three terms tie, and $\tfrac13\bigl((1,0)+(0,1)+(-1,-1)\bigr)=0$. The barycentre is also the only point where
+the leading terms balance. Its fibre is the Clifford torus.
+\end{example}
+
+\begin{example}[the Hirzebruch surface $F_1$]\label{ex:F1}
+Take $Q=\{p_1\ge0,\ p_2\ge0,\ p_1+p_2\le1,\ p_2\le1-\alpha\}$, the triangle of $\mathbb{CP}^2$ with the corner $(0,1)$ cut by a facet of length $\alpha\in(0,1)$. So
+$v=(1,0),(0,1),(-1,-1),(0,-1)$ and $W_T=y_1+y_2+T/(y_1y_2)+T^{1-\alpha}/y_2$. The critical equations are $y_1^2y_2=T$ and $y_2^2=T/y_1+T^{1-\alpha}$. With $y_2=w^2$ and
+$y_1=T^{1/2}/w$, they become $w^4-T^{1/2}w-T^{1-\alpha}=0$, so there are four critical points. The Newton polygon of this quartic gives their valuations.
+\begin{enumerate}
+\item[(a)] $\alpha<\tfrac13$. Three critical points lie over $(\tfrac13,\tfrac13)$, one of them positive, and there the first three terms balance. The fourth lies over
+  $(\alpha,1-2\alpha)$. Its leading coefficient is $w\approx-T^{1/2-\alpha}$, so $y_1<0$. Its leading terms are $(1,0),(-1,-1),(0,-1)$. They admit the signed
+  balance $(1,0)+(-1,-1)-(0,-1)=0$ (in general $a_1=a_3=-a_4$), but no positive one. By \cref{cor:fibre}, the probabilistic fibre is over
+  the barycentre, and the second fibre that the cited theorem provides is outside the positive theory.
+\item[(b)] $\alpha>\tfrac13$. All four critical points lie over $u^*=(\tfrac{1+\alpha}4,\tfrac{1-\alpha}2)$, one of them positive. But the leading terms $(0,1)$ and $(0,-1)$ balance at every point of
+  the open segment $u_2=\tfrac{1-\alpha}2$, $\tfrac{1-\alpha}2<u_1<\alpha$. The endpoints are excluded. There a third term joins the leading set, which is
+  $\{v_1,v_2,v_4\}$ at $u_1=\tfrac{1-\alpha}2$ and $\{v_2,v_3,v_4\}$ at $u_1=\alpha$. Neither set balances positively, because the first coordinates of its vectors are $1,0,0$, or
+  $0,-1,0$. Leading order gives a segment of candidates, and the next order selects $u^*$: the same mechanism by which the
+  layers paper's ties at the limit are broken at higher order.
+\end{enumerate}
+At $\alpha=\tfrac13$ all four facets tie at the barycentre. KB5 and KB6 corroborate every statement here at $\alpha=\tfrac15$ and $\tfrac35$; KB4 also uses $\tfrac14,\tfrac25,\tfrac45$
+(\cref{fig:F1}).
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_kahler.pdf}
+\caption{$F_1$ at two blow-up sizes. (a) $\alpha=0.2$: the only point where the leading terms balance is the barycentre, which carries the positive critical
+point; a real critical point with $y_1<0$ sits over $(\alpha,1-2\alpha)$, outside the positive theory. (b) $\alpha=0.6$: the leading terms balance along an open segment, whose endpoints (open circles) have no positive balance,
+and the critical points all sit over one point of it. (c) $\alpha=0.6$: the $u_1$-marginal of the thimble law with $\hbar=T^h$ (\cref{thm:tropical,ex:levels}). At
+$h=0$ it is the marginal of the uniform law on $Q$; at $h=h^*=0.2$ it is uniform on the segment; at $h=0.3$ it is uniform on $[0.3,0.5]$; above
+$0.4$ it is concentrated at $u_1^*=0.4$. Here $\log T=-200$, and $-100$ for $h=0.45$.}\label{fig:F1}
+\end{figure}
+
+\section{The positive thimble and its tropical limit}\label{sec:thimble}
+The positive critical point has a second, analytic role: it is the critical point of an oscillatory integral. In mirror symmetry the
+integral $\int e^{-W/\hbar}\,dy/y$ over the positive real cycle is the one tied to Galkin's conifold point and to Gamma conjecture~I; under homological mirror symmetry that
+cycle is expected to correspond to the structure sheaf \cite{Galkin2014,GGI2016,Iritani2009}. Here we only need its elementary properties, and what
+the tropical limit does to the law it carries. Give $(\mathbb C^*)^n$ the flat metric $\sum_j|d\log y_j|^2$, and let $\hbar>0$.
+
+\begin{proposition}[the positive thimble]\label{prop:thimble}
+\begin{enumerate}
+\item[(1)] The positive orthant $(0,\infty)^n$ is the ascending Lefschetz thimble $J_+$ of $y_T$ for $\operatorname{Re}(W_T/\hbar)$, the set of points whose downward gradient flow
+  tends to $y_T$. In $b=\log y$, the Hessian of $\operatorname{Re}W_T(e^{b})$ at $b_T=\log y_T$, in the coordinates $(\operatorname{Re}b,\operatorname{Im}b)$, is $\operatorname{diag}(H,-H)$ with
+  $H=\operatorname{Hess}(W_T\circ\exp)(b_T)$ positive definite. So the real directions ascend, and $\operatorname{Im}W_T=0$ on $J_+$.
+\item[(2)] $\mu_\hbar=Z^{-1}e^{-W_T(y)/\hbar}\,dy/y$ on $J_+$ is a probability law, and $Z<\infty$.
+\item[(3)] \emph{Laplace.} As $\hbar/W_T(y_T)\to0$, the law of $b=\log y$ under $\mu_\hbar$ is asymptotically normal, with mean $b_T$ and covariance $\hbar H^{-1}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $W_T\circ\exp(b)=\sum_kT^{-\lambda_k}e^{\langle v_k,b\rangle}$ is holomorphic, and its restriction to real $b$ is strictly convex and coercive (\cref{thm:bridge}(1)). For a
+holomorphic $f$, the Hessian of $\operatorname{Re}f$ in $(\operatorname{Re}b,\operatorname{Im}b)$ is $\operatorname{diag}(H,-H)$ with $H$ the real Hessian, by the Cauchy--Riemann equations. The metric is
+real, so the gradient flow of $\operatorname{Re}W_T$ preserves the real locus. There the flow is the gradient flow of a strictly convex, coercive function, and
+every orbit tends to $b_T$. So the orthant lies in the stable manifold $J_+$, which is an $n$-ball. The orthant is an $n$-manifold, so it is
+open in $J_+$; it is closed in $(\mathbb C^*)^n$, so it is closed in $J_+$. Since $J_+$ is connected, the two are equal.
+(2) $W_T>0$ on $J_+$, and $W_T(e^b)\ge c|b|-C$ by positive spanning, so $Z<\infty$. (3) This is Laplace's method at the non-degenerate
+minimum $b_T$ of $W_T\circ\exp$; the relative corrections are $O(\hbar/W_T(y_T))$. KB7 corroborates (1) and (3), at $\hbar/W_T(y_T)=10^{-2},10^{-3},10^{-4}$.
+\end{proof}
+
+Laplace describes the limit $\hbar\to0$ at fixed $T$. The tropical limit couples the two, $\hbar=T^h$, and reads $y$ on the scale of the
+valuation, $u=\log y/\log T$. Since $T^{-\lambda_k}y^{v_k}=T^{\ell_k(u)}$, the pushforward $\nu_{T,h}$ of $\mu_{T^h}$ to $u$ has density proportional to
+\[
+f_{T,h}(u)=\exp\Bigl(-\sum_kT^{\ell_k(u)-h}\Bigr).
+\]
+Let $g(u)=\min_k\ell_k(u)$, which is the tropicalisation of $W$ in the min convention. Let $h^*=\max_ug$, and let $Q_h=\{u:g(u)\ge h\}=\{\langle v_k,u\rangle\ge\lambda_k+h\}$, so that $Q_0=Q$.
+
+\begin{theorem}[the tropical limit of the thimble law]\label{thm:tropical}
+\begin{enumerate}
+\item[(1)] If $h<h^*$, then $\nu_{T,h}$ tends, in total variation, to the uniform law on the polytope $Q_h$. At $h=0$ this is the normalised
+  Duistermaat--Heckman measure of $X_Q$.
+\item[(2)] If $h\ge h^*$, then $\nu_{T,h}$ concentrates on $Q_{h^*}=\operatorname{argmax}g$: $\nu_{T,h}(U)\to1$ for every open $U\supseteq Q_{h^*}$.
+\item[(3)] $\operatorname{argmax}g=\{u:0\in\operatorname{conv}\{v_k:k\in K(u)\}\}$. It is a polytope. It contains every candidate, every $u$ with $0\in\operatorname{relint}\operatorname{conv}\{v_k:k\in K(u)\}$, and
+  in particular $u^*$; it can also contain non-candidates. Every $u$ outside it has $g(u)<h^*$. This applies to the valuation of a signed critical point of
+  \cref{ex:F1}(a) as well.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Write $L=\log(1/T)$. Since the $v_k$ positively span, $g(u)\le C-c|u|$, so $h^*$ is finite and attained, and the level sets of $g$ are compact.
+(1) For $u$ with $g(u)>h$, every exponent is positive and $f_{T,h}(u)\to1$. Off $Q_h$, some exponent is negative and $f_{T,h}(u)\to0$, and $\partial Q_h$ is null. For $T\le T_0<1$,
+$f_{T,h}\le\min(1,\exp(-T_0^{\,g-h}))$, which is integrable. By dominated convergence, $\int f_{T,h}\to\operatorname{vol}Q_h>0$, since $Q_h$ has interior when $h<h^*$. Scheff\'e's lemma then gives
+convergence in total variation.
+(2) Choose $\delta>0$ with $\{g\ge h^*-2\delta\}\subseteq U$. Put $s=h-h^*\ge0$. Off $U$, $T^{g-h}\ge T^{-(s+2\delta)}$, so $\int_{U^c}f_{T,h}\le C\exp(-\tfrac12T^{-(s+2\delta)})$. Near a
+maximiser $u_0$, on the ball of radius $1/(ML)$, where $M=\max|v_k|$, every $\ell_k\ge h^*-1/L$. So $f_{T,h}\ge\exp(-me\,T^{-s})$ there, and the mass of the ball is at least
+$cL^{-n}\exp(-me\,T^{-s})$. The ratio of the two bounds tends to $0$, because $T^{-2\delta}\to\infty$.
+(3) $g$ is concave and piecewise linear, and its superdifferential at $u$ is $\operatorname{conv}\{v_k:k\in K(u)\}$ \cite[Theorem~23.8]{Rockafellar1970}. A point maximises a concave function iff
+$0$ lies in its superdifferential. Candidates satisfy this, and so does $u^*$ by \cref{thm:bridge}(2). This recovers, in our setting, the theorem
+of Judd and Rietsch that the tropical critical point maximises the tropicalisation \cite[Thm.~1.2]{JuddRietsch2019}. KB8 corroborates (1)--(3) on $\mathbb{CP}^2$ and
+on $F_1$ with $\alpha=\tfrac15$ and $\tfrac35$.
+\end{proof}
+
+So the first level of the tropical limit sees exactly the max--min set. That set is the first step of the iterated max--min by which
+Fukaya, Oh, Ohta and Ono locate a fibre \cite{FOOO2010}, and of the recursive construction of Judd and Rietsch \cite{JuddRietsch2019}. The selection of $u^*$
+inside it is a second-level question.
+
+\begin{example}[the levels on $F_1$]\label{ex:levels}
+For $\mathbb{CP}^2$, and for $F_1$ with $\alpha<\tfrac13$, $h^*=\tfrac13$ and $\operatorname{argmax}g$ is the barycentre. The signed fibre of \cref{ex:F1}(a) has $g=\alpha<h^*$. For
+$F_1$ with $\alpha>\tfrac13$, $h^*=\tfrac{1-\alpha}2$, and $\operatorname{argmax}g$ is the closed segment $S=\{u_2=\tfrac{1-\alpha}2,\ \tfrac{1-\alpha}2\le u_1\le\alpha\}$. Its relative interior consists of the
+candidates, and its endpoints are maximisers that are not candidates.
+\begin{enumerate}
+\item[(a)] At $h=h^*$ the $u_1$-marginal of $\nu_{T,h}$ tends to the \emph{uniform} law on $[\tfrac{1-\alpha}2,\alpha]$. Leading order gives the selected point no extra mass.
+\item[(b)] On $S$, $\ell_1=u_1$ and $\ell_3=\tfrac{1+\alpha}2-u_1$. The next max--min level is $h_2=\max_S\min(\ell_1,\ell_3)=\tfrac{1+\alpha}4$, attained at $u_1=\tfrac{1+\alpha}4=u^*_1$. For
+  $h^*<h<h_2$, the $u_1$-marginal tends to the uniform law on $[h,\tfrac{1+\alpha}2-h]$. For $h>h_2$, it concentrates at $u_1^*$.
+\end{enumerate}
+\emph{Sketch.} Near $S$, the transverse factor $\exp(-T^{u_2-h}-T^{1-\alpha-u_2-h})$ does not depend on $u_1$. The coupling of $u_2$ to $\ell_3$ matters only in boundary layers of width
+$O(1/L)$. So the $u_1$-marginal behaves as in \cref{thm:tropical}, now for $\min(\ell_1,\ell_3)$ on $S$.
+KB8 corroborates (a) and (b) for $\alpha=\tfrac35$, at $h=\tfrac15,\tfrac3{10},\tfrac9{20}$ (\cref{fig:F1}(c)). That the mean at level $h^*$ equals $u_1^*$ here is a symmetry of this
+example: $u^*_1$ is the midpoint of $S$. The mechanism of selection is the second level, not the mean.
+\end{example}
+
+\section{Soft evidence moves \texorpdfstring{$\lambda$}{lambda}}\label{sec:data}
+This section starts the programme of conditioning existing structures on data and recording what changes. It treats one kind of data,
+soft evidence whose strength grows with the amount of data. Hard evidence (zero cells) and forgetting are not treated here.
+
+\begin{definition}[the data action]\label{conv:data}
+Fix a reference scale $N$ and put $T=e^{-N}$. Evidence that multiplies term $k$ of $W_T$ by $e^{-n\rho_k}$ after $n$ observations, with rates $\rho_k\ge0$, multiplies it by
+$T^{(n/N)\rho_k}$. So it replaces $\lambda$ by
+\[
+\lambda^{\mathrm{eff}}=\lambda-s\rho,\qquad s=n/N .
+\]
+Which term each observation weighs, and the scale $N$, are modelling choices. A likelihood of fixed size has $s\to0$ as $N\to\infty$. It changes the
+coefficients smoothly, as in \cref{prop:kahler}, and changes no valuation.
+\end{definition}
+
+Let $\Delta_m$ be the laws on the $m$ facets, and let $B=\{q\in\Delta_m:\sum_kq_kv_k=0\}$ be the \emph{balance polytope}, the laws with mean exponent $0$. It has dimension $m-n-1$,
+because $0$ lies in the interior of $\operatorname{conv}\{v_k\}$. Write $g_\lambda=\min_k\ell_k$, $h^*(\lambda)=\max g_\lambda$, and $F(\lambda)$ for the face of $B$ on which $\langle q,\lambda\rangle$ is maximal.
+
+\begin{proposition}[the max--min level is a balance programme]\label{prop:balancelp}
+\begin{enumerate}
+\item[(1)] $h^*(\lambda)=\min_{q\in B}\bigl(-\langle q,\lambda\rangle\bigr)$. So $h^*$ is concave and piecewise linear in $\lambda$.
+\item[(2)] Let $K_0$ be the union of the supports of the laws in $F(\lambda)$, and $\sigma_0=\operatorname{conv}\{v_k:k\in K_0\}$. Then $K(u)=K_0$ on the relative interior of $\operatorname{argmax}g_\lambda$, and
+  $K(u)\supsetneq K_0$ on its relative boundary. The candidates (\cref{thm:tropical}(3)) are exactly the relative interior, and $\dim\operatorname{argmax}g_\lambda=n-\dim\sigma_0$.
+\item[(3)] The limit law of the positive critical point (\cref{thm:bridge}(2)) lies in $F(\lambda)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $\max_u\min_k\ell_k=\max_u\min_{q\in\Delta_m}\sum_kq_k\ell_k(u)$, and the minimax theorem exchanges the two. For fixed $q$, $\sup_u\sum_kq_k(\langle v_k,u\rangle-\lambda_k)$ is $-\langle q,\lambda\rangle$ if $\sum_kq_kv_k=0$
+and $+\infty$ otherwise. (2) By complementary slackness, $q_k>0$ for an optimal $q$ forces $\ell_k(u)=h^*$ at every maximiser $u$, so $K(u)\supseteq K_0$ on $\operatorname{argmax}g_\lambda$. By strict
+complementarity \cite{Schrijver1986}, some maximiser has $\ell_j>h^*$ for every $j\notin K_0$. The same then holds on the relative interior of $\operatorname{argmax}g_\lambda$, which is
+$\{u:\ell_k(u)=h^*\ (k\in K_0),\ \ell_j(u)>h^*\ (j\notin K_0)\}$. A law in the relative interior of $F(\lambda)$ is positive on $K_0$ and has mean $0$, so those points are candidates (\cref{lem:balance}). At a
+boundary point, suppose $0$ were in the relative interior of $\operatorname{conv}\{v_k:k\in K(u)\}$. Then there would be a balanced law positive on all of $K(u)$. That law would be optimal,
+since $\sum_kq_k\ell_k(u)=h^*$, so its support would lie in $K_0$, a contradiction. The linear span of $\{v_k:k\in K_0\}$ is its affine span, since it contains $0$, so the equations $\ell_k=h^*$ on $K_0$ cut out
+dimension $n-\dim\sigma_0$. (3) The limit law $q$ is balanced and supported on $K(u^*)$, where every $\ell_k(u^*)=h^*$. So $-\langle q,\lambda\rangle=\sum_kq_k\ell_k(u^*)=h^*$, and $q$ is optimal.
+DW2 and DW3 corroborate (1)--(3) on $40$ and $23$ configurations.
+\end{proof}
+
+So candidates against selection appears twice, in dual spaces. In $u$-space, $u^*$ is selected inside the relative interior of $\operatorname{argmax}g_\lambda$, which has dimension $n-\dim\sigma_0$. In law space, the
+limit law is selected inside $F(\lambda)$. The two can be non-trivial at different parameters (\cref{ex:F1wall}).
+
+\begin{corollary}[where data can act]\label{cor:where}
+\begin{enumerate}
+\item[(1)] The leading set $K_0$, the candidate dimension and the face $F$ change only on the walls of the normal fan of $B$, the \emph{outcome walls}. Within a
+  chamber, $h^*$ is affine in $\lambda$, and so is $u^*$ when $\sigma_0$ is an $n$-simplex.
+\item[(2)] Evidence along a translation, $\rho_k=\langle v_k,t\rangle$, changes nothing but $u^*\mapsto u^*-st$. Evidence along the constant, $\rho=\mathbf 1$, changes nothing but $h^*\mapsto h^*+s$. Only the quotient of $\R^m$ by these
+  $n+1$ directions can cross a wall. It has dimension $m-n-1$, the number of independent affine dependences (circuits) of $\{v_k\}$.
+\item[(3)] Suppose there is one circuit $a$, normalised to be primitive and integral. The wall is $c(\lambda)=-\langle a,\lambda\rangle=0$, and along $\lambda_0-s\rho$ it is reached at
+  $s^*=-c(\lambda_0)/\langle a,\rho\rangle$ when this is positive, never otherwise. Over rates with $\max_k\rho_k-\min_k\rho_k\le1$, the least such $s$ is $|c(\lambda_0)|/(\tfrac12\|a\|_1)$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(1) $F(\lambda)$ is constant on the relative interior of each cone of the normal fan of $B$; apply \cref{prop:balancelp}. On a chamber, $h^*=-\langle q_0,\lambda\rangle$ for a fixed vertex $q_0$. When $\sigma_0$ is an
+$n$-simplex, $u^*$ is the unique solution of $\ell_k(u)=h^*$, $k\in K_0$, which is linear in $\lambda$. (2) Under a translation, $\ell_k$ becomes $\ell_k(u+st)$. Under the constant, every $\ell_k$ shifts by $s$.
+Both are orthogonal to $B-B$, which consists of affine dependences. (3) $B$ is a segment, and its normal fan has one wall, $\langle q_A-q_B,\lambda\rangle=0$, where $q_A-q_B$ is a multiple of $a$.
+Since $\sum_ka_k=0$, adding a constant to $\rho$ leaves $\langle a,\rho\rangle$ unchanged. So the best value over range at most $1$ is $\sum_ka_k^+=\tfrac12\|a\|_1$.
+\end{proof}
+
+\begin{example}[$\mathbb{CP}^2$: no wall]
+Here $m=n+1$, so there is no circuit, and $B$ is the single law $(\tfrac13,\tfrac13,\tfrac13)$. No soft evidence changes the leading set of $\mathbb{CP}^2$. Data only move the selected point and the level
+(DW4, DW7).
+\end{example}
+
+\begin{example}[$F_1$ across its wall]\label{ex:F1wall}
+For general $\lambda$, put $L=-(\lambda_1+\lambda_2+\lambda_3)$ and $\alpha=-\lambda_1-\lambda_3+\lambda_4$. These are the size of the triangle and the length of the blown-up facet, and both are
+invariant under translation. The K\"ahler cone is $0<\alpha<L$. Its walls are viability walls, where the polytope loses facet~$4$ or collapses, and $X_Q$ changes.
+The one circuit is $a=(2,-1,2,-3)$, with $c(\lambda)=3\alpha-L$. The balance polytope is the segment from $q_A=(\tfrac13,\tfrac13,\tfrac13,0)$ to $q_B=(0,\tfrac12,0,\tfrac12)$, and $h^*=\min\bigl(L/3,(L-\alpha)/2\bigr)$.
+\begin{enumerate}
+\item[(a)] The outcome wall $\alpha=L/3$ lies \emph{inside} the K\"ahler cone: the manifold does not change there. Below it, $K_0=\{1,2,3\}$ and the candidate is a point.
+  Above it, $K_0=\{2,4\}$, the candidates form an open segment, and $u^*$ is selected at the second level (\cref{ex:levels}). The lower diagonal of the subdivision flips from $v_1v_3$ to $v_2v_4$.
+\item[(b)] $u^*$ is continuous and piecewise affine across the wall (\cref{fig:data}(a)). What jumps is the leading set, the candidate dimension ($0\to1$) and the mechanism of
+  selection (leading order $\to$ second level). The signed fibre over $(\alpha,1-2\alpha)$ reaches the barycentre at the wall. By the cited theorem \cite{ChoOh2006}, the number of
+  torus fibres with non-vanishing Floer cohomology drops from two to one there. We claim nothing about the Fukaya category.
+\item[(c)] \emph{At the wall} ($\alpha=1/3$, $L=1$), the substitution $w=T^{1/6}x$ turns the quartic of \cref{ex:F1} into $x^4-x-1=0$ for every $T$. So the positive law is
+  $(1/x,\,x^2,\,1/x,\,1/x^2)/\Sigma\approx(0.2156,0.3922,0.2156,0.1766)$ for every $T$, where $x\approx1.2207$. It is the interior point $(1-t)q_A+tq_B$ of $F=B$, with $t\approx0.353$. Here the candidate in
+  $u$-space is a single point, but the law is selected inside a segment.
+\item[(d)] The discriminant of $w^4-T^{1/2}w-T^{1-\alpha}$ is $-27T^2-256T^{3-3\alpha}$, which never vanishes: no two critical points collide for $T>0$. The outcome wall is where
+  its two terms have equal order. It is a wall of the tropical discriminant, not of the discriminant itself.
+\item[(e)] \emph{Data.} Start at $\alpha=1/5$, $L=1$, so $c=-2/5$. Evidence against term~$1$, $\rho=e_1$, has $\langle a,\rho\rangle=2$ and reaches the wall at $s^*=1/5$, that is $n^*=N/5$
+  (\cref{fig:data}(b)). Along the way $\alpha/L=(1/5+s)/(1+s)$ stays in the K\"ahler cone. Evidence against term~$4$ ($\langle a,\rho\rangle=-3$) never reaches the wall. The most efficient
+  rates with range at most $1$ are $\rho=(1,0,1,0)$, against terms $1$ and $3$, with $s=1/10$.
+\end{enumerate}
+DW4--DW7 corroborate (a)--(e).
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_datawalls.pdf}
+\caption{Soft evidence on $F_1$. (a) The selected valuation $u^*$ across the K\"ahler cone. The curves are the chamber formulas and the circles the positive critical point at
+$T=10^{-30}$. The outcome wall at $\alpha=1/3$ changes the leading set and the candidate dimension, not the position of $u^*$; here $h^*=u_2^*$. (b) A data path from $\alpha=1/5$ with evidence
+against term~$1$: $u^*(s)$ is affine on each side of $s^*=1/5$, with a kink at the wall.}\label{fig:data}
+\end{figure}
+
+On $F_1$, then, the least data that changes the perspective changes \emph{which terms carry the limit law}, not where the selected state
+sits. A decision that reads the leading set jumps at $n^*$. A decision that reads $u^*$ continuously does not. Decision, contextuality and
+value-of-information walls need their own definitions, a decision model, a named complex and obstruction class, and an information-acquisition
+model, before they can be compared with the outcome walls. We record them separately and have not computed them.
+
+\part{Back to contingency tables}
+Part~I went from toric geometry to conditioned probability. Part~II runs the dictionary backwards, from a table of counts to the potential,
+and asks what the Floer-selected fibre means for the table. It works the independence model exactly. Every operation it uses, and every
+operation it does not yet treat, is recorded in the ledger (\cref{app:ledger}).
+
+\section{Two configurations of one model}\label{sec:twoconf}
+An $r\times c$ table of counts $t_{ij}$ has row margins $t_{i+}$ and column margins $t_{+j}$. The independence model is the log-linear model whose design
+matrix $A$ has one column per cell, the row indicator stacked on the column indicator. It is toric \cite{DiaconisSturmfels1998,GeigerMeekSturmfels2006}: its sufficient
+statistic is the vector of margins, and by Birch the MLE is the unique law in the model with the observed margins, $\hat p_{ij}=t_{i+}t_{+j}/n^2$
+\cite{Birch1963,BishopFienbergHolland1975}. The moment polytope of this model is $\Delta_{r-1}\times\Delta_{c-1}$, so its manifold is $\mathbb{CP}^{r-1}\times\mathbb{CP}^{c-1}$, which is Delzant and Fano.
+
+The model carries two different point configurations, and they must not be confused.
+\begin{proposition}[cells and facets]\label{prop:twoconf}
+\begin{enumerate}
+\item[(1)] \emph{Cells.} The $rc$ columns of $A$ satisfy $(r-1)(c-1)$ independent linear relations. These are spanned by the basic moves $+1$ at $(i,j),(k,l)$ and $-1$ at $(i,l),(k,j)$,
+  which change a table without changing its margins. This is the Tier~A support of \cref{prop:kahler}.
+\item[(2)] \emph{Facets.} The $r+c$ inward facet normals of $\Delta_{r-1}(L_1)\times\Delta_{c-1}(L_2)$ have exactly one circuit, $a=(c\,\mathbf 1_r,-r\,\mathbf 1_c)/\gcd(r,c)$. This is the configuration $W$ is built from.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $A$ has rank $r+c-1$, and the moves lie in its kernel and have rank $(r-1)(c-1)$ \cite{DiaconisSturmfels1998}. (2) $m-n-1=(r+c)-(r+c-2)-1=1$. The row normals sum to $0$, and
+so do the column normals. So $\sum_ka_kv_k=0$, and $\sum_ka_k=rc-cr=0$. CT1 checks both for $r,c\in\{2,3,4\}$.
+\end{proof}
+
+So the $2\times3$ model has two moves but one circuit. The moves act on tables with fixed margins, within a fibre. The circuit acts on
+$\lambda$, across Kähler classes. The second statement is a special case of a general count.
+
+\begin{proposition}[products add one circuit]\label{prop:product}
+If $v^{(1)}$ and $v^{(2)}$ both have $0$ in the interior of their convex hulls, the product configuration has $(m_1-n_1-1)+(m_2-n_2-1)+1$ independent circuits. The extra
+one is $(q^{(1)},-q^{(2)})$ for balanced laws $q^{(i)}$ of the factors. Its wall is $h^*_1=h^*_2$ when each factor has a single balanced law.
+\end{proposition}
+
+\begin{proof}
+The count is $(m_1+m_2)-(n_1+n_2)-1$. The vector $(q^{(1)},-q^{(2)})$ sums to $1-1=0$, and both halves balance. It is independent of the circuits of the factors,
+which sum to zero on each factor separately. When $B_i=\{q^{(i)}\}$, the balance programme gives $h^*=\min(h_1^*,h_2^*)$ (\cref{prop:balancelp}), with a wall where they are equal.
+\end{proof}
+
+\section{The independence model: its wall and its selection}\label{sec:indep}
+In the coordinates $b$ = the first $r-1$ row margins and the first $c-1$ column margins, the facets of $Q=\Delta_{r-1}(L_1)\times\Delta_{c-1}(L_2)$ have $\ell_k(b)$ equal to the $k$-th
+margin. Here $L_1$ and $L_2$ are the totals of the row and column margins. So $W=W_{\mathrm{row}}(y)+W_{\mathrm{col}}(z)$ with $W_{\mathrm{row}}=y_1+\dots+y_{r-1}+T^{L_1}/(y_1\cdots y_{r-1})$, and similarly for columns.
+
+\begin{theorem}[the independence model]\label{thm:indep}
+\begin{enumerate}
+\item[(1)] $h^*=\min(L_1/r,\,L_2/c)$. The leading set is the row facets if $cL_1<rL_2$, the column facets if $cL_1>rL_2$, and all $r+c$ facets on the wall $cL_1=rL_2$.
+  The wall is $c(\lambda)=-\langle a,\lambda\rangle=(cL_1-rL_2)/\gcd(r,c)=0$.
+\item[(2)] The critical points of $W$ are $y_i=\zeta T^{L_1/r}$, $z_j=\eta T^{L_2/c}$ with $\zeta^r=\eta^c=1$, so there are $rc$ of them. All have the valuation $u^*=(L_1/r,\dots;L_2/c,\dots)$, the
+  uniform margins, for every $L_1,L_2$. The positive law is exactly proportional to $T^{L_1/r}$ on each row facet and $T^{L_2/c}$ on each column facet.
+\item[(3)] Off the wall the candidates have dimension $c-1$ (if $cL_1<rL_2$) or $r-1$, and the uniform margins are selected at the second level. On the wall the candidate
+  is the single point $u^*$.
+\item[(4)] By the cited theorem \cite{ChoOh2006}, exactly one torus fibre has non-vanishing Floer cohomology, for every $L_1,L_2$. So the outcome wall of the independence
+  model changes no Floer data. On $F_1$ it does (\cref{ex:F1wall}(b)).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) Each factor has the single balanced law, uniform on its facets, with values $L_1/r$ and $L_2/c$. Apply \cref{prop:product}. (2) The variables separate.
+$\partial W_{\mathrm{row}}/\partial y_i=0$ gives $y_i\prod_jy_j=T^{L_1}$ for every $i$, so all $y_i$ are equal and $y^r=T^{L_1}$. The term values are then $T^{L_1/r}$ times a root of unity. (3) Off the
+wall the leading set is one factor's facets, so $\sigma_0$ has dimension $r-1$ (or $c-1$); apply \cref{prop:balancelp}(2). (4) All critical points share one valuation.
+CT2 and CT3 check (1)--(3), with exact rationals and gradients.
+\end{proof}
+
+\section{Margins against evidence}\label{sec:margins}
+Data enter in two ways, and the note keeps them apart.
+
+\begin{proposition}[two roles of data]\label{prop:roles}
+\begin{enumerate}
+\item[(1)] \emph{Observed margins} $b$ pick a point of $Q$, the fibre $\mu^{-1}(b)$ and the MLE (Birch). For the independence model, $\ell_k(b)$ is exactly the $k$-th margin, the facet
+  $\{\ell_k=0\}$ is a zero margin, and the MLE lies in the open model iff every margin is positive \cite{BishopFienbergHolland1975}. For general hierarchical models the
+  facets correspond to facial sets of cells, and the MLE fails to exist exactly when the margins lie on a proper face \cite{EFRS2006,FienbergRinaldo2012}. We use only the independence case.
+\item[(2)] \emph{Evidence on the terms of $W$} moves $\lambda$ (\cref{conv:data}), and with it $u^*$, $h^*$ and the walls. With $\lambda$ fixed, $u^*$ does not depend on $b$.
+\item[(3)] Both $b$ and $u^*$ are points of $Q$, in moment coordinates. The valuation of a critical point is the moment coordinate of its torus fibre $L(u^*)=\mu^{-1}(u^*)$
+  \cite{ChoOh2006}. So the MLE fibre and the Floer-selected fibre can be compared in one space. For the independence model we use the Fisher--Rao distance within
+  the model, between $\hat p$ and the law at $u^*$ (uniform margins). With surveys of sizes $n_1$ for rows and $n_2$ for columns,
+  \[
+  d(\hat p,p^*)^2=n_1\,d_\Delta(\hat p_{\mathrm{row}},\mathbf 1/r)^2+n_2\,d_\Delta(\hat p_{\mathrm{col}},\mathbf 1/c)^2,\qquad d_\Delta(p,q)=2\arccos\sum_i\sqrt{p_iq_i}.
+  \]
+  Joint sampling of $n$ cells is the case $n_1=n_2=n$. A coarser index is the \emph{centrality} $g(b)/h^*$: the smallest margin divided by its largest possible value.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) The first statements are direct, and the MLE formula shows positivity. (2) is \cref{cor:where} together with the fact that $W$ does not involve $b$. (3) The Fisher
+information of the independence family is block diagonal, $n_1\operatorname{Cov}(\mathrm{row})\oplus n_2\operatorname{Cov}(\mathrm{col})$, because the log-likelihood separates into a row part and a column
+part. So the model is a Riemannian product of two scaled simplices, and on each simplex the Fisher--Rao distance is $2\arccos$ of the Bhattacharyya coefficient \cite{AmariNagaoka2000}.
+CT4 and CT5 check (1) and the block structure.
+\end{proof}
+
+The MLE fibre and the Floer-selected fibre coincide exactly when the margins are uniform. That the Floer fibre is the uniform-margin table,
+the one farthest from every zero-margin degeneracy in lattice distance, is a reading of the cited theorem, not a new statistical result.
+The polytope used here is the \emph{base}, the space of margins. \Cref{sec:fibre} turns to the \emph{fibre} over a point of it, the coupling polytope, where the
+same margins become the K\"ahler class.
+
+\section{Data and walls in the independence model}\label{sec:indepdata}
+\begin{example}[$2\times2$ and $2\times3$]\label{ex:2x3}
+Under joint sampling, $L_1=L_2=n$. The $2\times2$ table therefore sits on its wall for every $n$, which is the monotone $\mathbb{CP}^1\times\mathbb{CP}^1$. For $2\times3$, $cL_1-rL_2=n>0$, so $h^*=n/3$, the column
+facets lead, and the candidates are the open segment of row margins $b_1\in(n/3,2n/3)$ with uniform column margins. Its endpoints are maximisers but not candidates.
+The selected point is $b_1=n/2$. To reach the wall the column survey must grow to $n_2=3n/2$: $n/2$ more column observations. In the terms of \cref{cor:where}(3), this is
+$\rho$ on a column facet with $\langle a,\rho\rangle=-r/\gcd$, so $s^*=n/2$. Crossing it changes the leading set and the candidate dimension. By \cref{thm:indep}(4) it changes no Floer data.
+CT6 checks every number.
+\end{example}
+
+\begin{example}[hard evidence: a structural zero]\label{ex:zero}
+Declare cell $(2,2)$ of the $2\times2$ table structurally zero. This is the quasi-independence model on three cells. The three remaining cells span a unimodular
+triangle, which is \emph{not} a face of the square: hard evidence need not restrict to a toric divisor. Its facet configuration is that of $\mathbb{CP}^2$, which has no circuit,
+so the one wall of the $2\times2$ model is gone. CT7 checks this. The general case, deleting cells of larger tables, is open.
+\end{example}
+
+\section{One coupling polytope through every layer}\label{sec:fibre}
+\begin{center}\colorbox{stAdapted!60}{\begin{minipage}{0.94\linewidth}\small
+\textbf{What this section shows, in plain words.} Fix two margins, a row law $f$ and a column law $g$. The tables (couplings) with those margins form a
+polygon, the \emph{fibre}. That polygon is the picture of a toric surface, and everything in Part~I can be drawn on it.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item The usual conditional law of a table given its margins, the one behind Fisher's exact test, \emph{is} the toric K\"ahler structure (\cref{fig:cpltierA}).
+\item The positive critical point of $W$ picks the \emph{leximin} coupling: the one whose smallest cell is as large as possible (\cref{fig:cplglance}).
+\item The positive thimble is a family of laws on couplings. It runs from ``every coupling equally likely'' to ``only the leximin coupling'' (\cref{fig:cplthimble}).
+\item Two kinds of wall cut the space of margins. Blow-up walls change the surface; leximin walls change which cells lead. Here one count of
+  data crosses a leximin wall and changes the Floer fibres, while the surface stays the same (\cref{fig:cplwalls}).
+\end{itemize}
+The example is the one followed in the architecture note \cite{Awasthi2026Arch}: $f=(2/5,3/5)$, $g=(3/10,43/100,27/100)$.
+\end{minipage}}\end{center}
+
+\subsection{Base and fibre}
+A pair of margins is a point of the \emph{base}, $\Delta_{n-1}\times\Delta_{m-1}$ (\cref{sec:indep}). Over it sits the \emph{fibre}, the coupling polytope $\mathrm{Cpl}(f,g)$ of tables with those
+margins. For nondegenerate margins the fibre is Delzant, its facets are cells $\{\alpha_c=0\}$, and the K\"ahler class of its toric manifold is the product coupling,
+$[\omega_{f,g}]=\sum_cf_ig_j[D_c]$ \cite{Awasthi2026Cpl}. So the same data play two roles:
+\begin{center}\small
+\begin{tabular}{lll}\toprule
+ & base (\cref{sec:twoconf,sec:indep,sec:margins}) & fibre (this section)\\\midrule
+points & margins $(f,g)$ & couplings $\alpha$ with those margins\\
+facets & a zero margin & a zero cell\\
+the margins are & a point (the Birch/MLE fibre) & the K\"ahler class: $\lambda_c$ is read off $(f,g)$\\
+$W$ is a sum over & margin facets & cell facets\\
+Tier~A support & cells, with $(r-1)(c-1)$ moves & integer tables with these margins\\\bottomrule
+\end{tabular}
+\end{center}
+For $2\times3$, write a coupling by $x=\alpha_{11}$, $y=\alpha_{12}$. Then $\alpha_{13}=f_1-x-y$, $\alpha_{21}=g_1-x$, $\alpha_{22}=g_2-y$ and $\alpha_{23}=x+y-(f_1+g_1+g_2-1)$, so cell $c$ has $\ell_c=\langle v_c,(x,y)\rangle-\lambda_c$ with
+$v_c\in\{(1,0),(0,1),(-1,-1),(-1,0),(0,-1),(1,1)\}$.
+
+\begin{example}[the fibre]\label{ex:pentagon}
+For $f=(2/5,3/5)$, $g=(3/10,43/100,27/100)$ the fibre is the pentagon with vertices $(13/100,0)$, $(3/10,0)$, $(3/10,1/10)$, $(0,2/5)$, $(0,13/100)$ and area $1331/20000$, so $X=\mathrm{Bl}_2\mathbb{CP}^2$.
+Its facets are the cells $11,12,13,21,23$. Cell $22$ never vanishes, since $\alpha_{22}\ge f_2+g_2-1=3/100$. Scaled by $n=100$, its lattice points are the $715$ integer tables with
+margins $(40,60)$ and $(30,43,27)$. By Pick's theorem, $715=665.5+97/2+1$. CF1 and CF2 check this exactly.
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_cpl_glance.pdf}
+\caption{The example at a glance. (a) The leximin coupling: row~1 is the scarcest per cell, so it is spread evenly, and every other cell is larger. (b) The fibre,
+with the $715$ tables as dots. Each side is a cell that can vanish. Marked: the product coupling, selected by Tier~A; the leximin coupling, selected by the positive
+critical point of $W$; and the two real critical points with a negative coordinate (signed fibres).}\label{fig:cplglance}
+\end{figure}
+
+\subsection{Tier A on the fibre is Fisher's noncentral hypergeometric family}
+\begin{proposition}[the conditional law of a table]\label{prop:hypergeom}
+Let $S$ be the integer tables with margins $Nf$, $Ng$, written by $(t_{11},t_{12})$, with weights $c_t=1/\prod_{ij}t_{ij}!$.
+\begin{enumerate}
+\item[(1)] For any cell parameters $\theta_{ij}>0$, the law of a table under independent Poisson (or multinomial) sampling with means $\propto\theta_{ij}$, conditioned on its margins,
+  is the monomial law $q(u)\propto c_t\,e^{\langle u,(t_{11},t_{12})\rangle}$. Here $u_1=\log\frac{\theta_{11}\theta_{23}}{\theta_{13}\theta_{21}}$ and $u_2=\log\frac{\theta_{12}\theta_{23}}{\theta_{13}\theta_{22}}$ are the two log odds ratios. This is Fisher's noncentral
+  hypergeometric family. At $u=0$ it is the central hypergeometric law, the null law of Fisher's exact test \cite{Fisher1935}.
+\item[(2)] By \cref{prop:kahler}, $\varphi(u)=\log\sum_tc_te^{\langle u,t\rangle}$ is a K\"ahler potential. The moment map is the expected table, and the K\"ahler metric is the Fisher information of the odds ratios. Since $S$ is
+  the set of lattice points of the Delzant lattice polygon $N\cdot\mathrm{Cpl}(f,g)$, the form extends to all of $X=\mathrm{Bl}_2\mathbb{CP}^2$.
+\item[(3)] At $u=0$ the mean is exactly $N\,f\otimes g$: Tier~A at odds ratios $1$ selects the product coupling.
+\item[(4)] Every interior coupling is the mean for exactly one $u$ (Birch). In the example, the leximin coupling needs odds ratios $(e^{u_1},e^{u_2})\approx(0.82,0.46)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $\prod_{ij}\theta_{ij}^{t_{ij}}/t_{ij}!$ restricted to fixed margins depends on $t$ only through $c_t$ and $t_{11}u_1+t_{12}u_2$. Substituting $t_{13},t_{21},t_{22},t_{23}$ from the margins
+gives the two log odds ratios. (2) is \cref{prop:kahler} and its compact case. (3) The central hypergeometric mean is $t_{i+}t_{+j}/N$ \cite{BishopFienbergHolland1975}. (4) is
+\cref{prop:kahler}(3). CF3 checks (1) and (3), the latter in exact rationals, and computes (4).
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_cpl_tierA.pdf}
+\caption{Tier~A. (a) The moment map sends the plane of log odds ratios onto the open pentagon. Blue lines hold $u_1$ fixed and orange lines hold $u_2$ fixed. (b) Two
+laws on the $715$ tables: the hypergeometric law (odds ratios $1$, centred on $f\otimes g$), and the law with odds ratios $(0.82,0.46)$, centred on the leximin coupling.}\label{fig:cpltierA}
+\end{figure}
+
+\subsection{Tier B: the selected coupling is the leximin one}
+\begin{theorem}[the max--min coupling]\label{thm:maxmincoupling}
+Let $(f,g)$ be nondegenerate $n\times m$ margins, and let $W$ be the potential of $\mathrm{Cpl}(f,g)$, a sum over its facet cells.
+\begin{enumerate}
+\item[(1)] $h^*=\max_\alpha\min_{c\text{ facet}}\alpha_c=\min\bigl(\min_if_i/m,\ \min_jg_j/n\bigr)$.
+\item[(2)] Every cell of a \emph{binding} row or column, one attaining the minimum, is a facet. If exactly one line binds, the leading set $K_0$ is that line's cells.
+\item[(3)] The candidate set has dimension $(n-2)(m-1)$ for a binding row and $(n-1)(m-2)$ for a binding column. For $2\times3$, a binding row gives a single candidate, so
+  leading order selects. A binding column gives a segment, and the next level selects.
+\item[(4)] The positive critical point of $W$ has its valuation in the candidate set (\cref{thm:bridge,prop:balancelp}). For $2\times3$ it sits over the leximin coupling. This is checked on
+  random margins, not proved; it is the recursion of \cite{FOOO2010,JuddRietsch2019} on this family.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) A row of $m$ cells sums to $f_i$, so its smallest cell is at most $f_i/m$; columns are the same. Conversely, put $h$ (the claimed value) in every cell and add the product of the
+residual margins $f_i-mh\ge0$ and $g_j-nh\ge0$, whose totals agree. This gives a coupling with every cell at least $h$. (2) A cell with $\alpha_c>0$ on all of $\mathrm{Cpl}$ has $f_i+g_j>1$. For a
+binding row $i$ that would give $f_i>\sum_{k\ne j}g_k\ge(m-1)\min_kg_k$ and $f_i\le(m/n)\min_kg_k$, so $n(m-1)<m$, which is impossible. If row $i$ alone binds, the residual margins of the
+other rows and of all columns are positive, so the coupling of (1) has every other cell strictly above $h^*$. The row's cells, which average $h^*$, equal it at every
+maximiser. (3) The $m$ cell functionals of a row sum to the constant $f_i$, so their normals span $m-1$ dimensions and contain $0$ in the relative interior of their hull. Apply
+\cref{prop:balancelp}(2) in dimension $(n-1)(m-1)$. (4) CF6 checks it on $20$ random rational margins at $T=10^{-60}$.
+CF4 checks (1)--(3) on about $1000$ random margins of shapes $2\times3$, $3\times3$, $2\times4$ and $3\times4$, against the facet-only programme.
+\end{proof}
+
+In words: \emph{the selected coupling spreads the scarcest row or column evenly over its cells.} In the example, row~1 binds with $f_1/3=2/15$. So $h^*=2/15$, $K_0=\{11,12,13\}$, and the positive
+critical point sits over the leximin coupling $(2/15,2/15)$. The product coupling $f\otimes g=(0.12,0.172)$ has the single leading cell $13$, at $0.108<h^*$, so it is not a candidate. That is
+the Tier-B reason why ``the product coupling carries no brane'' \cite{Awasthi2026Br}.
+
+\begin{example}[the five critical points]\label{ex:fivecrit}
+$W=y_1+y_2+T^{2/5}/(y_1y_2)+T^{3/10}/y_1+T^{-13/100}y_1y_2$ has $5$ critical points, twice the area $5/2$ of its Newton polygon (Kushnirenko). Exact resultants at $T=10^{-100}$ and $10^{-200}$ place them as follows.
+\begin{itemize}[itemsep=1pt]
+\item Three lie over the leximin coupling, one of them positive.
+\item One is real with $y_1,y_2<0$, over $(13/100,13/100)$. Its leading cells are $\{11,12,23\}$, whose normals have the signed balance $(1,0)+(0,1)-(1,1)=0$ but no positive one.
+\item One is real with $y_2<0$, over $(1/5,1/10)$. Its leading cells are $\{12,13,21\}$, also with a signed balance only.
+\end{itemize}
+This is \cref{thm:bridge}(4) on the example. By the cited theorem \cite{ChoOh2006}, three torus fibres have non-vanishing Floer cohomology. This agrees with \cite[Thm.~8.2]{Awasthi2026Br}. CF5 checks
+the count, the positions, the signs and the leading sets.
+\end{example}
+
+\subsection{The positive thimble on couplings}
+By \cref{thm:tropical}, the positive thimble with $\hbar=T^h$, read in $u=\log y/\log T$, tends to the uniform law on $Q_h=\{\alpha:\text{every facet cell}\ge h\}$ for $h<h^*$, and concentrates on $\operatorname{argmax}$ at $h^*$.
+On the fibre this has a plain reading. At $h=0$ it is the uniform law on all couplings, which is Duistermaat--Heckman, and the limit of the uniform law on tables. As $h$
+grows it is uniform on the couplings whose every cell is at least $h$. At $h^*=2/15$ it is the leximin coupling (\cref{fig:cplthimble}; CF7). The thimble is thus a one-parameter family of
+probability laws on couplings, from ``all equally likely'' to ``the fairest one''.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_cpl_thimble.pdf}
+\caption{The positive thimble on the fibre, at four values of $h$, with $\log T=-400$. Dashed: the shrunk polygon $Q_h$, every cell at least $h$. The law is uniform on $Q_h$, and at
+$h^*=2/15$ all its mass is at the leximin coupling (circle). The product coupling (square) is passed over.}\label{fig:cplthimble}
+\end{figure}
+
+\subsection{Two kinds of wall, and one count of data}
+In the base, the margins $(f,g)$ move the K\"ahler class of the fibre. Two families of walls cut the base.
+\begin{itemize}
+\item \emph{K\"ahler-chamber walls} $f(I)=g(J)$. Across them the polygon gains or loses a side, which is a toric blow-up or blow-down \cite{Awasthi2026Cpl}. These are the viability walls of the ledger.
+\item \emph{Leximin walls}, where two of the ratios $f_i/m$, $g_j/n$ tie. Across them the binding line, and with it the leading cells and the candidate dimension, jumps
+  (\cref{thm:maxmincoupling}). These are the outcome walls of \cref{cor:where}, here explicit.
+\end{itemize}
+They are different walls (\cref{fig:cplwalls}(a)). The monotone point, with uniform margins, lies on all of them.
+
+\begin{example}[one count]\label{ex:onecount}
+In the example, $f_1/3=2/15$ and $g_3/2=27/200$ differ by only $1/600$. Move one observation of $100$ from column~3 to column~2, so that $g=(30,44,26)/100$. Then:
+\begin{itemize}[itemsep=1pt]
+\item column~3 binds, $h^*=13/100$, and the leading cells are $\{13,23\}$;
+\item the candidates become a segment, and the leximin coupling, selected at the next level, is $(27/200,27/200)$;
+\item the real critical point with $y_1,y_2<0$ moves onto the leximin fibre, so the distinct valuations drop from three to two. By the cited theorem, so does the number of
+  torus fibres with non-vanishing Floer cohomology.
+\end{itemize}
+The surface does not change: the nearest blow-up wall, $f_1=g_2$, is three counts away. So in this example the least data that changes the perspective is one
+count, and it changes the leading cells and the Floer fibres, not the manifold (\cref{fig:cplwalls}(b); CF8, with exact resultants at $T=10^{-100}$ and $10^{-300}$).
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_cpl_walls.pdf}
+\caption{Margin space, in the slice $g_1=0.3$. (a) Colours show which row or column binds. Dashed lines are the leximin walls and solid lines the blow-up walls $f_i=g_j$. The
+example (circle) sits almost on a leximin wall, and one count (cross) crosses it. (b) Along $f_1=0.4$: the three ratios $f_1/3$, $g_3/2$, $g_1/2$, whose minimum is $h^*$. The leximin wall is a
+third of a count from the example, while the blow-up wall $f_1=g_2$ is three counts away.}\label{fig:cplwalls}
+\end{figure}
+
+\subsection{The example through every layer}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.58\linewidth}>{\raggedright\arraybackslash}p{0.17\linewidth}}\toprule
+layer & in the example & where\\\midrule
+fibre & pentagon, area $1331/20000$, facets $11,12,13,21,23$; $715$ tables (Pick) & \cref{ex:pentagon}; CF1--2\\
+Tier A & Fisher's noncentral hypergeometric family; odds ratios $1$ give $f\otimes g=(0.12,0.172)$; the leximin needs $(0.82,0.46)$ & \cref{prop:hypergeom}; CF3\\
+Tier B & $h^*=f_1/3=2/15$; row~1 binds; one candidate, the leximin coupling $(2/15,2/15)$ & \cref{thm:maxmincoupling}; CF4, CF6\\
+sign split & five critical points; signed fibres over $(13/100,13/100)$ and $(1/5,1/10)$ & \cref{ex:fivecrit}; CF5\\
+Floer (cited) & three fibres with non-vanishing Floer cohomology; none over $f\otimes g$ & \cite{ChoOh2006,Awasthi2026Br}\\
+thimble & uniform on couplings at $h=0$; uniform on $Q_h$; the leximin coupling at $h^*$ & \cref{thm:tropical}; CF7\\
+walls & leximin wall $1/600$ away in ratio; blow-up wall $f_1=g_2$ three counts away & \cref{fig:cplwalls}\\
+one count & column~3 binds; candidates a segment; three Floer fibres become two; same surface & \cref{ex:onecount}; CF8\\
+not claimed & other thimbles, Stokes data, stability conditions, the category & \cref{sec:outlook}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Outlook}\label{sec:outlook}
+Five questions are left open.
+\begin{itemize}
+\item \emph{Novikov weights and environments.} \Cref{sec:data} makes one direction precise: soft evidence of size $n$ on the scale $N$ shifts $\lambda$ by $-(n/N)\rho$.
+  Whether the environment orders $s^{r_e}$ of the layers paper act in the same way, and how hard evidence and forgetting act, is open.
+\item \emph{The other walls.} Decision, contextuality and value-of-information walls (\cref{sec:data}), and the finite-$n$ sharpness of the transition at an outcome wall,
+  measured in the Fisher metric.
+\item \emph{Beyond Fano.} For non-Fano toric manifolds, $W$ acquires corrections \cite{FOOO2010}. \Cref{thm:bridge} is about the leading potential only.
+\item \emph{Signed branches and Stokes data.} The non-positive critical points have their own thimbles, which are not real and carry no
+  probability law. How the positive thimble decomposes against them, as $\hbar$ and $T$ vary, is Picard--Lefschetz and Stokes data. We do not compute it here. In particular, we do not
+  know whether the signed fibre of \cref{ex:F1}(a) has a probabilistic shadow.
+\item \emph{Wall-crossing.} The layers paper resolves degenerate directions by blow-ups off the torus orbits. Whether these correspond to
+  wall-crossing in torus fibrations is a separate question, which needs geometric data that the finite setting does not supply.
+\end{itemize}
+
+\appendix
+\section{The ledger}\label{app:ledger}
+\texttt{LEDGER.yaml} at the root of the repository is the single source for this table, which \texttt{kahler/render\_ledger.py} generates. Status tags: [P] proved
+here, [U] used (classical), [C] cited and not proved, [E] exact computation, [N] numerical only, [D] a definition, [O] open. The category level is never
+filled by assumption. For each experiment the ledger also records the thresholds $s_{\mathrm{prob}},s_{\mathrm{support}},s_{\mathrm{trop}},s_{\mathrm{crit}},s_{\mathrm{Stokes}},s_{\mathrm{context}}$, each as a number, ``never'' or ``undefined''. For $F_1$ along $\rho=e_1$
+from $\alpha=1/5$ they are: $s_{\mathrm{trop}}=1/5$; $s_{\mathrm{crit}}$ never; $s_{\mathrm{support}}$ never; $s_{\mathrm{prob}}$, $s_{\mathrm{Stokes}}$ and $s_{\mathrm{context}}$ undefined until a dominance notion, a phase of $\hbar$, and a complex
+with an obstruction class are chosen.
+\input{ledger_table.tex}
+
+\section*{Checks}
+\begin{center}\small
+\begin{tabular}{ll}\toprule
+code & \texttt{engine/pce/kahlerbridge.py}, \texttt{engine/pce/datawalls.py},\\ & \texttt{engine/pce/contingency\_toric.py}, \texttt{engine/pce/couplingfibre.py}\\
+checks & \texttt{engine/check\_kahlerbridge.py} (KB, $8/8$), \texttt{engine/check\_datawalls.py} (DW, $7/7$),\\
+ & \texttt{engine/check\_contingency\_toric.py} (CT, $7/7$),\\ & \texttt{engine/check\_couplingfibre.py} (CF, $8/8$), \texttt{engine/check\_ledger.py} (LG, $3/3$)\\
+figures & \texttt{kahler/fig\_kahler.py}, \texttt{kahler/fig\_datawalls.py}, \texttt{kahler/fig\_coupling.py}\\ ledger & \texttt{LEDGER.yaml}, rendered by \texttt{kahler/render\_ledger.py}\\\bottomrule
+\end{tabular}
+\end{center}
+The checks corroborate the statements numerically, or by exact rational arithmetic where marked; they do not prove them.
+The proofs stand on their own. The $F_1$ blow-up sizes used are $\alpha=1/5,\,1/4,\,2/5,\,3/5,\,4/5$.
+\begin{center}\small
+\begin{tabular}{lp{0.82\linewidth}}\toprule
+KB1 & \cref{prop:kahler}(1)--(2): moment map $=\nabla\varphi$, Fisher information $=\operatorname{Hess}\varphi$, positive definite ($30$ supports)\\
+KB2 & \cref{prop:kahler}(4): $\psi=\sum q\log(q/c)$, $\nabla\psi=u(p)$, $\operatorname{Hess}\psi=$ Fisher$^{-1}$ ($20$ supports)\\
+KB3 & \cref{prop:kahler}(5): $\int\det\operatorname{Hess}\varphi$ over boxes equals the area of the moment image\\
+KB4 & \cref{thm:bridge}(1)--(2): one positive critical point, mean-zero law, the valuations of \cref{ex:CP2,ex:F1}, balanced leading terms\\
+KB5 & \cref{thm:bridge}(3): the segment of candidates for $\alpha=3/5$, and its endpoints $(1/5,1/5)$, $(3/5,1/5)$, with leading sets $\{v_1,v_2,v_4\}$, $\{v_2,v_3,v_4\}$ and no positive balance; the barycentre alone for $\alpha=1/5$ and for $\mathbb{CP}^2$ (exact rational points)\\
+KB6 & \cref{thm:bridge}(4): all four critical points of $F_1$ in $80$-digit arithmetic; the signed critical point and its signed balance\\
+KB7 & \cref{prop:thimble}: Hessian $\operatorname{diag}(H,-H)$ at $y_T$; Laplace covariance $\hbar H^{-1}$ with relative error $O(\hbar/W_T(y_T))$ ($\mathbb{CP}^2$, $F_1$ with $\alpha=3/5$)\\
+KB8 & \cref{thm:tropical}, \cref{ex:levels}: moments against the uniform law on $Q_h$ for $h<h^*$; concentration on $\operatorname{argmax}g$ at $h^*$; the uniform segment; the levels $3/10$, $9/20$; $\log T=-200,-800$\\
+DW1 & \cref{conv:data}: evidence $e^{-n\rho}$ at $T=e^{-N}$ is the shift $\lambda-(n/N)\rho$\\
+DW2 & \cref{prop:balancelp}(1)--(2): duality; optimal support $=$ leading set at the centre of $\operatorname{argmax}$; $\dim\operatorname{argmax}=n-\dim\sigma_0$ ($40$ random configurations)\\
+DW3 & \cref{prop:balancelp}(3): the limit law lies in the optimal face ($23$ cases)\\
+DW4 & \cref{ex:F1wall}(a): the circuit $(2,-1,2,-3)$; the wall $\alpha/L=1/3$ inside $0<\alpha/L<1$; the diagonal flip (exact rationals); $\mathbb{CP}^2$ one chamber\\
+DW5 & \cref{ex:F1wall}(b),(c): candidates and valuations for $\alpha=1/10,\dots,9/10$; the wall law from $x^4=x+1$ at $T=10^{-20},10^{-60}$\\
+DW6 & \cref{ex:F1wall}(d): the discriminant, symbolically; its terms tie only at $\alpha=1/3$\\
+DW7 & \cref{cor:where}, \cref{ex:F1wall}(e): $s^*=1/5$ for $\rho=e_1$; no wall for $e_4$, $(0,-1,0,1)$, translations or constants; least evidence $1/10$; $\mathbb{CP}^2$ never\\
+CT1 & \cref{prop:twoconf}: $(r-1)(c-1)$ moves; one facet circuit ($r,c\in\{2,3,4\}$)\\
+CT2 & \cref{thm:indep}(1): $h^*$, the leading sets and the wall $cL_1=rL_2$ (exact rationals)\\
+CT3 & \cref{thm:indep}(2)--(3): the $rc$ critical points and their common valuation; the exact positive law; candidate dimensions\\
+CT4 & \cref{prop:roles}(1): $\ell_k(b)=$ margins; MLE margins and positivity ($200$ tables)\\
+CT5 & \cref{prop:roles}(3): the block-diagonal Fisher information; properties of $d_\Delta$\\
+CT6 & \cref{ex:2x3}: $h^*=n/3$, the candidate segment, $u^*$, and $n/2$ more column observations\\
+CT7 & \cref{ex:zero}: the triangle is not a face; no circuit\\
+CF1--CF2 & \cref{ex:pentagon}: the pentagon, its facets, Delzant; $715$ tables (Pick), exact\\
+CF3 & \cref{prop:hypergeom}: odds-ratio identity; exact hypergeometric mean $(12,86/5)$; Birch at the leximin\\
+CF4 & \cref{thm:maxmincoupling}(1)--(3): the closed form against the facet programme; binding cells are facets; candidate dimensions\\
+CF5 & \cref{ex:fivecrit}: five critical points by exact resultants; positions, signs, leading sets, signed balances\\
+CF6 & \cref{thm:maxmincoupling}(4): positive valuation $=$ leximin coupling ($20$ random margins)\\
+CF7 & \cref{fig:cplthimble}: the thimble law against uniform on $Q_h$; concentration at the leximin\\
+CF8 & \cref{ex:onecount}: one count; the walls' distances; three valuations become two\\
+LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; the rendered table matches \texttt{LEDGER.yaml}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{Abreu2003} M.~Abreu, K\"ahler geometry of toric manifolds in symplectic coordinates, in \emph{Symplectic and Contact Topology}, Fields Inst. Commun. \textbf{35}, AMS, 2003, 1--24.
+\bibitem{AmariNagaoka2000} S.~Amari and H.~Nagaoka, \emph{Methods of Information Geometry}, AMS and Oxford University Press, 2000.
+\bibitem{Awasthi2026Br} V.~K.~Awasthi, Bridges: from probability and entropy to branes, with worked examples, technical note, Johns Hopkins University, October 2026.
+\bibitem{Awasthi2026Cpl} V.~K.~Awasthi, Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability, companion paper, Johns Hopkins University, October 2026.
+\bibitem{Awasthi2026Arch} V.~K.~Awasthi, How the programme fits together: one family of polytopes, many models, and one example through every layer, draft 1, Johns Hopkins University, October 2026.
+\bibitem{Layers} V.~K.~Awasthi, Probability, context and differentiation: the layers, working draft, 2026.
+\bibitem{Birch1963} M.~W.~Birch, Maximum likelihood in three-way contingency tables, \emph{J. Roy. Statist. Soc. Ser. B} \textbf{25} (1963) 220--233.
+\bibitem{BishopFienbergHolland1975} Y.~M.~M.~Bishop, S.~E.~Fienberg and P.~W.~Holland, \emph{Discrete Multivariate Analysis}, MIT Press, 1975.
+\bibitem{BochnakCosteRoy1998} J.~Bochnak, M.~Coste and M.-F.~Roy, \emph{Real Algebraic Geometry}, Ergebnisse der Mathematik \textbf{36}, Springer, 1998.
+\bibitem{ChoOh2006} C.-H.~Cho and Y.-G.~Oh, Floer cohomology and disc instantons of Lagrangian torus fibers in Fano toric manifolds, \emph{Asian J. Math.} \textbf{10} (2006) 773--814.
+\bibitem{Delzant1988} T.~Delzant, Hamiltoniens p\'eriodiques et images convexes de l'application moment, \emph{Bull. Soc. Math. France} \textbf{116} (1988) 315--339.
+\bibitem{DiaconisSturmfels1998} P.~Diaconis and B.~Sturmfels, Algebraic algorithms for sampling from conditional distributions, \emph{Ann. Statist.} \textbf{26} (1998) 363--397.
+\bibitem{DuistermaatHeckman1982} J.~J.~Duistermaat and G.~J.~Heckman, On the variation in the cohomology of the symplectic form of the reduced phase space, \emph{Invent. Math.} \textbf{69} (1982) 259--268.
+\bibitem{EFRS2006} N.~Eriksson, S.~E.~Fienberg, A.~Rinaldo and S.~Sullivant, Polyhedral conditions for the nonexistence of the MLE for hierarchical log-linear models, \emph{J. Symbolic Comput.} \textbf{41} (2006) 222--233.
+\bibitem{FienbergRinaldo2012} S.~E.~Fienberg and A.~Rinaldo, Maximum likelihood estimation in log-linear models, \emph{Ann. Statist.} \textbf{40} (2012) 996--1023.
+\bibitem{Fisher1935} R.~A.~Fisher, The logic of inductive inference, \emph{J. Roy. Statist. Soc.} \textbf{98} (1935) 39--82.
+\bibitem{FOOO2010} K.~Fukaya, Y.-G.~Oh, H.~Ohta and K.~Ono, Lagrangian Floer theory on compact toric manifolds I, \emph{Duke Math. J.} \textbf{151} (2010) 23--174.
+\bibitem{Fulton1993} W.~Fulton, \emph{Introduction to Toric Varieties}, Annals of Mathematics Studies \textbf{131}, Princeton University Press, 1993.
+\bibitem{Galkin2014} S.~Galkin, The conifold point, arXiv:1404.7388, 2014.
+\bibitem{GGI2016} S.~Galkin, V.~Golyshev and H.~Iritani, Gamma classes and quantum cohomology of Fano manifolds: Gamma conjectures, \emph{Duke Math. J.} \textbf{165} (2016) 2005--2077.
+\bibitem{GeigerMeekSturmfels2006} D.~Geiger, C.~Meek and B.~Sturmfels, On the toric algebra of graphical models, \emph{Ann. Statist.} \textbf{34} (2006) 1463--1492.
+\bibitem{GKZ1994} I.~M.~Gelfand, M.~M.~Kapranov and A.~V.~Zelevinsky, \emph{Discriminants, Resultants, and Multidimensional Determinants}, Birkh\"auser, 1994.
+\bibitem{Guillemin1994} V.~Guillemin, Kaehler structures on toric varieties, \emph{J. Differential Geom.} \textbf{40} (1994) 285--309.
+\bibitem{HoriVafa2000} K.~Hori and C.~Vafa, Mirror symmetry, arXiv:hep-th/0002222, 2000.
+\bibitem{Iritani2009} H.~Iritani, An integral structure in quantum cohomology and mirror symmetry for toric orbifolds, \emph{Adv. Math.} \textbf{222} (2009) 1016--1079.
+\bibitem{JuddRietsch2019} J.~Judd and K.~Rietsch, The tropical critical point and mirror symmetry, arXiv:1911.04463, 2019.
+\bibitem{MaclaganSturmfels2015} D.~Maclagan and B.~Sturmfels, \emph{Introduction to Tropical Geometry}, Graduate Studies in Mathematics \textbf{161}, AMS, 2015.
+\bibitem{Rockafellar1970} R.~T.~Rockafellar, \emph{Convex Analysis}, Princeton University Press, 1970.
+\bibitem{Schrijver1986} A.~Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley, 1986.
+\end{thebibliography}
+\end{document}
