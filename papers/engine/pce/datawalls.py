@@ -88,3 +88,42 @@ def min_evidence(v, lam):
     sum a_k^+ (= half the l1 norm, since sum a_k = 0), so the least s is |c| / (||a||_1 / 2), attained at r = 1[a > 0] (or 1[a < 0])"""
     a = np.array(circuits(v)[0], float); c = -a @ np.array(lam, float); half = np.abs(a).sum() / 2
     r = (a > 0).astype(float) if c < 0 else (a < 0).astype(float); return abs(c) / half, r, c, a
+
+
+# ------------------------------------------------------------------------------------------------ the selection theorem (section 11.6)
+def lex_maxmin(v, lam, tol=1e-9):
+    """the lexicographic max-min point of l_k(u) = <v_k, u> - lam_k (v positively spanning): level by level, maximise the least free l_k on the
+    current optimal set, then fix the functions that equal that level on the whole optimal set. Returns the point and the levels
+    [(h_j, S_j)], S_j the indices fixed at level j."""
+    V = np.array(v, float); m, n = V.shape; lam = np.array(lam, float); fixed = {}; free = set(range(m)); levels = []
+    while free:
+        Ae = [np.r_[V[k], 0.0] for k in fixed]; be = [lam[k] + fixed[k] for k in fixed]
+        Aub = [np.r_[-V[k], 1.0] for k in free]; bub = [-lam[k] for k in free]
+        r = linprog(np.r_[np.zeros(n), -1.0], A_ub=np.array(Aub), b_ub=np.array(bub), A_eq=np.array(Ae) if Ae else None, b_eq=np.array(be) if be else None,
+                    bounds=[(None, None)] * (n + 1), method="highs")
+        t = -r.fun; S = []
+        for k in sorted(free):                       # k is fixed at this level iff max l_k over the level-t optimal set is t
+            Aub2 = [np.r_[-V[j], 0.0] for j in free]; bub2 = [-lam[j] - t + tol * 0 for j in free]
+            r2 = linprog(np.r_[-V[k], 0.0], A_ub=np.array(Aub2), b_ub=np.array(bub2) + 1e-12, A_eq=np.array(Ae) if Ae else None, b_eq=np.array(be) if be else None,
+                         bounds=[(None, None)] * n + [(0, 0)], method="highs")
+            if r2.status == 0 and (-r2.fun - lam[k]) <= t + 1e-7: S.append(k)
+        if not S: S = sorted(free)
+        for k in S: fixed[k] = t; free.discard(k)
+        levels.append((t, tuple(S)))
+        if np.linalg.matrix_rank(V[list(fixed)]) == n and not free: break
+    K = list(fixed); u, *_ = np.linalg.lstsq(V[K], lam[K] + np.array([fixed[k] for k in K]), rcond=None); return u, levels
+
+
+def softmin_point(v, lam, L, u0=None, iters=200):
+    """the positive critical point of W_T, T = e^-L, in valuation coordinates u = log y / log T: the minimiser of
+    (1/L) log sum_k e^(-L l_k(u)) (Newton's method with backtracking; stable for large L)"""
+    V = np.array(v, float); lam = np.array(lam, float); u = np.zeros(V.shape[1]) if u0 is None else np.array(u0, float)
+    def F(u):
+        z = -L * (V @ u - lam); mx = z.max(); return (mx + np.log(np.exp(z - mx).sum())) / L
+    for _ in range(iters):
+        z = -L * (V @ u - lam); w = np.exp(z - z.max()); w /= w.sum(); g = -(w @ V); mu = w @ V; H = L * ((V - mu).T @ ((V - mu) * w[:, None]))
+        d = -np.linalg.solve(H + 1e-300 * np.eye(len(u)), g); s = 1.0; f0 = F(u)
+        while F(u + s * d) > f0 + 1e-4 * s * (g @ d) and s > 1e-12: s /= 2
+        u = u + s * d
+        if np.abs(s * d).max() < 1e-15: break
+    return u
