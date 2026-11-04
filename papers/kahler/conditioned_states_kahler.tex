@@ -5,7 +5,7 @@
 \usepackage{booktabs,enumitem,graphicx,xcolor,longtable,array}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
 \usepackage[nameinlink]{cleveref}
-\newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}\newtheorem{conjecture}[theorem]{Conjecture}\crefname{conjecture}{Conjecture}{Conjectures}
 \theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}\newtheorem{example}[theorem]{Example}
 \definecolor{stUsed}{HTML}{E8E8E8}\definecolor{stAdapted}{HTML}{D6E6F7}\definecolor{stDerived}{HTML}{FBE7C4}\definecolor{stCited}{HTML}{F2DCDC}\definecolor{stNew}{HTML}{DDF1DD}
 \newcommand{\R}{\mathbb R}
@@ -17,28 +17,27 @@
 \maketitle
 
 \begin{abstract}
-The central point of this note is that \emph{leading-order balance identifies candidates, not the selected state}. Let $Q$ be a compact
-Delzant polytope with potential $W_T=\sum_kT^{-\lambda_k}y^{v_k}$. The unique positive critical point $y_T$ (Galkin's lemma) has a valuation
-$u^*$, and at $u^*$ the leading terms of $W_T$ balance with positive weights: Birch's theorem at target $0$. The converse fails. On the
-Hirzebruch surface $F_1$ the leading terms balance along a whole segment, and higher-order terms select one point of it. Critical points that
-are not positive give only a signed or complex linear dependence, not a law. The positive orthant is the ascending Lefschetz thimble of $y_T$,
-so $e^{-W/\hbar}\,dy/y$ on it is a probability law. We prove a tropical limit for this law, with $\hbar=T^h$ and in the coordinates
-$\log y/\log T$. Below the max--min level $h^*$ it tends to the uniform law on the shrunk polytope $Q_h$, which is the Duistermaat--Heckman measure when $h=0$.
-At and above $h^*$ it concentrates on $\operatorname{argmax}\min_k\ell_k$, a set that contains every candidate and $u^*$. On $F_1$ the mass at level $h^*$ is uniform on the
-candidate segment, and the selection appears only at the next max--min level. Around these results the note records the classical toric
-K\"ahler dictionary in probabilistic terms: the Fisher metric, relative entropy, Duistermaat--Heckman, and the positive Lagrangian section. For Fano $X_Q$, the
-Floer theorem of Cho and Oh, cited and not proved, turns this into a statement about torus fibres. Everything is worked exactly on
-$\mathbb{CP}^2$ and $F_1$. Finally, soft evidence of size $n$ shifts the exponents, $\lambda\mapsto\lambda-(n/N)\rho$. The max--min level is a linear programme over the
-laws on the facets with mean exponent zero, and data can change the leading structure only along the circuits of $\{v_k\}$. $\mathbb{CP}^2$ has none.
-$F_1$ has one, with its wall at $\alpha=1/3$, inside the K\"ahler cone. There the selected valuation moves continuously, while the leading set, the
-dimension of the candidate set and the mechanism of selection all jump. Part~II reads this back on contingency tables. A log-linear model carries
-two configurations, its cells, whose relations are the moves between tables, and its facets, which build $W$. The $r\times c$ independence model has
-$(r-1)(c-1)$ moves but exactly one circuit of facets. Its wall is at $cL_1=rL_2$, which square tables sit on and other tables do not. Its selected
-fibre never moves, so its wall, unlike that of $F_1$, changes no Floer data. Finally, one $2\times3$ coupling polytope is followed through every layer, with
-pictures. Its Tier~A law is Fisher's noncentral hypergeometric family. Its selected coupling is the leximin one, because the best smallest cell is
-$\min(f_i/m,\,g_j/n)$. Its positive thimble interpolates from the uniform law on couplings to that coupling. And moving one count across a leximin
-wall, inside a K\"ahler chamber, changes its leading cells and its Floer fibres. A ledger records every operation with its status and its checks;
-$30$ numerical checks and $3$ ledger checks corroborate the statements.
+The central point of this note is that \emph{leading-order balance identifies candidates, not the selected state}. On a compact Delzant polytope with
+potential $W_T=\sum_kT^{-\lambda_k}y^{v_k}$, the unique positive critical point (Galkin's lemma) has a valuation $u^*$ at which the leading terms balance with positive
+weights: Birch at target $0$. The converse fails; on $F_1$ a whole segment balances and higher order selects. A selection theorem settles which point is chosen: $u^*$ is the
+lexicographic max--min point, with error $O(1/\log(1/T))$. The positive orthant is a Lefschetz thimble, and its law $e^{-W/\hbar}dy/y$ has a tropical limit: uniform on shrunk polytopes, then
+concentrated on the candidates, level by level. Around this sits the toric K\"ahler dictionary in probabilistic terms: Fisher metric, relative entropy, Duistermaat--Heckman.
+Soft evidence of size $n$ shifts $\lambda\mapsto\lambda-(n/N)\rho$, and acts only through circuits; $F_1$ has one, with a wall inside the K\"ahler cone where the leading set jumps.
+
+Part~II reads this on contingency tables. The margins are a point of the base and the K\"ahler class of the fibre, the coupling polytope. On the fibre, Tier~A is Fisher's
+noncentral hypergeometric family, the best smallest cell is $\min(f_i/m,g_j/n)$, and the selected coupling is the facet-leximin one. One count of data can cross a leximin wall
+and change the Floer fibres without changing the surface.
+
+Part~III turns to morphisms. By the cited theorems, distinct objects are orthogonal, each has a Clifford endomorphism algebra (for the probabilistic object, of its Fisher
+information), and no higher products survive. Across an outcome wall the category over $\Lambda$ is unchanged up to $A_\infty$ equivalence. But the probabilistic object's Clifford form,
+reduced mod $T$, drops rank, and the Stokes walls, where thimble bases mutate, crowd into an $O(1/\log(1/T))$ window. Floer statements are cited, not proved. A ledger records every
+operation.
+
+Part~IV goes to $2\times4$, where the fibre is three-dimensional. Its $148$ K\"ahler chambers are classified exactly, with ampleness certified by integer intersection numbers on invariant curves
+(Nakai--Moishezon, in its toric form): $14$ are Fano and $134$ weak Fano, and coupled three-step selection occurs only in the weak Fano ones. In three examples, one per role, the Clifford form of the
+positive object has one scale per dimension that selection removes, including a double scale where one level removes two; we state this as a conjecture. A path through the column-binding example (Stage IV) crosses two
+leximin walls in one K\"ahler chamber: the example itself sits on a level-two wall, which forces a collision of critical points, while the level-one wall is crossed without one. $74$ numerical, $4$
+certificate and $3$ ledger checks corroborate the statements.
 \end{abstract}
 
 \part{The geometry}
@@ -46,7 +45,7 @@ $30$ numerical checks and $3$ ledger checks corroborate the statements.
 The layers paper ends its toric section with an outlook remark: the precise dictionary is between conditioned states and moment fibres,
 not between sources and Lagrangians \cite[Remark ``outlook: a symplectic reading'']{Layers}. This note makes that remark exact in two places
 and leaves the rest open. Its components have different status.
-\begin{center}\small
+\begin{center}\footnotesize
 \begin{tabular}{p{0.46\linewidth}p{0.16\linewidth}p{0.3\linewidth}}\toprule
 component & status & source\\\midrule
 \rowcolor{stUsed} toric K\"ahler structure, moment map, Fisher metric, symplectic potential, Duistermaat--Heckman & Used & \cite{Guillemin1994,Abreu2003,DuistermaatHeckman1982,AmariNagaoka2000}\\
@@ -62,7 +61,17 @@ component & status & source\\\midrule
 \rowcolor{stUsed} coupling polytopes are Delzant; K\"ahler class $=$ product coupling; chambers and blow-ups & Used & \cite{Awasthi2026Cpl}\\
 \rowcolor{stAdapted} Tier~A on the fibre is Fisher's noncentral hypergeometric family (\cref{prop:hypergeom}) & Adapted & \cite{Fisher1935,BishopFienbergHolland1975}\\
 \rowcolor{stNew} the max--min coupling $\min(f_i/m,g_j/n)$; leximin walls; the one-count example (\cref{thm:maxmincoupling,ex:onecount}) & New & this note\\
+\rowcolor{stAdapted} selection: the positive valuation is the lexicographic max--min point (\cref{thm:selection}) & Adapted & \cite{FOOO2010,JuddRietsch2019,CominettiSanMartin1994}; proof here\\
+\rowcolor{stCited} morphisms: orthogonality, Clifford endomorphisms, summands (\cref{prop:morph}) & Cited & \cite{ChoOh2006,Cho2005,Smith2018}\\
+\rowcolor{stDerived} no higher products; $A_\infty$ equivalence across the $F_1$ wall (\cref{prop:formal,thm:compare}) & Derived (on cited $m_2$) & this note\\
+\rowcolor{stNew} the Clifford shadow of selection; Stokes walls crowd the outcome wall (\cref{thm:shadow,prop:stokes}) & New (\ref{prop:stokes}: computed) & this note\\
+\rowcolor{stNew} the column-binding example classified; the reduction of the Clifford form; its Hom table (\cref{prop:five,thm:reduction,prop:homtable}) & New (Hom: on cited theorems) & this note\\
+\rowcolor{stNew} Stage IV: a path across two leximin walls; the collision at the level-two wall (\cref{prop:path,prop:crossing}) & New (exact tropical; collision numerical) & this note\\
 \rowcolor{stCited} Floer cohomology of toric fibres and the potential $W$ & Cited, not proved & \cite{ChoOh2006,FOOO2010}\\
+\rowcolor{stUsed} ampleness by invariant curves: Nakai--Moishezon, toric Kleiman, wall relations (\cref{prop:kleiman}) & Used & \cite{Kleiman1966,CLS2011}\\
+\rowcolor{stNew} the $148$ chambers of $2\times4$; selection depth in the Fano chambers; examples A, B, C (\cref{thm:chambers24,prop:fanodepth,prop:B24}) & New (exact computation) & this note\\
+\rowcolor{stCited} weak Fano corrections $W^{\mathrm{LF}}=\sum(1+\delta_k)T^{-\lambda_k}y^{v_k}$ (\cref{rem:corrections}) & Cited & \cite{CLLT2020}\\
+\rowcolor{stNew} one scale per removed dimension (\cref{conj:leveldrop}); proved at leading order in A, B, C (\cref{prop:scales}) & Conjecture; New & this note\\
 Novikov weights against the environment orders of the layers paper; decision, contextuality and VOI walls & Open & \cref{sec:outlook}\\\bottomrule
 \end{tabular}
 \end{center}
@@ -422,7 +431,7 @@ so do the column normals. So $\sum_ka_kv_k=0$, and $\sum_ka_k=rc-cr=0$. CT1 chec
 \end{proof}
 
 So the $2\times3$ model has two moves but one circuit. The moves act on tables with fixed margins, within a fibre. The circuit acts on
-$\lambda$, across Kähler classes. The second statement is a special case of a general count.
+$\lambda$, across K\"ahler classes. The second statement is a special case of a general count.
 
 \begin{proposition}[products add one circuit]\label{prop:product}
 If $v^{(1)}$ and $v^{(2)}$ both have $0$ in the interior of their convex hulls, the product configuration has $(m_1-n_1-1)+(m_2-n_2-1)+1$ independent circuits. The extra
@@ -582,8 +591,8 @@ Let $(f,g)$ be nondegenerate $n\times m$ margins, and let $W$ be the potential o
 \item[(2)] Every cell of a \emph{binding} row or column, one attaining the minimum, is a facet. If exactly one line binds, the leading set $K_0$ is that line's cells.
 \item[(3)] The candidate set has dimension $(n-2)(m-1)$ for a binding row and $(n-1)(m-2)$ for a binding column. For $2\times3$, a binding row gives a single candidate, so
   leading order selects. A binding column gives a segment, and the next level selects.
-\item[(4)] The positive critical point of $W$ has its valuation in the candidate set (\cref{thm:bridge,prop:balancelp}). For $2\times3$ it sits over the leximin coupling. This is checked on
-  random margins, not proved; it is the recursion of \cite{FOOO2010,JuddRietsch2019} on this family.
+\item[(4)] The positive critical point of $W$ sits over the facet-leximin coupling, the lexicographic max--min of the facet cells. This is \cref{cor:leximin}, which
+  follows from the selection theorem (\cref{thm:selection}).
 \end{enumerate}
 \end{theorem}
 
@@ -593,7 +602,7 @@ residual margins $f_i-mh\ge0$ and $g_j-nh\ge0$, whose totals agree. This gives a
 binding row $i$ that would give $f_i>\sum_{k\ne j}g_k\ge(m-1)\min_kg_k$ and $f_i\le(m/n)\min_kg_k$, so $n(m-1)<m$, which is impossible. If row $i$ alone binds, the residual margins of the
 other rows and of all columns are positive, so the coupling of (1) has every other cell strictly above $h^*$. The row's cells, which average $h^*$, equal it at every
 maximiser. (3) The $m$ cell functionals of a row sum to the constant $f_i$, so their normals span $m-1$ dimensions and contain $0$ in the relative interior of their hull. Apply
-\cref{prop:balancelp}(2) in dimension $(n-1)(m-1)$. (4) CF6 checks it on $20$ random rational margins at $T=10^{-60}$.
+\cref{prop:balancelp}(2) in dimension $(n-1)(m-1)$. (4) See \cref{cor:leximin}. CF6 checks it on $20$ random rational margins at $T=10^{-60}$.
 CF4 checks (1)--(3) on about $1000$ random margins of shapes $2\times3$, $3\times3$, $2\times4$ and $3\times4$, against the facet-only programme.
 \end{proof}
 
@@ -652,13 +661,94 @@ example (circle) sits almost on a leximin wall, and one count (cross) crosses it
 third of a count from the example, while the blow-up wall $f_1=g_2$ is three counts away.}\label{fig:cplwalls}
 \end{figure}
 
+\subsection{The selection theorem, and a column-binding example}\label{sec:selection}
+\Cref{thm:bridge} and \cref{prop:balancelp} put the valuation of the positive critical point in the candidate set. When that set is a point, this is the whole answer.
+When it is not, as for a binding column, the next level selects. This subsection proves that the levels continue all the way down, for any
+configuration.
+
+\begin{definition}[lexicographic max--min]\label{def:lex}
+Let $\ell_k(u)=\langle v_k,u\rangle-\lambda_k$ with $v_1,\dots,v_m$ positively spanning $\R^n$. Put $A_0=\R^n$ and $S_0=\emptyset$. For $j\ge1$, let $h_j$ be the maximum over $A_{j-1}$ of the least $\ell_k$ with $k$ not yet
+fixed. Let $A_j$ be the set where it is attained, and let $S_j$ be the not-yet-fixed $k$ with $\ell_k\equiv h_j$ on $A_j$. Stop when every $k$ is fixed. Then $A_J$ is a single point, the
+\emph{lexicographic max--min point} $u^{\mathrm{lex}}$.
+\end{definition}
+
+Each $S_j$ is nonempty (\cref{prop:balancelp}(2), applied on $A_{j-1}$), and each $A_j$ is bounded, so the recursion stops. The fixed normals span $\R^n$, so $A_J$ is a point. On $\mathbb{CP}^2$ and on $F_1$
+with $\alpha<1/3$ there is one level. On $F_1$ with $\alpha>1/3$ there are two, as in \cref{ex:levels}.
+
+\begin{theorem}[selection]\label{thm:selection}
+Let $a_k(L)\in[c,C]\subset(0,\infty)$, and let $u_L$ minimise $F_L(u)=\sum_ka_k(L)e^{-L\ell_k(u)}$. Then $|u_L-u^{\mathrm{lex}}|=O(1/L)$ as $L\to\infty$. In particular, the valuation of the positive critical
+point of $W_T$, with $L=\log(1/T)$ and $u_L=\log y_T/\log T$, is the lexicographic max--min point of the facet functions, and the error at finite $T$ is $O(1/\log(1/T))$.
+\end{theorem}
+
+\begin{proof}
+$F_L$ is strictly convex and coercive, because the $v_k$ positively span, so $u_L$ is unique. We argue by induction on $n$; the case $n=0$ is empty.
+
+\emph{Level one is pinned to $O(1/L)$.} For $\bar u\in A_1$, $F_L(u_L)\le F_L(\bar u)\le mCe^{-Lh_1}$. So each term satisfies $ce^{-L\ell_k(u_L)}\le mCe^{-Lh_1}$, that is, $\ell_k(u_L)\ge h_1-\kappa/L$ with $\kappa=\log(mC/c)$. By
+\cref{prop:balancelp}(2) there is a balanced law $q$ supported exactly on $S_1$, and then $\sum_{k\in S_1}q_k\ell_k\equiv h_1$. Hence $\ell_k(u_L)\le h_1+\kappa/(Lq_{\min})$ for $k\in S_1$.
+
+\emph{The first level drops out.} Let $D_1=\{d:\langle v_k,d\rangle=0,\ k\in S_1\}$ be the direction space of $E_1=\operatorname{aff}A_1$, and $P$ the orthogonal projection onto $D_1$. Then $Pv_k=0$ for $k\in S_1$. So
+projecting $\nabla F_L(u_L)=0$ gives, exactly,
+\[
+\sum_{k\notin S_1}a_k(L)\,e^{-L\ell_k(u_L)}\,Pv_k=0 .
+\]
+Write $u_L=p_L+w_L$, with $p_L\in E_1$ and $w_L\perp D_1$. The $v_k$, $k\in S_1$, span $D_1^\perp$, and $\langle v_k,w_L\rangle=\ell_k(u_L)-h_1=O(1/L)$, so $|w_L|=O(1/L)$. Hence $p_L$ is a critical point, and so the
+minimiser, of $F^{(1)}_L(p)=\sum_{k\notin S_1}a'_k(L)e^{-L\ell_k(p)}$ on $E_1$. Here $a'_k=a_ke^{-L\langle v_k,w_L\rangle}$ again lies in a fixed compact subset of $(0,\infty)$.
+
+\emph{Induction.} On $E_1$ the remaining $\ell_k$ have projected normals $Pv_k$ that positively span $D_1$, because $A_1=\{p\in E_1:\ell_k(p)\ge h_1,\ k\notin S_1\}$ is bounded. Their lexicographic max--min
+point is $u^{\mathrm{lex}}$. Indeed, off $A_1$ some remaining $\ell_k$ is below $h_1$, while on the relative interior of $A_1$ all exceed it, so the reduced recursion is levels $2,3,\dots$ of the original.
+Since $\dim D_1<n$, the induction hypothesis gives $|p_L-u^{\mathrm{lex}}|=O(1/L)$, and so $|u_L-u^{\mathrm{lex}}|=O(1/L)$.
+LX1--LX3 corroborate the statement and the mechanism, on $30$ random configurations in multiprecision arithmetic.
+\end{proof}
+
+\begin{remark}[provenance]
+The procedure is the one Fukaya, Oh, Ohta and Ono use to locate a non-displaceable fibre \cite{FOOO2010}. Judd and Rietsch construct the tropical critical point
+recursively, and prove that it maximises the tropicalisation \cite{JuddRietsch2019}. A related hierarchical selection governs the exponential-penalty trajectory in linear
+programming \cite{CominettiSanMartin1994}. The statement is therefore adapted; the proof above is direct, and it gives the rate. The constant in $O(1/L)$ depends on the gaps between levels. That is
+why the near tie of \cref{ex:onecount} converged slowly.
+\end{remark}
+
+\begin{corollary}[the selected coupling]\label{cor:leximin}
+For nondegenerate $n\times m$ margins, the positive critical point of the potential of $\mathrm{Cpl}(f,g)$ sits over the facet-leximin coupling. In $292$ random margins of shapes
+$2\times3$, $3\times3$ and $2\times4$, this equals the leximin coupling over all cells (LX4). We have not proved that the two always agree.
+\end{corollary}
+
+\begin{example}[a column-binding fibre]\label{ex:colbind}
+Repurpose Example~3.4(b) of \cite{Awasthi2026Cpl}: $f=(2/5,3/5)$, $g=(1/2,3/10,1/5)$. The fibre is the pentagon with vertices $(1/5,0)$, $(2/5,0)$, $(1/10,3/10)$, $(0,3/10)$, $(0,1/5)$ and area $11/200$. Its facets are the
+cells $11,12,13,22,23$. Cell $21$ never vanishes, since $f_2+g_1=11/10$. The ratios are $f_i/3=(2/15,1/5)$ and $g_j/2=(1/4,3/20,1/10)$, so column~3 binds. The levels are:
+\begin{center}\small
+\begin{tabular}{lll>{\raggedright\arraybackslash}p{0.5\linewidth}}\toprule
+level & value & cells fixed & what is decided\\\midrule
+1 & $h_1=1/10$ & $13,23$ & column~3 is spread evenly; the candidates form the open segment $x+y=3/10$, $1/10<x<1/5$\\
+2 & $h_2=3/20$ & $11,12,22$ & along the segment, the least remaining cell is largest at the midpoint\\\bottomrule
+\end{tabular}
+\end{center}
+So $u^*=(3/20,3/20)$ (\cref{fig:leximin}(a),(b)). The endpoints are maximisers but not candidates: their leading sets, $\{11,13,22,23\}$ and $\{12,13,23\}$, have no positive balance. At finite $T$,
+\[
+x_L=\tfrac{3}{20}+\frac{\ln2}{2L}+o(1/L),
+\]
+because cells $11$ and $22$ coincide on the segment (both equal $x$) and balance cell $12$ alone: $2e^{-Lx}=e^{-L(3/10-x)}$ (\cref{fig:leximin}(c)). Of the five critical points, the positive one
+and a real one with $y_1,y_2<0$ sit over $(3/20,3/20)$, both with this correction. The other three (one real, two complex) lie over the fibre $(2/15,1/6)$ on the candidate segment, off the leximin point. \Cref{sec:cbclass} derives this exactly. The slow approach seen at finite $T$ is
+the $1/\log(1/T)$ effect of their leading moduli $2^{\pm1/3}$. The positive thimble shows the two levels as $h$ grows: it is uniform on the segment at
+$h=1/10$, uniform on $[h,3/10-h]$ between the levels, and concentrated at $3/20$ above (\cref{fig:leximin}(d)). The one-count example of \cref{ex:onecount} is column-binding too, with levels
+$(13/100;\,13,23)$ and $(27/200;\,11,12)$. LX5--LX9 check every number here, the first exactly.
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_leximin.pdf}
+\caption{The selection theorem on a column-binding fibre. (a) Level~1 fixes cells $13$ and $23$ at $1/10$ and leaves a segment of candidates, whose endpoints are not candidates.
+Level~2 picks its midpoint. (b) Along the segment, the least remaining cell is largest at $x=3/20$. (c) At finite $T$ the selected point is offset by $\ln2/(2L)$, because two cells pull
+against one. (d) The positive thimble along the segment shows both levels as $h$ grows.}\label{fig:leximin}
+\end{figure}
+
 \subsection{The example through every layer}
+
 \begin{center}\small
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.58\linewidth}>{\raggedright\arraybackslash}p{0.17\linewidth}}\toprule
 layer & in the example & where\\\midrule
 fibre & pentagon, area $1331/20000$, facets $11,12,13,21,23$; $715$ tables (Pick) & \cref{ex:pentagon}; CF1--2\\
 Tier A & Fisher's noncentral hypergeometric family; odds ratios $1$ give $f\otimes g=(0.12,0.172)$; the leximin needs $(0.82,0.46)$ & \cref{prop:hypergeom}; CF3\\
 Tier B & $h^*=f_1/3=2/15$; row~1 binds; one candidate, the leximin coupling $(2/15,2/15)$ & \cref{thm:maxmincoupling}; CF4, CF6\\
+selection & the valuation is the lexicographic max--min point, error $O(1/\log(1/T))$; a binding column needs a second level & \cref{thm:selection,ex:colbind}; LX1--LX9\\
 sign split & five critical points; signed fibres over $(13/100,13/100)$ and $(1/5,1/10)$ & \cref{ex:fivecrit}; CF5\\
 Floer (cited) & three fibres with non-vanishing Floer cohomology; none over $f\otimes g$ & \cite{ChoOh2006,Awasthi2026Br}\\
 thimble & uniform on couplings at $h=0$; uniform on $Q_h$; the leximin coupling at $h^*$ & \cref{thm:tropical}; CF7\\
@@ -668,17 +758,576 @@ not claimed & other thimbles, Stokes data, stability conditions, the category & 
 \end{tabular}
 \end{center}
 
+\part{Towards morphisms}
+\section{Objects, morphisms and a categorical comparison}\label{sec:morph}
+\begin{center}\colorbox{stAdapted!60}{\begin{minipage}{0.94\linewidth}\small
+\textbf{What this section shows, in plain words.} So far we have found \emph{which} torus fibres matter. A category also needs the arrows between them.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item Every critical point of $W$ is an \emph{object}: a torus fibre with a local system. Distinct objects have no arrows between them, and each object's arrows to itself
+  form a Clifford algebra. For the probabilistic object, its quadratic form is the Fisher information of the conditioned law (\cref{fig:morphobjects}).
+\item Up to equivalence, an outcome wall does \emph{not} change the category. It moves objects between fibres.
+\item It does leave two traces. The Clifford form of the probabilistic object, reduced modulo $T$, drops rank exactly when the candidate set stops being a point (\cref{fig:morphclifford}).
+  And the Stokes walls, where the basis of thimbles mutates, crowd into a window of width $O(1/\log(1/T))$ around the outcome wall (\cref{fig:morphstokes}).
+\end{itemize}
+The computations are all on the critical points, values and Hessians of $W$. The Floer reading of those data is cited, and its status is marked in each statement.
+\end{minipage}}\end{center}
+
+\subsection{Objects}
+By \cite{ChoOh2006}, a critical point $c$ of $W$ with valuation $u_c$ gives the torus fibre $L(u_c)$ with a rank-one local system. Its holonomy has leading term $y_c/T^{u_c}$, and $L(u_c)$ has
+non-vanishing Floer cohomology. We call the pair an \emph{object}. In our examples $W$ has $\chi(X)$ critical points, twice the area of its Newton polygon: $4$ for $F_1$ and $5$ for $\mathrm{Bl}_2\mathbb{CP}^2$.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.24\linewidth}>{\raggedright\arraybackslash}p{0.7\linewidth}}\toprule
+example & objects: fibre, type, leading holonomy\\\midrule
+$F_1$, $\alpha=1/5$ & over the barycentre: positive $(1,1)$, complex $(\zeta,\zeta)$, $(\zeta^2,\zeta^2)$, with $\zeta^3=1$; over $(1/5,3/5)$: real-signed $(-1,1)$\\
+$F_1$, $\alpha=3/5$ & all four over $(2/5,1/5)$: positive $(1,1)$, real-signed $(-1,1)$, complex $(i,-1)$, $(-i,-1)$\\
+$2\times3$ example & over the leximin coupling $(2/15,2/15)$: positive and two complex; over $(13/100,13/100)$: real $(-1,-1)$; over $(1/5,1/10)$: real $(1,-1)$\\
+one count later & over $(27/200,27/200)$: positive, real $(-1,-1)$, two complex; over $(1/5,1/10)$: real $(1,-1)$\\\bottomrule
+\end{tabular}
+\end{center}
+MO1 and MO2 check this table, the first part from the quartic and the second from exact resultants at $T=10^{-200}$.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=0.92\linewidth]{fig_morph_objects.pdf}
+\caption{Objects over their torus fibres (crosses). Each box is a fibre; each marker is an object, labelled by its leading holonomy; each loop is its endomorphism
+algebra $\mathrm{Cl}_2$. There are no arrows between distinct objects. (a)$\to$(b): crossing the $F_1$ wall merges two fibres into one. (c)$\to$(d): one count of data merges the
+leximin fibre with the nearby real fibre. In both cases the objects persist; only their fibres change.}\label{fig:morphobjects}
+\end{figure}
+
+\subsection{Morphisms}
+\begin{proposition}[morphisms between the objects]\label{prop:morph}
+\begin{enumerate}
+\item[(1)] Objects over distinct fibres have no morphisms: distinct moment fibres are disjoint, so their Floer complex is zero (exact).
+\item[(2)] Distinct objects over one fibre have distinct critical values $W(c)=m_0$. Morphisms are defined only between objects with equal $m_0$, so the category splits into summands $\mathcal F_\lambda$
+  \cite{Auroux2007,FOOO2010}, and they have no morphisms. This uses distinct $m_0$ only. Their holonomies also differ, but we do not use that to separate objects: an
+  eigenvalue decomposition cannot by itself separate two objects with the same $m_0$. That these objects generate their summands is proved in the monotone case and conditionally otherwise \cite{Smith2018}; our examples are not monotone.
+\item[(3)] The Floer cohomology ring of an object is the Clifford algebra of the Hessian $Q=\sum_kc_kv_kv_k^{\!\top}$ of $W$ at $c$, where $c_k$ are the values of its terms \cite[Thm.~5.6]{Cho2005}.
+  So it has dimension $2^n$.
+\item[(4)] For the positive object, $Q=W\cdot\operatorname{Cov}_w(v)$, where $w$ is the law of the terms of $W$ at $y_T$ (mean exponent $0$). Its quadratic form is the Fisher information of the conditioned law,
+  scaled by $W$. It is real and positive definite.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $L(u)=\mu^{-1}(u)$. (2) and (3) are the cited theorems; MO3 checks that the critical values (and, for the record, the holonomies) are distinct in every example. (4) $Q=\sum_kc_kv_kv_k^{\!\top}$ with $c_k=Ww_k$,
+and $\sum_kw_kv_k=0$. MO4 and MO5 check the identity, and the Clifford relations with explicit generators that span $M_2$, for all $18$ objects.
+\end{proof}
+
+\subsection{The \texorpdfstring{$A_\infty$}{A-infinity} products}
+\begin{proposition}[no higher products survive]\label{prop:formal}
+Over the algebraically closed Novikov field $\Lambda$, let $Q$ be nondegenerate. The $\mathbb Z/2$-graded algebra $\mathrm{Cl}(Q)$ is separable. For $n=2$ it is the super matrix algebra $\mathrm{End}(\Lambda^{1|1})$. Its
+Hochschild cohomology vanishes in positive degrees. So every $A_\infty$ structure on it, with $m_1=0$ and this $m_2$, is $A_\infty$-isomorphic to the formal one: it is intrinsically formal
+\cite{Kadeishvili1980,SeidelThomas2001}. On the subcategory generated by these objects, the higher products $m_k$ for $k\ge3$ can be removed by an $A_\infty$ isomorphism.
+\end{proposition}
+
+\begin{proof}
+A separable algebra has vanishing Hochschild cohomology in positive degrees. The obstructions to formality lie in $HH^{k,2-k}$ for $k\ge3$, so they vanish. MO5 exhibits
+$\mathrm{Cl}(Q)\cong M_2$ for every object. The statement rests on the cited $m_2$ of \cref{prop:morph}(3); we do not compute the $A$-side higher products themselves.
+\end{proof}
+
+So, within what the cited theorems give, the category generated by the objects is $\bigoplus_c\mathrm{Cl}(Q_c)$. It is semisimple, with one summand per critical point, matching $\dim QH^*(X)=\chi(X)$. On the
+mirror side, matrix factorisations at a nondegenerate critical point have the same Clifford description \cite{Dyckerhoff2011}.
+
+\subsection{The Clifford shadow of selection}
+Over $\Lambda$, all Clifford algebras of nondegenerate forms of rank $n$ are isomorphic, so (2)--(3) cannot see an outcome wall. The integral form can.
+
+\begin{theorem}[the Clifford shadow]\label{thm:shadow}
+Write the Clifford form of the positive object in the integral basis of $H^1(L;\mathbb Z)$ and divide it by $W$. Then $Q/W=\operatorname{Cov}_w(v)$ has entries of non-negative valuation. Its reduction modulo
+$T$ is $\operatorname{Cov}_{q^*}(v)$, where $q^*$ is the limit law of \cref{thm:bridge}(2). Its rank is $\dim\sigma_0=n-\dim(\text{candidate set})$. So the reduced Clifford algebra is semisimple exactly when the
+candidate set is a single point, that is, exactly when leading order selects.
+\end{theorem}
+
+\begin{proof}
+$w_k$ has valuation $\ell_k(u^*)-h^*\ge0$, and $w\to q^*$ by \cref{thm:bridge}(2). $\operatorname{Cov}_{q^*}(v)=\sum_kq^*_kv_kv_k^{\!\top}$, because $q^*$ has mean $0$. Its rank is the dimension of the span of $\{v_k:k\in K_0\}$, which is $\dim\sigma_0$
+because $0\in\operatorname{relint}\sigma_0$. Then apply \cref{prop:balancelp}(2). MO6 checks the convergence and the ranks.
+\end{proof}
+
+In the examples, the other eigenvalues have valuation equal to the gap between selection levels. On $F_1$ above the wall the small eigenvalue is $\sim T^{(3\alpha-1)/4}$, where
+$(3\alpha-1)/4=h_2-h_1$; it closes at the wall (\cref{fig:morphclifford}(a)). On the $2\times3$ fibre, one count turns rank $2$ into rank $1$, with valuation $1/200=h_2-h_1$ (\cref{fig:morphclifford}(b)). In the
+column-binding example the valuation is $1/20$. So the hierarchy of selection reappears as the hierarchy of scales of the probabilistic object's Clifford form.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_morph_clifford.pdf}
+\caption{The Clifford shadow. (a) $F_1$: eigenvalues of $Q/W$ for the positive object (solid: the small one; dotted: the large one) at three values of $T$. Above the wall the small
+eigenvalue tends to $0$ like $T^{(3\alpha-1)/4}$, so the form reduced mod $T$ has rank $1$. (b) The $2\times3$ fibre, before and after one count. After the move the small eigenvalue decays like
+$T^{1/200}$.}\label{fig:morphclifford}
+\end{figure}
+
+\subsection{Comparing the two sides of a wall}
+Three mechanisms could relate the two sides of a wall: an $A_\infty$ functor, a continuation map, or a mutation. Here is what each does.
+
+\begin{theorem}[an $A_\infty$ equivalence across the $F_1$ wall]\label{thm:compare}
+On $F_1$, for every $T\in(0,1)$ and every $\alpha\in(0,1)$, the four critical points are distinct and nondegenerate. So they form four continuous branches in $\alpha$, and the semisimple
+categories $\bigoplus_c\mathrm{Cl}(Q_c(\alpha))$ over $\Lambda$ are related by algebra isomorphisms that depend continuously on $\alpha$. For the positive object these are real: $A^{\!\top}Q(\alpha')A=Q(\alpha)$. In
+particular they are $A_\infty$ equivalences across $\alpha=1/3$. What changes at the wall is the \emph{support}: which fibre carries which object. That is the merging of fibres in \cref{fig:morphobjects}.
+\end{theorem}
+
+\begin{proof}
+The discriminant $-27T^2-256T^{3-3\alpha}$ never vanishes (\cref{ex:F1wall}(d)), so the critical points never collide, and nondegeneracy follows. A nondegenerate complex symmetric form has a
+symmetric square root, which gives the isomorphisms. MO7 checks the path $\alpha\in[1/5,3/5]$ at $T=10^{-24}$. The $A$-side reading is that of \cref{prop:morph,prop:formal}, so the statement inherits
+their status.
+\end{proof}
+
+\emph{Continuation maps} compare Floer theory of Hamiltonian-isotopic Lagrangians in one symplectic manifold. Here the evidence moves the K\"ahler class itself, and distinct fibres are
+not Hamiltonian isotopic. So there is no continuation map in the strict sense: the family comparison of \cref{thm:compare} takes its place.
+
+\emph{Mutations} belong to the category of thimbles, the Fukaya--Seidel category of the Landau--Ginzburg model. For a phase $\theta$ of $\hbar$, a distinguished basis of thimbles changes by a
+mutation when two critical values align along $\theta$ \cite{Seidel2008}.
+
+\begin{proposition}[Stokes walls crowd the outcome wall]\label{prop:stokes}
+On $F_1$, the Stokes walls for the phases $\theta=0.3$, $1$ and $\pi/2$ lie within $4/\log(1/T)$ of $\alpha=1/3$, for $T=10^{-12},10^{-24},10^{-48}$, and $\log(1/T)\,(\alpha_\theta-1/3)$ does not depend on $T$.
+Away from the window there are none. The mechanism is that $|W|$ is $\sim T^{\alpha}$ for the signed object and $\sim T^{1/3}$ for the barycentre objects. Outside a window of width $O(1/\log(1/T))$ one of them dominates, and
+the phases of the differences are frozen; inside it their ratio sweeps $(0,\infty)$, and every phase is crossed. For real $\hbar$ ($\theta=0$) the positive thimble never mutates: it is the positive
+orthant for every $\lambda$ (\cref{prop:thimble}).
+\end{proposition}
+
+This is a computation, MO8 and MO9, with the mechanism sketched; we have not proved the window for general configurations.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_morph_stokes.pdf}
+\caption{Mutations and the outcome wall on $F_1$. (a) The sizes of the four critical values at $T=10^{-24}$: the signed object's value dominates below the wall, and the barycentre objects'
+values above it. (b) The Stokes walls for three phases, at three values of $T$, lie on lines through $(0,1/3)$ in the variable $1/\log(1/T)$.}\label{fig:morphstokes}
+\end{figure}
+
+\subsection{What sees the wall}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}}\toprule
+invariant & across the outcome wall & status\\\midrule
+which fibres carry objects & changes ($2\to1$; $3\to2$) & cited \cite{ChoOh2006}; MO1--2\\
+the category over $\Lambda$, $\bigoplus\mathrm{Cl}(Q_c)$ & unchanged, up to $A_\infty$ equivalence & \cref{thm:compare}, on cited $m_2$\\
+higher products & none survive & \cref{prop:formal}, on cited $m_2$\\
+the positive object's Clifford form mod $T$ & rank drops ($2\to1$) & \cref{thm:shadow}, new\\
+the thimble basis at phase $\theta\ne0$ & mutates within $O(1/\log(1/T))$ of the wall & \cref{prop:stokes}, computed\\
+the positive thimble, real $\hbar$ & never changes & \cref{prop:thimble}, proved\\\bottomrule
+\end{tabular}
+\end{center}
+So a data-induced outcome wall is not a wall of the Fukaya category over $\Lambda$. It is a wall of its \emph{integral} structure for the probabilistic object, and the place where, at finite $T$,
+the thimble bases mutate. The full $A_\infty$ category over $\Lambda_0$, and split generation in the non-monotone case, are left open.
+
+\subsection{The column-binding example, classified}\label{sec:cbclass}
+The column-binding fibre of \cref{ex:colbind} is the first example whose objects are not all over the selected fibre, and whose holonomies are not all of modulus one. Stage IV (\cref{sec:path}) shows why: the example lies on a level-two leximin wall, and both features belong to the wall. We classify
+its five critical points exactly, then compute the morphisms between the resulting objects. Wall-crossing from this example is deferred.
+
+\paragraph{The Floer convention.} We use the convention of \cite{FOOO2010}. An object is a pair $(L(u),b)$ with $b\in H^1(L(u);\Lambda_0)$, whose holonomy coordinates are $y_i=T^{u_i}e^{b_i}$. Their
+leading coefficients $e^{b_{i,0}}$ are arbitrary nonzero complex numbers, not only those of modulus one, so local systems with non-unit leading modulus are included. On a compact toric
+Fano manifold the potential is $W$ \cite{ChoOh2006}. The pair has non-vanishing Floer cohomology iff $y$ is a critical point of $W$, and $m_0(L(u),b)=W(y)\cdot1$ \cite{FOOO2010}. For the Clifford
+description of the endomorphism ring we use the formula $Q=\operatorname{Hess}W$ at $y$ \cite[Thm.~5.6]{Cho2005}. Cho states it in the setting of \cite{ChoOh2006}, and its use with non-unit leading
+coefficients is the one place where our citation goes beyond the original setting.
+
+With $\tau=T^{1/10}$, the potential of this fibre is $W=y_1+y_2+\tau^4/(y_1y_2)+\tau^3/y_2+y_1y_2/\tau^2$ (cells $11,12,13,22,23$).
+
+\begin{proposition}[the five critical points]\label{prop:five}
+\begin{enumerate}
+\item[(1)] \emph{Reduction.} $y_1\partial_1W-y_2\partial_2W=y_1-y_2+\tau^3/y_2$. So $y_1=s-\tau^3/s$ with $s=y_2$, and the remaining equation is exactly
+\[
+q(s)=s^5+\tau^2s^4-2\tau^3s^3-2\tau^5s^2+\tau^8=0 .
+\]
+  Since $q(0)\ne0$ and $q$ has no common root with $s^2-\tau^3$, the critical points correspond one to one to the roots of $q$.
+\item[(2)] \emph{Newton polygon.} The lower hull of $q$ has vertices $(0,8)$, $(3,3)$, $(5,0)$. The edge of slope $-5/3$, with edge polynomial $1-2c^3$, gives three roots $s\approx2^{-1/3}\omega\,\tau^{5/3}$ with $\omega^3=1$. The
+  edge of slope $-3/2$, with edge polynomial $c^2-2$, gives two roots $s\approx\pm\sqrt2\,\tau^{3/2}$.
+\item[(3)] \emph{Distinct and nondegenerate for every $T>0$.} $\operatorname{disc}_sq=-\tau^{31}(256\tau^2-837\tau+3456)$, and the resultant of $q$ with the Hessian determinant is $\tau^{54}(256\tau^2-837\tau+3456)$. The quadratic has
+  discriminant $-2838375<0$, so neither vanishes for $\tau>0$.
+\item[(4)] \emph{Distinct critical values for every $T\in(0,1)$.} $W=2s+\tau^4/(s^2-\tau^3)+(s^2-\tau^3)/\tau^2$ at a critical point. The polynomial whose roots are the five critical values has discriminant
+  $-\tau^{225}(\tau-1)^2(256\tau^2-837\tau+3456)^3$, which vanishes on $(0,\infty)$ only at $T=1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Each statement is an exact symbolic computation (CB1--CB4). In (2) the edge polynomials are read off the coefficients on each edge: $\tau^8-2\tau^3s^3$ and $-2\tau^3s^3+s^5$.
+\end{proof}
+
+So there are five critical points, two fibres and five objects:
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.15\linewidth}}\toprule
+object & fibre & leading $(y_1,y_2)/T^{u}$ & leading $W$ & leading $\det(Q/W)$\\\midrule
+$P$ positive & $(\tfrac3{20},\tfrac3{20})$ & $(\tfrac{\sqrt2}2,\ \sqrt2)$ & $2\tau+2\sqrt2\,\tau^{3/2}$ & $\sqrt2\,\tau^{1/2}$\\
+$N$ real $(-,-)$ & $(\tfrac3{20},\tfrac3{20})$ & $(-\tfrac{\sqrt2}2,\ -\sqrt2)$ & $2\tau-2\sqrt2\,\tau^{3/2}$ & $-\sqrt2\,\tau^{1/2}$\\
+$R$ real $(-,+)$ & $(\tfrac2{15},\tfrac16)$ & $(-2^{1/3},\ 2^{-1/3})$ & $-2\tau+2^{2/3}\tau^{5/3}$ & $-c\,\tau^{2/3}$\\
+$C_\omega$, $C_{\bar\omega}$ complex & $(\tfrac2{15},\tfrac16)$ & $(-2^{1/3}\bar\omega,\ 2^{-1/3}\omega)$ & $-2\tau+2^{2/3}\omega\,\tau^{5/3}$ & $-c\,\bar\omega^2\tau^{2/3}$\\\bottomrule
+\end{tabular}
+\end{center}
+Here $c=3\cdot2^{-4/3}$, $\omega=e^{\pm2\pi i/3}$, and $C_{\bar\omega}$ is the conjugate of $C_\omega$. CB5 and CB6 check every entry against the roots at $\tau=10^{-10},10^{-20},10^{-40}$, with relative errors $1.5\cdot10^{-4}$, $6.8\cdot10^{-8}$ and
+$1.5\cdot10^{-14}$. The two groups have opposite leading critical value, $\pm2\tau$. Within a group the values separate at order $\tau^{3/2}$, or at order $\tau^{5/3}$ through the cube roots of unity (\cref{fig:cbnewton}).
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_cb_newton.pdf}
+\caption{The column-binding example classified. (a) The Newton polygon of the quintic: one edge gives the three branches over $(2/15,1/6)$, the other the two over the leximin fibre. (b) The five
+roots against $\tau$ follow the two predicted lines; the vertical offsets are the moduli of the leading coefficients.}\label{fig:cbnewton}
+\end{figure}
+
+\begin{remark}[the drift explained]
+At finite $T$ a branch with leading coefficient $\rho$ has apparent valuation $u-\log|\rho|/\log(1/T)$. For $P$, $\log(\sqrt2/2)$ gives the offset $\ln2/(2L)$ of \cref{ex:colbind}. For the other three, $\log2^{\pm1/3}$ gives
+$\pm\ln2/(3L)$. This was the slow ``drift'' seen there: the limits are exactly $(2/15,1/6)$. The three sit there because their level-one terms have $y_1y_2\approx-\tau^3$. This sign makes the level-two terms
+(cells $11$ and $22$) cancel exactly, so the position is set by the next balance, of cell $12$ against the constant term: $-2\tau^3s^3+\tau^8\approx0$. In the row-binding examples every leading coefficient
+has modulus one. Non-unit moduli appear here because a level of selection cancels.
+\end{remark}
+
+\begin{theorem}[reduction of the Clifford form]\label{thm:reduction}
+Let $c$ be a nondegenerate critical point with valuation $u_c$. Let $K$ be its leading set, the $k$ with $\ell_k(u_c)$ minimal, equal to $h_c$. Write the term values as $c_k=\rho_kT^{h_c}(1+o(1))$ for $k\in K$, and assume
+\begin{enumerate}
+\item[(H1)] $\sum_{k\in K}\rho_k\ne0$.
+\end{enumerate}
+Then $Q/W$ has entries of non-negative valuation and reduces modulo $T$ to $M_c=\sum_{K}\rho_kv_kv_k^{\!\top}/\sum_K\rho_k$. Always $\operatorname{rank}M_c\le\dim\operatorname{span}\{v_k:k\in K\}$. Equality holds under
+\begin{enumerate}
+\item[(H2)] the $\rho_k$, $k\in K$, are real and of one sign,
+\end{enumerate}
+in particular for the positive object (\cref{thm:shadow}). Without (H2), cancellation can lower the rank.
+\end{theorem}
+
+\begin{proof}
+By (H1), $W=(\sum_K\rho_k)T^{h_c}(1+o(1))$, and every $c_k$ has valuation at least $h_c$. Under (H2), $\sum_K\rho_kv_kv_k^{\!\top}$ is a semidefinite Gram matrix, whose rank is that of $\{v_k\}$. CB8 tests the theorem on $23$
+objects: $F_1$ at $\alpha=1/5$ and $3/5$, the $2\times3$ example, its one-count neighbour, and this example. (H1) holds for all $23$, and (H2) for $13$. The rank equals the span dimension in all $23$, including
+the $10$ without (H2). An example is the signed object of $F_1$ at $\alpha=1/5$, where $\rho=(-1,-1,1)$ and $M_c=\left(\begin{smallmatrix}2&1\\1&0\end{smallmatrix}\right)$.
+\end{proof}
+
+In the column-binding example $K=\{13,23\}$ for all five objects, with $\rho=(1,1)$ on the leximin fibre and $(-1,-1)$ on the other. (H2) holds, and $M_c=J=\left(\begin{smallmatrix}1&1\\1&1\end{smallmatrix}\right)$, of rank $1$, for every object. The
+reduced Clifford algebras are therefore all non-semisimple. The objects are told apart one order further:
+\begin{gather*}
+P,N:\quad \frac QW=J\pm\frac{\tau^{1/2}}2\operatorname{diag}\!\Bigl(\tfrac{\sqrt2}2,\tfrac{3\sqrt2}2\Bigr)+\dots,\\
+R,C:\quad \frac QW=J+2^{-2/3}\bar\omega\,\tau^{1/3}\operatorname{diag}(1,-1)+\dots
+\end{gather*}
+For $P$ and $N$ the correction is first order in the small direction, so the small eigenvalue is $\pm(\sqrt2/2)\tau^{1/2}$, of valuation $1/20$ in $T$. The form is positive definite for $P$ and indefinite for $N$. For $R$ and $C$ the first-order
+correction vanishes in the small direction, which is the cancellation the reduction theorem warns about. The small eigenvalue appears only at second order, $-\tfrac32\,2^{-4/3}\bar\omega^2\tau^{2/3}$, of
+valuation $1/15$.
+
+\begin{proposition}[the Hom table]\label{prop:homtable}
+In the convention above, the five objects have the following morphisms.
+\begin{enumerate}
+\item[(1)] Between the two fibres: none. The fibres are disjoint, so the unperturbed Floer complex is zero; this is a legitimate model, since the pair is transverse.
+\item[(2)] Within a fibre: none. The critical values are distinct (\cref{prop:five}(4)), and morphisms are defined only between objects with equal $m_0$ \cite{Auroux2007,FOOO2010}. (Their holonomies are also distinct, but the argument does not use this.)
+\item[(3)] On the diagonal: $\mathrm{Cl}(Q_c)\cong M_2$, with $Q_c$ as above (cited, in the convention stated). No higher products survive (\cref{prop:formal}).
+\end{enumerate}
+So the category these objects generate is $\bigoplus_{c=1}^5\mathrm{Cl}(Q_c)$ over $\Lambda$. Over $\Lambda_0$, all five reduce to the rank-one form $J$. Generation of the Fukaya summands remains conditional, because the
+example is not monotone \cite{Smith2018}.
+\end{proposition}
+
+\begin{proof}
+(1) $L(u)=\mu^{-1}(u)$. (2) and (3) are the cited statements together with \cref{prop:five}. CB7 checks the counts, the distinct values and holonomies within each fibre, and that explicit Clifford
+generators span $M_2$.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=0.66\linewidth]{fig_cb_objects.pdf}\\[4pt]
+\includegraphics[width=0.66\linewidth]{fig_cb_hom.pdf}
+\caption{Top: the five objects over their two fibres, with exact leading holonomies; the leximin fibre carries $P$ and $N$, the fibre $(2/15,1/6)$ carries $R$, $C_\omega$ and $C_{\bar\omega}$. Bottom: the Hom table.
+Grey cells vanish because the fibres are disjoint, orange cells because the values of $m_0$ differ. The diagonal is $\mathrm{Cl}(Q_c)\cong M_2$, and every one reduces to the rank-one form $J$ modulo $T$.}\label{fig:cbobjects}
+\end{figure}
+
+\subsection{Stage IV: a path through the column-binding example}\label{sec:path}
+Data so far moved margins by one count (a point) or along one direction of evidence (a line). Here we take a sheet of margins and one path across it, and we keep four questions separate along the
+path: do critical points collide, do critical values coincide, which fibres carry the objects, and what do the Clifford forms and the Stokes alignments see?
+
+\paragraph{The sheet and the path.} Fix $f=(2/5,3/5)$ and let the column margins vary: $g=(1-g_2-g_3,\,g_2,\,g_3)$. \Cref{fig:s4sheet} shows this sheet with its blow-up walls $f_1=g(J)$, which bound the
+K\"ahler chambers, and its leximin walls. The path is
+\[
+g(\gamma)=\Bigl(\tfrac7{10}-\gamma,\ \tfrac3{10},\ \gamma\Bigr),\qquad \gamma\in\bigl[\tfrac3{20},\tfrac{11}{40}\bigr].
+\]
+It stays in the pentagon chamber (facets $11,12,13,22,23$; no blow-up wall meets $\gamma\in(1/10,3/10)$), and only the exponent of cell $23$ moves. With $A=T^{2/5}$, $B=T^{3/10}$ and $C=T^{\gamma-2/5}$,
+\[
+W_\gamma=y_1+y_2+\frac{A}{y_1y_2}+\frac{B}{y_2}+C\,y_1y_2 .
+\]
+The column-binding example of \cref{sec:cbclass} is $\gamma=1/5$.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=0.7\linewidth]{fig_s4_sheet.pdf}
+\caption{The sheet of column margins at $f=(2/5,3/5)$. Black lines are blow-up walls. The stepped rose lines are leximin walls computed on a $120\times120$ grid (colours: leximin types),
+and the dashed lines are the two walls the path crosses, drawn exactly: $g_2+g_3/2=2/5$ (level two) and $g_3=4/15$ (level one). Grey numbers count the facets of the fibre. The path (blue) runs inside one K\"ahler chamber, the pentagon, and crosses two leximin walls: the column-binding example (black dot) sits on a level-two wall, and the
+level-one wall (orange square) is at $\gamma=4/15$.}\label{fig:s4sheet}
+\end{figure}
+
+\begin{proposition}[the path, exactly]\label{prop:path}
+\begin{enumerate}
+\item[(1)] \emph{Two leximin walls.} For $\gamma<1/5$ the levels are $\gamma/2$ (column $3$), $3/20$ (column $2$) and $1/4-\gamma/2$ (cell $11$). For $1/5<\gamma<4/15$ they are $\gamma/2$ and $(4/5-\gamma)/4$, where
+the residual of row $1$ binds. For $\gamma>4/15$ row $1$ binds at once, at $2/15$. At $\gamma=1/5$ the cells $11,12,22$ tie at the second level, and at $\gamma=4/15$ the cells $11,12,13,23$ tie at the first.
+So \emph{the column-binding example lies on a level-two leximin wall.}
+\item[(2)] \emph{Reduction.} The critical points are $y_1=(s^2-B)/s$, $y_2=s$, where
+\begin{equation}\label{eq:pathquintic}
+(s^2-B)^2(1+Cs)=As .
+\end{equation}
+At $\gamma=1/5$, where $C=A/B^2$, this is the quintic of \cref{prop:five}.
+\item[(3)] \emph{Where the objects sit.} The Newton polygon of \eqref{eq:pathquintic} changes exactly at the two leximin walls, and gives
+\begin{center}\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lp{0.47\linewidth}p{0.33\linewidth}}\toprule
+$\gamma$ & over the leximin fibre & elsewhere\\\midrule
+$(3/20,1/5)$ & $4$, at $(1/4-\gamma/2,\,3/20)$: $s=\pm T^{3/20}$, $y_1=\pm T^{1/4-\gamma/2}$ & $R$, at $(\gamma-1/10,\,2/5-\gamma)$, signs $(+,-)$\\
+$1/5$ & $2$, at $(3/20,3/20)$ & $3$, at $(2/15,1/6)$ (\cref{prop:five})\\
+$(1/5,4/15)$ & $4$, at $\frac{4/5-\gamma}4(1,1)$: $y_1\approx y_2=i^kT^{(4/5-\gamma)/4}$ & $R$, at $(1/10,1/5)$, signs $(-,+)$\\
+$(4/15,11/40]$ & $3$, at $(2/15,2/15)$: $y_1\approx y_2=\omega^kT^{2/15}$ & $N$, at $(2/5-\gamma)(1,1)$, signs $(-,-)$; and $R$\\\bottomrule
+\end{tabular}
+\end{center}
+In every regime the leximin fibre carries the multiple root, as \cref{thm:selection} requires of the positive object.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) By \cref{thm:maxmincoupling} and the recursion of \cref{def:lex}. After column $3$ binds, the segment has $a_{11}+a_{12}=r=2/5-\gamma/2$, and the facet cells on it are $11,12,22$. The residual row binds if
+$r<g_2=3/10$, that is, if $\gamma>1/5$, and column $2$ binds otherwise; row $1$ binds at the first level once $\gamma/2>2/15$. (2) As in \cref{prop:five}: $y_1\partial_1W-y_2\partial_2W=y_1-y_2+B/y_2$. (3) Three
+dominant balances in \eqref{eq:pathquintic} decide everything. Whether $Cs$ or $1$ dominates on the leximin roots switches at $\gamma=4/15$. Whether $C$ or $A/B^2$ dominates on the isolated root switches at
+$\gamma=1/5$. And below $1/5$ the leximin roots have $s^2=B(1+o(1))$: writing $s^2-B=\delta$ gives $\delta^2\approx A/C$, so $y_1=\delta/s$ has valuation $1/4-\gamma/2$. PP2--PP5 check the levels, the Newton
+polygons at $10$ rational $\gamma$, and the valuations and phases at $L=200,400$.
+\end{proof}
+
+So the peculiarities found in \cref{sec:cbclass} belong to the wall, not to column binding. The grouping $2+3$, the fibre $(2/15,1/6)$ and the leading moduli $2^{\pm1/3}$ occur only at $\gamma=1/5$. On either side
+of it, four objects sit over the leximin fibre with leading moduli one. This is what the remark on the drift meant by a level of selection that cancels: there the linear coefficient $B^2C-A$ of
+\eqref{eq:pathquintic} vanishes identically.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_s4_objects.pdf}
+\caption{The five objects over the pentagon at four points of the path; the marker size and the number give how many objects sit over each fibre. Away from the wall $\gamma=1/5$ the leximin fibre (blue,
+star) carries four objects, then three after the level-one wall.}\label{fig:s4objects}
+\end{figure}
+
+\begin{proposition}[what crosses each wall]\label{prop:crossing}
+Along the path, at fixed small $T$:
+\begin{enumerate}
+\item[(1)] \emph{The level-two wall forces a collision.} At $\gamma=0.15$ and $0.18$ all five critical points are real; at $\gamma\ge0.22$, three are. The coefficients of \eqref{eq:pathquintic} are real and its leading coefficient $C$
+never vanishes, so the number of real roots can change only through a double root. Numerically the discriminant has exactly one zero on the path, at $\gamma_c(T)$, for $T=e^{-50},e^{-100},e^{-200},e^{-400}$,
+with $\gamma_c=0.19235$, $0.19918$, $0.199985$, $0.19999999$: it approaches the wall from below, faster than $1/\log(1/T)$. There the two objects of signs $(+,-)$ meet and leave as the complex pair
+$I_\pm$. At that one parameter a critical point is degenerate.
+\item[(2)] \emph{The level-one wall does not.} The discriminant has no zero on $(0.21,\,0.275]$. The pair $I_\pm$ continues into $C_\omega,C_{\bar\omega}$, and $N$ leaves the leximin fibre along the diagonal.
+\item[(3)] \emph{Critical values} never coincide on the path away from the collision, and the order of the real values is constant on each side (PP7). So outside $\gamma_c(T)$ the hypotheses of
+\cref{prop:morph} hold at every point: every off-diagonal Hom vanishes, and each endomorphism algebra is $\mathrm{Cl}(Q_c)\cong M_2(\Lambda)$.
+\item[(4)] \emph{The Clifford shadow sees both walls} (\cref{fig:s4track}(b)). The positive object's scale is $h_2-h_1=3/20-\gamma/2$ below $1/5$ and $1/5-3\gamma/4$ above it, so the scale has a kink at the
+level-two wall and closes at the level-one wall, where the reduced rank jumps from $1$ to $2$ (\cref{thm:shadow}). The four objects over the leximin fibre share this scale; $R$ has rank $2$
+throughout.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Real-root counting, together with PP5 for the counts and PP6 for the zero. (2) PP6. (3) PP7, and \cref{prop:morph}(2)--(3). (4) PP8 compares the slopes at $L=400\to800$ with $h_2-h_1$ from
+\cref{prop:path}(1).
+\end{proof}
+
+What (3) does and does not give needs saying plainly. At every parameter away from $\gamma_c(T)$ the five objects generate $\bigoplus_{c=1}^5\mathrm{Cl}(Q_c)$ over $\Lambda$, on both sides of the level-one wall. All
+such categories are equivalent over $\Lambda$, so this pointwise statement says little. It is not an $A_\infty$ functor along the path, and non-collision alone would not give one. Over $\Lambda_0$ the
+positive object changes across the level-one wall: its reduced Clifford form goes from rank $1$ to rank $2$. Across the level-two wall the path meets a degenerate critical point at $\gamma_c(T)$,
+where the cited theorems do not apply.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_s4_track.pdf}
+\caption{Along the path. (a) The number of real critical points at $L=50$ and $100$; the dotted lines are the zeros of the discriminant, one per $L$, at the level-two wall. (b) The small eigenvalue of
+$Q/W$ at the positive object, against $h_2-h_1$. (c) The positions of Stokes alignments at three phases and three values of $L$; the shaded bands are $|\gamma-\text{wall}|\le1/L$.}\label{fig:s4track}
+\end{figure}
+
+\paragraph{Stokes alignments, separately.} For the phases $\theta=0.3$, $1.0$ and $\pi/2$, and $L=25,50,100$, every parameter where two critical values align, $\operatorname{Im}e^{-i\theta}(W_j-W_i)=0$, lies
+within $1.5/L$ of one of the two leximin walls, and at $L=100$ within $1/L$; alignments occur near both walls (PP9; \cref{fig:s4track}(c)). This is the behaviour of \cref{prop:stokes} on $F_1$, now
+near two walls at once. We do not claim it for every phase, nor that every leximin wall has such alignments nearby; near the level-two wall some alignments involve the pair born at the collision.
+
+\part{Deeper selection: \texorpdfstring{$2\times4$}{2 x 4} couplings}
+\section{Three-dimensional fibres}\label{sec:twofour}
+A $2\times3$ fibre is a polygon, so selection has at most two levels. A $2\times4$ fibre $\mathrm{Cpl}(f,g)$ is a three-dimensional polytope, and the leximin recursion can cut it down in up to three
+steps: a sheet, then a line, then a point. This part asks what such a deeper hierarchy does on the other side, and it keeps three questions apart. Is the chamber Fano, so that the Floer layer of
+\cref{sec:floer} applies? How many dimensions does each level remove? And does the Clifford form of the positive object see each level? The answers are, in order: only $14$ of the $148$ chambers are
+Fano, and in those coupled three-step selection never occurs (\cref{thm:chambers24,prop:fanodepth}); a level can remove more than one dimension; and in every example the Clifford form has one scale
+per removed dimension (\cref{conj:leveldrop}, proved at leading order in three examples).
+
+\subsection{Coordinates and the potential}
+Use $u=(a_{11},a_{12},a_{13})$. The eight cells are $a_{1j}=u_j$ and $a_{2j}=g_j-u_j$ for $j\le3$, $a_{14}=f_1-\sum_ju_j$, and $a_{24}=\sum_ju_j-(f_1+g_1+g_2+g_3-1)$. Their normals are $\pm e_j$ and
+$\mp(1,1,1)$. Over the facet cells (a non-facet cell contributes no term), the potential is
+\begin{equation}\label{eq:W24}
+W=\sum_{j\le3}\Bigl([1j]\,y_j+[2j]\,\frac{T^{g_j}}{y_j}\Bigr)+[14]\,\frac{T^{f_1}}{P}+[24]\,T^{g_4-f_1}P,\qquad P=y_1y_2y_3,
+\end{equation}
+where $[ij]=1$ if cell $ij$ is a facet and $0$ otherwise. For each example we keep three counts separate: the vertices of the fibre (equal to $\chi(X)$), the critical points of $W$, and the distinct
+fibres that carry them.
+
+\subsection{Ampleness, certified by curves}
+Whether $X_{(f,g)}$ is Fano is a statement about its fan, and so about the chamber of $(f,g)$. We certify it with integers on the edges of the polytope, by a classical criterion, rather than by
+any probabilistic argument.
+
+\begin{proposition}[ampleness by curves]\label{prop:kleiman}
+Let $X$ be a smooth complete toric threefold with polytope $Q$.
+\begin{enumerate}
+\item[(1)] (Nakai--Moishezon) A divisor $D$ on a projective variety is ample if and only if $D^{\dim V}\cdot V>0$ for every irreducible subvariety $V$ of positive dimension \cite{Kleiman1966}.
+\item[(2)] (toric Kleiman) On a complete toric variety it suffices to test the torus-invariant curves: $D$ is ample if and only if $D\cdot C>0$ for each of them, and nef if and only if $D\cdot C\ge0$
+\cite[Theorem~6.3.13 and \S6.3]{CLS2011}.
+\item[(3)] The invariant curves are the edges of $Q$. If an edge lies on the facets $i,j$ and joins the vertices whose third facets are $k$ and $l$, the wall relation $v_k+v_l+a\,v_i+b\,v_j=0$ has
+integer $a,b$, and $D_k\cdot C=D_l\cdot C=1$, $D_i\cdot C=a$, $D_j\cdot C=b$, and $D_\rho\cdot C=0$ otherwise \cite[\S6.4]{CLS2011}. So $-K\cdot C=2+a+b$, and the K\"ahler class meets $C$ in
+$-\lambda_k-\lambda_l-a\lambda_i-b\lambda_j$, which must equal the lattice length of the edge.
+\end{enumerate}
+On a toric variety $-K$ is always big, since its polytope $\{m:\langle m,v_\rho\rangle\ge-1\}$ contains $0$ in its interior. So nef already means weak Fano.
+\end{proposition}
+
+Part (3) contains its own test: the lattice length of every edge must come out of the same integers that give $-K\cdot C$. TF2 confirms it on all $2208$ edges of all chambers. The curves with
+$-K\cdot C=0$ matter twice. They are what makes a chamber weak Fano rather than Fano. And they span the anticanonically trivial directions of the Mori cone, so they are the geometric source of the classes that \emph{may} contribute to the corrections of $W$ (\cref{rem:corrections}); a zero degree does not by itself give a nonzero contribution.
+
+\begin{theorem}[the $2\times4$ chambers]\label{thm:chambers24}
+The nondegenerate $2\times4$ margins fall into $148$ K\"ahler chambers, the sign patterns of $f_1-g(J)$ over the $14$ nonempty proper sets $J$ of columns. Every chamber polytope is simple and smooth.
+By \cref{prop:kleiman} they are of six types:
+\begin{center}\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccccl}\toprule
+type & chambers & facets & $\chi$ & $(-K)^3$ & curves with $-K\cdot C=0$ & $W$ & Floer reading & drop patterns seen\\\midrule
+$\mathbb{CP}^3$ & $2$ & $4$ & $4$ & $64$ & $0$ & as is & Cho--Oh & $(3)$\\
+$\mathrm{Bl}_{pt}\mathbb{CP}^3$ & $8$ & $5$ & $6$ & $56$ & $0$ & as is & Cho--Oh & $(3)$, $(1,2)$\\
+$(\mathbb{CP}^1)^3$ & $4$ & $6$ & $8$ & $48$ & $0$ & as is & Cho--Oh & $(1,1,1)$, decoupled\\
+weak Fano & $24$ & $6$ & $8$ & $48$ & $1$ & $(1+\delta_k)$ & withheld & $(3)$, $(1,2)$, $(1,1,1)$\\
+weak Fano & $64$ & $7$ & $10$ & $40$ & $3$ & $(1+\delta_k)$ & withheld & $(3)$, $(1,2)$, $(1,1,1)$\\
+weak Fano & $46$ & $8$ & $12$ & $32$ & $6$ & $(1+\delta_k)$ & withheld & $(3)$, $(1,2)$, $(1,1,1)$\\\bottomrule
+\end{tabular}
+\end{center}
+Here $\chi$ is also the number of vertices, and ``$(1+\delta_k)$'' means the corrections of \cref{rem:corrections}.
+In every chamber the normalised volume of $\operatorname{conv}\{v_c\}$ over the facets equals the number of vertices. The $148$ are chambers of the margin hyperplane arrangement only: leximin walls
+subdivide them further, so the drop pattern is not a chamber invariant, and the last column lists only the patterns seen in a census.
+\end{theorem}
+
+\begin{proof}
+An exact computation, TF1--TF3, with a machine-readable certificate, the file \texttt{chambers24.json} in \texttt{kahler/}, and an independent verifier (CC1--CC4). Each of the $148$ chambers is certified by an exact rational interior point; that no other sign pattern is realised rests on linear-programming infeasibility. For each
+chamber, $-K\cdot C$ is computed on every edge from the integer wall relation, the type is read from the primitive relations, and an independent anticanonical vertex test agrees in all $148$. The
+drop patterns are not invariants of a K\"ahler chamber, because leximin walls subdivide it; the last column lists those seen in a tie-free census (TF8).
+\end{proof}
+
+\begin{proposition}[the box, and selection depth in the Fano chambers]\label{prop:fanodepth}
+\begin{enumerate}
+\item[(1)] $\mathrm{Cpl}(f,g)$ is a box exactly when some column has $g_j>\max(f_1,f_2)$. Then column $j$ never binds, $X=(\mathbb{CP}^1)^3$, $W$ is a sum of three $\mathbb{CP}^1$ potentials, and the levels are
+the half-masses $g_k/2$ of the other three columns.
+\item[(2)] In a $\mathbb{CP}^3$ chamber selection is immediate: pattern $(3)$. In a $\mathrm{Bl}_{pt}\mathbb{CP}^3$ chamber it is $(3)$ or $(1,2)$.
+\end{enumerate}
+So coupled selection in three steps occurs only in weak Fano chambers.
+\end{proposition}
+
+\begin{proof}
+(1) The column-$j$ inequalities $0\le f_1-\sum_{k\ne j}a_{1k}\le g_j$ hold on the whole box $0\le a_{1k}\le g_k$ exactly when $1-g_j\le f_1\le g_j$. Then the two cells of column $j$ are not facets and their terms do not appear in \eqref{eq:W24}. Each remaining column contributes
+$y+T^{g}/y$ in its own coordinate: $y_k$ for a column $k\le3$, and $z=T^{f_1}/P$ for column $4$. These three coordinates are a unimodular basis. (2) By TF4 the facets of a $\mathbb{CP}^3$ chamber are one full row $i$, so the fibre is
+the simplex $\{a_{i\cdot}\ge0,\ \sum_ja_{ij}=f_i\}$ and the equal split $f_i/4$ is selected at once. The facets of a $\mathrm{Bl}_{pt}\mathbb{CP}^3$ chamber are one full row $i$ and one cell $i'j$, which cuts off a
+corner. If $f_i/4<g_j/2$ the equal split is still selected at once. Otherwise column $j$ binds first, at $g_j/2$, and the remaining three cells of row $i$ share $f_i-g_j/2$ equally at the second level, a
+drop of two.
+\end{proof}
+
+A binding row finishes selection, since it leaves a candidate set of dimension $(n-2)(m-1)=0$. The counting formula of \cref{thm:maxmincoupling} gives only the first level, and the examples show
+that later levels can remove one or two dimensions. Write $r_j$ for the number of dimensions removed at level $j$, the rank increment of the fixed normals; a level can also remove none, as the last
+level of example C does.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_tf_polytopes.pdf}
+\caption{The three fibres and their candidate sets. Orange: the sheet left by the first level (a binding column). In A and C the second level leaves a line and the third a point; in B the second level
+is a binding row on what is left, and it fixes two dimensions at once. The star is the leximin point, the valuation of the positive critical point (\cref{thm:selection}).}\label{fig:tfpoly}
+\end{figure}
+
+\subsection{Three examples}
+\begin{example}[A: the box]\label{ex:A24}
+Take $f=(2/5,3/5)$ and $g=(1/20,13/20,1/10,1/5)$. Column $2$ never binds, so by \cref{prop:fanodepth}(1) the fibre is a box, $X=(\mathbb{CP}^1)^3$, and $W=(y_1+T^{1/20}/y_1)+(y_3+T^{1/10}/y_3)+(z+T^{1/5}/z)$
+with $z=T^{2/5}/P$. The levels are $1/40$, $1/20$, $1/10$, with drops $(1,1,1)$. The $8$ critical points are $y_1=\pm T^{1/40}$, $y_3=\pm T^{1/20}$, $z=\pm T^{1/10}$, all over the leximin fibre
+$(1/40,9/40,1/20)$, with leading holonomies $\pm1$. Their critical values are $2(\pm x\pm x^2\pm x^4)$ with $x=T^{1/40}$. For $T\in(0,1)$ exactly two coincide, $(+,-,-)$ and $(-,+,+)$, at the root of
+$x^3+x-1=0$, $T^*\approx2.3\times10^{-7}$. There the $m_0$ argument for vanishing Hom does not apply (the holonomies still differ), and we do not compute that group. TF5 checks all of this exactly.
+\end{example}
+
+\begin{proposition}[B: the blown-up projective space, exactly]\label{prop:B24}
+Take $f=(3/20,17/20)$ and $g=(1/20,1/5,1/4,1/2)$. The facets are row $1$ and cell $21$, so $X=\mathrm{Bl}_{pt}\mathbb{CP}^3$ and $W=y_1+y_2+y_3+T^{3/20}/P+T^{1/20}/y_1$. Put $\tau=T^{1/20}$.
+\begin{enumerate}
+\item[(1)] \emph{Selection.} Column $1$ binds at $h_1=1/40$, and row $1$ then spreads $1/8$ over three cells, $h_2=1/24$. The drops are $(1,2)$.
+\item[(2)] \emph{Reduction.} At a critical point $y_2=y_3=c$ and $y_1=\tau^3/c^3$, where $c^6+\tau^2c^4-\tau^5=0$. As a cubic in $c^2$ this has discriminant $\tau^{10}(4\tau-27)$, so there are $6$ distinct
+critical points for $T\in(0,1)$.
+\item[(3)] \emph{One fibre.} The Newton polygon of the cubic has a single edge. All six critical points lie over the leximin fibre $(1/40,1/24,1/24)$, with $c=\zeta T^{1/24}(1+o(1))$ and
+$y_1=\zeta^{-3}T^{1/40}(1+o(1))$, $\zeta^6=1$.
+\item[(4)] \emph{Distinct values.} The critical values $w=2y_1+2c$ are the roots of a sextic whose discriminant is $2^{36}\tau^{19}(4\tau-27)^6(4\tau+1)^2$. So they are distinct for every $T\in(0,1)$.
+\item[(5)] \emph{Objects and morphisms} (Fano; cited, in the convention of \cref{sec:cbclass}). The six are objects over one fibre, with distinct $m_0$, so every off-diagonal Hom vanishes and the
+category they generate is $\bigoplus_{c=1}^6\mathrm{Cl}(Q_c)$ over $\Lambda$, with no higher products. Generation is conditional.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) By \cref{prop:fanodepth}(2), since $f_1/4=3/80>g_1/2=1/40$. (2) The equations $y_j\partial_jW=0$ give $y_2=y_3=T^{3/20}/P=c$ and $y_1-\tau/y_1=c$; eliminating gives the sextic, and the
+discriminant follows. (3) The lower hull of $(3,0),(2,2),(0,5)$ in the plane of (power of $c^2$, power of $\tau$) is the single segment from $(0,5)$ to $(3,0)$, of slope $-5/3$, so
+$c^2\sim\tau^{5/3}$ and $c\sim\tau^{5/6}=T^{1/24}$. Then $y_1=\tau^3/c^3$. (4) A resultant. (5) \Cref{prop:morph}(2)--(3) and \cref{prop:formal}, with (4). TF6 checks (2)--(4) symbolically.
+\end{proof}
+
+\begin{example}[C: weak Fano, coupled in three steps]\label{ex:C24}
+Take $f=(3/10,7/10)$ and $g=(1/10,3/20,1/4,1/2)$. The facets are row $1$ and cells $21,22,23$, so seven facets, and the chamber is weak Fano with three curves of $-K\cdot C=0$. Here
+$W=\sum_{j\le3}(y_j+T^{g_j}/y_j)+T^{3/10}/P$. Columns $1$ and $2$ bind in turn, at $h_1=1/20$ and $h_2=3/40$. Row $1$ then spreads $7/40$ over cells $13$ and $14$, at $h_3=7/80$. The last cell, $23$,
+is fixed at $13/80$ without removing a dimension. The drops are $(1,1,1,0)$. The critical equations reduce to one resultant of degree $10$ in $c=T^{3/10}/P$, even in $c$. Its Newton polygon in $c^2$
+has an edge of slope $7/2$ with four roots and one of slope $1$ with one root. So $8$ critical points lie over the leximin fibre $(1/20,3/40,7/80)$, with leading holonomies of the form
+$(\pm1,\pm1,\pm1)$ or $(\pm1,\pm1,\pm i)$, and $2$ lie over $(1/40,1/40,9/40)$, with holonomies $\pm(i,i,i)$. On that second fibre the leading set is $\{11,12,14,23\}$, with leading coefficients
+$\rho=(i,i,i,-i)$ up to conjugation. (H1) holds and (H2) fails, yet $\operatorname{rank}M_c=3=\dim\operatorname{span}$: two more instances of the equality in \cref{thm:reduction} without its sufficient
+condition. TF7 and TF9 check this.
+\end{example}
+
+\begin{remark}[what changes in a weak Fano chamber]\label{rem:corrections}
+For a semi-Fano toric manifold, that is, one with $-K$ nef, the potential of a fibre is $W^{\mathrm{LF}}=\sum_k(1+\delta_k)\,T^{-\lambda_k}y^{v_k}$, where
+$\delta_k=\sum_{\alpha\ne0}n_{\beta_k+\alpha}T^{\omega(\alpha)}$ runs over the classes $\alpha$ of rational curves with $-K\cdot\alpha=0$ \cite[Proposition~2.15]{CLLT2020}. The monomials are the same and only the coefficients
+change, by factors $1+O(T^\varepsilon)$. Three consequences, and one thing withheld:
+\begin{enumerate}
+\item[(i)] The valuations of the terms are unchanged, so the levels $h_j$, the leximin point and the leading coefficients are unchanged.
+\item[(ii)] \Cref{thm:selection} needs real coefficients with uniform bounds. If the $\delta_k$ converge for small $T$, are real, and satisfy $0<c\le1+\delta_k(e^{-L})\le C$ for large $L$, then it applies
+to $W^{\mathrm{LF}}$ as it stands: the corrected positive critical point is selected at the leximin point, with error $O(1/L)$. If the $\delta_k$ are only formal Novikov series, the conclusion holds as a
+statement about valuations, by (i), and not about a real critical point.
+\item[(iii)] The leading-order argument of \cref{prop:scales} uses only valuations and leading coefficients, so it applies to $W^{\mathrm{LF}}$ verbatim (argued, not checked).
+\item[(iv)] Withheld: the exact critical points of $W^{\mathrm{LF}}$, their number over each fibre, and the Floer reading of the ten objects. We do not compute the $\delta_k$.
+\end{enumerate}
+For each curve with $-K\cdot C=0$ four statuses must be kept apart: zero anticanonical degree (computed here, exactly); an effective class $\alpha$ through it that contributes to some $\delta_k$ (not determined);
+a nonzero invariant $n_{\beta_k+\alpha}$ (not computed); the correction evaluated (not done).
+\end{remark}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_tf_objects.pdf}
+\caption{Every critical point of the three potentials, grouped by fibre, with its leading holonomies drawn as dials (the arrow is the phase of $y_j$). A and B have one fibre each. C has two: eight
+points over the leximin fibre and two over $(1/40,1/40,9/40)$. In each case the number of critical points equals the normalised volume of the Newton polytope, which equals $\chi$, and that equality
+certifies the list complete. For C these are the critical points of the uncorrected $W$ (\cref{rem:corrections}).}\label{fig:tfobjects}
+\end{figure}
+
+\subsection{One scale per removed dimension}
+\Cref{thm:shadow} says that the reduction of $Q/W$ mod $T$ has rank $r_1$. The examples say more: the other directions of $Q/W$ have exact scales, one for each dimension a later level removes. To state
+this without ordering eigenvalues, use determinantal divisors.
+
+\begin{definition}[scale valuations]\label{def:scales}
+For a matrix $M$ over $\Lambda_0$, let $d_k$ be the least valuation of a $k\times k$ minor, and $e_k=d_k-d_{k-1}$, with $d_0=0$. The $e_k$ are the valuations of the invariant factors of $M$. They do not
+change under $M\mapsto AMB$ with $A,B\in\mathrm{GL}_n(\Lambda_0)$, in particular under a change of integral basis of $H^1(L;\mathbb Z)$.
+\end{definition}
+
+For the positive object, $Q/W$ is real symmetric and positive definite, and its scale valuations are the valuations of its eigenvalues. The sum of the $k\times k$ principal minors is the $k$-th
+elementary symmetric function of the eigenvalues; all terms are positive, so its valuation is that of the product of the $k$ largest eigenvalues. And for a positive definite matrix
+$|\det M_{IJ}|^2\le\det M_{II}\det M_{JJ}$, so the least valuation over all $k\times k$ minors is attained on a principal one.
+
+\begin{conjecture}[one scale per removed dimension]\label{conj:leveldrop}
+For nondegenerate margins, the scale valuations of $Q/W$ at the positive object are $0$ with multiplicity $r_1$, and $h_j-h_1$ with multiplicity $r_j$ for each later level $j$. A level that removes no
+dimension contributes nothing.
+\end{conjecture}
+
+\begin{proposition}[the conjecture in the three examples]\label{prop:scales}
+At leading order, the scale valuations of $Q/W$ are:
+\begin{enumerate}
+\item[(A)] $(0,\,1/40,\,3/40)$ for all $8$ objects;
+\item[(B)] $(0,\,1/60,\,1/60)$ for all $6$ objects: the second level removes two dimensions and gives a double scale;
+\item[(C)] $(0,\,1/40,\,3/80)$ for the $8$ objects over the leximin fibre, with no scale from the fourth level; and $(0,0,0)$ for the two over the second fibre.
+\end{enumerate}
+So \cref{conj:leveldrop} holds in A, B and C.
+\end{proposition}
+
+\begin{proof}
+In every case $Q=\sum_k(\text{term }k)\,v_kv_k^{\!\top}$, and at a critical point $y_j-T^{g_j}/y_j=c$, where $c$ is the value of the $P$-term.
+(A) In the unimodular basis $(\log y_1,\log y_3,\log z)$, $Q=\operatorname{diag}(W_1,W_3,W_z)$, with each factor's value $\pm2T^{h}$ and $W\sim\pm2T^{1/40}$.
+(B) $Q=\left(\begin{smallmatrix}2y_1&c&c\\c&2c&c\\c&c&2c\end{smallmatrix}\right)$ and $W=2y_1+2c$, with $y_1\sim T^{1/40}$ and $c\sim T^{1/24}$ (\cref{prop:B24}). So $d_1=0$. The $2\times2$ minors have least valuation
+$1/40+1/24$, attained by $4y_1c-c^2$, so $d_2=1/24-1/40=1/60$. Next, $\det Q=6y_1c^2-2c^3\sim T^{1/40+1/12}$, so $d_3=1/30$, and $e=(0,1/60,1/60)$.
+(C) $Q=D+cJ$, with $J$ the all-ones matrix and $D=\operatorname{diag}(2y_j-c)$. On the leximin fibre $y_1\sim\pm T^{1/20}$, $y_2\sim\pm T^{3/40}$ and $c\sim y_3\sim T^{7/80}$, so
+$D\approx\operatorname{diag}(2y_1,2y_2,y_3)$ and $W\approx2y_1$. The $2\times2$ minors have least valuation $1/20+3/40$, so $d_2=1/40$. Next,
+$\det Q=D_1D_2D_3+c\,(D_1D_2+D_1D_3+D_2D_3)\approx 2y_3D_1D_2\sim T^{17/80}$, with no cancellation, so $d_3=17/80-3/20=1/16$, and $e=(0,1/40,3/80)$. The second fibre has rank $3$ by \cref{ex:C24}.
+TF9 checks every case numerically: the eigenvalue slopes at the positive object, and the minors on every object over the leximin fibre. These finite-$T$ checks corroborate the limiting valuations;
+the proof is the leading-order computation above.
+\end{proof}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_tf_spectrum.pdf}
+\caption{The eigenvalues of $Q/W$ at the positive object, as $-\log|\mu|/L$ against $1/L$ for $L=50,\dots,1600$. The finite-$T$ offset is linear in $1/L$, so the curves run straight into their
+limits: $0$ once, then $h_j-h_1$ for each removed dimension. In B the second level removes two dimensions and two eigenvalues share the limit $1/60$. In C the fourth level, $13/80$, removes none and
+leaves no trace.}\label{fig:tfspectrum}
+\end{figure}
+
+In $2\times3$ the evidence was single scales: $(3\alpha-1)/4$ on $F_1$, $1/200$ after one count, and $1/20$ in the column-binding example (\cref{sec:morph}). The cube proves the conjecture for every box
+chamber, because the factors decouple. B is the first coupled case with a multiplicity, and C the first coupled case with three levels and a level that removes nothing. A proof in general would need
+the successive balances of \cref{thm:selection} to appear, one order at a time, in the minors of $Q$. That is the step we have not found.
+
 \section{Outlook}\label{sec:outlook}
-Five questions are left open.
+Seven questions are left open.
 \begin{itemize}
 \item \emph{Novikov weights and environments.} \Cref{sec:data} makes one direction precise: soft evidence of size $n$ on the scale $N$ shifts $\lambda$ by $-(n/N)\rho$.
   Whether the environment orders $s^{r_e}$ of the layers paper act in the same way, and how hard evidence and forgetting act, is open.
 \item \emph{The other walls.} Decision, contextuality and value-of-information walls (\cref{sec:data}), and the finite-$n$ sharpness of the transition at an outcome wall,
   measured in the Fisher metric.
-\item \emph{Beyond Fano.} For non-Fano toric manifolds, $W$ acquires corrections \cite{FOOO2010}. \Cref{thm:bridge} is about the leading potential only.
+\item \emph{Beyond Fano.} For non-Fano toric manifolds, $W$ acquires corrections \cite{FOOO2010}. \Cref{thm:bridge} is about the leading potential only. In the weak Fano chambers of
+  $2\times4$ the corrections only rescale coefficients (\cref{rem:corrections}); computing the $\delta_k$, and so the corrected objects of example C, is open.
+\item \emph{One scale per removed dimension.} \Cref{conj:leveldrop} in general; then $3\times3$, where the fibre is four-dimensional, as a test of it and of the rank equality in \cref{thm:reduction}.
 \item \emph{Signed branches and Stokes data.} The non-positive critical points have their own thimbles, which are not real and carry no
-  probability law. How the positive thimble decomposes against them, as $\hbar$ and $T$ vary, is Picard--Lefschetz and Stokes data. We do not compute it here. In particular, we do not
-  know whether the signed fibre of \cref{ex:F1}(a) has a probabilistic shadow.
+  probability law. \Cref{prop:stokes} locates the Stokes walls on $F_1$; the Picard--Lefschetz decomposition itself, and the general window, are not computed. We do not
+  know whether the signed fibre of \cref{ex:F1}(a) has a probabilistic shadow. \Cref{sec:path} crosses two leximin walls from the column-binding example; what the collision at the level-two wall does to the category, and an $A_\infty$ functor along a path that avoids it in complexified parameters, are open.
+\item \emph{The integral category.} \Cref{thm:shadow} sees the outcome wall in the reduction mod $T$ of one endomorphism algebra. Whether the full $A_\infty$ category over $\Lambda_0$ changes there,
+  and split generation in the non-monotone case \cite{Smith2018}, are open.
 \item \emph{Wall-crossing.} The layers paper resolves degenerate directions by blow-ups off the torus orbits. Whether these correspond to
   wall-crossing in torus fibrations is a separate question, which needs geometric data that the finite setting does not supply.
 \end{itemize}
@@ -695,16 +1344,16 @@ with an obstruction class are chosen.
 \section*{Checks}
 \begin{center}\small
 \begin{tabular}{ll}\toprule
-code & \texttt{engine/pce/kahlerbridge.py}, \texttt{engine/pce/datawalls.py},\\ & \texttt{engine/pce/contingency\_toric.py}, \texttt{engine/pce/couplingfibre.py}\\
+code & \texttt{engine/pce/kahlerbridge.py}, \texttt{engine/pce/datawalls.py},\\ & \texttt{engine/pce/contingency\_toric.py}, \texttt{engine/pce/couplingfibre.py},\\ & \texttt{engine/pce/floermorph.py}, \texttt{engine/pce/colbind.py},\\ & \texttt{engine/pce/cpl24.py}, \texttt{engine/pce/pentpath.py}\\
 checks & \texttt{engine/check\_kahlerbridge.py} (KB, $8/8$), \texttt{engine/check\_datawalls.py} (DW, $7/7$),\\
- & \texttt{engine/check\_contingency\_toric.py} (CT, $7/7$),\\ & \texttt{engine/check\_couplingfibre.py} (CF, $8/8$), \texttt{engine/check\_ledger.py} (LG, $3/3$)\\
-figures & \texttt{kahler/fig\_kahler.py}, \texttt{kahler/fig\_datawalls.py}, \texttt{kahler/fig\_coupling.py}\\ ledger & \texttt{LEDGER.yaml}, rendered by \texttt{kahler/render\_ledger.py}\\\bottomrule
+ & \texttt{engine/check\_contingency\_toric.py} (CT, $7/7$),\\ & \texttt{engine/check\_couplingfibre.py} (CF, $8/8$), \texttt{engine/check\_leximin.py} (LX, $9/9$),\\ & \texttt{engine/check\_floermorph.py} (MO, $9/9$), \texttt{engine/check\_colbind.py} (CB, $8/8$),\\ & \texttt{engine/check\_cpl24.py} (TF, $9/9$), \texttt{engine/check\_pentpath.py} (PP, $9/9$),\\ & \texttt{engine/check\_chambers24\_cert.py} (CC, $4/4$), \texttt{engine/check\_ledger.py} (LG, $3/3$)\\
+figures & \texttt{kahler/fig\_kahler.py}, \texttt{kahler/fig\_datawalls.py}, \texttt{kahler/fig\_coupling.py},\\ & \texttt{kahler/fig\_leximin.py}, \texttt{kahler/fig\_morph.py}, \texttt{kahler/fig\_colbind.py},\\ & \texttt{kahler/fig\_cpl24.py}, \texttt{kahler/fig\_pentpath.py}\\ certificate & \texttt{kahler/chambers24.json}\\ ledger & \texttt{LEDGER.yaml}, rendered by \texttt{kahler/render\_ledger.py}\\\bottomrule
 \end{tabular}
 \end{center}
 The checks corroborate the statements numerically, or by exact rational arithmetic where marked; they do not prove them.
 The proofs stand on their own. The $F_1$ blow-up sizes used are $\alpha=1/5,\,1/4,\,2/5,\,3/5,\,4/5$.
-\begin{center}\small
-\begin{tabular}{lp{0.82\linewidth}}\toprule
+{\small
+\begin{longtable}{lp{0.82\linewidth}}\toprule
 KB1 & \cref{prop:kahler}(1)--(2): moment map $=\nabla\varphi$, Fisher information $=\operatorname{Hess}\varphi$, positive definite ($30$ supports)\\
 KB2 & \cref{prop:kahler}(4): $\psi=\sum q\log(q/c)$, $\nabla\psi=u(p)$, $\operatorname{Hess}\psi=$ Fisher$^{-1}$ ($20$ supports)\\
 KB3 & \cref{prop:kahler}(5): $\int\det\operatorname{Hess}\varphi$ over boxes equals the area of the moment image\\
@@ -734,13 +1383,42 @@ CF5 & \cref{ex:fivecrit}: five critical points by exact resultants; positions, s
 CF6 & \cref{thm:maxmincoupling}(4): positive valuation $=$ leximin coupling ($20$ random margins)\\
 CF7 & \cref{fig:cplthimble}: the thimble law against uniform on $Q_h$; concentration at the leximin\\
 CF8 & \cref{ex:onecount}: one count; the walls' distances; three valuations become two\\
+LX1--LX3 & \cref{thm:selection}: $L|u_L-u^{\mathrm{lex}}|$ bounded on $30$ random configurations (multiprecision Newton); the projected equation; $\mathbb{CP}^2$, $F_1$\\
+LX4 & \cref{cor:leximin}: facet-leximin $=$ all-cell leximin ($292$ margins); convergence\\
+LX5--LX9 & \cref{ex:colbind}: the fibre and its two levels (exact); the $\ln2/2$ correction; the five critical points; the thimble; the one-count levels\\
+MO1--MO2 & the objects of $F_1$ and of the $2\times3$ fibres: counts, fibres, types, holonomies\\
+MO3--MO5 & \cref{prop:morph}: disjoint fibres, distinct holonomies and values; $Q=W\operatorname{Cov}_w(v)$; Clifford generators spanning $M_2$ ($18$ objects)\\
+MO6 & \cref{thm:shadow}: $Q/W\to\operatorname{Cov}_{q^*}(v)$; reduced ranks $2,2,1,1$ on $F_1$; $2\to1$ after one count; valuations of the small eigenvalue\\
+MO7 & \cref{thm:compare}: no collision, Morse along $\alpha\in[1/5,3/5]$; explicit real isomorphisms\\
+MO8--MO9 & \cref{prop:stokes}: Stokes walls within $4/\log(1/T)$ of the wall, none outside, rate $1/\log(1/T)$\\
+CB1--CB4 & \cref{prop:five}: the reduction to the quintic; the Newton polygon; distinct and nondegenerate for all $T>0$; distinct critical values on $(0,1)$ (exact, symbolic)\\
+CB5--CB6 & the table of \cref{sec:cbclass}: leading coefficients, offsets $-\log|\rho|/L$, leading values; leading Clifford forms and determinants\\
+CB7 & \cref{prop:homtable}: $5$ objects, $2$ fibres; distinct values and holonomies; $\mathrm{Cl}(Q_c)\cong M_2$\\
+CB8 & \cref{thm:reduction}: (H1), convergence to $M_c$, rank $=$ span on $23$ objects\\
+PP1--PP2 & \cref{prop:path}(1): one K\"ahler chamber along the path; the leximin levels and the two walls (exact)\\
+PP3--PP4 & \cref{prop:path}(2)--(3): the reduction to \eqref{eq:pathquintic}; Newton polygons at $10$ rational $\gamma$ (exact)\\
+PP5 & \cref{prop:path}(3): valuations, real and complex types, leading phases at $L=200,400$\\
+PP6 & \cref{prop:crossing}(1)--(2): one discriminant zero, at the level-two wall, for $L=50,\dots,400$; none at the level-one wall\\
+PP7 & \cref{prop:crossing}(3): no coincidence of critical values away from the collision\\
+PP8 & \cref{prop:crossing}(4): the positive object's scale against $h_2-h_1$ along the path\\
+PP9 & Stokes alignments at three phases and three $L$, within $1.5/L$ of a wall\\
+TF1 & \cref{thm:chambers24}: $148$ chambers, each with an exact interior point; all simple and smooth\\
+TF2 & \cref{prop:kleiman}(3): integer wall relations on all $2208$ edges; the K\"ahler degree equals the lattice length (exact)\\
+TF3 & \cref{thm:chambers24}: the six types by toric Kleiman; the vertex test agrees; volume $=\chi$; $(-K)^3=64,56,48,48,40,32$\\
+TF4 & \cref{prop:fanodepth}: the box criterion on all chambers; the facets of the $\mathbb{CP}^3$ and $\mathrm{Bl}_{pt}\mathbb{CP}^3$ chambers\\
+TF5 & \cref{ex:A24}: $8$ critical points over one fibre; the one coincidence of critical values at $x^3+x-1=0$ (exact)\\
+TF6 & \cref{prop:B24}(2)--(4): the sextic, its discriminants, one fibre, holonomies $(\zeta^{-3},\zeta,\zeta)$ (exact)\\
+TF7 & \cref{ex:C24}: degree-$10$ resultant, its Newton polygon, $8+2$ critical points over two fibres; three curves with $-K\cdot C=0$\\
+TF8 & \cref{prop:fanodepth,ex:A24,prop:B24,ex:C24}: the leximin levels and drops exactly; a tie-free census of drop patterns by chamber type\\
+TF9 & \cref{prop:scales}: eigenvalue slopes at the positive object ($L=800\to1600$); minors on all $22$ leximin-fibre objects; rank $3$ on C's second fibre\\
+CC1--CC4 & \cref{thm:chambers24}: the certificate \texttt{kahler/chambers24.json}, verified independently (standard library, exact rationals)\\
 LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; the rendered table matches \texttt{LEDGER.yaml}\\\bottomrule
-\end{tabular}
-\end{center}
+\end{longtable}}
 
 \begin{thebibliography}{99}
 \bibitem{Abreu2003} M.~Abreu, K\"ahler geometry of toric manifolds in symplectic coordinates, in \emph{Symplectic and Contact Topology}, Fields Inst. Commun. \textbf{35}, AMS, 2003, 1--24.
 \bibitem{AmariNagaoka2000} S.~Amari and H.~Nagaoka, \emph{Methods of Information Geometry}, AMS and Oxford University Press, 2000.
+\bibitem{Auroux2007} D.~Auroux, Mirror symmetry and T-duality in the complement of an anticanonical divisor, \emph{J. G\"okova Geom. Topol.} \textbf{1} (2007) 51--91.
 \bibitem{Awasthi2026Br} V.~K.~Awasthi, Bridges: from probability and entropy to branes, with worked examples, technical note, Johns Hopkins University, October 2026.
 \bibitem{Awasthi2026Cpl} V.~K.~Awasthi, Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability, companion paper, Johns Hopkins University, October 2026.
 \bibitem{Awasthi2026Arch} V.~K.~Awasthi, How the programme fits together: one family of polytopes, many models, and one example through every layer, draft 1, Johns Hopkins University, October 2026.
@@ -749,9 +1427,14 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{BishopFienbergHolland1975} Y.~M.~M.~Bishop, S.~E.~Fienberg and P.~W.~Holland, \emph{Discrete Multivariate Analysis}, MIT Press, 1975.
 \bibitem{BochnakCosteRoy1998} J.~Bochnak, M.~Coste and M.-F.~Roy, \emph{Real Algebraic Geometry}, Ergebnisse der Mathematik \textbf{36}, Springer, 1998.
 \bibitem{ChoOh2006} C.-H.~Cho and Y.-G.~Oh, Floer cohomology and disc instantons of Lagrangian torus fibers in Fano toric manifolds, \emph{Asian J. Math.} \textbf{10} (2006) 773--814.
+\bibitem{Cho2005} C.-H.~Cho, Products of Floer cohomology of torus fibers in toric Fano manifolds, \emph{Comm. Math. Phys.} \textbf{260} (2005) 613--640.
+\bibitem{CLLT2020} K.~Chan, S.-C.~Lau, N.~C.~Leung and H.-H.~Tseng, Open Gromov--Witten invariants and mirror maps for semi-Fano toric manifolds, \emph{Pure Appl. Math. Q.} \textbf{16} (2020) 675--720.
+\bibitem{CLS2011} D.~A.~Cox, J.~B.~Little and H.~K.~Schenck, \emph{Toric Varieties}, Graduate Studies in Mathematics \textbf{124}, American Mathematical Society, 2011.
+\bibitem{CominettiSanMartin1994} R.~Cominetti and J.~San Mart\'in, Asymptotic analysis of the exponential penalty trajectory in linear programming, \emph{Math. Programming} \textbf{67} (1994) 169--187.
 \bibitem{Delzant1988} T.~Delzant, Hamiltoniens p\'eriodiques et images convexes de l'application moment, \emph{Bull. Soc. Math. France} \textbf{116} (1988) 315--339.
 \bibitem{DiaconisSturmfels1998} P.~Diaconis and B.~Sturmfels, Algebraic algorithms for sampling from conditional distributions, \emph{Ann. Statist.} \textbf{26} (1998) 363--397.
 \bibitem{DuistermaatHeckman1982} J.~J.~Duistermaat and G.~J.~Heckman, On the variation in the cohomology of the symplectic form of the reduced phase space, \emph{Invent. Math.} \textbf{69} (1982) 259--268.
+\bibitem{Dyckerhoff2011} T.~Dyckerhoff, Compact generators in categories of matrix factorizations, \emph{Duke Math. J.} \textbf{159} (2011) 223--274.
 \bibitem{EFRS2006} N.~Eriksson, S.~E.~Fienberg, A.~Rinaldo and S.~Sullivant, Polyhedral conditions for the nonexistence of the MLE for hierarchical log-linear models, \emph{J. Symbolic Comput.} \textbf{41} (2006) 222--233.
 \bibitem{FienbergRinaldo2012} S.~E.~Fienberg and A.~Rinaldo, Maximum likelihood estimation in log-linear models, \emph{Ann. Statist.} \textbf{40} (2012) 996--1023.
 \bibitem{Fisher1935} R.~A.~Fisher, The logic of inductive inference, \emph{J. Roy. Statist. Soc.} \textbf{98} (1935) 39--82.
@@ -765,8 +1448,13 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{HoriVafa2000} K.~Hori and C.~Vafa, Mirror symmetry, arXiv:hep-th/0002222, 2000.
 \bibitem{Iritani2009} H.~Iritani, An integral structure in quantum cohomology and mirror symmetry for toric orbifolds, \emph{Adv. Math.} \textbf{222} (2009) 1016--1079.
 \bibitem{JuddRietsch2019} J.~Judd and K.~Rietsch, The tropical critical point and mirror symmetry, arXiv:1911.04463, 2019.
+\bibitem{Kleiman1966} S.~L.~Kleiman, Toward a numerical theory of ampleness, \emph{Ann. of Math.} \textbf{84} (1966) 293--344.
+\bibitem{Kadeishvili1980} T.~V.~Kadeishvili, On the homology theory of fibre spaces, \emph{Russian Math. Surveys} \textbf{35} (1980) 231--238.
 \bibitem{MaclaganSturmfels2015} D.~Maclagan and B.~Sturmfels, \emph{Introduction to Tropical Geometry}, Graduate Studies in Mathematics \textbf{161}, AMS, 2015.
 \bibitem{Rockafellar1970} R.~T.~Rockafellar, \emph{Convex Analysis}, Princeton University Press, 1970.
 \bibitem{Schrijver1986} A.~Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley, 1986.
+\bibitem{SeidelThomas2001} P.~Seidel and R.~Thomas, Braid group actions on derived categories of coherent sheaves, \emph{Duke Math. J.} \textbf{108} (2001) 37--108.
+\bibitem{Seidel2008} P.~Seidel, \emph{Fukaya Categories and Picard--Lefschetz Theory}, Zurich Lectures in Advanced Mathematics, EMS, 2008.
+\bibitem{Smith2018} J.~Smith, Generating the Fukaya categories of compact toric varieties, arXiv:1804.06386, 2018.
 \end{thebibliography}
 \end{document}
