@@ -36,8 +36,13 @@ operation.
 Part~IV goes to $2\times4$, where the fibre is three-dimensional. Its $148$ K\"ahler chambers are classified exactly, with ampleness certified by integer intersection numbers on invariant curves
 (Nakai--Moishezon, in its toric form): $14$ are Fano and $134$ weak Fano, and coupled three-step selection occurs only in the weak Fano ones. In three examples, one per role, the Clifford form of the
 positive object has one scale per dimension that selection removes, including a double scale where one level removes two; we state this as a conjecture. A path through the column-binding example (Stage IV) crosses two
-leximin walls in one K\"ahler chamber: the example itself sits on a level-two wall, which forces a collision of critical points, while the level-one wall is crossed without one. $74$ numerical, $4$
-certificate and $3$ ledger checks corroborate the statements.
+leximin walls in one K\"ahler chamber: the example itself sits on a level-two wall, which forces a collision of critical points, while the level-one wall is crossed without one. Composing
+couplings by Markov gluing is associative; composing them by selection is not, and the associahedron $K_4$ then carries an exact configuration of eleven distinct composites. An $A_\infty$
+structure on chains of coupling polytopes, with point classes composing and the diagonal coupling as unit, is trivial up to quasi-equivalence; so the information lies in selection itself. On binary
+chains selection is Fr\'echet-midpoint gluing. On uniform margins it composes correlations by a signed minimum where Markov gluing multiplies them, and it is associative; among the other margins
+tested it is associative everywhere for none, but on full-dimensional cells for some, which we certify exactly. On binary chains the selected composite is the marginal of the unique Floer-nontrivial
+torus fibre of the reduced space, by Cho--Oh and by Alston--Amorim's pairing with the real Lagrangian, while Markov gluing takes the Birch point of the same space. $93$ numerical, $7$ certificate and $3$
+ledger checks corroborate the statements.
 \end{abstract}
 
 \part{The geometry}
@@ -45,9 +50,9 @@ certificate and $3$ ledger checks corroborate the statements.
 The layers paper ends its toric section with an outlook remark: the precise dictionary is between conditioned states and moment fibres,
 not between sources and Lagrangians \cite[Remark ``outlook: a symplectic reading'']{Layers}. This note makes that remark exact in two places
 and leaves the rest open. Its components have different status.
-\begin{center}\footnotesize
-\begin{tabular}{p{0.46\linewidth}p{0.16\linewidth}p{0.3\linewidth}}\toprule
-component & status & source\\\midrule
+{\footnotesize
+\begin{longtable}{p{0.46\linewidth}p{0.16\linewidth}p{0.3\linewidth}}\toprule
+component & status & source\\\midrule\endhead
 \rowcolor{stUsed} toric K\"ahler structure, moment map, Fisher metric, symplectic potential, Duistermaat--Heckman & Used & \cite{Guillemin1994,Abreu2003,DuistermaatHeckman1982,AmariNagaoka2000}\\
 \rowcolor{stUsed} Birch's theorem; relative interiors of convex hulls & Used & \cite{Birch1963,Rockafellar1970}\\
 \rowcolor{stUsed} one positive critical point (\cref{thm:bridge}(1)); the positive locus as a Lefschetz thimble & Used & Galkin's lemma \cite{Galkin2014}; \cite{GGI2016,Iritani2009}\\
@@ -67,14 +72,17 @@ component & status & source\\\midrule
 \rowcolor{stNew} the Clifford shadow of selection; Stokes walls crowd the outcome wall (\cref{thm:shadow,prop:stokes}) & New (\ref{prop:stokes}: computed) & this note\\
 \rowcolor{stNew} the column-binding example classified; the reduction of the Clifford form; its Hom table (\cref{prop:five,thm:reduction,prop:homtable}) & New (Hom: on cited theorems) & this note\\
 \rowcolor{stNew} Stage IV: a path across two leximin walls; the collision at the level-two wall (\cref{prop:path,prop:crossing}) & New (exact tropical; collision numerical) & this note\\
+\rowcolor{stUsed} Markov gluing of couplings is associative; maximum entropy is Markov (\cref{prop:markovglue}) & Used & \cite{Fritz2020}\\
+\rowcolor{stNew} composition by selection: not associative; the exact $K_4$ configuration (\cref{prop:selprops,thm:k4}) & New (exact computation) & this note\\
+\rowcolor{stNew} no-go for contractible morphism spaces; Fr\'echet-midpoint gluing; signed-minimum correlations; cells of associativity (\cref{prop:nogo,thm:frechet,cor:tropcorr,prop:assoclocus}) & New (cells exact; census on grids) & this note\\
+\rowcolor{stCited} binary selection picks the Floer-nontrivial fibre of the reduced space (\cref{prop:selfloer}) & Cited (exact checks) & \cite{ChoOh2006,AlstonAmorim2010,FOOO2010}\\
 \rowcolor{stCited} Floer cohomology of toric fibres and the potential $W$ & Cited, not proved & \cite{ChoOh2006,FOOO2010}\\
 \rowcolor{stUsed} ampleness by invariant curves: Nakai--Moishezon, toric Kleiman, wall relations (\cref{prop:kleiman}) & Used & \cite{Kleiman1966,CLS2011}\\
 \rowcolor{stNew} the $148$ chambers of $2\times4$; selection depth in the Fano chambers; examples A, B, C (\cref{thm:chambers24,prop:fanodepth,prop:B24}) & New (exact computation) & this note\\
 \rowcolor{stCited} weak Fano corrections $W^{\mathrm{LF}}=\sum(1+\delta_k)T^{-\lambda_k}y^{v_k}$ (\cref{rem:corrections}) & Cited & \cite{CLLT2020}\\
 \rowcolor{stNew} one scale per removed dimension (\cref{conj:leveldrop}); proved at leading order in A, B, C (\cref{prop:scales}) & Conjecture; New & this note\\
 Novikov weights against the environment orders of the layers paper; decision, contextuality and VOI walls & Open & \cref{sec:outlook}\\\bottomrule
-\end{tabular}
-\end{center}
+\end{longtable}}
 Two probability structures must be kept apart. The measures in this note live on \emph{conditioned states}, points of the polytope. They
 are not the source weights $\pi_l$ of the layers paper. The uniform measure of \cref{prop:kahler}(5) is a prior on states, not on sources.
 
@@ -1112,6 +1120,256 @@ $Q/W$ at the positive object, against $h_2-h_1$. (c) The positions of Stokes ali
 within $1.5/L$ of one of the two leximin walls, and at $L=100$ within $1/L$; alignments occur near both walls (PP9; \cref{fig:s4track}(c)). This is the behaviour of \cref{prop:stokes} on $F_1$, now
 near two walls at once. We do not claim it for every phase, nor that every leximin wall has such alignments nearby; near the level-two wall some alignments involve the pair born at the collision.
 
+\subsection{Composing couplings: Markov gluing and selection}\label{sec:selcomp}
+The objects and morphisms of \cref{sec:morph} are cited from Floer theory. This subsection asks what composition the probabilistic side has of its own, and whether it has higher structure. It does not
+produce an $A_\infty$ category. It separates a strict composition (the control) from one that is genuinely non-associative, and computes, exactly, the configuration that the associahedron $K_4$ then
+carries.
+
+\begin{definition}[couplings and two compositions]\label{def:selcomp}
+An object is a finite set $X$ with a full-support law $p$; a morphism $(X,p)\to(Y,q)$ is a coupling $\gamma\in\Pi(p,q)$. For a chain $\gamma_1,\dots,\gamma_k$ of consecutive couplings, its \emph{fibre} is the
+polytope of multi-couplings on $X_0\times\dots\times X_k$ with the consecutive pair marginals $\gamma_1,\dots,\gamma_k$.
+\begin{enumerate}
+\item[(1)] \emph{Markov gluing} composes by conditional independence over the shared marginal: $\gamma_2\circ\gamma_1=\gamma_1D_q^{-1}\gamma_2$, with $D_q=\operatorname{diag}(q)$.
+\item[(2)] \emph{Selection} composes a block at once: $\sigma(\gamma_1,\dots,\gamma_k)$ is the marginal on $X_0\times X_k$ of the facet-leximin point of the fibre. By \cref{thm:selection}, applied to the fibre's
+potential, this is the $T\to0$ limit of the positive critical point.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}[the control: Markov gluing]\label{prop:markovglue}
+\begin{enumerate}
+\item[(1)] Markov gluing is associative and unital, with the diagonal coupling $D_p$ as identity.
+\item[(2)] The Markov multi-coupling of a chain is the unique point of largest entropy in its fibre, and its $(X_0,X_k)$ marginal is the iterated composite.
+\item[(3)] Every fibre is a nonempty convex polytope. So any assignment of points of $\Pi(p_0,p_n)$ to the faces of $K_n$ extends to a continuous map $K_n\to\Pi(p_0,p_n)$ (piecewise linear on the barycentric
+subdivision) whose restriction to each face is determined by the points of that face. For Markov gluing every face receives the same point, so such fillers force no operation beyond the strict
+composition.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Matrix multiplication, $(\gamma_1D^{-1}\gamma_2)D^{-1}\gamma_3=\gamma_1D^{-1}(\gamma_2D^{-1}\gamma_3)$, and $D_p\,D_p^{-1}\gamma=\gamma$. (2) By the chain rule, $H(X_0,\dots,X_k)\le H(X_0)+\sum_iH(X_i\mid X_{i-1})$, and the
+right side is fixed by the pair marginals; equality holds exactly when the chain is Markov, and entropy is strictly concave. (3) The Markov point lies in the fibre, and the target is convex. AS1 checks
+(1) and (2) in exact rationals, and that Markov gluing gives one composite on every face of $K_4$.
+\end{proof}
+
+This is the categorical-probability picture of Markov kernels \cite{Fritz2020}, restricted to couplings. Part (2) places it in this note: the Markov composite is the Birch point of the chain model's
+fibre. Selection picks a different point of the same fibre, and that changes the composition law.
+
+\paragraph{Faces as dissections.} A face of $K_n$ is a partial bracketing of $n$ morphisms, equivalently a dissection of the $(n+1)$-gon with vertices $0,\dots,n$, whose sides $(i,i+1)$ are the
+$\gamma_{i+1}$ and whose root side $(0,n)$ is the output \cite{Stasheff1963}; combinatorially $K_n$ is the secondary polytope of the $(n+1)$-gon \cite{GKZ1994}. The composite along a dissection is
+computed cell by cell: a cell with vertices $i_0<\dots<i_k$ is one selection in its own $(k+1)$-way table, whose consecutive margins are its sides, each an input or the composite of a smaller cell.
+Vertices are full bracketings (binary selections), and the top cell is one selection in the $(n+1)$-way table. This is what makes face compatibility meaningful: the composite of a face is computed
+from the composites of the blocks it contains, with their own margins. AS2 checks the face counts $3,11,45$ for $n=3,4,5$.
+
+\begin{proposition}[selection: what holds and what fails]\label{prop:selprops}
+Selection is unital (the diagonal coupling on either side returns the other) and commutes with transposition, $\sigma(\gamma_2^{\!\top},\gamma_1^{\!\top})=\sigma(\gamma_1,\gamma_2)^{\!\top}$. It is not associative:
+on $30$ random rational chains of three couplings the two bracketings differ in $26$.
+\end{proposition}
+
+\begin{proof}
+With a diagonal coupling the fibre is a single point. Transposition reverses the chain and preserves the fibre and its facets. The rest is AS5--AS6, in exact rationals.
+\end{proof}
+
+\begin{theorem}[the $K_4$ configuration, exactly]\label{thm:k4}
+Take binary laws $p_0,\dots,p_4$ with first entries $2/5,1/3,3/7,1/4,5/11$, and the couplings $\gamma_1,\dots,\gamma_4$ with $a_{00}=13/60,7/30,1/80,3/80$. The eleven faces of $K_4$ receive the endpoint
+couplings with these entries $a_{00}$:
+\begin{center}\footnotesize
+\begin{tabular}{lrlr}\toprule
+vertex (bracketing) & $a_{00}$ & edge to the next vertex (block) & $a_{00}$\\\midrule
+$((12)3)4$ & $173/960$ & $[0..3]$ & $997/5760$\\
+$(1(23))4$ & $61/384$ & $[1..3]$ & $197/1152$\\
+$1((23)4)$ & $61/320$ & $[1..4]$ & $14941/73920$\\
+$1(2(34))$ & $38/165$ & $[2..4]$ & $1249/5280$\\
+$(12)(34)$ & $93/385$ & $[0..2]$ & $15403/73920$\\\midrule
+top: one selection in the $5$-way table & $28573/147840$ & Markov, every face & $2371469/12672000$\\\bottomrule
+\end{tabular}
+\end{center}
+A block $[i..j]$ is one selection in the table over $X_i,\dots,X_j$.
+The edge in each row joins that row's vertex to the next one, cyclically. All eleven are distinct, each edge composite lies strictly between its two vertices, and the top lies strictly inside
+their range. Markov gluing gives the one value in the last cell on every face.
+\end{theorem}
+
+\begin{proof}
+Each composite is computed level by level by linear programming and the leximin point is solved exactly from the fixed cells and the margins (AS3). Every selection used here then carries an exact
+certificate (SX2): feasibility; the forced zeros and the dimension of the fibre; a witness face of dimension one less for each facet cell, and for every other cell an exact lower bound or a certified
+extra zero; for each level a balanced law $q>0$ on the level set with $\sum_cq_ce_c$ in the row space of the margins and the earlier fixed cells, which bounds the level and forces the whole level set;
+and strictly increasing levels. So the composites are certified, not only computed.
+\end{proof}
+
+The same holds with more states, and then the configuration can be seen in the plane. For $p_0=(2/5,3/5)$ and $p_4=(1/4,1/3,5/12)$, with ternary $p_1,p_3$ (\cref{fig:asconfig}(b)), the eleven
+composites are distinct points of the two-dimensional polytope $\Pi(p_0,p_4)$, the top lies strictly inside the convex hull of the five bracketings, and the Markov composite lies outside it (AS4; exact
+orientation tests and certified selections, SX2--SX3). The image of the pentagon crosses itself: the edge through block $[0..3]$ meets the one through $[2..4]$, and so does the edge through $[1..3]$. So the map $K_4\to\Pi(p_0,p_4)$ of \cref{prop:markovglue}(3), built from these composites, is a configuration and not an embedding, and since the target is
+convex it carries no homotopy type of its own. Its content is where the eleven points sit.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_as_pentagon.pdf}\\[4pt]
+\includegraphics[width=\linewidth]{fig_as_polytope.pdf}
+\caption{Composition by selection. Top: (a) $K_4$ for the binary chain of \cref{thm:k4}, each face labelled with its composite; (b) the eleven composites on the endpoint segment, with the single Markov
+composite. Bottom: the chain with ternary intermediates; (a) the endpoint polytope; (b) $K_4$ mapped into it. The five bracketings (blue) and the five edge composites (orange) trace a folded pentagon;
+the top (star) is inside the hull, the Markov composite (aqua) outside.}\label{fig:asconfig}
+\end{figure}
+
+\paragraph{Finite $T$.} Replace the facet-leximin point by the positive critical point at $T=e^{-L}$ on each fibre. On the first three couplings of \cref{thm:k4}, the two bracketings differ by $-41/960$ at
+$L=25,50,100,200$, to $10^{-9}$: the binary composites already sit at their limits, and the top approaches its limit faster than $1/L$ (AS7). So the bracketings have no common leading term. The failure
+of associativity is visible at the tropical level, not only at higher order in $T$.
+
+\begin{remark}[what this does and does not give]\label{rem:selcomp}
+An earlier draft conjectured that the associator might have a positive valuation, equal to a gap $h_j-h_1$ between selection levels, which would make it a candidate for a filtered $m_3$ that cannot be removed.
+That form is refuted here: the associator is of order one. Two questions remain open. On the locus where the tropical bracketings agree, does the finite-$T$ associator have a $T$-adic valuation tied
+to the level gaps? And, before any of this can be called an $A_\infty$ operation, one needs chain-level morphism complexes and a differential, with $m_3$ a specified homotopy between the two composites
+that satisfies the next coherence relation. Nothing here constructs those. What is established is the vertex and face data that any such structure on selection would have to interpolate.
+\end{remark}
+
+\subsection{Selection: a no-go result, continuity, and binary chains}\label{sec:selbin}
+Can the associator of \cref{sec:selcomp} be the $m_3$ of an $A_\infty$ category whose morphism complexes are chains on the coupling polytopes? It can be, formally, and the first result says why that
+would carry no invariant. The rest of the subsection studies selection itself, where the information is.
+
+\begin{proposition}[no-go for contractible morphism spaces]\label{prop:nogo}
+Let $\mathcal C$ be an uncurved $A_\infty$ category over $\mathbb Q$, $\mathbb Z$- or $\mathbb Z/2$-graded, whose objects are finite probability spaces and whose morphism complexes have
+$H^*(\hom(P,Q))\cong H_*(\Pi(p,q);\mathbb Q)$, for instance singular chains. Suppose $m_2$ induces on $H^0$ the composition of point classes, $[x]\cdot[y]=[\text{any composite}]$, with the class of the
+diagonal coupling as unit. Then:
+\begin{enumerate}
+\item[(1)] the homology category has $\hom=\mathbb Q$ in degree $0$ for every pair of objects, composition $1\cdot1=1$, and every two objects are isomorphic;
+\item[(2)] $\mathcal C$ is quasi-equivalent to the full subcategory on one object, and that is quasi-isomorphic to $\mathbb Q$ with $m_n=0$ for $n\ge3$.
+\end{enumerate}
+So no choice of $m_3,m_4,\dots$ on such complexes is an invariant up to quasi-equivalence. In particular the associator of selection is always a boundary there: the two bracketed composites are
+points of one convex polytope, and the segment between them is a $1$-chain whose boundary is their difference. The proposition says nothing about categories built from coupling data in other ways.
+\end{proposition}
+
+\begin{proof}
+(1) $\Pi(p,q)$ is nonempty and convex, so $H_*=\mathbb Q$ in degree $0$, spanned by the class of any point, and any composite of points is a point. Every class $1\in\hom(P,Q)$ has the inverse $1\in\hom(Q,P)$.
+(2) A full subcategory meeting every isomorphism class of the homology category is quasi-equivalent to the whole. Its one object has cohomological endomorphisms $\mathbb Q\cdot1$; a cohomologically
+unital $A_\infty$ algebra is quasi-isomorphic to a strictly unital minimal one \cite{Seidel2008}, whose underlying space is $\mathbb Q\cdot e$, and strict unitality gives $m_n(e,\dots,e)=0$ for $n\ge3$. This
+holds for either grading.
+\end{proof}
+
+The exact data of \cref{thm:k4} are therefore data of the selection operation, not invariants of such a category. That redirects the work: to understand selection, and to look for higher structure
+where the morphism spaces are not contractible (\cref{sec:outlook}).
+
+\begin{theorem}[binary selection is Fr\'echet-midpoint gluing]\label{thm:frechet}
+Let $X_0$ and $X_2$ be binary and $X_1$ any finite set, with couplings $\gamma_1\in\Pi(p_0,p_1)$ and $\gamma_2\in\Pi(p_1,p_2)$. For each $b\in X_1$ put $r_b=\gamma_1(0,b)$, $s_b=\gamma_2(b,0)$ and $q_b=p_1(b)$. Then
+\[
+\sigma(\gamma_1,\gamma_2)_{00}=\sum_b\frac{L_b+U_b}2,\qquad L_b=\max(0,\,r_b+s_b-q_b),\quad U_b=\min(r_b,s_b),
+\]
+the sum over $b$ of the midpoints of the Fr\'echet--Hoeffding intervals of the slices. Markov gluing gives $\sum_br_bs_b/q_b$ instead.
+\end{theorem}
+
+\begin{proof}
+The pair-margin constraints involve one value of the middle variable at a time, so the fibre is the product over $b$ of the transportation polytopes of the slices $X_0\times\{b\}\times X_2$, with
+margins $(r_b,q_b-r_b)$ and $(s_b,q_b-s_b)$. With $X_0,X_2$ binary each slice is the segment $x_{0b0}\in[L_b,U_b]$: the other three cells are $r_b-x_{0b0}$, $s_b-x_{0b0}$ and $q_b-r_b-s_b+x_{0b0}$, and the
+Fr\'echet--Hoeffding bounds are where one of the four vanishes. A face of a product is a product of faces, so the facets of the fibre are the facets of single slices, and the facet functions of slice $b$
+are $x_{0b0}-L_b$ and $U_b-x_{0b0}$, the cells that vanish at its ends (several cells when the slice is tied, all with the same function). A degenerate slice, $L_b=U_b$, is a point and contributes nothing.
+
+Now run the recursion of \cref{def:lex}. Each facet function depends on one slice only, and the feasible set is a product. So at level $j$ the maximum of the least free function is the least, over the
+slices with free functions left, of each slice's own next level; the slices attaining it fix their functions, and the others are untouched. By induction the recursion fixes, in each slice, exactly the
+levels of that slice's own recursion, and the selected point is the product of the slices' selected points. On a segment with facet functions $x-L$ and $U-x$ that point is the midpoint, at level
+$(U-L)/2$. SB1 checks the formula against the leximin computation on $60$ chains, including ternary middles and tied slices.
+\end{proof}
+
+So selection glues each slice at the midpoint between its comonotone and countermonotone couplings, where Markov gluing takes the product $r_bs_b/q_b$, which also lies in $[L_b,U_b]$. The two agree exactly
+when the product sits at the midpoint of every slice. Two consequences follow at once. Since $L_b$ and $U_b$ are a maximum and a minimum of affine functions of the inputs, binary selection is continuous and
+piecewise linear on the whole product of the coupling polytopes, with no exceptional walls. And on uniform margins it has a closed form.
+
+\begin{corollary}[uniform margins: correlations compose by a signed minimum]\label{cor:tropcorr}
+If $p_0=p_1=p_2=(1/2,1/2)$, write a coupling by its correlation $\rho=4\gamma_{00}-1$. Then
+\[
+\rho_{\mathrm{Markov}}=\rho_1\rho_2,\qquad \rho_{\mathrm{sel}}=\operatorname{sign}(\rho_1\rho_2)\,\min(|\rho_1|,|\rho_2|).
+\]
+In $v=-\log|\rho|$, Markov gluing adds and selection takes the maximum. On uniform binary chains selection is therefore associative, with unit $\rho=1$.
+\end{corollary}
+
+\begin{proof}
+With $q=1/2$, \cref{thm:frechet} gives $\gamma_{00}-\tfrac14=\tfrac12\bigl(|t_1+t_2-\tfrac12|-|t_1-t_2|\bigr)$ for $t_i=\gamma_{i,00}$, which is $\operatorname{sign}(d_1d_2)\min(|d_1|,|d_2|)$ with $d_i=t_i-\tfrac14$. The signed minimum is
+associative. SB2 checks both laws and associativity on a $21^3$ grid, exactly.
+\end{proof}
+
+\begin{proposition}[where selection is associative]\label{prop:assoclocus}
+For binary chains $\gamma_1,\gamma_2,\gamma_3$ with margins $p_0,\dots,p_3$, the associator $A=\sigma(\sigma(\gamma_1,\gamma_2),\gamma_3)-\sigma(\gamma_1,\sigma(\gamma_2,\gamma_3))$ is the explicit piecewise-linear function obtained by composing
+\cref{thm:frechet} with itself. Moreover:
+\begin{enumerate}
+\item[(1)] among the $9^4$ margin tuples with entries in $\{1/10,\dots,9/10\}$, only the uniform one makes $A$ vanish on the whole test grid (a $5^3$ screen leaves $17$; a $13^3$ grid leaves one);
+\item[(2)] for non-uniform margins $A$ can vanish on a set of positive volume: for the margins $2/5,1/3,3/7,1/4$ of \cref{thm:k4}, $A=0$ on the open polyhedron of all $(t_1,t_2,t_3)$ for which the $22$
+  branch and feasibility inequalities of the formula keep the signs they have at $(13/60,\,7/30,\,29/240)$; likewise for the margins $3/20,1/4,3/4,17/20$ around $(1/40,\,1/48,\,51/80)$;
+\item[(3)] on exact $13^3$ grids, $A=0$ at between $15\%$ and $55\%$ of the points for six non-uniform tuples, and this set is not a union of classes of the dependence signs $\operatorname{sign}(t_i-p_ip_{i+1})$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The formula is \cref{thm:frechet}. (2) At the given point every maximum and minimum in the formula is strict, so the same branches hold on the open polyhedron, where $A$ is affine; its four coefficients
+are all zero, and the point lies inside, so the polyhedron has nonempty interior (SX1, exact). (1) and (3) are exact evaluations on rational grids, SB5--SB6; they are a census, not a classification of the
+locus.
+\end{proof}
+
+\begin{example}[one parameter, exactly]\label{ex:assoc1}
+Take the margins $2/5,1/3,3/7,1/4$ of \cref{thm:k4} with $t_1=13/60$, $t_2=7/30$, and let $t_3$ run over $[0,1/4]$. Then $A(t_3)$ is piecewise linear with kinks at $1/30$, $13/120$, $2/15$, $3/20$, $143/840$, $41/210$, $7/30$
+and slopes in $\{0,\pm\tfrac14,\tfrac12\}$. It vanishes exactly on the interval $[13/120,2/15]$ and at the point $5/28$, changes sign there, and equals $-41/960$ at $t_3=1/80$, the example of
+\cref{sec:selcomp} (\cref{fig:sb}(b); SB7). The interval is a slice of the full-dimensional cell of \cref{prop:assoclocus}(2). Independence, $t_3=3/28$, lies just outside it; we know no reason for
+this and record it only as an observation.
+\end{example}
+
+\paragraph{Continuity in general.} On a region of inputs where the facet set and the level sets $S_1,\dots,S_J$ of the recursion are fixed, the selected point is the unique solution of a linear system
+whose matrix is fixed and whose right side is linear in the inputs, so selection is affine there (SB3 checks this exactly at $339$ midpoints). Across changes of the facet set we have only evidence:
+along four paths of a $3\times2\times3$ chain the facet set changes at least ten times, and the composite never jumps (SB4; \cref{fig:sb}(c)). A proof of continuity across these walls is open.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_sb.pdf}
+\caption{Selection on small chains. (a) Uniform binary margins: correlations compose by a signed minimum under selection and by a product under Markov gluing. (b) The exact associator of
+\cref{ex:assoc1}, with its kinks, its interval and point of associativity, and the value $-41/960$ of \cref{sec:selcomp}. (c) The selected composite along a path of a $3\times2\times3$ chain; the dashed lines are
+changes of the facet set, where nothing jumps.}\label{fig:sb}
+\end{figure}
+
+\subsection{A Floer reading of selection, at the level of objects}\label{sec:selfloer}
+Composition of couplings is reduction in stages. The tables over $X_0\times X_1\times X_2$ with pair marginals $\gamma_1,\gamma_2$ form the fibre polytope $F(\gamma_1,\gamma_2)$; when it is Delzant it is the moment
+polytope of a toric manifold $X_F$, a symplectic reduction of the manifold of all tables. Both compositions pick a point of $F$ and then take its $(X_0,X_2)$ marginal. Markov gluing picks the point of
+largest entropy, the Birch point (\cref{prop:markovglue}(2)). Selection picks the facet-leximin point, which by \cref{thm:selection} is the valuation of the positive critical point of the potential of $X_F$. The
+fibre over that point is the non-displaceable torus fibre that Fukaya, Oh, Ohta and Ono locate in any compact toric manifold \cite[Theorem~1.5 and \S9]{FOOO2010}, by the recursion of \cref{def:lex}
+(\cref{sec:selection}, the remark on provenance). For binary chains this can be said exactly, and on both sides of Floer theory.
+
+\begin{proposition}[binary selection picks the Floer-nontrivial fibre]\label{prop:selfloer}
+Let $X_0$ and $X_2$ be binary, and let $k$ be the number of slices $b$ with $L_b<U_b$ (\cref{thm:frechet}). Then $X_F\cong\prod_b\mathbb{CP}^1$, with areas $U_b-L_b$, which is Fano, and for a torus fibre $L_c$:
+\begin{enumerate}
+\item[(1)] $L_c$ carries a unitary local system with $HF\ne0$ if and only if $c$ is the product of the slice midpoints; there are $2^k$ such objects, $y_b=\pm T^{(U_b-L_b)/2}$ in slice coordinates \cite{ChoOh2006};
+\item[(2)] with local systems $\rho$ valued in $\overline{\mathbb F}_2^{\,*}$, $HF(R,(L_c,\rho))\ne0$ for the real Lagrangian $R$ if and only if $c$ is the product of the midpoints; then $\rho=1$ and $HF(R,L_c)$ is free of
+rank $2^k$ \cite[Theorems~1.2 and 4.3]{AlstonAmorim2010}.
+\end{enumerate}
+So $\sigma(\gamma_1,\gamma_2)$ is the $(X_0,X_2)$ marginal of the unique torus fibre of $X_F$ that is Floer-nontrivial, on its own or against $R$. The Markov composite is the marginal of the Birch point of the
+same polytope, $c_b=r_bs_b/q_b$, which is a different point in $37$ of $40$ chains tested.
+\end{proposition}
+
+\begin{proof}
+By the proof of \cref{thm:frechet}, $F=\prod_b[L_b,U_b]$ over the nondegenerate slices, with facet functions $x_b-L_b$ and $U_b-x_b$ of primitive normals $\pm1$; so $X_F=\prod_b\mathbb{CP}^1$, and SF1 confirms by
+exact traversal that $F$ is Delzant with $2^k$ vertices and $-K\cdot C=2$ on every invariant curve. In slice coordinates the potential is $W=\sum_b(y_b+T^{w_b}/y_b)$ with $w_b=U_b-L_b$. (1) Its critical points are
+$y_b=\pm T^{w_b/2}$, over the midpoints, and Cho--Oh identify the fibres with $HF\ne0$ with the valuations of critical points (SF2). (2) Alston--Amorim show $HF(R,(L_c,\rho))\ne0$ if and only if
+$\nabla W_c(\rho)=0$. In characteristic $2$ the $b$-th component is $\rho_bT^{c_b-L_b}+\rho_b^{-1}T^{U_b-c_b}$, which vanishes only if the exponents agree and $\rho_b^2=1$, that is $c_b$ is the midpoint and $\rho_b=1$.
+There their differential $\sum_j\sqrt{\rho^{v_j}}\,T^{E_j/2}f_j$ is $\sum_b2T^{w_b/4}f_b=0$, so the complex, free of rank $2^k$, is its own cohomology (SF3). SF4 compares the Birch points.
+\end{proof}
+
+\begin{remark}[what this explains, and how far it goes]\label{rem:selfloer}
+\emph{Non-associativity.} Reduction in stages is associative; choosing a point is not compatible with it in general. Birch points are, which is why Markov gluing is associative. Floer fibres are not:
+$\sigma(\sigma(\gamma_1,\gamma_2),\gamma_3)$ takes the Floer fibre of one reduced space and reduces again, while the top cell takes the Floer fibre of the larger reduced space at once.
+
+\emph{Beyond binary.} For the binary $K_4$ example the fibres behind the eleven composites are, by exact traversal (SF5): the $14$ distinct $3$-way fibres are each $\mathbb{CP}^1\times\mathbb{CP}^1$, so
+\cref{prop:selfloer} applies; of the $5$ distinct $4$-way fibres, three are Delzant and two are simple but not unimodular, so the toric variety is an orbifold, and none is Fano (a curve with $-K\cdot C=-4$);
+the $5$-way fibre of the top cell is not Fano (a curve with $-K\cdot C=-16$) and is unimodular at the $400$ vertices visited. For the Delzant ones the selected point is the FOOO non-displaceable fibre. The
+equivalences (1) and (2) need the Fano hypothesis and are not claimed there, and the orbifold fibres would need orbifold Floer theory.
+
+\emph{What is not claimed.} This reads selection at the level of objects, one torus fibre per composite. It constructs no functor and says nothing about morphisms or products between these fibres; the
+categorical comparison of \cref{sec:threecat} is untouched. The real Lagrangian enters only through \cite{AlstonAmorim2010}; that it corresponds to hard evidence is a hypothesis we do not test.
+\end{remark}
+
+\subsection{Three categorical directions, kept apart}\label{sec:threecat}
+Part III has touched three different constructions. They should not be confused.
+\begin{center}\small
+\begin{tabular}{p{0.2\linewidth}p{0.36\linewidth}p{0.36\linewidth}}\toprule
+construction & what is established here & what is missing\\\midrule
+the toric-fibre category & objects are critical points of $W$ over torus fibres; binary selection is read as the Floer-nontrivial fibre of the reduced space (\cref{prop:selfloer}); Hom vanishes off the diagonal where the critical values differ; the endomorphisms are Clifford algebras; no higher
+products (\cref{prop:morph,prop:formal}); all cited, in the convention of \cref{sec:cbclass} & generation in the non-monotone case \cite{Smith2018}; the category at a collision (\cref{prop:crossing}) \\
+a coupling-polytope enhancement & Markov and selection compositions, the exact $K_4$ data (\cref{sec:selcomp}); with point-class composition and diagonal units it is trivial up to quasi-equivalence
+(\cref{prop:nogo}) & nothing to add in that form; another enhancement would need morphism spaces that are not contractible \\
+a Fukaya--Seidel category of $W$ & only its combinatorial shadow: the critical points, their values, and where Stokes alignments occur (\cref{prop:stokes}, \cref{sec:path}) & gradings; Floer complexes
+between thimbles; the polygon counts that define $\mu^d$; the directed $A_\infty$ structure \cite{Seidel2008}; and a proof that the positive thimble is the probabilistic object in that category\\\bottomrule
+\end{tabular}
+\end{center}
+
 \part{Deeper selection: \texorpdfstring{$2\times4$}{2 x 4} couplings}
 \section{Three-dimensional fibres}\label{sec:twofour}
 A $2\times3$ fibre is a polygon, so selection has at most two levels. A $2\times4$ fibre $\mathrm{Cpl}(f,g)$ is a three-dimensional polytope, and the leximin recursion can cut it down in up to three
@@ -1314,7 +1572,7 @@ chamber, because the factors decouple. B is the first coupled case with a multip
 the successive balances of \cref{thm:selection} to appear, one order at a time, in the minors of $Q$. That is the step we have not found.
 
 \section{Outlook}\label{sec:outlook}
-Seven questions are left open.
+Eight questions are left open.
 \begin{itemize}
 \item \emph{Novikov weights and environments.} \Cref{sec:data} makes one direction precise: soft evidence of size $n$ on the scale $N$ shifts $\lambda$ by $-(n/N)\rho$.
   Whether the environment orders $s^{r_e}$ of the layers paper act in the same way, and how hard evidence and forgetting act, is open.
@@ -1322,6 +1580,9 @@ Seven questions are left open.
   measured in the Fisher metric.
 \item \emph{Beyond Fano.} For non-Fano toric manifolds, $W$ acquires corrections \cite{FOOO2010}. \Cref{thm:bridge} is about the leading potential only. In the weak Fano chambers of
   $2\times4$ the corrections only rescale coefficients (\cref{rem:corrections}); computing the $\delta_k$, and so the corrected objects of example C, is open.
+\item \emph{Composition by selection.} By \cref{prop:nogo}, higher structure with invariant content needs morphism spaces that are not contractible; the natural candidate is the directed
+  category of the critical points of $W$, whose Stokes data \cref{sec:path} began to compute \cite{Seidel2008}. On the probabilistic side: continuity of selection across facet-set changes, a
+  classification of the associativity locus for binary chains, and $K_5$.
 \item \emph{One scale per removed dimension.} \Cref{conj:leveldrop} in general; then $3\times3$, where the fibre is four-dimensional, as a test of it and of the rank equality in \cref{thm:reduction}.
 \item \emph{Signed branches and Stokes data.} The non-positive critical points have their own thimbles, which are not real and carry no
   probability law. \Cref{prop:stokes} locates the Stokes walls on $F_1$; the Picard--Lefschetz decomposition itself, and the general window, are not computed. We do not
@@ -1341,13 +1602,34 @@ from $\alpha=1/5$ they are: $s_{\mathrm{trop}}=1/5$; $s_{\mathrm{crit}}$ never; 
 with an obstruction class are chosen.
 \input{ledger_table.tex}
 
+\section{Exact inputs}\label{app:inputs}
+Every example can be rebuilt from these data; the checks named in each statement recompute everything else.
+\begin{itemize}
+\item \emph{The column-binding example and its path} (\cref{sec:cbclass,sec:path}): $f=(2/5,3/5)$, $g=(7/10-\gamma,\,3/10,\,\gamma)$; the example is $\gamma=1/5$, the path $\gamma\in[3/20,11/40]$.
+\item \emph{The $2\times4$ examples} (\cref{sec:twofour}): A: $f=(2/5,3/5)$, $g=(1/20,13/20,1/10,1/5)$; B: $f=(3/20,17/20)$, $g=(1/20,1/5,1/4,1/2)$; C: $f=(3/10,7/10)$, $g=(1/10,3/20,1/4,1/2)$. The $148$
+chambers are in \texttt{kahler/chambers24.json}.
+\item \emph{The binary chain of \cref{thm:k4}}: $\gamma_i=\left(\begin{smallmatrix}t_i&p_i-t_i\\ p_{i+1}-t_i&1-p_i-p_{i+1}+t_i\end{smallmatrix}\right)$ with $(p_0,\dots,p_4)=(2/5,1/3,3/7,1/4,5/11)$ (first entries) and
+$(t_1,\dots,t_4)=(13/60,7/30,1/80,3/80)$. The $K_3$ example of \cref{sec:selcomp} is $\gamma_1,\gamma_2,\gamma_3$.
+\item \emph{The chain with ternary intermediates} (\cref{fig:asconfig}), rows indexed by the first variable:
+\[
+\gamma_1=\begin{pmatrix}\frac1{150}&\frac{19}{150}&\frac4{15}\\[1pt] \frac4{25}&\frac{31}{150}&\frac7{30}\end{pmatrix},\quad
+\gamma_2=\begin{pmatrix}\frac7{50}&\frac2{75}\\[1pt] \frac{18}{175}&\frac{121}{525}\\[1pt] \frac{13}{70}&\frac{11}{35}\end{pmatrix},
+\]
+\[
+\gamma_3=\begin{pmatrix}\frac3{35}&\frac{81}{1400}&\frac{57}{200}\\[1pt] \frac4{35}&\frac{339}{1400}&\frac{43}{200}\end{pmatrix},\quad
+\gamma_4=\begin{pmatrix}\frac9{125}&\frac{23}{375}&\frac1{15}\\[1pt] \frac{209}{3000}&\frac{79}{750}&\frac18\\[1pt] \frac{13}{120}&\frac16&\frac9{40}\end{pmatrix}.
+\]
+\item \emph{The cells of associativity} (\cref{prop:assoclocus}(2)): margins $(2/5,1/3,3/7,1/4)$ at the point $(13/60,7/30,29/240)$, and margins $(3/20,1/4,3/4,17/20)$ at the point
+$(1/40,1/48,51/80)$. The check SX1 prints the inequalities of both cells.
+\end{itemize}
+
 \section*{Checks}
 \begin{center}\small
 \begin{tabular}{ll}\toprule
-code & \texttt{engine/pce/kahlerbridge.py}, \texttt{engine/pce/datawalls.py},\\ & \texttt{engine/pce/contingency\_toric.py}, \texttt{engine/pce/couplingfibre.py},\\ & \texttt{engine/pce/floermorph.py}, \texttt{engine/pce/colbind.py},\\ & \texttt{engine/pce/cpl24.py}, \texttt{engine/pce/pentpath.py}\\
+code & \texttt{engine/pce/kahlerbridge.py}, \texttt{engine/pce/datawalls.py},\\ & \texttt{engine/pce/contingency\_toric.py}, \texttt{engine/pce/couplingfibre.py},\\ & \texttt{engine/pce/floermorph.py}, \texttt{engine/pce/colbind.py},\\ & \texttt{engine/pce/cpl24.py}, \texttt{engine/pce/pentpath.py},\\ & \texttt{engine/pce/selcomp.py}\\
 checks & \texttt{engine/check\_kahlerbridge.py} (KB, $8/8$), \texttt{engine/check\_datawalls.py} (DW, $7/7$),\\
- & \texttt{engine/check\_contingency\_toric.py} (CT, $7/7$),\\ & \texttt{engine/check\_couplingfibre.py} (CF, $8/8$), \texttt{engine/check\_leximin.py} (LX, $9/9$),\\ & \texttt{engine/check\_floermorph.py} (MO, $9/9$), \texttt{engine/check\_colbind.py} (CB, $8/8$),\\ & \texttt{engine/check\_cpl24.py} (TF, $9/9$), \texttt{engine/check\_pentpath.py} (PP, $9/9$),\\ & \texttt{engine/check\_chambers24\_cert.py} (CC, $4/4$), \texttt{engine/check\_ledger.py} (LG, $3/3$)\\
-figures & \texttt{kahler/fig\_kahler.py}, \texttt{kahler/fig\_datawalls.py}, \texttt{kahler/fig\_coupling.py},\\ & \texttt{kahler/fig\_leximin.py}, \texttt{kahler/fig\_morph.py}, \texttt{kahler/fig\_colbind.py},\\ & \texttt{kahler/fig\_cpl24.py}, \texttt{kahler/fig\_pentpath.py}\\ certificate & \texttt{kahler/chambers24.json}\\ ledger & \texttt{LEDGER.yaml}, rendered by \texttt{kahler/render\_ledger.py}\\\bottomrule
+ & \texttt{engine/check\_contingency\_toric.py} (CT, $7/7$),\\ & \texttt{engine/check\_couplingfibre.py} (CF, $8/8$), \texttt{engine/check\_leximin.py} (LX, $9/9$),\\ & \texttt{engine/check\_floermorph.py} (MO, $9/9$), \texttt{engine/check\_colbind.py} (CB, $8/8$),\\ & \texttt{engine/check\_cpl24.py} (TF, $9/9$), \texttt{engine/check\_pentpath.py} (PP, $9/9$),\\ & \texttt{engine/check\_selcomp.py} (AS, $7/7$), \texttt{engine/check\_selbin.py} (SB, $7/7$),\\ & \texttt{engine/check\_selcert.py} (SX, $3/3$), \texttt{engine/check\_selfloer.py} (SF, $5/5$),\\ & \texttt{engine/check\_chambers24\_cert.py} (CC, $4/4$), \texttt{engine/check\_ledger.py} (LG, $3/3$)\\
+figures & \texttt{kahler/fig\_kahler.py}, \texttt{kahler/fig\_datawalls.py}, \texttt{kahler/fig\_coupling.py},\\ & \texttt{kahler/fig\_leximin.py}, \texttt{kahler/fig\_morph.py}, \texttt{kahler/fig\_colbind.py},\\ & \texttt{kahler/fig\_cpl24.py}, \texttt{kahler/fig\_pentpath.py},\\ & \texttt{kahler/fig\_selcomp.py}, \texttt{kahler/fig\_selbin.py}\\ certificate & \texttt{kahler/chambers24.json}\\ ledger & \texttt{LEDGER.yaml}, rendered by \texttt{kahler/render\_ledger.py}\\\bottomrule
 \end{tabular}
 \end{center}
 The checks corroborate the statements numerically, or by exact rational arithmetic where marked; they do not prove them.
@@ -1412,12 +1694,26 @@ TF7 & \cref{ex:C24}: degree-$10$ resultant, its Newton polygon, $8+2$ critical p
 TF8 & \cref{prop:fanodepth,ex:A24,prop:B24,ex:C24}: the leximin levels and drops exactly; a tie-free census of drop patterns by chamber type\\
 TF9 & \cref{prop:scales}: eigenvalue slopes at the positive object ($L=800\to1600$); minors on all $22$ leximin-fibre objects; rank $3$ on C's second fibre\\
 CC1--CC4 & \cref{thm:chambers24}: the certificate \texttt{kahler/chambers24.json}, verified independently (standard library, exact rationals)\\
+AS1--AS2 & \cref{prop:markovglue}: Markov gluing associative and unital, one composite per face, maximal entropy (exact); face counts of $K_3,K_4,K_5$\\
+AS3--AS4 & \cref{thm:k4}: the eleven composites, binary and with ternary intermediates (exact rationals)\\
+AS5--AS6 & \cref{prop:selprops}: unit and transposition (exact); the non-associativity census\\
+AS7 & finite $T$: the associator $-41/960$ at every $L$; convergence of the composites\\
+SB1--SB2 & \cref{thm:frechet,cor:tropcorr}: Fr\'echet-midpoint gluing on $60$ chains; signed-minimum correlations and associativity on uniform margins (exact)\\
+SB3--SB4 & continuity: affine on a fixed type (exact); no jump across $\ge10$ facet-set changes (numerical)\\
+SB5--SB6 & \cref{prop:assoclocus}: only uniform margins associative among $9^4$ tuples; the locus has positive measure (exact grids)\\
+SB7 & \cref{ex:assoc1}: the one-parameter associator, its kinks and zeros (exact)\\
+SX1 & \cref{prop:assoclocus}(2): two full-dimensional cells where $A=0$ (exact)\\
+SX2 & \cref{thm:k4} and the ternary example: exact certificates for all $57$ selections\\
+SX3 & the ternary configuration: hull, Markov point and crossings by exact orientation tests\\
+SF1--SF3 & \cref{prop:selfloer}: the fibre is $\prod\mathbb{CP}^1$ (exact traversal); Cho--Oh and Alston--Amorim conditions at the midpoints (exact)\\
+SF4--SF5 & Birch against Floer points; the $K_4$ fibres: Delzant, orbifold and Fano tests (exact traversal)\\
 LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; the rendered table matches \texttt{LEDGER.yaml}\\\bottomrule
 \end{longtable}}
 
 \begin{thebibliography}{99}
 \bibitem{Abreu2003} M.~Abreu, K\"ahler geometry of toric manifolds in symplectic coordinates, in \emph{Symplectic and Contact Topology}, Fields Inst. Commun. \textbf{35}, AMS, 2003, 1--24.
 \bibitem{AmariNagaoka2000} S.~Amari and H.~Nagaoka, \emph{Methods of Information Geometry}, AMS and Oxford University Press, 2000.
+\bibitem{AlstonAmorim2010} G.~Alston and L.~Amorim, Floer cohomology of torus fibers and real Lagrangians in Fano toric manifolds, arXiv:1003.3651, 2010.
 \bibitem{Auroux2007} D.~Auroux, Mirror symmetry and T-duality in the complement of an anticanonical divisor, \emph{J. G\"okova Geom. Topol.} \textbf{1} (2007) 51--91.
 \bibitem{Awasthi2026Br} V.~K.~Awasthi, Bridges: from probability and entropy to branes, with worked examples, technical note, Johns Hopkins University, October 2026.
 \bibitem{Awasthi2026Cpl} V.~K.~Awasthi, Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability, companion paper, Johns Hopkins University, October 2026.
@@ -1439,6 +1735,7 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{FienbergRinaldo2012} S.~E.~Fienberg and A.~Rinaldo, Maximum likelihood estimation in log-linear models, \emph{Ann. Statist.} \textbf{40} (2012) 996--1023.
 \bibitem{Fisher1935} R.~A.~Fisher, The logic of inductive inference, \emph{J. Roy. Statist. Soc.} \textbf{98} (1935) 39--82.
 \bibitem{FOOO2010} K.~Fukaya, Y.-G.~Oh, H.~Ohta and K.~Ono, Lagrangian Floer theory on compact toric manifolds I, \emph{Duke Math. J.} \textbf{151} (2010) 23--174.
+\bibitem{Fritz2020} T.~Fritz, A synthetic approach to Markov kernels, conditional independence and theorems on sufficient statistics, \emph{Adv. Math.} \textbf{370} (2020) 107239.
 \bibitem{Fulton1993} W.~Fulton, \emph{Introduction to Toric Varieties}, Annals of Mathematics Studies \textbf{131}, Princeton University Press, 1993.
 \bibitem{Galkin2014} S.~Galkin, The conifold point, arXiv:1404.7388, 2014.
 \bibitem{GGI2016} S.~Galkin, V.~Golyshev and H.~Iritani, Gamma classes and quantum cohomology of Fano manifolds: Gamma conjectures, \emph{Duke Math. J.} \textbf{165} (2016) 2005--2077.
@@ -1456,5 +1753,6 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{SeidelThomas2001} P.~Seidel and R.~Thomas, Braid group actions on derived categories of coherent sheaves, \emph{Duke Math. J.} \textbf{108} (2001) 37--108.
 \bibitem{Seidel2008} P.~Seidel, \emph{Fukaya Categories and Picard--Lefschetz Theory}, Zurich Lectures in Advanced Mathematics, EMS, 2008.
 \bibitem{Smith2018} J.~Smith, Generating the Fukaya categories of compact toric varieties, arXiv:1804.06386, 2018.
+\bibitem{Stasheff1963} J.~D.~Stasheff, Homotopy associativity of H-spaces I, \emph{Trans. Amer. Math. Soc.} \textbf{108} (1963) 275--292.
 \end{thebibliography}
 \end{document}
