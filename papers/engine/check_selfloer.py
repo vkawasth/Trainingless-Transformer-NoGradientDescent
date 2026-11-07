@@ -11,7 +11,8 @@
        different point in 37 of the 40 chains; the two agree exactly when every slice's product coupling is its Frechet midpoint
   SF5  the fibres behind the binary K_4 composites (exact traversal): the 14 distinct 3-way fibres are each CP^1 x CP^1 (Fano); of the 5 distinct
        4-way fibres, 3 are simple and Delzant and 2 are simple but not unimodular (orbifold), and none is Fano (an invariant curve with -K.C = -4);
-       the 5-way fibre of the top cell is not Fano (an invariant curve with -K.C = -16 is found) and is unimodular at the 400 vertices visited
+       the 5-way fibre of the top cell is not Fano (an invariant curve with -K.C <= -16 within 400 vertices). With --full the complete traversal
+       is run (34166 vertices, about 77 minutes): the fibre is simple but not unimodular (an orbifold), with min -K.C = -32
 """
 import os, sys, itertools
 from fractions import Fraction as Fr
@@ -81,6 +82,8 @@ three = [v for k, v in seen.items() if k[0] == 2]; four = [v for k, v in seen.it
 ok = len(three) == 14 and all(st == "delzant" and nv == 4 and mk == 2 for st, nv, mk in three) and len(four) == 5 and all(mk == -4 for _, _, mk in four)
 ok &= sorted(st for st, _, _ in four) == ["delzant", "delzant", "delzant", "not unimodular", "not unimodular"]
 ok &= len(five) == 1 and five[0][0] == "cap" and five[0][2] <= -16
-check("SF5 the K_4 fibres: 3-way CP^1 x CP^1 (Fano); 4-way none Fano (-K.C = -4), 3 Delzant and 2 orbifold; 5-way not Fano, unimodular where visited", ok,
+if "--full" in sys.argv:
+    full = S.delzant(GB, cap=600000); print("  complete traversal of the 5-way fibre:", full); ok &= full == ("not unimodular", 34166, Fr(-32))
+check("SF5 the K_4 fibres: 3-way CP^1 x CP^1 (Fano); 4-way none Fano (-K.C = -4), 3 Delzant and 2 orbifold; 5-way not Fano (orbifold with --full)", ok,
       f"3-way {sorted(set(three))}, 4-way {four}, 5-way {five}")
 print(f"{sum(results)}/{len(results)} passed")

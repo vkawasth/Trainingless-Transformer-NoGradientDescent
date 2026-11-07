@@ -1,7 +1,8 @@
 """Checks for the operations ledger LEDGER.yaml (repository root).
   LG1  schema: every row has id, operation, assumptions, parameter_map, levels (contingency, toric, mirror, floer, category), walls (probability,
        support, tropical, critical, stokes, context), wall_certificate and checks; every status is one of the allowed values; ids are unique;
-       the category level is never Proved, Exact or Numerical (no categorical claim is made)
+       the category level records mathematical status, not novelty: it may be Proved only with the qualifier "(standard" in its text
+       (a standard categorical construction, no new category claimed), and is never Exact or Numerical
   LG2  every check id listed appears as PASS in CHECK_RUN_20261030.log, and none as FAIL
   LG3  the rendered appendix kahler/ledger_table.tex is up to date with LEDGER.yaml
 """
@@ -17,8 +18,9 @@ ok = len({r["id"] for r in rows}) == len(rows)
 for r in rows:
     ok &= all(k in r for k in ("id", "operation", "assumptions", "parameter_map", "levels", "walls", "wall_certificate", "checks"))
     ok &= all(k in r["levels"] and r["levels"][k]["status"] in ALLOWED for k in LEV) and all(k in r["walls"] for k in WALLS)
-    ok &= r["levels"]["category"]["status"] not in {"Proved", "Exact", "Numerical"}
-check("LG1 ledger schema, allowed statuses, unique ids, no categorical claim", ok, f"{len(rows)} rows")
+    cat = r["levels"]["category"]
+    ok &= cat["status"] not in {"Exact", "Numerical"} and (cat["status"] != "Proved" or "(standard" in cat["text"])
+check("LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction", ok, f"{len(rows)} rows")
 log = open(os.path.join(ROOT, "CHECK_RUN_20261030.log")).read(); ids = sorted({c for r in rows for c in r["checks"]})
 passed = set(re.findall(r"^PASS (\w+)", log, re.M)); failed = set(re.findall(r"^FAIL (\w+)", log, re.M))
 missing = [c for c in ids if c not in passed or c in failed]
