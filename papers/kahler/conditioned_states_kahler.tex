@@ -6,7 +6,7 @@
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
 \usepackage[nameinlink]{cleveref}
 \newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}\newtheorem{conjecture}[theorem]{Conjecture}\crefname{conjecture}{Conjecture}{Conjectures}
-\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}\newtheorem{example}[theorem]{Example}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{remark}[theorem]{Remark}\newtheorem{example}[theorem]{Example}\newtheorem{problem}[theorem]{Open problem}\crefname{problem}{Problem}{Problems}
 \definecolor{stUsed}{HTML}{E8E8E8}\definecolor{stAdapted}{HTML}{D6E6F7}\definecolor{stDerived}{HTML}{FBE7C4}\definecolor{stCited}{HTML}{F2DCDC}\definecolor{stNew}{HTML}{DDF1DD}
 \newcommand{\R}{\mathbb R}
 \setlength{\emergencystretch}{3em}
@@ -41,7 +41,7 @@ couplings by Markov gluing is associative; composing them by selection is not, a
 structure on chains of coupling polytopes, with point classes composing and the diagonal coupling as unit, is trivial up to quasi-equivalence; so the information lies in selection itself. On binary
 chains selection is Fr\'echet-midpoint gluing. On uniform margins it composes correlations by a signed minimum where Markov gluing multiplies them, and it is associative; among the other margins
 tested it is associative everywhere for none, but on full-dimensional cells for some, which we certify exactly. On binary chains the selected composite is the marginal of the unique Floer-nontrivial
-torus fibre of the reduced space, by Cho--Oh and by Alston--Amorim's pairing with the real Lagrangian, while Markov gluing takes the Birch point of the same space. $93$ numerical, $7$ certificate and $3$
+torus fibre of the reduced space, by Cho--Oh and by Alston--Amorim's pairing with the real Lagrangian, while Markov gluing takes the Birch point of the same space. In the dagger category of couplings, selection keeps units, reversal and copied factors, but not independent factors or coarse-graining. For binary ends it is the centre of the interval the data determine, which makes it harder to flip by poisoning, about $13\%$ of the records against $2.6\%$ for Markov gluing in one example, but sensitive to how the variables are recorded. Both rules are sections of the projection from joint laws to marginal data. On the 4-cycle (CHSH) cover, and on every $n$-cycle, the noncontextuality facets are simplices: at every point of the contextuality boundary the data determine the joint law and every rule agrees, while structural zeros leave a family of dimension $3\cdot2^{n-2}-2n$. Simpson reversals arise either from the rule (selection sensitivity) or from coarsening the middle (information loss). The cheapest undetectable poisoning of such data is a conformal sum of a few circuits of the consistent-edit space, usually one circuit of four cells whatever the number of variables. The number of undetectable placements grows monotonically with the hidden support, whose freedom splits into room to move the data and room for the rule. Removing batches or contexts is a contravariant functor, and it explains a decision's change over time. Whether maximum entropy is the only associative section is left open. $114$ numerical, $7$ certificate and $3$
 ledger checks corroborate the statements.
 \end{abstract}
 
@@ -76,6 +76,17 @@ component & status & source\\\midrule\endhead
 \rowcolor{stNew} composition by selection: not associative; the exact $K_4$ configuration (\cref{prop:selprops,thm:k4}) & New (exact computation) & this note\\
 \rowcolor{stNew} no-go for contractible morphism spaces; Fr\'echet-midpoint gluing; signed-minimum correlations; cells of associativity (\cref{prop:nogo,thm:frechet,cor:tropcorr,prop:assoclocus}) & New (cells exact; census on grids) & this note\\
 \rowcolor{stCited} binary selection picks the Floer-nontrivial fibre of the reduced space (\cref{prop:selfloer}) & Cited (exact checks) & \cite{ChoOh2006,AlstonAmorim2010,FOOO2010}\\
+\rowcolor{stUsed} couplings form a dagger symmetric monoidal category under Markov gluing (\cref{def:cpl,prop:cplcat}) & Used & \cite{Fritz2020,ChoJacobs2019}\\
+\rowcolor{stNew} what selection keeps and breaks: units, reversal, copied factors; not independent factors or coarse-graining (\cref{prop:selkeeps,prop:selbreaks}) & New (proofs; exact counterexamples) & this note\\
+\rowcolor{stAdapted} the identified interval of a binary composite; selection is its centre; poisoning and zero-cost changes (\cref{prop:identified,prop:poison,ex:howlittle}) & Adapted (identified sets); New & \cite{Manski2003}; this note\\
+\rowcolor{stNew} rules as sections of the marginal projection; fibre dimension over faces; from sections to a category (\cref{thm:projection,thm:sections,thm:sec2cat}) & New (proofs) & \cite{WalkupWets1969,BilleraSturmfels1992}; this note\\
+\rowcolor{stCited} maximum entropy and its consistency axioms (\cref{rem:shorejohnson}) & Cited & \cite{ShoreJohnson1980,Uffink1995}\\
+\rowcolor{stCited} associativity as a Beck--Chevalley-type condition (Markov property); symmetry as a hyperconnected quotient (\cref{rem:beckchevalley}) & Cited (dictionary) & \cite{Fritz2020,Hora2023}\\
+\rowcolor{stCited} gluing and locality; signed extensions always exist; the fibre is $\mathcal A_d\cap\mathcal J$; contextual fraction (\cref{rem:layers}) & Cited & \cite{AbramskyBrandenburger2011,AlSafiShort2013,AbramskyBarbosaMansfield2017}\\
+\rowcolor{stNew} what the entropy cocycle gives: with $c>0$ system independence, with $c<0$ no section; the power family (\cref{rem:layers,prop:cocycle}) & New (proof; family numerical) & \cite{BaudotBennequin2015,Vigneaux2020,CressieRead1984}; this note\\
+\rowcolor{stAdapted} the 4-cycle: $\mathcal D=\mathcal L\cap\mathrm{CH}$; CH facets are simplices, positivity facets leave fibre 4 (\cref{prop:cycleD,prop:cyclefibres}) & Adapted (Fine's theorem, exact); New (fibre table) & \cite{Fine1982,ClauserHorne1974,AbramskyBrandenburger2011}\\
+\rowcolor{stNew} sections at the CHSH boundary; Simpson reversals made by a rule or by the middle resolution (\cref{prop:chshpath,prop:simpson}) & New (exact; paths numerical) & \cite{Simpson1951}; this note\\
+\rowcolor{stAdapted} every $n$-cycle: noncontextuality facets are simplices, so the contextuality boundary is rigid (\cref{cor:rigid,thm:ncycle}) & Adapted (facet list cited); New (identification reading; exact for $n\le8$) & \cite{AraujoEtAl2013}; this note\\
 \rowcolor{stCited} Floer cohomology of toric fibres and the potential $W$ & Cited, not proved & \cite{ChoOh2006,FOOO2010}\\
 \rowcolor{stUsed} ampleness by invariant curves: Nakai--Moishezon, toric Kleiman, wall relations (\cref{prop:kleiman}) & Used & \cite{Kleiman1966,CLS2011}\\
 \rowcolor{stNew} the $148$ chambers of $2\times4$; selection depth in the Fano chambers; examples A, B, C (\cref{thm:chambers24,prop:fanodepth,prop:B24}) & New (exact computation) & this note\\
@@ -1349,7 +1360,7 @@ $\sigma(\sigma(\gamma_1,\gamma_2),\gamma_3)$ takes the Floer fibre of one reduce
 
 \emph{Beyond binary.} For the binary $K_4$ example the fibres behind the eleven composites are, by exact traversal (SF5): the $14$ distinct $3$-way fibres are each $\mathbb{CP}^1\times\mathbb{CP}^1$, so
 \cref{prop:selfloer} applies; of the $5$ distinct $4$-way fibres, three are Delzant and two are simple but not unimodular, so the toric variety is an orbifold, and none is Fano (a curve with $-K\cdot C=-4$);
-the $5$-way fibre of the top cell is not Fano (a curve with $-K\cdot C=-16$) and is unimodular at the $400$ vertices visited. For the Delzant ones the selected point is the FOOO non-displaceable fibre. The
+the $5$-way fibre of the top cell is not Fano either: a complete exact traversal ($34\,166$ vertices) finds it simple but not unimodular, so an orbifold, with a curve of $-K\cdot C=-32$. For the Delzant ones the selected point is the FOOO non-displaceable fibre. The
 equivalences (1) and (2) need the Fano hypothesis and are not claimed there, and the orbifold fibres would need orbifold Floer theory.
 
 \emph{What is not claimed.} This reads selection at the level of objects, one torus fibre per composite. It constructs no functor and says nothing about morphisms or products between these fibres; the
@@ -1369,6 +1380,491 @@ a Fukaya--Seidel category of $W$ & only its combinatorial shadow: the critical p
 between thimbles; the polygon counts that define $\mu^d$; the directed $A_\infty$ structure \cite{Seidel2008}; and a proof that the positive thimble is the probabilistic object in that category\\\bottomrule
 \end{tabular}
 \end{center}
+
+\subsection{A small dagger category for finite probability}\label{sec:probcat}
+The underlying category here is standard. What is new is a precise account of which of its symmetries selection keeps and which it breaks. Write
+$\gamma\otimes\gamma'$ for the Kronecker product of couplings, and $D_p=\operatorname{diag}(p)$.
+
+\begin{definition}[the category $\mathsf{Cpl}$]\label{def:cpl}
+Objects are finite sets with full-support laws $(X,p)$ (a state of mass zero is deleted). A morphism $(X,p)\to(Y,q)$ is a coupling $\gamma\in\Pi(p,q)$; composition is Markov gluing
+$\gamma_1D_q^{-1}\gamma_2$, with identity $D_p$ (\cref{def:selcomp}). The dagger is the transpose, $\gamma^\dagger=\gamma^{\!\top}\in\Pi(q,p)$. The tensor product is $(X,p)\otimes(Y,q)=(X\times Y,p\otimes q)$ on objects and
+$\gamma\otimes\gamma'$ on morphisms, with the swap of factors as symmetry. A coarse-graining of $(Z,r)$ along a map $f:Z\to Z'$ sends $\delta$ to $\delta F$, where $F$ is the $0/1$ matrix of $f$.
+\end{definition}
+
+Writing $K=D_p^{-1}\gamma$ turns couplings into Markov kernels that carry $p$ to $q$, and the transpose becomes Bayesian inversion \cite{Fritz2020,ChoJacobs2019}.
+
+\begin{proposition}[the structure Markov gluing carries]\label{prop:cplcat}
+$\mathsf{Cpl}$ is a dagger symmetric monoidal category, and Markov gluing commutes with coarse-graining an end space: $(\gamma D^{-1}\delta)F=\gamma D^{-1}(\delta F)$.
+\end{proposition}
+
+\begin{proof}
+Associativity and units are \cref{prop:markovglue}(1). $(\gamma_1D^{-1}\gamma_2)^{\!\top}=\gamma_2^{\!\top}D^{-1}\gamma_1^{\!\top}$ and $D_p^{\!\top}=D_p$, so the transpose is an identity-on-objects involution that reverses composition. The mixed-product rule gives
+$(\gamma\otimes\gamma')(D\otimes D')^{-1}(\delta\otimes\delta')=(\gamma D^{-1}\delta)\otimes(\gamma'D'^{-1}\delta')$ and $(\gamma\otimes\gamma')^{\!\top}=\gamma^{\!\top}\otimes\gamma'^{\!\top}$. The last identity is associativity of matrix
+multiplication. NC1 checks all of these in exact rationals on random chains.
+\end{proof}
+
+\begin{example}[forecast, umbrella, wet]\label{ex:umbrella}
+Let $X$ say whether the forecast is rain, $Y$ whether an umbrella is carried, $Z$ whether one gets wet, with $P(\text{rain})=2/5$, $P(\text{carried})=1/3$, $P(\text{wet})=3/7$. Two separate data sets record
+the pairs:
+\[
+\gamma_1=\begin{pmatrix}13/60&11/60\\7/60&29/60\end{pmatrix}\in\Pi(X,Y),\qquad \gamma_2=\begin{pmatrix}7/30&1/10\\41/210&33/70\end{pmatrix}\in\Pi(Y,Z),
+\]
+rows and columns in the order (yes, no). No record contains all three. The two compositions give different laws for (forecast, wet):
+\[
+\gamma_1D_q^{-1}\gamma_2=\begin{pmatrix}23/112&109/560\\25/112&211/560\end{pmatrix},\qquad \sigma(\gamma_1,\gamma_2)=\begin{pmatrix}31/120&17/120\\143/840&361/840\end{pmatrix}.
+\]
+These are the first two couplings of \cref{thm:k4}. \Cref{fig:selcat} draws them, together with the two squares of \cref{prop:selbreaks}.
+\end{example}
+
+\begin{proposition}[what selection keeps]\label{prop:selkeeps}
+For $\gamma\in\Pi(p,q)$ and $\delta\in\Pi(q,r)$:
+\begin{enumerate}
+\item[(1)] \emph{closed:} $\sigma(\gamma,\delta)\in\Pi(p,r)$;
+\item[(2)] \emph{unital:} $\sigma(\gamma,D_q)=\gamma$ and $\sigma(D_p,\gamma)=\gamma$;
+\item[(3)] \emph{reversal:} $\sigma(\gamma,\delta)^{\!\top}=\sigma(\delta^{\!\top},\gamma^{\!\top})$;
+\item[(4)] \emph{relabelling:} for bijections $\alpha,\beta,\kappa$ of $X,Y,Z$, selection of the relabelled couplings is the relabelled selection;
+\item[(5)] \emph{a copied factor:} for every full-support law $w$, $\sigma(\gamma\otimes D_w,\ \delta\otimes D_w)=\sigma(\gamma,\delta)\otimes D_w$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) The end marginal of a table with pair marginals $\gamma,\delta$ has margins $p$ and $r$. (2) is \cref{prop:selprops}. (3) and (4): the maps $x_{ijk}\mapsto x_{kji}$ and
+$x_{ijk}\mapsto x_{\alpha(i)\beta(j)\kappa(k)}$ carry the fibre bijectively onto the fibre of the transformed chain. They preserve every cell value, so they preserve the facets and each step of
+\cref{def:lex}; the leximin point is unique, so it goes to the leximin point. (5) The pair marginal $\gamma\otimes D_w$ forces $x_{(i,a),(j,b),(k,c)}=0$ unless $a=b$, and $\delta\otimes D_w$ forces $b=c$. So the
+fibre is the product over $a$ of the scaled copies $w_aF(\gamma,\delta)$, through $x_{(i,a),(j,a),(k,a)}=w_ay^{(a)}_{ijk}$. Its facets are facets of single copies, and the facet functions of copy $a$ are $w_a$
+times those of $F(\gamma,\delta)$. As in the proof of \cref{thm:frechet}, the recursion on a product whose facet functions each depend on one factor selects the product of the factors' own selected points. Scaling all
+of a factor's functions by $w_a>0$ does not change that factor's selected point. NC2 and NC3 check (1)--(5) exactly.
+\end{proof}
+
+\begin{proposition}[what selection breaks]\label{prop:selbreaks}
+With $\gamma_1,\gamma_2$ of \cref{ex:umbrella}:
+\begin{enumerate}
+\item[(1)] \emph{An independent factor.} With $\gamma'=\left(\begin{smallmatrix}1/5&1/20\\3/10&9/20\end{smallmatrix}\right)$ and $\delta'=\left(\begin{smallmatrix}1/10&2/5\\1/2&0\end{smallmatrix}\right)$, the $00$ entry of
+$\sigma(\gamma_1\otimes\gamma',\gamma_2\otimes\delta')$ is $29/1400$, while that of $\sigma(\gamma_1,\gamma_2)\otimes\sigma(\gamma',\delta')$ is $31/1200$. So selection is not monoidal.
+\item[(2)] \emph{Coarse-graining an end.} With $\delta=\left(\begin{smallmatrix}1/10&1/10&2/15\\1/5&1/5&4/15\end{smallmatrix}\right)$, merging the last two states of $Z$ after selection gives $00$ entry $11/90$, and merging them
+before gives $17/120$.
+\item[(3)] \emph{Coarse-graining the middle} changes both compositions. Markov gluing: for $\gamma=\left(\begin{smallmatrix}1/10&1/10&1/5\\1/5&3/20&1/4\end{smallmatrix}\right)$, $\delta=\left(\begin{smallmatrix}1/5&1/10\\1/20&1/5\\1/5&1/4\end{smallmatrix}\right)$,
+merging the last two middle states moves the $00$ entry from $79/450$ to $73/420$. Selection: for $\gamma=\left(\begin{smallmatrix}1/8&9/32&3/32\\3/16&1/4&1/16\end{smallmatrix}\right)$,
+$\delta=\left(\begin{smallmatrix}5/144&5/18\\85/448&153/448\\5/64&5/64\end{smallmatrix}\right)$, it moves from $1283/8064$ to $305/2016$, and it moves on $10$ of $15$ random chains.
+\end{enumerate}
+In (1) and (2) Markov gluing passes both squares (\cref{prop:cplcat}).
+\end{proposition}
+
+\begin{proof}
+Exact computation, with every input above (NC4--NC6).
+\end{proof}
+
+Why Markov passes the tensor square and selection does not: the product chain's fibre contains $F(\gamma,\delta)\times F(\gamma',\delta')$ and also tables that are not products. For any table $x$ in it, with marginals
+$x_1,x_2$ on the two systems, $H(x)\le H(x_1)+H(x_2)\le H(m)+H(m')$, where $m,m'$ are the Markov points of the factors. Equality holds at $m\otimes m'$, so the maximum-entropy point of the product is the product
+of the maximum-entropy points. A least cell has no such inequality, and in (1) the leximin point of the product fibre is not a product.
+
+\begin{center}\small
+\begin{tabular}{lcc}\toprule
+property & Markov gluing & selection\\\midrule
+associative & yes & no (\cref{prop:selprops,thm:k4})\\
+unital; reversal (dagger); relabelling & yes & yes\\
+tensoring by an identity $D_w$ (a copied factor) & yes & yes\\
+tensoring by an independent factor & yes & no\\
+coarse-graining an end space & yes & no\\
+coarse-graining the middle space & no & no\\
+the point of the fibre it picks & largest entropy & lexicographically largest least slack\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[status]\label{rem:selcat}
+So selection is a geometric rule on fibres. It is unchanged by renaming states, by reversing direction and by copying information, but it changes when an independent system is added or an end is recorded
+at another resolution. Markov gluing is unchanged by all of these, and both change with the resolution of the middle. Together with the associator and the $K_4$ configuration, this is further evidence that
+selection does not give $\mathsf{Cpl}$ a second composition law; nothing here alters the three directions of \cref{sec:threecat}.
+\end{remark}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_selcat.pdf}
+\caption{The small category on \cref{ex:umbrella}. (a) Three binary laws, the two data sets, and the two composites they give. (b) The tensor square: selecting and then taking the product differs from selecting on
+the product chain. (c) The coarse-graining square: merging two end states before or after selection gives different answers. Markov gluing passes both squares.}\label{fig:selcat}
+\end{figure}
+
+\subsection{How little it takes: poisoning, representation, and what the data determine}\label{sec:howlittle}
+In \cref{ex:umbrella} take the decision ``warn that rain is coming with you'' when $P(\text{wet}\mid\text{forecast rain})\ge\tau=1/2$, computed from a composite. This subsection asks how little has to change
+for that decision to flip. Two kinds of change are compared: edits of the data themselves (poisoning), and changes in the representation underneath that leave the data as recorded untouched. For binary ends,
+what the data alone determine has a closed form.
+
+\begin{proposition}[what the data determine]\label{prop:identified}
+Let $X_0$ and $X_2$ be binary, and use the notation of \cref{thm:frechet}.
+\begin{enumerate}
+\item[(1)] The $00$ entries of the $(X_0,X_2)$ marginals of all joint laws compatible with $\gamma_1$ and $\gamma_2$ fill the interval $[L,U]=[\sum_bL_b,\ \sum_bU_b]$.
+\item[(2)] Selection is its midpoint. So among all rules it has the least worst-case error over compatible joint laws, namely $(U-L)/2$. Markov gluing has worst-case error $\max(u_M-L,\,U-u_M)$, which is
+larger unless $u_M$ is the midpoint.
+\item[(3)] Splitting a middle state into two, consistently with the recorded data, can only shrink $[L,U]$.
+\item[(4)] The data alone decide the threshold question exactly when $\tau p_0\notin(L,U)$, with $p_0=P(X_0=0)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) By the proof of \cref{thm:frechet} the fibre is $\prod_b[L_b,U_b]$, and the $00$ entry of the end marginal is $\sum_bx_{0b0}$. (2) The first claim is \cref{thm:frechet}, and the midpoint of an interval
+minimises the largest distance to its points. (3) Merging the two halves of the split state sends a compatible table of the refined chain to a compatible table of the original one, with the same end marginal.
+(4) follows from (1). NC7 checks (1) and (2) against linear programs over the fibre on $20$ chains, and NC9 checks (3) on $195$ refinements.
+\end{proof}
+
+In this language the interval is the \emph{identified set} of the composite \cite{Manski2003}. Neither composite is determined by the data: Markov gluing adds conditional independence given $Y$, and
+selection takes the centre.
+
+\begin{proposition}[edits inside the data]\label{prop:poison}
+On binary chains, write $p_0,p_1,p_2$ for the first entries of the laws and $t_1,t_2$ for the $00$ entries of $\gamma_1,\gamma_2$. Change $\gamma_1$ by a margin-preserving swap of size $s$ (the $00$ and $11$ entries up by $s$, the others down). This moves $2|s|$ of the mass, so $2|s|$ is the fraction of records edited.
+\begin{enumerate}
+\item[(1)] The Markov composite is affine in $s$ with slope $(t_2-p_1p_2)/(p_1(1-p_1))$, which is proportional to the covariance in $\gamma_2$.
+\item[(2)] The selected composite is piecewise linear in $s$, with slopes in $\{0,\pm\tfrac12,\pm1\}$. Its slope is $0$ on the open region where $t_1+t_2<p_1$, $t_2<t_1$, $(p_0-t_1)+(p_2-t_2)<1-p_1$ and $p_2-t_2<p_0-t_1$:
+there, edits of $\gamma_1$ do not move it at all.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Differentiate $t_1t_2/p_1+(p_0-t_1)(p_2-t_2)/(1-p_1)$. (2) Each slice midpoint $(L_b+U_b)/2$ is a half-sum of a maximum and a minimum of affine functions with slope $0$ or $\pm1$ in $t_1$. Under the four
+inequalities, $L_0=0$, $U_0=t_2$, $L_1=0$ and $U_1=p_2-t_2$, none of which depends on $t_1$.
+\end{proof}
+
+\begin{example}[how little, both ways]\label{ex:howlittle}
+In \cref{ex:umbrella}, in units of $P(\text{wet}\mid\text{forecast rain})$:
+\begin{enumerate}
+\item[(1)] \emph{The data.} They determine only $[7/24,\,1]$, which contains $\tau$. Markov gluing gives $115/224\approx0.513$, worst-case error $109/224\approx0.487$. Selection gives $31/48\approx0.646$, worst-case error
+$17/48\approx0.354$. Both warn.
+\item[(2)] \emph{Poisoning.} The smallest margin-preserving edits that flip each decision are, as fractions of records edited:
+\begin{center}\small
+\begin{tabular}{lcc}\toprule
+& edit $\gamma_1$ & edit $\gamma_2$\\\midrule
+Markov stops warning & $1/38\approx2.6\%$ & $1/35\approx2.9\%$\\
+selection stops warning & $9/70\approx12.9\%$ & $2/15\approx13.3\%$\\
+the data force ``warn'' ($L\ge\tau p_0$) & $1/6\approx16.7\%$ & $1/6\approx16.7\%$\\
+the data force ``no warning'' ($U\le\tau p_0$) & $89/210\approx42.4\%$ & $13/30\approx43.3\%$\\\bottomrule
+\end{tabular}
+\end{center}
+\item[(3)] \emph{Changes that cost no data.} Reveal a hidden distinction in the middle, say whether a carried umbrella is opened, with each half of mass $1/6$ and consistent with both records ($195$ splits on a grid
+of step $1/120$). Markov's answer then ranges over $[477/1120,\,673/1120]\approx[0.426,0.601]$, and it stops warning in $56$ of them, with not one record changed. Selection's ranges over
+$[25/48,\,17/24]\approx[0.521,0.708]$ and warns in all of them. The identified set shrinks, its lower end rising to at most $5/12$ and its upper end falling to $3/4$, but it always contains $\tau$. Record
+``wet'' at a finer resolution ($49$ splits), or attach an independent system ($14$ random ones): Markov's answer does not move, by \cref{prop:cplcat}, while selection's moves within $[319/504,\,37/56]$ and $[0.604,\,0.641]$.
+None of these flips selection.
+\end{enumerate}
+\Cref{fig:selrob} draws the three parts. NC8 and NC9 compute every number exactly. Each edit is an exact root, with the decision checked just before and just after it.
+\end{example}
+
+\paragraph{Both sides.} A rule that composes probabilities without the joint data has to supply the missing structure, and each rule exposes a different weakness. Markov gluing supplies conditional independence
+given the middle. That makes it stable under every change of representation at the ends, but its answer hangs on a distinction in the middle that the data may not record: in the example, an unrecorded
+distinction flips it at no cost in data, and an edit of $2.6\%$ of one data set does too. Selection supplies the centre of what the data allow. That gives it the least worst-case error, and it needs about five
+times the edit to flip here. In part of the input space it ignores edits altogether, which is robustness and also blindness to evidence. But it pays in representation: an independent system or a finer record
+of an end moves it, though Markov gluing is unaffected. What the data themselves compute is the interval. When the threshold lies inside it, every decision taken is a consequence of the rule, not of the data,
+and making the data decide takes $16.7\%$ of the records in one direction and $42\%$ in the other. These statements are exact for binary ends. For larger ends the identified set is a polytope containing
+both composites, and we do not claim that selection is its centre.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_selrob.pdf}
+\caption{How little changes the decision in \cref{ex:umbrella}. (a) What the data determine: the identified interval (grey), the two composites, and their worst-case errors; selection sits at the centre. (b) Margin-preserving
+edits of the forecast--umbrella records: Markov stops warning at $2.6\%$, selection at $12.9\%$, and the data themselves force a warning only at $16.7\%$. (c) Changes that cost no data. A hidden distinction in the middle
+moves Markov across the threshold and shrinks the interval; a finer record of ``wet'' and an independent system move selection only.}\label{fig:selrob}
+\end{figure}
+
+\subsection{Selection as a section of the marginal projection}\label{sec:section}
+\Cref{sec:probcat,sec:howlittle} compared two rules on chains. Both have the same shape: from local data, choose one joint law that agrees with the data. This subsection makes that shape the object of study. A rule is a section of a projection. Which laws such a rule obeys is a separate question, and a category appears only after a further step.
+
+\paragraph{The projection.} Let $V$ be a finite set of variables with finite state sets $X_v$, and let $\mathcal C$ be a cover of $V$ by contexts $C\subseteq V$. Let $\mathcal J=\Delta(\prod_vX_v)$ be the simplex of joint laws, and
+\[
+\pi:\mathcal J\longrightarrow\textstyle\prod_{C\in\mathcal C}\Delta(X_C)
+\]
+the map to the family of context marginals. Write $\mathcal L$ for the locally consistent families, those whose marginals agree on overlaps, and $\mathcal D=\pi(\mathcal J)\subseteq\mathcal L$ for the data that some joint law produces. The fibre over $d\in\mathcal D$ is $\mathcal J_d=\pi^{-1}(d)$, and the points of $\mathcal L\setminus\mathcal D$ are the contextual data \cite{AbramskyBrandenburger2011}. A chain $X_0,\dots,X_n$ with contexts $\{X_{k-1},X_k\}$ is the case of \cref{sec:selcomp}, and there $\mathcal L=\mathcal D$ \cite{Vorobev1962}.
+
+\begin{definition}[sections and their laws]\label{def:section}
+A \emph{section} is a map $s:\mathcal D\to\mathcal J$ with $\pi\circ s=\mathrm{id}_{\mathcal D}$. Let $\Gamma$ be the group generated by relabelling states and by permutations of $V$ that preserve $\mathcal C$; it acts on $\mathcal J$ and on $\mathcal D$, and $\pi$ commutes with it. A section is \emph{equivariant} if $s(\gamma d)=\gamma s(d)$ for $\gamma\in\Gamma$; \emph{interior} if $s(d)$ lies in the relative interior of $\mathcal J_d$; \emph{system independent} if it sends the product data of two independent systems to the product of their sections; and \emph{natural} for a map $f:X_v\to X'_v$ if pushing the data forward along $f$ and then taking the section gives the pushforward of the section.
+\end{definition}
+
+The projection records which joint laws are compatible with the data. A section chooses one of them. Continuity, symmetry, system independence and naturality are further properties of that choice, and the projection implies none of them.
+
+\begin{theorem}[the projection]\label{thm:projection}
+\begin{enumerate}
+\item[(1)] $\mathcal D$ is the convex hull of the images of the deterministic laws $\delta_\omega$, $\omega\in\prod_vX_v$. For $d\in\mathcal D$ the fibre $\mathcal J_d$ is a non-empty polytope; for $d\in\mathcal L\setminus\mathcal D$ there is no compatible joint law.
+\item[(2)] For a face $G$ of $\mathcal D$ let $\Omega(G)=\{\omega:\pi(\delta_\omega)\in G\}$. Then $\pi^{-1}(G)$ is the face of $\mathcal J$ spanned by $\{\delta_\omega:\omega\in\Omega(G)\}$, and for $d$ in the relative interior of $G$
+\[
+\dim\mathcal J_d=|\Omega(G)|-1-\dim G.
+\]
+So the fibre is a single point over the whole of $G$ exactly when $|\Omega(G)|=\dim G+1$.
+\item[(3)] $d\mapsto\mathcal J_d$ is Lipschitz in the Hausdorff metric on $\mathcal D$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\pi$ is linear and $\mathcal J$ is the simplex on the $\delta_\omega$. (2) Write $G=\mathcal D\cap\{\ell=0\}$ with $\ell$ affine and $\ell\ge0$ on $\mathcal D$. Then $\ell\circ\pi$ is affine and $\ge0$ on the simplex, so its zero set is the face spanned by the vertices where it vanishes, which are the $\delta_\omega$ with $\omega\in\Omega(G)$. That face is a simplex of dimension $|\Omega(G)|-1$, and $\pi$ maps it affinely onto $G$. The fibre of an affine surjection of polytopes over a relative-interior point has dimension equal to the difference of the dimensions; fibres of linear projections of polytopes are the subject of \cite{BilleraSturmfels1992}. (3) The fibres are the polyhedra $\{x\ge0:Ax=b(d)\}$ with fixed $A$, and these depend Lipschitz-continuously on $b$ on the set where they are non-empty \cite{WalkupWets1969}.
+\end{proof}
+
+\begin{theorem}[sections]\label{thm:sections}
+\begin{enumerate}
+\item[(1)] Every continuous, strictly concave $\phi$ on $\mathcal J$ gives a section $s_\phi(d)=\arg\max_{\mathcal J_d}\phi$, continuous on $\mathcal D$. For the entropy $H$ the section $s_H$ is continuous, interior, equivariant and system independent.
+\item[(2)] The leximin section $s_{\mathrm{lex}}$ (\cref{def:lex} applied to $\mathcal J_d$, with the cell values as slacks) is equivariant wherever it is defined. It is not system independent.
+\item[(3)] If the stabiliser $\Gamma_d$ of $d$ fixes exactly one point of $\mathcal J_d$, every equivariant section takes that value at $d$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) By \cref{thm:projection}(3) and Berge's maximum theorem the set of maximisers depends upper-semicontinuously on $d$; it is a single point, so it is continuous. The entropy has infinite slope into the interior at the boundary of a face, so its maximiser is relatively interior. $H$ is invariant under permutations of cells, and $\Gamma$ acts by permuting cells and maps $\mathcal J_d$ to $\mathcal J_{\gamma d}$, which gives equivariance. System independence is subadditivity, as in \cref{sec:probcat}: $H(x)\le H(x_1)+H(x_2)$ for a joint law of two systems with marginals $x_1,x_2$, with equality at the product. (2) Equivariance is the argument of \cref{prop:selkeeps}(3)--(4): a cell permutation preserves the facets and every step of the recursion. \Cref{prop:selbreaks}(1) is a counterexample to system independence. (3) $s(d)=s(\gamma d)=\gamma s(d)$ for $\gamma\in\Gamma_d$, so $s(d)$ is the fixed point.
+\end{proof}
+
+\begin{theorem}[from sections to a category]\label{thm:sec2cat}
+On chain covers, let $S=(S_n)_{n\ge1}$ choose a section for every chain of every length, and set $\gamma_1\circ_S\gamma_2=$ the $(X_0,X_2)$ marginal of $S_2(\gamma_1,\gamma_2)$.
+\begin{enumerate}
+\item[(1)] $\circ_S$ is closed and unital, since the fibre over $(\gamma,D_q)$ is one point.
+\item[(2)] Call $S$ \emph{inner-face consistent} if, for every $n\ge3$ and $0<i<n$, summing $X_i$ out of $S_n(\gamma_1,\dots,\gamma_n)$ gives $S_{n-1}(\gamma_1,\dots,\gamma_i\circ_S\gamma_{i+1},\dots,\gamma_n)$. Then $\circ_S$ is associative, and every bracketing of a chain equals the end marginal of $S_n$. So finite probability spaces, couplings and $\circ_S$ form a category.
+\item[(3)] If moreover $S$ is equivariant (reversal included), system independent, or natural for end maps, the category is respectively a dagger category, monoidal, or compatible with coarse-graining the ends.
+\item[(4)] Maximum entropy is inner-face consistent, and its category is $\mathsf{Cpl}$ with Markov gluing. The leximin family is not inner-face consistent.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(2) Both bracketings of $(\gamma_1,\gamma_2,\gamma_3)$ are end marginals of faces of $S_3$: summing out $X_2$ gives $S_2(\gamma_1,\gamma_2\circ\gamma_3)$, and summing out $X_1$ gives $S_2(\gamma_1\circ\gamma_2,\gamma_3)$. Both therefore equal the end marginal of $S_3$, and induction on $n$ handles longer chains. (3) The three properties pass to end marginals. (4) The maximum-entropy law with given consecutive marginals is the Markov chain, and summing out an inner variable of a Markov chain gives the Markov chain of the composed kernel. For leximin, \cref{thm:k4} gives a top composite that differs from a bracketing; MS2 checks both statements.
+\end{proof}
+
+Inner-face consistency is sufficient for associativity; we do not claim it is necessary. In the language of the table in \cref{sec:probcat}, each law of a composition is a property of the section family: units are a property of the one-point fibres; dagger and relabelling are equivariance; the tensor square is system independence; coarse-graining is naturality; and associativity is coherence under marginalisation across different decompositions of a chain.
+
+\begin{problem}[the associative-section problem]\label{prob:assocsec}
+Characterise the section families on chain covers that are unital, equivariant under relabelling and reversal, system independent, and inner-face consistent. Is maximum entropy the only one? Or do other associative families exist, with or without system independence?
+\end{problem}
+
+\Cref{thm:sec2cat} gives a sufficient mechanism. It does not say that every associative composition arises from an inner-face consistent family, nor that maximum entropy is the only such family. Shore and Johnson's theorem (\cref{rem:shorejohnson}) does not settle \cref{prob:assocsec} either, because its axioms quantify over a different class of rules. Leximin shows that equivariance and units do not imply coherence.
+
+\begin{remark}[associativity as a Beck--Chevalley condition; symmetry as a topos quotient]\label{rem:beckchevalley}
+Inner-face consistency asks that forgetting an inner variable commute with the chosen gluing. In the categorical treatment of Markov kernels, composition is exactly gluing followed by marginalisation of the middle variable \cite[\S\S11--13]{Fritz2020}. That this composition is associative rests on the Markov property, which makes the relevant squares of pushforwards and pullbacks commute. We read that as a condition of Beck--Chevalley type. \Cref{thm:sec2cat}(4) is that statement for the maximum-entropy section. The selection associator of \cref{sec:selbin} and the configuration of \cref{thm:k4} measure the failure of the same condition for the leximin section. The associativity failures are therefore failures of a Beck--Chevalley condition for a gluing that is not Markov; they do not come from the geometry of the spaces involved. Hyperconnected geometric morphisms do not account for them: geometric morphisms compose associatively, and a map of finite state spaces induces a localic morphism, whose hyperconnected part is trivial. Where topos theory does enter is symmetry. Equivariance of sections (\cref{thm:sections}(3)) is a statement about $\Gamma$-sets, and hyperconnected quotients of a topos correspond to such actions \cite{Hora2023}. We claim no more than this dictionary.
+\end{remark} \Cref{thm:sec2cat} also says where the selection associator of \cref{sec:selbin} comes from: it measures the failure of the leximin family to be inner-face consistent.
+
+\begin{remark}[maximum entropy, with care]\label{rem:shorejohnson}
+Shore and Johnson \cite{ShoreJohnson1980} derive minimum relative entropy as the only updating rule satisfying four consistency axioms: uniqueness, invariance, system independence and subset independence. Their axioms quantify over all linear constraint sets on all finite spaces, and their reading has been debated \cite{Uffink1995}. Our sections are defined only on the fibres of one projection, so their theorem does not make maximum entropy the unique section with any particular list of the properties above. We therefore prove each law directly. The comparison table of \cref{sec:probcat} shows which laws separate the two rules; system independence is one of them.
+\end{remark}
+
+\begin{remark}[three layers]\label{rem:layers}
+The sheaf-theoretic approach to contextuality \cite{AbramskyBrandenburger2011,AbramskyMansfieldBarbosa2012} asks whether compatible local data have a global probabilistic extension. Here a global section of the event sheaf is a \emph{deterministic} assignment, and our fibre $\mathcal J_d$ is the polytope of probability distributions over those assignments: its vertices are exactly the deterministic global sections. In that language \cref{thm:projection}(2) says that over a face $G$ the data can use exactly the deterministic global sections in $\Omega(G)$, and that the mixture of them is pinned down exactly when they are affinely independent; \cref{cor:rigid,thm:ncycle} say this happens along the whole contextuality boundary of every cycle. We study the geometry of the space of extensions and the rules that choose among them. Information cohomology \cite{BaudotBennequin2015,Vigneaux2020} gives a complementary perspective on the identities that particular rules satisfy, maximum entropy above all. The three study different objects: the event sheaf, convex fibres of global distributions and their sections, and information structures with coefficient modules. The bridge between them is constructed here only as far as \cref{prop:cocycle}.
+
+The two sheaf axioms give a short dictionary. \emph{Gluing}, the existence of a global section, is $\mathcal J_d\neq\varnothing$: no contextuality. \emph{Locality}, the uniqueness of the glued section, is $\dim\mathcal J_d=0$: the data determine the joint law. Positivity is the only obstruction to gluing. If signed measures are allowed, every locally consistent family has a global extension \cite{AbramskyBrandenburger2011,AlSafiShort2013}, and these extensions form an affine space $\mathcal A_d=\{x:\pi(x)=d,\ \sum_\omega x_\omega=1\}$ whose dimension is the same for every $d\in\mathcal L$ (here $15-8=7$ for the 4-cycle). The linear layer, as for a fine sheaf, has no obstruction; the fibre is its intersection with the simplex, $\mathcal J_d=\mathcal A_d\cap\mathcal J$. Contextuality is $\mathcal A_d\cap\mathcal J=\varnothing$. \Cref{cor:rigid,thm:ncycle} say that at the contextuality boundary the affine space, of dimension $2^n-1-2n$ for the $n$-cycle, meets the simplex in a single point: where gluing is about to fail, the gluing is unique. How far $\mathcal A_d$ lies from the simplex is measured by the contextual fraction \cite{AbramskyBarbosaMansfield2017}, the largest weight of a global subprobability that fits under the data.
+\end{remark}
+
+\begin{proposition}[what the cocycle gives]\label{prop:cocycle}
+In the settings of \cite{BaudotBennequin2015,Vigneaux2020} the degree-one information cocycles are the multiples $cH$ of Shannon entropy, and the cocycle condition is the chain rule $H(X,Y)=H(X)+H(Y\mid X)$. For a section defined by maximising $cH$ on each fibre:
+\begin{enumerate}
+\item[(1)] if $c>0$ the maximiser is unique and the section is system independent. This uses the identity $H(P\otimes P')=H(P)+H(P')$, which is the cocycle condition, together with the inequality $H(P_{XY})\le H(P_X)+H(P_Y)$, that is $I(X;Y)\ge0$, which is concavity and not cohomology;
+\item[(2)] if $c<0$ the cocycle condition still holds, but the maximisers of $cH$ are the minimisers of $H$, which are attained at vertices and need not be unique, so no section is defined. For the binary chain with all marginals $1/2$ and $\gamma_1=\gamma_2=\left(\begin{smallmatrix}1/4&1/4\\1/4&1/4\end{smallmatrix}\right)$, the fibre is a square, and all four vertices have entropy $\log4$, the minimum.
+\end{enumerate}
+So the cocycle together with strict concavity gives system independence, and the cocycle alone does not.
+\end{proposition}
+
+\begin{proof}
+(1) Strict concavity gives uniqueness; for system independence see the proof of \cref{thm:sections}(1). (2) A concave function on a polytope attains its minimum at a vertex. In the example, the flip $x\mapsto1/4-x$ in either slice maps the fibre to itself and preserves entropy, and it permutes the four vertices; each vertex has four cells equal to $1/4$ and four equal to $0$ (MS11).
+\end{proof}
+
+Concavity alone is not enough either. The Cressie--Read power family \cite{CressieRead1984}
+\[
+\phi_q(x)=\frac{x^q-x}{q(1-q)},\qquad q\le1,
+\]
+gives a strictly concave cell functional for each $q$. It is Shannon's $-x\log x$ at $q=1$ and Burg's $\log x$ at $q=0$, up to terms constant on a fibre, and it moves toward the leximin point as $q\to-\infty$. MS11 maximises $\sum_c\phi_q(x_c)$ on the fibres of the forecast--umbrella chain, of a second binary chain and of their product, and measures how far the product chain's section is from the product of the two sections, in total variation (numerical, $40$ digits):
+\begin{center}\small
+\begin{tabular}{lcccccccc}\toprule
+$q$ & $1$ & $0.99$ & $0.9$ & $0.5$ & $0$ & $-1$ & $-4$ & $-8$\\
+defect & $<10^{-15}$ & $0.0008$ & $0.0077$ & $0.032$ & $0.049$ & $0.064$ & $0.073$ & $0.075$\\\bottomrule
+\end{tabular}
+\end{center}
+The facet-leximin selection has defect $0.0752$. Within this family only the Shannon member passes the tensor square, and the defect grows steadily toward the leximin value. That is what Shore and Johnson's system-independence axiom predicts for separable functionals \cite{ShoreJohnson1980}. Here it is a computation on one pair of chains, not a proof of \cref{prob:assocsec}; \cref{fig:sections} draws it.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_sections.pdf}
+\caption{(a) The tensor-square defect of the section that maximises $\sum_c\phi_q(x_c)$: zero only at Shannon ($q=1$), rising toward the facet-leximin value. (b) The chain-rule cocycle $cH$ on a symmetric fibre: for $c>0$ it has one maximiser, for $c<0$ several (four in the fibre). Uniqueness comes from the sign of $c$, that is from concavity, not from the cocycle.}\label{fig:sections}
+\end{figure}
+
+\subsection{The 4-cycle cover}\label{sec:cycle}
+The smallest cover with a cycle has four binary variables $A_0,A_1,B_0,B_1$ and contexts $\{A_i,B_j\}$: the cycle $A_0-B_0-A_1-B_1-A_0$ of the CHSH setting. Data are four $2\times2$ tables that agree on the single marginals. They are coordinatised by eight numbers, the four entries $P(A_i=0,B_j=0)$ and the four probabilities $P(A_i=0)$, $P(B_j=0)$. Then $\mathcal J$ is the simplex on $16$ outcomes, of dimension $15$, $\mathcal D$ has dimension $8$, and the generic fibre has dimension $7$.
+
+\begin{proposition}[the marginal polytope of the 4-cycle]\label{prop:cycleD}
+$\mathcal D$ has $16$ vertices, the images of the deterministic laws, and exactly $24$ facets. Sixteen of them are the local inequalities of $\mathcal L$, the nonnegativity of the sixteen table entries. The other eight are the Clauser--Horne inequalities \cite{ClauserHorne1974}, for example
+\[
+P(A_0B_0)+P(A_0B_1)+P(A_1B_0)-P(A_1B_1)\ \le\ P(A_0)+P(B_0),
+\]
+where $P(A_iB_j)$ stands for $P(A_i=0,B_j=0)$ and $P(A_0)$ for $P(A_0=0)$; the others are obtained by choosing which context carries the minus sign and by the four with $\ge -1$ in place of $\le 0$. So $\mathcal D=\mathcal L\cap\{\mathrm{CH}\}$, which is Fine's theorem \cite{Fine1982}. On the symmetric path with uniform marginals and correlations $\lambda,\lambda,\lambda,-\lambda$, whose CHSH value is $S=4\lambda$, the data lie in $\mathcal L$ for $\lambda\le1$ and in $\mathcal D$ exactly for $\lambda\le1/2$. Past $S=2$ there is no joint law, up to the PR box at $\lambda=1$.
+\end{proposition}
+
+\begin{proof}
+Exact enumeration: every hyperplane through eight affinely independent vertices that has all sixteen vertices on one side (MS3); MS5 checks the path.
+\end{proof}
+
+\begin{proposition}[fibres over the boundary]\label{prop:cyclefibres}
+$\mathcal D$ has $2721$ faces. By \cref{thm:projection}(2) the fibre dimension over the interior of a face $G$ is $|V(G)|-1-\dim G$, and the counts are:
+\begin{enumerate}
+\item[(1)] the interior: fibre dimension $7$;
+\item[(2)] the $16$ positivity facets, each with $12$ vertices: fibre dimension $4$. A structural zero leaves a four-parameter family of joint laws;
+\item[(3)] the $8$ Clauser--Horne facets, each with $8$ vertices: these are $7$-simplices, so every point of a closed CH facet, including all $1752$ faces lying in CH facets, has exactly one compatible joint law;
+\item[(4)] the remaining lower faces, where the fibre dimension is $0$ on $400$ further faces and $1$, $2$ or $3$ on the others (\cref{fig:cycle}(a)).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Exact face enumeration (MS4), checked against the numerical fibre dimension at an interior point of $40$ sampled faces.
+\end{proof}
+
+So the collapse of the fibre at the boundary of $\mathcal D$ is a fact to be proved, not a consequence of being on the boundary. It holds at the CH facets because each is a simplex, and it fails at the positivity facets. Those facets are facets of $\mathcal L$ as well: crossing them makes a table entry negative, not the data contextual. The contextuality boundary is the part of $\partial\mathcal D$ that lies in the relative interior of $\mathcal L$, and it consists of points of CH facets.
+
+\begin{corollary}[the contextuality boundary is rigid]\label{cor:rigid}
+For the 4-cycle, every point of $\partial\mathcal D$ that is not on a positivity facet has exactly one compatible joint law. Ambiguity at the boundary of $\mathcal D$ survives only at structural zeros.
+\end{corollary}
+
+\begin{proof}
+Such a point lies on a facet of $\mathcal D$ that is not a positivity facet, hence on a CH facet, and \cref{prop:cyclefibres}(3) applies.
+\end{proof}
+
+That a CHSH facet carries eight deterministic points is a direct count (\cref{thm:ncycle}(1) with $n=4$). The consequence for identification, that a unique joint law exists along the whole contextuality boundary, follows at once; we have not found it stated in this form. \Cref{sec:ncycle} shows that it holds for every cycle.
+
+\subsection{At the contextuality boundary: sections and robustness}\label{sec:cycleboundary}
+Fibre collapse and agreement of the sections are different questions, so we track them separately.
+
+\begin{proposition}[the symmetric path]\label{prop:chshpath}
+On the symmetric path the stabiliser of the data, among the automorphisms of the 4-cycle combined with bit flips, contains a group of order $16$ (all of it for $\lambda=2/5$), and the fixed set of that group in the fibre is a single point for every $\lambda\in[0,1/2]$. By \cref{thm:sections}(3) every equivariant section therefore takes the same value; maximum entropy and leximin agree. The unobserved quantity $q=P(A_0=0,A_1=0)$, whose variables are never measured together, has identified interval $[\lambda/2,\,(1-\lambda)/2]$. Its width $(2-S)/4$ goes to $0$ at the CH facet, where the single joint law gives $q=1/4$.
+\end{proposition}
+
+\begin{proof}
+The fixed equations together with the fibre equations have rank $16$ and do not depend on $\lambda$ (MS6, exact). The interval is computed by linear programming at $21$ values of $\lambda$, to $10^{-9}$ (numerical).
+\end{proof}
+
+Without symmetry the two sections disagree, and the question becomes whether the disagreement survives at the boundary. MS7 follows straight paths from one interior point to a generic point of three kinds of face (numerical):
+
+\begin{center}\small
+\begin{tabular}{lcccc}\toprule
+toward & \multicolumn{2}{c}{fibre width (largest range of a cell)} & \multicolumn{2}{c}{disagreement $\tfrac12\|s_H-s_{\mathrm{lex}}\|_1$}\\
+& at $0.9$ & at the face & at $0.9$ & at the face\\\midrule
+a CH facet & $0.051$ & $0$ & $0.053$ & $0$\\
+a positivity facet & $0.377$ & $0.364$ (fibre $4$) & $0.048$ & $0.051$\\
+a $6$-face with $10$ vertices & $0.302$ & $0.320$ (fibre $3$) & $0.025$ & $0.034$\\\bottomrule
+\end{tabular}
+\end{center}
+
+The disagreement of any two sections is at most $8$ times the fibre width, since $\tfrac12\|x-y\|_1\le\tfrac12\cdot16\max_c|x_c-y_c|$. So the sections are forced together exactly as fast as the fibre closes, and only where it closes. As the data approach a CH facet every rule gives nearly the same joint law, and the identified set of every unobserved quantity shrinks with the fibre. A rule then cannot be steered without moving the data. At a structural zero the data still allow a four-parameter family, so rules disagree and decisions depend on the rule, as in \cref{sec:howlittle}. One step past the CH facet no joint law is left, and every section fails at once. In this sense the contextuality boundary is where marginal data come closest to determining the joint law, immediately before they become inconsistent with every joint law.
+
+\subsection{Simpson's reversal in the same framework}\label{sec:simpson}
+A chain cover never records all three variables together, so the sign of an association between the ends given the middle is not in the data. It is chosen by the section.
+
+\begin{proposition}[Simpson's reversal]\label{prop:simpson}
+\begin{enumerate}
+\item[(1)] \emph{Selection sensitivity: made by the rule.} For $\gamma_1=\left(\begin{smallmatrix}5/24&11/24\\1/24&7/24\end{smallmatrix}\right)$ and $\gamma_2=\left(\begin{smallmatrix}3/23&11/92\\15/22&3/44\end{smallmatrix}\right)$, the selected joint law has conditional covariance of $(X_0,X_2)$ equal to $1/276$ given $X_1=0$ and $1/99$ given $X_1=1$, but marginal covariance $-31/4048$: a Simpson reversal \cite{Simpson1951}. The Markov section has conditional covariance $0$ in both slices and marginal $-49/3036$. The compatible marginal covariances fill $[-95/1518,\,287/6072]$, and at the upper end the conditional covariances are $\ge0$ as well, so the same data admit a joint law with no reversal.
+\item[(2)] \emph{Information-loss sensitivity: made by coarse-graining the middle.} For $\gamma_1=\left(\begin{smallmatrix}4/21&3/14&2/21\\1/7&2/21&11/42\end{smallmatrix}\right)$ and $\gamma_2=\left(\begin{smallmatrix}1/9&2/9\\65/252&13/252\\5/32&45/224\end{smallmatrix}\right)$, Markov gluing gives marginal covariance $85/4032>0$ with three middle states and $-43/6272<0$ after merging the last two. Selection goes from $13/448$ to $-1/42$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Exact computation (MS8, MS9).
+\end{proof}
+
+The two mechanisms differ. In (1) the data leave the joint law underdetermined, and the reversal comes from how a rule completes it; Markov gluing is not neutral either, since setting the conditional association to zero is also a completion. In (2) the reversal comes from forgetting a distinction in the conditioning variable, which is the classical aggregation form of Simpson's paradox. The first is a sensitivity to the choice of section, the second a sensitivity to information loss, and the framework keeps them apart.
+
+\paragraph{What the sections support.} Taking \crefrange{sec:section}{sec:simpson} together:
+\begin{enumerate}
+\item[(1)] The projection alone sorts the data: empty fibre (contextual), a point (determined), or a positive-dimensional polytope (identified up to a set).
+\item[(2)] A section is a rule. On chains, maximum entropy is inner-face consistent and gives the dagger symmetric monoidal category $\mathsf{Cpl}$. Leximin keeps the symmetries but gives no category.
+\item[(3)] On the 4-cycle, composition is not the question. What survives is the section and its symmetry, and contextual data have no section at all.
+\end{enumerate}
+Simpson's reversal and the sign of a composed association are properties of the section or of the resolution of the middle, not of the recorded data. These are the precise forms of the statements that motivated this part. The underlying category is standard, and the new content is the section viewpoint with its exact compatibility and failure results.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_cycle.pdf}
+\caption{The 4-cycle and Simpson. (a) Faces of the marginal polytope $\mathcal D$ by dimension, against the dimension of the fibre over their interior. The Clauser--Horne facets are simplices, so there the data determine the joint law; positivity facets leave a four-dimensional fibre. (b) The symmetric CHSH path: the identified interval of the never-observed $P(A_0=0,A_1=0)$ closes at $S=2$, where every equivariant section is forced to $1/4$, and past it the data are contextual. (c) Straight paths to three kinds of face: the two sections disagree until the fibre closes, and only a CH facet closes it. (d) A Simpson reversal made by selection: positive association within each slice of $X_1$ and negative overall. Markov gluing has zero association within the slices, and the data allow either sign overall.}\label{fig:cycle}
+\end{figure}
+
+\subsection{Every cycle: the contextuality boundary is a union of simplices}\label{sec:ncycle}
+The $n$-cycle cover has binary variables $X_0,\dots,X_{n-1}$ and contexts $\{X_i,X_{i+1}\}$, indices mod $n$; $n=4$ is the CHSH case and $n=5$ the KCBS case. Data are the $n$ entries $P(X_i=0,X_{i+1}=0)$ and the $n$ singles, so $\dim\mathcal D=2n$, and the generic fibre has dimension $2^n-1-2n$. For $n\ge4$, Ara\'ujo et al.\ \cite{AraujoEtAl2013} show that the facets of $\mathcal D$ are the $4n$ local inequalities and the $2^{n-1}$ noncontextuality inequalities
+\[
+\textstyle\sum_{i}\gamma_i\langle X_iX_{i+1}\rangle\ \le\ n-2,\qquad\gamma_i\in\{\pm1\},\ \ \prod_i\gamma_i=-1,
+\]
+in $\pm1$ notation, where $\langle X_iX_{i+1}\rangle=1-2P(X_i\ne X_{i+1})$ is linear in the data. For $n=3$ our exact enumeration gives the same list.
+
+\begin{theorem}[rigidity of the contextuality boundary for every cycle]\label{thm:ncycle}
+For every $n\ge3$:
+\begin{enumerate}
+\item[(1)] each noncontextuality facet of $\mathcal D$ contains exactly $2n$ deterministic points and is a $(2n-1)$-simplex. So every point of the contextuality boundary, the part of $\partial\mathcal D$ in the relative interior of $\mathcal L$, has exactly one compatible joint law;
+\item[(2)] each local facet contains $3\cdot2^{n-2}$ deterministic points, so the fibre over its interior has dimension $3\cdot2^{n-2}-2n$; this is $4$ for $n=4$, $14$ for $n=5$ and $36$ for $n=6$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) A deterministic assignment $x\in\{\pm1\}^n$ has edge values $e_i=x_ix_{i+1}$ with $\prod_ie_i=1$, and $\sum_i\gamma_ie_i=n-2k$, where $k$ counts the edges with $e_i\ne\gamma_i$. Since $\prod\gamma_i=-1$, $k$ is odd, so the inequality holds, with equality exactly when $k=1$. Choosing the one edge where $e_i\ne\gamma_i$ ($n$ ways) fixes every $e_i$, and $x$ is then fixed up to a global flip ($2$ ways): $2n$ points. They span a facet, of dimension $2n-1$, so they are affinely independent, and the facet is a simplex. \Cref{thm:projection}(2) then gives a one-point fibre over every point of it, its faces included. (2) The local facet $P(X_i=a,X_{i+1}=b)\ge0$ contains the assignments that avoid the pair $(a,b)$ on that edge, which are three quarters of the $2^n$. Apply \cref{thm:projection}(2) with $\dim G=2n-1$.
+\end{proof}
+
+MS10 recomputes all facets of $\mathcal D$ exactly for $n=3,4,5$, independently of \cite{AraujoEtAl2013}: $16$, $24$ and $36$ facets, the counts $4n+2^{n-1}$, with the vertex numbers above and the noncontextuality facets in exactly the $\gamma$ form. For $n=6,7,8$ it checks that every listed inequality is valid and a facet with the stated vertex count. Completeness of the list there is taken from \cite{AraujoEtAl2013}. So the rigidity found for CHSH is not special to the 4-cycle. On every cycle the contextuality boundary is a union of simplices, and the data there determine the joint law. The ambiguity left at a structural zero grows exponentially in $n$, while the contextuality boundary stays rigid. Whether the noncontextuality facets of other scenarios are simplices is a separate question that we have not tested. Where they are not, \cref{thm:projection}(2) measures how much ambiguity survives at the boundary.
+
+\subsection{How little poisoning, in many dimensions}\label{sec:poisondim}
+\Cref{sec:howlittle} measured edits of one binary chain. Here the cover is general, the decision concerns a quantity that is never observed, and three different things are counted: how many cells of the data an attacker must change, how much can change with no data edit at all, and how a change over time is explained afterwards.
+
+\paragraph{Setting.} Data $d\in\mathcal D$ give the context tables, whose entries are affine in $d$: $Ed+e_0$, with $4n$ entries for the $n$-cycle. An edit $\delta$ costs $c(\delta)=\tfrac12\|E\delta\|_1$, the total variation summed over the context tables. When each context is a separate sample this is the fraction of records edited, summed over the samples, and on one table it is the $2|s|$ of \cref{prop:poison}. An edit is \emph{undetectable} when $d+\delta\in\mathcal D$. Then the tables still agree on shared margins and are noncontextual, so no margin check or contextuality test sees it. The undetectable directions lie in the \emph{consistent-edit space} $\Delta=\operatorname{range}E$, of dimension $\dim\mathcal D$ ($2n$ for the $n$-cycle). The decision is $w\cdot s(d)\ge\tau$ for a section $s$ and a quantity $w$ on joint laws whose variables are never observed together, here $P(X_0=X_2)$ on the $n$-cycle and $P(A_0=A_1)$ on CHSH. Write $[L(d),U(d)]$ for its identified interval.
+
+\begin{definition}[flip costs]\label{def:flipcost}
+For a decision with $w\cdot s(d)>\tau$: $c_{\rm some}(d)$ is the least cost of an undetectable edit after which $L\le\tau$ (some rule flips), $c_{\rm all}(d)$ the least cost after which $U\le\tau$ (every rule flips), and $c_s(d)$ the least cost after which $w\cdot s\le\tau$.
+\end{definition}
+
+\begin{proposition}[two thresholds]\label{prop:twothresh}
+\begin{enumerate}
+\item[(1)] $c_{\rm some}\le c_s\le c_{\rm all}$ for every section $s$. The same order holds for the first flipping time along any fixed direction.
+\item[(2)] $c_{\rm some}$ is the value of one linear program: minimise $\tfrac12\|E(\pi x-d)\|_1$ over joint laws $x$ with $w\cdot x\le\tau$. The edited data $\pi x$ lie in $\mathcal D$ by construction. The set $\{U\le\tau\}$ is the union of the half-spaces $y\cdot d'+y_0\le\tau$ over the vertices $(y,y_0)$ of the dual polyhedron $\{\pi^{\!\top}y+y_0\mathbf 1\ge w\}$, so $c_{\rm all}$ is the least of finitely many linear programs.
+\item[(3)] $c_{\rm some}(d)=0$ exactly when $L(d)\le\tau$. When the decision is not identified, a change of rule flips it with no change to the data.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $w\cdot s(d')\in[L(d'),U(d')]$ for every $d'$. (2) $U(d')=\max\{w\cdot x:\pi x=d',\,x\ge0,\,\mathbf 1\cdot x=1\}$ is, by linear-programming duality, the minimum of $y\cdot d'+y_0$ over the dual vertices. (3) follows from the definition. PF3 compares the costs at $80$ points, and the first flipping times for the maximum-entropy section along $18$ directions (numerical).
+\end{proof}
+
+A \emph{circuit} of $\Delta$ is a nonzero edit whose entry vector $E\delta$ has minimal support. Two vectors are \emph{conformal} when no coordinate has opposite signs in them. Every vector of a subspace is a conformal sum of at most $\dim\Delta$ circuits \cite{Rockafellar1969,MullerRegensburger2016}, and the cost is additive over a conformal sum.
+
+\begin{proposition}[sparsity of undetectable flips]\label{prop:sparse}
+\begin{enumerate}
+\item[(1)] Some cheapest undetectable flip, for $c_{\rm some}$ or $c_{\rm all}$, is a conformal sum of at most $\min(a,\dim\Delta)$ circuits. Here $a$ is the number of constraints of the flip region (pieces of $\{L\le\tau\}$ or $\{U\le\tau\}$, and facets of $\mathcal D$) that are tight at it.
+\item[(2)] For the $n$-cycle, $\Delta$ has $188$ circuits for $n=4$ (supports $4,6,8,9$, in numbers $20,32,72,64$) and $481$ for $n=5$ (supports $4,6,8,10,11$). Every support is at most $2n+1$. For $n=4,\dots,8$ there are exactly $5n$ circuits of support $4$: the $n$ margin-preserving swaps of \cref{prop:poison}, and $4n$ shifts of one single margin, each moving mass between two cells in each of the two tables that contain the variable.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Fix the sign pattern of a cheapest flip $\delta^*$. The edits in $\Delta$ with that pattern form a cone generated by the circuits conformal to it, and on that cone the cost is linear, $c(\sum\lambda_kC_k)=\sum\lambda_k c(C_k)$. Minimising it subject to the region's linear constraints is a linear program in $\lambda\ge0$, and it attains the value $c(\delta^*)$. A vertex solution has at most as many nonzero $\lambda_k$ as tight constraints, and any cheapest flip is a conformal sum of at most $\dim\Delta$ circuits by the result just cited. (2) Exact enumeration (PF1): every circuit is the kernel of $\dim\Delta-1$ independent rows of $E$, and each candidate is verified with integer arithmetic.
+\end{proof}
+
+How often a single circuit is enough is a numerical question (PF2). Take a gap of $0.01$ below $L$, and $30$ random interior data points for each $n$. One support-$4$ circuit is already a cheapest flip in $30/30$, $30/30$, $28/30$, $28/30$ and $24/29$ of the cases for $n=4,\dots,8$; for $n=8$ that is $4$ cells out of $32$. On the 4-cycle, vertex optima use one circuit in $37$ of $40$ cases at gap $0.01$, and one, two or three circuits in $19$, $16$ and $5$ cases at gap $0.05$. So the smallest poisoned footprint does not grow with the number of variables. It is four cells in two tables, or in one, and larger gaps need a few circuits because the flip region has corners. This complements the results for samples \cite{BroderickGiordanoMeager2020,SteinhardtKohLiang2017,MahloujifarEtAl2019}. Those count records or coordinates of the inputs. Here the count is of cells of a marginal table, and the undetectable edits form a structured subspace.
+
+\paragraph{Placement and the hidden structure.} Let the hidden structure be the support $S$ of the true joint law, the set of readings that occur. The data then lie in the relative interior of the face $G(S)$ of $\mathcal D$, the smallest face containing $\pi(S)$. Let $\Pi(S)$ be the number of signed circuits along which a small step stays in $\mathcal D$. It is the same at every point of the relative interior, and it counts the places an attacker can start an undetectable edit.
+
+\begin{proposition}[placement]\label{prop:placement}
+\begin{enumerate}
+\item[(1)] $S\subseteq S'$ implies $\Pi(S)\le\Pi(S')$. Simpler hidden structure leaves fewer undetectable placements.
+\item[(2)] $\dim G+\dim(\text{fibre over }G)=|V(G)|-1$. The freedom of the hidden structure splits into room to move the data undetected (the face dimension) and room for the rule to move the answer at no data cost (the fibre dimension).
+\item[(3)] On the 4-cycle, over all $2721$ faces: a vertex allows $13$ of the $376$ signed circuits, a CH facet $252$, a positivity facet $287$, and the interior all $376$. At fixed face dimension a larger fibre mostly gives more placements, for instance $165.4$, $170.0$ and $186.7$ on average for fibres $0$, $1$, $2$ at dimension $5$. The one exception is dimension $6$, where fibre $1$ averages $204.6$ against $207$ for fibre $0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $G(S)\subseteq G(S')$, so every facet containing $G(S')$ also contains $G(S)$, and the feasible directions at $G(S)$ are those at $G(S')$ cut by more inequalities. (2) is \cref{thm:projection}. (3) is an exact count with rational facet normals and integer circuits (PF4), with $0$ violations of (1) over all inclusions of faces.
+\end{proof}
+
+At matched sparsity the split matters. Among faces with $8$ readings, the rigid CH facets allow more undetectable placements ($252$) than faces with fibre $1$ (about $205$) or fibre $2$ (about $187$). Rigidity does not make placements scarce. It removes the free route: every flip must move the data. With a budget the decisive question is whether the decision is identified at the point (PF5). Take a gap $g=0.05$ below the true value, on the sparsity-matched faces of Study 18 and three interior points. Wherever the decision is identified (all CH and fibre-$1$ faces tested, and one fibre-$2$ face), the cheapest flip costs at least $g$, and at most $4$ single circuits achieve one within $1.5g$. Wherever it is not identified (the other two fibre-$2$ faces and the interior points), $c_{\rm some}=0$ along all $376$ placements, while $c_{\rm all}$ ranges from $0.14$ to $0.45$. A defender who reports $[L,U]$ instead of one rule's value forces the attacker to pay $c_{\rm all}$.
+
+\paragraph{Over time: removal as a contravariant functor.} Decisions are recomputed as data arrive, so the hidden structure, the face and the interval all move. An \emph{information state} is a pair $(B,C)$: a set of batches and a set of observed contexts, ordered by inclusion. Its object $R(B,C)$ is the integer pooled tables of the contexts in $C$ over the batches in $B$. For $(B',C')\le(B,C)$ the \emph{removal map} $R(B,C)\to R(B',C')$ subtracts the counts of the batches in $B\setminus B'$ and forgets the contexts in $C\setminus C'$.
+
+\begin{proposition}[removal]\label{prop:removal}
+\begin{enumerate}
+\item[(1)] Removal maps compose, and removing nothing is the identity, so $R$ is a functor from the opposite of the poset of information states to sets of tables. Removing batches and forgetting contexts commute.
+\item[(2)] Forgetting contexts can only widen the identified interval: $C'\subseteq C$ implies $[L_C,U_C]\subseteq[L_{C'},U_{C'}]$. So the value of a context, the width it removes, is nonnegative.
+\item[(3)] On a stationary stream with pooled clean data $d$, add one batch of $k$ undetectable units with data $p$. Then $d_t=(1-q_t)d+q_tp$ with $q_t=k/(N_t+k)$. Every rule is flipped exactly while $q_t\ge q^*$, where $q^*$ is the least crossing point $(\tau-y\cdot d-y_0)/(y\cdot(p-d))$ over the dual vertices with $y\cdot(p-d)<0$. So the flip lasts while $N_t\le k(1-q^*)/q^*$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Subtraction of counts and deletion of coordinates compose and commute. (2) Fewer constraints give a larger fibre. (3) $U$ is a minimum of affine functions, so it is concave along the segment from $d$ to $p$. Its sublevel set there is an interval ending at $p$, and it starts at the first crossing of a dual-vertex function. PF6 checks (1) on $200$ random chains and squares with integer counts, PF7 checks (2) at every time and every sub-cover, and PF8 checks (3) at $30$ times (numerical).
+\end{proof}
+
+The removal maps answer why a decision changed. Compare the object at the later state with the objects obtained by removing one batch, or forgetting one context, at a time. The changes that revert the decision are the explanations. The exact comparison is cheap here. When it is not, a first-order estimate, the gradient of the decision value times the removed batch's contribution, ranks the candidates, as in the influence approach of \cite{BroderickGiordanoMeager2020}. An explanation need not be unique: near a threshold, removing a clean batch can also revert a decision.
+
+\begin{example}[one poisoned batch]\label{ex:poisonstream}
+Batches of $1200$ units, each reported in all four contexts of CHSH, decision $P(A_0=A_1)\ge0.45$ by maximum entropy (PF6--PF9, \cref{fig:poisonflip}). Until $t=5$ the world is the first CH-facet law of Study 18. Its interval has width $0$, so the decision is identified and robust. From $t=6$ the hidden structure changes to $0.8$ times that law plus $0.2$ uniform, the data move into the interior, and the interval opens. At $t=10$ an attacker adds the cheapest batch that flips every rule: $2298$ units, all of one reading, against $12000$ clean units ($q^*=0.161$). Every rule is flipped at $t=10$ only, but the maximum-entropy decision stays flipped for $t=10$ to $15$. At each of those times, removing the poisoned batch is the only single removal that reverts the decision. The first-order estimate of its effect is within $6\%$ of the exact change ($0.075$ against $0.072$ at $t=10$). At the last time, forgetting a context widens the interval by $0.295$ or $0.38$. The batch is consistent and noncontextual, so no marginal test detects it, but it consists of a single reading, and comparing the objects over time detects it at once.
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_poisonflip.pdf}
+\caption{How little poisoning. (a) Undetectable placements (signed circuits that keep the data in $\mathcal D$) against the face dimension of the data, by fibre dimension, over all $2721$ faces of the 4-cycle. The count is monotone in the hidden structure, and $\dim G+\dim(\text{fibre})=|S|-1$ splits that structure into room for the data and room for the rule. (b) The cheapest undetectable flip (gap $0.01$) is usually one circuit of $4$ cells, for every $n$ up to $8$. (c) One poisoned batch at $t=10$, after the hidden structure changed at $t=6$. The identified interval (shaded) flips below the threshold for one step; the maximum-entropy rule stays flipped for six. (d) Removing one batch at a time at the flipped times: only the poisoned batch reverts the decision.}\label{fig:poisonflip}
+\end{figure}
+
+What is proved here is elementary: the two thresholds, the circuit bound, monotonicity of placement, and the removal laws. The circuit census and the face table are exact computations, and the frequencies of one-circuit optima, the budget comparison and the time example are numerical. We have not found these statements for marginal data in the literature on poisoning, which counts records or input coordinates.
 
 \part{Deeper selection: \texorpdfstring{$2\times4$}{2 x 4} couplings}
 \section{Three-dimensional fibres}\label{sec:twofour}
@@ -1597,7 +2093,7 @@ Eight questions are left open.
 \section{The ledger}\label{app:ledger}
 \texttt{LEDGER.yaml} at the root of the repository is the single source for this table, which \texttt{kahler/render\_ledger.py} generates. Status tags: [P] proved
 here, [U] used (classical), [C] cited and not proved, [E] exact computation, [N] numerical only, [D] a definition, [O] open. The category level is never
-filled by assumption. For each experiment the ledger also records the thresholds $s_{\mathrm{prob}},s_{\mathrm{support}},s_{\mathrm{trop}},s_{\mathrm{crit}},s_{\mathrm{Stokes}},s_{\mathrm{context}}$, each as a number, ``never'' or ``undefined''. For $F_1$ along $\rho=e_1$
+filled by assumption. It records mathematical status, not novelty: [P] there marks a proved standard construction and says so, as for \cref{thm:sec2cat}. For each experiment the ledger also records the thresholds $s_{\mathrm{prob}},s_{\mathrm{support}},s_{\mathrm{trop}},s_{\mathrm{crit}},s_{\mathrm{Stokes}},s_{\mathrm{context}}$, each as a number, ``never'' or ``undefined''. For $F_1$ along $\rho=e_1$
 from $\alpha=1/5$ they are: $s_{\mathrm{trop}}=1/5$; $s_{\mathrm{crit}}$ never; $s_{\mathrm{support}}$ never; $s_{\mathrm{prob}}$, $s_{\mathrm{Stokes}}$ and $s_{\mathrm{context}}$ undefined until a dominance notion, a phase of $\hbar$, and a complex
 with an obstruction class are chosen.
 \input{ledger_table.tex}
@@ -1609,7 +2105,7 @@ Every example can be rebuilt from these data; the checks named in each statement
 \item \emph{The $2\times4$ examples} (\cref{sec:twofour}): A: $f=(2/5,3/5)$, $g=(1/20,13/20,1/10,1/5)$; B: $f=(3/20,17/20)$, $g=(1/20,1/5,1/4,1/2)$; C: $f=(3/10,7/10)$, $g=(1/10,3/20,1/4,1/2)$. The $148$
 chambers are in \texttt{kahler/chambers24.json}.
 \item \emph{The binary chain of \cref{thm:k4}}: $\gamma_i=\left(\begin{smallmatrix}t_i&p_i-t_i\\ p_{i+1}-t_i&1-p_i-p_{i+1}+t_i\end{smallmatrix}\right)$ with $(p_0,\dots,p_4)=(2/5,1/3,3/7,1/4,5/11)$ (first entries) and
-$(t_1,\dots,t_4)=(13/60,7/30,1/80,3/80)$. The $K_3$ example of \cref{sec:selcomp} is $\gamma_1,\gamma_2,\gamma_3$.
+$(t_1,\dots,t_4)=(13/60,7/30,1/80,3/80)$. The $K_3$ example of \cref{sec:selcomp} is $\gamma_1,\gamma_2,\gamma_3$. \Cref{ex:umbrella} and \cref{sec:howlittle} use $\gamma_1,\gamma_2$, with threshold $\tau=1/2$ on $P(X_2=0\mid X_0=0)$; the other inputs of \cref{prop:selbreaks} are listed there.
 \item \emph{The chain with ternary intermediates} (\cref{fig:asconfig}), rows indexed by the first variable:
 \[
 \gamma_1=\begin{pmatrix}\frac1{150}&\frac{19}{150}&\frac4{15}\\[1pt] \frac4{25}&\frac{31}{150}&\frac7{30}\end{pmatrix},\quad
@@ -1707,23 +2203,45 @@ SX2 & \cref{thm:k4} and the ternary example: exact certificates for all $57$ sel
 SX3 & the ternary configuration: hull, Markov point and crossings by exact orientation tests\\
 SF1--SF3 & \cref{prop:selfloer}: the fibre is $\prod\mathbb{CP}^1$ (exact traversal); Cho--Oh and Alston--Amorim conditions at the midpoints (exact)\\
 SF4--SF5 & Birch against Floer points; the $K_4$ fibres: Delzant, orbifold and Fano tests (exact traversal)\\
+NC1--NC3 & \cref{prop:cplcat,prop:selkeeps}: the dagger symmetric monoidal structure of Markov gluing; units, reversal, relabelling and copied factors for selection (exact)\\
+NC4--NC6 & \cref{prop:selbreaks}: the tensor, end and middle counterexamples, with all inputs (exact)\\
+NC7 & \cref{prop:identified}: the identified interval against linear programs over the fibre; selection at its centre\\
+NC8--NC9 & \cref{ex:howlittle}: the interval, worst-case errors, flipping edits and zero-cost changes (exact)\\
+MS1--MS2 & \cref{thm:sections,thm:sec2cat}: both rules are sections, equivariant; maximum entropy is the inner-face consistent Markov chain, leximin is not\\
+MS3--MS5 & \cref{prop:cycleD,prop:cyclefibres}: the 24 facets of $\mathcal D$; the 2721 faces and their fibre dimensions; contextual data on the symmetric path (exact)\\
+MS6--MS7 & \cref{prop:chshpath} and the path table: symmetric path (exact rank; interval numerical); generic paths (numerical)\\
+MS8--MS9 & \cref{prop:simpson}: the two Simpson reversals (exact)\\
+MS10 & \cref{thm:ncycle}: all facets of $\mathcal D$ for the $n$-cycle, $n=3,4,5$; the listed facets and vertex counts for $n=6,7,8$ (exact)\\
+MS11 & \cref{prop:cocycle}: the $c<0$ example (exact); the tensor-square defect along the power family (numerical)\\
 LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; the rendered table matches \texttt{LEDGER.yaml}\\\bottomrule
 \end{longtable}}
 
 \begin{thebibliography}{99}
+\bibitem{AbramskyBarbosaMansfield2017} S.~Abramsky, R.~Soares Barbosa and S.~Mansfield, Contextual fraction as a measure of contextuality, \emph{Phys. Rev. Lett.} \textbf{119} (2017) 050504.
+\bibitem{AbramskyBrandenburger2011} S.~Abramsky and A.~Brandenburger, The sheaf-theoretic structure of non-locality and contextuality, \emph{New J. Phys.} \textbf{13} (2011) 113036.
+\bibitem{AbramskyMansfieldBarbosa2012} S.~Abramsky, S.~Mansfield and R.~Soares Barbosa, The cohomology of non-locality and contextuality, \emph{Electron. Proc. Theor. Comput. Sci.} \textbf{95} (2012) 1--14.
 \bibitem{Abreu2003} M.~Abreu, K\"ahler geometry of toric manifolds in symplectic coordinates, in \emph{Symplectic and Contact Topology}, Fields Inst. Commun. \textbf{35}, AMS, 2003, 1--24.
+\bibitem{AlSafiShort2013} S.~W.~Al-Safi and A.~J.~Short, Simulating all nonsignaling correlations via classical or quantum theory with negative probabilities, \emph{Phys. Rev. Lett.} \textbf{111} (2013) 170403.
 \bibitem{AmariNagaoka2000} S.~Amari and H.~Nagaoka, \emph{Methods of Information Geometry}, AMS and Oxford University Press, 2000.
 \bibitem{AlstonAmorim2010} G.~Alston and L.~Amorim, Floer cohomology of torus fibers and real Lagrangians in Fano toric manifolds, arXiv:1003.3651, 2010.
+\bibitem{AraujoEtAl2013} M.~Ara\'ujo, M.~T.~Quintino, C.~Budroni, M.~Terra Cunha and A.~Cabello, All noncontextuality inequalities for the $n$-cycle scenario, \emph{Phys. Rev. A} \textbf{88} (2013) 022118.
 \bibitem{Auroux2007} D.~Auroux, Mirror symmetry and T-duality in the complement of an anticanonical divisor, \emph{J. G\"okova Geom. Topol.} \textbf{1} (2007) 51--91.
 \bibitem{Awasthi2026Br} V.~K.~Awasthi, Bridges: from probability and entropy to branes, with worked examples, technical note, Johns Hopkins University, October 2026.
 \bibitem{Awasthi2026Cpl} V.~K.~Awasthi, Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability, companion paper, Johns Hopkins University, October 2026.
 \bibitem{Awasthi2026Arch} V.~K.~Awasthi, How the programme fits together: one family of polytopes, many models, and one example through every layer, draft 1, Johns Hopkins University, October 2026.
+\bibitem{BaudotBennequin2015} P.~Baudot and D.~Bennequin, The homological nature of entropy, \emph{Entropy} \textbf{17} (2015) 3253--3318.
+\bibitem{BilleraSturmfels1992} L.~J.~Billera and B.~Sturmfels, Fiber polytopes, \emph{Ann. of Math.} \textbf{135} (1992) 527--549.
+\bibitem{ClauserHorne1974} J.~F.~Clauser and M.~A.~Horne, Experimental consequences of objective local theories, \emph{Phys. Rev. D} \textbf{10} (1974) 526--535.
+\bibitem{CressieRead1984} N.~Cressie and T.~R.~C.~Read, Multinomial goodness-of-fit tests, \emph{J. Roy. Statist. Soc. Ser. B} \textbf{46} (1984) 440--464.
+\bibitem{Fine1982} A.~Fine, Hidden variables, joint probability, and the Bell inequalities, \emph{Phys. Rev. Lett.} \textbf{48} (1982) 291--295.
+\bibitem{Hora2023} R.~Hora, Internal parameterization of hyperconnected quotients, arXiv:2302.06851 (2023).
 \bibitem{Layers} V.~K.~Awasthi, Probability, context and differentiation: the layers, working draft, 2026.
 \bibitem{Birch1963} M.~W.~Birch, Maximum likelihood in three-way contingency tables, \emph{J. Roy. Statist. Soc. Ser. B} \textbf{25} (1963) 220--233.
 \bibitem{BishopFienbergHolland1975} Y.~M.~M.~Bishop, S.~E.~Fienberg and P.~W.~Holland, \emph{Discrete Multivariate Analysis}, MIT Press, 1975.
 \bibitem{BochnakCosteRoy1998} J.~Bochnak, M.~Coste and M.-F.~Roy, \emph{Real Algebraic Geometry}, Ergebnisse der Mathematik \textbf{36}, Springer, 1998.
 \bibitem{ChoOh2006} C.-H.~Cho and Y.-G.~Oh, Floer cohomology and disc instantons of Lagrangian torus fibers in Fano toric manifolds, \emph{Asian J. Math.} \textbf{10} (2006) 773--814.
 \bibitem{Cho2005} C.-H.~Cho, Products of Floer cohomology of torus fibers in toric Fano manifolds, \emph{Comm. Math. Phys.} \textbf{260} (2005) 613--640.
+\bibitem{ChoJacobs2019} K.~Cho and B.~Jacobs, Disintegration and Bayesian inversion via string diagrams, \emph{Math. Structures Comput. Sci.} \textbf{29} (2019) 938--971.
 \bibitem{CLLT2020} K.~Chan, S.-C.~Lau, N.~C.~Leung and H.-H.~Tseng, Open Gromov--Witten invariants and mirror maps for semi-Fano toric manifolds, \emph{Pure Appl. Math. Q.} \textbf{16} (2020) 675--720.
 \bibitem{CLS2011} D.~A.~Cox, J.~B.~Little and H.~K.~Schenck, \emph{Toric Varieties}, Graduate Studies in Mathematics \textbf{124}, American Mathematical Society, 2011.
 \bibitem{CominettiSanMartin1994} R.~Cominetti and J.~San Mart\'in, Asymptotic analysis of the exponential penalty trajectory in linear programming, \emph{Math. Programming} \textbf{67} (1994) 169--187.
@@ -1748,11 +2266,23 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{Kleiman1966} S.~L.~Kleiman, Toward a numerical theory of ampleness, \emph{Ann. of Math.} \textbf{84} (1966) 293--344.
 \bibitem{Kadeishvili1980} T.~V.~Kadeishvili, On the homology theory of fibre spaces, \emph{Russian Math. Surveys} \textbf{35} (1980) 231--238.
 \bibitem{MaclaganSturmfels2015} D.~Maclagan and B.~Sturmfels, \emph{Introduction to Tropical Geometry}, Graduate Studies in Mathematics \textbf{161}, AMS, 2015.
+\bibitem{Manski2003} C.~F.~Manski, \emph{Partial Identification of Probability Distributions}, Springer Series in Statistics, Springer, 2003.
+\bibitem{BroderickGiordanoMeager2020} T.~Broderick, R.~Giordano and R.~Meager, An automatic finite-sample robustness metric: when can dropping a little data make a big difference?, arXiv:2011.14999 (2020).
+\bibitem{MahloujifarEtAl2019} S.~Mahloujifar, D.~I.~Diochnos and M.~Mahmoody, The curse of concentration in robust learning: evasion and poisoning attacks from concentration of measure, \emph{Proc.\ AAAI Conference on Artificial Intelligence} 33 (2019); arXiv:1809.03063.
+\bibitem{MullerRegensburger2016} S.~M\"uller and G.~Regensburger, Elementary vectors and conformal sums in polyhedral geometry and their relevance for metabolic pathway analysis, \emph{Front.\ Genet.} 7 (2016) 90; arXiv:1512.00267.
+\bibitem{Rockafellar1969} R.~T.~Rockafellar, The elementary vectors of a subspace of $\mathbb R^N$, in \emph{Combinatorial Mathematics and its Applications} (Chapel Hill, 1967), Univ.\ North Carolina Press, 1969, 104--127.
+\bibitem{SteinhardtKohLiang2017} J.~Steinhardt, P.~W.~Koh and P.~Liang, Certified defenses for data poisoning attacks, \emph{Advances in Neural Information Processing Systems} 30 (2017); arXiv:1706.03691.
 \bibitem{Rockafellar1970} R.~T.~Rockafellar, \emph{Convex Analysis}, Princeton University Press, 1970.
 \bibitem{Schrijver1986} A.~Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley, 1986.
 \bibitem{SeidelThomas2001} P.~Seidel and R.~Thomas, Braid group actions on derived categories of coherent sheaves, \emph{Duke Math. J.} \textbf{108} (2001) 37--108.
 \bibitem{Seidel2008} P.~Seidel, \emph{Fukaya Categories and Picard--Lefschetz Theory}, Zurich Lectures in Advanced Mathematics, EMS, 2008.
+\bibitem{ShoreJohnson1980} J.~E.~Shore and R.~W.~Johnson, Axiomatic derivation of the principle of maximum entropy and the principle of minimum cross-entropy, \emph{IEEE Trans. Inform. Theory} \textbf{26} (1980) 26--37.
+\bibitem{Simpson1951} E.~H.~Simpson, The interpretation of interaction in contingency tables, \emph{J. Roy. Statist. Soc. Ser. B} \textbf{13} (1951) 238--241.
 \bibitem{Smith2018} J.~Smith, Generating the Fukaya categories of compact toric varieties, arXiv:1804.06386, 2018.
 \bibitem{Stasheff1963} J.~D.~Stasheff, Homotopy associativity of H-spaces I, \emph{Trans. Amer. Math. Soc.} \textbf{108} (1963) 275--292.
+\bibitem{Uffink1995} J.~Uffink, Can the maximum entropy principle be explained as a consistency requirement?, \emph{Stud. Hist. Philos. Mod. Phys.} \textbf{26} (1995) 223--261.
+\bibitem{Vigneaux2020} J.~P.~Vigneaux, Information structures and their cohomology, \emph{Theory Appl. Categ.} \textbf{35} (2020) 1476--1529.
+\bibitem{Vorobev1962} N.~N.~Vorob'ev, Consistent families of measures and their extensions, \emph{Theory Probab. Appl.} \textbf{7} (1962) 147--163.
+\bibitem{WalkupWets1969} D.~W.~Walkup and R.~J.-B.~Wets, A Lipschitzian characterization of convex polyhedra, \emph{Proc. Amer. Math. Soc.} \textbf{23} (1969) 167--173.
 \end{thebibliography}
 \end{document}
