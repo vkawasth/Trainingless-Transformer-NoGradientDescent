@@ -1,0 +1,44 @@
+{
+ "n_conditions": 154,
+ "G1 world 0 | maxent responder": {
+  "infibre": 0.014905,
+  "offfibre": 1e-06,
+  "tv_true_Pstar": 0.074321,
+  "pyth_rel_err": 0.0,
+  "iota": 0.001001,
+  "q_width": 0.45
+ },
+ "G1 world 0 | noisy truth": {
+  "infibre": 0.000584,
+  "offfibre": 0.00749,
+  "tv_true_Pstar": 0.01029,
+  "pyth_rel_err": 0.0,
+  "iota": 0.351457,
+  "q_width": 0.45
+ },
+ "CH eps 0 | maxent responder": {
+  "infibre": -0.0,
+  "offfibre": 0.000505,
+  "tv_true_Pstar": 0.0,
+  "pyth_rel_err": 0.0,
+  "iota": 1.0,
+  "q_width": 0.0
+ },
+ "CH eps 0 | noisy truth": {
+  "infibre": -0.0,
+  "offfibre": 0.051401,
+  "tv_true_Pstar": 0.0,
+  "pyth_rel_err": 0.0,
+  "iota": 1.0,
+  "q_width": 0.0
+ },
+ "PR box | uniform responder": {
+  "mismatch": 2.772589,
+  "mstar": 1.150728
+ },
+ "dummy training": {
+  "seconds": 3.0,
+  "orders": 6,
+  "sums": 1.0
+ }
+}

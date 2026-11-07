@@ -1,0 +1,65 @@
+{
+ "n_conditions": 168,
+ "kinds": {
+  "S": 81,
+  "G1": 24,
+  "G2": 9,
+  "W2": 54
+ },
+ "fibre dims of the chosen faces": {
+  "F0": [
+   0,
+   0,
+   0
+  ],
+  "F1": [
+   1,
+   1,
+   1
+  ],
+  "F2": [
+   2,
+   2,
+   2
+  ]
+ },
+ "F0 maxent responder": {
+  "infibre": 0.0,
+  "offfibre": 0.000505,
+  "tv_true_Pstar": 0.0,
+  "pyth_rel_err": 0.0,
+  "fibre_dim": 0,
+  "fit": 1e-06,
+  "combination_gap": 0.0,
+  "cf_data": 0.0
+ },
+ "F1 maxent responder": {
+  "infibre": 0.00164,
+  "offfibre": 0.0005,
+  "tv_true_Pstar": 0.022862,
+  "pyth_rel_err": 0.0,
+  "fibre_dim": 1,
+  "fit": 0.000501,
+  "combination_gap": 0.0,
+  "cf_data": 0.0
+ },
+ "F2 maxent responder": {
+  "infibre": 0.033521,
+  "offfibre": 0.0005,
+  "tv_true_Pstar": 0.105173,
+  "pyth_rel_err": 0.0,
+  "fibre_dim": 2,
+  "fit": 0.00075,
+  "combination_gap": 0.0,
+  "cf_data": 0.0
+ },
+ "CF of the PR box (expect 1)": 1.0,
+ "dummy consistent training": {
+  "seconds": 3.6,
+  "joint_sum": 1.0,
+  "pair_sums": [
+   1.000000031,
+   0.999999973
+  ]
+ }
+}
