@@ -1,0 +1,11 @@
+Study 15 frozen 2026-11-01 before any model output was generated.
+7e66c07073a67e8bde4a48874ae2aa0a47f2e5188858020b45e0ea113dfd063f  PREREG_llm_fracture.md
+6cefa0d9127bd5efd8567a6ea283edf99b6c2ff8a86b26b93eb07ab2459c78bd  kit_icl_poison.py
+Deviation 1 (2026-11-01): kit patched to pass an explicit all-ones attention mask (see DEVIATIONS_study15.md).
+3098ad6f48fc7a2b43d0247bf8df05c0c3cd4a7fb8fb0affc2adab3609fa853d  kit_icl_poison.py (v1.1)
+Deviation 2 (2026-11-04): separate GPU runner run_icl_mps.py; kit unchanged (see DEVIATIONS_study15.md).
+9fb3f1f8b82c041672e64fa4ab4b6d41a45ef039127cebe8e52969ae30937d8c  run_icl_mps.py
+Deviation 2a (2026-11-05): runner memory fixes, outputs unchanged.
+f48135c7e7fa06654591044aa89cb1a7ff875826b342772a0182dc5672f3e18a  run_icl_mps.py (v2)
+Deviation 2b (2026-11-06): runner v3 for the secondary model.
+ac73be54d33d5abe9efa8bb2ca0413dbeb4fd0b9c468591404224bfa45c92cc4  run_icl_mps.py (v3)
