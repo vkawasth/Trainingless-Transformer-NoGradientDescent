@@ -13,7 +13,7 @@ Its cost is the summed total variation over the context tables, 1/2 ||E delta||_
   Stream, removal                     pooled counts on information states (batches, contexts); removal maps; trajectories
 """
 from __future__ import annotations
-import itertools
+import itertools, collections
 from fractions import Fraction as Fr
 import numpy as np
 from scipy.optimize import linprog
@@ -313,3 +313,113 @@ def conformal_count(E, delta, SU, d, w, tau, M=None):
                 bounds=[(0, None)] * (K + n), method="highs-ds")
     if r.status != 0: return None, None
     return int((r.x[:K] > 1e-9).sum()), r.fun
+
+
+# ------------------------------------------------------------------ cell-level attribution: an observed change as a sum of circuits
+def decompose(E, delta, C, tol=1e-9):
+    """a conformal decomposition delta = sum_k lam_k c_k into signed circuits c_k (unit cost), lam_k > 0. Every consistent edit has one
+    (Rockafellar 1969), and then sum_k lam_k = cost(delta) because nothing cancels. A vertex of the linear program below has at most
+    rank-many nonzero weights; the objective prefers small supports, so the decomposition reads in the simplest edits available.
+    Returns [(index into C, sign, lam)], or None if delta is not in range(E)."""
+    ent = E @ np.asarray(delta, float); cand = []
+    for i, (sup, v) in enumerate(C):
+        for sg in (1, -1):
+            e = sg * (E @ v) / cost(E, v)
+            if np.all((np.abs(e) <= tol) | ((np.abs(ent) > tol) & (np.sign(e) == np.sign(ent)))): cand.append((i, sg, e, len(sup)))
+    if not cand: return None
+    A = np.array([c[2] for c in cand]).T
+    r = linprog(np.array([c[3] for c in cand], float), A_eq=A, b_eq=ent, bounds=[(0, None)] * len(cand), method="highs-ds")
+    if r.status != 0: return None
+    return [(cand[j][0], cand[j][1], float(r.x[j])) for j in range(len(cand)) if r.x[j] > tol]
+
+
+def circuit_type(E, v, ncontexts=4):
+    """'swap' (4 cells in one table), 'margin shift' (2 + 2 cells in two tables), or 'support k'"""
+    ent = E @ v; sup = [r for r in range(len(ent)) if abs(ent[r]) > 1e-9]; per = collections.Counter(r // 4 for r in sup)
+    if len(sup) == 4: return "swap" if len(per) == 1 else "margin shift"
+    return f"support {len(sup)}"
+
+
+def coordination(E, delta, C, tol=1e-9):
+    """the least share of cost(delta) that any conformal decomposition must put on circuits with more than 4 cells (a linear program;
+    an invariant of delta, unlike the decomposition itself). 0 means the change is a conformal sum of 4-cell edits."""
+    ent = E @ np.asarray(delta, float); cand = []
+    for i, (sup, v) in enumerate(C):
+        for sg in (1, -1):
+            e = sg * (E @ v) / cost(E, v)
+            if np.all((np.abs(e) <= tol) | ((np.abs(ent) > tol) & (np.sign(e) == np.sign(ent)))): cand.append((e, len(sup) > 4))
+    A = np.array([c[0] for c in cand]).T
+    r = linprog(np.array([1.0 if c[1] else 0.0 for c in cand]), A_eq=A, b_eq=ent, bounds=[(0, None)] * len(cand), method="highs")
+    return r.fun / cost(E, delta) if r.status == 0 else None
+
+
+# ------------------------------------------------------------------ the geometry of poisoning (section 12.21)
+def dual_lower(w, M=None):
+    """vertices (y, y0) with L(d) = max over them of y.d + y0 (the dual of the minimisation, by symmetry)"""
+    return [-z for z in dual_vertices(-np.asarray(w, float), M)]
+
+
+def lipschitz(DV, SU):
+    """the Lipschitz constant of d -> min (or max) over DV of y.d + y0 in the cost: the largest |y.c| over unit-cost circuits, because the
+    unit cost ball's extreme points are the unit circuits (Rockafellar)"""
+    return max(abs(z[:-1] @ c) for z in DV for c in SU)
+
+
+def ctx_radius(d, F, SU, which=8):
+    """the least cost of an edit that reaches a facet of D with `which` vertices (8: a Clauser-Horne facet, the contextuality boundary):
+    min over those facets of slack / (largest rate at which a unit circuit lowers the slack). Closed form; no optimisation over edits."""
+    best = np.inf
+    for c, c0, V in F:
+        if len(V) != which: continue
+        h = np.array([float(x) for x in c]); sl = h @ np.asarray(d, float) + float(c0); rate = max(-(h @ cc) for cc in SU)
+        if rate > 1e-12: best = min(best, sl / rate)
+    return best
+
+
+def contextual_fraction(d, E):
+    """1 - the largest mass of a sub-normalised joint law whose tables fit under the data's tables (Abramsky, Barbosa and Mansfield)"""
+    M = np.array(G.M, float); ent = E @ np.asarray(d, float) + _e0_chsh()
+    A = E @ M + np.outer(_e0_chsh(), np.ones(16))                         # entries of an unnormalised joint b: E (M b) + e0 (1.b)
+    r = linprog(-np.ones(16), A_ub=A, b_ub=ent, bounds=[(0, None)] * 16, method="highs")
+    return 1 + r.fun
+
+
+def _e0_chsh():
+    return np.array([float(x) for x in _tab_chsh([Fr(0)] * 8)])
+
+
+def fibre_shadow(d, u, v, ndir=120, M=None):
+    """the projection of the fibre over d onto the two never-observed quantities (u.x, v.x): its vertices, by support linear programs
+    in ndir directions (ordered by angle). None if the fibre is empty."""
+    M = np.array(G.M if M is None else M, float); n = M.shape[1]; A = np.vstack([M, np.ones(n)]); b = np.r_[np.asarray(d, float), 1.0]; pts = []
+    for th in np.linspace(0, 2 * np.pi, ndir, endpoint=False):
+        r = linprog(-(np.cos(th) * np.asarray(u, float) + np.sin(th) * np.asarray(v, float)), A_eq=A, b_eq=b, bounds=[(0, None)] * n, method="highs-ds")
+        if r.status != 0: return None
+        p = (round(float(u @ r.x), 10), round(float(v @ r.x), 10))
+        if not pts or p != pts[-1]: pts.append(p)
+    out = []
+    for p in pts:
+        if p not in out: out.append(p)
+    return out
+
+
+def vertex_rule(d, cvec, M=None):
+    """a rule that picks a vertex: the joint law minimising a fixed linear objective over the fibre (it jumps across chamber walls)"""
+    M = np.array(G.M if M is None else M, float); n = M.shape[1]
+    r = linprog(np.asarray(cvec, float), A_eq=np.vstack([M, np.ones(n)]), b_eq=np.r_[np.asarray(d, float), 1.0], bounds=[(0, None)] * n, method="highs-ds")
+    return r.x if r.status == 0 else None
+
+
+def line_cross(d, direction, F, which=8):
+    """first t > 0 at which d + t direction reaches a facet with `which` vertices (exact from the facet slacks); inf if never"""
+    best = np.inf
+    for c, c0, V in F:
+        if len(V) != which: continue
+        h = np.array([float(x) for x in c]); sl = h @ np.asarray(d, float) + float(c0); rt = h @ np.asarray(direction, float)
+        if rt < -1e-15: best = min(best, max(sl, 0.0) / -rt)
+    return best
+
+
+def pr_box(signs):
+    """the PR box with correlation signs (one per context of margsec.CTX, product -1): 00 entry 1/2 where correlated, 0 where not"""
+    return np.array([0.5 if s_ == 1 else 0.0 for s_ in signs] + [0.5] * 4)
