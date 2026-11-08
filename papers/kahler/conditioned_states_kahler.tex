@@ -13,6 +13,7 @@
 \title{Conditioned States as Toric K\"ahler Data\\[2pt]\large A companion note to ``Probability, Context and Differentiation: The Layers''\\ \normalsize (working draft)}
 \author{Vinay K Awasthi\\ Johns Hopkins University\\ \texttt{vawasth1@jh.edu}}
 \date{November 2026}
+\newcommand{\Peski}{P{\fontencoding{T1}\selectfont\k{e}}ski}
 \begin{document}
 \maketitle
 
@@ -41,7 +42,7 @@ couplings by Markov gluing is associative; composing them by selection is not, a
 structure on chains of coupling polytopes, with point classes composing and the diagonal coupling as unit, is trivial up to quasi-equivalence; so the information lies in selection itself. On binary
 chains selection is Fr\'echet-midpoint gluing. On uniform margins it composes correlations by a signed minimum where Markov gluing multiplies them, and it is associative; among the other margins
 tested it is associative everywhere for none, but on full-dimensional cells for some, which we certify exactly. On binary chains the selected composite is the marginal of the unique Floer-nontrivial
-torus fibre of the reduced space, by Cho--Oh and by Alston--Amorim's pairing with the real Lagrangian, while Markov gluing takes the Birch point of the same space. In the dagger category of couplings, selection keeps units, reversal and copied factors, but not independent factors or coarse-graining. For binary ends it is the centre of the interval the data determine, which makes it harder to flip by poisoning, about $13\%$ of the records against $2.6\%$ for Markov gluing in one example, but sensitive to how the variables are recorded. Both rules are sections of the projection from joint laws to marginal data. On the 4-cycle (CHSH) cover, and on every $n$-cycle, the noncontextuality facets are simplices: at every point of the contextuality boundary the data determine the joint law and every rule agrees, while structural zeros leave a family of dimension $3\cdot2^{n-2}-2n$. Simpson reversals arise either from the rule (selection sensitivity) or from coarsening the middle (information loss). The cheapest undetectable poisoning of such data is a conformal sum of a few circuits of the consistent-edit space, usually one circuit of four cells whatever the number of variables. The number of undetectable placements grows monotonically with the hidden support, whose freedom splits into room to move the data and room for the rule. Removing batches or contexts is a contravariant functor, and it explains a decision's change over time. Whether maximum entropy is the only associative section is left open. $114$ numerical, $7$ certificate and $3$
+torus fibre of the reduced space, by Cho--Oh and by Alston--Amorim's pairing with the real Lagrangian, while Markov gluing takes the Birch point of the same space. In the dagger category of couplings, selection keeps units, reversal and copied factors, but not independent factors or coarse-graining. For binary ends it is the centre of the interval the data determine, which makes it harder to flip by poisoning, about $13\%$ of the records against $2.6\%$ for Markov gluing in one example, but sensitive to how the variables are recorded. Both rules are sections of the projection from joint laws to marginal data. On the 4-cycle (CHSH) cover, and on every $n$-cycle, the noncontextuality facets are simplices: at every point of the contextuality boundary the data determine the joint law and every rule agrees, while structural zeros leave a family of dimension $3\cdot2^{n-2}-2n$. Simpson reversals arise either from the rule (selection sensitivity) or from coarsening the middle (information loss). The cheapest undetectable poisoning of such data is a conformal sum of a few circuits of the consistent-edit space, usually one circuit of four cells whatever the number of variables. The number of undetectable placements grows monotonically with the hidden support, whose freedom splits into room to move the data and room for the rule. Removing batches or contexts is a contravariant functor, and it explains a decision's change over time; conformal sums explain it cell by cell. Every decision gets a certified poisoning radius, the gap divided by a Lipschitz constant computed from dual vertices and circuits; the fibre's dimension can jump under poisoning while its width cannot. Bayesian inversion is the dagger of the coupling category, a symmetry of the marginal projection rather than a section, and composition commutes with it for reversal-equivariant rules. Local data determine the value of information exactly when its value functionals are sums over the contexts, independently of whether they determine the law or the decision, and the worst-case change in robust decision value is twice the Hausdorff distance between fibres. Value of information is a geometry of consequences: resolving a fibre is worth a minimax regret computed by linear programs and bounded by its width along utility differences, the cheapest poisoning on a rigid facet raises no value of information at all, dilation occurs on marginal data, and Das's commuting square fails for re-selection, so commitment is the stable policy. Rational data can give an irrational maximum-entropy law, the number of integer explanations grows like $N$ to the fibre dimension, and only selection rules that are not concave jump. The viability share, the least share of the data that any disturbance needs to tip a decision, is one linear program and is the only quantity that warns of on-facet poisoning; in open loop decisions are eventually constant, with finite memory and feedback eventually periodic. Along a history of data snapshots, the selected law can depend on the path only within one fibre, and the decision only when that fibre straddles the threshold. I-projection updating over growing sets of contexts is flat, giving maximum entropy at every step, while forgetting and minimal-change updating are path dependent. Local tables always glue until the cycle of contexts closes, and only then can contextuality block the gluing. Fisher geometry finds the fibre as the null space of the data's information, but statistical distinguishability is not decision relevance: decision value is Lipschitz in Fisher--Rao distance and not conversely, phases are decision-null, and volume coefficients depend on coordinates. Whether maximum entropy is the only associative section is left open. $120$ numerical, $7$ certificate and $3$
 ledger checks corroborate the statements.
 \end{abstract}
 
@@ -87,15 +88,92 @@ component & status & source\\\midrule\endhead
 \rowcolor{stAdapted} the 4-cycle: $\mathcal D=\mathcal L\cap\mathrm{CH}$; CH facets are simplices, positivity facets leave fibre 4 (\cref{prop:cycleD,prop:cyclefibres}) & Adapted (Fine's theorem, exact); New (fibre table) & \cite{Fine1982,ClauserHorne1974,AbramskyBrandenburger2011}\\
 \rowcolor{stNew} sections at the CHSH boundary; Simpson reversals made by a rule or by the middle resolution (\cref{prop:chshpath,prop:simpson}) & New (exact; paths numerical) & \cite{Simpson1951}; this note\\
 \rowcolor{stAdapted} every $n$-cycle: noncontextuality facets are simplices, so the contextuality boundary is rigid (\cref{cor:rigid,thm:ncycle}) & Adapted (facet list cited); New (identification reading; exact for $n\le8$) & \cite{AraujoEtAl2013}; this note\\
+\rowcolor{stNew} how little poisoning in many dimensions: two thresholds, circuit sparsity, placement monotone in the hidden support, removal as a functor; changes read cell by cell (\cref{prop:twothresh,prop:sparse,prop:placement,prop:removal,rem:cellattr}) & New (proofs; censuses exact; streams numerical) & \cite{Rockafellar1969,MullerRegensburger2016,BroderickGiordanoMeager2020}; this note\\
+\rowcolor{stNew} the geometry of poisoning: certified radii, deformation, crossing, continuity of rules (\cref{prop:radii,ex:stages}) & New (proofs; example numerical) & \cite{WalkupWets1969}; this note\\
+\rowcolor{stAdapted} Bayesian inversion is the dagger; reversal-equivariant sections commute with it; order drift as Bayesian inconsistency (\cref{prop:invsec,rem:orderbayes}) & Adapted (dagger); New (sections) & \cite{ChoJacobs2019,Parzygnat2020,BohinenPerrone2025}; this note\\
+\rowcolor{stNew} decisions and the value of information over fibres; when local data determine it; value-based distance $=$ Hausdorff distance (\cref{prop:decisions,prop:instance,thm:determination,prop:valuedist}) & New (proofs; computations numerical) & \cite{Das2023,Iskandar2026,TohmeCaterinaGangle2017,GensbittelPeskiRenault2022}; this note\\
+\rowcolor{stAdapted} Fisher geometry against decision relevance: phases decision-null; fibre = Fisher-null space of the data; one-sided Fisher--Rao bound; volume coefficients coordinate-dependent (\cref{prop:fisher}) & Adapted (Fisher--Rao, Fubini--Study); New (reading of \cref{thm:determination}) & \cite{MoskowitzRussellLawless2020}; this note\\
+\rowcolor{stNew} phases of the objects: A is three Bloch spheres (orthonormal product basis); holonomies over each fibre form finite groups in B and C; link to probabilistic pseudo knots (\cref{prop:bloch}, \cref{sec:bloch}) & Proved (A); Numerical (groups); Outlook (graded category) & \cite{DiamantisKauffman2026}; this note\\
+\rowcolor{stNew} trajectories of decision viability: viability shares under any disturbance; open and closed loops; ranking radius; topology caveats (\cref{prop:viable,prop:openloop,prop:closedloop,rem:topology}) & New (proofs; streams numerical) & \cite{Aubin1991,DiamantisKauffman2026}; this note\\
+\rowcolor{stNew} histories and holonomy: holonomy bounded by the fibre; KL updating flat over growing contexts, forgetting and minimal change curved; gluing fails only when the context cycle closes (\cref{prop:holbound,prop:flat,ex:history}) & Adapted (I-projection, Jeffrey); New (holonomy bounds, example) & \cite{Csiszar1975,DiaconisZabell1982,TohmeCaterinaGangle2017}; this note\\
+\rowcolor{stAdapted} algebra of the operations: removable singularities, irrational maximum entropy, counting explanations, Maxwell jumps (\cref{prop:algebra}) & Adapted (Birch, Ehrhart, Markov bases); New (examples) & \cite{DrtonSturmfelsSullivant2009,BeckRobins2015,DiaconisSturmfels1998}; this note\\
 \rowcolor{stCited} Floer cohomology of toric fibres and the potential $W$ & Cited, not proved & \cite{ChoOh2006,FOOO2010}\\
 \rowcolor{stUsed} ampleness by invariant curves: Nakai--Moishezon, toric Kleiman, wall relations (\cref{prop:kleiman}) & Used & \cite{Kleiman1966,CLS2011}\\
 \rowcolor{stNew} the $148$ chambers of $2\times4$; selection depth in the Fano chambers; examples A, B, C (\cref{thm:chambers24,prop:fanodepth,prop:B24}) & New (exact computation) & this note\\
 \rowcolor{stCited} weak Fano corrections $W^{\mathrm{LF}}=\sum(1+\delta_k)T^{-\lambda_k}y^{v_k}$ (\cref{rem:corrections}) & Cited & \cite{CLLT2020}\\
 \rowcolor{stNew} one scale per removed dimension (\cref{conj:leveldrop}); proved at leading order in A, B, C (\cref{prop:scales}) & Conjecture; New & this note\\
-Novikov weights against the environment orders of the layers paper; decision, contextuality and VOI walls & Open & \cref{sec:outlook}\\\bottomrule
+Novikov weights against the environment orders of the layers paper; topological early warning of decision instability & Open & \cref{sec:outlook,sec:voi}\\\bottomrule
 \end{longtable}}
+On decisions, the note does not claim to connect contextuality with decision-making, which Tohm\'e, Caterina and Gangle and Abramsky, Barbosa and Mansfield have done in other forms. Its claim is a joint quantitative treatment over marginal fibres: which actions the data identify, the regret from ambiguity that cannot be resolved, what structural and instance information are worth and when local data determine that worth, and how all of these respond to undetectable poisoning (\cref{sec:poisondim,sec:poisongeom,sec:voi}).
+
 Two probability structures must be kept apart. The measures in this note live on \emph{conditioned states}, points of the polytope. They
 are not the source weights $\pi_l$ of the layers paper. The uniform measure of \cref{prop:kahler}(5) is a prior on states, not on sources.
+
+\section{A reading guide: information states}\label{sec:guide}
+This section restates the note in one vocabulary. It adds no results; every claim below points to where it is proved, checked or left open. The common object is an \emph{information state}
+\[
+\mathcal I=(S,d,J_d),\qquad J_d=\pi_S^{-1}(d)\cap\Delta(\Omega),
+\]
+where $S$ is the collection of observed contexts, $d$ the observed marginal tables, $\pi_S$ the linear map from a joint law to its marginals on $S$, and $J_d$ the \emph{fibre}: the convex set of joint laws compatible with the data. Almost everything in the note is either an operation on information states or a statement about what a fibre does or does not determine.
+
+\paragraph{Operations on information states.} The operations are of different kinds and obey different laws, and much of the note consists in keeping them apart.
+\begin{center}\small
+\begin{tabular}{p{0.2\linewidth}p{0.42\linewidth}p{0.3\linewidth}}
+\toprule
+operation & what it does to $(S,d,J_d)$ & where\\\midrule
+marginalisation & forgets distinctions: projects $J_d$ & \cref{thm:projection,sec:section}\\
+conditioning & restricts to the laws compatible with an observation; soft evidence moves the dual coordinates & \cref{sec:data,sec:margins}\\
+Markov gluing & composes couplings; associative; the composition of a category & \cref{prop:markovglue,prop:cplcat}\\
+Bayesian inversion & the dagger of that category & \cref{prop:cplcat,sec:invsec}\\
+independent product & the tensor (with the copied-factor caveats) & \cref{sec:probcat}\\
+selection & chooses one law $s(d)\in J_d$; not a composition: in general not associative & \cref{sec:selbin,thm:sections,thm:selection}\\
+poisoning & perturbs $d$; asks the least edit that moves a decision & \cref{sec:howlittle,sec:poisondim,sec:poisongeom}\\
+contextuality test & asks whether $J_d\ne\varnothing$ & \cref{sec:cycle,sec:ncycle}\\
+value of information & measures decision-relevant variation inside $J_d$ & \cref{sec:voi}\\
+history and transport & carries a selection along a sequence of information states & \cref{sec:history}\\
+viability & asks whether acceptable decisions survive every admissible disturbance & \cref{sec:viability}\\
+\bottomrule
+\end{tabular}
+\end{center}
+Three of these are compositions in the categorical sense (gluing, inversion as dagger, product as tensor) and are treated as such in \cref{sec:probcat}. Selection is not: it is a section of the marginal projection, and \cref{thm:sections} says exactly when a family of sections composes associatively (inner-face consistency; maximum entropy satisfies it, leximin does not). The note does not force every operation into one category.
+
+\paragraph{Geometry of the fibre.} The fibre carries three geometric structures with different jobs.
+\begin{itemize}
+\item \emph{Convex and toric.} $J_d$ is a polytope; with its log-linear (maximum-entropy) parametrisation it is the moment polytope of a toric K\"ahler structure whose metric is the Fisher information (\cref{prop:kahler}). Its faces, walls and chambers organise selection (\cref{thm:selection}) and, for $2\times4$ couplings, the toric manifolds of Part~IV (\cref{thm:chambers24}).
+\item \emph{Statistical.} At an interior law the observed data have Fisher information $I_{\rm obs}$, and its null space is exactly the direction space of the fibre (\cref{prop:fisher}(2)):
+\[
+\ker I_{\rm obs}(P)=T_PJ_d .
+\]
+The directions the data cannot distinguish are exactly the directions in which compatible laws vary.
+\item \emph{Decision-theoretic.} A decision problem cuts the fibre into policy cells, on each of which the value of information is linear (\cref{sec:voi}).
+\end{itemize}
+
+\paragraph{The spine: what the data determine for a decision.} The strongest single connection in the note joins the second and third structures. By \cref{thm:determination}, the value of information is constant on $J_d$ exactly when every full-dimensional policy cell's value functional annihilates the fibre's directions; by \cref{prop:fisher}(2) this reads
+\[
+\text{VOI determined by the data}\iff\text{every relevant value functional is Fisher-visible.}
+\]
+This separates several kinds of uncertainty that are easily run together:
+\begin{itemize}
+\item \emph{statistical}: sampling variation of the observed tables (not modelled here beyond \cref{sec:howlittle});
+\item \emph{observational}: the Fisher-null directions, the fibre itself;
+\item \emph{contextual}: whether any compatible law exists at all ($J_d=\varnothing$ for contextual data, \cref{sec:cycle});
+\item \emph{decision}: whether the action changes over the fibre ($R>0$, \cref{prop:decisions});
+\item \emph{value}: whether the value of information changes over the fibre (\cref{thm:determination}).
+\end{itemize}
+They are not interchangeable. Laws far apart in Fisher--Rao distance can have the same value of information, and laws arbitrarily close can lie on opposite sides of a policy wall (\cref{prop:fisher}(3)--(4)). Decision value is Lipschitz in Fisher--Rao distance; the converse fails.
+
+\paragraph{Selection, transport and stability.} Selection turns an information state into a law, and the note compares rules by what they preserve. Maximum entropy is the I-projection, composes associatively and is flat under updating along growing context sets (\cref{prop:flat}); leximin is the tropical limit of the positive critical point (\cref{thm:tropical,thm:selection}) and is not associative. Along a history of information states a rule may depend on the path: the holonomy $\mathrm{TV}(\sigma(H),\sigma(H'))$ is bounded by the fibre (\cref{prop:holbound}), vanishes on rigid faces and for identified decisions, and the path-independence condition $\sigma=s\circ d$ is the selection-level sheaf condition of \cite{TohmeCaterinaGangle2017}. Gluing of local tables can fail only when the cover has a cycle, which is where contextuality enters (\cref{ex:history}). Poisoning, viability and value-based stability measure how far the data must move before a decision does (\cref{sec:poisongeom,sec:viability,prop:valuedist}).
+
+\paragraph{The toric and Floer layer.} For coupling fibres the polytope is the moment polytope of a toric manifold, the potential $W$ has critical points (Floer objects: a torus fibre with a flat connection), and the positive critical point selects the leximin coupling in the tropical limit (\cref{thm:bridge,thm:selection}). Part~IV tests this beyond two-dimensional fibres. In the three $2\times4$ examples the valuations of the eigenvalues at the positive object match the dimensions removed at successive selection levels (\cref{prop:scales}); the general statement remains \cref{conj:leveldrop}. The objects also carry phases. They are decision-null (\cref{prop:fisher}(1)), and they form finite groups over each fibre; only in the product case do they become a canonical Hilbert-space basis (\cref{sec:bloch}). This layer enriches the information state; it does not replace its probabilistic meaning.
+
+\paragraph{What is not claimed.} Three tempting unifications are left as outlook, not results.
+\begin{itemize}
+\item \emph{An indexed category of information states}: contexts and refinement as a base, fibres $J_d$ over it, kernels and sections as the transformations, assembled by a Grothendieck construction. The pieces exist (\cref{sec:probcat,sec:section,sec:history}); the construction and its compatibility laws for products, forgetting, conditioning and mixtures are not proved here. In particular the fibre of a product of data is in general larger than the product of fibres, since correlations across the two systems are unconstrained.
+\item \emph{Beyond finite outcome spaces}: \cref{thm:determination} and \cref{prop:fisher} are finite-dimensional; an infinite-dimensional version is not attempted.
+\item \emph{Phase-sensitive decisions}: a value of information that sees the phases would need non-commuting measurements, which the note never uses.
+\end{itemize}
+
+\paragraph{How to read the note.} Part~I builds the toric K\"ahler structure, the bridge to the Floer side and the thimble. Part~II applies it to contingency tables and coupling fibres. Part~III (\cref{sec:morph} onwards) treats the operations: morphisms, gluing, sections, contextuality, poisoning, inversion, decisions, value of information, algebra, viability and histories, roughly in the order of the table above. Part~IV is the three-dimensional test. The status table and the ledger (\cref{app:ledger}) give the status of every statement: proved, adapted, exact, numerical or open.
 
 \section{Tier A: the toric K\"ahler structure of conditioned states}
 \paragraph{Setting.} Let $S=\{S_i\}\subset\mathbb Z^d$ be a finite support whose affine span is $\R^d$, with coefficients $c_i>0$. In log coordinates $u=\log x$ put
@@ -1859,12 +1937,401 @@ The removal maps answer why a decision changed. Compare the object at the later 
 Batches of $1200$ units, each reported in all four contexts of CHSH, decision $P(A_0=A_1)\ge0.45$ by maximum entropy (PF6--PF9, \cref{fig:poisonflip}). Until $t=5$ the world is the first CH-facet law of Study 18. Its interval has width $0$, so the decision is identified and robust. From $t=6$ the hidden structure changes to $0.8$ times that law plus $0.2$ uniform, the data move into the interior, and the interval opens. At $t=10$ an attacker adds the cheapest batch that flips every rule: $2298$ units, all of one reading, against $12000$ clean units ($q^*=0.161$). Every rule is flipped at $t=10$ only, but the maximum-entropy decision stays flipped for $t=10$ to $15$. At each of those times, removing the poisoned batch is the only single removal that reverts the decision. The first-order estimate of its effect is within $6\%$ of the exact change ($0.075$ against $0.072$ at $t=10$). At the last time, forgetting a context widens the interval by $0.295$ or $0.38$. The batch is consistent and noncontextual, so no marginal test detects it, but it consists of a single reading, and comparing the objects over time detects it at once.
 \end{example}
 
+\begin{remark}[reading a change cell by cell]\label{rem:cellattr}
+The removal maps attribute a change to batches; conformal sums attribute it to cells. A change $\delta=d_t-d_{t-1}$ between consistent states lies in $\Delta$, so it is a conformal sum $\sum_k\lambda_kC_k$ of at most $\dim\Delta$ unit-cost circuits. Nothing cancels, so $c(\delta)=\sum_k\lambda_k$, and the first-order effect on the decision value $\phi$ splits the same way, $\nabla\phi\cdot\delta=\sum_k\lambda_k\,\nabla\phi\cdot C_k$. The decomposition is not unique. But the least share of $c(\delta)$ that any decomposition must put on circuits of more than four cells is an invariant of $\delta$, computed by one linear program; call it the \emph{coordination} of $\delta$. \Cref{fig:edittypes} shows each kind of circuit on the four CHSH tables. In \cref{ex:poisonstream} (PF10), the clean steps before the attack, including the change of hidden structure at $t=6$, have coordination $0$: they are sums of margin shifts and swaps. The poisoned step has coordination $0.659$, and removing the poisoned batch later has $0.652$. The clean steps after the attack have $0.393$, because each partly undoes the poison. The poisoned step's three largest contributions to the decision are a margin shift ($-0.025$), a $6$-cell circuit ($-0.022$) and a $9$-cell circuit ($-0.014$), out of a first-order total of $-0.067$. One example does not make coordination a detector. It shows what the conformal-sum theorem buys: an undetectable change has a canonical vocabulary of elementary edits, and its cost and its first-order effect are additive over them.
+\end{remark}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_edittypes.pdf}
+\caption{The kinds of undetectable edit, and one change read as a sum of them. Each diagram shows the four tables of the CHSH cover on the sides of the cycle $A_0$--$B_0$--$A_1$--$B_1$ (rows: the $A$ variable; columns: the $B$ variable). A $+$ cell gains mass and a $-$ cell loses it. (a) A swap: four cells in one table, all margins fixed. (b) A margin shift: one single margin moves, by two cells in each of the two tables that contain it. (c)--(e) Circuits of $6$, $8$ and $9$ cells that coordinate three or four tables. (f) A detectable edit: one table alone, so the tables disagree on a shared margin. (g) The poisoned step of \cref{ex:poisonstream}, cell by cell. (h) Its conformal decomposition beside a clean step's: clean drift is a sum of $4$-cell edits, the poisoned step needs coordinated ones. (i) The coordination (the least share any decomposition puts on circuits of more than $4$ cells) of every step.}\label{fig:edittypes}
+\end{figure}
+
 \begin{figure}[!htbp]\centering
 \includegraphics[width=\linewidth]{fig_poisonflip.pdf}
 \caption{How little poisoning. (a) Undetectable placements (signed circuits that keep the data in $\mathcal D$) against the face dimension of the data, by fibre dimension, over all $2721$ faces of the 4-cycle. The count is monotone in the hidden structure, and $\dim G+\dim(\text{fibre})=|S|-1$ splits that structure into room for the data and room for the rule. (b) The cheapest undetectable flip (gap $0.01$) is usually one circuit of $4$ cells, for every $n$ up to $8$. (c) One poisoned batch at $t=10$, after the hidden structure changed at $t=6$. The identified interval (shaded) flips below the threshold for one step; the maximum-entropy rule stays flipped for six. (d) Removing one batch at a time at the flipped times: only the poisoned batch reverts the decision.}\label{fig:poisonflip}
 \end{figure}
 
-What is proved here is elementary: the two thresholds, the circuit bound, monotonicity of placement, and the removal laws. The circuit census and the face table are exact computations, and the frequencies of one-circuit optima, the budget comparison and the time example are numerical. We have not found these statements for marginal data in the literature on poisoning, which counts records or input coordinates.
+What is proved here is elementary: the two thresholds, the circuit bound, monotonicity of placement, the removal laws and the additivity of cost over conformal sums. The circuit census and the face table are exact computations, and the frequencies of one-circuit optima, the budget comparison and the time example are numerical. We have not found these statements for marginal data in the literature on poisoning, which counts records or input coordinates.
+
+\subsection{The geometry of poisoning}\label{sec:poisongeom}
+A poisoning edit moves the data $d$, and with them the fibre $J_d$ of compatible joint laws. Three effects can be separated: the fibre can \emph{deform} (change dimension or size), the data can \emph{cross} the contextuality boundary (the fibre empties), and the \emph{selected} law can move. \Cref{sec:poisondim} gave the costs of flips. Here each effect gets a precise statement, and the decision gets a radius that the defender can compute from the data alone.
+
+\begin{proposition}[certified radii and the three effects]\label{prop:radii}
+Let $\mathcal V_L$ and $\mathcal V_U$ be the dual vertices with $L(d)=\max_{(y,y_0)\in\mathcal V_L}(y\cdot d+y_0)$ and $U(d)=\min_{(y,y_0)\in\mathcal V_U}(y\cdot d+y_0)$, and let $\mathcal C_1$ be the circuits scaled to unit cost.
+\begin{enumerate}
+\item[(1)] \emph{Certified radii.} $L$ and $U$ are Lipschitz in the edit cost, with constants $\Lambda_L=\max_{\mathcal V_L\times\mathcal C_1}|y\cdot C|$ and $\Lambda_U=\max_{\mathcal V_U\times\mathcal C_1}|y\cdot C|$. Hence $c_{\rm some}(d)\ge(L(d)-\tau)/\Lambda_L$ and $c_{\rm all}(d)\ge(U(d)-\tau)/\Lambda_U$.
+\item[(2)] \emph{Deformation.} The width $U-L$ changes by at most $(\Lambda_L+\Lambda_U)\,c(\delta)$, while the fibre dimension can jump. By \cref{thm:projection} it rises from $|V(G)|-1-\dim G$ to $|V(G')|-1-\dim G'$ when an edit moves the data from a face $G$ into a larger face $G'$.
+\item[(3)] \emph{Crossing.} The cost distance from $d\in\mathcal D$ to the contextuality boundary is $\min_h \sigma_h(d)/\max_{C\in\mathcal C_1}(-h\cdot C)$ over the CH facets $h\cdot d+h_0\ge0$, where $\sigma_h(d)=h\cdot d+h_0$ is the slack. Along a line $d+tv$, the data first become contextual at $t=\min\{\sigma_h(d)/(-h\cdot v):h\cdot v<0\}$, and from then on the fibre is empty and the contextual fraction positive.
+\item[(4)] \emph{Selection.} $L$ and $U$ are continuous whatever the rule. A section given by a continuous objective with a unique optimum on every fibre (maximum entropy, or a fixed linear objective with unique optima) is continuous on $\mathcal D$. A selected law can jump only through ties or a rule that depends on the data discontinuously.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) A maximum (or minimum) of affine functions is Lipschitz with constant equal to the largest dual norm of their gradients. The dual norm of $y$ for the cost $c$ is $\max y\cdot\delta$ over the unit cost ball, whose extreme points are the unit circuits \cite{Rockafellar1969}. A flip must move $L$ (resp.\ $U$) by $L-\tau$ (resp.\ $U-\tau$). (2) Apply (1) to both ends. The dimension statement is \cref{thm:projection}. (3) In a polyhedral norm, the distance to a hyperplane is the slack divided by the dual norm of its normal. For a point of a convex polytope, the distance to the boundary is the least distance to a facet hyperplane. The line formula is the first zero of the slacks. (4) The fibre map is continuous with compact values, being Lipschitz \cite{WalkupWets1969}. By Berge's maximum theorem the optimal set is upper hemicontinuous, hence continuous where it is a single point. $L$ and $U$ are optimal values, which (1) shows to be Lipschitz.
+\end{proof}
+
+For the decision quantity $P(A_0=A_1)$ on CHSH, the constants are exact (PG1). There are six dual vertices on each side and $376$ unit circuits, and $\Lambda_L=\Lambda_U=1$; for $P(A_0=0,A_1=0)$ both constants are $1/2$. So no undetectable flip of the some-rule decision costs less than the gap $L-\tau$. Over $75$ cases at $39$ data points the bound is attained in $45$ and is never off by more than a factor $2$ (PG2). For every rule the median ratio of the actual cost to the bound is $1.10$. The distance formula in (3) agrees with a direct linear program to machine precision (PG4). Along $20$ straight data paths, both maximum entropy and a fixed-objective vertex rule move by at most $0.019$ in total variation per step of $0.01$ (PG6). So, unlike what one might expect, rules that pick vertices do not jump as the data move, as long as their optimum is unique. What poisoning can make discontinuous is the decision at its threshold, and the dimension of the fibre, but not its width and not a well-defined rule.
+
+\begin{example}[poisoning in stages]\label{ex:stages}
+Start from the first CH-facet law of Study 18, where $P(A_0=A_1)=0.496$ is identified (the fibre is a point), with $12000$ clean units and threshold $\tau=0.45$ (PG5, \cref{fig:deform}). Compare two poisoning routes that add units of a single reading.
+\begin{itemize}
+\item \emph{Route A}, the cheapest every-rule attack, injects the reading $(0,1,1,0)$. That reading is a vertex of the same CH facet, so the data slide along the facet. At $600$, $1200$ and $1800$ units the fibre is still a point, with $L=U=0.472$, $0.451$, $0.431$. Some rule and every rule flip together, at a poisoned share of $0.0924$ (about $1222$ units).
+\item \emph{Route B} injects $(1,0,1,0)$, which lies off the facet. After the first unit the fibre dimension jumps from $0$ to $7$, but the width starts at $0$ and grows at most twice as fast as the cost. The interval is $[0.472,0.567]$ at $600$ units, $[0.451,0.633]$ at $1200$, $[0.413,0.747]$ at $2400$, $[0.354,0.640]$ at $4800$ and $[0.275,0.498]$ at $9600$. Some rule flips at the same share $0.0924$, but every rule flips only at $0.4977$, about $11900$ units: $5.4$ times the share and nearly ten times the units. The maximum-entropy value first rises to $0.516$ and falls below $\tau$ only after about $6060$ units. The distance to the contextuality boundary is $0$ throughout route A, and on route B it is $0.095$, $0.182$, $0.333$, $0.571$ and $0.500$ at those stages.
+\item \emph{Overreach.} Mix in the PR box that violates this CH facet. From the rigid start the data become contextual at once: the fibre is empty and the contextual fraction positive for every share above $0$. From route B at $2400$ units they become contextual at share $0.2501$, where the facet slacks predict $0.2500$. In all $31$ cases the fibre is empty exactly when the contextual fraction is positive.
+\end{itemize}
+\end{example}
+
+The cheapest attack on a rigid point keeps the point rigid. It slides along the facet, so the decision stays identified and simply moves. Deformation is what an attack off the facet produces, and it buys ambiguity rather than a decision: the interval straddles the threshold for a long time before every rule flips. A defender who reports $[L,U]$ sees route B as rule-dependent from share $0.0924$ on, and route A as a clean flip. At a rigid point, complete determination lies next to inconsistency. One contextual push empties the fibre and is detected at once. So an attacker must stay inside $\mathcal D$, and a contextuality alarm is free for the defender. The literature's geometries of poisoning (bilevel, influence, metric) describe the learner. These statements describe the space of compatible explanations. The two meet in the first-order estimate of \cref{rem:cellattr}.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_deform.pdf}
+\caption{The geometry of poisoning, in stages (\cref{ex:stages}). (a) The shadow of the fibre on two never-observed quantities. From a rigid CH-facet point (star), route A (diamonds) stays a point; route B opens into polygons as poisoned units are added (labels), with the maximum-entropy law inside. (b) The identified interval: the same share flips some rule on both routes, but flipping every rule off the facet takes nearly ten times as many units. (c) Distance to the contextuality boundary. (d) A PR-box overreach: from the rigid point any contextual push empties the fibre; from inside, exactly where the facet slacks predict. (e) Certified radii against actual cheapest flips. (f) Width change against edit cost: the dimension jumps, the width obeys the Lipschitz bound.}\label{fig:deform}
+\end{figure}
+
+\subsection{Bayesian inversion and sections}\label{sec:invsec}
+Bayesian inversion reverses a stochastic map relative to a prior. From $p$ and $K(y\mid x)$ it gives $q=pK$ and $K^\dagger(x\mid y)=p(x)K(y\mid x)/q(y)$ wherever $q(y)>0$. Categorically it is disintegration of the joint law in the other direction \cite{ChoJacobs2019}. Parzygnat separates ordinary inverses, disintegrations and Bayesian inverses, and extends them to quantum Markov categories \cite{Parzygnat2020}. Bohinen and Perrone show that when an (a.s.-compatibly representable) Markov category has conditionals, the multiplication of its probability monad is weakly cartesian \cite[Thm.~3.1]{BohinenPerrone2025}. This covers the Giry monad on standard Borel spaces \cite[Cors.~3.2, 3.9]{BohinenPerrone2025}. They avoid calling the property a Beck--Chevalley condition, because that term has a different established meaning for fibrations and descent \cite[Rem.~2.25]{BohinenPerrone2025}. \Cref{rem:beckchevalley} uses the term only for our own reading. This subsection places inversion relative to sections.
+
+\begin{proposition}[inversion and sections]\label{prop:invsec}
+\begin{enumerate}
+\item[(1)] In $\mathsf{Cpl}$ the dagger is Bayesian inversion: if $\gamma(x,y)=p(x)K(y\mid x)$, then $\gamma^{\!\top}(y,x)=q(y)K^\dagger(x\mid y)$. The dagger is total, although inversion of kernels is partial: at a null event every choice of $K^\dagger(\cdot\mid y)$ gives the same $\gamma^{\!\top}$. So for one coupling, inversion is a symmetry and not a choice. Given the prior and the kernel, the fibre is a point.
+\item[(2)] Let $s$ be a section of the chain cover that is reversal-equivariant: $x_{ijk}\mapsto x_{kji}$ carries $s(\gamma_1,\gamma_2)$ to $s(\gamma_2^{\!\top},\gamma_1^{\!\top})$. Then composition by $s$ commutes with inversion: $(\gamma_1\circ_s\gamma_2)^{\!\top}=\gamma_2^{\!\top}\circ_s\gamma_1^{\!\top}$. Markov gluing (the dagger functor of $\mathsf{Cpl}$) and selection (\cref{prop:selkeeps}(3)) both qualify.
+\item[(3)] A rule that is not reversal-equivariant need not commute. The vertex of the chain fibre minimising $\sum G_iH_kx_{ijk}$, with $G=(0,2,1,3)$ and $H=(0,1,2,3)$, commutes on only $13$ of $40$ random chains with ends of up to $3$ states. On chains with binary ends, every rule that minimises a fixed linear objective with a unique optimum commutes.
+\item[(4)] Null events never reach a composite, while structural zeros do matter. A middle state with $q(y)=0$ contributes nothing to any composite, whatever kernel is attached to it. A zero cell with full-support margins leaves every Bayesian inverse unique, yet the composite's identified interval keeps positive width, so the rule still decides.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $\gamma^{\!\top}(y,x)=p(x)K(y\mid x)=q(y)K^\dagger(x\mid y)$, and the row of a null $y$ is $0$ whatever $K^\dagger(\cdot\mid y)$ is. (2) Reversal maps the fibre of $(\gamma_1,\gamma_2)$ bijectively onto that of $(\gamma_2^{\!\top},\gamma_1^{\!\top})$. The end marginal of a reversed table is the transpose of the end marginal. (3) For binary ends the fibre is the box $\prod_b[L_b,U_b]$ in the coordinates $x_{0b0}$, which reversal fixes. A linear objective acts on it through the coefficients $c_{0b0}-c_{0b1}-c_{1b0}+c_{1b1}$, which reversal also fixes, so the optimum is the same point. The count is exact (IS3). (4) The row $y$ of $\gamma_2$ is $q(y)K(y,\cdot)=0$ (IS4). The interval is exact on six chains with a zero cell (IS5), where Markov gluing and selection disagree in five. In the sixth, Markov gluing happens to be the midpoint. IS1 and IS2 check (1) and (2) exactly on $60$ and $40$ random rational examples.
+\end{proof}
+
+So the question whether Bayesian inversion is a canonical section of the marginal projection has a precise answer. It is not a section but a symmetry of the projection. Every composition rule that respects the symmetry commutes with it, and a rule that does not respect it can fail to commute; we have not shown that every rule that commutes is reversal-equivariant. A prior and a kernel determine the joint law, so inverting them involves no selection. Selection enters only when the joint law is not determined, as for the composite of a chain, and there it is compatible with inversion when the rule is reversal-equivariant. Information destroyed by a map is not recovered by inverting it. In the merging example $f(a)=f(b)=0$, $f(c)=1$ with prior $(0.2,0.5,0.3)$, the inverse $P(a\mid0)=2/7$, $P(b\mid0)=5/7$ is fixed by the prior, not chosen.
+
+\begin{remark}[order drift as Bayesian inconsistency]\label{rem:orderbayes}
+A model that generates variables one at a time defines, for each order $\sigma$, a joint law $Q_\sigma$, the product of its conditionals in that order. Bayes' rule between two orders says $Q_\sigma=Q_{\sigma'}$: the conditionals of one order are the Bayesian inverses of the other's. The order drift of Studies 17 and 18, the mean total variation between the $Q_\sigma$, therefore measures how far a learned model is from being a single probabilistic object that inverts consistently. Study 18's consistency penalty is the squared residual of Bayes' rule in log form at sampled assignments. On the sparsity-matched faces it lowered the drift from $0.315$, $0.281$ and $0.174$ to $0.011$, $0.007$ and $0.010$ (IS6, from the frozen output). A model with drift has no single joint law and so no single inverse: a question asked forward and backward can get answers that no joint law reconciles. By \cref{prop:invsec}(2), only a coherent model whose completion rule is reversal-equivariant answers both directions consistently.
+\end{remark}
+
+\subsection{The geometry of decisions and of the value of information}\label{sec:voi}
+The fibre $J_d$ is a credal set in the sense of imprecise probability: a polytope of compatible laws, finitely generated by its vertices. This subsection asks which part of its geometry matters for a decision, what information is worth, and how stable a decision is under a disturbance whose cause the decision-maker cannot see. Actions $a$ carry utilities $u_a$ on joint readings, so $\mathbb E_Pu_a=u_a\cdot P$ is linear in $P$. Two kinds of information are kept apart:
+\begin{itemize}
+\item \emph{structural} information is a new context, a pair never measured together; it shrinks the fibre;
+\item \emph{instance} information is a signal $Z$ about one unit's state; it leaves the population fibre unchanged.
+\end{itemize}
+
+\begin{proposition}[decisions over a fibre]\label{prop:decisions}
+\begin{enumerate}
+\item[(1)] The utility image $\{(u_a\cdot P)_a:P\in J_d\}$ is a polytope. A decision is \emph{identified}, meaning one action is optimal for every compatible law, exactly when the image lies in one cell of the arrangement of indifference hyperplanes $u_a\cdot P=u_b\cdot P$. The fibre's dimension plays no role.
+\item[(2)] The value of resolving the fibre, under minimax regret, is $R(d)=\min_a\max_b U_{ab}(d)$, where $U_{ab}$ is the upper end of the identified interval of $(u_b-u_a)\cdot P$. It needs $|A|^2$ linear programs, and $R(d)=0$ exactly when the decision is identified. If $a_0$ is optimal for some law in $J_d$, then $R\le\max_b(U_{a_0b}-L_{a_0b})$, so resolving the fibre is worth at most its width along utility differences. $R$ is Lipschitz in the edit cost, with constant the largest Lipschitz constant of the $U_{ab}$ (\cref{prop:radii}(1)). Observing more contexts never raises it. It is $0$ on a rigid face for every utility.
+\item[(3)] Mixing data mixes fibres: $\lambda J_d+(1-\lambda)J_{d'}\subseteq J_{\lambda d+(1-\lambda)d'}$. So along any segment of data $L$ is convex and $U$ and the width $U-L$ are concave. Poisoning by adding batches moves along such segments.
+\item[(4)] Take \emph{act} and \emph{abstain} with symmetric payoffs $\mathbb 1[A_0=A_1]-\tau$ and $\tau-\mathbb 1[A_0=A_1]$. Then $R=2\min\{(\tau-L)_+,(U-\tau)_+\}$, which is concave along segments where it is positive. The value of randomising, the gain of the best mixed action over the best pure action under the worst compatible law, is exactly $R/2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) A linear image of a polytope is a polytope, and an action is optimal throughout $J_d$ exactly when every $U_{ab}\le0$. (2) Minimax regret over a convex set of laws and finitely many actions: the inner maximum over $P$ of $(u_b-u_a)\cdot P$ is a linear program. If $a_0$ is optimal at $P_0\in J_d$, every $L_{a_0b}\le0$, so $U_{a_0b}\le U_{a_0b}-L_{a_0b}$. Lipschitz continuity: minima and maxima preserve Lipschitz constants. Monotonicity: more contexts give a smaller fibre, hence smaller maxima. Rigid faces: every $U_{ab}=-U_{ba}$, so some action has all $U_{ab}\le0$. (3) Convex combinations of compatible laws are compatible with the combined data, and $L$ and $U$ are optimal values over these sets. (4) Here $U_{\rm act,abstain}=2(\tau-L)$ and $U_{\rm abstain,act}=2(U-\tau)$. Each is concave along a segment, and so is their minimum. Acting with probability $x$ earns $(2x-1)(\phi-\tau)$. When $L<\tau<U$, the choice $x=1/2$ guarantees $0$, while the best pure action guarantees $-\min(\tau-L,U-\tau)$. Checks VG1--VG3 and VG5 test this numerically: the Lipschitz ratio is at most $0.53$ over $40$ pairs, and removing a context raises $R$ in $118$ of $120$ cases.
+\end{proof}
+
+\begin{proposition}[instance information]\label{prop:instance}
+Let $Z$ be a signal of accuracy $\alpha$ about $T=\mathbb 1[A_0=A_1]$, and let $\phi=P(T=1)$. For the payoffs of \cref{prop:decisions}(4), write $a_z=P(T=1,Z=z)-\tau P(Z=z)$.
+\begin{enumerate}
+\item[(1)] Under a single law (any section), the value of the signal is $\sum_z|a_z|-|\sum_za_z|\ge0$. This is Good's inequality as a triangle inequality \cite{Das2023}. It is $0$ exactly when no posterior lies on the other side of $\tau$ from the prior, so the signal has decision value only when it can move the decision.
+\item[(2)] A robust decision-maker who commits to a policy $z\mapsto a$ can always ignore the signal, so the signal's robust value is never negative \cite{Iskandar2026}.
+\begin{itemize}
+\item With mixed policies allowed, the minimax theorem makes the robust value $\min_{\phi\in[L,U]}\sum_z|a_z|-\min_{\phi\in[L,U]}|\phi-\tau|$, which is $0$ for an uninformative signal.
+\item With pure policies only, the robust value equals the mixed-policy value plus the value of randomising without the signal, minus the value of randomising with it.
+\end{itemize}
+\item[(3)] Information and value differ. Below a critical accuracy the signal has positive mutual information with $T$ but no decision value. For fixed $\phi$ the value is largest when $\tau=\phi$, whereas the entropy of $T$ does not depend on $\tau$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) The Bayes value with the signal is $\sum_z|a_z|$ and without it $|\sum_za_z|$; the triangle inequality is an equality exactly when all $a_z$ share a sign. (2) Constant policies are available, so the maximum over policies cannot fall. Payoffs are linear in $\phi$ and in the mixture, so the minimax theorem applies, and the robust value with mixing is the minimum over $\phi$ of the Bayes value. The decomposition for pure policies holds by definition. (3) Below the critical accuracy both posteriors stay on the prior's side of $\tau$. Checks VG4 and VG7 test this.
+\end{proof}
+
+\begin{theorem}[when local data determine the value of information]\label{thm:determination}
+Let $Z=z(\omega)$ be a signal that is a function of the reading. Its classical value $\mathrm{VOI}(P)=\sum_z\max_a(u_a\mathbb 1_{z})\cdot P-\max_au_a\cdot P$ is continuous and piecewise linear on $J_d$. On each \emph{policy cell}, where the action $a_0$ without the signal and the rule $z\mapsto a_z$ with it are both optimal, it equals $g\cdot P$ for the \emph{value functional} $g=\sum_z\mathbb 1_z\,(u_{a_z}-u_{a_0})$. The following are equivalent:
+\begin{enumerate}
+\item[(i)] the local data determine the value of information: $\mathrm{VOI}$ is constant on $J_d$;
+\item[(ii)] the value functional of every policy cell that is full-dimensional in $J_d$ is orthogonal to the direction space of $J_d$;
+\item[(iii)] on the support of the fibre, each such value functional is \emph{cover-additive}, a sum $\sum_kh_k(\omega_{C_k})$ of functions of the observed contexts.
+\end{enumerate}
+In particular, a determined global law determines the value of information. A determined value does not determine the law, and determination of the value is independent of whether the decision itself is identified ($R=0$).
+\end{theorem}
+
+\begin{proof}
+On a policy cell each maximum is attained by the cell's actions, so $\mathrm{VOI}=g\cdot P$ there. The cells are polyhedra, finitely many, and they cover $J_d$. (i)$\Rightarrow$(ii): on a full-dimensional cell, a direction $v$ of $J_d$ with $g\cdot v\ne0$ changes $\mathrm{VOI}$ inside the cell. (ii)$\Rightarrow$(i): the full-dimensional cells cover $J_d$, because the others lie in finitely many proper affine subspaces. $\mathrm{VOI}$ is continuous and has zero derivative along $J_d$ on each full-dimensional cell, so it is constant on the connected set $J_d$. (ii)$\Leftrightarrow$(iii): on the fibre's support $S$, the direction space is $\{v:\ v|_{S^c}=0,\ \pi v=0,\ \mathbf 1\cdot v=0\}$. Its orthogonal complement, restricted to $S$, is the span of the rows of the marginal map, that is, of the indicators of context events. For the last sentence: a point fibre has no directions. The cases below show the other two claims.
+\end{proof}
+
+The criterion is checkable: the cells are cut out by linear inequalities, and full-dimensionality is a slack linear program. The envelope $[\min,\max]$ of $\mathrm{VOI}$ over $J_d$ is computed exactly by one linear program per cell and sense. On $80$ random problems (cover-additive or general utilities; signals on one variable or a parity of two; interior data and the fibre-$0$, $1$ and $2$ faces of Study 18), the criterion holds exactly when the envelope is a point, in all $80$ (VD1). The four cases of \cref{fig:voidet}(a), each with the signal $B_0$ (VD2):
+\begin{itemize}
+\item On a rigid face the value of information is determined ($0.081$), because the law is.
+\item In the interior, with a decision and a signal inside the context $(A_0,B_0)$, the fibre has dimension $7$ and the value is still determined ($0.081$).
+\item The running decision on the never-observed pair is not determined: the value ranges over $[0,0.292]$.
+\item An identified decision ($R=0$) can still have an undetermined value: $[0,0.201]$.
+\end{itemize}
+The three determinations (of the global law, the decision and the value of information) therefore separate. When the value functional lives in one context, the value of information is computed from that table alone, so it stays defined for contextual data, where no global law exists. For a decision on $A_0=0$ with the signal $B_0$, a PR box (contextual fraction $1$) has value $0.45$ (VD3). This is the decision-value counterpart of the reconstruction of global choices from local problems in \cite{TohmeCaterinaGangle2017}: there, local optima glue exactly when the local utilities come from one global function. Here, the value of information glues exactly when the value functionals are sums over the contexts.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_voidet.pdf}
+\caption{Determination of the value of information (\cref{thm:determination}) and value-based distance (\cref{prop:valuedist}). (a) The exact envelope of the classical value of the signal $B_0$ over the fibre in four cases: the global law, the decision ($R$) and the value of information are determined independently. (b) On $80$ random problems, the criterion's residual and the envelope's width vanish together. (c) The largest change in robust value over utilities in $[-1,1]$ equals twice the Hausdorff distance between the fibres, and is attained by the dual utility.}\label{fig:voidet}
+\end{figure}
+
+\begin{example}[what information is worth on the staged routes]\label{ex:voi}
+Read \cref{ex:stages} through these quantities, with $\tau=0.45$ (VG6--VG8, \cref{fig:voi}).
+\begin{itemize}
+\item \emph{Route A} keeps the fibre a point, so $R=0$ at every stage, although the decision flips at about $1222$ poisoned units. A robust decision-maker sees no reason to collect more data: the cheapest attack is invisible to value-of-information monitoring. The signal about the unit is still worth up to $0.296$, most near $1200$ units, where the selected value $0.451$ sits on the threshold.
+\item On \emph{route B}, $R$ is positive exactly between $1222$ and $11890$ units, where the interval straddles the threshold, and is concave there. It peaks at $0.258$ near $6550$ units, and randomising recovers half of it. The fibre's shadow at $2400$ units is cut by the threshold into the laws that favour each action, and $R$ is twice the smaller overhang, $2\times0.037$.
+\item \emph{Envelope.} With pure policies, the robust value of a signal of accuracy $0.8$ leaves the envelope of classical values over the fibre: at $2400$ units it is $0.332$ against $[0.018,0.297]$, and at $6000$ units $0.409$ against $[0.159,0.297]$. It does so by exactly the value of randomising, $0.037$ and $0.119$. With mixed policies the robust value is $0.295$ and $0.290$, inside the envelope.
+\item \emph{Three gains.} At $2400$ units the three gains from one signal differ. The identification gain is $0$, since the fibre is unchanged. The information gain $I(T;Z)$ rises smoothly from accuracy $1/2$. The Bayes decision gain is $0$ until the critical accuracy $0.566$ and linear after it. The robust gain with mixing has no kink there, because under ambiguity the robust baseline is already the randomised $0$.
+\end{itemize}
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_voi.pdf}
+\caption{What information is worth (\cref{ex:voi}). (a) The fibre's shadow at $2400$ units on route B, cut by the threshold into laws favouring each action: the value of identification is twice the smaller overhang. (b) The value of identification along both routes: route A flips the decision with no value of information at all. (c) A signal about the unit along route B: Bayes under maximum entropy, the robust value with pure and with mixed policies, and the envelope of classical values over the fibre. (d) Information, identification and decision gains against the signal's accuracy. (e) The value of the signal and of identification against the threshold: largest at the decision boundary. (f) Dilation: observing $B_0$ can widen the interval of the never-observed quantity, though never on a rigid face.}\label{fig:voi}
+\end{figure}
+
+\begin{proposition}[value-based distance is Hausdorff distance]\label{prop:valuedist}
+For $d,d'\in\mathcal D$,
+\[\sup\Big\{\big|\max_a\min_{P\in J_d}u_a\cdot P-\max_a\min_{P\in J_{d'}}u_a\cdot P\big|:\ |u_a|\le1\Big\}=2\,d_H^{\rm TV}(J_d,J_{d'}),\]
+and the supremum is attained by a single action. So the worst-case change in robust decision value, over all bounded decision problems, is the Hausdorff distance between the sets of compatible laws.
+\end{proposition}
+
+\begin{proof}
+For one action the robust value is the support function $h_J(u)=\min_{P\in J}u\cdot P$. For convex compact sets, $\sup_{\|u\|_*\le1}|h_J-h_{J'}|$ is the Hausdorff distance in the norm whose dual is $\|\cdot\|_*$. Here $\|\cdot\|_*=\|\cdot\|_\infty$, so the distance is in $\ell_1$, which is twice total variation. A maximum over actions of $1$-Lipschitz functions of the set is again $1$-Lipschitz, so several actions cannot exceed the bound. VD4 finds the attaining utility from the linear-programming dual of the $\ell_1$ distance from the farthest vertex. It reaches $2d_H^{\rm TV}$ to $10^{-7}$ on six random pairs, while $300$ random utilities and $60$ random three-action problems stay below.
+\end{proof}
+
+This is the counterpart, for credal fibres, of the value-based distance between information structures of Gensbittel, \Peski{} and Renault \cite{GensbittelPeskiRenault2022}. It answers how the two kinds of stability are connected: the credal-stability numbers above are, exactly, worst-case changes in robust decision value.
+
+\paragraph{Stability, from the decision-maker's side.} A model that keeps accepting data cannot tell genuine drift from fluctuation or poisoning. Histories that are equally likely under drift and under poisoning cannot be told apart by any procedure that sees only the history. So what matters to the decision-maker is how far a recommendation can be disturbed, whatever the cause. Five quantities answer this, and they are different.
+\begin{itemize}
+\item \emph{Decision invariance.} The least edit cost that changes the recommendation is the certified radius of \cref{prop:radii}: no undetectable disturbance smaller than $(L-\tau)/\Lambda_L$ can flip a decision that some rule would make, nor one smaller than $(U-\tau)/\Lambda_U$ for every rule.
+\item \emph{Worst-case regret.} This is $R$, which is Lipschitz and so moves at most $2$ per unit of cost in the example.
+\item \emph{Credal stability.} The Hausdorff distance in total variation between fibres, computed exactly from their vertices (half the worst-case change in robust decision value, by \cref{prop:valuedist}), stays within $1.11$ times the edit cost along route B. It is $0.007$, $0.029$, $0.157$ and $0.456$ after $25$, $100$, $600$ and $2400$ units, while the fibre dimension jumps from $0$ to $7$ at the first unit.
+\item \emph{Dilation.} Observing $B_0$ widened the interval of $P(A_0=A_1)$ for some outcome at all $300$ random data points tested, and for every outcome at $9$. One example goes from $[0.499,0.806]$ to $[0.334,0.987]$ and $[0.130,0.850]$. This is the dilation of imprecise probability, which Das identifies as the source of failures of the value of evidence \cite{Das2023}. It never occurs on a rigid face.
+\item \emph{Diachronic stability} in Das's sense: commit to one law in the credal set and act by its conditionalisations \cite{Das2023}. A section is such a commitment, and the square ``select, then condition'' against ``condition, then select'' tests it. On marginal data the square fails structurally: after conditioning on $B_0=z$ only the contexts containing $B_0$ stay observable, so re-selecting uses less information. The re-selected maximum-entropy law differs from the committed one by $0.084$ to $0.274$ in total variation at random points. On the rigid faces it differs by $0.220$ to $0.459$, and the decision value there by up to $0.189$, because re-selection throws away a fully identified law (VG8). Commitment is therefore the stable policy here, and Good's inequality holds for it by \cref{prop:instance}(1).
+\end{itemize}
+The order drift of learned models (\cref{rem:orderbayes}) is a failure of exactly this commitment. Stability is not safety: a stable model can be poisoned along route A, and an unstable one may be tracking genuine change. Dynamically, pooling makes a single disturbance decay like $1/N_t$, with no exponential rate, and \cref{prop:removal}(3) gives the exact duration of a one-batch flip. Under exponential forgetting at rate $\eta$, disturbances decay at the Lyapunov rate $\log(1-\eta)<0$. Whether topological summaries of a decision trajectory (persistent homology of sliding windows, braids formed by the ranked values of competing actions) warn before the decision margin closes is a question for a controlled study, not settled here.
+\paragraph{Relation to the literature.} The ingredients of this subsection are established. What is new is their joint quantitative treatment over marginal fibres.
+\begin{itemize}
+\item Abramsky and Brandenburger characterise when local tables glue to a global law \cite{AbramskyBrandenburger2011}, with cohomological witnesses of failure \cite{AbramskyMansfieldBarbosa2012}. The contextual fraction measures an operational advantage in games and computation \cite{AbramskyBarbosaMansfield2017}, which is not the decision value of acquiring information.
+\item Vigneaux's information cohomology characterises entropy as a cocycle \cite{Vigneaux2020}; an entropy is not a value of information.
+\item Tohm\'e, Caterina and Gangle treat the reconstruction of global choices from local problems sheaf-theoretically, and identify contextuality as an obstruction to it \cite{TohmeCaterinaGangle2017}. \Cref{thm:determination} is the analogous statement for the value of information.
+\item Iskandar separates a rule-specific value of information from the envelope of classical values over a credal set, and gives non-negativity under $\Gamma$-maximin with constant policies \cite{Iskandar2026}. \Cref{prop:instance}(2) agrees, and adds the exact decomposition of the excess over the envelope into the value of randomising.
+\item Das's practical stability \cite{Das2023} is the commitment that a section provides.
+\item Gensbittel, \Peski{} and Renault measure information structures by value \cite{GensbittelPeskiRenault2022}; \cref{prop:valuedist} does so for credal fibres.
+\end{itemize}
+Our contribution is the combination over marginal fibres: identified decisions, the regret from ambiguity that cannot be resolved, structural against instance information, when local data determine the value of information, and how all of these respond to poisoning.
+
+
+\paragraph{Fisher geometry and decision relevance.} Moskowitz, Russell and Lawless propose to value information information-geometrically \cite{MoskowitzRussellLawless2020}. Laws form a statistical manifold with the Fisher metric $g$, and they call information valuable at a point when it increases the ``complexity'' $\sqrt{\det g}$, the coefficient of the volume form. In the normal family a change of mean then has null value, and a decrease of the standard deviation is valuable. The toric K\"ahler structure of \cref{prop:kahler} carries the same metric, with the phases of the torus as further coordinates. The next proposition places all of this against the decision geometry of this subsection.
+
+\begin{proposition}[Fisher geometry and decision relevance]\label{prop:fisher}
+\begin{enumerate}
+\item[(1)] \emph{Phases are decision-null.} Every expected utility, hence every robust value, regret and value of information, depends on an amplitude $z=\sqrt P\,e^{i\theta}$ only through $P=|z|^2$. On real amplitudes the Fubini--Study distance is half the Fisher--Rao distance $d_{\rm FR}(P,Q)=2\arccos\sum_x\sqrt{P_xQ_x}$.
+\item[(2)] \emph{The fibre is the Fisher-null space of the data.} At an interior law, the Fisher information of one reading in each observed context, $I_{\rm obs}=\sum_cA_c^{\!\top}\operatorname{diag}(1/A_cP)A_c$ on $\{v:\mathbf 1\cdot v=0\}$, has null space exactly the direction space of $J_d$. The Fisher information of a complete reading is positive definite. So the criterion of \cref{thm:determination} says: the value of information is determined exactly when every full-dimensional cell's value functional is \emph{Fisher-visible}, i.e.\ annihilates the null space of $I_{\rm obs}$.
+\item[(3)] \emph{Decision value is Lipschitz in Fisher--Rao distance.} For utilities with $|u|\le1$, $|u\cdot P-u\cdot Q|\le2\,\mathrm{TV}(P,Q)\le2\sqrt{1-\mathrm{BC}^2}=2\sin(d_{\rm FR}/2)$, where $\mathrm{BC}=\sum\sqrt{P_xQ_x}$.
+\item[(4)] \emph{The converse fails both ways.} Points of one fibre can be far apart in Fisher--Rao distance and have the same value of information. Points at Fisher--Rao distance tending to $0$ can lie on either side of a policy wall and take different actions; only the value is continuous.
+\item[(5)] \emph{Volume coefficients are coordinate artefacts.} In the coordinates $(\mu,\sigma^k)$ of the normal family, $\sqrt{\det g}=\sqrt2/(|k|\sigma^{k+1})$. This decreases in $\sigma$ for $k=1$, is constant for $k=-1$ and increases for $k=-2$. The maps $(\mu,\sigma)\mapsto(a\mu+b,a\sigma)$ act transitively by isometries, so every function of a point that is invariant under isometries is constant on the normal family.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $\mathbb E_Pu=\sum_xu_x|z_x|^2$, and $|\langle\sqrt P,\sqrt Q\rangle|=\mathrm{BC}$.
+(2) $v^{\!\top}I_{\rm obs}v=\sum_c\sum_k(A_cv)_k^2/(A_cP)_k$, which vanishes iff $A_cv=0$ for every observed context, that is, iff $v$ is a direction of $J_d$ (at an interior law the fibre's support is everything). A complete reading gives $\sum_xv_x^2/P_x>0$. The restatement is \cref{thm:determination}, since annihilating the null space is orthogonality to the fibre's directions.
+(3) $2\,\mathrm{TV}=\sum|\sqrt P-\sqrt Q|\,|\sqrt P+\sqrt Q|\le\|\sqrt P-\sqrt Q\|\,\|\sqrt P+\sqrt Q\|=\sqrt{(2-2\mathrm{BC})(2+2\mathrm{BC})}$ by Cauchy--Schwarz, and $\cos(d_{\rm FR}/2)=\mathrm{BC}$.
+(4) FV4 gives both examples.
+(5) In $(\mu,\sigma)$, $g=\operatorname{diag}(1/\sigma^2,2/\sigma^2)$; change coordinates with $d\sigma/dv$ for $v=\sigma^k$. The Fisher metric is invariant under a bijection of the sample space, and $x\mapsto ax+b$ maps $N(\mu,\sigma^2)$ to $N(a\mu+b,a^2\sigma^2)$.
+\end{proof}
+
+FV1--FV5 check each part. In (2) the null space has dimension $7$ at $30$ interior laws, and Fisher-visibility agrees with the exact VOI envelope in $40$ of $40$ decision problems. In (3) there is no excess in $2000$ random pairs. In (4) two vertices of a fibre lie at Fisher--Rao distance $2.33$ (TV $0.74$) and have the same VOI $0.0812$, while laws at Fisher--Rao distance $0.002$ on either side of the wall $P(A_0=A_1)=0.45$ take different actions with a VOI gap below $10^{-16}$. The certificate in (5) is exact (sympy). Part (1) is the probabilistic face of the objects in \cref{fig:tfobjects}. Over the leximin fibre of example C there are eight critical points with the same valuation and different leading holonomies (\cref{ex:C24}). Floer theory separates them, and no decision does: they all carry the law of the moment point.
+
+Three consequences for valuing information. First, statistical distinguishability is not decision relevance. The Fisher metric measures how well data separate laws, while the value of information measures whether the separation changes an optimal act. By (2)--(4), the two agree only through a one-sided Lipschitz bound and a common null space. Second, a valuation of information that is meant to be geometric has to be invariant, and by (5) the coefficient $\sqrt{\det g}$ is not. Taking $\sigma^{-2}$ (the precision) as the coordinate reverses the ranking of \cite{MoskowitzRussellLawless2020}, and the volume \emph{form}, which is invariant, assigns no value to a point. A mean shift has null value under their measure, yet it can move $\mathbb E_Pu_a$ across a threshold and so carry positive value of information in the sense of \cref{prop:instance}. Third, what the Fisher geometry contributes here is the null space in (2): it locates the unresolved directions, and \cref{thm:determination} decides whether they matter.
+
+\subsection{Algebra of the operations, and selection that is not concave}\label{sec:algsel}
+Marginalisation is linear, composition of kernels is polynomial, and conditioning, Bayesian inversion and Markov gluing are rational. Maximum entropy on a cover is the hierarchical log-linear (toric) model, which meets each interior fibre in exactly one point (Birch's theorem) \cite{DrtonSturmfelsSullivant2009}. Four consequences are worth recording.
+
+\begin{proposition}[algebra of the operations]\label{prop:algebra}
+\begin{enumerate}
+\item[(1)] \emph{Removable singularities.} Each term $\gamma_1(i,j)\gamma_2(j,k)/q(j)$ of Markov gluing is at most $\min(\gamma_1(i,j),\gamma_2(j,k))$. So gluing extends continuously across $q(j)=0$, and so does the dagger. The kernels do not: the row $K^\dagger(\cdot\mid j)$ can converge to different limits along sequences whose couplings converge to the same limit.
+\item[(2)] \emph{Exact and inexact rules.} Leximin and Markov gluing send rational data to rational laws: one is a sequence of linear programs, the other a product. Maximum entropy on a cover that is not decomposable need not. On the 4-cycle with uniform singles and every adjacent agreement probability $3/4$, the maximum-entropy value of $P(A_0=A_1)$ is $(1+\sqrt3)/4$, while the identified interval is $[1/2,1]$ and leximin gives $3/4$.
+\item[(3)] \emph{Counting explanations.} Let the marginal counts at sample size $N$ be integral. The number of integer joint tables of size $N$ with those counts is an Ehrhart quasi-polynomial in $N$ of degree equal to the fibre dimension \cite{BeckRobins2015}. In particular it is $1$ on a rigid face whenever it is not $0$.
+\item[(4)] \emph{Selection that is not concave.} A rule that minimises a concave objective over the fibre selects a vertex. As the data move, it jumps wherever two vertices tie, at a Maxwell point. The minimum-entropy rule, which picks the ``simplest explanation'', is one such rule. Maximum entropy and rules with unique optima are continuous (\cref{prop:radii}(4)).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $\gamma_1(i,j)\le q(j)$ and $\gamma_2(j,k)\le q(j)$. For the kernels, take $\gamma_1(\cdot,j)=\varepsilon e_1$ along one sequence and $\varepsilon e_2$ along another: both columns tend to $0$, but the normalised rows are $e_1$ and $e_2$ (AL1). (2) With zero fields and a common coupling, which symmetry forces, the maximum-entropy law is an Ising ring of four spins with $t=\tanh J$. Its adjacent correlation is $(t+t^3)/(1+t^4)$, and the correlation at distance two is $2t^2/(1+t^4)$. Setting the first to $1/2$ gives $t^4-2t^3-2t+1=0$, so $t+1/t=1+\sqrt3$, and the second correlation is $2/((t+1/t)^2-2)=(\sqrt3-1)/2$. Hence $P(A_0=A_1)=(1+\sqrt3)/4$. AL2 checks this exactly with sympy and against iterative fitting to $10^{-10}$. (3) The tables form the lattice points of $N$ times the fibre, a rational polytope of the fibre's dimension. (4) A concave function attains its minimum over a polytope at a vertex. The vertices move continuously with the data within a basis, so the selected law can change discontinuously only where two of them give equal values.
+\end{proof}
+
+Rationality explains a pattern in this note's checks: the exact certificates use leximin and Markov gluing, while maximum entropy is always numerical. For the counts (AL3, \cref{fig:algsel}): on the three CH-facet laws of Study 18 the count is $1$ at every $N=240m$, $m=1,\dots,5$. On the fibre-$1$ faces it is linear, for example $69,137,205,273,341$. On the fibre-$2$ faces it is quadratic, for example $1655$, $6460$, $14416$, $25523$, $39781$. The fibre dimension is thus the growth rate of the number of datasets that explain the data. The integer moves between them are the Markov bases of Diaconis and Sturmfels \cite{DiaconisSturmfels1998}: the kernel counterparts of the edit circuits of \cref{prop:sparse}, which move the data rather than the explanation.
+
+For selection that is not concave (AL4), take three straight data paths of $61$ steps. The minimum-entropy law jumps by $0.82$, $0.44$ and $0.69$ in total variation within one step, each time at a point where the two best vertices tie to within $10^{-13}$. Maximum entropy on the same paths moves by at most $0.009$ per step. On the path shown in \cref{fig:algsel}, the minimum-entropy value of $P(A_0=A_1)$ leaps across most of the identified interval, which itself moves continuously. So bifurcations and phase-transition-like jumps of a selected law do not come from the geometry of the fibre, which is convex and Lipschitz. They come from a selection objective that is not concave, or from restricting to a model family that is not convex (latent classes, mixtures), where the same Maxwell mechanism applies. That is where a discriminant geometry of probability models would begin; we leave it open.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_algsel.pdf}
+\caption{Algebra and selection that is not concave. (a) Integer joint tables with the observed counts against sample size, for the sparsity-matched faces of Study 18: constant on CH facets, linear for fibre $1$, quadratic for fibre $2$. (b) Along a straight data path, the minimum-entropy rule jumps between vertices at ties (Maxwell points), while maximum entropy and the identified interval move continuously. (c) Markov gluing's denominator is removable for couplings, but the Bayesian inverse's row at a vanishing state has no limit.}\label{fig:algsel}
+\end{figure}
+
+\subsection{Trajectories of decision viability}\label{sec:viability}
+A system that keeps learning moves its data, and with them the fibre, the selected law and the decision. This subsection asks what the trajectory of a decision can reveal, and gives the one quantity that tracks viability exactly whatever moves the data, whether drift, noise or poisoning.
+
+\begin{definition}[viability shares]\label{def:viability}
+For a decision with $w\cdot s(d)>\tau$, the \emph{viability shares} $q^*_{\rm some}(d)$ and $q^*_{\rm all}(d)$ are the least shares of the pooled data that one consistent batch (any joint law) must have so that, afterwards, some rule (resp.\ every rule) decides $w\cdot x\le\tau$.
+\end{definition}
+
+\begin{proposition}[viability under any disturbance]\label{prop:viable}
+\begin{enumerate}
+\item[(1)] After consistent batches of total share $Q$, whatever their number and laws, the data lie in $(1-Q)d+Q\,\mathcal D$, and every point of that set is reached by one batch. This is the reachable set of all disturbances of share $Q$, and the viability kernel of the decision, in the sense of viability theory \cite{Aubin1991}, is $\{d:q^*>Q\}$.
+\item[(2)] $q^*_{\rm some}$ is the value of one linear program in $(q,P,R)$: $\pi P=(1-q)d+\pi R$, $\mathbf 1\cdot R=q$, $w\cdot P\le\tau$. $q^*_{\rm all}$ is the least of one linear program per dual vertex, as for $U$ in \cref{prop:twothresh}. Always $q^*_{\rm some}\le q^*_{\rm all}$, and $q^*_{\rm some}=0$ exactly when the decision is already rule-dependent.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Pooling is averaging, so the pooled data are $(1-Q)d$ plus $Q$ times a convex combination of points of $\mathcal D$. $\mathcal D$ is convex, so that combination is itself a point of $\mathcal D$, the data of a single batch. (2) Substitute $R=q\cdot x$ for the batch law $x$; the constraints are then linear in $(q,P,R)$. VB1 reconstructs $20$ random multi-batch histories by single batches and confirms $q^*_{\rm some}$ by bisection.
+\end{proof}
+
+\begin{proposition}[open loop]\label{prop:openloop}
+Suppose the incoming batches do not depend on the decisions.
+\begin{enumerate}
+\item[(1)] \emph{Forgetting.} Two streams that agree from step $t_0$ on coincide $W$ steps later under a window of $W$ batches, and differ by exactly $N_{t_0}/N_t$ times their earlier difference under pooling. Disturbances therefore shrink, algebraically under pooling and with Lyapunov rate $\log(1-\eta)<0$ under exponential forgetting.
+\item[(2)] \emph{Regimes.} While the batch law is fixed, the data move along a segment toward that law's data. The decision is eventually constant, unless the limit lies on the threshold.
+\item[(3)] \emph{Crossings.} Along a segment, $L$ is convex and $U$ concave, so each crosses $\tau$ at most twice. The difference of two actions' robust values is piecewise linear with at most $p_a+p_b-1$ pieces, where $p$ counts the dual vertices, so it changes sign at most that many times.
+\item[(4)] \emph{Ranking radius.} Rank the actions by robust value. No undetectable edit cheaper than $\min_{\text{adjacent }a,b}(v_a-v_b)/(\Lambda_a+\Lambda_b)$ changes the ranking, with $\Lambda$ as in \cref{prop:radii}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) The window mean forgets batches older than $W$, and the pooled mean weights the past by $N_{t_0}/N_t$. (2) $d_{t+1}-x=(1-q_t)(d_t-x)$ for the regime's data $x$, so $d_t$ moves toward $x$ along a line. A threshold decision on a continuous function of $d$ is eventually constant unless the limit is a boundary point. (3) A convex function along a line meets a level in an interval, so it crosses the level at most twice. The difference of two piecewise-linear functions has at most the sum of their pieces minus one. (4) Each robust value is $\Lambda$-Lipschitz (\cref{prop:radii}(1)), so an adjacent gap closes only after an edit costing the gap divided by $\Lambda_a+\Lambda_b$. Checks VB2--VB4: along $150$ segments the ends crossed $\tau$ at most twice. Random pairs of actions crossed at most once, against a bound of $127$, which is valid but loose. No edit cheaper than the ranking radius changed the ranking.
+\end{proof}
+
+\begin{proposition}[closed loop]\label{prop:closedloop}
+Suppose the decision chooses the next batch's law from finitely many laws, and the data are a window of the last $W$ batches. Then the state is the last $W$ choices, so the decision sequence is eventually periodic with period at most $|\text{laws}|^W$.
+\end{proposition}
+
+\begin{proof}
+There are finitely many states, the update is deterministic, and the decision is a function of the state. Any orbit of such a system is eventually periodic.
+\end{proof}
+
+\begin{example}[five regimes, and a feedback loop]\label{ex:viability}
+Take the act/abstain decision on $P(A_0=A_1)$ with $\tau=0.45$, and a window of six batches. The stream passes through five regimes of eight steps each (VB5, \cref{fig:viability}(a,b)), with shares $q^*$ measured as fractions of the window.
+\begin{itemize}
+\item \emph{Clean} (the interior law $0.8$ CH face $+\,0.2$ uniform): the decision is rule-dependent ($q^*_{\rm some}=0$, $R=0.107$), and $q^*_{\rm all}=0.246$.
+\item \emph{Degeneration} (the rigid CH-facet law): the fibre collapses from dimension $7$ to $0$, $R$ falls to $0$, and $q^*_{\rm all}$ falls from $0.224$ to $0.092$.
+\item \emph{Poisoning on the facet} ($15\%$ of each batch is the facet reading $(0,1,1,0)$): the fibre stays a point and $R$ stays $0$, but $q^*_{\rm all}$ falls to $0.007$ and $q^*_{\rm some}$ to $0.002$ before the decision switches. Here the viability share is the only quantity that warns.
+\item \emph{Poisoning off the facet}: the fibre reopens to dimension $7$, the largest Hausdorff step ($0.100$) occurs at its start, $R$ rises to $0.057$, and the decision switches back.
+\item \emph{Recovery}: everything returns to the clean values.
+\end{itemize}
+At most two decision switches occur per regime, as \cref{prop:openloop}(2,3) requires.
+
+In the closed loop, acting brings batches that lower $P(A_0=A_1)$ and abstaining brings batches that raise it (VB6, \cref{fig:viability}(c,d)). The identified interval then straddles $\tau$ at every step, and the maximum-entropy decision chatters inside it. For windows $W=3,\dots,8$ the decision sequence is periodic with period $W+1$; the bound $2^W$ is proved, the pattern $W+1$ only observed. The same law fed in open loop gives a decision that is constant from the first step.
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_viability.pdf}
+\caption{Trajectories of decision viability (\cref{ex:viability}). (a) Five regimes in open loop: viability shares, value of identification and maximum-entropy margin; on-facet poisoning keeps $R=0$ and is seen only by the viability share. (b) Fibre dimension and Hausdorff steps: degeneration collapses the fibre to a point, and off-facet poisoning reopens it. (c) Closed loop with a window of five batches: the decision chatters inside the identified band. (d) Closed-loop decision sequences are periodic (period $W+1$ here, at most $2^W$ in general); in open loop the decision is eventually constant.}\label{fig:viability}
+\end{figure}
+
+\begin{remark}[knots, braids and persistent topology]\label{rem:topology}
+Several caveats apply before these tools are used.
+\begin{itemize}
+\item \emph{Knots.} Every closed curve in four or more dimensions can be unknotted, and our data move in eight. A knot type therefore appears only after a choice of three coordinates, and depends on that choice. We do not see a canonical one.
+\item \emph{Braids.} Real-valued scores give a word of adjacent transpositions, not a braid. Unlike the decision margin, it does record swaps below the top two, and its robustness radius is the ranking radius of \cref{prop:openloop}(4). Genuine braids need two numbers per action, for example the centre and half-width of its robust interval, and braid entropy is meaningful only for recurrent regimes.
+\item \emph{Persistent homology.} Sliding windows of an open-loop trajectory converge within each regime, so recurrent loops reflect a recurrent input or feedback, as in the closed loop above.
+\item \emph{Pseudo-crossings.} In the language of probabilistic pseudo-knots \cite{DiamantisKauffman2026}, a decision switch is a classical crossing when it is identified on both sides, and a pseudo-crossing, resolved by the rule, while $R>0$. Route A of \cref{ex:stages} is a single classical crossing, and route B a long pseudo-crossing. This restates the support of $R$; it is not a new invariant.
+\end{itemize}
+Whether topology warns before the margin, $R$ and $q^*$ do is therefore a question about closed loops. Continuous-state feedback (forgetting with feedback, selective observation) can produce cycles and bifurcations of switching maps. That question is for a pre-registered study.
+\end{remark}
+
+\subsection{Histories, gluing and holonomy}\label{sec:history}
+So far a rule has seen only the current data. A system that keeps learning also has a history: the order in which contexts arrived, the tables it saw before they were revised, and the laws it selected along the way. Tohm\'e, Caterina and Gangle read the sheaf condition for local choices as independence from the path of previously solved problems. In their case-based example, two sequences of earlier problems lead to the same current problem and to different choices \cite{TohmeCaterinaGangle2017}. This subsection separates the two dependences that this raises,
+\[
+\text{dependence on the compatible law (the fibre)}\qquad\text{and}\qquad\text{dependence on the history,}
+\]
+the history being the path by which the data were reached,
+and measures the second geometrically.
+
+\begin{definition}[histories, updating rules, holonomy]\label{def:history}
+A \emph{snapshot} is a set $K$ of observed contexts with their tables, and its fibre $J_K$ is the set of joint laws with those tables. A \emph{history} $H=(K_1,\dots,K_n)$ is a sequence of snapshots, and $d(H)=K_n$ is its final snapshot. An \emph{updating rule} carries the previously selected law to the current fibre, $\sigma_t=u(\sigma_{t-1},K_t)\in J_{K_t}$, starting from the uniform law; write $\sigma(H)=\sigma_n$. The rule is \emph{path independent} when $\sigma(H)$ depends only on $d(H)$, that is, when $\sigma=s\circ d$ for a section $s$. The \emph{holonomy} of two histories with the same final snapshot is $\mathrm{hol}(H,H')=\mathrm{TV}(\sigma(H),\sigma(H'))$. A poison-then-remove loop is the special case $d(H)=d(H')$ in which $H'$ stays at the start.
+\end{definition}
+
+Three updating rules are compared: \emph{KL updating} (the I-projection of $\sigma_{t-1}$ onto $J_{K_t}$, minimum discrimination information), and \emph{Euclidean} and \emph{TV updating} (the nearest law of $J_{K_t}$ in the Euclidean and total-variation distances, TV ties broken by a fixed linear order). The last two are minimal-change rules, in the spirit of belief revision. KL updating on a single context is Jeffrey's rule.
+
+\begin{proposition}[holonomy is bounded by the fibre]\label{prop:holbound}
+Let $H,H'$ be histories with the same final snapshot $K$, and let $u$ be any updating rule.
+\begin{enumerate}
+\item[(1)] $\mathrm{hol}(H,H')\le\operatorname{diam}_{\rm TV}J_K$. On a rigid face, where $J_K$ is a point, every rule is path independent.
+\item[(2)] $|w\cdot\sigma(H)-w\cdot\sigma(H')|\le U-L$, where $[L,U]$ is the identified interval of $w\cdot x$ over $J_K$. The threshold decision $w\cdot x\ge\tau$ can therefore depend on the history only if $L<\tau\le U$. An identified decision ($\tau<L$ or $\tau>U$) is path independent for every rule.
+\item[(3)] The value of information at $\sigma(H)$ lies in the envelope of \cref{thm:determination}. When the criterion of that theorem holds, it is the same for every history and every rule.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Both $\sigma(H)$ and $\sigma(H')$ lie in $J_K$, and each statement is a property of all pairs of points of $J_K$: (1) by the definition of the diameter, (2) because $L\le w\cdot x\le U$ on $J_K$, and (3) by \cref{thm:determination}. HY3 checks all three on $216$ pairs of random histories.
+\end{proof}
+
+So history can change a decision only by moving the selection inside a fibre, and only when the fibre straddles the threshold. The decision-level sheaf condition is the static condition $R=0$ of \cref{sec:voi}. Which rules actually move?
+
+\begin{proposition}[flat and curved updating]\label{prop:flat}
+Suppose the context sets only grow along the history ($K_1\subseteq K_2\subseteq\cdots$ as sets of contexts). Their tables may be revised, and every fibre is assumed to contain a strictly positive law.
+\begin{enumerate}
+\item[(1)] \emph{KL updating is flat and memoryless:} $\sigma_t$ is the maximum-entropy law of $K_t$ at every $t$, whatever came before. Hence it is path independent, and poison-then-remove loops close.
+\item[(2)] \emph{Forgetting curves it.} If a context leaves the snapshot (a sliding window), KL updating keeps the statistics of the forgotten context in $\sigma_t$ and is path dependent in general. On single contexts this is the non-commutativity of Jeffrey's rule \cite{DiaconisZabell1982}.
+\item[(3)] \emph{Euclidean updating is flat in the interior.} As long as no positivity constraint binds, $\sigma_t$ is the Euclidean projection of the uniform law onto the affine hull of $J_{K_t}$, so it is again memoryless. Holonomy appears only when a projection reaches the boundary of the simplex.
+\item[(4)] \emph{TV updating is curved} even in the interior: its nearest points are not projections onto the affine hulls.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Let $\mathcal E_K$ be the log-linear family of the contexts in $K$, the laws proportional to $\exp(\sum_{c\in K}\theta_c(x_c))$. The uniform law lies in $\mathcal E_{K_1}$. Suppose $\sigma_{t-1}\in\mathcal E_{K_{t-1}}$. Since $K_{t-1}\subseteq K_t$, also $\sigma_{t-1}\in\mathcal E_{K_t}$. The fibre $J_{K_t}$ is the linear family defined by the same statistics, so the I-projection of any point of $\mathcal E_{K_t}$ onto it is the unique point of $\mathcal E_{K_t}\cap J_{K_t}$ (by the Pythagorean identity for I-divergence \cite{Csiszar1975}). That point is the maximum-entropy law of $K_t$, which is strictly positive because the fibre contains a positive law. By induction, $\sigma_t$ is the maximum-entropy law of $K_t$ for every $t$.
+(2) When a context $c$ leaves, $\sigma_{t-1}$ need not lie in $\mathcal E_{K_t}$, so the induction fails. HY4 gives explicit path dependence.
+(3) Write $\mathrm{aff}J_{K_t}=a_t+V_t$. Growing contexts give $V_t\subseteq V_{t-1}$, and revised tables translate $a_t$. If $y=x-P_{V^\perp}(x-a)$ is the projection onto $a+V$ and $V'\subseteq V$, then $a'+P_{V'}(y-a')=a'+P_{V'}(x-a')$, because $P_{V'}P_{V^\perp}=0$. So composing the projections gives the projection onto the last affine hull. Positivity enters only through the constraints $x\ge0$.
+(4) This part is numerical: HY2 finds TV holonomy up to $0.26$ between histories whose projections all stay strictly positive.
+\end{proof}
+
+HY1 confirms (1) on $90$ random growing histories with revisions, to within $10^{-15}$. HY2 confirms (3): the Euclidean holonomy is at most $2\times10^{-16}$ when every projection stays positive, and nonzero in $32$ of $40$ cases at the boundary. HY6 confirms the loops: after $15\%$ poisoning and its removal, KL and interior Euclidean updating return to within $10^{-15}$, and TV updating fails to return in all $10$ cases, by up to $0.047$. Note that path independence of KL updating does not make it the right rule. It makes it a section, and \cref{prop:holbound} still allows any section to sit on the wrong side of $\tau$.
+
+\begin{example}[three snapshots, two histories]\label{ex:history}
+Take the joint law with masses $k/20$, $k=(3,0,3,0,1,0,2,1,3,4,1,0,0,2,0,0)$ on the cells $(a_0,a_1,b_0,b_1)$ in lexicographic order. Its context tables, with entries in the order $00,01,10,11$, are
+\[
+\begin{aligned}
+&(A_0,B_0):(0.20,0.30,0.45,0.05), && (A_0,B_1):(0.45,0.05,0.20,0.30),\\
+&(A_1,B_0):(0.50,0.20,0.15,0.15), && (A_1,B_1):(0.50,0.20,0.15,0.15).
+\end{aligned}
+\]
+The decision is to act when $P(A_0=A_1)\ge\tau=0.49$. $A_0$ and $A_1$ are never observed together, so this pair is never measured. Two histories reach the same final snapshot (HY5, \cref{fig:history}):
+\begin{itemize}
+\item \emph{History A} sees $(A_0,B_0),(A_0,B_1)$ at $t_1$, adds $(A_1,B_0)$ at $t_2$ and $(A_1,B_1)$ at $t_3$.
+\item \emph{History B} sees $(A_1,B_1),(A_1,B_0)$ at $t_1$, adds $(A_0,B_1)$ at $t_2$ and $(A_0,B_0)$ at $t_3$.
+\end{itemize}
+In the sheaf picture of \cite{TohmeCaterinaGangle2017}, each snapshot is a family of local problems. At $t_1$ two tables share one variable, and at $t_2$ three tables form a path. On such an acyclic cover the local tables always glue once they agree on the shared variable \cite{Vorobev1962}. The glued fibre is the intersection of the local fibres, of dimension $10$ at $t_1$ and $8$ at $t_2$ in both histories. The interval of $P(A_0=A_1)$ is $[0,1]$ at $t_1$ for both histories, and at $t_2$ it is $[0.2,0.6]$ in history A and $[0.4,0.8]$ in history B. At $t_3$ the cycle $A_0B_0A_1B_1$ closes. The fibre has dimension $7$ and interval $[0.4,0.6]$ for both histories, since the final snapshot is the same.
+\begin{center}\small
+\begin{tabular}{lccccc}
+\toprule
+rule & $P(A_0=A_1)$, A & $P(A_0=A_1)$, B & action (A, B) & holonomy & VOI of $B_0$ (A, B)\\\midrule
+KL & $0.500$ & $0.500$ & act, act & $0$ & $0.055$, $0.055$\\
+Euclidean & $0.4786$ & $0.5125$ & abstain, act & $0.053$ & $0.052$, $0.043$\\
+TV & $0.450$ & $0.600$ & abstain, act & $0.225$ & $0.107$, $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+All of these are within the bounds of \cref{prop:holbound}. The TV diameter of the final fibre is $0.40$, $U-L=0.2$, and the envelope of the value of information is $[0,0.157]$. The decision is history dependent for both minimal-change rules because $\tau$ lies inside $[0.4,0.6]$, so $R>0$. With $\tau$ outside it, no rule could split.
+
+\emph{Contextual $t_3$.} Replace the last table by $(A_1,B_1):(0.65,0.05,0,0.30)$, which has the same margins. Every three of the four tables still glue (each triple is a path), but the four do not. The fibre is empty, and the contextual fraction is $0.10$. Moving $P(A_1=0,B_1=0)$ from $0.50$ upward shrinks the interval of $P(A_0=A_1)$ to a point at about $0.60$, after which the fibre is empty (\cref{fig:history}(c)). This is the failure of the global gluing in the sheaf picture. It cannot occur before the cycle closes, and once it occurs no rule, path dependent or not, has a law to select.
+\end{example}
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_history.pdf}
+\caption{Three snapshots, two histories (\cref{ex:history}). (a) The context cycle with the time at which each context arrives. At $t_1$ and $t_2$ the observed contexts form a path and the tables glue; at $t_3$ the cycle closes, and the contextual variant does not glue. (b) The interval of $P(A_0=A_1)$ over the fibre at each time (bars), with the laws selected by KL, Euclidean and TV updating (markers; blue history A, orange history B). At $t_3$ both histories have the same interval $[0.4,0.6]$; KL lands on one law, and the minimal-change rules land on opposite sides of $\tau$. (c) The $t_3$ snapshot as its last table varies with fixed margins: the interval shrinks to a point, then the fibre is empty, with contextual fraction rising from $0$, although every three contexts still glue.}\label{fig:history}
+\end{figure}
+
+\begin{remark}[Tohm\'e's mechanisms, Das's square and order drift]\label{rem:tohme}
+The two behavioural mechanisms of \cite{TohmeCaterinaGangle2017} sit in different places here.
+\begin{itemize}
+\item \emph{Case-based choice} carries memory of earlier problems. It is history-indexed selection, the curved case of \cref{prop:flat}: minimal-change updating, or I-projection with forgetting.
+\item \emph{Framing}, as in prospect theory, changes the utility with the context. It changes the value functional rather than the fibre, so its effect on decisions and on the value of information is governed by \cref{prop:decisions,thm:determination}.
+\end{itemize}
+Das's square, ``select, then condition'' against ``condition, then select'' (\cref{sec:voi}), compares two paths to the same information, so its failure for re-selection is a holonomy of the same kind. The order drift of learned models (\cref{rem:orderbayes}) is likewise a dependence of the selected law on the path through the variables. \Cref{prop:holbound} bounds all three by the geometry of one fibre, and \cref{prop:flat}(1) shows that KL updating over growing context sets has none of them.
+\end{remark}
 
 \part{Deeper selection: \texorpdfstring{$2\times4$}{2 x 4} couplings}
 \section{Three-dimensional fibres}\label{sec:twofour}
@@ -2067,6 +2534,41 @@ In $2\times3$ the evidence was single scales: $(3\alpha-1)/4$ on $F_1$, $1/200$ 
 chamber, because the factors decouple. B is the first coupled case with a multiplicity, and C the first coupled case with three levels and a level that removes nothing. A proof in general would need
 the successive balances of \cref{thm:selection} to appear, one order at a time, in the minors of $Q$. That is the step we have not found.
 
+
+\subsection{Phases of the objects: Bloch spheres and holonomy groups}\label{sec:bloch}
+Each object in \cref{fig:tfobjects} is drawn with three dials. Two pieces of information are attached to it. One is the torus fibre it lives on, whose position $u$ in the polytope is a coupling, that is, a probability law on the cells of the table. The other is the holonomy of its flat connection, a point $\theta$ of a three-dimensional torus, which the dials show. Probabilities and phases appearing together suggest the picture physicists use for a two-level system, the Bloch sphere, and this subsection asks how far that picture applies.
+
+Recall the Bloch sphere. A two-outcome law $(1-p,p)$ together with a phase $\theta$ defines the unit vector $\psi=\sqrt{1-p}\,|0\rangle+\sqrt p\,e^{i\theta}|1\rangle$ in $\mathbb C^2$, up to an overall phase. Such vectors are the points of $\mathbb{CP}^1$, which is a round sphere. The height on the sphere is $1-2p$, so latitude records the probability, and the longitude is $\theta$. Explicitly, the point is
+\[
+\big(2\sqrt{p(1-p)}\cos\theta,\ 2\sqrt{p(1-p)}\sin\theta,\ 1-2p\big).
+\]
+The round metric splits accordingly. For $z=\sqrt p\,e^{i\theta}$ with any number of components, the Fubini--Study line element is
+\[
+ds^2_{\rm FS}=\tfrac14\sum_j\frac{dp_j^2}{p_j}+\sum_jp_j\,d\theta_j^2-\Big(\sum_jp_j\,d\theta_j\Big)^2 .
+\]
+The first term is a quarter of the Fisher--Rao metric, and the rest measures relative phase. To see this, write $dz_j=(dp_j/2\sqrt{p_j}+i\sqrt{p_j}\,d\theta_j)e^{i\theta_j}$, use $\sum dp_j=0$, and expand $ds^2=\langle dz,dz\rangle-|\langle z,dz\rangle|^2$. Two remarks fix the setting. A point with three independent phases needs a three-dimensional torus, so the spaces here are three-dimensional, such as $(\mathbb{CP}^1)^3$ or $\mathrm{Bl}_{pt}\mathbb{CP}^3$, and not $\mathbb{CP}^2$, which carries only two relative phases. And the three dials are already relative phases, so turning all three together is not a change of overall phase. Indeed $\pm(i,i,i)$ are two distinct objects of example C.
+
+\begin{proposition}[example A is three Bloch spheres]\label{prop:bloch}
+In example A, $X=(\mathbb{CP}^1)^3$, and its three factors correspond to columns $1$, $3$ and $4$ of the $2\times4$ table, with coordinates $y_1$, $y_3$ and $z=T^{f_1}/P$. On each factor the height is the conditional probability $P(\text{row }2\mid\text{column})$ and the longitude is the holonomy. The eight objects are the eight product states $|{\pm}{\pm}{\pm}\rangle$, where $|\pm\rangle=(|0\rangle\pm|1\rangle)/\sqrt2$, and so they form an orthonormal basis of $(\mathbb C^2)^{\otimes3}$. The positive object is $|{+}{+}{+}\rangle$.
+\end{proposition}
+
+\begin{proof}
+Column $2$ never binds, so $W$ is a sum of three potentials $y+T^a/y$, one for each remaining column (\cref{ex:A24}). The two monomials of each are the two cells of that column, so the moment coordinate of a factor is the split of the column between the rows. The critical points of $y+T^a/y$ are $y=\pm T^{a/2}$. Both lie at the midpoint of the moment interval, which is the equator ($p=1/2$), with longitude $0$ or $\pi$. Two distinct sign patterns differ in some factor, where $\langle+|-\rangle=0$. Each factor's circle is identified with its dual canonically up to a sign, and a sign does not move $\pm1$, so no choice enters.
+\end{proof}
+
+Examples B and C are not products, and the picture changes in two ways. First, the phases still have structure. Over each fibre, the holonomies of the objects form a coset of a finite subgroup of the torus, and over the leximin fibre they form a subgroup, whose identity is the positive object. In B the six holonomies are the powers of $(-1,\zeta,\zeta)$ with $\zeta=e^{i\pi/3}$, a cyclic group of order $6$. In C the eight holonomies over the leximin fibre form $\mathbb Z/4\times\mathbb Z/2$, generated by $(1,-1,i)$ and $(-1,-1,1)$, and the two over the other fibre are $\pm(i,i,i)$, a coset that does not contain $1$ (\cref{fig:bloch}). We found this in the three examples and have not proved it in general.
+
+Second, the holonomy is a point of the torus dual to the fibre, while a point of $X$ has its angles on the fibre torus itself. Turning objects into states therefore needs an identification of a lattice with its dual. A product of spheres supplies one, factor by factor, and B and C do not. Different identifications place B's and C's groups at genuinely different points, so the overlaps of the resulting states are not invariants of the objects, and we do not compute them. Mixed states over the objects, $\sum_aq_a|z_a\rangle\langle z_a|$, would need weights $q_a$, and nothing here supplies them. In every case, all objects over one fibre carry the same coupling, so they agree on every expected utility, decision and value of information (\cref{prop:fisher}(1)).
+
+\paragraph{Probabilistic pseudo knots.} Diamantis and Kauffman attach a probability $p_i$ to each undetermined crossing (pre-crossing) of a pseudo knot diagram, the probability that it resolves as a positive crossing. Assuming independence, they obtain a law on the $2^n$ complete resolutions and study invariants that are expectations over it, such as a probabilistic writhe and a probabilistic Kauffman bracket \cite{DiamantisKauffman2026}. In the language above, $(p_1,\dots,p_n)$ is a point of the cube $[0,1]^n$, the moment polytope of $(\mathbb{CP}^1)^n$. Their law on resolutions is the outcome law of the product state with these heights, measured in the basis $|0\rangle,|1\rangle$ of each factor. The case $p_i=\tfrac12$, the unweighted resolution set of pseudo knots introduced by Hanaki \cite{Hanaki2010}, is the equator. For $n=3$ it is example A's positive object $|{+}{+}{+}\rangle$, whose outcome law is uniform on the eight resolutions.
+
+Two consequences follow. Their invariants are expectations, so they do not see longitudes, for the same reason that decisions do not; a phase-sensitive version, which they list as future work, would need the Bloch longitude. And the same cube $\{0,1\}^n$ indexes the complete resolutions, the vertices of the box in example A, and the cube of smoothings on which Khovanov homology categorifies the Jones polynomial, graded by the number of $1$-smoothings \cite{Khovanov2000,BarNatan2002}. A graded category built over the resolution cube, with the crossing probabilities as heights and the holonomies as longitudes, would join these. We do not construct it here.
+
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_bloch.pdf}
+\caption{Phases of the objects of \cref{fig:tfobjects}. (a) Example A is $(\mathbb{CP}^1)^3$, with one Bloch sphere for each binding column. The height is $P(\text{row }2\mid\text{column})$, which is $1/2$ at the leximin fibre, and the longitude is the holonomy, so the eight objects are the product basis $|{\pm}{\pm}{\pm}\rangle$. (b) B's six holonomies form a cyclic group of order $6$ (dials as in \cref{fig:tfobjects}; each edge adds the generator). (c) C's eight holonomies over the leximin fibre form $\mathbb Z/4\times\mathbb Z/2$, and the two over the other fibre are $\pm(i,i,i)$, which differ by turning all three dials through $\pi$.}\label{fig:bloch}
+\end{figure}
+
 \section{Outlook}\label{sec:outlook}
 Eight questions are left open.
 \begin{itemize}
@@ -2216,11 +2718,15 @@ MS11 & \cref{prop:cocycle}: the $c<0$ example (exact); the tensor-square defect 
 LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; the rendered table matches \texttt{LEDGER.yaml}\\\bottomrule
 \end{longtable}}
 
+\section*{Acknowledgement}
+Parts of the text, the code, the check scripts and the figures were drafted with the assistance of an AI system (Claude, Anthropic). The author directed the work, proposed its questions, including the comparison with Bloch spheres and pseudo knots, checked the statements against the computations recorded in the ledger, and takes responsibility for the content.
+
 \begin{thebibliography}{99}
 \bibitem{AbramskyBarbosaMansfield2017} S.~Abramsky, R.~Soares Barbosa and S.~Mansfield, Contextual fraction as a measure of contextuality, \emph{Phys. Rev. Lett.} \textbf{119} (2017) 050504.
 \bibitem{AbramskyBrandenburger2011} S.~Abramsky and A.~Brandenburger, The sheaf-theoretic structure of non-locality and contextuality, \emph{New J. Phys.} \textbf{13} (2011) 113036.
 \bibitem{AbramskyMansfieldBarbosa2012} S.~Abramsky, S.~Mansfield and R.~Soares Barbosa, The cohomology of non-locality and contextuality, \emph{Electron. Proc. Theor. Comput. Sci.} \textbf{95} (2012) 1--14.
 \bibitem{Abreu2003} M.~Abreu, K\"ahler geometry of toric manifolds in symplectic coordinates, in \emph{Symplectic and Contact Topology}, Fields Inst. Commun. \textbf{35}, AMS, 2003, 1--24.
+\bibitem{Aubin1991} J.-P.~Aubin, \emph{Viability Theory}, Birkh\"auser, 1991.
 \bibitem{AlSafiShort2013} S.~W.~Al-Safi and A.~J.~Short, Simulating all nonsignaling correlations via classical or quantum theory with negative probabilities, \emph{Phys. Rev. Lett.} \textbf{111} (2013) 170403.
 \bibitem{AmariNagaoka2000} S.~Amari and H.~Nagaoka, \emph{Methods of Information Geometry}, AMS and Oxford University Press, 2000.
 \bibitem{AlstonAmorim2010} G.~Alston and L.~Amorim, Floer cohomology of torus fibers and real Lagrangians in Fano toric manifolds, arXiv:1003.3651, 2010.
@@ -2230,9 +2736,17 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{Awasthi2026Cpl} V.~K.~Awasthi, Coupling polytopes and toric geometry: the $2\times3$ family, the square case, higher levels and stability, companion paper, Johns Hopkins University, October 2026.
 \bibitem{Awasthi2026Arch} V.~K.~Awasthi, How the programme fits together: one family of polytopes, many models, and one example through every layer, draft 1, Johns Hopkins University, October 2026.
 \bibitem{BaudotBennequin2015} P.~Baudot and D.~Bennequin, The homological nature of entropy, \emph{Entropy} \textbf{17} (2015) 3253--3318.
+\bibitem{BeckRobins2015} M.~Beck and S.~Robins, \emph{Computing the Continuous Discretely}, 2nd ed., Springer, 2015.
 \bibitem{BilleraSturmfels1992} L.~J.~Billera and B.~Sturmfels, Fiber polytopes, \emph{Ann. of Math.} \textbf{135} (1992) 527--549.
 \bibitem{ClauserHorne1974} J.~F.~Clauser and M.~A.~Horne, Experimental consequences of objective local theories, \emph{Phys. Rev. D} \textbf{10} (1974) 526--535.
 \bibitem{CressieRead1984} N.~Cressie and T.~R.~C.~Read, Multinomial goodness-of-fit tests, \emph{J. Roy. Statist. Soc. Ser. B} \textbf{46} (1984) 440--464.
+\bibitem{Csiszar1975} I.~Csisz\'ar, $I$-divergence geometry of probability distributions and minimization problems, \emph{Ann. Probab.} \textbf{3} (1975) 146--158.
+\bibitem{Das2023} N.~Das, Credal imprecision and the value of evidence, \emph{No\^us} 57 (2023) 684--721; doi:10.1111/nous.12417.
+\bibitem{Hanaki2010} R.~Hanaki, Pseudo diagrams of knots, links and spatial graphs, \emph{Osaka J. Math.} \textbf{47} (2010) 863--883.
+\bibitem{Khovanov2000} M.~Khovanov, A categorification of the Jones polynomial, \emph{Duke Math. J.} \textbf{101} (2000) 359--426.
+\bibitem{BarNatan2002} D.~Bar-Natan, On Khovanov's categorification of the Jones polynomial, \emph{Algebr. Geom. Topol.} \textbf{2} (2002) 337--370.
+\bibitem{DiamantisKauffman2026} I.~Diamantis and L.~H.~Kauffman, Probabilistic pseudo knot theory, arXiv:2607.08188 (2026).
+\bibitem{DrtonSturmfelsSullivant2009} M.~Drton, B.~Sturmfels and S.~Sullivant, \emph{Lectures on Algebraic Statistics}, Birkh\"auser, 2009.
 \bibitem{Fine1982} A.~Fine, Hidden variables, joint probability, and the Bell inequalities, \emph{Phys. Rev. Lett.} \textbf{48} (1982) 291--295.
 \bibitem{Hora2023} R.~Hora, Internal parameterization of hyperconnected quotients, arXiv:2302.06851 (2023).
 \bibitem{Layers} V.~K.~Awasthi, Probability, context and differentiation: the layers, working draft, 2026.
@@ -2246,6 +2760,7 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{CLS2011} D.~A.~Cox, J.~B.~Little and H.~K.~Schenck, \emph{Toric Varieties}, Graduate Studies in Mathematics \textbf{124}, American Mathematical Society, 2011.
 \bibitem{CominettiSanMartin1994} R.~Cominetti and J.~San Mart\'in, Asymptotic analysis of the exponential penalty trajectory in linear programming, \emph{Math. Programming} \textbf{67} (1994) 169--187.
 \bibitem{Delzant1988} T.~Delzant, Hamiltoniens p\'eriodiques et images convexes de l'application moment, \emph{Bull. Soc. Math. France} \textbf{116} (1988) 315--339.
+\bibitem{DiaconisZabell1982} P.~Diaconis and S.~L.~Zabell, Updating subjective probability, \emph{J. Amer. Statist. Assoc.} \textbf{77} (1982) 822--830.
 \bibitem{DiaconisSturmfels1998} P.~Diaconis and B.~Sturmfels, Algebraic algorithms for sampling from conditional distributions, \emph{Ann. Statist.} \textbf{26} (1998) 363--397.
 \bibitem{DuistermaatHeckman1982} J.~J.~Duistermaat and G.~J.~Heckman, On the variation in the cohomology of the symplectic form of the reduced phase space, \emph{Invent. Math.} \textbf{69} (1982) 259--268.
 \bibitem{Dyckerhoff2011} T.~Dyckerhoff, Compact generators in categories of matrix factorizations, \emph{Duke Math. J.} \textbf{159} (2011) 223--274.
@@ -2259,6 +2774,7 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{GGI2016} S.~Galkin, V.~Golyshev and H.~Iritani, Gamma classes and quantum cohomology of Fano manifolds: Gamma conjectures, \emph{Duke Math. J.} \textbf{165} (2016) 2005--2077.
 \bibitem{GeigerMeekSturmfels2006} D.~Geiger, C.~Meek and B.~Sturmfels, On the toric algebra of graphical models, \emph{Ann. Statist.} \textbf{34} (2006) 1463--1492.
 \bibitem{GKZ1994} I.~M.~Gelfand, M.~M.~Kapranov and A.~V.~Zelevinsky, \emph{Discriminants, Resultants, and Multidimensional Determinants}, Birkh\"auser, 1994.
+\bibitem{GensbittelPeskiRenault2022} F.~Gensbittel, M.~\Peski{} and J.~Renault, Value-based distance between information structures, \emph{Theoretical Economics} 17 (2022) 1225--1267; doi:10.3982/TE4782.
 \bibitem{Guillemin1994} V.~Guillemin, Kaehler structures on toric varieties, \emph{J. Differential Geom.} \textbf{40} (1994) 285--309.
 \bibitem{HoriVafa2000} K.~Hori and C.~Vafa, Mirror symmetry, arXiv:hep-th/0002222, 2000.
 \bibitem{Iritani2009} H.~Iritani, An integral structure in quantum cohomology and mirror symmetry for toric orbifolds, \emph{Adv. Math.} \textbf{222} (2009) 1016--1079.
@@ -2266,10 +2782,14 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{Kleiman1966} S.~L.~Kleiman, Toward a numerical theory of ampleness, \emph{Ann. of Math.} \textbf{84} (1966) 293--344.
 \bibitem{Kadeishvili1980} T.~V.~Kadeishvili, On the homology theory of fibre spaces, \emph{Russian Math. Surveys} \textbf{35} (1980) 231--238.
 \bibitem{MaclaganSturmfels2015} D.~Maclagan and B.~Sturmfels, \emph{Introduction to Tropical Geometry}, Graduate Studies in Mathematics \textbf{161}, AMS, 2015.
+\bibitem{Iskandar2026} R.~Iskandar, Value of information under imprecise probabilities: decision rule-specific values and fixed-measure envelopes on a credal set, arXiv:2607.06570 (2026).
 \bibitem{Manski2003} C.~F.~Manski, \emph{Partial Identification of Probability Distributions}, Springer Series in Statistics, Springer, 2003.
+\bibitem{BohinenPerrone2025} M.~Bohinen and P.~Perrone, Categorical algebra of conditional probability, \emph{Appl.\ Categ.\ Structures} (2026), doi:10.1007/s10485-026-09893-9; arXiv:2502.14941.
 \bibitem{BroderickGiordanoMeager2020} T.~Broderick, R.~Giordano and R.~Meager, An automatic finite-sample robustness metric: when can dropping a little data make a big difference?, arXiv:2011.14999 (2020).
 \bibitem{MahloujifarEtAl2019} S.~Mahloujifar, D.~I.~Diochnos and M.~Mahmoody, The curse of concentration in robust learning: evasion and poisoning attacks from concentration of measure, \emph{Proc.\ AAAI Conference on Artificial Intelligence} 33 (2019); arXiv:1809.03063.
+\bibitem{MoskowitzRussellLawless2020} I.~S.~Moskowitz, S.~Russell and W.~F.~Lawless, An information geometric look at the valuing of information, in W.~F.~Lawless, R.~Mittu and D.~A.~Sofge (eds.), \emph{Human-Machine Shared Contexts}, Academic Press, 2020, 177--204; doi:10.1016/B978-0-12-820543-3.00009-2.
 \bibitem{MullerRegensburger2016} S.~M\"uller and G.~Regensburger, Elementary vectors and conformal sums in polyhedral geometry and their relevance for metabolic pathway analysis, \emph{Front.\ Genet.} 7 (2016) 90; arXiv:1512.00267.
+\bibitem{Parzygnat2020} A.~J.~Parzygnat, Inverses, disintegrations, and Bayesian inversion in quantum Markov categories, arXiv:2001.08375 (2020).
 \bibitem{Rockafellar1969} R.~T.~Rockafellar, The elementary vectors of a subspace of $\mathbb R^N$, in \emph{Combinatorial Mathematics and its Applications} (Chapel Hill, 1967), Univ.\ North Carolina Press, 1969, 104--127.
 \bibitem{SteinhardtKohLiang2017} J.~Steinhardt, P.~W.~Koh and P.~Liang, Certified defenses for data poisoning attacks, \emph{Advances in Neural Information Processing Systems} 30 (2017); arXiv:1706.03691.
 \bibitem{Rockafellar1970} R.~T.~Rockafellar, \emph{Convex Analysis}, Princeton University Press, 1970.
@@ -2280,6 +2800,7 @@ LG1--LG3 & \cref{app:ledger}: the schema; every cited check passes in the log; t
 \bibitem{Simpson1951} E.~H.~Simpson, The interpretation of interaction in contingency tables, \emph{J. Roy. Statist. Soc. Ser. B} \textbf{13} (1951) 238--241.
 \bibitem{Smith2018} J.~Smith, Generating the Fukaya categories of compact toric varieties, arXiv:1804.06386, 2018.
 \bibitem{Stasheff1963} J.~D.~Stasheff, Homotopy associativity of H-spaces I, \emph{Trans. Amer. Math. Soc.} \textbf{108} (1963) 275--292.
+\bibitem{TohmeCaterinaGangle2017} F.~Tohm\'e, G.~Caterina and R.~Gangle, Local and global optima in decision-making: a sheaf-theoretical analysis of the difference between classical and behavioral approaches, \emph{Int.\ J.\ General Systems} 46 (2017) 879--897; doi:10.1080/03081079.2017.1355913.
 \bibitem{Uffink1995} J.~Uffink, Can the maximum entropy principle be explained as a consistency requirement?, \emph{Stud. Hist. Philos. Mod. Phys.} \textbf{26} (1995) 223--261.
 \bibitem{Vigneaux2020} J.~P.~Vigneaux, Information structures and their cohomology, \emph{Theory Appl. Categ.} \textbf{35} (2020) 1476--1529.
 \bibitem{Vorobev1962} N.~N.~Vorob'ev, Consistent families of measures and their extensions, \emph{Theory Probab. Appl.} \textbf{7} (1962) 147--163.
