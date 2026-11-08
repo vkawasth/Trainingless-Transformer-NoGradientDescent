@@ -22,6 +22,9 @@ NUMERICAL = floating-point (linear programs, iterative proportional fitting), wi
                     the dual vertices
   PF9  NUMERICAL    attribution in the time example: at every flipped time only the poisoned batch's removal reverts the maximum-entropy
                     decision; the first-order estimate of that removal's effect and its error
+  PF10 NUMERICAL    cell-level attribution: every observed change is a conformal sum of circuits (Rockafellar), reconstructed to 1e-9
+                    with costs adding exactly; first-order decision effects split additively over the circuits; the least share of cost
+                    that any decomposition puts on circuits of more than 4 cells is 0 for clean steps and large for the poisoned step
 """
 import os, sys, itertools, random, collections, time
 from fractions import Fraction as Fr
@@ -217,4 +220,26 @@ for t in range(T_P, T_END):
 check("PF9 NUMERICAL attribution: at every flipped time only the poisoned batch's single removal reverts the decision; first-order estimate",
       ok and len(flipped) > 0, f"maximum-entropy decision flipped at t = {flipped}; every-rule flip at {[T_P + i for i, v in enumerate(dU) if v]}; "
       f"(t, exact change of the decision value on removing the poisoned batch, first-order estimate) {fo}")
+
+# ---------------------------------------------------------------- PF10 (cell-level attribution on the same stream)
+dts = [P.data_of(P.pooled(S, range(t + 1), C_ALL))[0] for t in range(T_END)]
+ok = True; coord = {}; nmax = 0
+for t in range(1, T_END):
+    delta = dts[t] - dts[t - 1]
+    if np.abs(E4 @ delta).sum() < 1e-12: continue
+    dec = P.decompose(E4, delta, C4); rec = sum(sg * lam * C4[i][1] / P.cost(E4, C4[i][1]) for i, sg, lam in dec)
+    ok &= np.abs(E4 @ (rec - delta)).max() < 1e-9 and abs(sum(l for _, _, l in dec) - P.cost(E4, delta)) < 1e-9 and len(dec) <= 8
+    nmax = max(nmax, len(dec)); coord[t] = P.coordination(E4, delta, C4)
+f = lambda v: float(W @ P.maxent_rows(v, list(range(8))))
+g = np.array([(f(dts[T_P - 1] + 1e-6 * e) - f(dts[T_P - 1] - 1e-6 * e)) / 2e-6 for e in np.eye(8)]); delta = dts[T_P] - dts[T_P - 1]
+dec = P.decompose(E4, delta, C4); contrib = sorted(((sg * lam * float(g @ (C4[i][1] / P.cost(E4, C4[i][1]))), P.circuit_type(E4, C4[i][1])) for i, sg, lam in dec))
+ok &= abs(sum(c for c, _ in contrib) - float(g @ delta)) < 1e-9
+pre = [coord[t] for t in coord if t < T_P]; post = [coord[t] for t in coord if t > T_P]
+ok &= max(pre) < 1e-9 and coord[T_P] > 0.6 and all(0 < c < coord[T_P] for c in post)
+dm, _ = P.data_of(P.remove(S, P.pooled(S, range(T_P + 3), C_ALL), range(T_P + 3), [b for b in range(T_P + 3) if b != T_P], C_ALL))
+check("PF10 NUMERICAL every observed change is a conformal sum of at most 8 circuits with costs adding exactly; first-order effects split "
+      "additively; the least share any decomposition puts on circuits of more than 4 cells", ok,
+      f"largest decomposition {nmax} circuits; least coordinated share: clean steps before t = {T_P}: {max(pre):.0e}; poisoned step {coord[T_P]:.3f}; "
+      f"later clean steps {min(post):.3f}-{max(post):.3f}; removing the poisoned batch at t = {T_P + 2}: {P.coordination(E4, dm - dts[T_P + 2], C4):.3f}; "
+      f"largest decision contributions at the poisoned step {[(round(c, 4), k) for c, k in contrib[:3]]} (first-order total {float(g @ delta):+.4f})")
 print(f"{sum(results)}/{len(results)} passed   ({time.time() - T0:.0f} s)")
