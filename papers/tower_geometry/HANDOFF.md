@@ -1395,3 +1395,251 @@ Figures sit inside their own sections (`\usepackage[section]{placeins}`, `[!htbp
   CH and fibre-1 faces both have 4).
 - Ledger row 'poisoning' (category level Defined). Log TOTAL 114 scripts, 912 PASS. Note 81 pp.
 - Not done: the inversion additions (awaiting the author); Study 16 freeze; a Study 19 arm measuring these quantities on learned models.
+
+## 2026-11-07 (later): cell-level attribution, edit-type figure, section 12.21 (inversion)
+- Remark cellattr (84) + Fig. edittypes: every observed change is a conformal sum of circuits (Rockafellar), costs and first-order effects
+  additive; coordination = least share on circuits of > 4 cells (one LP, decomposition-invariant): clean steps 0, poisoned step 0.659,
+  removing the poison 0.652, later clean steps 0.393 (they partly undo it). PF10 added (10/10 PASS).
+- Section 12.21, Prop invsec (85), Remark orderbayes: dagger of Cpl = Bayesian inversion (total; kernel inversion partial at null events);
+  reversal-equivariant sections commute with inversion (Markov 40/40, selection 40/40); non-equivariant G.H vertex rule commutes 13/40;
+  binary-end chains: every unique-optimum linear rule commutes (proof: box in x_0b0, transpose-invariant contrast); null events never reach
+  composites; structural zeros keep unique inverses but positive-width intervals (rules disagree 5/6). Order drift = Bayesian inconsistency
+  (Study 18: 0.315/0.281/0.174 -> 0.011/0.007/0.010). Checks IS1-IS6 (6/6). Ledger row bayes-inversion.
+- Citation corrections: Bohinen-Perrone Thm 3.1 (weakly cartesian multiplication given conditionals), Cors 3.2/3.9 (Giry); they avoid the
+  term Beck-Chevalley (Rem 2.25), so the user's memo's 'Beck-Chevalley' attribution is not theirs. Parzygnat arXiv:2001.08375.
+- An exact lexicographic rule and a 3^i 5^k linear rule were tried first as counterexamples and commute; reason recorded in IS3.
+- Log TOTAL 115 scripts, 919 PASS. Note 83 pp.
+
+## 2026-11-07 (later still): section 12.21, the geometry of poisoning
+- Prop radii (85), Example stages (86), Fig deform (24); inversion section renumbered to 12.22 (Prop 87).
+- Lam_L = Lam_U = 1 for P(A0 = A1) (exact: 6 dual vertices each x 376 unit circuits), 1/2 for P(A0=0,A1=0). Certified radii attained for
+  some rule in 45/75 cases, never off by > 2; every rule median 1.10. Width Lipschitz (2 x cost) while fibre dim jumps 0 -> 7. Closed-form
+  distance to the contextuality boundary = LP. Continuity: maxent and unique-optimum vertex rules move <= 0.019 per 0.01 step on 20 paths.
+- Retraction made before writing: I had told the author that vertex rules jump across chamber walls; with a unique optimum they do not
+  (Berge + Lipschitz fibres); instability needs ties or data-dependent rules. Stated so in the note.
+- Staged example from Study 18's first CH-facet law, tau 0.45, 12000 clean units: route A (reading 0110, on the facet) stays rigid, every
+  rule flips at share 0.0924 (~1222 units); route B (1010, off the facet) opens to dim 7, some rule at 0.0924, every rule at 0.4977
+  (~11900 units), maxent below tau after ~6060; PR overreach contextual immediately from the rigid point, at share 0.2501 (predicted 0.2500)
+  from route B at 2400 units.
+- check_poisongeom.py PG1-PG6 6/6. Ledger row poisoning-geometry. Log TOTAL 116 scripts, 925 PASS. Note 87 pp.
+
+## 2026-11-07 (evening): sections 12.23 (value of information) and 12.24 (algebra, non-concave selection)
+- 12.23: Prop decisions (89), Prop instance (90), Example voi (91), Fig voi (25), stability paragraph. Credal-set framing; Das (Nous 2023)
+  Practical Stability = a section committed and conditioned; Iskandar (arXiv:2607.06570) rule-specific value vs envelope.
+- Findings: route A (on the facet) flips the decision with R = 0 throughout (invisible to value-of-information monitoring); route B has
+  R > 0 exactly on (1222, 11890) units, concave, peak 0.258; randomising recovers R/2. Pure-policy robust value of a signal exceeds the
+  envelope by exactly the value of randomising; with mixed policies it lies inside (I first reported 'exceeds the envelope' as an
+  information effect; it is a randomisation effect, corrected before writing). Dilation: some outcome widens the interval at 300/300 random
+  points, every outcome at 9/300; never on rigid faces. Das's square fails for re-selection (conditioning leaves only contexts containing
+  B0): TV 0.084-0.274 at random points, 0.220-0.459 on rigid faces (decision value up to 0.189). Hausdorff (TV, exact vertices) within 1.11 x
+  edit cost along route B while dimension jumps 0 -> 7.
+- 12.24: Prop algebra (92), Fig algsel (26): removable singularity of gluing/dagger (not kernels); maximum entropy (1 + sqrt 3)/4 from
+  rational data on the uniform 4-cycle (exact, sympy), interval [1/2, 1], leximin 3/4; integer explanations 1 / linear / quadratic on
+  fibre 0 / 1 / 2 faces (Ehrhart); minimum-entropy jumps 0.82 / 0.44 / 0.69 TV at vertex ties (Maxwell points), maxent <= 0.009 per step.
+- Checks VG1-VG8 (8/8), AL1-AL4 (4/4). Ledger rows value-of-information, algebra-selection. Log TOTAL 118 scripts, 937 PASS. Note 93 pp.
+- Not done (proposed to the author): topological early-warning study (persistent homology of decision trajectories, braids of ranked
+  action values, Lyapunov rates under forgetting) on a controlled stream comparing clean drift, noise and poisoning.
+
+## 2026-11-07 (late): determination theorem, value-based distance, related work
+- Theorem determination (91): VOI of a signal z(omega) is constant on J_d iff every full-dimensional policy cell's value functional
+  g = sum_z 1_z (u_{a_z} - u_{a_0}) is orthogonal to the fibre's directions (cover-additive on the support). Exact envelope by LPs per cell.
+  80/80 random problems agree with the criterion (45 determined). Four cases: rigid (determined 0.081), local decision fibre dim 7
+  (determined 0.081), running decision (not, [0, 0.292]), identified decision R = 0 (not, [0, 0.201]). Local VOI defined for a PR box (0.45).
+- Prop valuedist (93): sup over |u| <= 1 of robust-value change = 2 x Hausdorff TV distance, attained by one action (dual utility, 1e-7).
+- Related-work paragraph and status-table rows for 12.20-12.24; intro positioning sentence. Citation fix: Tohme-Caterina-Gangle is
+  Int. J. General Systems 46 (2017) 879-897 (the user's memo said J. Econ. Methodology 2018). Gensbittel-Peski-Renault TE 17 (2022).
+- \Peski macro typesets the ogonek in T1 locally (OT1 lacks it).
+- check_voidet.py VD1-VD4 4/4; ledger row voi-determination; Log TOTAL 119 scripts, 941 PASS. Note 96 pp.
+
+## 2026-11-07 (night): section 12.25, trajectories of decision viability
+- Def viability (95), Props viable (96), openloop (97), closedloop (98), Example viability (99), Fig viability (28), Remark topology.
+- Viability shares q*_some (one LP in (q, P, R)) and q*_all (poison_mix): exact viability kernel {q* > Q} under any disturbance of share Q.
+- Five-regime stream (window 6): on-facet poisoning keeps R = 0 and fibre dim 0 while q*_all falls 0.092 -> 0.007 (only q* warns);
+  degeneration collapses the fibre 7 -> 0; off-facet raises R to 0.057, Hausdorff step 0.100. Closed loop: periods W + 1 for W = 3..8
+  (observed; bound 2^W proved); interval straddles tau throughout. Open loop with fixed law: constant decision.
+- Remark: knots trivial in dimension >= 4 (only after a 3D projection); real scores give transposition words, braids need two numbers per
+  action; persistent loops need recurrence (feedback); pseudo-crossings (Diamantis-Kauffman arXiv:2607.08188) restate R > 0.
+- Fixed: a duplicate \bibitem{DiaconisSturmfels1998} added in the 12.24 round (the note already had one); removed, no duplicates remain.
+- check_viability.py VB1-VB6 6/6; ledger row viability; Log TOTAL 120 scripts, 947 PASS. Note 100 pp.
+- Next (proposed): pre-registered Study 19 with an open-loop and a closed-loop arm (persistent H1, ranking words / braids, Lyapunov
+  estimates against margin, R and q*; predictions: on-facet poisoning invisible to R, visible to q*; braids help only via lower-rank swaps).
+
+## 2026-11-07 (late): section 12.26, histories, gluing and holonomy
+- Def history (101), Prop holbound (102), Prop flat (103), Example history (104), Fig history, Remark tohme. Status-table row, abstract sentence, bib Csiszar1975 and DiaconisZabell1982.
+- Holonomy of two histories with the same final snapshot = TV between the selected laws; bounded by the TV diameter of the fibre, by U - L for w.x, and by the VOI envelope (zero under thm:determination). An identified decision is path independent for every rule.
+- KL (I-projection) updating over growing context sets is flat and memoryless: maximum entropy of the current snapshot at every step (log-linear family + Pythagorean identity; needs a positive law in each fibre). Forgetting curves it (Jeffrey non-commutativity). Euclidean updating is flat in the interior (nested affine projections) and curved only at the simplex boundary; TV updating is curved even in the interior.
+- Three-snapshot example (law k/20, k = 3,0,3,0,1,0,2,1,3,4,1,0,0,2,0,0; tau = 0.49): fibre dims 10, 8, 7 in both histories; t3 interval [0.4, 0.6]; KL 0.500 in both (act); Euclid 0.4786 / 0.5125 and TV 0.45 / 0.60 split. Contextual t3 (A1B1 table 0.65, 0.05, 0, 0.30): every triple glues, all four do not, contextual fraction 0.10. Gluing can fail only once the context cycle closes (Vorob'ev).
+- New: engine/pce/holonomy.py (exact active-set QP written out, no new dependency), engine/check_holonomy.py HY1-HY6 6/6, kahler/fig_history.py. Ledger row history-holonomy (23 rows). Log TOTAL 121 scripts, 953 PASS. Note 104 pp.
+- Correction to the earlier plan: Euclidean nearest-point updating is not curved in the interior; only TV (and Euclid at the boundary) is.
+
+## 2026-11-07 (evening): Fisher geometry against decision relevance (end of section 12.23)
+- Prop fisher (94) with paragraph; bib MoskowitzRussellLawless2020 (Human-Machine Shared Contexts, Academic Press 2020, ch. 9, 177-204); status-table row; abstract sentence.
+- (1) phases decision-null (expected utilities depend on |z|^2; FS = FR/2 on real amplitudes); example C's eight critical points over one fibre carry one law. (2) null space of the observed Fisher information = fibre directions; thm:determination = Fisher-visibility (40/40 against the exact envelope). (3) |u.P - u.Q| <= 2 TV <= 2 sin(d_FR/2) (Cauchy-Schwarz). (4) converse fails: fibre vertices at d_FR 2.33 with equal VOI; d_FR 0.002 across a wall, different actions. (5) sqrt(det g) = sqrt(2)/(|k| sigma^(k+1)) in (mu, sigma^k): precision coordinates reverse the chapter's ranking; affine maps are transitive isometries.
+- New: engine/pce/fishervoi.py, engine/check_fishervoi.py FV1-FV5 5/5. Ledger row fisher-relevance (24 rows). Log TOTAL 122 scripts, 958 PASS. Note 106 pp.
+
+## 2026-11-08: reading guide (new section 2) and phases of the objects (section 14.5)
+- Section 2 "A reading guide: information states" (about 2.5 pp.): information state (S, d, J_d); table of operations with pointers; three geometries of the fibre; the spine (VOI determined iff value functionals Fisher-visible: thm:determination + prop:fisher(2)); five kinds of uncertainty; selection/transport; toric-Floer layer; explicitly not claimed: indexed category / Grothendieck construction, infinite-dimensional version, phase-sensitive decisions. No new results. Section numbers after 1 shift by one.
+- Section 14.5, Prop bloch (117), Fig bloch, Remark bloch: FS = Fisher/4 + phase term; A = three Bloch spheres along columns 1, 3, 4 (latitude P(row 2 | column) = 1/2, longitude = holonomy): 8 objects = sigma_x product basis, orthonormal, canonical. Holonomies per fibre: cosets of finite groups, subgroups on leximin fibres: (Z/2)^3, Z/6 (gen (-1, zeta, zeta)), Z/4 x Z/2 (gen (1, -1, i), (-1, -1, 1)); C's second fibre Z/2-coset +-(i,i,i). B, C: Bloch placement needs a lattice identification M ~ N (37 and 27 distinct placements of 50), so Gram matrices are not invariants; not computed. Corrections: three dials need a 3-torus (not CP^2); common rotation is not redundant.
+- Finding while building: a Delzant direct-sum lift gives sums, not tensor overlaps, and the facet-character lift is an isogeny that collapses 2-torsion; both rejected.
+- New: engine/pce/blochtoric.py, engine/check_blochtoric.py BL1-BL4 4/4, kahler/fig_bloch.py. Ledger row bloch-phases (25 rows). Log TOTAL 123 scripts, 962 PASS. Note 110 pp.
+
+## 2026-11-08 (later): section 14.5 rewritten for readers; acknowledgement
+- 14.5 now explains the Bloch sphere before using it, states Prop bloch for example A only (three Bloch spheres, product basis |+-+->), describes B and C's holonomy groups and the lattice-identification issue in prose (found in the examples, not proved), and adds a paragraph on probabilistic pseudo knots (Diamantis-Kauffman): crossing probabilities = heights on (CP^1)^n, Hanaki's p = 1/2 = the equator (A's positive object for n = 3), expectation invariants are longitude-blind, and the common cube {0,1}^n with Khovanov's graded cube of smoothings; a graded category over the resolution cube is left as outlook. Remark rem:bloch and the check-count sentences removed. Bib: Hanaki2010, Khovanov2000, BarNatan2002.
+- Figure fig_bloch: plainer panel titles, explanatory text moved to the caption.
+- Acknowledgement section before the bibliography: AI assistance (Claude, Anthropic) declared; the author proposed the questions, including the Bloch-sphere and pseudo-knot comparison.
+
+## 2026-11-08 (later still): sign twist around the cycle (after Heusler-Schlummer-Ubben 2020)
+- Every-cycle section: paragraph "Signs around the cycle" and Prop twist: perfectly correlated n-cycle data with uniform singles glue iff prod s_i = +1; if -1, noncontextual fraction 0; any path glues. Reading: PR box = twisted 4-cycle; noncontextuality facets indexed by twisted sign patterns; Mermin square parity (Mermin 1990, Peres 1990); Heusler et al. trace the quantum -1 to IJK = -1 vs JIK = +1, invisible on the Bloch sphere; explains why gluing fails only when a cycle closes (ex:history).
+- 14.5: one sentence on the overall phase / Heusler et al.; one sentence that a graded category over the resolution cube would be Z/2-graded like Floer cohomology (Clifford, prop:morph), crossing sign as candidate grading; still not constructed.
+- New: engine/pce/signtwist.py, engine/check_signtwist.py ST1-ST3 3/3. Ledger row sign-twist (26 rows). Log TOTAL 124 scripts, 965 PASS. Note 112 pp. Proposition numbers after the cycle section shift by one.
+
+## 2026-11-08 (evening): crossings with incomplete data, a pseudo-trefoil (new subsection before Part IV)
+- Prop pseudoknot (108), Ex pseudoknot (109), Fig pseudoknot. Closure of s^e1 s^e2 s^e3; Jones from the TL_2 bracket. Crossing data = tables of single crossings or pairs; fibre of joint resolution laws; pushforward = knot spectra allowed. Criterion: E f identified (interior data) iff Walsh terms covered: writhe (deg 1) from singles, knottedness (deg 2) from all three pairs, chirality (deg 3) never from pairs. Example law k/20 (5,2,2,2,2,1,2,4): all pairs fix P(knotted) = 0.45, chirality in [-0.05, 0.25]; independence (Diamantis-Kauffman = maximum entropy) gives 0.2525 and is ruled out by pair data. Oppositely resolving pairs on the 3-cycle: no joint law (prop:twist, n = 3).
+- Groundwork paragraph for knots traced by trajectories: pre-crossings = switches while R > 0 (rem:topology); missing: over/under coordinate; tangle composition vs Markov gluing (outlook).
+- New: engine/pce/pseudoknot.py, engine/check_pseudoknot.py PK1-PK5 5/5, kahler/fig_pseudoknot.py. Ledger row pseudo-trefoil (27 rows). Log TOTAL 125 scripts, 970 PASS. Note 114 pp.
+
+## 2026-11-08 (night): figure-eight pseudo-diagram (prop:figeight, fig_figeight)
+- PD-code state-sum bracket (new module pce/pdknot.py; KnotAtlas convention), cross-checked against the TL trefoil. Figure-eight code: 16 resolutions = 12 unknots, 2 figure-eights (++--, --++), right trefoil (++++), left trefoil (----). Knot type not a function of the sign count.
+- Knotted iff both twist regions (crossings 1-2, 3-4; bigons) agree: 1[knotted] = (1+e1e2)(1+e3e4)/4, degree 4 -> no triple data determine it; region data give the Frechet interval. Chirality odd, degree 3 -> triples determine it. Opposite of the pseudo-trefoil. Mechanism: conjunction over disjoint crossing sets adds Walsh degrees. Example k/80: P(knotted) 0.35; [0, 0.875] singles, [0.125, 0.5] regions, [0.225, 0.5] pairs, [0.3, 0.45] triples; chirality 0.0375 fixed by triples.
+- New: engine/pce/pdknot.py, engine/check_pdknot.py PD1-PD4 4/4, kahler/fig_figeight.py. Ledger row figure-eight-pseudo (28 rows). Log TOTAL 126 scripts, 974 PASS. Note 115 pp.
+
+## 2026-11-08 (night): private decision ledger section; Study 19 pre-registered and frozen, not run
+- New subsection "Snapshots and a private decision ledger" (before Part IV): roles (environment, data store, steering and confusing actors, decision maker), the per-snapshot ledger (residual, fibre, selection, R, VOI, holonomy, crossing log with classical/pre-crossings, Bloch ball: height 1 - 2v, radius 1 - (U - L)), observation map many-to-one, crossing signs from Bloch radius, longitude candidates recorded only; "already in the note / new here" table. No new claims.
+- Study 19: synthetic CHSH world, drifting truth (period 60, T = 120), dumps of 400 per context, window 10; S0 clean, S1 steering (consistent law with A0 != A1), S2 confusion (PR-box tables), S3 both, share 0.2 from snapshot 70; 30 calibration + 4 x 30 study runs. H1 confusion detected by residual; H2 false alarms <= 10%; H3 steering works and is not detected by residual; H4 steered switch is a pre-crossing; H5 private pre-crossing alarm leads the margin alarm. Frozen: PREREG ee7749e1..., kit 54aba11d..., smoke 8768e047.... NOT RUN; awaiting the author's approval.
+
+## 2026-11-08 (late night): fixes after review; prop:cutglue; Study 19 version 2 frozen (not run)
+- Ledger section fixed: braid index (two strands close only to T(2,m); figure-eight needs 3 monitored quantities, closure of (s1 s2^-1)^2); invalid Bloch coordinates replaced by the decision-state ball z = 1 - 2v, transverse (1 - w) sqrt(1 - z^2) (provably in the unit ball; no quantum claim); longitudes theta_cycle and theta_sel kept apart, neither shown to be a Berry phase; crossing conventions (discrete time, tie order, no strand births); status-of-direction list (established / restricted examples / proposed).
+- Prop cutglue + fig_cutglue: cut the figure-eight pseudo-diagram between twist regions with a cut state y; range of P(knotted) = q-weighted Frechet interval; point iff one region certain given each y; Markov glue = maximum entropy, P = sum q a b; example: at s = 0 range [0.125, 0.5], Markov 0.3125 vs true 0.35; range shrinks to 0.35 at s = 1. New: engine/pce/cutglue.py, engine/check_cutglue.py CG1-CG4 4/4.
+- Study 19 v2 frozen (PREREG 339941e9..., kit fb2aabb0..., smoke 1708f856...): three monitored quantities (B_3 braid), H5 split into a (margin), b (regret R), c (viability q*_some); corrected ball; E5 two-strand recomputation. v1 superseded before any run, kept on record. NOT RUN.
+- Ledger row cut-glue (29 rows). Log TOTAL 127 scripts, 978 PASS. Note 119 pp.
+
+## 2026-11-08 (late): Study 19 run (version 3) and reported
+- v3 plan frozen (PREREG 306981dc..., kit 9334cb8d..., smoke 930bd37a...); digests verified; 150 runs in 8m54s; analysis once.
+- H1 fail (0%: the 20% PR-box confusion never left the noncontextual set), H2 fail (53% false alarms: per-snapshot threshold over 120 snapshots), H3 pass (switch 29/30, residual alarm 1/30), H4 pass but automatic, H5a/b/c fail (medians 0; no alarm before the switch in 26-28 of 29 runs; specificity fails vs R and q*). E5 two strands: same.
+- Post-hoc (labelled): tau always inside [L1, U1] (mean width 0.73), 0 always inside every difference interval, q*_some always 0 -> every switch/crossing a pre-crossing; the ledger cannot discriminate where nothing is identified. Follow-up needs partially identified monitored quantities, a confusion adversary that leaves the noncontextual set, run-level thresholds for all alarms; must be a new pre-registered study.
+- Note: ledger section reports the result; status list updated.
+
+## 2026-11-08 (night): Study 20 frozen (not run); prop:boundary
+- Study 20 pre-registered and frozen (PREREG 3c82d8fa..., kit abb77b5d..., smoke 2746b08b...): truth drifts between a near-facet law (thin fibre) and an interior law; arms C (extra context (A0, A1)) x V (signal B0 rule); clean/steer all arms, confuse (PR box aligned with Pa's facet, share 0.25) in arm (0,0); run-level thresholds for every alarm. H0 validity (identification fraction in [0.2, 0.8]), H1-H3 residual, H4a context effect < 0, H4b interaction > 0, H5a-c private warning vs margin/R/q* with specificity. E1 Moebius + Shapley. Disclosure: environment generator executed for seeds 9999, 1, 2, 3, 1001 (laws only) to fix a non-terminating redraw (facet laws now Dirichlet-weighted). NOT RUN.
+- Prop boundary: minimal sufficient boundary statistic of a cut = row/column classes of f; class counts for figure-eight knottedness: aligned cut 2x2, other balanced cuts 4x4, single crossing 2x3; gluing given one side's class preserves E f; Moebius/Shapley attribution cut-invariant exactly then (BS4: true allocation reproduced at both balanced cuts; insufficient cut states give cut-dependent allocations). New: engine/pce/boundary.py, engine/check_boundary.py BS1-BS4 4/4. Ledger row boundary-sufficiency (30 rows). Log TOTAL 128 scripts, 982 PASS. Note 120 pp.
+
+## 2026-11-08 (night): Study 20 addendum frozen, Study 20 run and reported; prop:boundary tables
+- Addendum frozen before the run (PREREG addendum ae0a8045..., script 6ae5e5ce...): A1 sensitivity without dev seeds, A2 injected residual from laws, A3 identification both levels, A4 bootstrap p + Holm; budgets per alarm, no system claim; no power analysis. Disclosed that the addendum dry run generated environment laws for seeds 1-30 (not inspected).
+- Study 20 run once (390 runs). H0 fail (identified 0.095 < 0.2) -> H5 uninformative; H1 pass (100%), H2 pass (13%), H3 pass (alarm 10%, switch 100%), H4a pass (-0.894), H4b pass (+0.832); H5a-c fail. T by arm: C0V0 0.894, C1V0 0, C0V1 0.978, C1V1 0.917. A2: injected residual 0.175 at Pa, 0 at Pb. Sensitivity: verdicts unchanged. E1: interaction dominates; Shapley context -0.478, VOI +0.501.
+- Post-hoc: every switch and strand crossing is a pre-crossing (138/138, 360/360) - structural: selected value lies in its identified interval, so crossings pass through an unidentified state by continuity. Pre-crossing must be redefined by comparing selection rules (would another admissible law not have switched?).
+- prop:boundary: quotient tables for the three cut types and the outcome-vs-joint-law distinction added. Note 121 pp.
+
+## 2026-11-08 (night): prop:chainglue
+- Gluing along a chain of pieces with recursive cut states: (1) left quotients recursive; (2) glues at different cuts commute, all orders give the chain law prod P(D_i | c_{i-1}) = decomposable maximum entropy (Lauritzen 1996) keeping every (c_{i-1}, D_i) table; (3) E f preserved for every law if the last state determines its quotient (then every state does, by recursion); converse false in general (additive f), holds for figure-eight knottedness (coarse last state: error up to 0.247); (4) attribution invariant; (5) loops: pairwise-compatible boundary states need not glue (prop:twist n = 3). An initial "iff" was corrected to "if" before release.
+- New: engine/pce/chainglue.py, engine/check_chainglue.py CH1-CH5 5/5. Ledger row chain-glue (31 rows). Log TOTAL 129 scripts, 987 PASS. Note 121 pp.
+
+## 2026-11-08 (late night): prop:chainglue revised after the v32 review
+- Explicit quotient transition h_i([x], d_i) = [(x, d_i)]; c_0 constant; conditionals on zero-mass states set to 0.
+- New part (4): at one cut a coarser state preserves E f for every law iff f(x, y) = a(x) + beta(b, y) on each merged class (proof in the note; CH6 checks every coarsening for knottedness and writhe, and 30 random outcomes).
+- Worked example: two-point law on (+,+,+,+) and (+,+,-,-); P(knotted) 1 true, 1 through the quotient, 1/2 through 'region 1 agrees'.
+- Loops moved to rem:chainloop (sign twist proved only for the cycle-sign model). rem:nerode: Myhill-Nerode (Nerode 1958); tangle classes compose automatically and associatively; finite index and computability are the open questions; finite (Catalan, Temperley-Lieb) for the Kauffman bracket (Kauffman 1987); infinite for knot type (T(2, n) closures).
+- Figure kahler/fig_chainglue.py (fig:chainglue). Ledger chain-glue row cites CH1-CH6. Log TOTAL 129 scripts, 988 PASS. Note 125 pp.
+
+## 2026-11-08 (late night, 2): two layers and prop:tlmemo
+- Paragraph "Two layers" with a topological/probabilistic correspondence table (after rem:nerode).
+- New module engine/pce/tlmemo.py, check engine/check_tlmemo.py TM1-TM6 6/6. 4-ended rational pseudo-tangle from [0] by H/V crossings; memo = TL vector (alpha, beta) on [0], [inf]; H(r), V(r) transfer matrices; closures (delta,1), (1,delta).
+- HHVV closed by D: (+,+,-,-) and (-,-,+,+) give <4_1> (checked against pdknot FIG8). Worked example: P(fig-8) true 1, memo glue 1, agreement-of-1,2 glue 1/2, independence 1/8.
+- rem:nerode corrected: for the bracket it is finite dimension (rank), not finite index; classes along HVHVHVHV: 2, 3, 6, 10, 16, 27, 44. Bib: Conway1970, Fliess1974.
+- Ledger row tl-memo (32 rows). Log TOTAL 130 scripts, 994 PASS. Note 127 pp.
+
+## 2026-11-08 (late night, 3): prop:elimquot and a Study 21 draft
+- New module engine/pce/elimquot.py, check engine/check_elimquot.py EQ1-EQ5 5/5 (about 1 min). Prop elimquot: classes of a cut = zeros of the elimination ideal of the Walsh coefficient map; number of classes = degree; rank can be smaller (rank 1, 2 classes at {1,2}); chain degrees 2, 2, 3; bracket memo degrees 2, 3, 6 at A = 2.
+- Paragraph "Components of a decision path": cut cost (left, right degrees); time order 1234 gives (2, 2) between the twist regions, 1324 gives (4, 4). Inequalities: elimination not exact; polytope projection or real QE.
+- Citations verified against the PDFs the user supplied and arXiv: Bokut-Chen 2014 (Bull. Math. Sci. 4, 325-395), Bokut arXiv:0806.1123, Crans-Henrich-Nelson JKTR 22(4) 2013 / arXiv:1110.1371, Nosaka-Shimizu arXiv:2608.25725; plus Cox-Little-O'Shea. No Bokut-Vesnin paper was found, so none is cited.
+- Study 21 DRAFT (synthetic_sections/PREREG_study21_DRAFT.md): consequential-switch flag from memo classes; OPEN: outcome f, Pa mixing, fibre alternatives. Not frozen, not run.
+- Ledger row elim-quot (33 rows). Log TOTAL 131 scripts, 999 PASS. Note 128 pp.
+
+## 2026-11-09: beliefs under contamination (sec:contam)
+- Modules engine/pce/tamper.py (fibres, residual, intervals, forced residual, Farkas, conflicts, explanations, robust interval, exposure, Artin triviality, bubble braid words, Cartier-Foata), engine/pce/bridgetoy.py (toy bridge, histories H1, H1b, H2-H5, views, decisions, six components), engine/pce/trajknot.py (polygon -> PD -> Jones; singular shadows). Check engine/check_tamper.py TP1-TP11 11/11 (about 1 min). Figure kahler/fig_bridge.py.
+- Results: B budget of {S3} = [0.365, 1], A budget a point; residual 0 at 0.40, 0.531 at 0.10, Farkas touches all five cells; chords (X2,X4), (X3,X5) give [0.613, 0.930]; naive wrong in H3, H4; robust right or investigate with <= 1 corrupted; recruitment (H4) defeats k = 1 (false world is the only size-1 explanation), history + k = 2 recovers; withheld context ranked first of six.
+- Event layer useful (annotated); braid layer: H1 = H1b, but honest replay loop non-trivial and H4's trivial: not diagnostic; shadows: 120 shadows, 77 singular, 37 unknot, 6 degenerate, none knotted. Curves in R^n (n >= 4) always unknot; knot types live in 3-coordinate shadows.
+- Ledger row contamination (34 rows). Log TOTAL 132 scripts, 1010 PASS. Note 133 pp.
+
+## 2026-11-09 (later): sec:contam revised after two reviews
+- tamper.exposure now uses the GYO core (hypergraph acyclicity); TP1 adds a star (acyclic, conflicts pairs, no cycle exposure).
+- Prop 118: exact tables, corruption model explicit, join tree / running intersection, optimal-set membership. Prop 119: coalition may report anything; directional budgets need p* in P_H. Presheaf: inclusions for global fibres; marginalisation only for the local-table presheaf.
+- Durable budget of {S3} for B (all chords bought) = [0.613, 0.930] (bridgetoy.durable_budget; analyst-side).
+- Missing-report ranking: declared measure mu_t (LP solution under Gaussian objective), min/mean/max reported; refusal is a modelling assumption.
+- Trace: S = (R, W), report keys (source, context), payload letters (bridgetoy.annotated), arrival annotations apart from letters (snapshot compatibility, historical consistency, revision); recruitment (H4) and correction (H5) both 'ShR'; final-history marks clear S1, S4, S5 in H4; tier 2 decision letters with trajectory-relative diamond tests.
+- Headline paragraph and Status paragraph added; 'embedded' in the R^n (n >= 4) statement. Note 134 pp. TP1-TP11 11/11; log TOTAL 132 scripts, 1010 PASS.
+
+## 2026-11-09 (afternoon): Study 21 run
+- Plan frozen (FROZEN_PREREG_study21.txt), 360 runs (seeds 1-360, two processes), analysis once (study21_final.json).
+- H0 passed for Y_regret, Y_contra, Y_insp; H1 failed for all three: braid + shadow add nothing beyond trace + budgets (Delta_knot -0.0001, -0.015, -0.0005; Holm p 1.0). No knotted shadow in 7,200; replay loops non-trivial 65% even in honest runs; recruit has the largest regret (0.21).
+- Note paragraph added in sec:contam (135 pp). Next (agreed with user): synchronised deformations (coordinated coherent drift between sources, and between DM and environment): definition, proposition (invisible to coherence; coalition reach = honest-only interval of the complement; anchors bound it), toy path S2-S3 vs honest drift, with direction-toward-boundary, speed and anchor-disagreement statistics; any test pre-registered.
+
+## 2026-11-09 (afternoon): coherent miscalibration (sec:miscal)
+- Study 21 reporting fixes: unrounded Y_insp interval [-0.00102, -0.000016]; not an equivalence test; H0 = validity check; scenario ordering within design only.
+- New module engine/pce/miscal.py, check engine/check_miscal.py MC1-MC5 5/5, figure kahler/fig_miscal.py. Prop miscal (A) snapshot invisibility + convexity, (B) coalition reach contains each member's budget, (C) anchor certificate and converse.
+- Toy: {S2,S3} reach [0,1]; anchor (X2,X4) useless against the pair, (X3,X5) certifies [0.613, 0.930]. Paths: A coalition and B0 honest drift to the coalition's endpoint law give identical reports (every report statistic equal, D_T 0.491); anchor residual 0.525 vs 0; B1 coupling drift same D_T, moves all five, displacement 1.54; B2 generic drift D_T 0.045. Feedback coalition stops at first flip (14 advances, B-hat 0.497).
+- Ledger row miscalibration (35 rows). Note 138 pp. Any direction/speed detection claim -> a new pre-registered study (Study 22).
+
+## 2026-11-09 (afternoon, 2): audit of v36 applied
+- Trace: same-key operations dependent unless their transformations commute (the text already said dependent; wording sharpened). Prop 119: unrestricted coordinated reporting stated; compatible vs selected values. Prop miscal (D): selected-value crossing by the intermediate value theorem; robust interval version where explanations are fixed. Direction measured on g o s, not by row-space projection (equal when g identified: a = M^T c). Study 21: worst-case regret is DM-computed, realised regret uses the true law. Note 139 pp.
+
+## 2026-11-09 (afternoon, 3): Study 22 run
+- Lineage copying world (families A, B train; C test), interaction braid (copy events as crossings), audits trusted exactly, decision on an unobserved chord. Design fixed on dev seeds 9001-9030 (disclosed).
+- 600 runs, 465 pre-wrong; V failed (M1 vs intercept -0.049 [-0.099, 0.002]); H1 -0.017, H2 -0.011 uninformative; H3 +0.011 [-0.054, 0.083] fail. Survival ~0.8 in every family; post-hoc pooled CV: nothing predicts it.
+- Note paragraph in sec:miscal. Next study must first make survival vary with observables.
+
+## 2026-11-09 (afternoon, 4): AI acknowledgement and human rewrite (first pass)
+- Abstract rewritten as short readable paragraphs; 'Note on AI assistance' added after the abstract; end acknowledgement updated (also mentions AI-generated review comments).
+- sec:contam and sec:miscal rewritten in plain prose (same mathematics and numbers; check-count sentences removed; terms explained on first use). Backup of the previous tex in the scratchpad (csk_before_rewrite.tex). Note 138 pp.
+- Remaining older sections not yet rewritten.
+
+## 2026-11-09 (evening): watching for coordinated deformation (sec:watch)
+- Modules engine/pce/stalkbank.py (all signals, five decision rules), engine/pce/watchtoy.py (eight scenarios); runs saved engine/watchtoy_*.json (variants: watchtoy_variant_partial/lagged.json from the scratch script variants.py logic, reproduced in the note); summary engine/watchtoy_summary.txt.
+- Prop watch (a)-(e); check engine/check_watch.py WC1-WC7 7/7.
+- Findings: within-context disagreement cleanest (lead 2; no contextual false alarm); geometry/efficiency lead 2/6 but fire on matched drift; stealthy evades report signals; imperfect coordination flagged at step 1 (lead 6); braid no lead; framing defeats majority/reputation/Occam, robust never wrong.
+- Study 23 DRAFT synthetic_sections/PREREG_study23_DRAFT.md (TO FIX items). Ledger row watching (36 rows). Log TOTAL 134 scripts, 1022 PASS. Note 141 pp.
+
+## 2026-11-09 (night): the mathematical chain; what braids and knots carry (sec:chain, sec:braidknot)
+- Theorem thm:protect (protection: anchored range; separating inspection with margin rho_q > 0 arriving before ceil(D_C/delta); noisy version rho_q > 2 eta). Bridge: (X3,X5) rho 0.225, (X2,X4) rho 0.
+- Prop braidcontent (1)-(5): scalar strands = order exchanges; planar = homotopy class (windings, Milnor); knots need closure and a chosen 3D shadow; uncertain-diagram invariants = Walsh functionals; ceiling. Cited: Artin, Birman, Milnor, Habegger-Lin, Chen, Kohno, Rolfsen.
+- Commutator braid A B A^-1 B^-1 (A = s1^2, B = s2^2): zero windings, triple invariant +-1, Borromean Jones/Alexander; area of (theta12, theta23) = invariant in the full-turn realisation (claimed only there). Parity pair q_+-: P(knotted) differs by theta/2; writhe degree 1 (counterexample).
+- Bundle of sources (s = residual without x, v = decision value without x, ring eps): Prop cohtrivial (coherent histories -> trivial braid). RECORDED FAILURE: for liar/framing/cascade the braid depends on the drawing convention (4-5 elements over 30 conventions; strands tie at 16-18 of 21 steps). The prototype's 'determinant 3' cascade knot was a tie-break artefact and was withdrawn. Suspect sets are stable: liar R2; framing/cascade R2 -> {S3, R1} (honest); lockstep -> S4 (honest) after the inspection.
+- Co-revision network after Iannucci et al. (arXiv:2512.19677) names {S2,S3,R1,R2} in efficient, stealthy, pump-and-retreat, and identically in matched drift. Abramsky-Caru (2019) local/global/complete disagreement vocabulary added.
+- Check engine/check_braidknot.py BK1-BK11 11/11. Ledger rows protection, braid-knot-content (38 rows). Log TOTAL 135 scripts, 1033 PASS. Study 24 DRAFT synthetic_sections/PREREG_study24_DRAFT.md (not frozen). Probe scripts stayed in the scratchpad.
+
+## 2026-11-09 (late night): Study 24 frozen and run
+- Settled on development seeds 9201-9300 before freezing (all disclosed in PREREG_study24.md): kappa at N = 2000 raised 0.10 -> 0.30; history passed to the stalks (bug); r in {1, 2}. Frozen: FROZEN_PREREG_study24.txt (plan, kit, analysis, dev output, smoke, dry run, engine modules).
+- One run, seeds 2001-2600 (runs24_eval.jsonl). H1 (attribution path adds to snapshot) NOT supported: -0.034 [-0.067, +0.002]. H2a supported: co-revision Jaccard 0.83 vs suspects 0.05, diff 0.78 [0.73, 0.82], n = 180; co-revision never named an honest source. H2b matched 1.00 vs efficient 0.92. H3 142/142. H4 null (braid/knot add nothing): +0.006 [-0.007, +0.018]. H5 null. Post hoc: A + C vs X -0.058 [-0.109, -0.005].
+- Note: Study 24 paragraph in sec:braidknot; abstract sentence; ledger text updated. Note 151 pp.
+- Next proposed: the C -> B -> A bridge (source histories give singular/pseudo-braids at structural ties; noise induces a law on the tie resolutions; invariants preserved = degree 0 in the tie signs); virtual-crossing model of ties (Crans-Henrich-Nelson biquandle) as one of three treatments.
+
+## 2026-11-09 (late night, 2): the bridge from source histories to pseudo-links (sec:tiebridge)
+- Module engine/pce/tiebraid.py; check engine/check_tiebraid.py TB1-TB8 8/8 (two checks first failed and were restated as what was found: triple invariants vanish; per-step noise winds tied strands, separated pairs keep clean linking).
+- Prop tiebridge (i)-(iv). Closed histories, ring -> 0: honest and lockstep histories have one resolution and the trivial link; liar 3 resolutions (0.24 bits), framing 354 (8.4 bits), cascade 372 (8.5 bits). The earlier BK6 instability was partly a reading artefact (open braids, non-small rings, frames); the ties remain.
+- Note 153 pp. Ledger row tie-bridge (39 rows). Log TOTAL 136 scripts, 1041 PASS.
+- User's next question (ordered co-revision histories): answered in chat; proposed trace-monoid -> braid homomorphism as the construction.
+
+## 2026-11-09 (late night, 3): ordered co-revision (sec:ordrev)
+- Module engine/pce/ordrev.py; check engine/check_ordrev.py OR1-OR8 8/8 (OR1 first failed on a sign convention: adoption is realised as a clockwise turn so that the reading convention gives sigma^2).
+- Prop ordrev: (i) same braid iff same trace up to cancellation (Collins 1994: squares of generators form a RAAG on the path); (ii) three sources: braid = reduced word = full signature (Hambly-Lyons 2010); (iii) triple invariant = signed area of the count path (c_12 Magnus coefficient argument).
+- Enumeration: 2520 histories with equal counts -> 1 / 9 / 195 / 249 / 297 classes (pairwise / triple = sig2 / sig3 = Magnus3 / sig4 / braid = full signature); Jones and Alexander 10 classes, not nested with the triple invariant, functions of sig4. Four sources: 720 signed -> 81 braids vs 265 signatures; 90 positive -> 36 braids = 36 traces vs 90 signatures.
+- Note 156 pp. Ledger row ordered-corevision (40 rows). Log TOTAL 137 scripts, 1049 PASS.
+
+## 2026-11-10: general form of Prop ordrev, revision trajectories, decision-maker memory (sec:ordrev, sec:dmmemory)
+- Prop ordrev now states (E1)-(E3) and part (iv): same braid iff same partially commutative signature (Duchamp-Krob). RV1: equal partitions from level 3 (81, 36).
+- Trajectory comparison (pce/revtraj.py): partial and retracing revision give trivial braids for all 720 histories; sideways separation gives 13 pseudo-braid classes; event braid matches only when both are trivial. Conclusion: the event braid is a compression of order, not the topology of revision.
+- Decision-maker memory (pce/dmmemory.py; Prop dmmemory): tilt, co-revision (centred by 1/(k-1)) and order walks over 1000 episodes, boundaries calibrated on seeds 10001-10400, evaluated on 1-200. Order walk catches a fixed-order coalition at episode 25 in 100%, is blind to an exchangeable-order coalition (4%), tilt catches both; follower caught by co-revision and order. Cites Gohm-Koestler 2009 (braidability), Nechaev 1998.
+- Checks RV1-RV3, DM1-DM8 all pass. Note 158 pp. Ledger 42 rows. Log TOTAL 139 scripts, 1060 PASS.
+
+## 2026-11-10 (2): the memory at work; pooling and conditioning; review corrections (sec:memwork, sec:poolcond)
+- Review corrections: Gohm-Koestler used only as motivation, three notions (exchangeability, braidability, trace equivalence) kept apart, explicit null stated; order walk = precedence (= twice the pair's signed area with one event each), not a triple invariant; false-alarm unit defined (family-wise, sequential); common-shock invariance restricted to exactly shared shocks; B_event vs B_traj kept apart; Prop ordrev(i) proof split into word problem (Cartier-Foata) + injectivity (Collins).
+- pce/dmledger.py: ledger, lead-lag (Granger-type), anchor walk, discounting; 8 conditions incl. honest 'exposure' and 'cascade'. check_dmledger.py DL1-DL8 8/8; three checks (DL5, DL6, DL8) first failed against my pre-set thresholds and were restated as what was found (exposure: lean alarms, co-revision rare; anchor follow-up 'hurts' 161/200 vs 1/200; misspecified watch-list: bystanders flagged away from X 200/200).
+- pce/poolcond.py (NEW NAME): I first overwrote the existing pce/pooling.py by mistake; it was restored byte-for-byte from the mirror (hash matches FROZEN) and the new code moved to poolcond.py. check_poolcond.py PC1-PC5 5/5.
+- Figures: kahler/fig_memory.py -> fig_memory_walks, fig_memory_network, fig_poolcond. Refs added: Stone 1961, Genest-Zidek 1986, Genest-McConway-Schervish 1986, Granger 1969, Wilson 1927.
+- Note 166 pp. Ledger 44 rows. Log TOTAL 141 scripts, 1073 PASS.
+
+## 2026-11-10 (3): graphs, brokerage, pseudo-link probability (sec:graphs, sec:brokerage, sec:pseudoprob)
+- Thm graphs: A_G for any co-revision graph; pc signature complete; twist encoding a homomorphism iff independent edges disjoint iff G planar (Hanani-Tutte); faithful at some power (Koberda); triangle relation at N = 1. pce/raagbraid.py; RG1-RG5 5/5.
+- Prop brokerage: mu_123 = signed crossing number of relationship intervals (relay); mu = 2(P_oo + P_cc) - P_all (BR3 first failed as 'not determined jointly'; the identity was then found and proved); variance m^2/(4m-1) verified m <= 5 (not proved); episodes: only mu separates relay from sequential. pce/brokerage.py; BR1-BR6 6/6.
+- Thm pseudoprob: universality of pairwise laws under circular biases; joint laws via the phase-difference density (Goodman); exact P(mu=1) on interleaved visits matches MC; noise: persistent finite, iid jitter (T-1)/12 exact, Brownian Spitzer / Pitman-Yor; discrete walk trends to secant law (not Cauchy) - reported as trend. pce/pseudoprob.py; PP1-PP7 7/7.
+- Figures kahler/fig_topocoord.py (fig_graphs, fig_broker). Refs: Tutte 1970, Pelsmajer-Schaefer-Stefankovic 2007, Farb-Margalit 2012, Koberda 2012, Crisp-Paris 2001, Spitzer 1958, Pitman-Yor 1986, Goodman 1985.
+- Note 172 pp. Ledger 47 rows. Log TOTAL 144 scripts, 1091 PASS.
