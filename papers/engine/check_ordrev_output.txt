@@ -1,0 +1,9 @@
+PASS OR1 IDENTITY the geometric realisation gives the algebraic braid   [120 histories (60 from each family); a clockwise turn is A = sigma^2 under the reading convention of pce/bundlebraid]
+PASS OR2 IDENTITY family T: counts, membership, net windings and linking numbers are the same for all 2520 orderings   [2520 histories; classes by counts 1, by linking numbers 1]
+PASS OR3 IDENTITY triple invariant = signed area of the count path = level-2 signature   [classes 9; values [-4, -3, -2, -1, 0, 1, 2, 3, 4]]
+PASS OR4 IDENTITY braid = free reduction = full signature; level 5 suffices in family T   [classes: braid 297, free reduction 297, signature levels 3, 4, 5, 8: [195, 249, 297, 297]]
+PASS OR5 IDENTITY degree-3 Magnus coefficients of the longitudes and the level-3 signature give the same partition   [195 classes]
+PASS OR6 FINDING closure polynomials: 10 classes, not comparable with the triple invariant, functions of the level-4 signature   [Jones classes 10, Jones and Alexander together 10]
+PASS OR7 IDENTITY four sources, positive histories: same braid iff same trace; the signature separates more   [90 histories; braid classes 36, traces 36, signature classes 90]
+PASS OR8 FINDING four sources, signed histories: the signature strictly refines the braid (it ignores independence)   [720 histories; braid classes 81, signature classes 265; braid classes split by the signature 81]
+8/8 passed

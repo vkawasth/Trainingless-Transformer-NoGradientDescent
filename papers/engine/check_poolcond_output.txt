@@ -1,0 +1,6 @@
+PASS PC1 IDENTITY condition-after-pool = pool-after-condition with likelihood-reweighted weights   [300 random cases; largest difference 2.2e-16]
+PASS PC2 IDENTITY fixed-weight linear pooling commutes with conditioning exactly when P_i(E) are equal   [memo example: P_A(E) = P_B(E) = 0.82, defect 0.0e+00; modified: P_B(E) = 0.57, P(X | E) 0.6043 (pool first) vs 0.5202 (condition first), defect 0.0841]
+PASS PC3 IDENTITY geometric pooling is externally Bayesian   [300 random cases, different likelihoods per source; largest defect 2.1e-16]
+PASS PC4 IDENTITY intersecting fibres is order-free   [all 120 orders of the five cycle reports; largest change of the range of B 6.7e-16]
+PASS PC5 FINDING planted evidence captures the weight under pool-then-condition and flips P(X); fixed and geometric pooling resist less or more   [planted: weight of K 1.000, P(X) BMA 1.000, fixed 0.355, geometric 0.842; without planting: weight of K 0.218, P(X) 0.005, 0.006, 0.005]
+5/5 passed

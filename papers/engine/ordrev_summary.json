@@ -1,0 +1,20 @@
+{
+ "family_T": {
+  "histories": 2520,
+  "counts": 1,
+  "triple": 9,
+  "sig3": 195,
+  "sig4": 249,
+  "braid": 297,
+  "closure_polys": 10
+ },
+ "family_F": {
+  "signed": 720,
+  "braid": 81,
+  "signature": 265,
+  "positive": 90,
+  "positive_braid": 36,
+  "positive_traces": 36,
+  "positive_signature": 90
+ }
+}

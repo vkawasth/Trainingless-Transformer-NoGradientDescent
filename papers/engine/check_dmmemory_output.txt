@@ -1,0 +1,9 @@
+PASS DM1 IDENTITY honest walks: mean-zero increments, variance growing linearly in n   [mean increment {'tilt': 0.0, 'corev': 0.0, 'order': -0.0005}; var(S_1000)/1000 over var(S_100)/100 {'tilt': 0.966, 'corev': 1.003, 'order': 0.988}]
+PASS DM2 IDENTITY increments are exactly invariant to common shocks   [20 seeds, shocks of size 0.05 vs 0.2]
+PASS DM3 FINDING false alarms on honest evaluation histories at most 7% per family (plain and primed)   [boundaries {'tilt': 3.44, 'corev': 3.81, 'order': 3.74}; false-alarm rates {'tilt': 0.05, 'corev': 0.035, 'order': 0.045}; primed {'tilt': 0.05, 'corev': 0.025, 'order': 0.025}]
+PASS DM4 FINDING a single tilted source is caught by the tilt walk and named; the other walks stay null   [tilt walk 0.97 (median episode 301.0), names B 0.93; co-revision 0.02; order 0.04]
+PASS DM5 FINDING a fixed-order coalition is caught by the order walk in every history, early, with the right pair   [order walk 1.00, median episode 25.0; tilt walk 1.00]
+PASS DM6 FINDING an exchangeable-order ('braidable') coalition is invisible to the order walk; its tilt is still caught   [order walk 0.04; tilt walk 1.00 (median episode 294.5)]
+PASS DM7 FINDING a follower without tilt: tilt walk null; co-revision and order walks catch the right pair   [tilt 0.06; co-revision 1.00 (right pair 0.97, median 277.0); order 1.00]
+PASS DM8 FINDING a primed memory flags earlier at the same false-alarm rate   [median episode plain -> primed: {'tilt/tilt': (301.0, 256.0), 'ordered/tilt': (294.5, 229.0), 'follower/corev': (277.0, 166.0), 'ordered/order': (25.0, 17.0)}]
+8/8 passed

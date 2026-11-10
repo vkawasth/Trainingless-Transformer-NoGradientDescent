@@ -1,0 +1,29 @@
+{
+ "partial": {
+  "trivial": 720,
+  "determined": 720,
+  "event_in_resolutions": 336,
+  "event_in_resolutions_nontrivial": 0,
+  "classes": 1,
+  "traj_determines_event": false,
+  "event_determines_traj": true
+ },
+ "retrace": {
+  "trivial": 720,
+  "determined": 720,
+  "event_in_resolutions": 336,
+  "event_in_resolutions_nontrivial": 0,
+  "classes": 1,
+  "traj_determines_event": false,
+  "event_determines_traj": true
+ },
+ "sideways": {
+  "trivial": 354,
+  "determined": 354,
+  "event_in_resolutions": 336,
+  "event_in_resolutions_nontrivial": 0,
+  "classes": 13,
+  "traj_determines_event": false,
+  "event_determines_traj": false
+ }
+}
