@@ -1,0 +1,48 @@
+WATCH TOY SUMMARY (exploratory, not pre-registered)
+Thresholds: the most extreme value of each signal in the two honest non-contextual scenarios (drift, shock).
+The contextual world is NOT used for calibration, so any signal that fires there is a false alarm under honest contextuality.
+The matched scenario is honest, with reports identical to 'efficient'; any signal firing there fires on an honest world.
+
+Decision rules: share of steps 1-20 with a wrong decision ('investigate' is not wrong)
+  redundant_liar  naive 0.00, majority 0.00, reputation 0.00, occam 0.00, robust 0.00  | robust 'investigate' share 0.00
+  framing         naive 0.70, majority 0.70, reputation 0.70, occam 0.70, robust 0.00  | robust 'investigate' share 0.75
+  efficient       naive 0.70, majority 0.70, reputation 0.70, occam 0.70, robust 0.40  | robust 'investigate' share 0.30
+  stealthy        naive 0.35, majority 0.25, reputation 0.35, occam 0.35, robust 0.05  | robust 'investigate' share 0.30
+  contextual      naive 0.00, majority 0.00, reputation 0.00, occam 0.00, robust 0.00  | robust 'investigate' share 0.00
+  drift           naive 0.00, majority 0.00, reputation 0.00, occam 0.00, robust 0.00  | robust 'investigate' share 0.00
+  shock           naive 0.00, majority 0.00, reputation 0.00, occam 0.00, robust 0.00  | robust 'investigate' share 0.00
+  matched         naive 0.00, majority 0.00, reputation 0.00, occam 0.00, robust 0.00  | robust 'investigate' share 0.00
+
+First step at which each signal leaves the honest range (- = never). Last row: first step at which the naive decision is wrong.
+signal               redundant_    framing  efficient   stealthy contextual      drift      shock    matched
+within_max                    5          5          -          -          -          -          -          -
+ladder_monitor                -          -          -          -          -          -          -          -
+ladder_flag                   5          5          -          -          -          -          -          -
+overlap_max                   -          5          -          -          -          -          -          -
+possibilistic                 -          -          -          -          -          -          -          -
+cycle_violation               -          6          5          -          0          -          -          5
+residual                      5          5          -          -          0          -          -          -
+n_conflicts                   5          5          -          -          0          -          -          -
+min_expl                      5          5          -          -          0          -          -          -
+farkas_support                5          5          -          -          0          -          -          -
+hid_width                     -          -          5          -          -          -          -          5
+forced0                       -          -         10          -          -          -          -         10
+face_min                      -          -          5          -          -          -          -          5
+cap_mean                      -          -          5          -          -          -          -          5
+robust_width                  -          6         15         15          -          -          -          -
+naive_value                   -          -          -          -          0          -          -          -
+excess_reach                  -          -          -          -          -          -          -          -
+lev_conflict_corr             -          7          -          -          -          -          -          -
+revisions                     -          -          -          -          -          -          -          -
+hist_residual                 -          -          -         20          -          -          -          -
+invisible_dim                 -          -          -          -          -          -          -          -
+decision_invisible            -          -          -          -          -          -          -          -
+velocity                      -          -          -          -          -          -          -          -
+acceleration                  -          -          -          -          -          -          -          -
+curvature                     -          -          -          -          -          -          -          -
+efficiency                    -          6          1          -          -          -          -          1
+synchrony                     -          -          -          -          -          -          -          -
+crossings                     5          5          -          -          -          -          -          -
+crossing_burst                5          5          -          -          -          -          -          -
+anchor_excess                 -         15         15         15          -          -          -          -
+naive wrong from              -          7          7         14          -          -          -          -

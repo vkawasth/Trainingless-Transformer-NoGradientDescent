@@ -1,0 +1,62 @@
+{
+ "drift": {
+  "walls": 0,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ },
+ "shock": {
+  "walls": 0,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ },
+ "matched": {
+  "walls": 0,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ },
+ "pump_retreat": {
+  "walls": 0,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ },
+ "contextual": {
+  "walls": 0,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ },
+ "redundant_liar": {
+  "walls": 16,
+  "resolutions": 3,
+  "links": 3,
+  "entropy_bits": 0.24
+ },
+ "framing": {
+  "walls": 40,
+  "resolutions": 354,
+  "links": 336,
+  "entropy_bits": 8.36
+ },
+ "cascade": {
+  "walls": 38,
+  "resolutions": 372,
+  "links": 348,
+  "entropy_bits": 8.48
+ },
+ "efficient": {
+  "walls": 6,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ },
+ "stealthy": {
+  "walls": 9,
+  "resolutions": 1,
+  "links": 1,
+  "entropy_bits": -0.0
+ }
+}

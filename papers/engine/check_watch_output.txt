@@ -1,0 +1,8 @@
+PASS WC1 IDENTITY identical reports give identical report-derived signals; only the inspection differs   [largest difference over 29 signals, steps 0-14 (before the inspection): 5.6e-16; anchor residual difference 0.525]
+PASS WC2 IDENTITY truth moved inside the fibre keeps the reports and stays in the decision range   [reports S1, S2, S4, S5 unchanged while B slides from 0.841 by up to 0.476, always inside [0.365, 1.000]]
+PASS WC3 IDENTITY sigma = 0 implies no disagreement; a true table outside the reports' range implies disagreement   [chord: (sigma, largest residual with the inspection, true table leaves the range at some step) {(0, 2): (0.208, 0.208, True), (0, 3): (0.177, 0.177, True), (1, 3): (0.494, 0.494, True), (1, 4): (0.177, 0.177, True), (2, 4): (0.525, 0.525, True)}]
+PASS WC4 IDENTITY minimal flipping distance D and the straight path's time ceil(D / delta)   [D = 0.6827; delta = D/7; straight path reaches the threshold at step 7; no path with steps of size <= delta can arrive earlier, since it must travel at least D]
+PASS WC5 IDENTITY imperfect coordination triggers the ladder at once; full lockstep does not   [first ladder flag: partial 1, lagged 1, efficient (lockstep, full coverage) None]
+PASS WC6 FINDING framing defeats majority, reputation and simplest explanation; the robust rule is never wrong   [{'naive': np.float64(0.7), 'majority': np.float64(0.7), 'reputation': np.float64(0.7), 'occam': np.float64(0.7), 'robust': np.float64(0.0)}]
+PASS WC7 FINDING the first-fire table of the note   [watchtoy_summary.txt]
+7/7 passed
