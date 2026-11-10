@@ -1,4 +1,4 @@
-PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [44 rows]
-PASS LG2 every cited check is PASS in the run log   [272 ids; missing []]
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [47 rows]
+PASS LG2 every cited check is PASS in the run log   [283 ids; missing []]
 PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
 3/3 passed
