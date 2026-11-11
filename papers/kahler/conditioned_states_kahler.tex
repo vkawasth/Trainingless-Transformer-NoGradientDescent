@@ -28,7 +28,7 @@ Part~III is about composition. Gluing couplings by the Markov rule is associativ
 
 Part~IV treats $2\times4$ tables, where the fibre is three-dimensional, and classifies its $148$ K\"ahler chambers exactly.
 
-The last sections ask what a decision maker can do when some of his sources may be poisoned, or may coordinate. Trust turns out to be relative to a decision. A coalition can have room to move one decision without being seen and no room at all on another, and agreement among the inputs does not protect him; only independent anchors do. An inspection protects a decision if it separates the coalition's possible endpoints from the truth and arrives before the coalition can reach them, and this survives inspection noise below half the separation. Two pre-registered synthetic studies test whether braid and knot summaries of a decision history predict more than a plain record of it. In both, they did not. We then say exactly what such summaries can carry: braids built from data carry the order of exchanges, or, for strands in the plane, windings and then Milnor-type invariants; knot invariants of uncertain diagrams are high-order functionals of the hidden law. Drawing the sources as a bundle of strands gives a well-defined link only for sources the data keep apart; where the data tie sources, it gives a pseudo-link whose resolutions are cut out by the history and whose probabilities come from the noise model, and its entropy measures how much topology the data leave open. What survives is a record of which sources are blamed, and of which sources revise together. In a third pre-registered study, the group of sources that revised together recovered coordinated coalitions that attribution by explanation missed, and never named an honest source; braid and knot features again added nothing. Finally, braid invariants do separate orders of co-revision that pairwise statistics cannot, but for three sources they coincide level by level with the path signature of the count path; with more sources the braid is that signature taken modulo the order of independent events. The braid is a compression of event order, not the topology that revising reports trace out. Over many decisions, a private memory of three random walks per source and pair (lean towards a decision, co-movement, habitual order) finds coordination invisible in any single episode; its order walk sees a coalition only if the coalition's order breaks exchangeability. A worked example shows the three levels of evidence (individual, relational, ordered) separating, an honest cascade and a coalition told apart only by independent inspection, and honest sources with better access to news being flagged. Finally, pooling sources and conditioning on evidence commute for logarithmic pooling but not for linear pooling, whose defect is a reweighting by predictive success; a source that plants the evidence it predicts can capture the weight. Beyond a line, the algebra of co-revision histories is the right-angled Artin group of the co-revision graph; a braid encoding of it exists only when that graph is planar. Milnor's triple invariant, in a brokerage experiment, measures relay through a broker: it is a signed count of crossing relationships that no single precedence statistic determines. And when ties are resolved by persistent biases, pairwise linking laws are universal while the law of the triple invariant reveals how the biases are correlated.
+The last sections ask what a decision maker can do when some of his sources may be poisoned, or may coordinate. Trust turns out to be relative to a decision. A coalition can have room to move one decision without being seen and no room at all on another, and agreement among the inputs does not protect him; only independent anchors do. An inspection protects a decision if it separates the coalition's possible endpoints from the truth and arrives before the coalition can reach them, and this survives inspection noise below half the separation. Two pre-registered synthetic studies test whether braid and knot summaries of a decision history predict more than a plain record of it. In both, they did not. We then say exactly what such summaries can carry: braids built from data carry the order of exchanges, or, for strands in the plane, windings and then Milnor-type invariants; knot invariants of uncertain diagrams are high-order functionals of the hidden law. Drawing the sources as a bundle of strands gives a well-defined link only for sources the data keep apart; where the data tie sources, it gives a pseudo-link whose resolutions are cut out by the history and whose probabilities come from the noise model, and its entropy measures how much topology the data leave open. What survives is a record of which sources are blamed, and of which sources revise together. In a third pre-registered study, the group of sources that revised together recovered coordinated coalitions that attribution by explanation missed, and never named an honest source; braid and knot features again added nothing. Finally, braid invariants do separate orders of co-revision that pairwise statistics cannot, but for three sources they coincide level by level with the path signature of the count path; with more sources the braid is that signature taken modulo the order of independent events. The braid is a compression of event order, not the topology that revising reports trace out. Over many decisions, a private memory of three random walks per source and pair (lean towards a decision, co-movement, habitual order) finds coordination invisible in any single episode; its order walk sees a coalition only if the coalition's order breaks exchangeability. A worked example shows the three levels of evidence (individual, relational, ordered) separating, an honest cascade and a coalition told apart only by independent inspection, and honest sources with better access to news being flagged. Finally, pooling sources and conditioning on evidence commute for logarithmic pooling but not for linear pooling, whose defect is a reweighting by predictive success; a source that plants the evidence it predicts can capture the weight. Beyond a line, the algebra of co-revision histories is the right-angled Artin group of the co-revision graph; a braid encoding of it exists only when that graph is planar, and in convex position its relations are those of Birman, Ko and Lee, squared. Milnor's triple invariant, in a brokerage experiment, measures relay through a broker: it is a signed count of crossing relationships that no single precedence statistic determines. And when ties are resolved by persistent biases, pairwise linking laws are universal while the law of the triple invariant reveals how the biases are correlated. When a new source enters, its contribution relative to a chosen null insertion lies in a free group: its first layer is the newcomer's linking numbers, and its second layer contains the relay invariant. Braids also condition credal sets: pairwise linking under tie resolution is precise while the triple invariant has a Fr\'echet envelope, and when timing is an imprecise nuisance the braid can give sharper posteriors than the full record. Hiding a newcomer below layer $k$ costs at least $k$ events of its own, or structure in the old sources visible one layer lower.
 
 Section~1 states the status of every claim (proved, cited, computed or open), and a ledger of check scripts records every computation.
 \end{abstract}
@@ -98,8 +98,12 @@ component & status & source\\\midrule\endhead
 \rowcolor{stNew} the memory at work: ledger, lead-lag (Granger-type) and anchor walks, forgetting; explicit exchangeability null; family-wise sequential false alarms $3.5$--$7\%$ (Wilson intervals contain $5\%$); individual, relational and ordered relational evidence separate; honest cascade and coalition separated only by the anchor follow-up; honest uneven exposure flagged by the lean walk; bystanders flagged away from $X$; data-derived priming inflates false alarms to $13.5$--$28\%$ & Numerical (toy) & \cite{Granger1969,Wilson1927}; this note\\
 \rowcolor{stNew} pooling and conditioning: linear pooling commutes with conditioning iff the sources give the evidence equal probability (defect = likelihood reweighting); geometric pooling externally Bayesian; fibre intersection order-free; planted evidence captures weight under pool-then-condition (\cref{prop:poolcond}) & Proved (cited: Genest--McConway--Schervish); Numerical (example) & \cite{Stone1961,GenestZidek1986,GenestMcConwaySchervish1986}; this note\\
 \rowcolor{stNew} co-revision over any graph: $A_G$ for every graph; partially commutative signature complete; twist encoding is a homomorphism iff independent edges have disjoint arcs, possible iff $G$ planar (Hanani--Tutte); faithful at some power (Koberda); triangle relation at $N=1$; computed on six drawings (\cref{thm:graphs}) & Proved (cited: Cartier--Foata, Duchamp--Krob, Farb--Margalit, Hanani--Tutte, Koberda); Numerical (balls) & \cite{Tutte1970,PelsmajerSchaeferStefankovic2007,FarbMargalit2012,Koberda2012,CrispParis2001}; this note\\
+\rowcolor{stNew} co-revision in Birman--Ko--Lee generators: in convex position the co-revision twist is $a_{ts}^2$; (B1) gives commutation for non-crossing chords; (B2) gives the pure triangle identity $\tau_{ts}\tau_{sr}\tau_{tr}=\Delta^2_{\{r,s,t\}}$; convex non-crossing drawings are exactly the outerplanar ones; non-convex drawings not derived from Sergiescu (\cref{cor:bkl}) & Proved (cited: Birman--Ko--Lee); Exact (geometric reading of every chord) & \cite{BirmanKoLee1998,Sergiescu1993}; this note\\
 \rowcolor{stNew} brokerage: triple Milnor invariant = signed crossing number of relationship intervals (relay); $\mu_{123}=2(P_{oo}+P_{cc})-P_{\rm all}$; not determined by any single precedence statistic; random-timing variance $m^2/(4m-1)$ verified $m\le5$; only the invariant separates relay from sequential brokerage (\cref{prop:brokerage}) & Proved; Exact (enumeration); Numerical (episodes) & this note\\
 \rowcolor{stNew} pseudo-links under bias and noise: universality of pairwise laws under circular biases; joint laws via the phase-difference density; exact law of the triple invariant on interleaved visits matches simulation; three noise regimes (finite; variance $(T-1)/12$; Spitzer / Pitman--Yor) (\cref{thm:pseudoprob}) & Proved (cited: Spitzer, Pitman--Yor, Goodman); Numerical & \cite{Spitzer1958,PitmanYor1986,Goodman1985}; this note\\
+\rowcolor{stNew} strand-addition defect: defined only for compatible histories ($\mathrm{forget}(\beta')=\beta$); lies in the free kernel of Fadell--Neuwirth; relative to a chosen section (outside or echo), sections differ by crossed homomorphisms; first layer = newcomer's linking numbers; second layer = antisymmetric Magnus part, Milnor's coefficient when linking vanishes; brokerage relay invariant is a newcomer's second layer; chain rule over nested regions; algebra, not a detector (\cref{prop:defect}) & Proved (cited: Fadell--Neuwirth, Artin, Milnor, Habegger--Lin); Numerical (random braids) & \cite{FadellNeuwirth1962,Artin1947,Milnor1954,HabeggerLin1990}; this note\\
+\rowcolor{stNew} braids and credal conditioning: projection and conditioning commute iff the event is saturated (or one value), else within $\max w_P$ in Hausdorff TV; pseudo-links precise pairwise, Fr\'echet envelope for the triple invariant over all circular laws; the braid as a sufficient statistic under a shared nuisance; with separate nuisances finer statistics dilate (\cref{prop:credalbraid}) & Proved; Numerical (constructed family) & \cite{Walley1991,SeidenfeldWasserman1993}; this note\\
+\rowcolor{stNew} masking: a newcomer hidden below layer $k$ has defect in $\gamma_k$; defect = product of event loops conjugated by the old history; a lone newcomer needs $\ge d(k)\ge k$ turns (exactly $1,4,8,14,14$ for $k\le5$, two old sources), $O(k^{1.44})$ suffice; riding: two turns reach depth $1+$ depth of the old longitude, visible one layer lower; event algebra $\ge k$ events (\cref{prop:masking}) & Proved (cited: Magnus, Malestein--Putman, Elkasapy--Thom); Exact (search) & \cite{MalesteinPutman2010,MalesteinPutman2023,ElkasapyThom2013,Elkasapy2016}; this note\\
 \rowcolor{stNew} sufficient boundary statistics: row and column classes are the minimal statistic a cut must carry; gluing given one side's class preserves the outcome; Möbius and Shapley attribution cut-invariant exactly then (\cref{prop:boundary}) & New & this note\\
 \rowcolor{stNew} gluing at a cut: range of P(knotted) is the $q$-weighted Fr\'echet interval; a point iff one region is certain given each cut state; Markov glue = maximum entropy (\cref{prop:cutglue}) & New & this note\\
 \rowcolor{stNew} snapshots and a private decision ledger: roles, ledger, crossing log, Bloch ball; Study~19 pre-registered, not run (\cref{sec:ledgerdm}) & Defined & this note\\
@@ -3262,6 +3266,43 @@ Its generators commute exactly when their edges are disjoint, so its commutation
 \end{proof}
 
 For the line, Collins' theorem is the case $N=1$ \cite{Collins1994}, and Crisp and Paris extended it to the squares of the standard generators of any Artin group \cite{CrispParis2001}. We drew six graphs with straight edges and computed every twist from its actual trajectory (\cref{fig:graphs}). In all of them, two twists commuted exactly when their edges were disjoint and their segments did not cross; in the crossed drawing of $K_4$ the two independent diagonals do not commute, as (ii) predicts. On all histories of length at most $5$ (path, star, triangle) or $4$ (square, $K_4$), single twists were faithful on the triangle-free graphs. The triangle and the planar $K_4$ produced exactly the relation of (iv), and squared twists were faithful on every planar drawing tested. The partially commutative signature separated exactly the elements of $A_G$ on all histories of length at most $4$ for the star, the triangle and the square ($937$, $937$ and $1969$ elements). RG1--RG5 in \texttt{engine/check\_raagbraid.py} check these statements. Two conclusions follow. The algebra of event histories is $A_G$ for every co-revision graph, and the partially commutative signature records it completely. A braid encoding exists only for planar graphs, and on triangles it needs squared twists.
+
+\paragraph{The same theorem in Birman--Ko--Lee generators.} The commutation criterion of (ii) and the triangle relation of (iv) are not new observations. When the sources sit in convex position they are the pure-braid shadows of the two relations of Birman, Ko and Lee \cite{BirmanKoLee1998}. Number the sources $1,\dots,n$ along the boundary of their convex hull and draw each edge as a straight chord. For $t>s$ the \emph{band generator} $a_{ts}$ is the half-twist that exchanges $t$ and $s$ inside a thin lens around their chord. In Artin's generators,
+\[
+a_{ts}=(\sigma_{t-1}\cdots\sigma_{s+1})\,\sigma_s\,(\sigma_{t-1}\cdots\sigma_{s+1})^{-1},\qquad a_{s+1,s}=\sigma_s .
+\]
+Birman, Ko and Lee proved that these generators and the two families of relations
+\[
+\text{(B1)}\ \ a_{ts}a_{rq}=a_{rq}a_{ts}\ \text{ if the chords $ts$ and $rq$ are disjoint and do not cross},\qquad
+\text{(B2)}\ \ a_{ts}a_{sr}=a_{tr}a_{ts}=a_{sr}a_{tr}\ \ (t>s>r)
+\]
+present the braid group $B_n$. The element $\delta=a_{n,n-1}\cdots a_{21}$ rotates the chords by one step, and $\delta^n$ is the full twist.
+
+\begin{corollary}[convex position]\label{cor:bkl}
+Let the sources be in convex position, numbered along the hull, with straight chords as arcs.
+\begin{enumerate}
+\item[(i)] The co-revision twist is the square of a band generator, $\tau_{ts}=a_{ts}^2$. Band generators exchange two sources and are not pure; co-revision twists are their squares.
+\item[(ii)] Relation (B1) gives the ``if'' half of \cref{thm:graphs}(ii): twists along disjoint, non-crossing chords commute. The ``only if'' half, that twists along crossing chords do not commute even though their edges are independent, is not a consequence of (B1) or (B2). It comes from the intersection of the twisting curves.
+\item[(iii)] Relation (B2) has the pure consequence
+\[
+\tau_{ts}\,\tau_{sr}\,\tau_{tr}\;=\;\tau_{tr}\,\tau_{ts}\,\tau_{sr}\;=\;\tau_{sr}\,\tau_{tr}\,\tau_{ts}\;=\;\Delta^2_{\{r,s,t\}}\qquad(t>s>r),
+\]
+where $\Delta^2_{\{r,s,t\}}$ is the full twist of the three sources. So $\tau_{ts}$ commutes with $\tau_{sr}\tau_{tr}$. In convex position every triangle is empty, so \cref{thm:graphs}(iv) applies to every triangle of $G$.
+\item[(iv)] A drawing in convex position with no two independent chords crossing exists exactly when $G$ is outerplanar. For outerplanar $G$, the map $a_e\mapsto\tau_e^N$ is a homomorphism from $A_G$ for every $N$, and it is not injective at $N=1$ when $G$ has a triangle.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) The twist is the Dehn twist about the boundary of a thin neighbourhood of the chord, and that is the square of the half-twist along the chord \cite{Birman1974,FarbMargalit2012}. (ii) If two elements commute, so do their squares. The converse direction is \cref{thm:graphs}(ii). (iii) By (B2), $\delta_3:=a_{ts}a_{sr}=a_{sr}a_{tr}=a_{tr}a_{ts}$. Then
+\[
+\tau_{ts}\tau_{sr}\tau_{tr}=a_{ts}(a_{ts}a_{sr})(a_{sr}a_{tr})a_{tr}=a_{ts}\,\delta_3^{2}\,a_{tr}=a_{ts}\,\delta_3^{3}\,a_{ts}^{-1}=\delta_3^3 ,
+\]
+using $a_{tr}=\delta_3a_{ts}^{-1}$. Here $\delta_3^3$ is the full twist of the three strands, which is central in the subgroup they generate \cite{BirmanKoLee1998}. The other two products are cyclic rotations of the first, so they are conjugates of a central element and equal it. The remaining three orders do not give the full twist; this was checked (KL4). (iv) A straight-line drawing with every vertex on the outer face is, by definition, an outerplanar drawing. Then (B1) gives the homomorphism and (iii) gives the failure at $N=1$.
+\end{proof}
+
+Interior sources are a different case; the star and the planar $K_4$ have one. Sergiescu showed that for any connected planar graph with $n$ vertices, the half-twists along its edges generate $B_n$, subject to a finite set of positive relations determined by the planar geometry \cite{Sergiescu1993}. We have not used those relations. For non-convex drawings, \cref{thm:graphs}(ii) and the computations above stand on their own, and \cref{cor:bkl} covers convex drawings only.
+
+We placed the sources on the concave arc $y=-x^2$, numbered by $x$, and read every half-twist from its actual trajectory. With that placement, the clockwise exchange along each chord read exactly as $a_{ts}$ (all 31 chords for $n=4,5,6$), and the co-revision twist read as $a_{ts}^2$. (B1) and (B2) held on all 42 non-crossing pairs and all 34 triples. On all 21 crossing pairs, neither the half-twists nor their squares commuted. $\delta$ rotates the chords: $\delta^{-1}a_{ts}\delta=a_{t+1,s+1}$, indices modulo $n$; the first version of this check had the direction backwards. $\delta^n$ is the full twist and is central. The triangle identity of (iii) held for every triple, with exactly the three cyclic orders. For convex drawings of outerplanar graphs, single twists were faithful on balls for the path, the $4$-cycle and the $5$-cycle. They failed on a triangulated pentagon, where squared twists were faithful on the same ball. KL1--KL5 in \texttt{engine/check\_bklband.py} check these statements.
 \begin{figure}[!htbp]\centering
 \includegraphics[width=\linewidth]{fig_graphs.pdf}
 \caption{Six drawings of co-revision graphs. In red, independent edges whose segments cross: their twists fail to commute, so the braid encoding is not a homomorphism. Below each drawing: whether single ($N=1$) and squared ($N=2$) twists were faithful on all histories of length at most $4$ or $5$.}\label{fig:graphs}
@@ -3333,6 +3374,170 @@ A decision maker who sees linking numbers well outside the finite set allowed by
 \includegraphics[width=\linewidth]{fig_broker.pdf}
 \caption{(a) Relay, nested and sequential brokerage as intervals of the two relationships, with their triple invariants. (b) The exact probability that the triple invariant is $1$ on interleaved visits through the broker, as a function of the correlation of the two visitors' biases (curve, from the phase-difference density), with Monte Carlo points. (c) The spread of a tied pair's winding under a persistent bias, independent jitter and random-walk drift.}\label{fig:broker}
 \end{figure}
+
+\subsection{What a newcomer adds}\label{sec:newcomer}
+A decision maker who widens his view sees a source he had not watched before. Did the newcomer bring structure of its own, or did it slot into the existing history without changing it? This subsection makes the question exact. Histories of co-revision twists are pure braids on labelled sources, because every source returns to its own place. Write $P_n$ for the pure braid group of the $n$ old sources and $P_{n+1}$ for the group after the newcomer, labelled $n+1$, is added. Deleting the newcomer's strand gives a homomorphism $\mathrm{forget}:P_{n+1}\to P_n$. Fadell and Neuwirth showed that it fits into a split exact sequence
+\[
+1\longrightarrow F_n\longrightarrow P_{n+1}\xrightarrow{\ \mathrm{forget}\ }P_n\longrightarrow 1 ,
+\]
+whose kernel is the free group on the newcomer's loops $A_{1,n+1},\dots,A_{n,n+1}$ around the old sources \cite{FadellNeuwirth1962,Artin1947,Birman1974}. A \emph{section} is a homomorphism $s:P_n\to P_{n+1}$ with $\mathrm{forget}\circ s=\mathrm{id}$. It says how a newcomer that contributes nothing would be inserted into an old history. We use two kinds.
+\begin{itemize}
+\item \emph{From outside.} The newcomer stays at the edge of the picture, behind the other sources, and never winds around any of them. This is $s_{\rm out}$.
+\item \emph{Echo of $i$.} The newcomer runs alongside source $i$ and copies its every move. This is $e_i$.
+\end{itemize}
+
+\begin{definition}\label{def:defect}
+Let $\beta\in P_n$ be an old history and $\beta'\in P_{n+1}$ an enlarged one. They are \emph{compatible} if $\mathrm{forget}(\beta')=\beta$, that is, the enlarged history restricted to the old sources is the old history. For a compatible pair and a section $s$, the \emph{strand-addition defect} is $\Delta_s(\beta',\beta)=\beta'\,s(\beta)^{-1}$.
+\end{definition}
+
+\begin{proposition}[strand-addition defect]\label{prop:defect}
+\begin{enumerate}
+\item[(i)] \emph{Kernel.} $\beta's(\beta)^{-1}$ lies in $F_n$ if and only if $\mathrm{forget}(\beta')=\beta$. For a compatible pair, $\beta'=\Delta_s\,s(\beta)$ uniquely, and $\Delta_s=1$ exactly when $\beta'=s(\beta)$.
+\item[(ii)] \emph{Dependence on the section.} Any two sections differ by a crossed homomorphism. If $s'(\beta)=c(\beta)\,s(\beta)$ then $c:P_n\to F_n$ satisfies $c(\beta\gamma)=c(\beta)\,s(\beta)c(\gamma)s(\beta)^{-1}$, and $\Delta_{s'}=\Delta_s\,c(\beta)^{-1}$. Inserting the newcomer at any point of the outer boundary gives $s_{\rm out}$, once the newcomer has been moved to the end of the labels. The echo section is $e_i=c_i\cdot s_{\rm out}$, and the abelian image of $c_i(\beta)$ is $(\operatorname{lk}_\beta(i,j))_{j}$, with $0$ in place $i$.
+\item[(iii)] \emph{First layer.} The image of $\Delta_{s_{\rm out}}$ in $F_n^{\rm ab}\cong\mathbb Z^n$ is $d_j=\operatorname{lk}_{\beta'}(j,n+1)$, the newcomer's linking number with each old source. Relative to $e_i$, it is $\operatorname{lk}_{\beta'}(j,n+1)-\operatorname{lk}_\beta(i,j)$. A newcomer that echoes $i$ exactly has defect $1$ relative to $e_i$, and defect $(\operatorname{lk}_\beta(i,j))_j$ relative to $s_{\rm out}$.
+\item[(iv)] \emph{Second layer.} Write $\Delta_s$ as a reduced word in the $A_{j,n+1}$. Substitute $A_{j,n+1}\mapsto 1+X_j$ in non-commuting variables, and let $d_j$ and $M_{jk}$ be the coefficients of $X_j$ and $X_jX_k$. Then $M_{jk}+M_{kj}=d_jd_k$. So the new information at this layer is the antisymmetric part $\tfrac12(M_{jk}-M_{kj})$, which is the image of $\Delta_s$ in $\gamma_2F_n/\gamma_3F_n\cong\Lambda^2\mathbb Z^n$. Given $s$ and the basis, these coefficients are exact invariants of $\Delta_s$. A change of free basis changes $M_{jk}$ only by terms in $d_jd_k$, so when all $d_j=0$ they do not depend on the basis. In that case $M_{jk}$ is, up to a sign fixed by convention, Milnor's coefficient for the components $j$, $k$ and the newcomer \cite{Milnor1954,HabeggerLin1990}. For the closed link, Milnor's $\bar\mu$ is defined only modulo the lower invariants. The defect of a labelled pure braid, a string link, carries no such indeterminacy.
+\item[(v)] \emph{Regions.} Forgetting two newcomers in either order gives the same braid. For nested histories $\beta''\in P_{n+2}$, $\beta'=\mathrm{forget}(\beta'')$ and $\beta=\mathrm{forget}(\beta')$, the defects compose by the chain rule $\Delta(\beta'',\beta)=\Delta(\beta'',\beta')\;s(\Delta(\beta',\beta))$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) $\mathrm{forget}$ is a homomorphism and $\mathrm{forget}\circ s=\mathrm{id}$, so $\mathrm{forget}(\beta's(\beta)^{-1})=\mathrm{forget}(\beta')\beta^{-1}$. This is $1$ exactly when $\mathrm{forget}(\beta')=\beta$, and then exactness puts $\Delta_s$ in $F_n$. Uniqueness and the case $\Delta_s=1$ are immediate.
+
+(ii) Set $c(\beta)=s'(\beta)s(\beta)^{-1}$; it lies in $F_n$ by (i). Expanding $s'(\beta\gamma)=s'(\beta)s'(\gamma)$ gives the cocycle rule. The formula for $\Delta_{s'}$ is a one-line computation. Two insertion points on the outer boundary are joined by an arc of the boundary that meets no source, so the two sections are conjugate by the braid that moves the newcomer along that arc. That braid only relabels. An echo of $i$ is a parallel copy of strand $i$ with blackboard framing, so its linking number with $j$ is that of $i$ with $j$, and with $i$ it is $0$.
+
+(iii) $F_n^{\rm ab}$ is free abelian on the classes of $A_{j,n+1}$. Each $A_{j,n+1}$ contributes $1$ to $\operatorname{lk}(j,n+1)$ and nothing to any other linking number. Linking numbers are additive, and $s_{\rm out}(\beta)$ does not link the newcomer with any source. The echo case follows from (ii).
+
+(iv) The Magnus map is an injective homomorphism from $F_n$ to the group-like series \cite{MagnusKarrassSolitar1966}. For a group-like series the degree-$2$ part satisfies the shuffle identity $M_{jk}+M_{kj}=d_jd_k$, and its antisymmetric part is the image in $\gamma_2/\gamma_3$. A change of basis $x_j\mapsto u_jx_ju_j^{-1}$ alters only products of degree-$1$ terms at degree $2$. With all linking numbers zero, Milnor's coefficients are read from the Magnus expansion of the newcomer's longitude. After the change of basis from Artin's free generators to the $A_{j,n+1}$, that longitude is the defect.
+
+(v) Deleting two strands does not depend on the order. Since $s$ is a homomorphism, $\beta''s(s(\beta))^{-1}=\beta''s(\beta')^{-1}\cdot s(\beta's(\beta)^{-1})$.
+\end{proof}
+
+Two examples show what the layers mean.
+
+\emph{A newcomer that wraps the pair.} Take two old sources, and let the newcomer $3$ turn around $1$, then around $2$, then undo the first turn, then the second: $\Delta=[A_{13},A_{23}]$. Both linking numbers are $0$, so the newcomer winds around neither source. But $(M_{12},M_{21})=(1,-1)$: it winds around the pair. Pairwise statistics cannot see this kind of reinforcement; the second layer can.
+
+\emph{Brokerage.} In \cref{prop:brokerage}, take the second visitor as the newcomer. Its defect over the history of visitor and broker has $\tfrac12(M_{12}-M_{21})=-\mu_{123}$ on all $76$ interleavings with $m\le2$. So the relay invariant of \cref{prop:brokerage} is exactly the second layer of a newcomer's defect. The minus sign is our convention.
+
+The section is the null model of a newcomer who adds nothing, and choosing it is a modelling decision. With $s_{\rm out}$ the null is a source with no relation to the others, and the defect measures all of the newcomer's entanglement. With $e_i$ the null is a sock puppet of $i$, and the defect measures what the newcomer adds beyond echoing $i$. The same enlarged history can have a large defect relative to one null and none relative to the other. So a defect is meaningful only together with the section it is measured against.
+
+The proposition is algebra, not detection. It says exactly what a newcomer contributes to the braid. It does not say that this contribution helps to tell coordination from honest common cause, and Studies~21, 22 and~24 found that braid features added nothing to the recorded statistics for the outcomes tested there. Three claims should be kept apart:
+\begin{itemize}
+\item a braid can show coordination structure;
+\item whether that structure is anomalous needs null models of honest processes, including shared drift and legitimate collaboration;
+\item whether it is manipulation needs independent anchors (\cref{thm:protect}).
+\end{itemize}
+A pre-registered test of the defect against those nulls and anchors is left for a later study, to be frozen before it runs.
+
+We checked the proposition on random pure braids with up to five strands. Forgetting was well defined on braids, and a homomorphism (SD1). The outside, behind-at-position-$k$ and echo sections respected the braid relations and split the sequence (SD2). With compatibility the defect lay in the kernel; without it, none of $298$ incompatible pairs did, so the condition cannot be dropped (SD3). The loop word of the defect, read from Artin's action, was a homomorphism; it sent $A_{j,n+1}$ to the letter $j$, rebuilt the defect exactly (Artin's combing), and separated $302$ distinct defects among $315$ pairs (SD4). SD5--SD8 check (ii)--(v), the commutator example and the brokerage identity. A first version of SD7 claimed that boundary sections differ at the second layer. That was wrong: they agree after relabelling, as (ii) states, and the claim is withdrawn. All checks are in \texttt{engine/check\_stranddefect.py}.
+
+\subsection{Braids, credal sets and conditioning}\label{sec:credalbraid}
+The fibres of this note are credal sets: closed convex families of laws compatible with the data (\cref{sec:voi}), with lower and upper probabilities $\underline P(A)=\inf_{P\in\mathcal M}P(A)$ and $\overline P(A)=\sup_{P\in\mathcal M}P(A)$ \cite{Walley1991}. This subsection places braids in that framework, with three separate roles:
+\begin{itemize}
+\item the braid is a statistic of the history, so it is something one can condition on;
+\item the laws of how ties resolve form a credal set;
+\item the decision weighs the conditioned set.
+\end{itemize}
+Throughout, histories form a finite set $H$, and $\mathcal M$ is the convex hull of finitely many laws on $H$. Conditioning is applied law by law, $\mathcal M|C=\{P(\cdot\mid C):P\in\mathcal M\}$, where every law gives $C$ positive probability. A statistic $\Pi:H\to Y$, such as the braid, a signature or a count, pushes laws forward.
+
+\begin{proposition}[braids and credal conditioning]\label{prop:credalbraid}
+\begin{enumerate}
+\item[(i)] \emph{Projection and conditioning.} Let $\hat C=\Pi^{-1}(\Pi(C))$, the histories whose statistic some history in $C$ shares. For every law, $(\Pi_*P)|\Pi(C)=\Pi_*(P|\hat C)$. With $w_P=P(\hat C\setminus C)/P(\hat C)$,
+\[
+\operatorname{TV}\big(\Pi_*(P|C),\,\Pi_*(P|\hat C)\big)=w_P\,\operatorname{TV}\big(\Pi_*(P|C),\,\Pi_*(P|\hat C\setminus C)\big).
+\]
+So the credal sets $\Pi_*(\mathcal M|C)$ and $(\Pi_*\mathcal M)|\Pi(C)$ are within Hausdorff distance $\max_P w_P$ in total variation, and the maximum is attained at a vertex of $\mathcal M$. They coincide for every credal set if and only if $C=\hat C$, or $\Pi$ takes a single value on $C$. In particular, one may condition on any braid-determined event after projecting to braids.
+\item[(ii)] \emph{Pseudo-links are precise pairwise and imprecise jointly.} Take a tie history whose triple invariant is $1$ exactly when the two consecutive differences of the regularising direction fall in arcs $S_1$ and $S_2$, of probabilities $s_1$ and $s_2$ under the uniform law, as on the broker visits of \cref{thm:pseudoprob}. Let $\mathcal M$ be the set of all laws of the direction that are invariant under a common rotation. Then each pairwise probability is the same for every law in $\mathcal M$; it is precise. The probability of $\mu_{123}=1$ is $\mathbb E_\nu\,|S_1\cap(S_2+\psi)|/2\pi$, where $\nu$ is the law of the phase difference $\psi$, and its envelope over $\mathcal M$ is the Fr\'echet interval
+\[
+\big[\underline P,\overline P\big](\mu_{123}=1)=\big[\max(0,s_1+s_2-1),\ \min(s_1,s_2)\big],
+\]
+attained by laws with a fixed phase difference.
+\item[(iii)] \emph{The braid as a sufficient statistic, and dilation.} Let an unknown $K\in\{\text{honest},\text{coordinated}\}$ have prior $\pi$. Let honest histories follow $p_\lambda$, and coordinated ones $q_{\lambda',\beta}(h)\propto p_{\lambda'}(h)\,g_\beta(T(h))$ for a statistic $T$. If the nuisance is shared ($\lambda=\lambda'$ in every joint law), then $P(K\mid h)=P(K\mid T(h))$ for every law, so the credal posterior given the full history is the credal posterior given $T$. If it is not shared, conditioning on a statistic finer than $T$ can widen the posterior interval and dilate it.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Since $C\subseteq\hat C$, the law $P|\hat C$ is the mixture $(1-w_P)\,P|C+w_P\,P|(\hat C\setminus C)$. Pushing forward is linear, and $\operatorname{TV}(a,(1-w)a+wr)=w\operatorname{TV}(a,r)$. Also, $\Pi(C)$ pulls back to $\hat C$, which gives the first identity. The two credal sets are images of $\mathcal M$ under maps that pair up law by law, so their Hausdorff distance is at most the largest paired distance, which is at most $\max_Pw_P$. The ratio $w_P$ is linear-fractional in $P$, so its maximum over a polytope is at a vertex. If $C=\hat C$ then $w_P=0$, and if $\Pi$ is constant on $C$ both push-forwards are the same point mass. Otherwise there are $h\in C$ and $h'\in\hat C\setminus C$ with $\Pi(h)\neq\Pi(h')$, and for $P=\tfrac12(\delta_h+\delta_{h'})$ the push-forward of $P|C$ is $\delta_{\Pi(h)}$, while that of $P|\hat C$ is not.
+
+(ii) Write $\theta_1$ and $\theta_2$ for the arguments of the two differences. A rotation of the direction adds the same angle to both, so a rotation-invariant law makes the pair $(\theta_1,\psi)$, with $\psi=\theta_1-\theta_2$, invariant under $\theta_1\mapsto\theta_1+\varphi$. That forces $\theta_1$ to be uniform and independent of $\psi$. Each marginal is therefore uniform, which gives precision, and $P(\theta_1\in S_1,\theta_2\in S_2)=\mathbb E\,|S_1\cap(S_2+\psi)|/2\pi$. As $\psi$ turns, the overlap of two arcs of lengths $2\pi s_1$ and $2\pi s_2$ ranges from $2\pi\max(0,s_1+s_2-1)$ to $2\pi\min(s_1,s_2)$. A law with a fixed $\psi$ is a rotation-invariant law, and mixtures over $\psi$ give everything in between. No coupling of two events with these marginals can leave the Fr\'echet interval.
+
+(iii) With a shared nuisance, $P(K=\text{coordinated}\mid h)=\pi g_\beta(T(h))/(\pi g_\beta(T(h))+(1-\pi)c)$, where $c$ is the normaliser ratio. This depends on $h$ only through $T(h)$, and conditioning on $T(h)=y$ gives the same value. Without sharing, the two likelihoods are bounded separately, so the lower posterior uses the smallest coordinated and the largest honest likelihood, and the upper posterior the reverse. A finer statistic makes these likelihoods more sensitive to the nuisance. The computed case below shows that this widens the interval.
+\end{proof}
+
+On the broker visits the two arcs each have probability $s_1=s_2=11/24\approx0.458$. The envelope of $P(\mu_{123}=1)$ over all rotation-invariant laws is $[0,\,0.458]$: the rate is $0$ when the two visitors' bias differences are opposite and $0.458$ when they are aligned. The real-correlation Gaussian laws of \cref{thm:pseudoprob} cover only $[0.013,\,0.207]$. The pairwise linking probabilities are $11/24$ under every one of these laws. So pairwise data are precise and say nothing about the relay rate, while the triple invariant is exactly where the imprecision lives. This is the probabilistic face of the Fr\'echet interval of \cref{prop:cutglue}.
+
+For (iii) we took the brokerage histories of \cref{prop:brokerage} with $m=2$ ($70$ histories) and $T=\mu_{123}$.
+\begin{itemize}
+\item The nuisance $\lambda\in[0.8,1.25]$ tilts how early visitor~1 acts, $p_\lambda(h)\propto\lambda^{\text{positions of visitor 1's events}}$.
+\item The coalition tilts towards relay, $g_\beta(\mu)=e^{\beta\mu}$, with $\beta\in[0.5,2]$.
+\item The prior is fixed at $\pi=\tfrac12$, so any interval that strictly contains $\tfrac12$ is a dilation \cite{SeidenfeldWasserman1993}.
+\end{itemize}
+With a shared nuisance, the posterior given the full history equalled that given the braid, history by history, for all $49$ laws on the grid. With separate nuisances, the results were these (widths averaged under the uniform honest law):
+
+\begin{center}
+\begin{tabular}{lrrr}
+statistic & values & mean width & dilated at \\ \hline
+untyped precedence & 17 & 0.60 & 17 of 17 \\
+typed precedence & 41 & 0.62 & 38 of 41 \\
+full history & 70 & 0.62 & 65 of 70 \\
+braid & 5 & 0.32 & 1 of 5 \\
+\end{tabular}
+\end{center}
+
+The braid's single dilated value carries $51\%$ of the honest mass. When the coalition's preference is not pinned down ($\beta\in[-1,2]$, so it may favour or avoid relay), every informative statistic dilates at every value. The credal set then contains laws under which relay is positively and negatively associated with coordination, which is the Seidenfeld--Wasserman mechanism.
+
+Three lessons follow.
+\begin{itemize}
+\item One may condition credal sets on braid-determined events after projecting to braids, and the error of conditioning on anything else is bounded by (i).
+\item Under unknown bias correlations, the relay rate is imprecise for structural reasons, and no amount of pairwise data narrows it.
+\item The braid can be worth more than the full record. When coordination acts through the braid and the timing is a nuisance whose law is imprecise, a statistic finer than the braid imports that imprecision and dilates. Coarser is then more decisive.
+\end{itemize}
+The last lesson depends on the model. If coordination also acted through timing that the braid forgets, the braid would lose it. The numbers come from a constructed family and illustrate the mechanism; they are not estimates. CP1--CP6 in \texttt{engine/check\_credalbraid.py} check (i)--(iii) and the numbers above. In CP3 and CP4, a first version built the fixed-phase test laws with the phase off by $\pi$; once corrected, braids read from regularised histories matched the overlap formula ($0.461$ against $0.458$ at $\psi=0$; $0$ at $\psi=\pi$).
+
+\subsection{Masking: what hiding costs}\label{sec:masking}
+\Cref{prop:defect} gave the first two layers of a newcomer's defect. The layers continue. The \emph{depth} of $g\in F_n$ is the largest $k$ with $g\in\gamma_kF_n$, the $k$-th term of the lower central series, and it is $\infty$ for $g=1$. By Magnus' theorem, the depth is the lowest degree of a nonzero coefficient of $M(g)-1$, and the coefficients of that degree form the leading term of $g$ in the free Lie algebra \cite{MagnusKarrassSolitar1966}. So a newcomer whose defect has depth $k$ is invisible to every layer below $k$: linking numbers, second-layer coefficients, and so on up to layer $k-1$. It is seen at layer $k$. An adversary who wants a newcomer's contribution to survive while escaping the first $k-1$ layers needs a nontrivial defect in $\gamma_kF_n$. What does that cost?
+
+\begin{proposition}[masking]\label{prop:masking}
+Measure defects relative to $s_{\rm out}$, and write $x_j=A_{j,n+1}$ for the newcomer's turn around source $j$.
+\begin{enumerate}
+\item[(i)] \emph{Decomposition.} Let the newcomer make turns $x_{j_1}^{\varepsilon_1},\dots,x_{j_N}^{\varepsilon_N}$, at moments when the old history so far is $w_1,\dots,w_N$. Then
+\[
+\Delta=\prod_{i=1}^N\varphi_{w_i}\big(x_{j_i}^{\varepsilon_i}\big),
+\]
+where $\varphi$ is Artin's action of the old history on the newcomer's loops. Each factor is a conjugate of $x_{j_i}^{\varepsilon_i}$. Conjugating the newcomer's whole activity by an old history does not change the depth.
+\item[(ii)] \emph{A lone newcomer.} If the newcomer's turns form a single block $u$ while the old sources are still, then $\operatorname{depth}\Delta=\operatorname{depth}u$. A nontrivial newcomer hidden from the first $k-1$ layers therefore makes at least $d(k)$ turns, where $d(k)$ is the length of the shortest nontrivial word in $\gamma_kF_n$, and $d(k)\ge k$ \cite{MalesteinPutman2010}. Conversely, there are hidden newcomers with $O(k^{\log_\varphi2})\approx O(k^{1.44})$ turns, where $\varphi$ is the golden ratio \cite{ElkasapyThom2013,Elkasapy2016}. For two old sources, an exhaustive search gives $d(1),\dots,d(5)=1,4,8,14,14$.
+\item[(iii)] \emph{Riding the old history.} Let the newcomer turn once around source $j$, wait while the old sources braid by $w$, and undo the turn. Then
+\[
+\operatorname{depth}\Delta=1+\operatorname{depth}\ell_j(w),
+\]
+where $\ell_j(w)$ is the longitude of source $j$ in $w$, normalised to exponent sum $0$ in $x_j$. Moreover $\Delta=1$ exactly when $\ell_j(w)=1$. Two turns therefore reach any depth, but only by borrowing structure the old history already carries. The lowest nonzero Magnus coefficients of $\ell_j(w)$ are the lowest nonvanishing Milnor invariants $\mu(\cdots j)$ of the old sources \cite{Milnor1954,HabeggerLin1990}, so that structure is visible one layer lower, in the old sources themselves.
+\item[(iv)] \emph{The event algebra} (cited). Suppose some two edges of the co-revision graph share a source. Then every nontrivial history in $A_G$ that is invisible to the partially commutative signature below level $k$ has at least $k$ events \cite{MalesteinPutman2023}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Write the enlarged history as old blocks $s_{\rm out}(\cdot)$ interleaved with the newcomer's turns. Moving each turn to the left past the old blocks before it conjugates it by $s_{\rm out}(w_i)$. Conjugation by a pure braid acts on the free kernel by Artin's representation, which sends each loop $x_j$ to a conjugate of itself \cite{Artin1947,Birman1974}. What remains on the right is $s_{\rm out}(\beta)$, which the defect removes. Automorphisms preserve every $\gamma_k$.
+
+(ii) This is (i) with a single block, $\Delta=\varphi_w(u)$. If $\Delta\ne1$ is hidden below layer $k$, then $u\in\gamma_k\setminus\{1\}$. Its reduced length is at most the number of turns and at least $d(k)$.
+
+(iii) By (i), $\Delta=x_j\,\varphi_w(x_j)^{-1}$. The newcomer stays outside the old sources, so Artin's action moves the loop around $j$ to its conjugate by the longitude of $j$: $\varphi_w(x_j)=\ell\,x_j\,\ell^{-1}$ with $\ell=\ell_j(w)$. Hence $\Delta=[x_j,\ell]$. If $\ell$ has depth $d$ and leading term $L$, the leading term of $[x_j,\ell]$ is the Lie bracket $[X_j,L]$, of degree $d+1$, unless that bracket vanishes. In a free Lie algebra $[X_j,L]=0$ forces $L\in\mathbb ZX_j$. That is impossible for $d\ge2$, and for $d=1$ the normalisation excludes it. Finally, $\Delta=1$ means that $\ell$ commutes with $x_j$, so $\ell\in\langle x_j\rangle$, and the normalisation gives $\ell=1$.
+
+(iv) Malestein and Putman prove $d(k)\ge k$ for right-angled Artin groups whose commutation graph is not complete, using Droms' Magnus representation and Wade's identification of dimension subgroups with the lower central series. The commutation graph of $A_G$ is complete exactly when no two edges share a source. The partially commutative signature differs from the Magnus map by an invertible substitution that preserves the filtration (\cref{prop:ordrev}(iv)).
+\end{proof}
+
+So hiding has a price, and it is paid in one of two currencies.
+\begin{itemize}
+\item \emph{A long act.} A newcomer that acts alone must make at least $k$ turns to hide below layer $k$. Our search found that $14$ turns are needed to get past layer $4$ with two old sources.
+\item \emph{A borrowed structure.} A newcomer that rides the old history can hide with two turns, but the old sources must already show a nonvanishing invariant at layer $k-1$. A decision maker who watches the old sources to that layer sees it.
+\end{itemize}
+Mixed patterns, with several blocks of turns interleaved with old activity, interpolate through (i). A general lower bound on their total number of events is open. Masking in this sense concerns only the braid layers. The precedence statistics and the anchors of \cref{thm:protect} are separate obstacles that an adversary must also defeat.
+
+HD1--HD4 in \texttt{engine/check\_masking.py} check the statements.
+\begin{itemize}
+\item HD1 ran an exhaustive search over all reduced words of length at most $14$ in $F_2$. It gave $d=1,4,8,14,14$, with nothing of depth $6$ or more up to that length. An independent Magnus computation confirmed each depth, and each word was realised as a newcomer's history.
+\item HD2 confirmed the decomposition, and its invariance under conjugation, on $50$ random histories.
+\item HD3 confirmed the lone-newcomer case.
+\item HD4 confirmed the riding identity on four old histories and all three sources, with longitude depths from $1$ to $3$ (twelve cases, including the trivial one).
+\end{itemize}
 
 
 \section{Three-dimensional fibres}\label{sec:twofour}
@@ -3767,6 +3972,16 @@ Much of the text, the code, the check scripts and the figures were drafted with 
 \bibitem{Tutte1970} W.~T.~Tutte, Toward a theory of crossing numbers, \emph{J.\ Combin.\ Theory} \textbf{8} (1970) 45--53.
 \bibitem{PelsmajerSchaeferStefankovic2007} M.~J.~Pelsmajer, M.~Schaefer and D.~\v{S}tefankovi\v{c}, Removing even crossings, \emph{J.\ Combin.\ Theory Ser.\ B} \textbf{97} (2007) 489--500.
 \bibitem{FarbMargalit2012} B.~Farb and D.~Margalit, \emph{A Primer on Mapping Class Groups}, Princeton University Press, 2012.
+\bibitem{BirmanKoLee1998} J.~Birman, K.~H.~Ko and S.~J.~Lee, A new approach to the word and conjugacy problems in the braid groups, \emph{Adv.\ Math.} \textbf{139} (1998) 322--353.
+\bibitem{Sergiescu1993} V.~Sergiescu, Graphes planaires et pr\'esentations des groupes de tresses, \emph{Math.\ Z.} \textbf{214} (1993) 477--490.
+\bibitem{FadellNeuwirth1962} E.~Fadell and L.~Neuwirth, Configuration spaces, \emph{Math.\ Scand.} \textbf{10} (1962) 111--118.
+\bibitem{MagnusKarrassSolitar1966} W.~Magnus, A.~Karrass and D.~Solitar, \emph{Combinatorial Group Theory}, Interscience, New York, 1966.
+\bibitem{Walley1991} P.~Walley, \emph{Statistical Reasoning with Imprecise Probabilities}, Chapman and Hall, London, 1991.
+\bibitem{SeidenfeldWasserman1993} T.~Seidenfeld and L.~Wasserman, Dilation for sets of probabilities, \emph{Ann.\ Statist.} \textbf{21} (1993) 1139--1154.
+\bibitem{MalesteinPutman2010} J.~Malestein and A.~Putman, On the self-intersections of curves deep in the lower central series of a surface group, \emph{Geom.\ Dedicata} (2010), doi:10.1007/s10711-010-9465-z; arXiv:0901.2561.
+\bibitem{MalesteinPutman2023} J.~Malestein and A.~Putman, Word length versus lower central series depth for surface groups and RAAGs, arXiv:2307.04882 (2023).
+\bibitem{ElkasapyThom2013} A.~Elkasapy and A.~Thom, On the length of the shortest non-trivial element in the derived and the lower central series, arXiv:1311.0138 (2013).
+\bibitem{Elkasapy2016} A.~Elkasapy, A new construction for the shortest non-trivial element in the lower central series, arXiv:1610.09725 (2016).
 \bibitem{Koberda2012} T.~Koberda, Ping-pong lemmas with applications to geometry and topology, and right-angled Artin groups, \emph{Geom.\ Funct.\ Anal.} \textbf{22} (2012) 1541--1590.
 \bibitem{CrispParis2001} J.~Crisp and L.~Paris, The solution to a conjecture of Tits on the subgroup generated by the squares of the generators of an Artin group, \emph{Invent.\ Math.} \textbf{145} (2001) 19--36.
 \bibitem{Spitzer1958} F.~Spitzer, Some theorems concerning 2-dimensional Brownian motion, \emph{Trans.\ Amer.\ Math.\ Soc.} \textbf{87} (1958) 187--197.
