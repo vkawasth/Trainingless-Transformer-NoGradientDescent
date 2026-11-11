@@ -14,6 +14,15 @@
 \author{Vinay K Awasthi\\ Johns Hopkins University\\ \texttt{vawasth1@jh.edu}}
 \date{November 2026}
 \newcommand{\Peski}{P{\fontencoding{T1}\selectfont\k{e}}ski}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\definecolor{rbFrame}{HTML}{1F6F78}\definecolor{rbBack}{HTML}{EEF7F7}\definecolor{rbWhat}{HTML}{1F6F78}\definecolor{rbWhy}{HTML}{B5651D}
+\definecolor{rbEx}{HTML}{2E5C9A}\definecolor{rbBg}{HTML}{6A3D9A}\definecolor{rbFirst}{HTML}{2E7D32}\definecolor{mapFrame}{HTML}{3B3B8F}\definecolor{mapBack}{HTML}{F2F2FB}
+\newtcolorbox{readerbox}[1]{enhanced,breakable,colback=rbBack,colframe=rbFrame,coltitle=white,fonttitle=\bfseries\small,title={Before you read: #1},fontupper=\small,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt,before skip=8pt,after skip=10pt}
+\newtcolorbox{mapbox}[1]{enhanced,breakable,colback=mapBack,colframe=mapFrame,coltitle=white,fonttitle=\bfseries\small,title={#1},fontupper=\small,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt,before skip=8pt,after skip=10pt}
+\newcommand{\rbwhat}{\textcolor{rbWhat}{\textbf{What we do.}}~}\newcommand{\rbwhy}{\par\smallskip\textcolor{rbWhy}{\textbf{Why.}}~}
+\newcommand{\rbex}{\par\smallskip\textcolor{rbEx}{\textbf{Example.}}~}\newcommand{\rbbg}{\par\smallskip\textcolor{rbBg}{\textbf{Background.}}~}
+\newcommand{\rbfirst}{\par\smallskip\textcolor{rbFirst}{\textbf{On first reading.}}~}
 \begin{document}
 \maketitle
 
@@ -28,7 +37,7 @@ Part~III is about composition. Gluing couplings by the Markov rule is associativ
 
 Part~IV treats $2\times4$ tables, where the fibre is three-dimensional, and classifies its $148$ K\"ahler chambers exactly.
 
-The last sections ask what a decision maker can do when some of his sources may be poisoned, or may coordinate. Trust turns out to be relative to a decision. A coalition can have room to move one decision without being seen and no room at all on another, and agreement among the inputs does not protect him; only independent anchors do. An inspection protects a decision if it separates the coalition's possible endpoints from the truth and arrives before the coalition can reach them, and this survives inspection noise below half the separation. Two pre-registered synthetic studies test whether braid and knot summaries of a decision history predict more than a plain record of it. In both, they did not. We then say exactly what such summaries can carry: braids built from data carry the order of exchanges, or, for strands in the plane, windings and then Milnor-type invariants; knot invariants of uncertain diagrams are high-order functionals of the hidden law. Drawing the sources as a bundle of strands gives a well-defined link only for sources the data keep apart; where the data tie sources, it gives a pseudo-link whose resolutions are cut out by the history and whose probabilities come from the noise model, and its entropy measures how much topology the data leave open. What survives is a record of which sources are blamed, and of which sources revise together. In a third pre-registered study, the group of sources that revised together recovered coordinated coalitions that attribution by explanation missed, and never named an honest source; braid and knot features again added nothing. Finally, braid invariants do separate orders of co-revision that pairwise statistics cannot, but for three sources they coincide level by level with the path signature of the count path; with more sources the braid is that signature taken modulo the order of independent events. The braid is a compression of event order, not the topology that revising reports trace out. Over many decisions, a private memory of three random walks per source and pair (lean towards a decision, co-movement, habitual order) finds coordination invisible in any single episode; its order walk sees a coalition only if the coalition's order breaks exchangeability. A worked example shows the three levels of evidence (individual, relational, ordered) separating, an honest cascade and a coalition told apart only by independent inspection, and honest sources with better access to news being flagged. Finally, pooling sources and conditioning on evidence commute for logarithmic pooling but not for linear pooling, whose defect is a reweighting by predictive success; a source that plants the evidence it predicts can capture the weight. Beyond a line, the algebra of co-revision histories is the right-angled Artin group of the co-revision graph; a braid encoding of it exists only when that graph is planar, and in convex position its relations are those of Birman, Ko and Lee, squared. Milnor's triple invariant, in a brokerage experiment, measures relay through a broker: it is a signed count of crossing relationships that no single precedence statistic determines. And when ties are resolved by persistent biases, pairwise linking laws are universal while the law of the triple invariant reveals how the biases are correlated. When a new source enters, its contribution relative to a chosen null insertion lies in a free group: its first layer is the newcomer's linking numbers, and its second layer contains the relay invariant. Braids also condition credal sets: pairwise linking under tie resolution is precise while the triple invariant has a Fr\'echet envelope, and when timing is an imprecise nuisance the braid can give sharper posteriors than the full record. Hiding a newcomer below layer $k$ costs at least $k$ events of its own, or structure in the old sources visible one layer lower.
+The last sections ask what a decision maker can do when some of his sources may be poisoned, or may coordinate. Trust turns out to be relative to a decision. A coalition can have room to move one decision without being seen and no room at all on another, and agreement among the inputs does not protect him; only independent anchors do. An inspection protects a decision if it separates the coalition's possible endpoints from the truth and arrives before the coalition can reach them, and this survives inspection noise below half the separation. Two pre-registered synthetic studies test whether braid and knot summaries of a decision history predict more than a plain record of it. In both, they did not. We then say exactly what such summaries can carry: braids built from data carry the order of exchanges, or, for strands in the plane, windings and then Milnor-type invariants; knot invariants of uncertain diagrams are high-order functionals of the hidden law. Drawing the sources as a bundle of strands gives a well-defined link only for sources the data keep apart; where the data tie sources, it gives a pseudo-link whose resolutions are cut out by the history and whose probabilities come from the noise model, and its entropy measures how much topology the data leave open. What survives is a record of which sources are blamed, and of which sources revise together. In a third pre-registered study, the group of sources that revised together recovered coordinated coalitions that attribution by explanation missed, and never named an honest source; braid and knot features again added nothing. Finally, braid invariants do separate orders of co-revision that pairwise statistics cannot, but for three sources they coincide level by level with the path signature of the count path; with more sources the braid is that signature taken modulo the order of independent events. The braid is a compression of event order, not the topology that revising reports trace out. Over many decisions, a private memory of three random walks per source and pair (lean towards a decision, co-movement, habitual order) finds coordination invisible in any single episode; its order walk sees a coalition only if the coalition's order breaks exchangeability. A worked example shows the three levels of evidence (individual, relational, ordered) separating, an honest cascade and a coalition told apart only by independent inspection, and honest sources with better access to news being flagged. Finally, pooling sources and conditioning on evidence commute for logarithmic pooling but not for linear pooling, whose defect is a reweighting by predictive success; a source that plants the evidence it predicts can capture the weight. Beyond a line, the algebra of co-revision histories is the right-angled Artin group of the co-revision graph; a braid encoding of it exists only when that graph is planar, and in convex position its relations are those of Birman, Ko and Lee, squared. Milnor's triple invariant, in a brokerage experiment, measures relay through a broker: it is a signed count of crossing relationships that no single precedence statistic determines. And when ties are resolved by persistent biases, pairwise linking laws are universal while the law of the triple invariant reveals how the biases are correlated. When a new source enters, its contribution relative to a chosen null insertion lies in a free group: its first layer is the newcomer's linking numbers, and its second layer contains the relay invariant. Braids also condition credal sets: pairwise linking under tie resolution is precise while the triple invariant has a Fr\'echet envelope, and when timing is an imprecise nuisance the braid can give sharper posteriors than the full record. Hiding a newcomer below layer $k$ costs at least $k$ events of its own, or structure in the old sources visible one layer lower. Imprecision and contextuality are separate: tie resolutions from global directions are never contextual yet leave higher-order probabilities imprecise, while cyclic pairwise resolutions of one-dimensional ties are contextual. A compressed statistic can be more decisive one observation at a time and still worth less to a policy fixed in advance. A credal set gives each pathway a band of conditional probabilities whose braid has certified crossings and pre-crossings; a coordinated coalition hides a certified crossing cheaply and silently, and only relational data or anchors expose it. Carried along revisions, the field is path independent for a decision maker who recomputes; one who updates keeps the trace of a retracted table on a context the data never had, which can launder an open order into a confident one. When revisions change the variables, honest information loss is bounded by a representation holonomy computable from the kernels, and a merge-and-split launders only through a reconstruction whose odds depend on the outcome. Refitting and coarsening fail to commute by a defect equal to the extra divergence the fine data force beyond what the coarse cells absorb; its size does not decide whether a decision moves, only whether the decision depends on what the coarse data leave open. On a fixed set of variables these mechanisms are one: every step of an updater multiplies its law, and what survives at identical data is a class of log-factors modulo the data's contexts, a coordinate on the fibre that an auditor can read off but can attribute only to sets of contexts; a history can reverse a decision exactly when the reachable part of the fibre leaves it open. Refitting and coarsening commute for every starting law exactly when every fine statistic, read along any choice of representatives of the merged classes, is a coarse statistic; for data on sets of variables this happens only if the merged variable is never observed or the law is pinned. The maximum-entropy selector and the toric selector of Part~I put the same data-span condition on different objects, the logarithm of the law and the law of the potential's terms; they are not one family, history moves the first along its whole trace but the leximin limit of the second only at size $\log(1/T)$, and on one fibre they can choose different actions. A pre-registered end-to-end example on $300$ development and $100$ holdout tables runs the whole machinery in sequence, from fibre and projections to decisions, selection, contextuality at the sheaf, fibre and cocycle layers, history and protection: the exact statements hold, and six of nineteen pre-registered checks fail in instructive ways. Among them, a coordinated coalition flips a decision while every compatibility test passes: compatibility does not imply honesty.
 
 Section~1 states the status of every claim (proved, cited, computed or open), and a ledger of check scripts records every computation.
 \end{abstract}
@@ -104,6 +113,16 @@ component & status & source\\\midrule\endhead
 \rowcolor{stNew} strand-addition defect: defined only for compatible histories ($\mathrm{forget}(\beta')=\beta$); lies in the free kernel of Fadell--Neuwirth; relative to a chosen section (outside or echo), sections differ by crossed homomorphisms; first layer = newcomer's linking numbers; second layer = antisymmetric Magnus part, Milnor's coefficient when linking vanishes; brokerage relay invariant is a newcomer's second layer; chain rule over nested regions; algebra, not a detector (\cref{prop:defect}) & Proved (cited: Fadell--Neuwirth, Artin, Milnor, Habegger--Lin); Numerical (random braids) & \cite{FadellNeuwirth1962,Artin1947,Milnor1954,HabeggerLin1990}; this note\\
 \rowcolor{stNew} braids and credal conditioning: projection and conditioning commute iff the event is saturated (or one value), else within $\max w_P$ in Hausdorff TV; pseudo-links precise pairwise, Fr\'echet envelope for the triple invariant over all circular laws; the braid as a sufficient statistic under a shared nuisance; with separate nuisances finer statistics dilate (\cref{prop:credalbraid}) & Proved; Numerical (constructed family) & \cite{Walley1991,SeidenfeldWasserman1993}; this note\\
 \rowcolor{stNew} masking: a newcomer hidden below layer $k$ has defect in $\gamma_k$; defect = product of event loops conjugated by the old history; a lone newcomer needs $\ge d(k)\ge k$ turns (exactly $1,4,8,14,14$ for $k\le5$, two old sources), $O(k^{1.44})$ suffice; riding: two turns reach depth $1+$ depth of the old longitude, visible one layer lower; event algebra $\ge k$ events (\cref{prop:masking}) & Proved (cited: Magnus, Malestein--Putman, Elkasapy--Thom); Exact (search) & \cite{MalesteinPutman2010,MalesteinPutman2023,ElkasapyThom2013,Elkasapy2016}; this note\\
+\rowcolor{stNew} imprecision without contextuality: global assignments give noncontextual data; parallel walls: patterns are orders, feasible iff $1\le p_{01}+p_{12}+(1-p_{02})\le2$ (Condorcet contextual); generic walls never contextual; higher-order interval with closed form (\cref{prop:imprecctx}) & Proved (cited: Abramsky--Brandenburger, Gr\"otschel--J\"unger--Reinelt); Numerical & \cite{AbramskyBrandenburger2011,GrotschelJungerReinelt1985}; this note\\
+\rowcolor{stNew} decision value of the braid: ex post equal under shared nuisance; ex ante $\Gamma$-maximin monotone in information; braid more decisive ex post, worth less ex ante, with separate nuisances (\cref{prop:braidvalue}) & Proved; Numerical (constructed family) & \cite{SeidenfeldWasserman1993}; this note\\
+\rowcolor{stNew} conditional credal field: bands of conditional probabilities per pathway; certified crossings fix parity only; star covers give the product of bands and never contradict; relational data decide orders bands leave open; hiding a certified order costs the gap, reversing costs gap plus both widths, an anchor exposes shifts beyond $w_i+\eta$ (\cref{prop:credalfield}) & Proved; Numerical (toy) & this note\\
+\rowcolor{stNew} transport along revisions: likelihood edges commute; Jeffrey edits on the data's own contexts are erased by refitting (zero holonomy); a retracted edit on a foreign context stays, consistent with all data and invisible to every data-determined quantity; laundering reverses only orders the fibre leaves open; field holonomy $\le2\,$TV$/\max P(E)$; audit (\cref{prop:revholonomy}) & Proved (cited: Csisz\'ar); Numerical (sampled fibres) & \cite{Csiszar1975}; this note\\
+\rowcolor{stNew} revisions that change the variables: kernels transport fibres when they factor through contexts; refit and coarsening commute for coarse-measurable data (chain rule), else a defect; representation holonomy is a vertex maximum; audit: kernel paths differ by $\le H$, a reconstruction leaves a trace iff its within-class odds depend on the outcome (\cref{prop:kerneltransport}) & Proved; Numerical (finite example) & this note\\
+\rowcolor{stNew} transport/refitting defect: $D(g_*R\Vert R')=\Delta_{\rm fine}-W$ (chain rule and Pythagoras), Pinsker bound; zero for coarse-measurable data and on the fibre; not convex (no vertex principle); coarse-determined functionals never move, open ones can move under small defects; total discrepancy bounded by representation + update + defect terms (\cref{prop:refitdefect}) & Proved (cited: Csisz\'ar); Numerical (finite example) & \cite{Csiszar1975}; this note\\
+\rowcolor{stNew} commutation of refitting and coarsening for every starting law iff every fine statistic read along any section of the coarsening is a coarse statistic (pointwise: indicators of classes where a statistic varies, plus one section); otherwise the defect is nonzero on an open dense set; for variable designs iff the merged variable is in no context or the data pin the law; an event design commutes with an open coarse fibre (\cref{thm:refitcommute,cor:refitcommute}) & Proved (cited: Csisz\'ar); Numerical (random designs) & \cite{Csiszar1975}; this note\\
+\rowcolor{stNew} history theorem: every updater step is multiplicative; the end law depends only on the trace $[\tau]\in F/H_{\mathcal D}$, a bijective coordinate on the fibre; Props.~\ref{prop:revholonomy} and \ref{prop:kerneltransport}(iv) as special cases; traces add, cancel and are attributable only to spans of contexts; path-discrepancy lemma (vertex, pseudometric, contraction, concatenation, invariance); decision theorem: identification, stability, reversal iff the fibre (or the reachable slice) is open (\cref{thm:history,lem:pathdisc,thm:decision}) & Proved (cited: Csisz\'ar, Dobrushin); Numerical (finite example) & \cite{Csiszar1975,Dobrushin1956}; this note\\
+\rowcolor{stNew} Study 26, one end-to-end example: 300 + 100 synthetic tables, every major result applied in sequence; exact statements hold, six of nineteen pre-registered checks fail (thin population shift unflagged, conflict misattributed, coherent coalition passes compatibility and outruns a small inspection, fragile selected-law decision) (\cref{sec:study26}) & Numerical (pre-registered synthetic study) & this note\\
+\rowcolor{stNew} two selectors on one fibre: maximum entropy puts the data span on $\log P$, the toric family on the law of its terms (Birch); limits leximin ($L\to\infty$, rate $1/L$) and least squares or escape ($L\to0$); maximum entropy is not in the family (closest approach $0.0014$); history moves maximum entropy along the whole trace, the leximin limit only at size $\log(1/T)$; the selectors can choose different actions (\cref{prop:selectorlink}) & Proved; Numerical ($2\times3$ examples) & \cite{Csiszar1975}; this note\\
 \rowcolor{stNew} sufficient boundary statistics: row and column classes are the minimal statistic a cut must carry; gluing given one side's class preserves the outcome; Möbius and Shapley attribution cut-invariant exactly then (\cref{prop:boundary}) & New & this note\\
 \rowcolor{stNew} gluing at a cut: range of P(knotted) is the $q$-weighted Fr\'echet interval; a point iff one region is certain given each cut state; Markov glue = maximum entropy (\cref{prop:cutglue}) & New & this note\\
 \rowcolor{stNew} snapshots and a private decision ledger: roles, ledger, crossing log, Bloch ball; Study~19 pre-registered, not run (\cref{sec:ledgerdm}) & Defined & this note\\
@@ -127,6 +146,39 @@ Two probability structures must be kept apart. The measures in this note live on
 are not the source weights $\pi_l$ of the layers paper. The uniform measure of \cref{prop:kahler}(5) is a prior on states, not on sources.
 
 \section{A reading guide: information states}\label{sec:guide}
+\begin{mapbox}{How to use this note: a map for readers new to some of its fields}
+The note asks one question: \emph{what can we infer, and decide, when the data admit many compatible probability models?} Its answer draws on several fields, and no reader is expected to know them all. Each major block therefore opens with a teal box, \emph{Before you read}, that says in plain words what the block does and why, gives a small example, names background reading, and says what can wait on a first reading.
+
+\smallskip\textbf{Where each field appears.}\par
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.33\linewidth}>{\raggedright\arraybackslash}p{0.6\linewidth}@{}}
+probability, statistics, decisions & \cref{sec:fibre}, \cref{sec:selcomp} to \cref{sec:viability}, \cref{sec:ledgerdm} onwards\\
+convex and toric geometry & \cref{sec:tierA}, \cref{sec:bridge}, \cref{sec:thimble}, \cref{sec:fibre}, \cref{sec:twofour}\\
+symplectic and Floer theory (cited) & \cref{sec:floer}, \cref{sec:morph}, \cref{sec:bloch}\\
+categories & \cref{sec:morph} to \cref{sec:section}\\
+contextuality & \cref{sec:cycle} to \cref{sec:ncycle}, \cref{sec:imprecctx}\\
+braids, knots, free groups & \cref{sec:pseudoknot}, \cref{sec:braidknot} to \cref{sec:masking}\\
+\end{tabular}
+
+\smallskip\textbf{Three reading paths.}
+\begin{itemize}[leftmargin=1.3em,itemsep=1pt]
+\item \emph{Probability and decisions}: this guide, \cref{sec:fibre}, \cref{sec:selcomp}, \cref{sec:howlittle}, \cref{sec:cycle}, \cref{sec:voi}, \cref{sec:history}, then \cref{sec:ledgerdm} to \cref{sec:chain}.
+\item \emph{Coordination and braids}: this guide, \cref{sec:voi}, \cref{sec:chain}, then \cref{sec:braidknot} through \cref{sec:map}.
+\item \emph{Geometry}: \cref{sec:tierA}, \cref{sec:bridge}, \cref{sec:floer}, \cref{sec:thimble}, \cref{sec:fibre}, \cref{sec:morph}, \cref{sec:twofour}, \cref{sec:bloch}.
+\end{itemize}
+
+\textbf{Notation used throughout.}\par
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.5\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+$J_d$ & the fibre: joint laws compatible with the data $d$ & this section\\
+$\mathrm{Cpl}(f,g)$ & couplings with margins $f$, $g$ & \cref{sec:fibre}\\
+$W_T$, $T$ & the potential, and its small parameter & \cref{sec:bridge}\\
+$\mathcal M$, $\underline P$, $\overline P$ & a credal set, its lower and upper probabilities & \cref{sec:voi}, \cref{sec:credalbraid}\\
+$\sigma_i$, $A_{ij}$, $a_{ts}$ & Artin generators, pure (full) twists, band (half) twists & \cref{sec:braidknot}, \cref{sec:graphs}\\
+$A_G$ & the algebra of co-revision histories on a graph $G$ & \cref{sec:graphs}\\
+$\mu_{123}$ & the triple (Milnor) invariant & \cref{sec:brokerage}\\
+$\Delta_s$ & a newcomer's defect relative to a section $s$ & \cref{sec:newcomer}\\
+$\gamma_k$, $d(k)$ & lower central series; shortest word hidden below layer $k$ & \cref{sec:masking}\\
+\end{tabular}
+\end{mapbox}
 This section restates the note in one vocabulary. It adds no results; every claim below points to where it is proved, checked or left open. The common object is an \emph{information state}
 \[
 \mathcal I=(S,d,J_d),\qquad J_d=\pi_S^{-1}(d)\cap\Delta(\Omega),
@@ -192,7 +244,14 @@ They are not interchangeable. Laws far apart in Fisher--Rao distance can have th
 
 \paragraph{How to read the note.} Part~I builds the toric K\"ahler structure, the bridge to the Floer side and the thimble. Part~II applies it to contingency tables and coupling fibres. Part~III (\cref{sec:morph} onwards) treats the operations: morphisms, gluing, sections, contextuality, poisoning, inversion, decisions, value of information, algebra, viability and histories, roughly in the order of the table above. Part~IV is the three-dimensional test. The status table and the ledger (\cref{app:ledger}) give the status of every statement: proved, adapted, exact, numerical or open.
 
-\section{Tier A: the toric K\"ahler structure of conditioned states}
+\section{Tier A: the toric K\"ahler structure of conditioned states}\label{sec:tierA}
+\begin{readerbox}{the geometry under every fibre}
+\rbwhat Start from a finite set of integer points $S_i$ and the function $\varphi(u)=\log\sum_ic_ie^{\langle S_i,u\rangle}$. Read statistically, $\varphi$ is the log-partition function of an exponential family and $q(u)$ is its law. Read geometrically, the same $\varphi$ is a K\"ahler potential on a complex torus. This section writes out the dictionary: the moment map is the mean of the family, and the metric is its Fisher information.
+\rbwhy Every later section works on a \emph{fibre}, a polytope of probability laws. This is where that polytope gets its geometry, and why distances on it are statistical distances.
+\rbex Take the three points $0$, $e_1$, $e_2$ in the plane, with all $c_i=1$. The family is the set of laws on three outcomes, $q=(1,e^{u_1},e^{u_2})/(1+e^{u_1}+e^{u_2})$. Its moment polytope is a triangle, the probability simplex; the toric manifold is $\mathbb{CP}^2$; and the K\"ahler metric in the coordinates $u$ is the Fisher information of a three-outcome law.
+\rbbg Fulton \cite{Fulton1993}, chapter~1 (toric varieties from polytopes) and chapter~4 (moment maps); Amari and Nagaoka \cite{AmariNagaoka2000}, chapter~2 (the Fisher metric); Abreu \cite{Abreu2003} for K\"ahler geometry in these coordinates.
+\rbfirst Read the setting and the statement of \cref{prop:kahler}; the conventions for constants can wait.
+\end{readerbox}
 \paragraph{Setting.} Let $S=\{S_i\}\subset\mathbb Z^d$ be a finite support whose affine span is $\R^d$, with coefficients $c_i>0$. In log coordinates $u=\log x$ put
 \[
 \varphi(u)=\log\sum_ic_ie^{\langle S_i,u\rangle},\qquad q_i(u)=\frac{c_ie^{\langle S_i,u\rangle}}{\sum_jc_je^{\langle S_j,u\rangle}} ,
@@ -235,6 +294,13 @@ the layers paper's blueprint is not Delzant: its vertex at $(1,1)$ has determina
 below are $\mathbb{CP}^2$ and $F_1$.
 
 \section{The bridge}\label{sec:bridge}
+\begin{readerbox}{the Birch bridge}
+\rbwhat A polytope $Q$ given by facet inequalities $\ell_k\ge0$ has a potential $W_T(y)=\sum_kT^{-\lambda_k}y^{v_k}$, one term per facet, with a small parameter $T$. Its single critical point with positive coordinates is a probability statement in disguise: the terms of $W$, normalised, form a law whose mean exponent is zero, which is Birch's condition from log-linear models. As $T\to0$ the point's \emph{valuation} records which facets dominate.
+\rbwhy This is the bridge between the two languages of the note. Critical points of $W$ are objects of Floer theory (\cref{sec:floer}); balanced laws are maximum-likelihood conditions in statistics. The bridge lets each side compute for the other.
+\rbex For the segment $Q=[0,1]$, with facets $p\ge0$ and $1-p\ge0$, the potential is $W_T(y)=y+T/y$. Its positive critical point is $y=\sqrt T$, whose valuation $\log y/\log T=\tfrac12$ is the midpoint of the segment. There the two terms are equal, and the law $(\tfrac12,\tfrac12)$ on the two facets has mean exponent $\tfrac12(+1)+\tfrac12(-1)=0$.
+\rbbg Galkin \cite{Galkin2014} for the positive critical point; Hori and Vafa \cite{HoriVafa2000} and Cho and Oh \cite{ChoOh2006} for the potential; Diaconis and Sturmfels \cite{DiaconisSturmfels1998} for toric statistical models and Birch's theorem.
+\rbfirst Read \cref{thm:bridge}(1)--(2) and the definition of valuation; parts (3)--(4) and the lemma can wait.
+\end{readerbox}
 \paragraph{Setting.} Let $Q=\{p:\ell_k(p)=\langle v_k,p\rangle-\lambda_k\ge0,\ k=1,\dots,m\}$ be a compact Delzant polytope, with primitive inward facet normals $v_k$. Its
 potential, in the convention of Hori--Vafa and Cho--Oh \cite{HoriVafa2000,ChoOh2006}, is
 \[
@@ -293,6 +359,13 @@ finds all four critical points of $F_1$ in $80$-digit arithmetic and checks (4).
 \end{proof}
 
 \section{The Floer reading}\label{sec:floer}
+\begin{readerbox}{the Floer reading}
+\rbwhat We state, with citations, what the critical points of $W$ mean in symplectic geometry: each is a Lagrangian torus fibre with a flat connection whose Floer cohomology does not vanish. Nothing new is proved about Floer theory; we record which facts we use and where they come from.
+\rbwhy It explains why critical points of $W$ are called \emph{objects}, and why the positive one, which selects a probability law, is a distinguished object. Readers interested only in probability can skip this section: no later probabilistic statement depends on it.
+\rbex On the Hirzebruch surface $F_1$ (\cref{ex:F1}), $W$ has four critical points, computed in $80$-digit arithmetic. Exactly one is positive, and its valuation is the point that the selection rule of \cref{thm:selection} picks.
+\rbbg Auroux \cite{Auroux2007} for potentials of torus fibres and mirror symmetry; Cho and Oh \cite{ChoOh2006} for toric Fano manifolds; Fukaya, Oh, Ohta and Ono \cite{FOOO2010} for the general toric case.
+\rbfirst Read the opening paragraph and \cref{ex:F1}; the rest is for readers who know Floer theory.
+\end{readerbox}
 For a compact toric Fano manifold $X_Q$, Cho and Oh show that the potential of the Lagrangian torus fibres is exactly $W$, with no
 corrections, and that a fibre $L(u)$ has non-vanishing Floer cohomology for some local system iff a critical point of $W$ has valuation $u$
 \cite{ChoOh2006}. Fukaya, Oh, Ohta and Ono extend the picture to all compact toric manifolds, where $W$ acquires corrections \cite{FOOO2010}.
@@ -346,6 +419,13 @@ $0.4$ it is concentrated at $u_1^*=0.4$. Here $\log T=-200$, and $-100$ for $h=0
 \end{figure}
 
 \section{The positive thimble and its tropical limit}\label{sec:thimble}
+\begin{readerbox}{the thimble and its tropical limit}
+\rbwhat The positive critical point also governs an integral, $\int e^{-W/\hbar}$ over the positive real torus. Normalising the integrand gives a probability law on the polytope, the \emph{thimble law}. We find where it concentrates as $T\to0$: uniformly over the polytope when a parameter $h$ is small, and otherwise on the points that maximise the smallest distance to a facet.
+\rbwhy Selection, choosing one law from a fibre, is the central operation of the note. Here it appears from geometry, not from a rule we impose: the tropical limit of a natural integral picks max--min points.
+\rbex On the segment $[0,1]$ the smallest facet distance is $\min(p,1-p)$, largest at $p=\tfrac12$; for large $h$ the thimble law concentrates at the midpoint.
+\rbbg Maclagan and Sturmfels \cite{MaclaganSturmfels2015}, opening chapters, for tropical limits; Duistermaat and Heckman \cite{DuistermaatHeckman1982} for the uniform measure on a polytope; Galkin \cite{Galkin2014} and Galkin, Golyshev and Iritani \cite{GGI2016} for why the positive cycle matters.
+\rbfirst Read \cref{thm:tropical}; the oscillatory-integral background can wait.
+\end{readerbox}
 The positive critical point has a second, analytic role: it is the critical point of an oscillatory integral. In mirror symmetry the
 integral $\int e^{-W/\hbar}\,dy/y$ over the positive real cycle is the one tied to Galkin's conifold point and to Gamma conjecture~I; under homological mirror symmetry that
 cycle is expected to correspond to the structure sheaf \cite{Galkin2014,GGI2016,Iritani2009}. Here we only need its elementary properties, and what
@@ -423,6 +503,13 @@ example: $u^*_1$ is the midpoint of $S$. The mechanism of selection is the secon
 \end{example}
 
 \section{Soft evidence moves \texorpdfstring{$\lambda$}{lambda}}\label{sec:data}
+\begin{readerbox}{data that move the polytope}
+\rbwhat Data enter the geometry. Evidence that grows with the number of observations $n$ shifts the facet constants, $\lambda\mapsto\lambda-(n/N)\rho$, so the polytope itself moves, and with it the selected point.
+\rbwhy This is the first place where the geometry is conditioned on data, and it sets the pattern for everything later: say exactly what the data change, and record what they do not.
+\rbex A likelihood of fixed size has $n/N\to0$ as the scale $N$ grows: it changes coefficients smoothly but moves no valuation. Evidence growing in proportion to $N$ moves the polytope, and can push the selected point across a wall where the dominant facets change.
+\rbbg Diaconis and Sturmfels \cite{DiaconisSturmfels1998} for log-linear models; walls are introduced in \cref{sec:thimble}.
+\rbfirst Read \cref{conv:data} and the first proposition.
+\end{readerbox}
 This section starts the programme of conditioning existing structures on data and recording what changes. It treats one kind of data,
 soft evidence whose strength grows with the amount of data. Hard evidence (zero cells) and forgetting are not treated here.
 
@@ -525,6 +612,13 @@ and asks what the Floer-selected fibre means for the table. It works the indepen
 operation it does not yet treat, is recorded in the ledger (\cref{app:ledger}).
 
 \section{Two configurations of one model}\label{sec:twoconf}
+\begin{readerbox}{contingency tables (this section and the next three)}
+\rbwhat The next four sections apply the machinery to the most familiar statistical object, a table of counts with its row and column totals. The independence model is a toric model; we compute its polytope, its wall (where the selected point changes kind), and how data move across that wall. Two roles of data are kept apart: as the margins that fix the polytope, and as evidence that moves inside it (\cref{prop:roles}).
+\rbwhy Tables are where a reader can check everything by hand, and where the geometric statements become statements about familiar quantities: margins, the maximum-likelihood estimate $\hat p_{ij}=t_{i+}t_{+j}/n^2$, and its selection.
+\rbex A $2\times2$ table sampled jointly sits exactly on its wall for every sample size $n$. A $2\times3$ table does not: its candidates form the open segment of row margins $b_1\in(n/3,2n/3)$ with uniform column margins (\cref{ex:2x3}).
+\rbbg Bishop, Fienberg and Holland \cite{BishopFienbergHolland1975} for log-linear models of tables; Lauritzen \cite{Lauritzen1996}; Fienberg and Rinaldo \cite{FienbergRinaldo2012} for when maximum-likelihood estimates exist.
+\rbfirst Read \cref{prop:roles} and \cref{ex:2x3}; the proofs are short computations.
+\end{readerbox}
 An $r\times c$ table of counts $t_{ij}$ has row margins $t_{i+}$ and column margins $t_{+j}$. The independence model is the log-linear model whose design
 matrix $A$ has one column per cell, the row indicator stacked on the column indicator. It is toric \cite{DiaconisSturmfels1998,GeigerMeekSturmfels2006}: its sufficient
 statistic is the vector of margins, and by Birch the MLE is the unique law in the model with the observed margins, $\hat p_{ij}=t_{i+}t_{+j}/n^2$
@@ -628,6 +722,13 @@ so the one wall of the $2\times2$ model is gone. CT7 checks this. The general ca
 \end{example}
 
 \section{One coupling polytope through every layer}\label{sec:fibre}
+\begin{readerbox}{the fibre, the central object of the note}
+\rbwhat Fix a row law $f$ and a column law $g$. All tables with these margins form a polytope, the \emph{fibre} $\mathrm{Cpl}(f,g)$. This section follows one such polytope through every layer: its geometry, the selection theorem, the thimble and its walls.
+\rbwhy The fibre is the set of all joint laws compatible with what was observed. Everything later (composition, contextuality, poisoning, decisions, coordination) is an operation on fibres or a question about them.
+\rbex With $f=g=(\tfrac12,\tfrac12)$ a coupling is $\begin{pmatrix}a&\tfrac12-a\\ \tfrac12-a&a\end{pmatrix}$ with $0\le a\le\tfrac12$, so the fibre is a segment. Maximum entropy picks $a=\tfrac14$, independence; the max--min rule of \cref{thm:selection} also picks the midpoint $a=\tfrac14$. On larger tables the fibre is a polygon or polytope, and the two rules differ.
+\rbbg Schrijver \cite{Schrijver1986} for polytopes and linear programming; the selection theorem is proved here, \cref{thm:selection}.
+\rbfirst Read the plain-words summary below and \cref{thm:selection}.
+\end{readerbox}
 \begin{center}\colorbox{stAdapted!60}{\begin{minipage}{0.94\linewidth}\small
 \textbf{What this section shows, in plain words.} Fix two margins, a row law $f$ and a column law $g$. The tables (couplings) with those margins form a
 polygon, the \emph{fibre}. That polygon is the picture of a toric surface, and everything in Part~I can be drawn on it.
@@ -874,6 +975,13 @@ not claimed & other thimbles, Stokes data, stability conditions, the category & 
 
 \part{Towards morphisms}
 \section{Objects, morphisms and a categorical comparison}\label{sec:morph}
+\begin{readerbox}{a long section in several fields}
+\rbwhat This section is long and covers many fields, so each block inside it has its own box. Its first subsections finish the geometric story: the critical points of $W$ become objects of a category, and we ask what changes when data cross a wall. From \cref{sec:selcomp} on it turns to operations on fibres (composing, selecting, conditioning, poisoning, deciding) and finally to histories of sources and their coordination.
+\rbwhy Operations obey different laws, and much of the note consists in not confusing them. Categories are the language that records which laws hold.
+\rbex Two Floer objects at different points have no arrows between them. Each object's arrows to itself form a Clifford algebra, and for the positive object its quadratic form is the Fisher information of the conditioned law.
+\rbbg Seidel \cite{Seidel2008}, first chapter, for $A_\infty$ categories; Stasheff \cite{Stasheff1963} for associahedra.
+\rbfirst Probability readers can read the plain-words summary below and go straight to \cref{sec:selcomp}.
+\end{readerbox}
 \begin{center}\colorbox{stAdapted!60}{\begin{minipage}{0.94\linewidth}\small
 \textbf{What this section shows, in plain words.} So far we have found \emph{which} torus fibres matter. A category also needs the arrows between them.
 \begin{itemize}[leftmargin=1.4em,itemsep=1pt]
@@ -1227,6 +1335,13 @@ within $1.5/L$ of one of the two leximin walls, and at $L=100$ within $1/L$; ali
 near two walls at once. We do not claim it for every phase, nor that every leximin wall has such alignments nearby; near the level-two wall some alignments involve the pair born at the collision.
 
 \subsection{Composing couplings: Markov gluing and selection}\label{sec:selcomp}
+\begin{readerbox}{composition and selection}
+\rbwhat Two ways of building one joint law from local pieces are compared. \emph{Markov gluing} joins two tables along a shared variable by conditional independence. \emph{Selection} picks one law from a fibre by a rule, such as maximum entropy or leximin. Gluing is associative: glue the first table to the second and then the third, or the second to the third and then the first, and the result is the same. Selection in general is not.
+\rbwhy Practical pipelines both glue and select. If selection is not associative, the answer depends on the order in which data were combined: a weakness, and later an attack surface.
+\rbex On a chain of three variables, Markov gluing gives one joint law in either grouping, while the leximin selection on the same chain can give two; the associator that measures the difference is computed exactly (\cref{sec:selbin}). By \cref{thm:sections}, maximum entropy composes associatively and leximin does not.
+\rbbg Fritz \cite{Fritz2020} for Markov categories; Cho and Jacobs \cite{ChoJacobs2019} for disintegration and Bayesian inversion; Lauritzen \cite{Lauritzen1996} for gluing by conditional independence.
+\rbfirst Read \cref{prop:markovglue}, \cref{thm:sections} and the plain statements; the associahedron computations can wait.
+\end{readerbox}
 The objects and morphisms of \cref{sec:morph} are cited from Floer theory. This subsection asks what composition the probabilistic side has of its own, and whether it has higher structure. It does not
 produce an $A_\infty$ category. It separates a strict composition (the control) from one that is genuinely non-associative, and computes, exactly, the configuration that the associahedron $K_4$ then
 carries.
@@ -1579,6 +1694,13 @@ the product chain. (c) The coarse-graining square: merging two end states before
 \end{figure}
 
 \subsection{How little it takes: poisoning, representation, and what the data determine}\label{sec:howlittle}
+\begin{readerbox}{poisoning, and what the data do not pin down}
+\rbwhat We ask how little must change for a decision to flip. Two kinds of change are compared: editing the data (poisoning), and changing the joint law underneath while the recorded data stay exactly the same. Later subsections (\cref{sec:poisondim,sec:poisongeom}) count the least edit in many dimensions and describe its geometry.
+\rbwhy An attacker who cannot touch the data can still change the conclusion if the data do not pin down the joint law. Measuring both kinds of change tells a decision maker which defence matters.
+\rbex In \cref{ex:umbrella} a forecast, an umbrella and getting wet are recorded in two separate pairwise tables. The decision ``warn that rain is coming with you'' depends on $P(\text{wet}\mid\text{forecast rain})$, which neither table gives: it depends on how the tables are joined.
+\rbbg Steinhardt, Koh and Liang \cite{SteinhardtKohLiang2017} for data poisoning; Manski \cite{Manski2003} for partial identification, what data do and do not determine.
+\rbfirst Read \cref{ex:umbrella} and the statements here; \cref{sec:section} then recasts selection as a section of a projection.
+\end{readerbox}
 In \cref{ex:umbrella} take the decision ``warn that rain is coming with you'' when $P(\text{wet}\mid\text{forecast rain})\ge\tau=1/2$, computed from a composite. This subsection asks how little has to change
 for that decision to flip. Two kinds of change are compared: edits of the data themselves (poisoning), and changes in the representation underneath that leave the data as recorded untouched. For binary ends,
 what the data alone determine has a closed form.
@@ -1767,6 +1889,13 @@ The facet-leximin selection has defect $0.0752$. Within this family only the Sha
 \end{figure}
 
 \subsection{The 4-cycle cover}\label{sec:cycle}
+\begin{readerbox}{contextuality on cycles}
+\rbwhat Local tables can agree wherever they overlap and still admit no joint law at all. This can happen only when the contexts form a cycle. We describe exactly which data on a cycle are contextual, starting with the four-variable cycle of the CHSH experiment.
+\rbwhy Contextuality is the strongest failure of a fibre: it is empty. A decision maker should know when that can happen, how far data are from it, and that it is a different thing from having many compatible laws (\cref{prop:imprecctx}).
+\rbex Four binary variables $A_0,A_1,B_0,B_1$ are observed in the pairs $(A_i,B_j)$. Agreement on three pairs and disagreement on the fourth is impossible for any joint law, since $A_1=B_0=A_0=B_1$ would follow. The Clauser--Horne inequalities (\cref{prop:cycleD}) say exactly how far data can go towards it.
+\rbbg Abramsky and Brandenburger \cite{AbramskyBrandenburger2011} for the sheaf view; Clauser and Horne \cite{ClauserHorne1974}; Mermin \cite{Mermin1990} for an elementary account.
+\rbfirst Read \cref{prop:cycleD} and \cref{sec:simpson} (Simpson's reversal in the same framework); the general $n$-cycle can wait.
+\end{readerbox}
 The smallest cover with a cycle has four binary variables $A_0,A_1,B_0,B_1$ and contexts $\{A_i,B_j\}$: the cycle $A_0-B_0-A_1-B_1-A_0$ of the CHSH setting. Data are four $2\times2$ tables that agree on the single marginals. They are coordinatised by eight numbers, the four entries $P(A_i=0,B_j=0)$ and the four probabilities $P(A_i=0)$, $P(B_j=0)$. Then $\mathcal J$ is the simplex on $16$ outcomes, of dimension $15$, $\mathcal D$ has dimension $8$, and the generic fibre has dimension $7$.
 
 \begin{proposition}[the marginal polytope of the 4-cycle]\label{prop:cycleD}
@@ -2022,6 +2151,13 @@ The cheapest attack on a rigid point keeps the point rigid. It slides along the 
 \end{figure}
 
 \subsection{Bayesian inversion and sections}\label{sec:invsec}
+\begin{readerbox}{inversion, decisions and the value of information}
+\rbwhat We treat the fibre as a credal set, a set of laws none of which is preferred, and ask what it means for a decision: which actions are defensible, what more information would be worth, and when the data alone determine that worth. Bayesian inversion and the algebra of the operations are recorded alongside.
+\rbwhy This is the spine of the note: \emph{what the data determine for a decision}. It separates being uncertain about a probability from being uncertain about what to do.
+\rbex On the staged routes (\cref{ex:voi}), one route keeps the fibre a single point, so a robust decision maker sees no reason to collect more data, although the decision flips after about $1222$ poisoned units. The cheapest attack is invisible to value-of-information monitoring.
+\rbbg Walley \cite{Walley1991} for credal sets and lower probabilities; Gensbittel, \Peski{} and Renault \cite{GensbittelPeskiRenault2022} and Das \cite{Das2023} for the value of information; Rockafellar \cite{Rockafellar1970} for the convexity used.
+\rbfirst Read \cref{thm:determination}, \cref{ex:voi} and the list of kinds of uncertainty in \cref{sec:guide}.
+\end{readerbox}
 Bayesian inversion reverses a stochastic map relative to a prior. From $p$ and $K(y\mid x)$ it gives $q=pK$ and $K^\dagger(x\mid y)=p(x)K(y\mid x)/q(y)$ wherever $q(y)>0$. Categorically it is disintegration of the joint law in the other direction \cite{ChoJacobs2019}. Parzygnat separates ordinary inverses, disintegrations and Bayesian inverses, and extends them to quantum Markov categories \cite{Parzygnat2020}. Bohinen and Perrone show that when an (a.s.-compatibly representable) Markov category has conditionals, the multiplication of its probability monad is weakly cartesian \cite[Thm.~3.1]{BohinenPerrone2025}. This covers the Giry monad on standard Borel spaces \cite[Cors.~3.2, 3.9]{BohinenPerrone2025}. They avoid calling the property a Beck--Chevalley condition, because that term has a different established meaning for fibrations and descent \cite[Rem.~2.25]{BohinenPerrone2025}. \Cref{rem:beckchevalley} uses the term only for our own reading. This subsection places inversion relative to sections.
 
 \begin{proposition}[inversion and sections]\label{prop:invsec}
@@ -2206,6 +2342,13 @@ For selection that is not concave (AL4), take three straight data paths of $61$ 
 \end{figure}
 
 \subsection{Trajectories of decision viability}\label{sec:viability}
+\begin{readerbox}{viability, histories and holonomy}
+\rbwhat A learning system moves its data over time. We follow the decision along that trajectory (viability), and ask whether the law a rule selects depends on the path by which the data arrived (holonomy).
+\rbwhy Two systems that end with the same data can have selected different laws along the way. Knowing which updating rules are path independent tells a decision maker when the history matters.
+\rbex KL updating (Jeffrey's rule on one context) is flat: poison a table, later remove the poison, and the selected law returns exactly. Minimal-change rules in Euclidean or total-variation distance need not return (\cref{prop:flat}).
+\rbbg Tohm\'e, Caterina and Gangle \cite{TohmeCaterinaGangle2017} for path dependence as a sheaf condition; Csisz\'ar \cite{Csiszar1975} for I-projections; Aubin \cite{Aubin1991} for viability.
+\rbfirst Read the definitions, \cref{prop:holbound} and \cref{prop:flat}.
+\end{readerbox}
 A system that keeps learning moves its data, and with them the fibre, the selected law and the decision. This subsection asks what the trajectory of a decision can reveal, and gives the one quantity that tracks viability exactly whatever moves the data, whether drift, noise or poisoning.
 
 \begin{definition}[viability shares]\label{def:viability}
@@ -2368,6 +2511,13 @@ Das's square, ``select, then condition'' against ``condition, then select'' (\cr
 
 
 \subsection{Crossings with incomplete data: a pseudo-trefoil}\label{sec:pseudoknot}
+\begin{readerbox}{knots from decisions with incomplete data}
+\rbwhat Follow two quantities along a closed path of data, for example the values of two actions. Each time they swap order a crossing is recorded; when the path closes, the crossings form a braid and its closure a knot. When the data cannot say which way a crossing goes, it is a \emph{pre-crossing}, and the knot becomes a pseudo-knot.
+\rbwhy This is the first appearance of braids and knots in the note, and it sets their limits: a knot needs a closed path and a chosen picture, and undecided crossings carry probability, not structure.
+\rbex A pseudo-trefoil is a trefoil diagram in which some crossings are undecided. Its knot type is then a random variable whose law depends on how the undecided crossings resolve.
+\rbbg Rolfsen \cite{Rolfsen1976} or Kauffman \cite{Kauffman1987} for knot diagrams and invariants; Hanaki \cite{Hanaki2010} for pseudo-diagrams; Diamantis and Kauffman \cite{DiamantisKauffman2026} for pre-crossings.
+\rbfirst Read the opening and the main proposition; the detailed computations can wait.
+\end{readerbox}
 A trajectory of decisions can trace a knot. Follow two quantities along a closed path of data, for example the values of two actions. Each time they exchange order, record a crossing, and when the path closes, the crossings form a braid whose closure is a knot or a link. \Cref{rem:topology} noted that a switch that happens while $R>0$ is not fixed by the data, since the rule resolves it. In the language of Diamantis and Kauffman it is a \emph{pre-crossing} \cite{DiamantisKauffman2026}. Before building knots from trajectories, it is worth settling a smaller question. Suppose the diagram is given, with some crossings undetermined, and we have data about how those crossings resolve. Which topological properties of the result do the data determine? This subsection answers that question for the smallest interesting diagram, and the answer turns out to be the decision theory of \cref{sec:voi} applied to knots.
 
 \paragraph{The pseudo-trefoil.} Close the two-strand braid $\sigma^{e_1}\sigma^{e_2}\sigma^{e_3}$ (\cref{fig:pseudoknot}(a)). Each pre-crossing $c_i$ resolves as $e_i=+1$ or $-1$. All three positive gives the right-handed trefoil, all three negative the left-handed trefoil, and every other resolution the unknot. The writhe is $e_1+e_2+e_3$. The Jones polynomials follow from the Kauffman bracket, computed in the Temperley--Lieb algebra on two strands: $t+t^3-t^4$ for the right-handed trefoil, its mirror $t^{-1}+t^{-3}-t^{-4}$ for the left-handed one, and $1$ for the unknot. Diamantis and Kauffman give each pre-crossing a probability and treat the crossings as independent. Independence is one joint law on the eight resolutions: the one of maximum entropy given the single-crossing probabilities. In general the data will be some tables of crossings, single or in pairs, and the joint law is then known only up to the fibre $J_d$ of laws with those tables. Pushing the fibre forward gives the set of knot spectra the data allow, a convex set of laws on $\{\text{unknot},\text{right},\text{left}\}$.
@@ -2616,6 +2766,13 @@ Gr\"obner bases are exact for this layer, where each switch resolves $\pm1$. Onc
 
 
 \subsection{Snapshots and a private decision ledger}\label{sec:ledgerdm}
+\begin{readerbox}{the decision maker facing a saboteur}
+\rbwhat The tools so far are put in one setting: a decision maker who keeps a private ledger of what he received, knows that some reports may be poisoned but not which, and must decide when to inspect. The next subsections model sources that lie only near decisions they care about, sources that coordinate, and sources whose reports are consistent but wrong.
+\rbwhy Agreement among sources is not evidence of honesty: several watches set wrong by the same hand agree perfectly (\cref{sec:miscal}). The question becomes which checks can tell a coordinated lie from an honest consensus, and when.
+\rbex The protection theorem (\cref{thm:protect}): if an independent inspection separates the coalition's possible endpoint from the honest one by a margin, and arrives before the coalition can finish, the decision is protected. Without independent anchors no consistency check can protect it.
+\rbbg Steinhardt, Koh and Liang \cite{SteinhardtKohLiang2017} for poisoning; Abramsky and Car\`u \cite{AbramskyCaru2019} for local and global disagreement; Wilson \cite{Wilson1927} for the intervals used in alarms.
+\rbfirst Read \cref{sec:miscal} (the watch analogy) and \cref{sec:chain}, which collects the argument in five links.
+\end{readerbox}
 The previous subsections give a decision maker several instruments: fibres, value of information, contextuality tests, poisoning
 radii, holonomy, Bloch coordinates and pseudo-knots. This subsection puts them in one setting. It is meant for a decision maker who
 works alone against an environment that others can write into. It makes no new claims; it fixes vocabulary and says which piece
@@ -2888,6 +3045,13 @@ Let a coalition $C$ start from honest reports at step $0$ and move its reports b
 The theorem turns the two halves of \cref{sec:watch} into one rule. \emph{What} to inspect is decided by the margin $\rho_q$, which depends on the coalition one fears; \emph{when} to inspect is decided by the clock $\lceil D_C/\delta\rceil$. Part~(iii) says how much noise the inspection can tolerate: less than half its margin. On the bridge, against the pair $\{S_2,S_3\}$ with $S_1,S_4,S_5$ honest, the inspection of $(X_3,X_5)$ has $\rho_q=0.225$ and leaves the range $[0.613,0.930]$, so it protects $B$ if it is read with error below $0.1125$; the inspection of $(X_2,X_4)$ has $\rho_q=0$ and protects nothing. With $D_C=0.683$ and $\delta=D_C/7$, its result must arrive within $6$ steps of the start. Random far-side configurations of the pair, read against an inspection with error $0.101$, all had anchor distance at least $0.148$, above the flag level $0.1125$, while the honest reports never exceeded $0.101$. BK9 and BK10 check these numbers. The theorem assumes the honest reports are exact; with noisy reports the fibres must be replaced by tolerance fibres, which we have not done.
 
 \subsection{What braids and knots carry}\label{sec:braidknot}
+\begin{readerbox}{braids and co-revision}
+\rbwhat Sources are drawn as strands; when two sources revise together, their strands twist. A history of revisions becomes a braid. We ask what such braids record (orders, windings, higher invariants), what happens when the data tie two sources (a pseudo-link, resolved by probability), and when two histories give the same braid.
+\rbwhy Coordination shows in \emph{how} sources move together, who revises with whom and in what order, not only in what they report. Braids are the mathematical object for the ordered interaction of several strands.
+\rbex Three sources on a line. Sources 1 and 2 co-revise ($A=\sigma_1^2$), then 2 and 3 ($B=\sigma_2^2$), then each is undone in the same order: $ABA^{-1}B^{-1}$. Every pair has linking number $0$, yet the braid is not trivial: its triple invariant is $\pm1$ (\cref{prop:braidcontent}).
+\rbbg Birman \cite{Birman1974}, chapter~1 (braid groups and pure braids); Farb and Margalit \cite{FarbMargalit2012}, chapter~9 (braid groups); Milnor \cite{Milnor1954} for linking and triple invariants; Diekert and Rozenberg \cite{DiekertRozenberg1995} for histories up to commuting events.
+\rbfirst Read \cref{prop:braidcontent}, \cref{prop:tiebridge} and \cref{prop:ordrev}(i)--(iii). Keep in mind the negative results of Studies~21, 22 and~24: braid features did not improve prediction on their own.
+\end{readerbox}
 Braids and knots have appeared in several roles in this note: as crossing logs of decision streams (\cref{sec:ledgerdm}), as pseudo-diagrams whose crossings are uncertain (\cref{prop:pseudoknot,prop:figeight}), and as pictures of manipulation that Studies~19--22 and \cref{sec:watch} found to add nothing. This subsection says exactly what information they can carry, and checks the one construction that seemed to support them.
 
 \begin{proposition}[the content of braids and knots built from data]\label{prop:braidcontent}
@@ -3080,6 +3244,13 @@ So the braid group earns a place here, but as the algebra of orders up to indepe
 
 
 \subsection{Decision-maker memory}\label{sec:dmmemory}
+\begin{readerbox}{memory over many decisions}
+\rbwhat Over many decisions the decision maker keeps a private memory: for each source, how often it leans towards each decision; for each pair, how often they move together; for each ordered pair, who habitually moves first. Each is a random walk that stays centred when nothing unusual happens, and an alarm sounds when a walk leaves its band.
+\rbwhy Coordination invisible in any single episode can accumulate across many. The memory separates individual, relational and ordered evidence, and says what each costs in false alarms.
+\rbex In the worked example (\cref{sec:memwork}) an honest cascade and a coalition produce similar walks and are told apart only by independent inspection; honest sources with better access to news are flagged, an honest cost of watching.
+\rbbg Granger \cite{Granger1969} for lead--lag; Wilson \cite{Wilson1927} for the intervals; Genest and Zidek \cite{GenestZidek1986} for pooling opinions, used in \cref{sec:poolcond}.
+\rbfirst Read the definitions in \cref{prop:dmmemory} and the worked example.
+\end{readerbox}
 Everything so far has looked at one history at a time. Coordination, however, often shows only over many decisions: a source whose report is never far off in any one episode, but is always off in the same direction, or two sources that revise in the same order every time. The question the decision maker asks is \emph{how come the data from source $B$ always lean towards decision $X$?} To ask it he needs a memory: a private store of relations between sources and decisions, built up over a longer time than any single episode, or seeded with suspicions he already has. This subsection builds the simplest such memory and states what it can and cannot see.
 
 \paragraph{The honest null.} The null is a modelling assumption of ours, stated explicitly below; it is not derived from the literature. Two results motivate its form. Gohm and K\"ostler call an infinite sequence of noncommutative random variables \emph{braidable} if it is generated by a state-preserving action of the infinite braid group satisfying two locality conditions, and prove that exchangeable implies braidable, braidable implies spreadable, and spreadable implies stationarity and independence over the tail algebra \cite{GohmKostler2009}. Three different notions must be kept apart here: exchangeability (invariance under finite permutations), their braidability, and the trace equivalence of \cref{prop:ordrev}, which is what our event words use. We use only the first, as an assumption about a finite episode, and their hierarchy only as motivation for treating a symmetry as the honest baseline. Nechaev reviews random walks on braid groups and related matrix groups, whose reduced words grow linearly even when the walk is symmetric \cite{Nechaev1998}. Hence the length of an accumulated braid word is not itself evidence of anything, and a test must use quantities with a calibrated honest distribution. We use three: a signed directional drift, a co-movement, and an order.
@@ -3246,6 +3417,13 @@ Non-commuting operations do not by themselves give a braid. A braid representati
 
 
 \subsection{Co-revision over any graph}\label{sec:graphs}
+\begin{readerbox}{beyond a line, and beyond pairs}
+\rbwhat Sources need not sit on a line: who co-revises with whom forms a graph. We find the algebra of histories for any graph, and when braids can represent it (only for planar graphs). Then we build an experiment in which topology is genuinely needed, relay through a broker, and a probability theory for links whose crossings the data leave undecided.
+\rbwhy Pairwise counts cannot see everything. A broker who relays between two sources leaves no trace in any pairwise count; the triple invariant sees it. We also need to know how much of such higher-order structure the data can actually determine.
+\rbex Relay against sequential brokerage: in both, each visitor opens and closes one relationship with the broker, and all pairwise counts agree. In relay the two relationships overlap and cross; the triple invariant is $1$ for relay and $0$ for sequential (\cref{prop:brokerage}).
+\rbbg Farb and Margalit \cite{FarbMargalit2012}, chapter~3 (Dehn twists); Birman, Ko and Lee \cite{BirmanKoLee1998} for band generators; Milnor \cite{Milnor1954}; Goodman \cite{Goodman1985} for correlated circular laws.
+\rbfirst Read \cref{thm:graphs}, \cref{cor:bkl}(i)--(iii), \cref{prop:brokerage} and \cref{thm:pseudoprob}(i).
+\end{readerbox}
 \Cref{prop:ordrev} placed the sources on a line. In general the sources that co-revise form a graph $G$: the sources are the vertices, and a pair that co-revises is an edge. An event is a signed edge, and two events are independent when their edges share no source. The algebra of event histories up to independence is the right-angled Artin group
 \[
 A_G=\big\langle a_e,\ e\in E(G)\ \big|\ a_ea_f=a_fa_e\ \text{whenever $e$ and $f$ share no vertex}\big\rangle .
@@ -3272,10 +3450,10 @@ For the line, Collins' theorem is the case $N=1$ \cite{Collins1994}, and Crisp a
 a_{ts}=(\sigma_{t-1}\cdots\sigma_{s+1})\,\sigma_s\,(\sigma_{t-1}\cdots\sigma_{s+1})^{-1},\qquad a_{s+1,s}=\sigma_s .
 \]
 Birman, Ko and Lee proved that these generators and the two families of relations
-\[
-\text{(B1)}\ \ a_{ts}a_{rq}=a_{rq}a_{ts}\ \text{ if the chords $ts$ and $rq$ are disjoint and do not cross},\qquad
+\begin{gather*}
+\text{(B1)}\ \ a_{ts}a_{rq}=a_{rq}a_{ts}\ \text{ if the chords $ts$ and $rq$ are disjoint and do not cross},\\
 \text{(B2)}\ \ a_{ts}a_{sr}=a_{tr}a_{ts}=a_{sr}a_{tr}\ \ (t>s>r)
-\]
+\end{gather*}
 present the braid group $B_n$. The element $\delta=a_{n,n-1}\cdots a_{21}$ rotates the chords by one step, and $\delta^n$ is the full twist.
 
 \begin{corollary}[convex position]\label{cor:bkl}
@@ -3376,6 +3554,13 @@ A decision maker who sees linking numbers well outside the finite set allowed by
 \end{figure}
 
 \subsection{What a newcomer adds}\label{sec:newcomer}
+\begin{readerbox}{what a newcomer adds, and what hiding costs}
+\rbwhat When a new source enters a history we already watch, we measure exactly what it adds: a word recording how it wound around the existing sources. We then ask how deep in that word an adversary can bury its contribution, and what burying it costs (\cref{sec:masking}).
+\rbwhy A detector only ever looks at a few layers of structure: pairwise counts, then ordered pairs, and so on. If coordination can sit below what a detector sees, we need to know the price of putting it there.
+\rbex Sources 1 and 2 have a history; newcomer 3 turns once around 1, once around 2, then undoes both turns in the same order. It never winds around either source alone, so both linking numbers are $0$; yet it winds around the pair, and the second layer records exactly that, with coefficients $(1,-1)$. Hiding also from the second layer takes at least $8$ turns, and from the third $14$, unless the newcomer borrows structure the old sources already display.
+\rbbg Birman \cite{Birman1974}, chapter~1 (pure braids, Artin's action); Magnus, Karrass and Solitar \cite{MagnusKarrassSolitar1966}, chapter~5 (free groups, the Magnus expansion, the lower central series).
+\rbfirst Read the definitions, the statements and the two examples; the combing and free-Lie-algebra arguments in the proofs can wait.
+\end{readerbox}
 A decision maker who widens his view sees a source he had not watched before. Did the newcomer bring structure of its own, or did it slot into the existing history without changing it? This subsection makes the question exact. Histories of co-revision twists are pure braids on labelled sources, because every source returns to its own place. Write $P_n$ for the pure braid group of the $n$ old sources and $P_{n+1}$ for the group after the newcomer, labelled $n+1$, is added. Deleting the newcomer's strand gives a homomorphism $\mathrm{forget}:P_{n+1}\to P_n$. Fadell and Neuwirth showed that it fits into a split exact sequence
 \[
 1\longrightarrow F_n\longrightarrow P_{n+1}\xrightarrow{\ \mathrm{forget}\ }P_n\longrightarrow 1 ,
@@ -3431,6 +3616,13 @@ A pre-registered test of the defect against those nulls and anchors is left for 
 We checked the proposition on random pure braids with up to five strands. Forgetting was well defined on braids, and a homomorphism (SD1). The outside, behind-at-position-$k$ and echo sections respected the braid relations and split the sequence (SD2). With compatibility the defect lay in the kernel; without it, none of $298$ incompatible pairs did, so the condition cannot be dropped (SD3). The loop word of the defect, read from Artin's action, was a homomorphism; it sent $A_{j,n+1}$ to the letter $j$, rebuilt the defect exactly (Artin's combing), and separated $302$ distinct defects among $315$ pairs (SD4). SD5--SD8 check (ii)--(v), the commutator example and the brokerage identity. A first version of SD7 claimed that boundary sections differ at the second layer. That was wrong: they agree after relabelling, as (ii) states, and the claim is withdrawn. All checks are in \texttt{engine/check\_stranddefect.py}.
 
 \subsection{Braids, credal sets and conditioning}\label{sec:credalbraid}
+\begin{readerbox}{credal conditioning, contextuality and decisions}
+\rbwhat We put the braid results back into the probability framework of the note. A braid is a statistic of a history, so one can condition on it; the laws by which undecided crossings resolve form a credal set; and a decision weighs the result. The next subsections separate imprecision from contextuality, and ask when a coarse statistic like the braid is worth as much as the full record.
+\rbwhy This is where the note's two halves meet, and where its claims about braids are made precise: when compression keeps what a decision needs, and when it does not.
+\rbex Under undecided ties, pairwise linking has the same probability, $11/24$, under every admissible law, while the triple invariant's probability can be anything in $[0,11/24]$ (\cref{prop:credalbraid}). A decision maker judging each case on its own can be more decisive with the braid than with the full record; a policy fixed in advance never is (\cref{prop:braidvalue}).
+\rbbg Walley \cite{Walley1991} for credal sets; Seidenfeld and Wasserman \cite{SeidenfeldWasserman1993} for dilation; Abramsky and Brandenburger \cite{AbramskyBrandenburger2011} for contextuality.
+\rbfirst Read the statements of \cref{prop:credalbraid,prop:imprecctx,prop:braidvalue} and the map in \cref{sec:map}.
+\end{readerbox}
 The fibres of this note are credal sets: closed convex families of laws compatible with the data (\cref{sec:voi}), with lower and upper probabilities $\underline P(A)=\inf_{P\in\mathcal M}P(A)$ and $\overline P(A)=\sup_{P\in\mathcal M}P(A)$ \cite{Walley1991}. This subsection places braids in that framework, with three separate roles:
 \begin{itemize}
 \item the braid is a statistic of the history, so it is something one can condition on;
@@ -3445,7 +3637,7 @@ Throughout, histories form a finite set $H$, and $\mathcal M$ is the convex hull
 \[
 \operatorname{TV}\big(\Pi_*(P|C),\,\Pi_*(P|\hat C)\big)=w_P\,\operatorname{TV}\big(\Pi_*(P|C),\,\Pi_*(P|\hat C\setminus C)\big).
 \]
-So the credal sets $\Pi_*(\mathcal M|C)$ and $(\Pi_*\mathcal M)|\Pi(C)$ are within Hausdorff distance $\max_P w_P$ in total variation, and the maximum is attained at a vertex of $\mathcal M$. They coincide for every credal set if and only if $C=\hat C$, or $\Pi$ takes a single value on $C$. In particular, one may condition on any braid-determined event after projecting to braids.
+So the credal sets $\Pi_*(\mathcal M|C)$ and $(\Pi_*\mathcal M)|\Pi(C)$ are within Hausdorff distance $\max_P w_P$ in total variation. The bound $\max_Pw_P$ is attained at a vertex of $\mathcal M$; the Hausdorff distance itself can be smaller. They coincide for every credal set if and only if $C=\hat C$, or $\Pi$ takes a single value on $C$. In particular, one may condition on any braid-determined event after projecting to braids.
 \item[(ii)] \emph{Pseudo-links are precise pairwise and imprecise jointly.} Take a tie history whose triple invariant is $1$ exactly when the two consecutive differences of the regularising direction fall in arcs $S_1$ and $S_2$, of probabilities $s_1$ and $s_2$ under the uniform law, as on the broker visits of \cref{thm:pseudoprob}. Let $\mathcal M$ be the set of all laws of the direction that are invariant under a common rotation. Then each pairwise probability is the same for every law in $\mathcal M$; it is precise. The probability of $\mu_{123}=1$ is $\mathbb E_\nu\,|S_1\cap(S_2+\psi)|/2\pi$, where $\nu$ is the law of the phase difference $\psi$, and its envelope over $\mathcal M$ is the Fr\'echet interval
 \[
 \big[\underline P,\overline P\big](\mu_{123}=1)=\big[\max(0,s_1+s_2-1),\ \min(s_1,s_2)\big],
@@ -3494,7 +3686,7 @@ Three lessons follow.
 The last lesson depends on the model. If coordination also acted through timing that the braid forgets, the braid would lose it. The numbers come from a constructed family and illustrate the mechanism; they are not estimates. CP1--CP6 in \texttt{engine/check\_credalbraid.py} check (i)--(iii) and the numbers above. In CP3 and CP4, a first version built the fixed-phase test laws with the phase off by $\pi$; once corrected, braids read from regularised histories matched the overlap formula ($0.461$ against $0.458$ at $\psi=0$; $0$ at $\psi=\pi$).
 
 \subsection{Masking: what hiding costs}\label{sec:masking}
-\Cref{prop:defect} gave the first two layers of a newcomer's defect. The layers continue. The \emph{depth} of $g\in F_n$ is the largest $k$ with $g\in\gamma_kF_n$, the $k$-th term of the lower central series, and it is $\infty$ for $g=1$. By Magnus' theorem, the depth is the lowest degree of a nonzero coefficient of $M(g)-1$, and the coefficients of that degree form the leading term of $g$ in the free Lie algebra \cite{MagnusKarrassSolitar1966}. So a newcomer whose defect has depth $k$ is invisible to every layer below $k$: linking numbers, second-layer coefficients, and so on up to layer $k-1$. It is seen at layer $k$. An adversary who wants a newcomer's contribution to survive while escaping the first $k-1$ layers needs a nontrivial defect in $\gamma_kF_n$. What does that cost?
+\Cref{prop:defect} gave the first two layers of a newcomer's defect. The layers continue. The \emph{depth} of $g\in F_n$ is the largest $k$ with $g\in\gamma_kF_n$, the $k$-th term of the lower central series, and it is $\infty$ for $g=1$. By Magnus' theorem, the depth is the lowest degree of a nonzero coefficient of $M(g)-1$, and the coefficients of that degree form the leading term of $g$ in the free Lie algebra \cite{MagnusKarrassSolitar1966}. Exact depth $k$ means $g\in\gamma_k$ and $g\notin\gamma_{k+1}$, that is, a nonzero class in $\gamma_k/\gamma_{k+1}$. Commutators are $[a,b]=aba^{-1}b^{-1}$. So a newcomer whose defect has depth $k$ is invisible to every layer below $k$: linking numbers, second-layer coefficients, and so on up to layer $k-1$. It is seen at layer $k$. An adversary who wants a newcomer's contribution to survive while escaping the first $k-1$ layers needs a nontrivial defect in $\gamma_kF_n$. What does that cost?
 
 \begin{proposition}[masking]\label{prop:masking}
 Measure defects relative to $s_{\rm out}$, and write $x_j=A_{j,n+1}$ for the newcomer's turn around source $j$.
@@ -3504,7 +3696,7 @@ Measure defects relative to $s_{\rm out}$, and write $x_j=A_{j,n+1}$ for the new
 \Delta=\prod_{i=1}^N\varphi_{w_i}\big(x_{j_i}^{\varepsilon_i}\big),
 \]
 where $\varphi$ is Artin's action of the old history on the newcomer's loops. Each factor is a conjugate of $x_{j_i}^{\varepsilon_i}$. Conjugating the newcomer's whole activity by an old history does not change the depth.
-\item[(ii)] \emph{A lone newcomer.} If the newcomer's turns form a single block $u$ while the old sources are still, then $\operatorname{depth}\Delta=\operatorname{depth}u$. A nontrivial newcomer hidden from the first $k-1$ layers therefore makes at least $d(k)$ turns, where $d(k)$ is the length of the shortest nontrivial word in $\gamma_kF_n$, and $d(k)\ge k$ \cite{MalesteinPutman2010}. Conversely, there are hidden newcomers with $O(k^{\log_\varphi2})\approx O(k^{1.44})$ turns, where $\varphi$ is the golden ratio \cite{ElkasapyThom2013,Elkasapy2016}. For two old sources, an exhaustive search gives $d(1),\dots,d(5)=1,4,8,14,14$.
+\item[(ii)] \emph{A lone newcomer.} If the newcomer's turns form a single block $u$ while the old sources are still, then $\operatorname{depth}\Delta=\operatorname{depth}u$. A nontrivial newcomer hidden from the first $k-1$ layers therefore makes at least $d(k)$ turns, where $d(k)$ is the length of the shortest nontrivial word in $\gamma_kF_n$, and $d(k)\ge k$ (\cite[Thm.~1.2]{MalesteinPutman2010}, a free-group result despite that paper's title; restated in \cite{MalesteinPutman2023}). Conversely, there are hidden newcomers with $O(k^{\log_\varphi2})\approx O(k^{1.44})$ turns, where $\varphi$ is the golden ratio \cite{ElkasapyThom2013,Elkasapy2016}. For two old sources, $F_2=\langle x,y\rangle$ with word length in $x^{\pm1},y^{\pm1}$ and $d(k)=\min\{|w|:w\in\gamma_k(F_2)\setminus\{1\}\}$, an exhaustive search gives $d(1),\dots,d(5)=1,4,8,14,14$. These values are our computation; the cited works give only the bounds.
 \item[(iii)] \emph{Riding the old history.} Let the newcomer turn once around source $j$, wait while the old sources braid by $w$, and undo the turn. Then
 \[
 \operatorname{depth}\Delta=1+\operatorname{depth}\ell_j(w),
@@ -3533,14 +3725,683 @@ Mixed patterns, with several blocks of turns interleaved with old activity, inte
 
 HD1--HD4 in \texttt{engine/check\_masking.py} check the statements.
 \begin{itemize}
-\item HD1 ran an exhaustive search over all reduced words of length at most $14$ in $F_2$. It gave $d=1,4,8,14,14$, with nothing of depth $6$ or more up to that length. An independent Magnus computation confirmed each depth, and each word was realised as a newcomer's history.
+\item HD1 ran an exhaustive search over all freely reduced words of length at most $14$ in $F_2$. It gave $d=1,4,8,14,14$, with nothing of depth $6$ or more up to that length.
+\begin{itemize}
+\item \emph{Certificate.} Every nonempty reduced word is nontrivial. Membership in $\gamma_k$ is the vanishing of all integer Magnus coefficients of degree below $k$ (Magnus' theorem), and exact depth is a nonzero coefficient in degree $k$.
+\item \emph{The search covers all shorter words.} Every reduced word of length at most $13$ has a nonzero coefficient of degree at most $3$, so $d(4)=14$. The search is depth-first, with the truncated Magnus expansion updated letter by letter.
+\item \emph{Witnesses.} Writing $X=x^{-1}$ and $Y=y^{-1}$, the shortest words of exact depth $3$, $4$ and $5$ are $YYXyxxyX$, $YYYXyxxyyyxYXX$ and $YYXyxyXYYxyXyx$. That $d(4)=d(5)$ is possible because $\gamma_5\subset\gamma_4$; the second length-$14$ witness lies in $\gamma_5$.
+\item An independent Magnus computation confirmed each depth, and each word was realised as a newcomer's history.
+\end{itemize}
 \item HD2 confirmed the decomposition, and its invariance under conjugation, on $50$ random histories.
 \item HD3 confirmed the lone-newcomer case.
 \item HD4 confirmed the riding identity on four old histories and all three sources, with longitude depths from $1$ to $3$ (twelve cases, including the trivial one).
 \end{itemize}
 
+\subsection{Imprecision without contextuality}\label{sec:imprecctx}
+Several things can fail or stay unresolved, and they should not be confused.
+\begin{center}
+\begin{tabular}{p{0.24\linewidth}p{0.66\linewidth}}
+phenomenon & what fails or stays unresolved \\ \hline
+credal imprecision & no unique probability is identified \\
+contextuality & no global law reproduces the local data \\
+holonomy & transport around a cycle does not return a state unchanged \\
+masking & low layers of invariants do not reveal high-order structure \\
+decision ambiguity & laws in the credal set support different actions \\
+\end{tabular}
+\end{center}
+This subsection separates the first two, using tie resolutions. Resolutions of ties come from a global direction $\omega$, one complex number per source. A \emph{pattern} records, for each tied pair $(a,b)$, on which side of its wall the difference $\omega_a-\omega_b$ falls. Here we take each wall to be a line through $0$ at angle $\alpha_{ab}$, and $R$ is the set of patterns that some $\omega$ realises. Local data, such as the probability $p_{ab}$ that pair $(a,b)$ is resolved one way, are \emph{noncontextual relative to the geometry} if some law on $R$ has them as marginals, in the sheaf-theoretic sense of Abramsky and Brandenburger \cite{AbramskyBrandenburger2011}. Otherwise they are contextual.
+
+\begin{proposition}[imprecision without contextuality]\label{prop:imprecctx}
+\begin{enumerate}
+\item[(i)] Data induced by any law on global directions are noncontextual: the induced law on $R$ is a global section.
+\item[(ii)] The geometry decides whether contextuality is possible at all.
+\begin{itemize}
+\item For three sources with parallel walls (ties along one direction, as for one-dimensional reports), $R$ is the set of the six total orders, and the data $p_{ab}=P(a\text{ resolved before }b)$ are noncontextual if and only if
+\[
+1\ \le\ p_{01}+p_{12}+(1-p_{02})\ \le\ 2 .
+\]
+The Condorcet cycle, in which $0$ beats $1$, $1$ beats $2$ and $2$ beats $0$, each with probability $0.9$, violates this, so it is contextual.
+\item For walls in general position, all eight patterns are realisable and every such data point is noncontextual.
+\end{itemize}
+\item[(iii)] Noncontextual data do not determine higher-order probabilities. With parallel walls and noncontextual data,
+\[
+P(0<1<2)\in\big[\max(0,\,p_{01}+p_{12}-1),\ \min(p_{01},\,p_{02},\,p_{12},\,p_{01}+p_{12}-p_{02})\big],
+\]
+and both ends are attained. For the planar broker visits, every rotation-invariant law is noncontextual, yet $P(\mu_{123}=1)$ ranges over $[0,11/24]$ (\cref{prop:credalbraid}).
+\item[(iv)] Neither notion implies the other. A broad interval is compatible with noncontextual data, by (iii). Contextual data have an empty fibre, so there is no interval at all. Contextuality is not an extreme form of imprecision.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) A law on directions pushes forward to a law on $R$, and its marginals are the data.
+
+(ii) With parallel walls, the sign of $\operatorname{Im}(e^{-i\alpha}(\omega_a-\omega_b))$ is the order of the real numbers $\operatorname{Im}(e^{-i\alpha}\omega_a)$. So patterns are orders, and every order occurs. For three items, the polytope of laws on orders, projected to the three pairwise probabilities, is cut out by the bounds $0\le p\le1$ and the two triangle inequalities \cite{GrotschelJungerReinelt1985}. In general position, the three linear functionals $\operatorname{Im}(e^{-i\alpha_{ab}}(\omega_a-\omega_b))$ on $\mathbb C^3=\mathbb R^6$ are linearly independent, so all sign patterns occur. A law on $R$ that puts the right mass on each coordinate then exists: take the coordinates independent.
+
+(iii) Write $x_\sigma$ for the probability of the order $\sigma$. The three data equations, together with total mass $1$, leave two free parameters. Eliminating gives $x_{210}=1-p_{01}-p_{12}+x_{012}\ge0$, which is the lower bound. The constraints $x_{021},x_{102},x_{120}\ge0$ give the upper bound, after the best choice of $x_{201}=\max(0,p_{01}-p_{02})$. The planar statement is \cref{prop:credalbraid}(ii) with (i).
+
+(iv) Immediate from (i)--(iii).
+\end{proof}
+
+The parallel-wall case is the one the paper started from: sources on a line, whose ties are resolved by order (\cref{prop:ordrev}). Pairwise resolution data collected separately, for example from different inspections, can then be contextual exactly as Condorcet's majorities are. Planar walls in general position never allow it. IC1--IC5 in \texttt{engine/check\_imprecctx.py} check the statements. They cover $1000$ random data points for the feasibility criterion, $1000$ feasible points for the interval of (iii), and $300$ laws on directions, all of which gave noncontextual data. A first version stated the upper bound without its last term. It failed on $724$ of $3000$ points and was corrected by solving the linear programme by hand.
+
+\subsection{The conditional credal field and its braid}\label{sec:credalfield}
+This subsection builds the object that connects the credal set to braids. A decision maker wants the probability of an outcome $Y$, and several pathways or sources $i=1,\dots,k$ bear on it. Each source carries its own evidence $X_i$. The credal set $\mathcal M$ contains every joint law compatible with the data, and so it gives each pathway not one conditional probability but a range of them.
+
+\begin{definition}[conditional credal field]\label{def:credalfield}
+At time $t$ the \emph{field} is $F(t)=\{(P(Y=1\mid X_i=1))_{i\le k}:P\in\mathcal M(t)\}$, and its coordinate ranges $I_i(t)=[L_i(t),U_i(t)]$ are the \emph{bands}. A law chosen at each time gives one point of the field per time; following the $k$ coordinates over time gives $k$ strands. The order of strands $i$ and $j$ is \emph{decided} at $t$ if $F(t)$ lies strictly on one side of the diagonal $v_i=v_j$. A crossing of $i$ and $j$ is \emph{certified} if their order is decided at some $t_0$ and decided the other way at some later $t_1$. A crossing that is not certified is a \emph{pre-crossing}: the data do not say whether, or which way, the strands crossed.
+\end{definition}
+
+\begin{proposition}[the conditional credal field]\label{prop:credalfield}
+\begin{enumerate}
+\item[(i)] \emph{Parity.} A certified crossing between $t_0$ and $t_1$ fixes only the parity of the swaps between those times. In general some law in the field swaps once there, and some swaps three times.
+\item[(ii)] \emph{Star covers.} Suppose every context contains $Y$: the data are $P(Y=1)$, the $P(X_i=1)=p_i$, and study values $a_i=P(X_i=1,Y=1)$ known up to tolerances $e_i$. Then $F(t)$ is the product of the bands, with
+\[
+I_i=\big[(a_i-e_i)/p_i,\ (a_i+e_i)/p_i\big]
+\]
+inside the Fr\'echet bounds, and an order is decided exactly when the two bands are disjoint.
+\item[(iii)] \emph{Relational data decide what bands cannot.} A context containing two pathways can decide an order that their overlapping bands leave open. If $P(X_i=1,X_j=0,Y=1)\le\varepsilon$ and $P(X_i=0,X_j=1,Y=1)\ge\delta$, then $p_jv_j-p_iv_i\ge\delta-\varepsilon$ for every law, and the bound is attained.
+\item[(iv)] \emph{Poisoning on a star cover.} Data on a star cover never contradict one another: every data set within the Fr\'echet bounds has a nonempty fibre. Let a coalition control the data of sources $i$ and $j$, and let the order $i>j$ be decided, with gap $g=L_i-U_j>0$.
+\begin{itemize}
+\item The coalition removes the order, turning the certified crossing into a pre-crossing, once its total shift of the two bands reaches $g$.
+\item It reverses the order only with a total shift above $U_i-L_j=g+|I_i|+|I_j|$.
+\item An independent measurement of pathway $i$ with half-width $\eta$ around its true value exposes the edit, by making the fibre empty, exactly when the shift of $i$ exceeds $w_i+\eta$, where $w_i$ is the half-width of $I_i$. Otherwise it narrows $I_i$ to the intersection.
+\end{itemize}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Between two times at which the bands overlap, the fibres at different times are separate. So any path that moves inside the overlapping bands is the path of some choice of laws, and it can swap any odd number of times.
+
+(ii) A star cover is a tree. Any choice of laws on the contexts $\{X_i,Y\}$ that agree on $Y$ glues, by conditional independence given $Y$, to a joint law (\cref{prop:markovglue}). So every vector of values inside the bands occurs, and the field is the box. The bands are the data constraints divided by $p_i$.
+
+(iii) Write $Z=P(X_i=1,X_j=1,Y=1)$. Then $p_jv_j=Z+P(X_i=0,X_j=1,Y=1)\ge Z+\delta$ and $p_iv_i=Z+P(X_i=1,X_j=0,Y=1)\le Z+\varepsilon$.
+
+(iv) By (ii) the fibre is nonempty whenever each band meets the Fr\'echet range. Shifting $i$ down by $s_i$ and $j$ up by $s_j$ keeps $L_i-s_i>U_j+s_j$ while $s_i+s_j<g$. Reversal needs $L_j+s_j>U_i-s_i$. The anchored band is the intersection of $I_i$ shifted with $[c_i-\eta,c_i+\eta]$, which is empty exactly when the shift exceeds $w_i+\eta$.
+\end{proof}
+
+\begin{remark}[the credal braid family, identification, and what the field is not]\label{rem:credalbraidfamily}
+\begin{itemize}
+\item \emph{The field is joint.} The field is a set of vectors, not a list of intervals: each coordinate comes from the same law. On a star cover the two coincide by (ii). Once relational data are present they do not, and that difference is exactly what (iii) uses.
+\item \emph{The credal braid family.} Each choice of laws gives strands and, for generic choices, a braid. Call the set of these braids the \emph{credal braid family}. An invariant of the braid is \emph{identified} by the data when it takes one value on the whole family, and \emph{partially identified} otherwise. Stated this way, identification is a definition, not a theorem. The content lies in checkable conditions. By (i)--(ii), the parity of the crossings of a pair between two decided times is identified exactly when the crossing is certified, and on a star cover that is read off the bands. A pre-crossing leaves even the parity open.
+\item \emph{Reaction functions.} The construction applies unchanged when $P(Y=1\mid X_i=1)$ is replaced by the conditional expectation $\mathbb E_P[f_i\mid E_i(t)]$ of any function $f_i$ of the history, for instance ``this reaction happened before that one''. When the probability of the conditioning event varies over the credal set, the bands are linear-fractional programmes (solved by the Charnes--Cooper substitution), not linear ones. In the toy that probability is fixed, so they are linear.
+\item \emph{The time coupling is weak here.} In the toy the data at different times constrain different laws, so any path through the bands is admissible. That is why (i) fixes only parity. A model with a single law over whole histories, with Markov dynamics for instance, would couple the times and can identify more.
+\item \emph{Observational, not causal.} The bands are observational conditionals. $P(Y\mid X_i=1)$ does not say what activating pathway $i$ would do; that is $P(Y\mid\mathrm{do}(X_i=1))$, which needs a causal model. An interventional credal field is defined the same way over the set of compatible causal models. It is not built here, and no causal reading of the toy is intended.
+\end{itemize}
+\end{remark}
+
+\Cref{fig:credalfield} works a toy with four pathways over a two-hour window. The pathways are named after a melatonin example for concreteness, but the numbers are invented and say nothing about physiology. The four bands give five certified crossings and two pre-crossings. The pair light suppression and arousal is never decided over the whole window.
+\begin{itemize}
+\item \emph{Relational data.} At $8{:}40$ the bands of light suppression and arousal overlap. One three-way datum, with $\delta=0.02$ and $\varepsilon=0.005$, decides their order, with margin $0.03$.
+\item \emph{Poisoning.} At the deadline the receptor pathway leads sleep pressure by a certified gap of only $0.024$. Two sources acting together erase that conclusion with shifts of $0.012$ each, and no consistency check fails. Reversing it needs a total shift of $0.154$. An independent assay of the receptor pathway with half-width $0.01$ re-certifies the lead after the hiding attack, and exposes the reversal as a contradiction.
+\end{itemize}
+
+This gives a sharp version of the adversarial picture. On a star cover a coalition cannot be caught by consistency: there is nothing to be inconsistent with. Its cheapest move is to widen uncertainty, turning certified crossings into pre-crossings, not to assert a false order. Two things can catch it:
+\begin{itemize}
+\item \emph{Relational data.} Contexts with two pathways close cycles in the cover, which is exactly where conflicts and contextuality tests become possible (\cref{sec:contam,sec:cycle}).
+\item \emph{Independent anchors} (\cref{thm:protect}).
+\end{itemize}
+The braid of the field is then a statistic one can condition on (\cref{prop:credalbraid}), and its value for a decision is \cref{prop:braidvalue}.
+
+CQ1--CQ6 in \texttt{engine/check\_credalfield.py} check the statements. A first version of CQ5 failed through a bisection error in the test, not in the result. The search for the hiding threshold went the wrong way past the reversal point; it was corrected.
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_credalfield.pdf}
+\caption{The conditional credal field. (a) Each pathway's band of conditional probabilities of the outcome, over a two-hour window. (b) Its braid: certified crossings (filled) and pre-crossings (open). (c) Relational data decide an order that the bands leave open. (d) Coordinated poisoning at the deadline: hiding the receptor pathway's lead costs $0.012$ per source and raises no contradiction; reversing it is exposed by an independent assay. A melatonin-flavoured toy; the numbers are invented.}\label{fig:credalfield}
+\end{figure}
+
+\subsection{Transport along revisions, holonomy and laundering}\label{sec:revholonomy}
+The conditional field of \cref{sec:credalfield} lives at one version of the record. Records are revised: tables are added, corrected and withdrawn. This subsection asks what happens to the field when it is carried along revisions, and when carrying it around a loop of revisions changes it. Two graphs must be kept apart here.
+\begin{itemize}
+\item The \emph{co-revision graph} has sources as vertices; it says who moved with whom.
+\item The \emph{version graph} has versions of the record as vertices and revisions as edges; it says how the record changed.
+\end{itemize}
+Transport and holonomy live on the version graph, as in \cref{sec:history}.
+
+There are two kinds of decision maker.
+\begin{itemize}
+\item A \emph{recomputer} keeps no state. At every version its credal set is the fibre of the current data, so it is path independent by construction.
+\item An \emph{updater} carries a law forward. When a context's table is revised, it applies a Jeffrey update, the I-projection onto the new table \cite{Csiszar1975}. When it wants a law consistent with all current data, it refits them by iterative proportional fitting.
+\end{itemize}
+The \emph{holonomy} of a loop of revisions that returns to the same data is the total-variation distance between the updater's law before and after the loop. Its \emph{field holonomy} is the change in the field's coordinates.
+
+\begin{proposition}[transport, holonomy and laundering]\label{prop:revholonomy}
+Let the laws be strictly positive.
+\begin{enumerate}
+\item[(i)] \emph{Likelihood edges commute.} Revisions that multiply the law by likelihood factors commute. A factor followed by its reciprocal closes the loop exactly, so such loops have zero holonomy, for laws, for credal sets updated law by law, and for fields.
+\item[(ii)] \emph{Edits on the data's own contexts are erased.} A Jeffrey update on a context $C$ multiplies the law by a function of the variables in $C$. So the log-linear interaction terms that are not functions of any updated context never change. For an updater that ends by refitting the current data, any loop whose edits touch only contexts in the current data has zero holonomy: the end law is the I-projection of the starting law onto the fibre, whatever happened in between.
+\item[(iii)] \emph{A retracted foreign edit stays.} Suppose an edit on a context $C'$ that is not among the current data's contexts is published and later retracted. Then the updater's end law is the I-projection onto the fibre of the starting law multiplied by a function of $x_{C'}$.
+\begin{itemize}
+\item It is consistent with every current table.
+\item Every coordinate of the field that the data determine is unchanged; coordinates the data do not determine move.
+\item If $C'$ contains all the variables, a single retracted edit can bring the updater to any law in the relative interior of the fibre.
+\end{itemize}
+\item[(iv)] \emph{Laundering.} The updater's end law lies in the fibre. So no retracted edit can reverse an order that the fibre decides. When the fibre leaves an order open, a retracted edit can put the updater on either side of it, and the updater holds that side as a point.
+\item[(v)] \emph{Field holonomy is bounded by law holonomy.} For $f$ with values in $[0,1]$,
+\[
+|\mathbb E_P[f\mid E]-\mathbb E_Q[f\mid E]|\le 2\operatorname{TV}(P,Q)/\max(P(E),Q(E)).
+\]
+\item[(vi)] \emph{An audit.} By (i)--(ii), an updater whose history contains only likelihood edges and edits on contexts of the current data has zero holonomy at identical data. A nonzero holonomy therefore certifies that its history contains an edit on a context outside the data, or a step that is neither a Jeffrey update nor a likelihood.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Multiplication of positive functions commutes, and normalisation does not depend on the order.
+
+(ii) A Jeffrey update gives $P'(x)=P(x)\,t(x_C)/P_C(x_C)$, and the factor is a function of $x_C$. The refit converges to the I-projection of its starting law $Q$ onto the fibre. That is the unique law in the fibre of the form $Q\exp(\sum_Cg_C(x_C))$, the sum running over the data's contexts \cite{Csiszar1975}. If $Q=Q_0\exp(\sum_Ch_C(x_C))$ over the same contexts, the two families coincide, and so do their projections.
+
+(iii) The factor contributed by $C'$ is not in that family, so it survives the refit. The end law lies in the fibre. A coordinate determined by the data, such as $P(Y{=}1\mid X_R{=}1)$ when the data contain the table of $\{X_R,Y\}$, is the same for every law of the fibre. For reachability: a Jeffrey update on the full table replaces the law by that table, and a law already in the fibre is a fixed point of the refit.
+
+(iv) Follows from (iii).
+
+(v) Write $a=\mathbb E_P[f1_E]$, $b=P(E)$, and $a',b'$ for $Q$. Then $|a-a'|\le\operatorname{TV}$ and $|b-b'|\le\operatorname{TV}$, since $f1_E$ and $1_E$ take values in $[0,1]$. With $a\le b$, $|a/b-a'/b'|=|a(b'-b)+b(a-a')|/(bb')\le 2\operatorname{TV}/b'$, and symmetrically $2\operatorname{TV}/b$.
+
+(vi) This is the contrapositive of (i)--(ii).
+\end{proof}
+
+\Cref{prop:flat} assumed that context sets only grow. Retraction is exactly the case it excluded, and the case an adversary uses. The mechanism is easy to state. An updater who has once absorbed a table on a context the data never had keeps a trace of it after the table is withdrawn. The trace is invisible to every check against the current data and to every quantity those data determine.
+
+We worked a three-variable example: two pathways $R$ and $S$ and an outcome $Y$, with data on $\{R,Y\}$ and $\{S,Y\}$ (\cref{fig:holonomy}). The question is which pathway acting \emph{alone} is more effective, $P(Y\mid R{=}1,S{=}0)$ against $P(Y\mid R{=}0,S{=}1)$. The data do not determine it.
+\begin{itemize}
+\item \emph{The recomputer} allows the difference to be anywhere in $[-0.41,0.58]$ (a sampled range over the fibre). It holds a pre-crossing.
+\item \emph{The honest updater} reports $+0.16$; the true law has $+0.12$.
+\item \emph{The laundered updater} saw a full table published and then retracted, and reports $-0.24$, consistent with every current table to $10^{-17}$, at holonomy $0.22$.
+\item \emph{Other edits.} Retracted tables on $\{R,S\}$ alone reach only a curve, $[0.11,0.30]$, and excursions on the data's own contexts were erased to $10^{-16}$.
+\item \emph{A decided order.} In a second world, where the fibre decides the order, $200$ retracted edits never reversed it.
+\end{itemize}
+
+Together with \cref{prop:credalfield} this gives the two halves of a coordinated attack on decision making.
+\begin{itemize}
+\item \emph{Against recomputers,} the cheapest move is to widen uncertainty: shift bands so that certified crossings become pre-crossings.
+\item \emph{Against updaters,} the cheapest move is to manufacture certainty: publish and retract a table on a context the data never had, so that a pre-crossing becomes a confident order.
+\end{itemize}
+The defences differ accordingly: recompute from the current data, keep provenance so that retracted material can be undone rather than merely dropped, and anchor (\cref{thm:protect}).
+
+HL1--HL6 in \texttt{engine/check\_fieldholonomy.py} check the statements. The sampled fibre ranges are inner approximations; the zero-holonomy and consistency statements are exact to machine precision.
+\begin{figure}[!htbp]\centering
+\includegraphics[width=\linewidth]{fig_holonomy.pdf}
+\caption{Holonomy and laundering. (a) A closed loop of revisions: a joint table is published, then retracted. (b) The plane of ``pathway alone'' probabilities. In grey, the laws a recomputer must allow, which straddle the diagonal (a pre-crossing). In purple, what retracted $\{R,S\}$ tables can reach. The honest updater, the laundered updater (reversed order, consistent with all current data) and the true law are marked.}\label{fig:holonomy}
+\end{figure}
+
+\subsection{Revisions that change the variables}\label{sec:kerneltransport}
+\Cref{prop:revholonomy} kept the variables fixed. Real records also change their variables: categories are merged or split, a variable is replaced by a noisy measurement, a new one is added. The laws of two versions then live on different spaces, $\Omega_v$ and $\Omega_w$. To compare them we need a transport, a stochastic kernel $K_{vw}(\omega_w\mid\omega_v)$ that carries a law forward, $P\mapsto PK_{vw}$. The paper's probability category (\cref{sec:probcat}) is the natural home for this.
+
+There are now two kinds of history dependence, and they must not be confused.
+\begin{itemize}
+\item \emph{Update history}, as in \cref{prop:revholonomy}: the same variables, but the carried belief remembers observations the data no longer contain.
+\item \emph{Representation history}: the variables change, and the belief remembers distinctions the variables no longer represent.
+\end{itemize}
+Representation changes lose information legitimately, so a discrepancy between two versions is not, by itself, evidence of anything.
+
+\begin{proposition}[transport by kernels]\label{prop:kerneltransport}
+Let all laws and all reconstruction kernels be strictly positive, and let the source fibre be nonempty.
+\begin{enumerate}
+\item[(i)] \emph{Transporting the fibre.} Suppose $K$ factors through contexts: for each target context $T$ there are a source context $S$ and a kernel $K_T$ with $\pi_T(PK)=\pi_S(P)K_T$ for every law $P$. Then $K$ maps the fibre $J_{d_v}$ into $J_{d_w}$ if and only if $d_w|_T=d_v|_SK_T$ for every $T$. For a coarsening by a map $g$ it is also onto when each fine table is either a function of the coarse variables or a table of the fine variable alone, since a coarse law then lifts by the within-class proportions of the fine table.
+\item[(ii)] \emph{Refitting and coarsening.} If every data table is a function of the coarse variables, then refitting and coarsening commute: $g_*(\Pi_JQ)=\Pi_{J'}(g_*Q)$, where $J'$ is the fibre of the same tables read on the coarse space. If some table involves the fine variables, the two orders can differ, and the difference is a \emph{transport/refitting defect}.
+\item[(iii)] \emph{Fibre-relative representation holonomy.} For two kernel paths $\gamma,\gamma'$ between the same versions, set $H(\gamma,\gamma')=\sup_{P\in J}\operatorname{TV}(PK_\gamma,PK_{\gamma'})$. It is attained at a vertex of the fibre. Moreover $H=0$ if and only if $PK_\gamma=PK_{\gamma'}$ for every $P\in J$, which is agreement on the fibre, not on the whole simplex. $H$ is a total-variation discrepancy between two paths relative to a fibre, not the holonomy of a connection; kernels such as merges have no inverse, so a path need not be reversible.
+\item[(iv)] \emph{An audit that does not mistake information loss for manipulation.}
+\begin{itemize}
+\item Two declared kernel paths applied to the same law of the fibre differ by at most $H$. So if two systems claim to have followed $\gamma$ and $\gamma'$ from the same law and end more than $H$ apart, at least one did not follow its declared path. This does not certify that the step was not a kernel: an undeclared but legitimate kernel could explain the gap. Certifying that requires the full admissible family of kernels, or the actual kernel disclosed. The next test applies to a disclosed kernel.
+\item Take a merge followed by a reconstruction kernel $\theta(x\mid c,y)$, which splits each coarse class $c$ back into fine categories $x$, possibly using the outcome $y$. Follow it by a refit to data on the fine variable and on coarse-measurable contexts. The result depends on $\theta$ only through the way the within-class odds $\theta(x\mid c,y)/\theta(x'\mid c,y)$ vary with $y$. Reconstructions whose odds do not depend on the outcome leave no trace; those whose odds do can put the updater on either side of any order the fibre leaves open.
+\end{itemize}
+\item[(v)] If the data keep the table of the fine variable together with the outcome, no reconstruction changes that table after refitting. When the state space is exactly $(X,Y)$, as in the example below, this pins the whole law. With further variables, the dependence involving them is not pinned.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Marginals of $PK$ on target contexts are the pushed source marginals. Given a law in the nonempty source fibre, membership in the target fibre is therefore a condition on the data alone. For the lift, where every class has positive probability, set $P(x,y)=P'(g(x),y)\,P(x)/P(g(x))$. Its fine-variable table is $P(x)$, and every coarse-measurable table is that of $P'$.
+
+(ii) By the chain rule, $D(R\Vert Q)=D(g_*R\Vert g_*Q)+\mathbb E_{g_*R}D(R(\cdot\mid c)\Vert Q(\cdot\mid c))$. Coarse-measurable constraints restrict only $g_*R$, so the minimiser keeps the conditionals of $Q$ and projects its coarse part.
+
+(iii) $P\mapsto\operatorname{TV}(PK_\gamma,PK_{\gamma'})$ is convex, so its maximum over a polytope is at a vertex, and it vanishes on the fibre exactly when the two outputs agree on it.
+
+(iv) The first part is the definition of $H$. For the second, merging and then splitting turns a law into $(g_*P)(c,y)\,\theta(x\mid c,y)$, and the refit is its I-projection onto the fibre. As in \cref{prop:revholonomy}(ii), multiplying by a function in the span of the data's contexts (functions of $x$, plus functions of $(c,y)$) does not change that projection. The factor $\log\theta$ lies in this span exactly when its within-class odds do not depend on $y$. Otherwise it is a factor on the context $\{X,Y\}$, which is foreign to the data, and \cref{prop:revholonomy}(iii)--(iv) apply.
+
+(v) The refit satisfies every data table, so it returns the kept $(X,Y)$ table, whatever the reconstruction. On the space $(X,Y)$ that table is the law.
+\end{proof}
+
+In the example the fine variable $X$ has categories $a,b,c,d$, merged into $A=\{a,b\}$ and $B=\{c,d\}$, with an outcome $Y$. The data are the tables of $X$ and of $(X',Y)$.
+\begin{itemize}
+\item \emph{Honest information loss.} Merging and splitting back uniformly differs from doing nothing by up to $H=0.42$ on the fibre. So the naive audit, comparing a law before and after, would raise a false alarm on a perfectly honest recoding.
+\item \emph{The refitting defect.} With only coarse-measurable data, refitting and merging commuted to $10^{-16}$. With a fine margin among the data the defect was $0.027$ in the median, up to $0.166$.
+\item \emph{The kernel criterion.} Reconstructions whose odds ignore the outcome left a trace of at most $10^{-16}$. Outcome-dependent ones laundered $P(Y{=}1\mid a)-P(Y{=}1\mid b)$ from the honest $0$ to $+0.59$ or $-0.59$, while the recomputer's range was $[-0.875,0.875]$. Keeping the fine table of $(X,Y)$ prevented it entirely.
+\end{itemize}
+
+So a merge-and-split is the retracted-edit attack of \cref{prop:revholonomy} in the costume of housekeeping. The splitting step is where the foreign context enters, and it can be checked from the kernel alone, without seeing anyone's beliefs. KT1--KT6 in \texttt{engine/check\_kerneltransport.py} check the statements.
+
+\subsection{The transport/refitting defect}\label{sec:refitdefect}
+\Cref{prop:kerneltransport}(ii) showed that refitting and coarsening can fail to commute. This subsection measures the failure and asks when it matters. Fix a coarsening $g$ and fine data whose tables push forward to coarse tables, with fibres $\mathcal J$ on the fine space and $\mathcal J'$ on the coarse space. Take a positive law $Q$: the law an updater carries before it refits. Write $R=\Pi_{\mathcal J}(Q)$ for its refit on the fine space and $R'=\Pi_{\mathcal J'}(g_*Q)$ for the refit of its coarsening. The two procedures compared are
+\begin{itemize}
+\item refit, then coarsen, which gives $g_*R$;
+\item coarsen, then refit, which gives $R'$.
+\end{itemize}
+Their \emph{defect} is $D(Q)=\operatorname{TV}(g_*R,R')$.
+
+\begin{proposition}[the transport/refitting defect]\label{prop:refitdefect}
+Set $\Delta_{\rm fine}=D(R\Vert Q)-D(R'\Vert g_*Q)$, the extra divergence the fine data force beyond the coarse data, and $W=\mathbb E_{g_*R}\,D\big(R(\cdot\mid c)\Vert Q(\cdot\mid c)\big)$, the part of it absorbed within the coarse cells.
+\begin{enumerate}
+\item[(i)] \emph{An identity.} $D(g_*R\Vert R')=\Delta_{\rm fine}-W$, with $\Delta_{\rm fine}\ge W\ge0$. Hence, by Pinsker,
+\[
+D(Q)\le\sqrt{(\Delta_{\rm fine}-W)/2}\le\sqrt{\Delta_{\rm fine}/2}.
+\]
+\item[(ii)] \emph{When it vanishes.} $D(Q)=0$ exactly when $\Delta_{\rm fine}=W$, that is, when everything the fine data add is absorbed within the coarse cells. This happens for every $Q$ when all tables are coarse-measurable, and for every $Q$ already in the fibre.
+\item[(iii)] \emph{No vertex principle.} $D$ is not convex in $Q$ in general, so, unlike the representation holonomy, its maximum need not lie at a vertex.
+\item[(iv)] \emph{Decision relevance.} A functional that is constant on $\mathcal J'$, that is, determined by the coarse data, is unchanged by the defect, whatever its size. An expected utility moves by at most $\operatorname{osc}(u_a)\,D(Q)$. So an action ranking whose honest margin exceeds $(\operatorname{osc}u_a+\operatorname{osc}u_b)\,D(Q)$ cannot be reversed. Only functionals that vary on $\mathcal J'$ can be moved, and those can be moved even by a small defect.
+\item[(v)] \emph{Bounding a total discrepancy.} Suppose two updaters end with the same current data after different histories. By the triangle inequality along a common chain, their distance is at most the sum of three terms:
+\begin{itemize}
+\item the representation holonomy (\cref{prop:kerneltransport}(iii));
+\item the update holonomy (\cref{prop:revholonomy});
+\item the defects of the refits involved.
+\end{itemize}
+Each term vanishes under its own condition: kernels that agree on the fibre, edits only on the data's contexts, and coarse-measurable data. This is a bound, not an identity.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) By the chain rule, $D(R\Vert Q)=D(g_*R\Vert g_*Q)+W$. The pushed tables of $R$ are the coarse data, so $g_*R\in\mathcal J'$. The I-projection onto a linear family satisfies the Pythagorean identity $D(S\Vert g_*Q)=D(S\Vert R')+D(R'\Vert g_*Q)$ for every $S\in\mathcal J'$ \cite{Csiszar1975}. Taking $S=g_*R$ and subtracting gives the identity. Nonnegativity of $D(g_*R\Vert R')$ gives $\Delta_{\rm fine}\ge W$, and Pinsker gives the bounds.
+
+(ii) The first claim follows from (i). For coarse-measurable tables, the minimiser keeps the within-cell conditionals of $Q$ (\cref{prop:kerneltransport}(ii)), so $W=0$ and $g_*R=R'$. If $Q\in\mathcal J$, then $R=Q$ and $g_*Q\in\mathcal J'$, so $R'=g_*Q$.
+
+(iii) This is shown by the example below.
+
+(iv) Both $g_*R$ and $R'$ lie in $\mathcal J'$. For bounded $u$, $|\mathbb E_Pu-\mathbb E_{P'}u|\le\operatorname{osc}(u)\operatorname{TV}(P,P')$.
+
+(v) This is the triangle inequality.
+\end{proof}
+
+In the example of \cref{sec:kerneltransport}, with the margins of the fine variable $X$ and of $Y$ as data, every check came out as stated.
+\begin{itemize}
+\item The identity held to $3\cdot10^{-16}$ on $300$ random cases.
+\item The defect was not convex: $33$ of $150$ random segments had their midpoint above the average of their endpoints.
+\item $P(Y{=}1)$, which the coarse data determine, never moved, even at defects up to $0.44$.
+\item $P(Y{=}1\mid A)$, which they leave open, moved by up to $0.68$.
+\item At a threshold on $P(Y{=}1\mid A)$, a defect of $0.012$ flipped the decision, while one of $0.23$ did not.
+\end{itemize}
+
+So the size of the defect does not decide whether it matters. What decides it is whether the decision depends on a direction the coarse data leave open: the same separation as in \cref{thm:determination}.
+
+RD1--RD5 in \texttt{engine/check\_refitdefect.py} check the statements. RD5 first failed against a threshold taken from an exploration run with another seed: it required an unflipped defect above $0.25$, and $0.23$ was found. It was restated as the ratio of the two.
+
+\subsection{When refitting and coarsening commute}\label{sec:refitcommute}
+\begin{readerbox}{which data designs make merging harmless}
+\rbwhat \Cref{prop:refitdefect} measured the defect for one starting law. Here we ask which data designs have no defect for \emph{any} starting law. The answer depends only on which statistics the data fix, not on their values. Read every fine statistic along a choice of one fine state per coarse class, and the result must be a coarse statistic, whatever the choice.
+\rbwhy When the condition holds, an updater who merges categories and one who keeps them can never be pulled apart by refitting. Then the defect term of \cref{thm:history}(vi) is zero by design.
+\rbex Data that look at a merged variable at all fail the test, unless they pin down the whole law. A design that looks inside one merged class only where the coarse data fix that class's probability passes it.
+\rbfirst Read \cref{thm:refitcommute} and \cref{cor:refitcommute}.
+\end{readerbox}
+
+Keep the setting of \cref{prop:refitdefect}, but describe the data by spans:
+\begin{itemize}
+\item $H\subseteq F$ is spanned by the constants and the statistics whose expectations the fine data fix;
+\item $\mathcal J$ is the fine fibre, and it contains a positive law;
+\item $g:\Omega\to\Omega'$ is a coarsening;
+\item $H'\subseteq F'$ is the coarse span, with $g^*H'\subseteq H$, so that the fine data determine the coarse tables.
+\end{itemize}
+A \emph{section} $\sigma$ of $g$ chooses one fine state in each coarse class. For $s\in F$, $s\circ\sigma$ is then a coarse function.
+
+\begin{theorem}[when refitting and coarsening commute]\label{thm:refitcommute}
+The following are equivalent:
+\begin{enumerate}
+\item[(a)] $g_*\Pi_{\mathcal J}(Q)=\Pi_{\mathcal J'}(g_*Q)$ for every positive law $Q$;
+\item[(b)] $\mathbb E_Q[s\mid g]\in H'$ for every positive $Q$ and every $s\in H$;
+\item[(c)] $s\circ\sigma\in H'$ for every $s\in H$ and every section $\sigma$;
+\item[(d)] two conditions hold:
+\begin{itemize}
+\item the indicator of every class on which some $s\in H$ is not constant lies in $H'$;
+\item $s\circ\sigma_0\in H'$ for one section $\sigma_0$ and every $s\in H$.
+\end{itemize}
+\end{enumerate}
+The condition involves the spans only, not the values of the tables. When it fails, the laws $Q$ with no defect form a closed set with empty interior.
+\end{theorem}
+
+\begin{proof}
+For positive $Q$, write $R=\Pi_{\mathcal J}(Q)=Qe^{h_Q}$ with $h_Q\in H$ \cite{Csiszar1975}. Since $g^*H'\subseteq H$, the law $g_*R$ has the coarse data, so $g_*R\in\mathcal J'$. The law $\Pi_{\mathcal J'}(g_*Q)$ is the unique law of $\mathcal J'$ of the form $g_*Q\,e^{h'}$ with $h'\in H'$. Hence commutation at $Q$ is equivalent to
+\[
+\log g_*R-\log g_*Q\in H'.
+\]
+Unnormalised laws change these logarithms only by constants, which lie in $H'$.
+
+(b)$\Rightarrow$(a). Put $\psi(t)=\log g_*(Qe^{th_Q})-\log g_*Q$. Then $\psi(0)=0$ and $\psi'(t)=\mathbb E_{Q_t}[h_Q\mid g]$, where $Q_t\propto Qe^{th_Q}$ is positive. So $\psi'(t)\in H'$ for every $t$, and therefore $\psi(1)\in H'$.
+
+(a)$\Rightarrow$(b). Fix $Q$ and $s\in H$, and let $Q_\varepsilon\propto Qe^{-\varepsilon s}$. Then $R=Q_\varepsilon e^{h_Q+\varepsilon s}$ up to a constant, and $h_Q+\varepsilon s\in H$, so $\Pi_{\mathcal J}(Q_\varepsilon)=R$ for every $\varepsilon$. By (a), $\log g_*R-\log g_*Q_\varepsilon\in H'$ for every $\varepsilon$. Differentiating at $0$ gives $\mathbb E_Q[s\mid g]\in H'$.
+
+(b)$\Leftrightarrow$(c). $\mathbb E_Q[s\mid g](c)=\sum_{\omega\in c}Q(\omega\mid c)\,s(\omega)$. As $Q$ varies, the conditionals $Q(\cdot\mid c)$ range independently over the positive laws on each class. The values form the product of the open intervals between $\min_cs$ and $\max_cs$ (a point when $s$ is constant on $c$). The closure of this box has the functions $s\circ\sigma$ among its vertices, and each point of the box is a convex combination of them. Since $H'$ is a closed subspace, (b) and (c) are equivalent.
+
+(c)$\Leftrightarrow$(d). If $\sigma,\sigma'$ differ only on the class $c$, then $s\circ\sigma-s\circ\sigma'=(s(\omega)-s(\omega'))\mathbb 1_c$. Every section is reached from $\sigma_0$ by changing one class at a time.
+
+For the last claim, $Q\mapsto\Pi_{\mathcal J}(Q)$ is real-analytic on positive laws, by the implicit function theorem: the Hessian of the dual is a covariance matrix and is positive definite on $H$ modulo constants. The same holds on the coarse side. So the defect is the norm of an analytic map on a connected open set. If it vanished on an open set, it would vanish everywhere.
+\end{proof}
+
+\begin{corollary}[variable designs]\label{cor:refitcommute}
+Let the fine contexts be sets of variables, each taking at least two values. Let $g$ merge a proper subset, with at least two elements, of the values of one variable $X$. Take $H'$ to be the largest consistent coarse span, $\{h':g^*h'\in H\}$. Then refitting and coarsening commute for every starting law exactly when one of two things holds:
+\begin{itemize}
+\item $X$ belongs to no context;
+\item some context contains every variable, so the data pin down the law.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+If $X$ belongs to no context, every statistic is constant on the classes, and $s\circ\sigma$ lies in $H'$ by maximality. If some context contains every variable, then $H=F$ and $H'=F'$.
+
+Conversely, suppose $X$ belongs to a context, and let $x_1$ be a merged value. Then $\mathbb 1\{x=x_1\}$ varies on every merged class, so by (d) the indicator of a full coarse cell lies in $H'$. Its pullback, $\mathbb 1\{x\in M\}\prod_v\mathbb 1\{v=r_v\}$, then lies in $H$. Here $M$ is the merged set. Its component in the interaction of all the variables, in the orthogonal decomposition of functions under the uniform law, is the product of the centred factors, which is not zero. A sum of functions of contexts has such a component only if some context contains every variable.
+\end{proof}
+
+This corrects the guess we made before proving it, that commutation requires every fine statistic to be a pullback of a coarse one. Keeping the full table is a counterexample: no fine statistic needs to be a pullback, yet nothing can move. Nor is the full table the only escape, as the following design shows.
+
+\paragraph{A design that commutes.} Take $X\in\{a,b,c,d\}$ and $Y$, and merge $\{a,b\}\to A$ and $\{c,d\}\to B$. The data are two tables:
+\begin{itemize}
+\item the table of $X$ read as $a$, $b$ or ``$c$ or $d$'';
+\item the table of $Y$, recorded only inside class $A$.
+\end{itemize}
+Then $\mathbb 1\{x=a\}$ varies inside the classes $(A,y)$. Their indicators are coarse statistics, and the coarse fibre is a segment, not a point. The criterion holds, and no starting law produced a defect: at most $9\cdot10^{-14}$ over $100$ laws. If instead the first table records $X$ itself, the criterion fails and defects reach $0.092$.
+
+In $300$ random designs, the criterion held in $75$, and in each of those no defect appeared, at most $2\cdot10^{-13}$. In the other $225$, a defect of at least $0.066$ appeared. None of the $75$ was of the kind just described. Commuting designs with an open coarse fibre and a statistic varying inside a class seem to be rare, and have to be built.
+
+For poisoning this is a design rule. Data that look inside a merged category should do so only where the coarse data pin down that category's probability. Otherwise a starting law exists that makes an updater who merges and one who does not disagree, at identical data, and with variable designs this happens whenever the data mention the merged variable and do not pin down the law.
+
+CM1--CM6 in \texttt{engine/check\_refitcommute.py} check the statements. The I-projection there first stalled near its optimum, because its line search compared dual values below rounding error, and this showed up as spurious defects of order $10^{-9}$. The solver now takes full Newton steps near convergence and raises an error if it does not converge. No threshold of any check was changed.
+
+\subsection{The history theorem and the decision theorem}\label{sec:historythm}
+\begin{readerbox}{one theorem for histories, one for decisions}
+\rbwhat \Cref{prop:revholonomy,prop:kerneltransport,prop:refitdefect} each describe one way that two updaters can hold the same current data and still believe different things. Here they become one statement. On a fixed set of variables, every step an updater takes multiplies its law by a positive function. Only the sum of the logarithms of those functions matters, and only up to functions of the data's own contexts. That class, the \emph{history trace}, is a coordinate on the fibre. A second theorem says when the trace matters for a decision.
+\rbwhy For poisoning, the trace is the forensic object. It is what an attacker leaves behind, and it can be read off by an auditor who holds the honest law. It also shows what cannot be read off: two different attacks with the same trace are indistinguishable, and they can cancel.
+\rbex Splitting a merged category unevenly across outcomes leaves exactly the trace that a retracted table on one cell would. In the running example the two cancel exactly. An attacker restricted to that one cell cannot reverse a decision that the fibre leaves open, while one who can edit the full table can.
+\rbbg Csisz\'ar \cite{Csiszar1975} for the I-projection; any text on log-linear models for the span of context functions \cite{DrtonSturmfelsSullivant2009}.
+\rbfirst Read \cref{thm:history}(i)--(ii) and \cref{thm:decision}(iii).
+\end{readerbox}
+
+Fix a finite state space $\Omega$ and current data $d$ on a family $\mathcal D$ of contexts. Assume the fibre $\mathcal J$ contains a strictly positive law. Let $F$ be the space of real functions on $\Omega$, and $H_{\mathcal D}\subseteq F$ the span of the constants and the functions of $x_C$, for $C\in\mathcal D$. An updater starts from a positive law $P_0$ and takes a finite sequence of steps, each of one of four kinds:
+\begin{enumerate}
+\item[(a)] a likelihood factor, $P\mapsto PL$, with $L>0$;
+\item[(b)] a Jeffrey update on any context $C$;
+\item[(c)] a refit onto intermediate data on any family $\mathcal D_t$ of contexts, whose fibre contains a positive law;
+\item[(d)] a coarsening $g$ followed by a reconstruction kernel $\theta(\omega\mid g(\omega))>0$ on the classes of $g$.
+\end{enumerate}
+It ends by refitting the current data. Each law is renormalised after each step. Let $\tau$ be the sum of the logarithms of the factors by which the steps multiply the law.
+
+\begin{theorem}[the history theorem]\label{thm:history}
+\begin{enumerate}
+\item[(i)] \emph{Every step is multiplicative.} The four kinds of step multiply the law by, respectively:
+\begin{itemize}
+\item $L$;
+\item a function of $x_C$;
+\item $e^{h_t}$, with $h_t\in H_{\mathcal D_t}$;
+\item $\theta(\omega\mid g(\omega))/P(\omega\mid g(\omega))$.
+\end{itemize}
+The end law is therefore $\Pi_{\mathcal J}(P_0e^{\tau})$.
+\item[(ii)] \emph{The history trace.} The end law depends on the history only through the class $[\tau]\in F/H_{\mathcal D}$. The map $[\tau]\mapsto\Pi_{\mathcal J}(P_0e^\tau)$ is a bijection from $F/H_{\mathcal D}$ onto the positive laws of $\mathcal J$. So two histories that end with the same data give the same law exactly when their traces agree. Given the honest law $R_0=\Pi_{\mathcal J}(P_0)$, the trace of an end law $R$ is the class of $\log R-\log R_0$.
+\item[(iii)] \emph{Fixed variables (\cref{prop:revholonomy} recovered).}
+\begin{itemize}
+\item Edits and intermediate data on the current contexts leave no trace, in any order and number.
+\item A single update leaves no trace exactly when its log-factor lies in $H_{\mathcal D}$.
+\item A retracted foreign table leaves the class of its refit factor.
+\item Edits on a context containing all the variables reach every positive law of the fibre.
+\end{itemize}
+\item[(iv)] \emph{Changed variables (\cref{prop:kerneltransport}(iv) recovered).} Start from $R_0$ with $P_0$ uniform. A merge followed by a reconstruction $\theta$ has trace $[\log\theta]$. When the data are the tables of $\{X\}$ and of $\{X',Y\}$, this vanishes exactly when the within-class odds of $\theta$ do not depend on $y$.
+\item[(v)] \emph{Mechanisms add, can cancel, and can be confused.} Traces add, so two mechanisms with opposite classes cancel exactly, and two mechanisms with the same class cannot be told apart from the end law. A trace is consistent with edits confined to a set $\mathcal C$ of contexts exactly when
+\[
+[\tau]\in\Big(H_{\mathcal D}+\sum_{C\in\mathcal C}F_C\Big)\Big/H_{\mathcal D},
+\]
+where $F_C$ is the space of functions of $x_C$. Attribution is therefore to sets of contexts, and only up to that span.
+\item[(vi)] \emph{Beyond multiplicative steps.} If the steps include kernels into another representation, the end law is no longer determined by a trace. The distance between two updaters is then bounded by the sum of three terms:
+\begin{itemize}
+\item the path discrepancy of \cref{lem:pathdisc};
+\item the update term of (ii);
+\item the refitting defects of \cref{prop:refitdefect}.
+\end{itemize}
+This is a bound, not an identity.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Steps (a) and (b) are immediate. For (c): for a positive starting law, the refit is the unique law of its fibre of the form $Qe^{h}$ with $h\in H_{\mathcal D_t}$ \cite{Csiszar1975}. For (d): $P'(\omega)=P(g(\omega))\,\theta(\omega\mid g(\omega))=P(\omega)\,\theta(\omega\mid g(\omega))/P(\omega\mid g(\omega))$. Multiplying the factors gives the law before the final refit, $P_0e^\tau$ normalised.
+
+(ii) Write $\Pi_{\mathcal J}(P_0e^{\tau})=P_0e^{\tau+h}$ with $h\in H_{\mathcal D}$, by the same characterisation. If $\tau'-\tau\in H_{\mathcal D}$, then $P_0e^{\tau'+(h+\tau-\tau')}$ is a law of $\mathcal J$ of the right form, so it is the projection, and the two end laws agree. Conversely, if the end laws agree, $\tau+h=\tau'+h'$, so $\tau-\tau'\in H_{\mathcal D}$. For surjectivity, take a positive $R\in\mathcal J$ and $\tau=\log(R/P_0)$; then $\Pi_{\mathcal J}(R)=R$. Finally, $\log R-\log R_0=\tau+h-h_0\equiv\tau$.
+
+(iii) A Jeffrey update on a current context, or a refit onto tables on current contexts, contributes an element of $H_{\mathcal D}$. A single update leaves no trace exactly when its log-factor is $0$ in the quotient. The statement about the full table is the surjectivity in (ii).
+
+(iv) With $P_0$ uniform, $\log R_0\in H_{\mathcal D}$. When the classes of $g$ are measurable for a current context, as $X'$ is for $\{X',Y\}$, the term $\log R_0(c,y)$ also lies in $H_{\mathcal D}$, so the class of the factor is $[\log\theta]$. With $H_{\mathcal D}=\{f(x)+k(x',y)\}$, the function $\log\theta(x\mid c,y)$ lies in it exactly when its differences within a class do not depend on $y$.
+
+(v) The trace is a sum, and (ii) applies to it.
+
+(vi) This is \cref{prop:refitdefect}(v), with \cref{lem:pathdisc} supplying the representation term.
+\end{proof}
+
+\begin{lemma}[path discrepancy]\label{lem:pathdisc}
+For kernels $K,K'$ out of the fibre's space, set $H_{\mathcal J}(K,K')=\max_{P\in\mathcal J}\operatorname{TV}(PK,PK')$, and let $\delta(M)=\max_{i,j}\operatorname{TV}(M_i,M_j)$ be the Dobrushin coefficient.
+\begin{enumerate}
+\item[(1)] The maximum is attained at a vertex of $\mathcal J$.
+\item[(2)] $H_{\mathcal J}$ is a pseudometric on kernels, and it vanishes exactly when $PK=PK'$ for every $P\in\mathcal J$.
+\item[(3)] \emph{Contraction.} $H_{\mathcal J}(KM,K'M)\le\delta(M)\,H_{\mathcal J}(K,K')$.
+\item[(4)] \emph{Concatenation.} If $\mathcal JK_1\subseteq\mathcal J'$, then
+\[
+H_{\mathcal J}(K_1K_2,K'_1K'_2)\le H_{\mathcal J'}(K_2,K'_2)+\delta(K'_2)\,H_{\mathcal J}(K_1,K'_1).
+\]
+\item[(5)] \emph{Invariance.} If $\Phi$ has a left-inverse kernel ($\Phi\Psi=I$), that is, if it is a lossless re-encoding, then $H_{\mathcal J}(K\Phi,K'\Phi)=H_{\mathcal J}(K,K')$. For any $\Phi$, the left side is at most the right.
+\end{enumerate}
+This is the \emph{fibre-relative representation holonomy} of \cref{prop:kerneltransport}(iii). It measures disagreement between declared paths on the fibre, and it is not the holonomy of a connection.
+\end{lemma}
+
+\begin{proof}
+(1) $P\mapsto\operatorname{TV}(PK,PK')$ is convex. (2) The triangle inequality holds pointwise, and so it holds for the maximum. (3) $\operatorname{TV}(\mu M,\nu M)\le\delta(M)\operatorname{TV}(\mu,\nu)$ \cite{Dobrushin1956}. (4) Insert $PK_1K'_2$ and use $PK_1\in\mathcal J'$ for the first term and (3) for the second. (5) Since $\delta\le1$, (3) gives $\le$. Applying (3) with $\Psi$ gives $H(K,K')=H(K\Phi\Psi,K'\Phi\Psi)\le H(K\Phi,K'\Phi)$.
+\end{proof}
+
+\begin{theorem}[the decision theorem on a fibre]\label{thm:decision}
+Let $u(a,\omega)$ be a utility with finitely many actions, $U_a(P)=\mathbb E_Pu(a,\cdot)$, and $L_{ab}=U_a-U_b$.
+\begin{enumerate}
+\item[(i)] \emph{Identification.} The sign of $L_{ab}$ is the same throughout $\mathcal J$ exactly when its minimum over the vertices is $\ge0$ or its maximum is $\le0$; it is strict when the inequality is. This gives three cases:
+\begin{itemize}
+\item \emph{certified}: one action is optimal throughout the fibre;
+\item \emph{open}: vertices support different actions;
+\item \emph{action certified, value open}: the ranking is fixed while some $U_a$ still varies.
+\end{itemize}
+$U_a$ is constant on $\mathcal J$ exactly when $u_a$ annihilates the fibre's directions, that is, the Fisher-null directions of the observed contexts (\cref{prop:fisher}(2), \cref{thm:determination}).
+\item[(ii)] \emph{Stability.} $|L_{ab}(P)-L_{ab}(P')|\le(\operatorname{osc}u_a+\operatorname{osc}u_b)\operatorname{TV}(P,P')$. So a discrepancy between histories smaller than the honest margin divided by $\operatorname{osc}u_a+\operatorname{osc}u_b$ cannot reverse the ranking.
+\item[(iii)] \emph{Reversal.} Suppose $a$ is preferred at the honest law. Then:
+\begin{itemize}
+\item If edits on a context containing all the variables are allowed, some history ending at the current data reverses the ranking exactly when $\min_{\mathcal J}L_{ab}<0$.
+\item If $\min_{\mathcal J}L_{ab}\ge\varepsilon>0$, no history ending in $\mathcal J$ reverses it, whatever its mechanism.
+\item If edits are confined to contexts $\mathcal C$, the reachable laws form the slice $\{\Pi_{\mathcal J}(R_0e^{\tau}):\tau\in\sum_{C\in\mathcal C}F_C\}$, of dimension $\dim\big((H_{\mathcal D}+\sum_CF_C)/H_{\mathcal D}\big)$. Reversal is possible exactly when this slice meets $\{L_{ab}<0\}$, which can fail even though the fibre is open.
+\end{itemize}
+\item[(iv)] \emph{Ex ante.} A $\Gamma$-maximin policy never loses value with a finer statistic (\cref{prop:braidvalue}(ii)). The statements above concern a single end law, not a policy fixed in advance.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $L_{ab}$ is linear, and $\mathcal J$ is the convex hull of its vertices. The criterion for constancy is \cref{prop:fisher}(2).
+
+(ii) For bounded $f$, $|\mathbb E_Pf-\mathbb E_{P'}f|\le\operatorname{osc}(f)\operatorname{TV}(P,P')$. Apply this to $u_a$ and to $u_b$.
+
+(iii) $\mathcal J$ is convex and contains a positive law, so its positive laws are dense in it. If $\min_{\mathcal J}L_{ab}<0$, the open set $\{L_{ab}<0\}$ contains a positive law of $\mathcal J$, which \cref{thm:history}(ii) reaches. Every end law lies in $\mathcal J$, which gives the second claim. With edits confined to $\mathcal C$, the trace lies in $(H_{\mathcal D}+\sum_CF_C)/H_{\mathcal D}$ (\cref{thm:history}(v)), and (ii) of that theorem maps it bijectively onto the slice.
+
+(iv) is \cref{prop:braidvalue}(ii).
+\end{proof}
+
+\paragraph{In the running example.} The example of \cref{sec:kerneltransport} has the tables of $\{X\}$ and of $\{X',Y\}$ as data. There, $\dim F/H_{\mathcal D}=2=\dim\mathcal J$, so the trace is a two-dimensional coordinate on the fibre.
+
+An outcome-dependent split inside class $A$ moves the honest law by $\operatorname{TV}=0.094$. Its trace lies in $H_{\mathcal D}+F_{aY}$, where $aY$ is the context $(\mathbb 1\{x=a\},y)$. So it is the trace that a retracted edit on that cell would leave. The likelihood $\exp(2.773\cdot\mathbb 1\{x=a,y=1\})$ reproduces it exactly, and the opposite factor cancels it.
+
+Now take an open decision functional, $+0.173$ at the honest law, with range $[-0.243,0.525]$ over the fibre. An edit through the full table reverses it to $-0.235$. Confined to $aY$, the reachable values only run over $[0.011,0.336]$, so that attacker cannot reverse it.
+
+HT1--HT8 and HC1--HC4 in \texttt{engine/check\_historytrace.py} check the statements. HT3 first required order dependence in every history that contains a foreign intermediate table. It failed: when the other steps leave that table's margin unchanged, the foreign factor is the same in every order. It now records that order mattered in $18$ of $20$ histories.
+
+\subsection{Two selectors on one fibre}\label{sec:selectorlink}
+\begin{readerbox}{which point the geometry selects}
+\rbwhat The note uses two ways to pick one law from a fibre. The selection theorem picks the positive critical point of a potential, which tends to the leximin point as $T\to0$. The history theorem moves the I-projection, which from a uniform start is the maximum-entropy point. Here we compare them. Both are characterised by the data span, but each places the condition on a different object. They are not one family: maximum entropy is not the $T=1$ end of the toric family, as we had guessed, and the curve of toric points passes close to it without reaching it.
+\rbwhy Without this comparison, ``the geometry selects a point; history moves it'' mixes two selectors. History moves maximum entropy along the whole trace coordinate. It moves the leximin limit only if it grows like $\log(1/T)$.
+\rbex On the column-binding fibre of \cref{ex:colbind}, maximum entropy and leximin prefer different actions for one open decision, and the toric curve switches between them at $L^*\approx18$.
+\rbfirst Read \cref{prop:selectorlink}(i), (iii) and (iv).
+\end{readerbox}
+
+Let $\mathcal A$ be the affine hull of the fibre $\mathcal J$, which contains a positive law. On $\mathcal A$ each cell probability $P_k$ is an affine function with gradient $v_k$. The two selectors are:
+\begin{itemize}
+\item the \emph{I-projection} $\Pi_{\mathcal J}(q)$ from a positive reference law $q$, which is maximum entropy when $q$ is uniform;
+\item the \emph{toric selector}: for $L=\log(1/T)>0$ and weights $a_k>0$ on a set $K$ of cells whose gradients positively span the directions of $\mathcal A$,
+\[
+u_L(a)=\operatorname{argmin}_{\mathcal A}\sum_{k\in K}a_k\,e^{-LP_k}.
+\]
+\end{itemize}
+When $K$ is the set of facets, $u_L$ is the valuation of the positive critical point of $W_T$ (\cref{thm:bridge,thm:selection}). When $K$ is the set of all cells, it is the cell version.
+
+\begin{proposition}[two selectors on one fibre]\label{prop:selectorlink}
+\begin{enumerate}
+\item[(i)] \emph{Same span, different objects.} $\Pi_{\mathcal J}(q)$ is the unique positive law of $\mathcal J$ with $\log(P/q)\in H_{\mathcal D}$. The toric point $u_L(a)$ is the unique point of $\mathcal A$ at which the law of the terms, $w_k\propto a_ke^{-LP_k}$ (and $0$ off $K$), lies in $H_{\mathcal D}$. Equivalently, the mean exponent of $w$ is zero, which is Birch's condition at target $0$. So maximum entropy puts the data span on the logarithm of the law, and the toric selector puts it on the law of its terms.
+\item[(ii)] \emph{Limits.}
+\begin{itemize}
+\item As $L\to\infty$, $u_L(a)$ tends to the lexicographic max--min point of the $P_k$, $k\in K$, at rate $O(1/L)$, uniformly for weights in a compact subset of $(0,\infty)$ (\cref{thm:selection}).
+\item As $L\to0$, two cases arise. If $\sum_ka_kv_k=0$, which holds for all cells with equal weights, $u_L$ tends to the weighted least-squares point $\operatorname{argmin}_{\mathcal A}\sum_ka_kP_k^2$. With equal weights, this is the law of largest R\'enyi-2 entropy in $\mathcal A$. Otherwise $Lu_L$ tends to the critical point $w_0\ne0$ at $T=1$, and $u_L$ leaves every bounded set.
+\end{itemize}
+\item[(iii)] \emph{The selectors differ.} Maximum entropy is in general not a member of the toric family. In particular, it is not the $T\to1$ limit, which is the least-squares point or does not exist.
+\item[(iv)] \emph{History.} $\Pi_{\mathcal J}(qe^\tau)$ moves with the trace $[\tau]$ and is a bijection in it (\cref{thm:history}(ii)). The toric point behaves differently:
+\begin{itemize}
+\item weights in $[c,C]$ move it by $O(1/L)$ and leave its limit unchanged;
+\item weights $a_k=e^{Ls_k}$ move its limit to the lexicographic max--min point of the shifted cells $P_k-s_k$.
+\end{itemize}
+So, at small $T$, only histories of size about $\log(1/T)$ move the toric selector.
+\item[(v)] \emph{Decisions.} When the fibre leaves a decision open (\cref{thm:decision}(i)), the two selectors can choose different actions, and the toric family switches from one to the other at a finite $L$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The first statement is Csisz\'ar's characterisation \cite{Csiszar1975}. For the second, $G(u)=\sum_ka_ke^{-LP_k(u)}$ is strictly convex on $\mathcal A$, because the $v_k$ span. It is coercive, because they positively span, so every direction lowers some $P_k$ without bound. Its gradient vanishes exactly when $\sum_kw_kv_k=0$. For a direction $d$ of $\mathcal A$, $\langle\sum_kw_kv_k,d\rangle=\sum_kw_k\,(DP_k)(d)$ is the pairing of $w$ with a fibre direction. So stationarity means that $w$ is orthogonal to every fibre direction, that is, $w\in H_{\mathcal D}$.
+
+(ii) The limit as $L\to\infty$ is \cref{thm:selection}, whose coefficients $a_k(L)$ may be any functions with values in $[c,C]$. For $L\to0$ in the balanced case, $\sum_ka_kP_k$ is constant on $\mathcal A$. So $u_L$ also minimises
+\[
+L^{-2}\sum_ka_k\big(e^{-LP_k}-1+LP_k\big),
+\]
+a family of convex functions that converges locally uniformly to the strictly convex, coercive function $\tfrac12\sum_ka_kP_k^2$. Minimisers of convex functions converging in this way converge to the unique minimiser of the limit. In the unbalanced case, put $w=Lu$ in affine coordinates centred at a point of $\mathcal A$. The functions $\sum_ka_ke^{-LP_k(w/L)}$ converge to $\sum_ka_ke^{-\langle v_k,w\rangle}$ (the constant terms of the $P_k$ contribute factors tending to $1$). Their minimisers converge to its minimiser $w_0$, whose gradient condition $\sum_ka_ke^{-\langle v_k,w_0\rangle}v_k=0$ fails at $w_0=0$ because $\sum_ka_kv_k\ne0$.
+
+(iii) By (i), the two coincide at some $L$ only if one law satisfies both span conditions. The example below shows that this fails.
+
+(iv) The first claim is \cref{thm:history}(ii). For bounded weights, apply \cref{thm:selection}. For the scaled weights, $a_ke^{-LP_k}=e^{-L(P_k-s_k)}$, and the shifted functions have the same gradients.
+
+(v) This is shown by the example.
+\end{proof}
+
+\paragraph{On the column-binding fibre.} In \cref{ex:colbind}, the three distinguished points, in coordinates $(P_{11},P_{12})$, are:
+\begin{itemize}
+\item maximum entropy at $(0.2,0.12)$, the product of the margins;
+\item the least-squares point at $(0.217,0.117)$;
+\item the leximin point at $(0.15,0.15)$.
+\end{itemize}
+The cell curve $L\mapsto u_L$ runs from the least-squares point to the leximin point. It passes within $0.0014$ of maximum entropy, at $L=5.5$, but does not reach it. The separation between the maximum-entropy and leximin points is $0.058$. Over $60$ random $2\times3$ margins, the closest approach was a median $5\%$ of that separation.
+
+With the facet potential of the paper, which omits cell $21$, the normals sum to $(1,0)$. Then, as $T\to1$, the valuation runs off as $w_0/L$ with $w_0=(0.56,-0.28)$.
+
+Maximum entropy follows every trace outside $H_{\mathcal D}$, with a smallest move of $0.019$ over $100$ random traces. The toric limit ignores bounded weights. Weights $e^{Ls}$ with $|s_k|\le0.03$ moved it to the shifted leximin point, and in $18$ of $30$ cases that point is away from the unshifted one.
+
+Now take the decision functional $P_{11}-P_{12}-0.04$. It is open on the fibre, with range $[-0.34,0.36]$. It is $+0.04$ at maximum entropy and $-0.04$ at leximin, and the toric curve changes sign at $L^*=18.2$.
+
+\paragraph{The synthesis, with its selector named.} The data define the fibre, and a selector picks a point in it. For an updater, the selector is the I-projection from its prior, and history moves that point along the trace coordinate, all of it reachable. For the toric selector, history moves the point at finite $T$, but in the leximin limit only histories of size about $\log(1/T)$ move it. In both cases, \cref{thm:decision} says when the movement matters. Two decision makers that hold the same data and the same history but use different selectors can still choose different actions, exactly when the fibre leaves the decision open.
+
+SL1--SL6 in \texttt{engine/check\_selectorlink.py} check the statements.
+\begin{itemize}
+\item The thresholds of SL2 were set after an exploration run with another seed.
+\item SL4 first required $L$ times the distance at $L=10^4$ to be at most twice its value at $L=10^2$, plus $0.05$. It failed, at $1.11$, because at $L=10^2$ the distance can be smaller than its eventual $1/L$ profile. It now requires $L$ times the distance to converge; the relative change from $10^3$ to $10^4$ was below $10^{-11}$.
+\item The soft-min solver showed the same stall near its optimum as the I-projection of \cref{sec:refitcommute}, and was fixed the same way.
+\end{itemize}
+
+\subsection{The decision value of the braid}\label{sec:braidvalue}
+\Cref{prop:credalbraid}(iii) found that the braid can give narrower posteriors than the full record. To see what that is worth, attach a decision. After a history, the decision maker can flag it as coordinated, accept it, or inspect it. The utilities are as follows:
+\begin{itemize}
+\item a false flag costs $c_{fp}$;
+\item a missed coordination costs $c_{fn}$;
+\item an inspection costs $c_{in}$ and settles the matter.
+\end{itemize}
+There are two ways to evaluate a statistic $T$ of the history.
+\begin{itemize}
+\item \emph{Ex post}, one observation at a time: after seeing $T=y$, choose the action with the best worst-case expected utility over the credal posterior ($\Gamma$-maximin). Also record the E-admissible actions, those optimal for at least one posterior law. This criterion gives a set, not a number.
+\item \emph{Ex ante}, in normal form: choose a policy $\delta(a\mid y)$ before seeing anything, and evaluate it by its worst case over the joint credal set,
+\[
+V_\Gamma(T)=\max_\delta\ \min_{P\in\mathcal M}\ \mathbb E_P\big[u(\delta(T),K)\big].
+\]
+\end{itemize}
+
+\begin{proposition}[decision value of a statistic]\label{prop:braidvalue}
+\begin{enumerate}
+\item[(i)] \emph{Ex post.} If the credal posteriors given $h$ and given $T(h)$ coincide, as under the shared-nuisance condition of \cref{prop:credalbraid}(iii), then the $\Gamma$-maximin action, its value and the E-admissible set after observing $h$ equal those after observing only $T(h)$.
+\item[(ii)] \emph{Ex ante.} $V_\Gamma$ never decreases with information: if $T$ is a function of $T'$ then $V_\Gamma(T')\ge V_\Gamma(T)$. In particular, no statistic is worth more than the full record ex ante.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Both criteria depend on the observation only through the posterior set. (ii) Every policy that reads $T$ is a policy that reads $T'$, so the maximum is over a larger set.
+\end{proof}
+
+So the braid's advantage in \cref{prop:credalbraid} is an ex post phenomenon. It is dilation seen one observation at a time. A policy fixed in advance can never do better by forgetting. This is the familiar split between normal and extensive form under imprecise probability \cite{SeidenfeldWasserman1993}.
+
+On the brokerage family of \cref{prop:credalbraid} ($\lambda\in[0.8,1.25]$, $\beta\in[0.5,2]$, prior $\tfrac12$), with costs $(c_{fp},c_{fn},c_{in})=(1,1,10)$, so that inspection is never worth it:
+
+\begin{center}
+\begin{tabular}{llrrr}
+nuisance & statistic & $V_\Gamma$ ex ante & $\Gamma$-maximin ex post & indeterminate mass \\ \hline
+shared & braid & $-0.439$ & $-0.443$ & $0$ \\
+shared & full history & $-0.439$ & $-0.443$ & $0$ \\
+separate & braid & $-0.493$ & $-0.496$ & $0.51$ \\
+separate & full history & $-0.439$ & $-0.701$ & $0.93$ \\
+\end{tabular}
+\end{center}
+
+Here the ex post value is averaged under the uniform honest law, and the indeterminate mass is the honest mass of observations with more than one E-admissible action.
+
+With a shared nuisance the braid loses nothing, ex ante or ex post. With separate nuisances the full record is worth more ex ante, because a policy fixed in advance can use the timing to hedge across the unknown nuisance. Ex post, one observation at a time, the braid is more decisive. Typed precedence already reaches the ex ante value of the full record ($-0.439$). Untyped precedence ($-0.481$) beats the braid ex ante in this family, because it carries timing that the braid forgets.
+
+Which evaluation is right depends on the decision maker. A decision maker who commits to a procedure in advance, as an institution does, should keep the record. One who must defend each judgement on its own, as an inspector does, gains from compression.
+
+BV1--BV3 in \texttt{engine/check\_braidvalue.py} check the statements. They cover monotonicity for both nuisance structures and three cost settings, including one in which inspection at cost $0.45$ is used. The comparison above is a finding about this constructed family.
+
+\subsection{A map of the coordination results}\label{sec:map}
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.40\linewidth}}
+claim & mathematical object & result \\ \hline
+structural entanglement & labelled pure braids; $A_G$ & event braid (\cref{prop:ordrev}), any graph (\cref{thm:graphs}, \cref{cor:bkl}), newcomer defect (\cref{prop:defect}) \\
+relational structure beyond pairs & Milnor invariants; signatures & brokerage (\cref{prop:brokerage}); triple invariant of pseudo-links (\cref{thm:pseudoprob}) \\
+concealed coordination & lower central series & masking (\cref{prop:masking}) \\
+uncertainty over resolutions & credal sets & \cref{prop:credalbraid}; envelope $[0,11/24]$ \\
+failure of global compatibility & contextuality, sections & cycles (\cref{prop:cycleD}, \cref{sec:ncycle}); Condorcet (\cref{prop:imprecctx}) \\
+imprecision without contextuality & global assignments, envelopes & \cref{prop:imprecctx} \\
+decision consequences & $\Gamma$-maximin, E-admissibility, value of information & \cref{prop:braidvalue}, \cref{prop:valuedist}, protection (\cref{thm:protect}) \\
+credal set to braid & conditional credal field; certified crossings and pre-crossings & \cref{prop:credalfield} \\
+path dependence across revisions & transport of the field, holonomy, laundering & \cref{prop:revholonomy}, \cref{prop:flat} \\
+revisions of the variables & stochastic kernels, representation holonomy, reconstruction audit & \cref{prop:kerneltransport} \\
+local directional coherence & Bloch states, Fisher metric & \cref{sec:bloch}; transport under representation changes is not built \\
+\end{tabular}
+\end{center}
+The results on revisions answer one question: \emph{when two systems hold the same current information, what in their histories can still make their beliefs and decisions differ?} There are three levels.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}}
+level & what persists & result \\ \hline
+evidence history & a belief remembers an observation that was retracted; the variables are fixed & \cref{prop:revholonomy} \\
+representation history & a belief remembers distinctions that the current variables no longer represent & \cref{prop:kerneltransport}, \cref{prop:refitdefect} \\
+decision history & the uncertainty, the apparent certainty or the value of information changes a decision & \cref{prop:credalfield}, \cref{prop:braidvalue} \\
+\end{tabular}
+\end{center}
+They describe different attack surfaces, with different defences: recompute, keep provenance, disclose kernels, and anchor (\cref{thm:protect}). None of these results establishes intent. Honest information loss, honest common drift and an honest but outcome-dependent reconstruction must stay distinguishable from manipulation.
+
+Each row is a different kind of statement, and none implies another.
+\begin{itemize}
+\item A nontrivial braid need not be anomalous.
+\item A broad interval need not be contextual (\cref{prop:imprecctx}).
+\item A compressed statistic can be more decisive ex post and still worth less ex ante (\cref{prop:braidvalue}).
+\item Hiding from low layers has a price, paid either in the hider's own events or in structure the old sources already show (\cref{prop:masking}).
+\end{itemize}
+Still open:
+\begin{itemize}
+\item transport for continuous variables and noisy measurement kernels beyond the finite examples of \cref{prop:kerneltransport};
+\item directional co-action, with the decomposition of kernel-weighted co-action of Iannucci et al.\ \cite{Iannucci2025} into layers;
+\item conditioning on evidence of probability zero under some laws, by Walley's regular extension \cite{Walley1991};
+\item a lower bound on the cost of mixed masking patterns;
+\item a pre-registered test of these quantities against honest nulls.
+\end{itemize}
+
 
 \section{Three-dimensional fibres}\label{sec:twofour}
+\begin{readerbox}{three-dimensional fibres}
+\rbwhat For $2\times4$ tables the fibre is a three-dimensional polytope, so selection can proceed in up to three levels. We classify all $148$ chambers of margins, find which give Fano toric manifolds (only $14$), and test whether the geometry of the positive object sees each level of selection.
+\rbwhy It is the first test of the bridge beyond polygons, and it shows where the cited Floer results apply and where they stop.
+\rbex In the three worked examples, the valuations of the eigenvalues at the positive object match the dimensions removed at each selection level (\cref{prop:scales}); in general this is \cref{conj:leveldrop}.
+\rbbg Cox, Little and Schenck \cite{CLS2011} for fans and Fano toric varieties; Kleiman \cite{Kleiman1966} for ampleness; Fulton \cite{Fulton1993}.
+\rbfirst Read the opening and \cref{thm:chambers24}; the certificates can wait.
+\end{readerbox}
 A $2\times3$ fibre is a polygon, so selection has at most two levels. A $2\times4$ fibre $\mathrm{Cpl}(f,g)$ is a three-dimensional polytope, and the leximin recursion can cut it down in up to three
 steps: a sheet, then a line, then a point. This part asks what such a deeper hierarchy does on the other side, and it keeps three questions apart. Is the chamber Fano, so that the Floer layer of
 \cref{sec:floer} applies? How many dimensions does each level remove? And does the Clifford form of the positive object see each level? The answers are, in order: only $14$ of the $148$ chambers are
@@ -3775,6 +4636,169 @@ Two consequences follow. Their invariants are expectations, so they do not see l
 \caption{Phases of the objects of \cref{fig:tfobjects}. (a) Example A is $(\mathbb{CP}^1)^3$, with one Bloch sphere for each binding column. The height is $P(\text{row }2\mid\text{column})$, which is $1/2$ at the leximin fibre, and the longitude is the holonomy, so the eight objects are the product basis $|{\pm}{\pm}{\pm}\rangle$. (b) B's six holonomies form a cyclic group of order $6$ (dials as in \cref{fig:tfobjects}; each edge adds the generator). (c) C's eight holonomies over the leximin fibre form $\mathbb Z/4\times\mathbb Z/2$, and the two over the other fibre are $\pm(i,i,i)$, which differ by turning all three dials through $\pi$.}\label{fig:bloch}
 \end{figure}
 
+\clearpage
+\section{One end-to-end example (Study 26)}\label{sec:study26}
+\begin{readerbox}{the whole machinery on one collection of tables}
+\rbwhat A decision maker receives $300$ contingency tables from many sources, each table covering a few of five binary variables. It forms a broad hypothesis, breaks the hypothesis into paths, and adds conditions one at a time to see how the probability of the hypothesis responds. A further $100$ tables are kept back to test the value of information, calibration and contextuality, the last at three layers kept apart: sheaf, fibre and cocycle. Every major result of the note is used once, on the same data, in the order a decision maker would need it.
+\rbwhy Each theorem was checked separately. This study shows them working together, including where they disagree with a natural expectation. Six of the nineteen pre-registered checks failed, and the failures are as instructive as the successes.
+\rbex A coordinated coalition of $15$ sources moves an identified effect from $0.168$ to $0.295$ and flips a decision. It stays coherent with every other table, so no compatibility test catches it. An inspection of $3000$ episodes is too small to catch it either: by Theorem~\ref{thm:protect} the inspection would need to be about $27$ times larger.
+\rbbg The study uses nothing new. Read \cref{thm:projection} for the fibre, \cref{thm:determination,thm:decision} for decisions, and \cref{thm:history} for history. The rest can be read as each step comes up.
+\rbfirst Read the table of steps below and \cref{fig:study26results}.
+\end{readerbox}
+
+\paragraph{What was built, and what was frozen.} All numbers are invented. The variable names borrow the sleep-onset illustration only to make the bookkeeping readable, and nothing here has a causal, clinical or physiological reading.
+
+The core variables are:
+\begin{itemize}
+\item $M$, evening melatonin exposure;
+\item $C$, caffeine;
+\item $R$, circadian alignment;
+\item $H$, prior use;
+\item $Y$, sleep onset within $30$ minutes.
+\end{itemize}
+They give $32$ states, with a log-linear truth $P^\ast$. The development set has $300$ tables:
+\begin{itemize}
+\item $270$ tables on eight contexts, $\{M,C\}$, $\{M,R\}$, $\{C,R\}$, $\{M,H\}$, $\{C,H\}$, $\{M,C,Y\}$, $\{R,H,Y\}$ and $\{M,C,R,H\}$, with sample sizes between $80$ and $400$;
+\item $30$ tables on evening light $L_3$ (dim, moderate, bright).
+\end{itemize}
+Two kinds of corrupted source are hidden among them:
+\begin{itemize}
+\item ten of the $\{M,C\}$ tables come from another population, with $P(M{=}1)=0.80$ against $0.68$;
+\item fifteen of the $\{M,C,Y\}$ tables come from a coordinated coalition. It keeps the honest $\{M,C\}$ margin and $P(Y{=}1,C{=}c)$, and raises $P(Y{=}1\mid M{=}1,C{=}c)$ by $0.10$.
+\end{itemize}
+The holdout set has $100$ tables:
+\begin{itemize}
+\item $30$ on the new context $\{M,C,R,Y\}$;
+\item $10$ on $\{M,Y\}$, used as an inspection;
+\item $20$ for calibration, on $\{M,R,Y\}$ and $\{M,H,Y\}$;
+\item $40$ pair tables on a cycle of four onset instruments ($A$ polysomnography, $B$ actigraphy, $D$ diary, $E$ phone app), $20$ with consistent coding and $20$ in which the $(E,A)$ studies used a reversed app coding.
+\end{itemize}
+
+The plan, the analysis rules and nineteen checks (XE1--XE19) were written and frozen, with the generator, by SHA-256 before any table was generated (\texttt{engine/study26\_e2e/PREREG\_study26.md}). Departures are in \texttt{DEVIATIONS\_study26.md}. Exact statements are tested on the exact-data fibre $\mathcal J^\ast$, whose margins are those of $P^\ast$ on the development contexts. Estimated ranges use the robust fibre $\mathcal J_z$, which allows each pooled cell three standard errors.
+
+\begin{figure}[t]\centering\includegraphics[width=\textwidth]{fig_study26_pipeline.pdf}
+\caption{Study 26, step by step. Each box names the result it uses.}\label{fig:study26pipeline}\end{figure}
+
+\begin{center}\footnotesize
+\begin{tabular}{p{0.20\textwidth}p{0.20\textwidth}p{0.52\textwidth}}\toprule
+step & result used & outcome\\\midrule
+pool and flag & leave-one-out $\chi^2$ & 5 flagged: 2 of 10 other-population sources, 2 of 15 coalition sources, 1 honest (XE2 failed)\\
+fibre & \cref{thm:projection} & $\dim\mathcal J^\ast=9$; with $\{M,C,R,Y\}$, $6$; estimated $\mathcal J_z$ empty (XE3, XE4 failed)\\
+hypothesis and paths & linear programmes & union nearly identified, $[0.638,0.680]$, though two paths are open\\
+projection ladder & linear-fractional programmes & conditioning first pins the effect, then opens it: $[-0.389,1]$ in the target stratum\\
+decision & \cref{thm:decision}(i), \cref{thm:determination}, \cref{prop:fisher} & open; VOI of $R$ in $[0,0.080]$, a point ($0.020$) after the holdout context; Fisher kernel $9$, then $6$\\
+selection & \cref{thm:maxmincoupling,thm:selection} & leximin coupling, toric limit (faster than $1/L$; XE9 operationalisation failed); no wall within $\pm40$ counts, while the advisory switches at $7$ (XE10 failed)\\
+composition & \cref{thm:k4,thm:sections} & maximum entropy commutes ($3\cdot10^{-17}$); leximin does not ($0.034$)\\
+system independence & \cref{prop:cocycle} & maximum entropy yes ($7\cdot10^{-18}$); leximin no ($0.003$)\\
+cycle & \cref{thm:ncycle,prop:twist,prop:imprecctx} & twisted: $2.314>2$ by about $9$ SE, no global law; consistent and path: glue, fibres of dimension $7$ and $8$\\
+sheaf layer & \cref{rem:layers} & full supports, $16$ global sections, no logical contextuality; noncontextual fraction $0.980$ against $0.843$\\
+history & \cref{thm:history,thm:decision}(iii) & path independence to $2\cdot10^{-16}$; retracted $\{M,R,Y\}$ table: trace attributed to $\{M,R,Y\}$; reachable slice crosses $\tau$\\
+protection & \cref{thm:protect} & $\rho_q=0.035<2\eta=0.180$: no guarantee, and the coalition is not flagged (XE18 failed)\\
+holdout calibration & ranges of $\mathcal J_z^-$ & $16$ of $16$ cells covered (median width $0.178$)\\\bottomrule
+\end{tabular}\end{center}
+
+\paragraph{From tables to a fibre.} The exact-data fibre is non-empty and has dimension $9$, as \cref{thm:projection}(2) gives ($32$ states minus the rank $23$ of the context map). The holdout context $\{M,C,R,Y\}$ lowers it to $6$. At the maximum-entropy law the kernel of the observed Fisher information has the same dimensions, $9$ and $6$ (\cref{prop:fisher}).
+
+The estimated fibre told a different story. The pre-registered flagging rule caught only $2$ of the $10$ other-population sources. Each was mildly off, with $p$-values between $6\cdot10^{-5}$ and $0.15$, but ten of them together moved the pooled $\{M,C\}$ table, and $\mathcal J_z$ came out empty with or without the flagged sources. A shift spread thinly over many sources is invisible one source at a time: the same lesson as in \cref{sec:poisondim}.
+
+The fallback (deviation D1) found the conflict with an elastic programme, which placed all of it on $\{M,C,Y\}$; the smallest workable $z$ was $3.11$. That was the wrong table. The other population entered through $\{M,C\}$, and removing $\{M,C\}$ instead also restores a non-empty fibre, with the coalition still inside (deviation D3, post hoc). Compatibility locates a conflict between tables. It does not say which table is wrong. The coalition, for its part, passed every compatibility test, as \cref{prop:miscal} predicts for a coherent coalition. D1's choice also has a visible cost: with $\{M,C,Y\}$ removed, the estimated ranges are wide even on the first rung of the ladder (\cref{fig:study26results}, light bars).
+
+\paragraph{The hypothesis, its paths, and the projection ladder.} The broad hypothesis is the event $E=\pi_1\cup\pi_2\cup\pi_3$, made of three paths:
+\begin{itemize}
+\item $\pi_1=\{M{=}1,R{=}1,Y{=}1\}$, the circadian path;
+\item $\pi_2=\{M{=}1,C{=}0,Y{=}1\}$, the caffeine-free path;
+\item $\pi_3=\{M{=}1,H{=}0,Y{=}1\}$, the naive-use path.
+\end{itemize}
+On $\mathcal J^\ast$, given $M=1$:
+\begin{itemize}
+\item $\pi_2$ is identified, at $0.575$;
+\item $\pi_1$ ranges over $[0.523,0.680]$ and $\pi_3$ over $[0.300,0.488]$;
+\item the union ranges over only $[0.638,0.680]$.
+\end{itemize}
+The union is nearly identified although two of its paths are not, because the tables fix most of the overlaps. Breaking the hypothesis into paths is informative, but the paths' ranges do not add up to the hypothesis's range.
+
+Adding conditions does not steadily narrow the range. The effect $\Delta(K)=P(Y{=}1\mid M{=}1,K)-P(Y{=}1\mid M{=}0,K)$ behaves as follows:
+\begin{itemize}
+\item with no condition it is a point, $0.168$, and with $C=0$ another, $0.151$;
+\item with $C=0$ and $R=1$ it spreads to $[-0.178,0.517]$;
+\item in the target stratum, which adds $H=0$, it spreads to $[-0.389,1]$.
+\end{itemize}
+The tables fix $M\times C\times Y$, but not how $Y$ depends on $R$ or $H$ within it. The same happens to $P(E\mid M{=}1,K)$: it is a point under $C=0$, then $[0.611,1]$ in the target stratum. The decision, ``intervene iff $\Delta\ge0.10$ in the target stratum'', is therefore open on the exact data (\cref{thm:decision}(i)), although the true value, $0.200$, would intervene.
+
+\paragraph{Value of information.} Take actions ``recommend'' and ``abstain'', with $u_{\rm rec}=\mathbb 1\{M{=}1\}(\mathbb 1\{Y{=}1\}-0.55)$, and the signal $Z=R$. On $\mathcal J^\ast$ the value of observing $R$ ranges over $[0,0.080]$. Two policy cells are full-dimensional, and their value functionals are not in the data span: \cref{thm:determination}'s criterion says the value is not determined, and it is not. With the holdout context $\{M,C,R,Y\}$ the criterion holds, and the value is a single number, $0.020$. A context can make a value of information identifiable without narrowing the decision itself.
+
+\paragraph{Selection and composition.} The coupling of $M$ and light has margins $f=(0.317,0.683)$ and $g=(0.448,0.351,0.201)$. Its leximin coupling (\cref{thm:maxmincoupling}) binds the bright column first, at $0.1006$ in both rows, then the cells $(0,\text{dim})$ and $(0,\text{moderate})$ at $0.1084$. The toric point approaches it faster than $1/L$: the error times $L$ was about $10^{-4}$ at $L=10^3$ and smaller at $10^4$. This is consistent with the $O(1/L)$ bound of \cref{thm:selection}, but the pre-registered test assumed a non-zero $1/L$ term and failed (XE9).
+
+The scan of $\pm40$ counts between dim and bright crossed no wall. The advisory decision, ``issue if the selected $P(M{=}1,\text{bright})\ge0.10$'', sat at $0.1006$ and switched after $7$ counts. Maximum entropy gives $0.137$, far from the threshold. So a decision on a selected law can be fragile while the selection's combinatorics are stable. The prediction that a wall would be crossed failed (XE10), but the distinction it was meant to show came out sharper.
+
+Composing through light (\cref{thm:k4,thm:sec2cat}): $S(f,h)$ and $S(f,g)\circ S(g,h)$ agree to $3\cdot10^{-17}$ for maximum entropy and differ by $0.034$ for leximin. On a product of two systems, maximum entropy is system independent to $7\cdot10^{-18}$ and leximin is off by $0.003$. That is \cref{prop:cocycle}(1): the entropy cocycle together with concavity gives system independence, and leximin has neither.
+
+\paragraph{Contextuality at three layers.} The three layers of \cref{rem:layers} gave three different answers.
+\begin{itemize}
+\item \emph{Fibre.} The consistent cycle glues, with a largest twisted-pattern sum of $1.211$. The twisted cycle reaches $2.314$, above the noncontextual bound $2$ by about $9$ standard errors, and has no global law. Removing $(E,A)$ opens the cycle into a path, which glues (\cref{thm:ncycle,prop:twist}). The consistent cycle and the path both have non-trivial fibres, of dimension $7$ and $8$: imprecision without contextuality (\cref{prop:imprecctx}).
+\item \emph{Sheaf.} Every pooled cell is positive, so all $16$ deterministic assignments are global sections in both conditions, and there is no logical contextuality. The noncontextual fraction does separate the conditions: $0.980$ against $0.843$.
+\item \emph{Cocycle.} The cocycle is untouched by either: it constrains how a selection rule composes, not whether data glue.
+\end{itemize}
+Noise makes the sheaf of supports blind to a twist that the probabilities show plainly. The twist itself came from a coding change between studies, not from anything the instruments measure. A coding inconsistency is not physical contextuality: the twist says the tables cannot come from one coded world, and the remedy is to find the coding change, not to model the instruments as contextual.
+
+\paragraph{History.} An updater starts from the uniform law and ends with the exact development data. Refitting the eight contexts in two random orders gives the same law, to $2\cdot10^{-16}$ (\cref{thm:history}(iii)). A table on the foreign context $\{M,R,Y\}$, refitted at the third step and later dropped, moves the end law by $\operatorname{TV}=0.089$. Its trace lies in $H_{\mathcal D}+F_{MRY}$ (residual $6\cdot10^{-15}$) and not in $H_{\mathcal D}+F_{MHY}$ (residual $1.6$), so the audit attributes it correctly.
+
+In the target stratum, the honest updater has $\Delta=+0.102$ and would intervene. History B has $+0.228$. A numerical search over the edits on $\{M,R,Y\}$ alone reached $[-0.123,0.466]$, inside the fibre's $[-0.389,1]$. This slice crosses $\tau$, so an attacker confined to that one context can reverse the decision (\cref{thm:decision}(iii)).
+
+\paragraph{Protection.} The coalition moves the identified effect $g=P(Y{=}1\mid M{=}1)-P(Y{=}1\mid M{=}0)$ from $0.168$ to $0.295$ in the pooled data, past a threshold of $0.208$. The inspection on $\{M,Y\}$ would have to move by $\rho_q=0.035$ in $\ell^1$ for the far side to be reached honestly, but its own error bound is $\eta=0.090$. \Cref{thm:protect}(iii) needs $\rho_q>2\eta$, which fails, so there is no guarantee. Indeed the coalition's anchor distance, $0.063$, is below the flag level $\kappa=\eta$. Since $\eta$ scales as $1/\sqrt N$, the inspection would need about $(2\eta/\rho_q)^2\approx27$ times its $3000$ episodes. The theorem says how large the inspection must be before it can protect the decision. This one was too small.
+
+\begin{figure}[t]\centering\includegraphics[width=\textwidth]{fig_study26_results.pdf}
+\caption{Study 26 results.
+\emph{Top left}: the projection ladder. Dark bars are exact-data ranges, light bars are estimated ranges on $\mathcal J_z^-$ (without $\{M,C,Y\}$, per deviation D1), and circles are the truth.
+\emph{Top right}: the end of two histories with the same final tables, the whole fibre, and the slice reachable by edits on $\{M,R,Y\}$.
+\emph{Bottom left}: the cycle of instruments; the bars show the largest twisted-pattern sum with $3$ standard errors, against the noncontextual bound.
+\emph{Bottom right}: the protection margin against twice the inspection error, and the anchor distances against the flag level.}\label{fig:study26results}\end{figure}
+
+\paragraph{What the example shows.}
+\begin{itemize}
+\item The exact statements held every time. The eight pure identity checks pass. One more identity check, XE9, failed, but only because its test assumed a non-zero $1/L$ term, which the theorem does not claim. XS1--XS4 in \texttt{engine/check\_study26.py} confirm the freeze, the reproducibility of the run and the record of every failure. Identities that hold to $10^{-16}$ show that the implementation agrees with the proofs. They are not independent evidence for the theorems, which rest on the proofs.
+\item The predictions about estimation failed where real data would also make them fail:
+\begin{itemize}
+\item a thinly spread population shift escaped a per-source test;
+\item a compatibility conflict was attributed to the wrong table;
+\item a coherent coalition passed compatibility and outran a small inspection;
+\item a decision on a selected law was fragile even though its walls were far away.
+\end{itemize}
+\end{itemize}
+\paragraph{The geometry underneath.} Every outcome of the study is a statement about where a point sits relative to a polytope, a face or a hyperplane. \Cref{fig:tower} shows the whole study at seven levels, each signal keeping its colour throughout. \Cref{fig:atlas} follows one signal, the retracted $\{M,R,Y\}$ table, through five levels, and labels each map between levels with what it keeps and what it loses.
+\begin{itemize}
+\item \emph{Toric layer.} The interior of the fibre carries its log-linear chart, a bijection onto its positive laws (\cref{thm:history}(ii)). Maximum entropy is the point with trace $0$, the Birch point of the log-linear model (\cref{prop:kahler}(3)). History B lies on the chart line of the $\{M,R,Y\}$ trace. The leximin law is a different selection, the limit of the soft-min family (\cref{prop:selectorlink}(ii), \cref{thm:selection}), and is not a point of the chart.
+\item \emph{Probability and decision layer.} Each range in the projection ladder is the width of the fibre in one linear direction. A quantity is identified exactly when its direction annihilates the fibre's tangent space, which is the Fisher kernel (\cref{prop:fisher}); the criterion of \cref{thm:determination} is the same orthogonality test. The decision is a hyperplane through the fibre.
+\item \emph{Contextuality and sheaf layer.} Restriction to contexts keeps only the local tables. The coalition moves the data to another point of the polytope of margins, so restriction still finds them compatible. The twisted cycle lies across one facet of the noncontextual polytope, with pattern $(1,1,1,-1)$. The support sheaf records only which face the data lie on, and with every cell positive that is the full face, so it sees nothing.
+\item \emph{History and transport layer.} Adding time separates three things that the final tables cannot tell apart: reordering the same tables (no effect), retracting a foreign table (a trace attributed to $\{M,R,Y\}$), and changing the variables (a defect, or a laundering split, \cref{prop:kerneltransport}). The edits on $\{M,R,Y\}$ reach a slice of decision values that crosses the threshold.
+\item \emph{Braid layer.} The braid is our encoding, not a measurement. It keeps the order of the refits and loses every probability value, so a braid invariant does not determine the law.
+\end{itemize}
+The levels are a chain of representations, not identical objects. Each map keeps some information and loses some, and the figure says which.
+
+\begin{figure}[p]\centering\includegraphics[width=\textwidth,height=0.70\textheight,keepaspectratio]{fig_tower.pdf}
+\caption{The tower: Study 26 at seven levels, with each signal keeping its colour: honest, coalition, the $\{M,R,Y\}$ history, the decision threshold and the twist.
+(1)~The tables as a hypergraph of contexts, and the holdout cycle with its twisted edge.
+(2)~Each table's reading of $P(M{=}1)$: coherent data lie on the diagonal, and the pooled $\{M,C\}$ table, carrying the other population, does not.
+(3)~A section of the fibre through the honest law, with the decision hyperplane, history B, and the truth projected.
+(4)~The cycle's correlations against the noncontextual polytope.
+(5)~The toric chart of the coupling of $M$ and light: its polygon, the log-linear grid and maximum entropy.
+(6)~The soft-min potential of the same coupling, with its critical points tending to the leximin coupling (\cref{prop:selectorlink}(ii)), which sits $0.0006$ from the advisory threshold.
+(7)~A schematic braid of the revision history.
+Panels 1 and 7 are drawn, and the braid is not computed in Study 26. The others are computed from the study. Levels are representations of the same data, not identical objects; \cref{fig:atlas} labels the maps between them.}\label{fig:tower}\end{figure}
+
+\begin{figure}[p]\centering\includegraphics[width=\textwidth,height=0.80\textheight,keepaspectratio]{fig_atlas.pdf}
+\caption{Study 26 at five levels, from the toric chart of the fibre to a braid encoding of the revision order. One signal, a table on the foreign context $\{M,R,Y\}$ that was refitted and later retracted, is followed through every level in purple. The boxes on the right label each map with its operation, what it keeps and what it loses. Object types are kept apart: observed tables, inferred laws (hollow), selected states (filled) and the constructed braid. Panels 1, 2, the right of 3 and 4 are computed from the study. The left of panel 3 is drawn from the design. The variable-changing row of panel 4 is the example of \cref{prop:kerneltransport}. Panel 5 is built by the stated encoding rule from the study's actual refit order.}\label{fig:atlas}\end{figure}
+
+\paragraph{Three failure modes, kept apart.} The failures are of different kinds, and none of them exposes a limit of a theorem.
+\begin{itemize}
+\item \emph{Detection}: a real population shift was too thin to show in any one source (XE2), and so the estimated fibre came out empty (XE3).
+\item \emph{Attribution}: incompatibility proved that the tables conflict, but the elastic step blamed the wrong one (D1).
+\item \emph{Adversarial coherence}: the coalition changed the decision while staying compatible with every other table (XE4, answered post hoc by D3), and an inspection too small for \cref{thm:protect} did not catch it (XE18).
+\end{itemize}
+The remaining two failures were a test that assumed more than its theorem (XE9) and a wrong guess about where the selection walls lie (XE10). The classification is in \texttt{DEVIATIONS\_study26.md}.
+
+The machinery fits together in one direction. The fibre says what the data fix. The decision theorem says whether that matters. The history theorem says what can still move at identical data. The protection theorem says how much inspection it takes to stop it. The study adds no theorem; it shows the existing ones working together on one set of data, and shows where estimation from real-looking data falls short of them.
+
 \section{Outlook}\label{sec:outlook}
 Eight questions are left open.
 \begin{itemize}
@@ -3982,6 +5006,10 @@ Much of the text, the code, the check scripts and the figures were drafted with 
 \bibitem{MalesteinPutman2023} J.~Malestein and A.~Putman, Word length versus lower central series depth for surface groups and RAAGs, arXiv:2307.04882 (2023).
 \bibitem{ElkasapyThom2013} A.~Elkasapy and A.~Thom, On the length of the shortest non-trivial element in the derived and the lower central series, arXiv:1311.0138 (2013).
 \bibitem{Elkasapy2016} A.~Elkasapy, A new construction for the shortest non-trivial element in the lower central series, arXiv:1610.09725 (2016).
+\bibitem{GrotschelJungerReinelt1985} M.~Gr\"otschel, M.~J\"unger and G.~Reinelt, Facets of the linear ordering polytope, \emph{Math.\ Programming} \textbf{33} (1985) 43--60.
+\bibitem{Dobrushin1956}
+R.~L. Dobrushin, Central limit theorem for nonstationary Markov chains. I, \emph{Theory Probab. Appl.} \textbf{1} (1956), 65--80.
+
 \bibitem{Koberda2012} T.~Koberda, Ping-pong lemmas with applications to geometry and topology, and right-angled Artin groups, \emph{Geom.\ Funct.\ Anal.} \textbf{22} (2012) 1541--1590.
 \bibitem{CrispParis2001} J.~Crisp and L.~Paris, The solution to a conjecture of Tits on the subgroup generated by the squares of the generators of an Artin group, \emph{Invent.\ Math.} \textbf{145} (2001) 19--36.
 \bibitem{Spitzer1958} F.~Spitzer, Some theorems concerning 2-dimensional Brownian motion, \emph{Trans.\ Amer.\ Math.\ Soc.} \textbf{87} (1958) 187--197.
