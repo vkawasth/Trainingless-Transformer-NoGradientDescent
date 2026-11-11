@@ -2020,3 +2020,233 @@ PASS LG2 every cited check is PASS in the run log   [283 ids; missing []]
 PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
 3/3 passed
 TOTAL now: 144 scripts, 1091 PASS, 0 FAIL (raagbraid 5, brokerage 6, pseudoprob 7; ledger rerun replaces the earlier LG entry)
+== engine/check_bklband.py (2026-11-10)
+PASS KL1 IDENTITY clockwise chord exchange = a_ts; co-revision twist = a_ts^2   [31 chords]
+PASS KL2 IDENTITY BKL relations hold; crossing chords commute neither as half-twists nor as twists   [non-crossing pairs 42, triples 34, crossing pairs 21]
+PASS KL3 IDENTITY delta rotates the chords; delta^n is the full twist and is central
+PASS KL4 IDENTITY pure triangle relation tau_ts tau_sr tau_tr = full twist (exactly the three cyclic orders), for every triple   [34 triples]
+PASS KL5 FINDING outerplanar convex drawings: homomorphism; N=1 faithful on balls when triangle-free, fails on the triangulated pentagon; N=2 faithful   [(homomorphism, injective) by graph and power, ball radius {'path4': 5, 'cycle4': 4, 'cycle5': 4, 'fan5': 3}: {'path4': {1: (True, True), 2: (True, True)}, 'cycle4': {1: (True, True), 2: (True, True)}, 'cycle5': {1: (True, True), 2: (True, True)}, 'fan5': {1: (True, False), 2: (True, True)}}]
+5/5 passed
+== engine/check_stranddefect.py (2026-11-10)
+PASS SD1 IDENTITY forget is well defined on braids and a homomorphism   [180 pairs, 180 rewritten words]
+PASS SD2 IDENTITY far, behind-at-k and echo sections are splittings: braid relations kept, forget o s = id
+PASS SD3 IDENTITY with forget(bp) = b the defect is in the kernel; without it, it is not; defect of s(b) is trivial   [298 incompatible pairs, none in the kernel]
+PASS SD4 IDENTITY the defect is a word in the newcomer's loops A_{i,n+1}: homomorphism, combing, injective   [315 pairs compared, 302 distinct]
+PASS SD5 IDENTITY first layer = linking numbers with the newcomer; an exact echo of i has zero defect relative to e_i and lk(i, j) relative to s_far
+PASS SD6 IDENTITY second layer: shuffle identity, commutator newcomer, Milnor's coefficient, brokerage triple invariant   [zero-linking samples 400, M_12 = - Milnor coefficient on [(-1, 1), (0, 0), (1, -1)]; brokerage: (M_12 - M_21)/2 = - mu_123 on 76 histories, values [(-2, 2), (-1, 1), (0, 0), (1, -1), (2, -2)]]
+PASS SD7 IDENTITY all boundary sections are s_far after relabelling; an echo section is c_i . s_far with c_i a crossed homomorphism whose first layer is lk(i, .)
+PASS SD8 IDENTITY nested regions: forgetting in either order agrees; defects compose by the chain rule
+8/8 passed
+== engine/check_ledger.py (rerun 2026-11-10, 49 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [49 rows]
+PASS LG2 every cited check is PASS in the run log   [296 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 146 scripts, 1104 PASS, 0 FAIL (bklband 5, stranddefect 8; ledger rerun replaces the earlier LG entry)
+== engine/check_credalbraid.py (2026-11-10)
+PASS CP1 IDENTITY projection vs conditioning: exact per-law defect, Hausdorff bound, commutation iff saturated or one value   [150 random instances; largest ratio distance/bound 0.915]
+PASS CP2 IDENTITY braid projection: 'mu = 1' commutes; 'visitor 1 opens first' does not, within the bound   [distance 0.179, bound 0.704]
+PASS CP3 IDENTITY circular laws: theta1 independent of psi; P(mu=1) = E overlap(psi), against the density and against fixed-psi braids   [independence 0.0015; mixture 0.0681 vs density 0.0679; fixed psi (braid MC, overlap): {0.0: (0.461, 0.458), 1.571: (0.215, 0.208), 3.142: (0.0, 0.0)}]
+PASS CP4 IDENTITY envelope over circular laws = Frechet interval, attained at psi = 0 and pi; pairwise precise; Gaussian family a strict sub-interval   [sector probabilities 0.4583, 0.4583; Frechet [0.000, 0.458]; envelope [0.000, 0.459]; real-correlation Gaussian [0.013, 0.207]; pairwise under psi = 0, pi: {0.0: (0.45125,), 3.142: (0.4635,)}]
+PASS CP5 IDENTITY shared nuisance: posterior given the full history = posterior given the braid, for every law   [49 laws]
+PASS CP6 FINDING separate nuisances: the braid gives the narrowest intervals and least dilation; unpinned relay preference dilates everywhere   [{'pinned': {'untyped': {'values': 17, 'width': 0.598, 'dilated': 17, 'dilated_mass': 1.0}, 'typed': {'values': 41, 'width': 0.617, 'dilated': 38, 'dilated_mass': 0.929}, 'braid': {'values': 5, 'width': 0.323, 'dilated': 1, 'dilated_mass': 0.514}, 'full': {'values': 70, 'width': 0.617, 'dilated': 65, 'dilated_mass': 0.929}}, 'unpinned': {'untyped': {'values': 17, 'width': 0.637, 'dilated': 17, 'dilated_mass': 1.0}, 'typed': {'values': 41, 'width': 0.739, 'dilated': 41, 'dilated_mass': 1.0}, 'braid': {'values': 5, 'width': 0.483, 'dilated': 5, 'dilated_mass': 1.0}, 'full': {'values': 70, 'width': 0.739, 'dilated': 70, 'dilated_mass': 1.0}}}]
+6/6 passed
+== engine/check_ledger.py (rerun 2026-11-10, 50 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [50 rows]
+PASS LG2 every cited check is PASS in the run log   [302 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 147 scripts, 1110 PASS, 0 FAIL (credalbraid 6; ledger rerun replaces the earlier LG entry)
+== engine/check_masking.py (2026-11-10)
+PASS HD1 IDENTITY shortest hidden newcomer words in F_2: lengths 1, 4, 8, 14, 14 for depths >= 1..5   [shortest by depth {1: 1, 2: 4, 3: 8, 4: 14, 5: 14}; words (x, y, X = x^-1, Y = y^-1): {1: 'Y', 2: 'YXyx', 3: 'YYXyxxyX', 4: 'YYYXyxxyyyxYXX', 5: 'YYXyxyXYYxyXyx'}]
+PASS HD2 IDENTITY defect = product of conjugated newcomer events; depth invariant under reconjugation by old histories   [50 random histories]
+PASS HD3 IDENTITY lone newcomer between old histories: defect depth = depth of its own event word
+PASS HD4 IDENTITY riding: two newcomer events reach depth 1 + depth(longitude of j in the old history)   [(old history, source, longitude depth, defect depth): [('A12', 1, 1, 2), ('A12', 2, 1, 2), ('A12', 3, None, None), ('[A12,A23]', 1, 2, 3), ('[A12,A23]', 2, 2, 3), ('[A12,A23]', 3, 2, 3), ('[A13,[A12,A23]]', 1, 3, 4), ('[A13,[A12,A23]]', 2, 3, 4), ('[A13,[A12,A23]]', 3, 3, 4), ('[A12,[A12,A23]]', 1, 3, 4), ('[A12,[A12,A23]]', 2, 3, 4), ('[A12,[A12,A23]]', 3, 3, 4)]]
+4/4 passed
+== engine/check_ledger.py (rerun 2026-11-10, 51 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [51 rows]
+PASS LG2 every cited check is PASS in the run log   [306 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 148 scripts, 1114 PASS, 0 FAIL (masking 4; ledger rerun replaces the earlier LG entry)
+== engine/check_imprecctx.py (2026-11-10)
+PASS IC1 IDENTITY parallel walls: patterns = the 6 total orders; generic walls: all 8   [parallel 6, generic 8]
+PASS IC2 IDENTITY parallel walls: feasible iff 1 <= p01 + p12 + (1 - p02) <= 2; generic walls: always feasible   [341 of 1000 random points infeasible for parallel walls]
+PASS IC3 IDENTITY the Condorcet cycle has no global law
+PASS IC4 IDENTITY imprecision without contextuality: P(0<1<2) in [max(0, p01 + p12 - 1), min(p01, p02, p12, p01 + p12 - p02)], positive width   [1000 feasible points; widths from 0.000 to 0.481, mean 0.128]
+PASS IC5 IDENTITY data from any law on global directions are feasible (never contextual)   [300 random correlated Gaussian laws]
+5/5 passed
+== engine/check_braidvalue.py (2026-11-10)
+PASS BV1 IDENTITY ex post, shared nuisance: full history and braid give the same interval, action, value and E-admissible set   [70 histories, 3 cost settings]
+PASS BV2 IDENTITY ex ante the Gamma-maximin value is monotone in information   [{'shared (1, 1, 10)': {'counts': -0.5, 'untyped': -0.4803, 'braid': -0.4388, 'typed': -0.4388, 'full': -0.4388}, 'shared (1, 3, 10)': {'counts': -0.5, 'untyped': -0.5, 'braid': -0.5, 'typed': -0.5, 'full': -0.5}, 'shared (1, 1, 0.45)': {'counts': -0.45, 'untyped': -0.448, 'braid': -0.4168, 'typed': -0.4168, 'full': -0.4168}, 'separate (1, 1, 10)': {'counts': -0.5, 'untyped': -0.4814, 'braid': -0.4926, 'typed': -0.4392, 'full': -0.4392}, 'separate (1, 3, 10)': {'counts': -0.5, 'untyped': -0.5, 'braid': -0.5, 'typed': -0.5, 'full': -0.5}, 'separate (1, 1, 0.45)': {'counts': -0.45, 'untyped': -0.4492, 'braid': -0.45, 'typed': -0.4193, 'full': -0.4193}}]
+PASS BV3 FINDING separate nuisances: full record better ex ante, braid better ex post; shared nuisance: equal both ways   [shared {'braid': {'exante': -0.4388, 'expost': -0.4432, 'indeterminate': 0.0}, 'full': {'exante': -0.4388, 'expost': -0.4432, 'indeterminate': 0.0}}; separate {'braid': {'exante': -0.4926, 'expost': -0.4962, 'indeterminate': 0.514}, 'full': {'exante': -0.4392, 'expost': -0.7006, 'indeterminate': 0.929}}]
+3/3 passed
+== engine/check_ledger.py (rerun 2026-11-10, 53 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [53 rows]
+PASS LG2 every cited check is PASS in the run log   [314 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 150 scripts, 1122 PASS, 0 FAIL (imprecctx 5, braidvalue 3; ledger rerun replaces the earlier LG entry)
+== engine/check_credalfield.py (2026-11-10)
+PASS CQ1 IDENTITY star cover: the field is the product of the intervals   [7 times x 40 directions]
+PASS CQ2 IDENTITY decided iff disjoint; five certified crossings; light/arousal never decided; sampled laws agree   [{'receptor signal / light suppression': '------------------.........++++++++++++++++++++++', 'receptor signal / sleep pressure': '----------------........+++++++++++++++++++++++++', 'receptor signal / arousal': '--------------------.......++++++++++++++++++++++', 'light suppression / sleep pressure': '+++++++++++++.........................-----------', 'light suppression / arousal': '.................................................', 'sleep pressure / arousal': '---------------------............++++++++++++++++'}]
+PASS CQ3 IDENTITY a certified crossing fixes only the parity: laws with one and with three swaps   [receptor / sleep pressure: (np.True_, 1), (np.True_, 3)]
+PASS CQ4 IDENTITY relational data decide an order the intervals leave open: v_A - v_L >= (delta - eps)/p   [t = 40 min; (delta, eps, min v_A - v_L): [(0.02, 0.005, 0.03), (0.01, 0.005, 0.01), (0.03, 0.0, 0.06)]]
+PASS CQ5 IDENTITY star cover never contradicts; hiding a certified order costs g = L_i - U_j, flipping it U_i - L_j   [receptor over sleep pressure at 120 min: g = 0.0244 (each source 0.0122), flip 0.1544]
+PASS CQ6 IDENTITY an anchor on pathway i: contradiction iff i's shift exceeds w_i + eta; at the hiding shift it re-certifies   [eta = 0.01, w_i + eta = 0.045]
+6/6 passed
+== engine/check_ledger.py (rerun 2026-11-10, 54 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [54 rows]
+PASS LG2 every cited check is PASS in the run log   [320 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 151 scripts, 1128 PASS, 0 FAIL (credalfield 6; ledger rerun replaces the earlier LG entry)
+== engine/check_fieldholonomy.py (2026-11-10)
+PASS HL1 IDENTITY likelihood edges commute; L then 1/L closes
+PASS HL2 IDENTITY Jeffrey updates on the data's contexts leave the (R,S) interactions unchanged
+PASS HL3 IDENTITY excursions on the data's own contexts are erased by the refit (zero holonomy)   [largest TV 5.6e-17]
+PASS HL4 IDENTITY a retracted edit on a new context leaves a consistent but moved law; full tables reach the whole fibre, {R,S} tables a curve   [holonomy (TV) from retracted {R,S} tables: 0.001 to 0.293; 'alone' difference reachable by {R,S} tables [0.112, 0.303] vs fibre [-0.415, 0.578]]
+PASS HL5 IDENTITY laundering reverses an order the fibre leaves open, never one the fibre decides   [world A: fibre [-0.415, 0.578], honest updater +0.162, laundered -0.242 (TV 0.222), true +0.121; world B: fibre [0.071, 1.000], 200 retracted edits all keep the order]
+PASS HL6 IDENTITY field holonomy <= 2 TV / max(P(E), Q(E))   [largest ratio 0.394]
+6/6 passed
+== engine/check_ledger.py (rerun 2026-11-10, 55 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [55 rows]
+PASS LG2 every cited check is PASS in the run log   [326 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 152 scripts, 1134 PASS, 0 FAIL (fieldholonomy 6; ledger rerun replaces the earlier LG entry)
+== engine/check_kerneltransport.py (2026-11-10)
+PASS KT1 IDENTITY the merge kernel maps the fine fibre onto the coarse fibre of the pushed data, and into no other   [200 laws mapped, 50 coarse laws lifted, 50 perturbed targets unreachable]
+PASS KT2 IDENTITY refit and merge commute for coarse-measurable data; a fine margin makes a defect   [defects with a fine X margin: median 0.0273, max 0.1660]
+PASS KT3 IDENTITY representation holonomy is a vertex maximum; within-class relabelling commutes with merging   [merge then uniform split vs nothing: H = 0.4200 (sampled max 0.4180); relabel then merge vs merge: 0.0e+00]
+PASS KT4 IDENTITY two declared kernel paths differ by at most H on the fibre
+PASS KT5 IDENTITY a split leaves a trace iff its within-class odds depend on the outcome; outcome-dependent splits launder either way   [trace: outcome-free splits max 1.0e-16, outcome-dependent min 0.0270; honest P(Y|a) - P(Y|b) = +0.000; laundered +0.586 and -0.586; recomputer's range over the fibre [-0.875, 0.875]]
+PASS KT6 IDENTITY with the fine table of {X, Y} kept, no split kernel launders
+6/6 passed
+== engine/check_ledger.py (rerun 2026-11-10, 56 rows)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [56 rows]
+PASS LG2 every cited check is PASS in the run log   [332 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 153 scripts, 1140 PASS, 0 FAIL (kerneltransport 6; ledger rerun replaces the earlier LG entry)
+
+== engine/check_refitdefect.py (2026-11-10)
+PASS RD1 IDENTITY D(g_*R || R') = Delta_fine - W; Pinsker bound   [largest identity error 3.4e-16]
+PASS RD2 IDENTITY coarse-measurable data: defect, Delta_fine and W vanish; on the fibre the defect vanishes
+PASS RD3 IDENTITY the defect is not convex in the starting law (no vertex principle)   [33 of 150 midpoints above the endpoint average]
+PASS RD4 IDENTITY a coarse-determined functional never moves; an undetermined one does   [defects up to 0.436; largest change of P(Y=1) 2.2e-16; of P(Y=1 | A) 0.682]
+PASS RD5 FINDING a small defect can flip a decision and a large one leave it unchanged   [tau = 0.552; smallest defect that flips 0.012; largest defect that does not 0.230; flips 85 of 400]
+5/5 passed
+
+== engine/check_ledger.py rerun (2026-11-10, after refit-defect row)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [57 rows]
+PASS LG2 every cited check is PASS in the run log   [337 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 154 scripts, 1145 PASS, 0 FAIL (refitdefect 5; ledger rerun replaces the earlier LG entry)
+
+== engine/check_historytrace.py (2026-11-10)
+PASS HT1 IDENTITY a refit onto data D_t multiplies the law by exp(h_t) with h_t in H_{D_t}   [largest residual 1.8e-14]
+PASS HT2 IDENTITY the end law depends on the history only through tau modulo H_D   [largest TV between representatives 3.3e-16]
+PASS HT3 FINDING path independence for histories on the data's own contexts; a foreign intermediate table can make order matter   [own-context histories at the honest law: True; order matters in 18 of 20 histories with one foreign refit (max TV 0.0410)]
+PASS HT4 IDENTITY the trace class is a coordinate on the fibre: dimensions agree, every positive law is reached, distinct classes differ   [dim F/H_D = 2 = dim J = 2; reach error 1.1e-15; smallest TV between distinct classes 4.81e-03]
+PASS HT5 IDENTITY merge-and-reconstruction is a multiplicative update; its trace is the class of log theta (Prop. 142 recovered)   [outcome-free: residual max 4.2e-15, trace max 1.0e-16; outcome-dependent: residual min 0.196, trace min 0.0237]
+PASS HT6 IDENTITY the audit recovers the injected class; attribution to a context is a span test   [recovery error 1.4e-15; aY edits: residual from H_D+F_aY max 1.9e-15, from H_D+F_eY min 0.004; XY edits: min residual 0.015]
+PASS HT7 FINDING an outcome-dependent split and a retracted edit on aY leave the same trace, and one cancels the other   [split alone TV 0.0937 from honest; residual from H_D+F_aY 1.8e-15; likelihood exp(2.773 1{a,1}) reproduces it (TV 9.0e-17); split then exp(-2.773 1{a,1}) returns to honest (TV 8.3e-17)]
+PASS HT8 IDENTITY decisions: determined functionals never move; open ones are reversed through the full table; slices lie in the fibre range   [determined: max change 2.2e-16; open: honest +0.173, fibre range [-0.243, +0.525], reversed to -0.235; aY slice range [+0.011, +0.336] (does not cross zero)]
+PASS HC1 IDENTITY path discrepancy satisfies the triangle inequality
+PASS HC2 IDENTITY contraction by the Dobrushin coefficient   [largest ratio 0.896]
+PASS HC3 IDENTITY concatenation bound through the transported fibre   [smallest slack 0.0333]
+PASS HC4 IDENTITY lossless re-encodings leave path discrepancy unchanged; a merge can only lower it   [largest drop under the merge 0.3186]
+12/12 passed
+
+== engine/check_ledger.py rerun (2026-11-10, after history-trace row)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [58 rows]
+PASS LG2 every cited check is PASS in the run log   [349 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 155 scripts, 1157 PASS, 0 FAIL (historytrace 12; ledger rerun replaces the earlier LG entry)
+
+== engine/check_refitcommute.py (2026-11-10)
+PASS CM1 IDENTITY the pointwise criterion equals the all-sections criterion   [300 designs; 75 hold, 225 fail]
+PASS CM2 IDENTITY sufficiency: designs meeting the criterion have no defect   [75 designs, largest defect 2.0e-13; 0 of them with a statistic varying inside a class and an open coarse fibre]
+PASS CM3 IDENTITY necessity: designs failing the criterion have a defect   [225 designs, smallest largest-defect 6.64e-02]
+PASS CM4 IDENTITY with variable contexts, commutation holds iff the merged variable is in no context or the data pin the law   [{'no X': 35, 'full': 58, 'fail': 107}]
+PASS CM5 IDENTITY an event design commutes with a statistic varying inside a class and an open coarse fibre; seeing X fully breaks it   [classes where a statistic varies [0, 1]; coarse fibre dimension 1; largest defect 8.8e-14 (100 laws); with X itself: largest defect 0.092]
+PASS CM6 IDENTITY the criterion reproduces the earlier cases   [X and Y margins: fails (1.3e-01); X' and Y (coarse-measurable): holds (3.5e-16); X and the full table: holds (9.3e-14); X and {X', Y}: holds (1.5e-13)]
+6/6 passed
+
+== engine/check_ledger.py rerun (2026-11-10, after refit-commute row)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [59 rows]
+PASS LG2 every cited check is PASS in the run log   [355 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 156 scripts, 1163 PASS, 0 FAIL (refitcommute 6; ledger rerun replaces the earlier LG entry)
+
+== engine/check_selectorlink.py (2026-11-10)
+PASS SL1 IDENTITY maximum entropy: log P in H_D; toric: the term law in H_D   [largest residual 3.2e-13]
+PASS SL2 FINDING the toric curve passes near the maximum-entropy point but not through it   [column-binding fibre: closest approach 0.00139 at L = 5.54 (separation 0.0583); 60 margins: median ratio 0.048, smallest 6.7e-04]
+PASS SL3 IDENTITY small L: all cells give the least-squares point; facet terms with unbalanced normals escape as w_0 / L   [least-squares point [0.2167 0.1167]; distances at L = 0.1, 0.01, 0.001: 2.8e-04, 2.8e-05, 2.8e-06; facet case: w_0 = [ 0.5624 -0.2812], |L u_L - w_0| = 2.0e-04, |u_L| = 629]
+PASS SL4 FINDING bounded weights: the toric point tends to the leximin point at rate 1/L (L * distance converges)   [largest relative change of L * distance from 1e3 to 1e4: 8.7e-12]
+PASS SL5 IDENTITY maximum entropy follows every trace class; the toric limit ignores bounded weights and follows weights of size e^(Ls)   [inside H_D: max move 6.2e-17; outside: min move 1.9e-02; shifted weights: limit equals shifted leximin in 30 cases, 18 of them away from the unshifted point]
+PASS SL6 FINDING maximum entropy and leximin choose different actions; the toric curve switches at a finite L*   [maximum entropy +0.040; leximin -0.040; L* = 18.18; fibre range [-0.34, +0.36]]
+6/6 passed
+
+== engine/check_ledger.py rerun (2026-11-10, after selector-link row)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [60 rows]
+PASS LG2 every cited check is PASS in the run log   [361 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 157 scripts, 1169 PASS, 0 FAIL (selectorlink 6; ledger rerun replaces the earlier LG entry)
+
+== engine/study26_e2e Study 26 (2026-11-11): scored once, run_study26.py -> results_study26.json (pre-registered outcomes, verbatim; not counted as check scripts)
+  FAIL XE2 PREDICTION the flagging rule catches the other population, not the coherent coalition   [flagged 5: other-population 2/10, coalition 2/15, honest 1/245]
+  PASS XE1 IDENTITY the oracle fibre is non-empty, dim 9; with {M,C,R,Y} dim 6 (Thm 64(2))   [dim 9, then 6]
+  FAIL XE3 PREDICTION population mixing shows as incompatibility: J_z empty with flagged sources, non-empty without   [with flagged: empty; without: empty]
+  FAIL XE4 PREDICTION the coherent coalition passes the compatibility test   [empty]
+  D1 elastic slack by context: {'RHY': 0.0, 'MCRH': 0.0, 'MCY': 0.068, 'MR': 0.0, 'MH': 0.0, 'MC': 0.0, 'CR': 0.0, 'CH': 0.0} ; z* = 3.11
+  PASS XE4b DEVIATION with the one slack-carrying context removed, J_z^- is non-empty (it removed {M,C,Y}, the coalition context: see D3)   [slack carried by ['M/C/Y']; J_z^- non-empty]
+  D3 diagnostic: J_z with {M,C} removed and {M,C,Y} kept (coalition included): non-empty
+  PASS XE5 IDENTITY what the tables identify: pi2 and the first two rungs are points; pi1, pi3 and the last two rungs are open   [none: [+0.168, +0.168]; C=0: [+0.151, +0.151]; C=0,R=1: [-0.178, +0.517]; C=0,R=1,H=0: [-0.389, +1.000]]
+  PASS XE6 IDENTITY the target decision is identified iff its range excludes tau (Thm 148(i))   [range [-0.389, +1.000] vs tau = 0.1: open; truth +0.200]
+  PASS XE7 IDENTITY Fisher: dim ker I_obs equals the fibre dimension (Prop 95)   [9 and 6]
+  PASS XE8 IDENTITY VOI of R: constant iff the full-dimensional cells' value functionals lie in the data span (Thm 92); constant after {M,C,R,Y}   [development: VOI in [0.0000, 0.0796], 2 full cells, criterion False; with {M,C,R,Y}: [0.0203, 0.0203], criterion True]
+  FAIL XE9 IDENTITY the toric point tends to the leximin coupling at rate 1/L (Thm 27)   [f = [0.3174 0.6826], g = [0.4478 0.3511 0.2011]; leximin levels [(0.1006, (2, 5)), (0.1084, (0, 1)), (0.2427, (4,)), (0.3393, (3,))]; L*dist 0.0001, 0.0000]
+  FAIL XE10 PREDICTION selection walls and the decision threshold are crossed at different counts   [walls at k = []; advisory switches at k = [-7]; at k = 0 leximin P(M=1, bright) = 0.1006 (issue), maximum entropy 0.1373 (issue)]
+  PASS XE11 IDENTITY/PREDICTION maximum entropy commutes with composition; leximin does not   [max |difference|: maximum entropy 2.8e-17, leximin 0.0338]
+  PASS XE12 IDENTITY/PREDICTION maximum entropy is system independent; leximin is not (Prop 71, Thm 65)   [max |section - product of sections|: maximum entropy 6.9e-18, leximin 0.0030]
+  PASS XE13 PREDICTION the twisted cycle violates a noncontextuality inequality and has no global law; the consistent and acyclic designs glue   [consistent: largest left side 1.211, glue True; twisted: 2.314 (SE 0.036, pattern [1, 1, 1, -1]), glue False; acyclic: glue True]
+  PASS XE14 PREDICTION sheaf layer: full supports, global sections and no logical contextuality; the noncontextual fraction separates the conditions   [global deterministic sections 16 and 16; logical contextuality False, False; NCF consistent 0.9805, twisted 0.8430]
+  PASS XE15 IDENTITY imprecision without contextuality (Prop 137): the consistent and acyclic fibres glue and are not points   [fibre dimensions 7 (cycle) and 8 (path)]
+  PASS XE16 IDENTITY history: path independence on the data's contexts; a retracted foreign table leaves a trace attributable to {M,R,Y} (Thm 146)   [TV(order 1, order 2) 1.7e-16; TV(B, A) 0.0893; trace residual from H_D+F_MRY 5.9e-15, from H_D+F_MHY 1.598]
+  PASS XE17 IDENTITY the {M,R,Y} slice lies inside the fibre range; reversal by such histories reported (Thm 148(iii))   [honest Delta +0.102 (intervene); history B +0.228; slice [-0.123, +0.466] inside [-0.389, +1.000]; reversal possible]
+  FAIL XE18 IDENTITY/PREDICTION protection: rho_q > 2 eta, honest reports pass, the coalition's pooled configuration is flagged (Thm 122(iii))   [g(P*) = 0.168, tau2 = 0.208, pooled g = 0.295 (far side); rho_q = 0.0347, eta = 0.0899; Delta_q honest 0.0114, coalition 0.0632]
+  PASS XE19 PREDICTION holdout calibration: development ranges cover the holdout cells   [16 of 16 cells covered; median width 0.178]
+  14/20 passed
+
+== engine/check_study26.py (2026-11-11)
+PASS XS1 IDENTITY the pre-registration and the world generator match their frozen hashes   [PREREG_study26.md, world26.py]
+PASS XS2 IDENTITY a fresh run reproduces the results and the check lines
+PASS XS3 IDENTITY every theorem identity in the run holds   [8 identity checks]
+PASS XS4 IDENTITY every failed pre-registered check is recorded in the deviations   [failed: ['XE2', 'XE3', 'XE4', 'XE9', 'XE10', 'XE18']]
+4/4 passed
+
+== engine/check_ledger.py rerun (2026-11-11, after study26 row)
+FAIL LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [61 rows]
+PASS LG2 every cited check is PASS in the run log   [365 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+2/3 passed
+TOTAL now: 158 scripts, 1173 PASS, 0 FAIL (check_study26 4; ledger rerun replaces the earlier LG entry; Study 26 run logged above, 13/19 pre-registered checks passed)
+
+== CORRECTION (2026-11-11): the ledger rerun above failed LG1 (the study26 row gave its category level the status Numerical, which the schema forbids); the TOTAL line above it was wrong. Fixed to Defined; rerun:
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [61 rows]
+PASS LG2 every cited check is PASS in the run log   [365 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 158 scripts, 1173 PASS, 0 FAIL (check_study26 4; this ledger rerun replaces both earlier LG entries; Study 26 run logged above, 13/19 pre-registered checks passed)
+
+== Study 26 audit and atlas (2026-11-11): DEVIATIONS classification, paper wording, kahler/fig_atlas.py; no check script changed
+TOTAL now: 158 scripts, 1173 PASS, 0 FAIL (unchanged)
+
+== fig_tower added (2026-11-11): kahler/fig_tower.py; no check script changed
+TOTAL now: 158 scripts, 1173 PASS, 0 FAIL (unchanged)

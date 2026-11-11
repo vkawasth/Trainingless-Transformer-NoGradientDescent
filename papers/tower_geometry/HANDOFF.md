@@ -1643,3 +1643,190 @@ Figures sit inside their own sections (`\usepackage[section]{placeins}`, `[!htbp
 - Thm pseudoprob: universality of pairwise laws under circular biases; joint laws via the phase-difference density (Goodman); exact P(mu=1) on interleaved visits matches MC; noise: persistent finite, iid jitter (T-1)/12 exact, Brownian Spitzer / Pitman-Yor; discrete walk trends to secant law (not Cauchy) - reported as trend. pce/pseudoprob.py; PP1-PP7 7/7.
 - Figures kahler/fig_topocoord.py (fig_graphs, fig_broker). Refs: Tutte 1970, Pelsmajer-Schaefer-Stefankovic 2007, Farb-Margalit 2012, Koberda 2012, Crisp-Paris 2001, Spitzer 1958, Pitman-Yor 1986, Goodman 1985.
 - Note 172 pp. Ledger 47 rows. Log TOTAL 144 scripts, 1091 PASS.
+
+## 2026-11-10 (4): Birman-Ko-Lee restatement and the strand-addition defect (sec:graphs paragraph, cor:bkl; sec:newcomer, prop:defect)
+- Order agreed with the user: items 1-2 (mathematical core) first; the BKL normal-form reading (item 3) and the four-scenario study
+  (item 4) are DEFERRED. Item 4 must be preregistered and frozen after definitions and code are frozen; it should test the three claims
+  separately (structure / anomaly against honest nulls including shared drift and legitimate collaboration / manipulation via anchors).
+- Cor bkl: tau_ts = a_ts^2 (convex position); (B1) => commutation for non-crossing chords (the converse is not a BKL consequence; it is
+  Dehn-twist intersection); (B2) => tau_ts tau_sr tau_tr = full twist of {r,s,t} (two-line proof), exactly the three cyclic orders;
+  convex non-crossing drawings = outerplanar. Interior sources: Sergiescu 1993 cited (connected planar graph, edge half-twists generate
+  B_n, positive relations) but NOT used.
+- Convention found by computation: points on the concave arc y = -x^2, clockwise exchange = BKL a_ts; delta^{-1} a_ts delta = a_{t+1,s+1}
+  (KL3 first failed with the direction backwards).
+- Prop defect: compatibility forget(bp) = b is explicit (SD3: 298 incompatible pairs, none in the kernel); defect relative to a section;
+  boundary sections all equal s_out after relabelling (SD7 first claimed a second-layer difference; wrong, withdrawn); echo of i is
+  c_i . s_out with c_i a crossed hom of first layer lk(i, .). Second layer: M_12 = -(braidknot Milnor coefficient); brokerage relay
+  mu_123 = -(M_12 - M_21)/2 on all 76 histories.
+- Check ids BL* collided with check_ball / check_blochtoric; renamed KL*.
+- Refs: Birman-Ko-Lee 1998, Sergiescu 1993, Fadell-Neuwirth 1962, Magnus-Karrass-Solitar 1966.
+- Note 177 pp. Ledger 49 rows. Log TOTAL 146 scripts, 1104 PASS.
+
+## 2026-11-10 (5): braids, credal sets and conditioning (sec:credalbraid, prop:credalbraid)
+- (i) Pi_*(M|C) vs (Pi_*M)|Pi(C) = Pi_*(M|Chat): exact per-law TV defect w_P TV(.,.), Hausdorff <= max_vertex w_P; equal for all M iff
+  C saturated or Pi constant on C (two-point counterexample otherwise).
+- (ii) circular laws: theta1 uniform and independent of psi; P(mu=1) = E overlap(S1, S2+psi); envelope over all circular laws = Frechet
+  [max(0, s1+s2-1), min(s1, s2)] = [0, 11/24] on broker visits, attained at fixed psi = pi and 0; real-correlation Gaussians [0.013, 0.207].
+- (iii) shared nuisance -> posterior given full history = given braid (CP5, 49 laws); separate nuisances (lambda in [0.8,1.25] per
+  hypothesis, beta in [0.5,2], prior 1/2): braid mean width 0.32 vs 0.60-0.62, dilated at 1/5 values vs 17/17, 38/41, 65/70;
+  beta in [-1,2]: every informative statistic dilates everywhere (Seidenfeld-Wasserman). Constructed family; illustrative.
+- CP3/CP4 first failed: the fixed-psi test laws had psi off by pi (test bug, not a result); corrected.
+- Refs: Walley 1991, Seidenfeld-Wasserman 1993.
+- Pending discussion (not implemented): knots as obstructions/masking (user memo); element-level direction fields with transport and
+  holonomy (user memo) -- note the paper already has Bloch spheres and fibre holonomy (blochtoric, holonomy rows).
+- Note 180 pp. Ledger 50 rows. Log TOTAL 147 scripts, 1110 PASS.
+
+## 2026-11-10 (6): masking (sec:masking, prop:masking)
+- depth = lower-central-series depth of the defect = lowest nonzero Magnus degree = first layer that sees the newcomer.
+- (i) Delta = prod phi_{w_i}(x_{j_i}^{e_i}) (Artin action); (ii) lone block: depth = depth of the event word; >= d(k) >= k turns
+  (Malestein-Putman 2010); O(k^{log_phi 2}) suffice (Elkasapy-Thom 2013, Elkasapy 2016); exhaustive F_2 search: d = 1, 4, 8, 14, 14
+  (k = 1..5), nothing of depth >= 6 up to length 14; (iii) riding: depth = 1 + depth(normalised longitude of j in old history), proof via
+  free Lie algebra bracket [X_j, L]; (iv) A_G: >= k events if some two edges share a source (Malestein-Putman 2023, cited).
+- Malestein-Putman 2010 cited by doi and arXiv; volume/pages not verified, so omitted. Elkasapy papers cited as arXiv.
+- Riding test with [[A12,A13],[A12,A23]] ran out of memory (Artin action growth); excluded.
+- Open: lower bound for mixed patterns.
+- Note 184 pp. Ledger 51 rows. Log TOTAL 148 scripts, 1114 PASS.
+
+## 2026-11-10 (7): imprecision without contextuality, decision value, map (sec:imprecctx, sec:braidvalue, sec:map)
+- Masking qualifications from the user's memo: exact depth = nonzero in gamma_k/gamma_{k+1}; commutator convention; d(k) definition, word
+  length in x^{+-1}, y^{+-1}; certificate (Magnus integer coefficients; every reduced word <= 13 has a nonzero coefficient of degree <= 3);
+  witnesses for depths 3, 4, 5; values 1, 4, 8, 14, 14 stated as our computation, literature gives only bounds.
+- Prop imprecctx: (i) global assignments noncontextual; (ii) parallel walls -> orders, feasible iff 1 <= p01 + p12 + (1 - p02) <= 2
+  (Grotschel-Junger-Reinelt for n = 3), Condorcet contextual; generic walls never; (iii) P(0<1<2) in [max(0, p01+p12-1),
+  min(p01, p02, p12, p01+p12-p02)] -- IC4 first FAILED (upper bound missing last term, 724/3000), corrected by solving the LP by hand.
+- Prop braidvalue: (i) ex post equal when posteriors equal; (ii) ex ante Gamma-maximin monotone in information. Computed (1,1,10):
+  separate nuisances full -0.439 vs braid -0.493 ex ante; braid -0.496 vs full -0.701 ex post; indeterminate mass 0.51 vs 0.93; shared
+  equal. Note: the user's memo claimed Delta V = 0 under shared nuisance; that holds ex post (proved) and was observed ex ante here (not
+  proved in general).
+- sec:map: the dictionary table (claim / object / result) plus open items: direction fields, directional co-action, regular extension,
+  mixed masking bound, preregistered test.
+- Ref: Grotschel-Junger-Reinelt 1985. Added \usepackage{array}.
+- Note 188 pp. Ledger 53 rows. Log TOTAL 150 scripts, 1122 PASS.
+
+## 2026-11-10 (8): reader aids (no mathematical change)
+- Decision with the user: one paper, nothing removed; make reading easy for readers new to the fields. External publication is not a goal now.
+- Added tcolorbox environments readerbox (teal, "Before you read: ...") and mapbox (indigo); five coloured labels: What we do / Why /
+  Example / Background / On first reading. 21 readerboxes before major blocks (sections 3-8, 12, 13, 14, and 12 blocks inside section 13:
+  selcomp, howlittle, cycle, invsec, viability, pseudoknot, ledgerdm, braidknot, dmmemory, graphs, newcomer, credalbraid) plus a mapbox at
+  the start of sec:guide: fields-to-sections table, three reading paths, notation glossary. Existing "plain words" boxes kept.
+- Background references only from the bibliography; chapter numbers given only where certain (Fulton ch. 1, 4; Amari-Nagaoka ch. 2;
+  Birman ch. 1; Farb-Margalit ch. 3, 9; MKS ch. 5; Seidel first chapter).
+- Added \label{sec:tierA}. Split the BKL relations display (was 102pt overfull).
+- Reviewer fixes: Prop credalbraid now says the bound max w_P is attained at a vertex and the Hausdorff distance may be smaller;
+  Prop masking (ii) cites Malestein-Putman 2010 Thm 1.2 (free-group result) and the 2023 restatement.
+- Note 196 pp. No scripts changed; log TOTAL unchanged (150 scripts, 1122 PASS).
+
+## 2026-11-10 (9): conditional credal field (sec:credalfield, def:credalfield, prop:credalfield, rem:credalbraidfamily, fig:credalfield)
+- User's request: the missing link credal set -> conditional probability field -> braid, with an image; motivated by a melatonin example
+  (pathways = cells/reactions) and by data poisoning / coordinated attacks. Melatonin used only as names in the toy; numbers invented;
+  the paper says so and disclaims any causal or physiological reading.
+- Prop: (i) certified crossing fixes parity only; (ii) star cover: field = product of bands, decided iff disjoint; (iii) relational
+  datum: p_j v_j - p_i v_i >= delta - eps (attained); (iv) star cover never contradicts; hide cost g = L_i - U_j, reverse cost
+  U_i - L_j; anchor exposes shift > w_i + eta. Toy: 5 certified crossings, 2 pre-crossings; receptor lead at deadline gap 0.024 ->
+  0.012 per source to hide; reverse 0.154; assay (eta 0.01) re-certifies / exposes.
+- CQ5 first FAILED: bisection in the test searched the wrong side past the reversal threshold; corrected (test bug, not result).
+- Remark from user's memos: joint field (not independent intervals); credal braid family and identification (definitional; content is
+  the checkable parity condition); reaction functions via conditional expectations (linear-fractional, Charnes-Cooper); weak time
+  coupling in the toy; observational vs interventional (do) fields -- interventional not built.
+- Palette validated (blue, amber, purple, green; adjacent CVD dE >= 14.8) with the dataviz validator.
+- Map row added (credal set to braid); open item now 'transport of the conditional field and its holonomy'.
+- Note 200 pp. Ledger 54 rows. Log TOTAL 151 scripts, 1128 PASS.
+
+## 2026-11-10 (10): transport along revisions, holonomy, laundering (sec:revholonomy, prop:revholonomy, fig:holonomy)
+- User called this the most useful outcome of the day. Corrections to the memo adopted: the version graph (records) is not the
+  co-revision graph (sources); the null theorem needs 'every edge a likelihood factor applied once' (Jeffrey on different partitions does
+  not commute, Diaconis-Zabell); closed loops = return to identical data (publish then retract).
+- Mechanism: Jeffrey on context C multiplies by a function of x_C, so interactions outside updated contexts are invariant (HL2); refit
+  = I-projection of the start onto the fibre (Csiszar), so excursions on the data's own contexts are erased (HL3, TV 6e-17); a retracted
+  foreign edit stays (HL4); full-table retraction reaches the whole fibre interior.
+- Laundering (HL5): world A recomputer [-0.41, 0.58] (pre-crossing), honest updater +0.16, laundered -0.24 at TV 0.22, true +0.12;
+  world B (decided by the fibre) never reversed. Field bound (HL6).
+- Two halves of an attack: against recomputers widen uncertainty (prop:credalfield); against updaters manufacture certainty
+  (prop:revholonomy). Defences: recompute, keep provenance, anchors. Extends prop:flat (which assumed growing contexts).
+- fibre_range in fieldholonomy.py first returned nan (division by zero at fibre vertices); fixed by filtering non-finite values.
+- Open: transport when revisions change the variables (stochastic kernels).
+- Note 204 pp. Ledger 55 rows. Log TOTAL 152 scripts, 1134 PASS.
+
+## 2026-11-10 (11): revisions that change the variables (sec:kerneltransport, prop:kerneltransport)
+- Memo's distinction adopted: update history (prop:revholonomy) vs representation history (this). Honest information loss must not be read
+  as laundering: merge-then-uniform-split vs nothing differs by H = 0.42 on the fibre, honestly.
+- (i) fibre transport iff data push forward (onto for coarsenings with fine-variable and coarse-measurable tables, lift by within-class
+  proportions); (ii) refit/coarsening commute for coarse-measurable data (KL chain rule); defect with a fine margin median 0.027, max 0.166;
+  (iii) H is a vertex maximum (convexity); within-class relabelling commutes with merging (H = 0); (iv) audit: kernel paths differ <= H;
+  a reconstruction theta(x|c,y) leaves a trace iff its within-class odds depend on y (log theta outside the span of data contexts), i.e.
+  the retracted-foreign-edit mechanism; laundering +-0.59 within the open range [-0.875, 0.875]; (v) a kept fine {X,Y} table pins the law.
+- First KT2 attempt was trivial (coarse data pinned the coarse law); redesigned with X and Y margins so the coarse fibre is open.
+- Open: continuous variables and noisy measurement kernels.
+- Note 205 pp. Ledger 56 rows. Log TOTAL 153 scripts, 1140 PASS.
+
+## 2026-11-10 (12): corrections A-D, three-level map paragraph, transport/refitting defect (sec:refitdefect, prop:refitdefect)
+- Review corrections applied to prop:kerneltransport: positivity and nonempty-fibre hypotheses; 'fibre-relative representation holonomy'
+  (H = 0 iff the paths agree on the fibre; not connection holonomy); audit wording (gap > H means a system left its declared path);
+  (v) scoped to the state space (X, Y). credalbraid: the bound max_P w_P is attained at a vertex; Hausdorff distance can be smaller.
+- sec:map gains a paragraph separating evidence history, representation history and decision history.
+- prop:refitdefect: (i) D(g_*R||R') = Delta_fine - W (chain rule + Pythagoras for the I-projection onto J', since g_*R in J'); Pinsker;
+  (ii) zero set; (iii) not convex (33/150); (iv) coarse-determined functionals never move; osc bound for utilities; (v) chain bound.
+- RD5 first failed against a threshold (0.25) taken from an exploration seed; restated as largest unflipped > 5 x smallest flipping.
+- Note 208 pp. Ledger 57 rows. Log TOTAL 154 scripts, 1145 PASS.
+
+## 2026-11-10 (13): history theorem, path-discrepancy lemma, decision theorem (sec:historythm)
+- Step 1 of the agreed order (H and D assembly). Props 141-143 kept; thm:history states them as special cases.
+- Key observation: on a fixed state space every updater step is multiplicative (likelihood, Jeffrey, refit = exp(h_t) with h_t in
+  H_{D_t}, merge-and-reconstruction = theta/P(x|c)). So the end law is Pi_J(P0 e^tau) and depends only on [tau] in F/H_D; the map is a
+  bijection onto positive laws of J (mixed coordinates). Exact 'iff' for when a foreign update moves the law: log L not in H_D.
+- Merge-split criterion (KT5) is a corollary: class = [log theta]. Mechanisms add/cancel; HT7: class-A split = retracted edit on
+  (1{x=a}, y), cancelled by exp(-2.773 1{a,1}). Attribution only to spans of contexts.
+- thm:decision (iii): with full-table edits reversal iff min_J L_ab < 0; with edits confined to contexts C the reachable slice may not
+  cross (aY slice [0.011, 0.336] vs fibre [-0.243, 0.525]).
+- HT3 first required order dependence in all 20 histories with a foreign intermediate table; failed (min 0.0000); restated (18/20).
+- Next in the order: structural NSC for refit/coarsening commutation; selector-linking lemma (T and I-projection); S gaps; facet vs cell leximin.
+- Note 212 pp. Ledger 58 rows. Log TOTAL 155 scripts, 1157 PASS.
+
+## 2026-11-10 (14): when refitting and coarsening commute (sec:refitcommute, thm:refitcommute, cor:refitcommute)
+- Step 2 of the agreed order. The guess 'fine statistics must be pullbacks' was false (a kept full table commutes); recorded in the text.
+- Proof: commutation at Q iff log g_*R - log g_*Q in H'; reparametrise Q = R e^{-h}, differentiate along s in H -> E_Q[s|g] in H' for
+  all positive Q; conditionals range independently over classes -> section criterion; one-class changes -> pointwise form.
+  Failure -> defect nonzero on an open dense set (analyticity of the I-projection).
+- Corollary for variable designs via the all-variable ANOVA component of a pulled-back cell indicator.
+- Random designs: no nontrivial commuting design found (0/75); CM5 built by hand (X seen as a, b, {c,d}; Y seen only inside A).
+- Solver: Newton line search stalled near optimum (spurious defects ~1e-9); fixed with full steps near convergence and a guard
+  (an intermediate version took full steps everywhere and broke the full-table case: 0.54; caught by CM6). No threshold changed.
+- Next: selector-linking lemma (T and I-projection), then S gaps, then facet vs cell leximin.
+- Note 214 pp. Ledger 59 rows. Log TOTAL 156 scripts, 1163 PASS.
+
+## 2026-11-10 (15): two selectors on one fibre (sec:selectorlink, prop:selectorlink)
+- Step 3 of the agreed order. The guess 'T = 1 gives maximum entropy' was false: with all cells the T -> 1 end is the least-squares
+  (Renyi-2) point; with the facet potential (normals not balanced) the valuation escapes as w_0 / L. Recorded in the text.
+- (i) Both selectors are characterised by H_D, on different objects: log P (maximum entropy) vs the term law (Birch at target 0).
+- The cell curve passes near maximum entropy (0.0014 on colbind; median 5% of the separation) but not through it: numerical only.
+- History contrast: maximum entropy bijective in the trace; toric limit moved only by weights e^(L s) (shifted leximin).
+- Synthesis paragraph names the selector. Decision switch L* = 18.2 on colbind.
+- SL4 first used a non-growth test against L = 1e2 (failed at 1.111); restated as convergence of L * distance. Soft-min solver had the
+  same near-optimum line-search stall as the I-projection; fixed the same way. SL2 thresholds set after an exploration run (seed 3).
+- Next: S gaps (leximin lemma with ties, uniformity away from walls, continuity at walls, rate for the law), then facet vs cell leximin.
+- Note 218 pp. Ledger 60 rows. Log TOTAL 157 scripts, 1169 PASS.
+
+## 2026-11-11 (16): Study 26, one end-to-end example (sec:study26)
+- Plan and generator frozen (SHA-256) at 16:20 UTC before generation: engine/study26_e2e/PREREG_study26.md, world26.py.
+- 13/19 pre-registered checks pass. Failures: XE2 (thin population shift unflagged), XE3/XE4 (robust fibre empty), XE9
+  (operationalisation: faster than 1/L), XE10 (no wall within +-40; fragile advisory), XE18 (inspection too small: rho 0.035 < 2 eta 0.180).
+- Deviations: D1 elastic attribution (blamed {M,C,Y}, the wrong table) and J_z^-; D2 bounded slice search; D3 post hoc: removing {M,C}
+  instead restores feasibility with the coalition inside (the coherent coalition passes compatibility).
+- check_study26.py XS3 first counted IDENTITY/PREDICTION checks and failed on XE18; restricted to pure identities.
+- Melatonin names are illustration only; all numbers invented.
+- Next (agreed order): S gaps, then facet vs cell leximin. Also open: a scaled inspection rerun (27x) only if pre-registered first.
+- Note 226 pp. Ledger 61 rows. Log TOTAL 158 scripts, 1173 PASS.
+
+## 2026-11-11 (17): Study 26 audit, geometric reading, the atlas (fig:atlas)
+- DEVIATIONS_study26.md: failure classification table (detection, attribution, adversarial coherence, operationalisation, data guess,
+  under-powered design); no failure exposes a theorem limit; identities are implementation checks, not independent evidence.
+- Paper: abstract 'compatibility does not imply honesty'; 'a coding inconsistency is not physical contextuality'; three-failure-modes
+  paragraph; 'The geometry underneath' paragraph; fig_atlas (five levels, labelled maps, object types kept apart, braid built by an
+  explicit encoding rule from the actual refit order; no Delzant claim; leximin cited to Prop 149(ii) and Thm 27 only).
+- The atlas is a chain of representations, not an identification of objects; the braid keeps order only.
+- No check script changed. Note 228 pp. Ledger 61 rows. Log TOTAL 158 scripts, 1173 PASS (unchanged).
+
+## 2026-11-11 (18): fig_tower added at the user's request (fig:tower, page 197; the atlas moves to fig. 52, page 198)
+- The first-draft overview, rebuilt as kahler/fig_tower.py (it reuses fig_atlas.py's computations); overlaps fixed, braid panel marked
+  schematic, the tropical limit cited to Prop 149(ii), no Delzant claim. fig_atlas.png and fig_tower.png kept alongside the PDFs.
+- No check script changed. Note 229 pp. Ledger 61 rows. Log TOTAL 158 scripts, 1173 PASS (unchanged).

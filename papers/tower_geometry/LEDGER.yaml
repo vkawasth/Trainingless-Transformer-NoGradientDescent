@@ -539,6 +539,188 @@ rows:
     walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "discrete random walk: trend only, not proved"}
     wall_certificate: "200000-draw histograms; Kolmogorov distances < 0.01; 4000-draw Monte Carlo per structure"
     checks: [PP1, PP2, PP3, PP4, PP5, PP6, PP7]
+  - id: bkl-convex
+    operation: "Co-revision twists in Birman-Ko-Lee band generators (sources in convex position)"
+    assumptions: "sources in convex position numbered along the hull; edges as straight chords; non-convex drawings not covered"
+    parameter_map: "chord ts -> band generator a_ts (half-twist); co-revision twist -> a_ts^2"
+    levels:
+      contingency: {status: Proved, text: "Cor bkl: (i) tau_ts = a_ts^2; (ii) (B1) gives commutation of non-crossing chords, converse from Dehn twists; (iii) (B2) gives tau_ts tau_sr tau_tr = full twist of {r,s,t}; (iv) convex non-crossing = outerplanar"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "every chord's geometric half-twist reads as a_ts (n = 4, 5, 6); BKL relations and the pure triangle identity on all pairs and triples; outerplanar convex drawings: N = 1 faithful on balls when triangle-free"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "interior sources: Sergiescu's presentation cited, not used"}
+    wall_certificate: "Artin action; words of length <= 3 to 5"
+    checks: [KL1, KL2, KL3, KL4, KL5]
+  - id: strand-defect
+    operation: "Strand-addition defect of a newcomer over a compatible old history (Fadell-Neuwirth)"
+    assumptions: "pure braids on labelled sources; compatibility forget(bp) = b; defect relative to a chosen section"
+    parameter_map: "enlarged history bp, old history b, section s -> Delta_s = bp s(b)^{-1} in the free kernel F_n"
+    levels:
+      contingency: {status: Proved, text: "Prop defect: (i) kernel iff compatible; (ii) sections differ by crossed homomorphisms, boundary sections agree after relabelling, echo of i shifts the first layer by lk(i, .); (iii) first layer = newcomer's linking numbers; (iv) second layer = antisymmetric Magnus part, Milnor's coefficient when linking vanishes; (v) chain rule over regions"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "random pure braids up to 5 strands; incompatible pairs never in the kernel (298); combing rebuilds the defect; brokerage relay invariant = -(M_12 - M_21)/2 on 76 histories"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "algebra, not a detector; detection value untested (deferred, to be preregistered)"}
+    wall_certificate: "Artin's faithful action; random words"
+    checks: [SD1, SD2, SD3, SD4, SD5, SD6, SD7, SD8]
+  - id: credal-braid
+    operation: "Braids, credal sets and conditioning"
+    assumptions: "finite histories; credal sets as hulls of finitely many laws; conditioning law by law; circular laws of the regularising direction"
+    parameter_map: "statistic Pi (braid, signature, counts) -> push-forward credal sets; event C -> saturation Pi^{-1}Pi(C)"
+    levels:
+      contingency: {status: Proved, text: "Prop credalbraid: (i) projection and conditioning commute iff C saturated or Pi constant on C, else Hausdorff TV <= max w_P; (ii) pairwise linking precise, triple invariant has the Frechet envelope over circular laws; (iii) braid as sufficient statistic under a shared nuisance"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "broker visits: envelope [0, 11/24], real-correlation Gaussian [0.013, 0.207]; constructed brokerage family: braid posterior width 0.32 vs 0.60-0.62 for finer or untyped statistics; unpinned relay preference dilates everywhere"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "the braid's advantage depends on coordination acting through the braid and timing being an imprecise nuisance"}
+    wall_certificate: "linear programmes for Hausdorff TV; exact enumeration of 70 histories; braid Monte Carlo"
+    checks: [CP1, CP2, CP3, CP4, CP5, CP6]
+  - id: masking
+    operation: "Masking: depth of a newcomer's defect in the lower central series, and what hiding costs"
+    assumptions: "defects relative to s_out; newcomer's turns x_j = A_{j,n+1}; depth by Magnus coefficients"
+    parameter_map: "newcomer events + old history -> defect = product of Artin-conjugated turns -> depth"
+    levels:
+      contingency: {status: Proved, text: "Prop masking: (i) decomposition into conjugated turns, depth invariant under reconjugation; (ii) lone newcomer needs >= d(k) >= k turns (Malestein-Putman), O(k^1.44) suffice (Elkasapy); (iii) riding: depth = 1 + depth of old longitude; (iv) event algebra >= k events (cited)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "exhaustive search in F_2 up to length 14: d = 1, 4, 8, 14, 14 for k = 1..5; riding identity on 12 cases"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "mixed patterns: general lower bound open; precedence and anchors are separate obstacles"}
+    wall_certificate: "exhaustive enumeration with Magnus arrays; independent Magnus check"
+    checks: [HD1, HD2, HD3, HD4]
+  - id: imprecision-contextuality
+    operation: "Imprecision without contextuality for tie resolutions"
+    assumptions: "resolutions from a global direction; walls as lines through 0; local data = single-pair resolution probabilities"
+    parameter_map: "walls -> realisable patterns R -> feasibility LP for local data; envelope LPs for higher-order events"
+    levels:
+      contingency: {status: Proved, text: "Prop imprecctx: (i) global assignments give noncontextual data; (ii) parallel walls: R = orders, feasible iff 1 <= p01 + p12 + (1 - p02) <= 2 (Condorcet contextual), generic walls never contextual; (iii) P(0<1<2) in [max(0, p01 + p12 - 1), min(p01, p02, p12, p01 + p12 - p02)]; (iv) neither notion implies the other"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "1000 random data points (feasibility), 1000 feasible points (interval formula), 300 laws on directions (always feasible)"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "three sources; general n uses the linear ordering polytope (cited)"}
+    wall_certificate: "linear programmes; sampled realisable patterns"
+    checks: [IC1, IC2, IC3, IC4, IC5]
+  - id: braid-decision-value
+    operation: "Decision value of the braid under credal sets: ex post and ex ante Gamma-maximin, E-admissibility"
+    assumptions: "brokerage histories m = 2; honest / coordinated laws of credalbraid; actions flag, accept, inspect"
+    parameter_map: "statistic T -> credal posterior per value (ex post) or normal-form policy LP (ex ante)"
+    levels:
+      contingency: {status: Proved, text: "Prop braidvalue: (i) equal posteriors give equal ex post decisions and E-admissible sets; (ii) ex ante Gamma-maximin value monotone in information"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "costs (1, 1, 10): separate nuisances, full record -0.439 vs braid -0.493 ex ante, braid -0.496 vs full -0.701 ex post; shared nuisance equal both ways"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "constructed family; which evaluation applies depends on whether the decision maker commits in advance"}
+    wall_certificate: "linear programmes over 49 or 343 extreme laws"
+    checks: [BV1, BV2, BV3]
+  - id: credal-field
+    operation: "Conditional credal field: bands of conditional probabilities per pathway, their braid, poisoning and anchors"
+    assumptions: "binary target and evidence; credal set = joint laws matching the data; star cover unless relational contexts are added"
+    parameter_map: "data (q, p_i, a_i +- e_i, relational cells) -> field F(t) (LP) -> decided orders -> certified crossings / pre-crossings"
+    levels:
+      contingency: {status: Proved, text: "Prop credalfield: (i) certified crossing fixes parity only; (ii) star cover: field = product of bands, decided iff disjoint; (iii) relational data bound p_j v_j - p_i v_i >= delta - eps; (iv) star cover never contradicts; hiding costs g, reversing g + |I_i| + |I_j|; anchor exposes shifts > w_i + eta"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "toy (four pathways, 49 times): 5 certified crossings, 2 pre-crossings; hiding the receptor lead costs 0.012 per source, reversing 0.154 in total"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "toy numbers are invented (melatonin-flavoured names only); transport and holonomy of the field not built"}
+    wall_certificate: "linear programmes over 32 outcomes; bisection on the LP"
+    checks: [CQ1, CQ2, CQ3, CQ4, CQ5, CQ6]
+  - id: revision-holonomy
+    operation: "Transport of the conditional field along revisions; holonomy; laundering by retracted foreign edits"
+    assumptions: "version graph (not the co-revision graph); strictly positive laws; recomputer vs updater (Jeffrey updates, final refit)"
+    parameter_map: "loop of revisions returning to the same data -> updater's end law -> TV holonomy and field holonomy"
+    levels:
+      contingency: {status: Proved, text: "Prop revholonomy: (i) likelihood edges commute; (ii) Jeffrey edits on the data's contexts erased by refit; (iii) retracted foreign edit stays, consistent, invisible to data-determined quantities, full tables reach the fibre interior; (iv) laundering only of orders the fibre leaves open; (v) field holonomy <= 2 TV / max P(E); (vi) audit"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "world A: fibre range [-0.41, 0.58], honest updater +0.16, laundered -0.24 (TV 0.22), true +0.12; world B: decided order never reversed in 200 retracted edits"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "fibre ranges sampled (inner approximations); transport under changes of variables (stochastic kernels) not built"}
+    wall_certificate: "IPF to machine precision; vertex enumeration of the fibre; dense sampling"
+    checks: [HL1, HL2, HL3, HL4, HL5, HL6]
+  - id: kernel-transport
+    operation: "Revisions that change the variables: stochastic-kernel transport, refit/coarsening commutation, representation holonomy, reconstruction audit"
+    assumptions: "finite spaces; kernels between versions; refit = iterative proportional fitting; example X in {a,b,c,d} merged into {A,B}, outcome Y"
+    parameter_map: "kernel K_vw -> transported fibre; two kernel paths -> H over the fibre; merge + reconstruction theta + refit -> trace"
+    levels:
+      contingency: {status: Proved, text: "Prop kerneltransport: (i) fibres transport iff data push forward (onto for coarsenings with fine-variable and coarse-measurable tables); (ii) refit and coarsening commute for coarse-measurable data; (iii) representation holonomy is a vertex maximum; (iv) kernel paths differ by <= H, a reconstruction leaves a trace iff its within-class odds depend on the outcome; (v) a kept fine table pins the law"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "H = 0.42 for merge-then-uniform-split; refitting defect median 0.027 (max 0.166) with a fine margin; outcome-dependent split launders +-0.59 within the open range [-0.875, 0.875]"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "finite example; continuous variables and noisy measurement kernels open"}
+    wall_certificate: "vertex enumeration; LP feasibility; IPF to machine precision"
+    checks: [KT1, KT2, KT3, KT4, KT5, KT6]
+  - id: refit-defect
+    operation: "Transport/refitting defect of a coarsening: identity, zero set, convexity, decision relevance"
+    assumptions: "finite spaces; positive starting law Q; refit = I-projection (IPF); coarsening g with data pushing forward; example X in {a,b,c,d} merged into {A,B}, outcome Y"
+    parameter_map: "Q -> R = Pi_J Q, R' = Pi_J' g_*Q; defect = TV(g_*R, R'); D(g_*R || R') = Delta_fine - W"
+    levels:
+      contingency: {status: Proved, text: "Prop refitdefect: (i) D(g_*R||R') = Delta_fine - W (chain rule and Pythagorean identity, Csiszar), Pinsker bound; (ii) zero for coarse-measurable data and on the fibre; (iii) not convex, no vertex principle; (iv) coarse-determined functionals never move, utilities move by at most osc(u) * defect; (v) total discrepancy bounded by representation + update holonomy + defects"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "identity error 3.4e-16 on 300 cases; 33/150 convexity violations; P(Y=1) never moves at defects up to 0.436, P(Y=1|A) moves up to 0.682; a defect of 0.012 flips a threshold decision, one of 0.230 does not"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "finite example; the chain bound (v) is not shown tight; continuous variables open"}
+    wall_certificate: "IPF to machine precision; identity checked numerically"
+    checks: [RD1, RD2, RD3, RD4, RD5]
+  - id: history-trace
+    operation: "History theorem (trace modulo the data span), path-discrepancy lemma, decision theorem on a fibre"
+    assumptions: "finite state space; positive laws; fibre with a positive law; steps = likelihoods, Jeffrey updates, refits onto intermediate data with positive fibres, merge-and-reconstruction; example X in {a,b,c,d}, X' in {A,B}, Y"
+    parameter_map: "history -> tau = sum of log factors -> class in F/H_D -> end law Pi_J(P0 e^tau); kernels K, K' -> H_J(K, K'); utility -> L_ab on the fibre"
+    levels:
+      contingency: {status: Proved, text: "Thm history: (i) every step multiplicative; (ii) end law depends only on [tau] in F/H_D, a bijection onto the positive laws of J; (iii) Prop revholonomy recovered; (iv) Prop kerneltransport(iv) recovered; (v) traces add, cancel, and are attributable only to spans of contexts; (vi) chain bound beyond multiplicative steps. Lem pathdisc: vertex, pseudometric, Dobrushin contraction, concatenation, lossless invariance. Thm decision: identification (three cases), stability, reversal iff the fibre or reachable slice is open"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "dim F/H_D = 2 = dim J; split trace TV 0.094 equals a retracted edit on (1{x=a}, y) and is cancelled by exp(-2.773 1{a,1}); open functional +0.173 reversed to -0.235 through the full table, slice on aY ranges [0.011, 0.336] and cannot reverse; order matters in 18/20 histories with a foreign intermediate table"}
+    walls: {probability: undefined, support: "laws with zeros: the trace is defined modulo the support only; not built", tropical: undefined, critical: undefined, stokes: undefined, context: "kernels into other representations covered only by the chain bound; reachable slices for restricted contexts computed, not characterised"}
+    wall_certificate: "IPF to machine precision; span residuals by least squares; vertex enumeration"
+    checks: [HT1, HT2, HT3, HT4, HT5, HT6, HT7, HT8, HC1, HC2, HC3, HC4]
+  - id: refit-commute
+    operation: "When refitting and coarsening commute for every starting law: section criterion, variable-design corollary"
+    assumptions: "finite spaces; fine data span H with a positive law in the fibre; coarsening g; coarse span H' with g^*H' in H; I-projection by Newton on the dual"
+    parameter_map: "(H, g, H') -> criterion: s o sigma in H' for every s in H and section sigma; pointwise: class indicators where a statistic varies, plus one section"
+    levels:
+      contingency: {status: Proved, text: "Thm refitcommute: (a) commutation for every positive Q iff (b) E_Q[s|g] in H' for all Q, s in H iff (c) section criterion iff (d) pointwise form; depends on spans only; otherwise the defect is nonzero on an open dense set (analyticity). Cor: variable contexts, merge within one variable: iff the variable is in no context or a context contains every variable"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "300 random designs: 75 hold (largest defect 2e-13), 225 fail (defect >= 0.066), none of the holding ones nontrivial; variable designs 35 no-X, 58 full, 107 fail; event design commutes with a 1-dim coarse fibre (defect <= 9e-14), seeing X fully gives 0.092"}
+    walls: {probability: undefined, support: "laws with zeros not treated; fibre must contain a positive law", tropical: undefined, critical: undefined, stokes: undefined, context: "general kernels (not deterministic coarsenings) open"}
+    wall_certificate: "Newton I-projection with a convergence guard (1e-10); span residuals by least squares; all sections enumerated"
+    checks: [CM1, CM2, CM3, CM4, CM5, CM6]
+  - id: selector-link
+    operation: "Two selectors on one fibre: maximum entropy (I-projection) versus the toric soft-min family of the selection theorem"
+    assumptions: "finite fibre with a positive law; cell probabilities affine on the affine hull; toric family over a positively spanning set of cells with positive weights; examples 2 x 3 couplings"
+    parameter_map: "q -> Pi_J(q) (log P/q in H_D); (L, a) -> u_L(a) (term law in H_D); L -> infinity leximin; L -> 0 least squares or escape"
+    levels:
+      contingency: {status: Proved, text: "Prop selectorlink: (i) same span condition on different objects (log of the law vs law of the terms); (ii) limits: leximin at rate 1/L uniformly in bounded weights, least-squares point when the weighted normals balance, escape w_0/L otherwise; (iii) maximum entropy not in the family (shown by example); (iv) history: maximum entropy bijective in the trace, toric limit moved only by weights of size e^(L s); (v) selectors can choose different actions"}
+      toric: {status: Defined, text: "the facet family is the valuation of the positive critical point of W_T; the T -> 1 end is the least-squares point or does not exist"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "column-binding fibre: maximum entropy (0.2, 0.12), least squares (0.217, 0.117), leximin (0.15, 0.15); closest approach 0.0014 at L = 5.5; median ratio 0.05 over 60 margins; facet escape w_0 = (0.56, -0.28); decision switch at L* = 18.2"}
+    walls: {probability: undefined, support: undefined, tropical: "leximin walls: the limit of the toric family is discontinuous there (not treated here)", critical: undefined, stokes: undefined, context: "that maximum entropy is never on the curve is shown only numerically; no proof of non-membership in general"}
+    wall_certificate: "Newton soft-min and iterative scaling to machine precision; sequential LP for the leximin point"
+    checks: [SL1, SL2, SL3, SL4, SL5, SL6]
+  - id: study26-e2e
+    operation: "Study 26: one end-to-end example on 300 development and 100 holdout synthetic tables, every major result applied in sequence"
+    assumptions: "synthetic log-linear truth on five binary variables; sources with sampling noise, an other-population cluster and a coherent coalition; pre-registered and frozen before generation; names illustrative only"
+    parameter_map: "tables -> pooled margins -> fibre (exact and robust) -> paths and projection ladder -> decision, VOI, Fisher -> selection, composition -> cycle (sheaf, fibre, cocycle) -> history -> protection -> holdout"
+    levels:
+      contingency: {status: Numerical, text: "exact statements hold (dim 9 and 6, Fisher kernels, VOI criterion, path independence, trace attribution, slice inside fibre, composition and system independence for maximum entropy); 6 of 19 pre-registered checks fail (XE2, XE3, XE4, XE9 operationalisation, XE10, XE18), recorded with deviations D1-D3"}
+      toric: {status: Numerical, text: "leximin coupling of M x light; toric point converges faster than 1/L here"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "maximum entropy commutes with composition and is system independent; leximin does neither (0.034, 0.003), measured in the study"}
+    walls: {probability: undefined, support: "full supports from noise hide the twist at the sheaf layer", tropical: "no selection wall within +-40 counts", critical: undefined, stokes: undefined, context: "synthetic; one seed; estimation layer (pooling, flagging, robust fibre) is the weak link"}
+    wall_certificate: "frozen hashes of the plan and generator; deterministic rerun reproduces the results exactly"
+    checks: [XS1, XS2, XS3, XS4]
   - id: algebra-selection
     operation: "Algebra of the probability operations, counting explanations, and selection that is not concave"
     assumptions: "finite variables; Study 18 face laws for counts (N = 240..1200); straight data paths for the jump test"
