@@ -1,0 +1,23 @@
+FAIL XE2 PREDICTION the flagging rule catches the other population, not the coherent coalition   [flagged 5: other-population 2/10, coalition 2/15, honest 1/245]
+PASS XE1 IDENTITY the oracle fibre is non-empty, dim 9; with {M,C,R,Y} dim 6 (Thm 64(2))   [dim 9, then 6]
+FAIL XE3 PREDICTION population mixing shows as incompatibility: J_z empty with flagged sources, non-empty without   [with flagged: empty; without: empty]
+FAIL XE4 PREDICTION the coherent coalition passes the compatibility test   [empty]
+D1 elastic slack by context: {'RHY': 0.0, 'MCRH': 0.0, 'MCY': 0.068, 'MR': 0.0, 'MH': 0.0, 'MC': 0.0, 'CR': 0.0, 'CH': 0.0} ; z* = 3.11
+PASS XE4b DEVIATION with the one slack-carrying context removed, J_z^- is non-empty (it removed {M,C,Y}, the coalition context: see D3)   [slack carried by ['M/C/Y']; J_z^- non-empty]
+D3 diagnostic: J_z with {M,C} removed and {M,C,Y} kept (coalition included): non-empty
+PASS XE5 IDENTITY what the tables identify: pi2 and the first two rungs are points; pi1, pi3 and the last two rungs are open   [none: [+0.168, +0.168]; C=0: [+0.151, +0.151]; C=0,R=1: [-0.178, +0.517]; C=0,R=1,H=0: [-0.389, +1.000]]
+PASS XE6 IDENTITY the target decision is identified iff its range excludes tau (Thm 148(i))   [range [-0.389, +1.000] vs tau = 0.1: open; truth +0.200]
+PASS XE7 IDENTITY Fisher: dim ker I_obs equals the fibre dimension (Prop 95)   [9 and 6]
+PASS XE8 IDENTITY VOI of R: constant iff the full-dimensional cells' value functionals lie in the data span (Thm 92); constant after {M,C,R,Y}   [development: VOI in [0.0000, 0.0796], 2 full cells, criterion False; with {M,C,R,Y}: [0.0203, 0.0203], criterion True]
+FAIL XE9 IDENTITY the toric point tends to the leximin coupling at rate 1/L (Thm 27)   [f = [0.3174 0.6826], g = [0.4478 0.3511 0.2011]; leximin levels [(0.1006, (2, 5)), (0.1084, (0, 1)), (0.2427, (4,)), (0.3393, (3,))]; L*dist 0.0001, 0.0000]
+FAIL XE10 PREDICTION selection walls and the decision threshold are crossed at different counts   [walls at k = []; advisory switches at k = [-7]; at k = 0 leximin P(M=1, bright) = 0.1006 (issue), maximum entropy 0.1373 (issue)]
+PASS XE11 IDENTITY/PREDICTION maximum entropy commutes with composition; leximin does not   [max |difference|: maximum entropy 2.8e-17, leximin 0.0338]
+PASS XE12 IDENTITY/PREDICTION maximum entropy is system independent; leximin is not (Prop 71, Thm 65)   [max |section - product of sections|: maximum entropy 6.9e-18, leximin 0.0030]
+PASS XE13 PREDICTION the twisted cycle violates a noncontextuality inequality and has no global law; the consistent and acyclic designs glue   [consistent: largest left side 1.211, glue True; twisted: 2.314 (SE 0.036, pattern [1, 1, 1, -1]), glue False; acyclic: glue True]
+PASS XE14 PREDICTION sheaf layer: full supports, global sections and no logical contextuality; the noncontextual fraction separates the conditions   [global deterministic sections 16 and 16; logical contextuality False, False; NCF consistent 0.9805, twisted 0.8430]
+PASS XE15 IDENTITY imprecision without contextuality (Prop 137): the consistent and acyclic fibres glue and are not points   [fibre dimensions 7 (cycle) and 8 (path)]
+PASS XE16 IDENTITY history: path independence on the data's contexts; a retracted foreign table leaves a trace attributable to {M,R,Y} (Thm 146)   [TV(order 1, order 2) 1.7e-16; TV(B, A) 0.0893; trace residual from H_D+F_MRY 5.9e-15, from H_D+F_MHY 1.598]
+PASS XE17 IDENTITY the {M,R,Y} slice lies inside the fibre range; reversal by such histories reported (Thm 148(iii))   [honest Delta +0.102 (intervene); history B +0.228; slice [-0.123, +0.466] inside [-0.389, +1.000]; reversal possible]
+FAIL XE18 IDENTITY/PREDICTION protection: rho_q > 2 eta, honest reports pass, the coalition's pooled configuration is flagged (Thm 122(iii))   [g(P*) = 0.168, tau2 = 0.208, pooled g = 0.295 (far side); rho_q = 0.0347, eta = 0.0899; Delta_q honest 0.0114, coalition 0.0632]
+PASS XE19 PREDICTION holdout calibration: development ranges cover the holdout cells   [16 of 16 cells covered; median width 0.178]
+14/20 passed
