@@ -1,0 +1,7 @@
+PASS SL1 IDENTITY maximum entropy: log P in H_D; toric: the term law in H_D   [largest residual 3.2e-13]
+PASS SL2 FINDING the toric curve passes near the maximum-entropy point but not through it   [column-binding fibre: closest approach 0.00139 at L = 5.54 (separation 0.0583); 60 margins: median ratio 0.048, smallest 6.7e-04]
+PASS SL3 IDENTITY small L: all cells give the least-squares point; facet terms with unbalanced normals escape as w_0 / L   [least-squares point [0.2167 0.1167]; distances at L = 0.1, 0.01, 0.001: 2.8e-04, 2.8e-05, 2.8e-06; facet case: w_0 = [ 0.5624 -0.2812], |L u_L - w_0| = 2.0e-04, |u_L| = 629]
+PASS SL4 FINDING bounded weights: the toric point tends to the leximin point at rate 1/L (L * distance converges)   [largest relative change of L * distance from 1e3 to 1e4: 8.7e-12]
+PASS SL5 IDENTITY maximum entropy follows every trace class; the toric limit ignores bounded weights and follows weights of size e^(Ls)   [inside H_D: max move 6.2e-17; outside: min move 1.9e-02; shifted weights: limit equals shifted leximin in 30 cases, 18 of them away from the unshifted point]
+PASS SL6 FINDING maximum entropy and leximin choose different actions; the toric curve switches at a finite L*   [maximum entropy +0.040; leximin -0.040; L* = 18.18; fibre range [-0.34, +0.36]]
+6/6 passed

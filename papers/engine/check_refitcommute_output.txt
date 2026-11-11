@@ -1,0 +1,7 @@
+PASS CM1 IDENTITY the pointwise criterion equals the all-sections criterion   [300 designs; 75 hold, 225 fail]
+PASS CM2 IDENTITY sufficiency: designs meeting the criterion have no defect   [75 designs, largest defect 2.0e-13; 0 of them with a statistic varying inside a class and an open coarse fibre]
+PASS CM3 IDENTITY necessity: designs failing the criterion have a defect   [225 designs, smallest largest-defect 6.64e-02]
+PASS CM4 IDENTITY with variable contexts, commutation holds iff the merged variable is in no context or the data pin the law   [{'no X': 35, 'full': 58, 'fail': 107}]
+PASS CM5 IDENTITY an event design commutes with a statistic varying inside a class and an open coarse fibre; seeing X fully breaks it   [classes where a statistic varies [0, 1]; coarse fibre dimension 1; largest defect 8.8e-14 (100 laws); with X itself: largest defect 0.092]
+PASS CM6 IDENTITY the criterion reproduces the earlier cases   [X and Y margins: fails (1.3e-01); X' and Y (coarse-measurable): holds (3.5e-16); X and the full table: holds (9.3e-14); X and {X', Y}: holds (1.5e-13)]
+6/6 passed

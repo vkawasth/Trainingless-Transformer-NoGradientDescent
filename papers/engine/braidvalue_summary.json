@@ -1,0 +1,72 @@
+{
+ "exante": {
+  "shared (1, 1, 10)": {
+   "counts": -0.5,
+   "untyped": -0.4803,
+   "braid": -0.4388,
+   "typed": -0.4388,
+   "full": -0.4388
+  },
+  "shared (1, 3, 10)": {
+   "counts": -0.5,
+   "untyped": -0.5,
+   "braid": -0.5,
+   "typed": -0.5,
+   "full": -0.5
+  },
+  "shared (1, 1, 0.45)": {
+   "counts": -0.45,
+   "untyped": -0.448,
+   "braid": -0.4168,
+   "typed": -0.4168,
+   "full": -0.4168
+  },
+  "separate (1, 1, 10)": {
+   "counts": -0.5,
+   "untyped": -0.4814,
+   "braid": -0.4926,
+   "typed": -0.4392,
+   "full": -0.4392
+  },
+  "separate (1, 3, 10)": {
+   "counts": -0.5,
+   "untyped": -0.5,
+   "braid": -0.5,
+   "typed": -0.5,
+   "full": -0.5
+  },
+  "separate (1, 1, 0.45)": {
+   "counts": -0.45,
+   "untyped": -0.4492,
+   "braid": -0.45,
+   "typed": -0.4193,
+   "full": -0.4193
+  }
+ },
+ "costs_1_1_10": {
+  "shared": {
+   "braid": {
+    "exante": -0.4388,
+    "expost": -0.4432,
+    "indeterminate": 0.0
+   },
+   "full": {
+    "exante": -0.4388,
+    "expost": -0.4432,
+    "indeterminate": 0.0
+   }
+  },
+  "separate": {
+   "braid": {
+    "exante": -0.4926,
+    "expost": -0.4962,
+    "indeterminate": 0.514
+   },
+   "full": {
+    "exante": -0.4392,
+    "expost": -0.7006,
+    "indeterminate": 0.929
+   }
+  }
+ }
+}

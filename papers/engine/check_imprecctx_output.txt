@@ -1,0 +1,6 @@
+PASS IC1 IDENTITY parallel walls: patterns = the 6 total orders; generic walls: all 8   [parallel 6, generic 8]
+PASS IC2 IDENTITY parallel walls: feasible iff 1 <= p01 + p12 + (1 - p02) <= 2; generic walls: always feasible   [341 of 1000 random points infeasible for parallel walls]
+PASS IC3 IDENTITY the Condorcet cycle has no global law
+PASS IC4 IDENTITY imprecision without contextuality: P(0<1<2) in [max(0, p01 + p12 - 1), min(p01, p02, p12, p01 + p12 - p02)], positive width   [1000 feasible points; widths from 0.000 to 0.481, mean 0.128]
+PASS IC5 IDENTITY data from any law on global directions are feasible (never contextual)   [300 random correlated Gaussian laws]
+5/5 passed
