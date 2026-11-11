@@ -1,0 +1,82 @@
+{
+ "posterior": {
+  "pinned": {
+   "untyped": {
+    "values": 17,
+    "width": 0.598,
+    "dilated": 17,
+    "dilated_mass": 1.0
+   },
+   "typed": {
+    "values": 41,
+    "width": 0.617,
+    "dilated": 38,
+    "dilated_mass": 0.929
+   },
+   "braid": {
+    "values": 5,
+    "width": 0.323,
+    "dilated": 1,
+    "dilated_mass": 0.514
+   },
+   "full": {
+    "values": 70,
+    "width": 0.617,
+    "dilated": 65,
+    "dilated_mass": 0.929
+   }
+  },
+  "unpinned": {
+   "untyped": {
+    "values": 17,
+    "width": 0.637,
+    "dilated": 17,
+    "dilated_mass": 1.0
+   },
+   "typed": {
+    "values": 41,
+    "width": 0.739,
+    "dilated": 41,
+    "dilated_mass": 1.0
+   },
+   "braid": {
+    "values": 5,
+    "width": 0.483,
+    "dilated": 5,
+    "dilated_mass": 1.0
+   },
+   "full": {
+    "values": 70,
+    "width": 0.739,
+    "dilated": 70,
+    "dilated_mass": 1.0
+   }
+  }
+ },
+ "frechet": [
+  0.0,
+  0.45833333336665344
+ ],
+ "envelope": [
+  0.0,
+  0.4585
+ ],
+ "gauss": [
+  0.013039590034371537,
+  0.20653819922711694
+ ],
+ "fixed_psi": {
+  "0.0": [
+   0.4613333333333333,
+   0.4583
+  ],
+  "1.571": [
+   0.21466666666666667,
+   0.2083
+  ],
+  "3.142": [
+   0.0,
+   0.0
+  ]
+ }
+}
