@@ -1,0 +1,33 @@
+PASS A1 commute <=> product is E_meet <=> CI given meet <=> rank-one blocks <=> singular values in {0,1}  [449 commuting, 151 non-commuting trials]
+PASS A2 E_A E_B = E_{A join B} iff A = B  [identity held in 145/400 trials, all with A = B]
+PASS A3 Example: (E_R E_L Z)(1) = 15/8, (E_L E_R Z)(1) = 2, meet trivial, not CI
+PASS A4 ||(E_A E_B)^n - E_meet|| = c^(2n-1), c = Friedrichs cosine, n = 1..6  [157 non-commuting pairs]
+PASS A5 lax interchange: E_meet E_A E_B = E_meet = E_meet E_B E_A; composites above the meet  [192 non-commuting pairs, composites differ on a random vector in 192]
+PASS A6 CI given some C inside A and B => E_A E_B = E_C = E_B E_A and C = meet
+PASS A7 X_L, X_R CI given H: sigma(X_L), sigma(X_R) do not commute (some instance)
+PASS A7b sigma(X_L,H), sigma(X_R,H) always commute with product E_sigma(H)
+PASS B1 star space of a coherent context: mu Omega = Pi, D(q) Sigma = Pi, mu Pi = rho, total mass 1  [60 contexts]
+PASS B2 shadow algebra: E_{G_T} E_{G_U} = E_{G_{T cap U}} for all leaf sets T, U (commutative band)
+PASS B3 without the centre, sigma(Pi~) and sigma(theta) fail to commute on some contexts  [40/60]
+PASS B4 martingale laws: delta_rho, D(mu)Omega, Pi, D(eta)rho
+PASS B5 Markov absorption E[Z|theta,r] = E[Z|r]; E_r E_theta Z != E_theta Z on some contexts  [59/60]
+PASS B6 e_bot, e_top: idempotent, left-zero band, same splitting mu, natural, e_top affine, sandwich couplings
+PASS B6b e_bot is not affine (some mixture)  [79/80]
+PASS B7 tower link: (U) defect of lambda-sigma = (e_bot Pi, e_top Pi); (M) defect = (Law W, Law E[W|group])
+PASS C1 coherent generator: Pi has at most 2 atoms, descriptors biject with atoms, L and R cells coincide  [atom counts seen [2]]
+PASS C2 naive composite R(L(nu)) = Law(E_{sigma(a_R o m_L)} Z), a single pooling onto a coarsening of L's partition
+PASS C3 naive interchange fails on the threshold example; fixed-space composites also differ  [R(L nu)=[('4/5', '1/2'), ('1/5', '1/2')], L(R nu)=[('19/30', '3/4'), ('1/10', '1/4')]]
+PASS C4 nearest-atom pooling is discontinuous: inputs 1/1000 apart in W1, outputs more than 1/4 apart  [W1(in)=1/1000, W1(out)=501/2000]
+PASS C5 check_span: outputs drop theta (keys change type, so 'not inverse' is automatic); (Cm) test compares a pair with itself
+PASS C6 non-coherent Sigma: tied duplicate (1,rho1) never receives mass; R cells = L cells
+PASS C7 3-cell check: pooling onto D^2-typed atoms is total pooling e_bot (all TV distances 1)
+PASS D1 Jacobian rank of the order-r moment map of a 2-Gaussian mixture is min(r,5)  [{2: 2, 3: 3, 4: 4, 5: 5, 6: 5}]
+PASS D2 regrouping a mixture of mixtures leaves the flattened law (hence every affine statistic) unchanged
+PASS E1 affine maps of finite simplices are exactly stochastic matrices (T fully faithful)
+PASS E2 T preserves Kleisli composition and is l1 non-expansive
+PASS G1 fusion identity Q_LR = Fuse(Q_L, Q_R) under X_L, X_R conditionally independent given H
+PASS G2 naturality: E_{f^-1 A'}(Z' o f) = (E_{A'} Z') o f for measure-preserving f
+PASS G3 star space is functorial along context maps with Df injective on supp Pi; L_c, R_c are natural  [36 context maps]
+
+30/30 checks pass
+results SHA-256: 3f5117d04f3be3c1220acdb129a2361cb11c81185fc89b47f1531ae4e74a34c2

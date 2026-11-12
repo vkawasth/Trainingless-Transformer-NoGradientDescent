@@ -1,0 +1,7 @@
+PASS I1 marginalisation differentiates to conditional expectation (tangent presheaf = L^2 presheaf with the Fisher metric)
+PASS I2 Laplacian E_A + E_B: spectrum {0, 1 -+ cos t_k, 1, 2}, smallest non-zero eigenvalue 1 - c; E_A E_B E_A has eigenvalues cos^2 t_k   [max |gap - (1 - c)| = 1.1e-15]
+PASS I3 KL(P||Q) = KL(P||P*) + KL(P*||Q) for all Q with A _||_ B | C; P* minimises; KL(P||P*) = I(A;B|C)
+PASS I4 I(A;B|C) / (sum P(c) sigma_k(c)^2 / 2) -> 1 near the Beck-Chevalley model   [max |ratio - 1| at t = 0.3: 0.074, 0.1: 0.020, 0.03: 0.007, 0.01: 0.001; far from the model the ratio ranges over [0.75, 1.27]]
+PASS I5 every compatible family on the triangle has a signed global section; only some have a positive one   [positive global law for 287 of 400 compatible families]
+
+5/5 checks passed

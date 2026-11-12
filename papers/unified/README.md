@@ -1,0 +1,252 @@
+# Shadows, Fibres and Secants of the Posterior Tower
+
+Paper, check scripts, figure generators, an interactive explorer and the hallucination studies for
+*Shadows, Fibres and Secants of the Posterior Tower* (V. K. Awasthi, October 2026).
+
+Repository: <https://github.com/vkawasth/Trainingless-Transformer-NoGradientDescent/tree/main/papers>
+
+## Contents
+
+| Path | What it is |
+|---|---|
+| `tower_geometry.tex`, `tower_geometry.pdf` | The paper (55 pp). Builds with `pdflatex` (run twice). Figures are read from `atlas/figs/`. |
+| `check_tower.py` | Tower definitions, imported verbatim by `check_shadows.py`. |
+| `check_shadows.py` | 30 checks: algebra of conditional expectations, shadows, martingale, categorical structure (§§3–8). |
+| `check_tropical.py` | 8 checks: positive tropicalisation, Berkovich factorisation, secants (§§11–12). |
+| `check_cohomology.py` | 10 checks: the L² presheaf, Beck–Chevalley, gluing, tropical fibre nerves (§§14–15). |
+| `check_hallucination.py` | 9 checks: the three-token model (§16). |
+| `check_twocat.py` | 12 checks (TC1–TC12): coupling liftings, the convex order is not a Barr lifting, the comultiplication cell of λ̄, the no-go theorem of §6.8 with an explicit coherent counterexample, and the coupling 2-category of §6.9 (associativity, whiskering fails exactly with a Beck–Chevalley defect, counit coherence), run on the tower code itself. |
+| `check_infogeom.py` | 5 checks: the unified coefficient system (§14.2): tangent presheaf, Laplacian gap 1 − c, KL Pythagoras, local KL ≈ ½Σσ², signed versus positive sections. |
+| `check_barr.py` | 4 checks: D, η and μ are monotone for the Barr lifting (Lemma 6.11), with negative controls and a counterexample to the converse. |
+| `check_places.py` | 9 checks: the context presheaf over the Berkovich spectrum M(ℤ) (§17), and the explorer's numbers. |
+| `check_bc_test.py` | 7 Monte Carlo checks of the finite-sample Beck–Chevalley test used in §18 (size, power, centre enlargement, Study 2 replica). |
+| `check_*_output.txt` | The output of each script as run for the paper. |
+| `atlas/` | `atlas.py` draws Figs 1–8, `fig_places.py` draws the M(ℤ) figure, `fibre_scan.py` computes the Betti map; `fibre_topology.py` is shared. |
+| `companion/` | Companion note *Pooling Informed Agents* (`pooling_agents.tex/.pdf`, 5 pp), its 9 checks (`check_agents.py`) and figure script (`fig_agents.py`). |
+| `lab/` | Companion paper *A Lab for Latent Actors: Hiding Segments, Tempo and the Value of a Probe* (`latent_actor_lab.tex/.pdf`, 37 pp, with a worked example in Section 17 recomputed by `engine/worked_example.py`, and its four-variable version in Section 18 by `engine/worked_example4.py`; Part I: Theorems A-D; Part II, injected records: Theorems E-H) and its figure script `fig_lab.py`. Its pre-registered Studies 11, 11b and 12 are in `engine/study11_lab/`, `engine/study11b_settle/` and `engine/study12_inject/`; injection is `engine/pce/injection.py` with `engine/pce/duality.py` for Theorem H (checks IN1-IN14 in `engine/check_injection.py`); the model is `engine/pce/lab.py`, the decision on the segment `engine/pce/segment_decision.py` (checks DS1-DS9 in `engine/check_decision_segment.py`). |
+| `engine/` | The Posterior Coherence Engine (`pce` package), its 7 checks, synthetic demonstrations, a doctor–lawyer worked case, the pre-registered Study 4 and a 6-page report (`engine/report/pce_report.pdf`). |
+| `explorer/context_sheaf.html` | Interactive explorer of the three-token example. Open it in any browser; no install, no network needed except for web fonts. |
+| `halluc_study/` | Pre-registration (`PREREG_hallucination.md`) and Amendment 1, both with frozen SHA-256 hashes; Study 1 script and results; Study 2 sampler, kit, analysis, samples and results; Study 3 kit. |
+
+## Quick start
+
+```bash
+pip install -r requirements.txt
+./run_checks.sh            # runs all eleven check scripts, including the companion's (about 2 minutes)
+python atlas/atlas.py      # regenerate Figs 1-8 into atlas/figs/
+python atlas/fig_places.py # regenerate the M(Z) figure
+pdflatex tower_geometry.tex && pdflatex tower_geometry.tex
+```
+
+Every check prints `PASS`/`FAIL` per item and a final count. All 733 checks pass (94 for the paper, 6 for the grid, 9 for the companion note, 624 for the engine: 7 coherence, 8 in-context learning, 8 integration, 8 context complex, 8 cohomology on the fibres, 8 lift, 7 Gerstenhaber-Schack and tolerances, 7 places, 7 overlap algebra, 7 level-two overlap, 8 cover, 8 perturbation, 8 walls and chambers, 7 contextuality beyond direct influence, 8 toric experts, 8 non-commuting updates, 8 filtered gluability and vineyards, 6 large complexes and the join rule, 9 partial gluing and level two, 7 scheme structure, 6 ladder of base semirings, 8 non-commutativity, 7 masked measurements, 7 quantum graded gluing, 6 categorical home, 7 origin fingerprint, 7 consistified fractions, 7 perturbations, 6 observable algebra, 7 cup products, 11 birth of contextuality, 3 second-order invariant, 11 decisions on a time-varying sheaf, 9 decisions on the hiding segment, 14 injected records, 19 worked-example hand checks, 16 four-variable checks, 10 sources and batches, 10 lifting, 9 one picture, 17 descent tower, 5 the CSD framework on the lab's data, 11 the worked descent complex, 4 the quantum marginal problem, 6 Markov categories, 5 Roumen and causal semantics, 14 tangent structure, 7 tangent structure on decision boundaries, 8 layered restriction structure, 11 restriction axioms, sheets and global pooling, 9 arbitrary covers, 8 relations and syzygies, 8 higher windows and three types, 8 real signs, 9 strata, 5 bridge between polytopes, ideal and tangent structure, 7 the decision and the ring of contingency tables, 8 stratified descent, 10 global S_k descent and label holonomy, 9 latent frames, 6 identifiability and walls, 3 large Betti computations, 9 what does not matter, 3 order three at corners, 10 Bayesian inversion, 13 layers Step 1, 9 layers Step 2, 6 strata and jumps, 7 orders of transitions, 7 several parameters and the order fan, 6 parameters as an object and decisions on the fan, 7 decorated fan and Theorem J on the statistical fan, 11 Poisson band and graded classes, 6 degenerate directions, 9 functions, duality and logs, 6 fractures and blind spots, 5 fragility, reach and decision bands).
+
+## The hallucination studies (`halluc_study/`)
+
+The plan was pre-registered before any statistic was computed (`PREREG_hallucination.md`, hash in `FROZEN_PREREG.txt`).
+Amendment 1 (`AMENDMENT1.md`, hash in `FROZEN_AMENDMENT1.txt`) was frozen after items 0–199 of Study 2 were inspected and
+before any statistic on items 200–1999 was computed.
+
+**Study 1 (LLM-drift).** Download the `<TASK>_EVAL.csv` files of <https://github.com/lchen001/LLMDrift> into a folder and run
+
+```bash
+cd halluc_study
+LLMDRIFT_DIR=/path/to/llmdrift python study1_llmdrift.py
+```
+
+**Study 2 (HaluEval QA).** `qa_data.json` is in <https://github.com/RUCAIBox/HaluEval> (`data/qa_data.json`, MIT licence).
+The Llama 3.1 8B samples used in the paper are in `study2/samples_2000.jsonl`. To reproduce the analysis:
+
+```bash
+cd halluc_study
+HALUEVAL_QA=/path/to/qa_data.json python study2_analysis.py
+```
+
+To draw new samples from your own model (Ollama, Anthropic or OpenAI-compatible APIs):
+
+```bash
+python kit_halueval.py prepare --data /path/to/qa_data.json --out prompts.jsonl
+python sample_halueval.py --backend ollama --model llama3.1 --limit 2000 --workers 1
+python kit_halueval.py score --data /path/to/qa_data.json --samples samples.jsonl --out study2_results.json
+```
+
+API keys are read from environment variables (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`); none is stored in this folder.
+
+**Study 3 (pairwise elicitation).** `kit_pairwise_cycles.py` scores pairwise answers for the 3-cycle inequalities;
+`python kit_pairwise_cycles.py smoke` runs it on synthetic data.
+
+## Data and licences
+
+- HaluEval (Li et al., EMNLP 2023): MIT licence. Not redistributed here; the Study 2 samples are model outputs on its prompts.
+- LLM-drift answers (Chen, Zaharia and Zou, 2024): download from the original repository.
+- No credentialed or patient-level data are used or included.
+
+
+## Tangent structure (companion paper b)
+
+`tangent/tangent_structure.tex` (12 pp) builds the tangent structure the lab paper named: the feasible-direction functor on polyhedra with affine maps (all equational axioms; universality of the vertical lift iff relative interior), the interior category with the lab's maps, and the Weil structure on the tetrad scheme (universal lift; completion T^2V -> T_2V obstructed by [H(u,v)] on the two-coincidence stratum). Module `engine/pce/tangent.py`, checks `engine/check_tangent.py` (TG1-TG13, TG6b; 14/14, about one minute), figures `tangent/fig_tangent.py`.
+
+## Two latent types on arbitrary covers (companion c, Part I draft)
+
+`covers/arbitrary_covers.tex` (6 pp, Phases I-II): factorisation on any pair graph (zero strata, sign class, modulus class; rank B = |V| - b(G)), hiding polytopes in (log t, log lambda) with slope +-1 facets, rectangles for bipartite graphs, generic dimension b(G)+1, sign sheets, a sheet killed by positivity. Module `engine/pce/covers.py`, checks `engine/check_covers.py` (CV1-CV9), figure `covers/fig_covers.py`. Phases III-V and the k=3, m=5 proof of concept follow.
+
+Phase III, Stage 1 (relations and syzygies for pair-and-triple covers): `engine/pce/syzygy.py`, `engine/check_syzygy.py` (SZ1-SZ8). Requires Macaulay2 (`apt-get install macaulay2`); every Betti number it reports is re-derived from Hochster's formula in Python.
+
+Phase III, Stage 2 and the three-type proof of concept: `engine/pce/threetype.py`, `engine/check_higher.py` (HW1-HW8; needs Macaulay2 and Singular: `apt-get install macaulay2 singular`). `covers/run_ranges3.py` recomputes the general three-type inner bounds of Figure higher(c).
+
+Tangent structure on decision boundaries: `engine/pce/tangent_decide.py`, `engine/check_tangent_decide.py` (TD1-TD7): the second-order criterion for non-affine maps at corners, the pooling paradox from boundary curvature, second-order attack budgets. Paper sections 7-8 of `tangent/tangent_structure.tex` (15 pp).
+
+Layered restriction structure at corners (strata, resolutions, multi-maps): `engine/pce/layers.py`, `engine/check_layers.py` (LY1-LY8); Section 9 and Figure 4 of `tangent/tangent_structure.tex` (17 pp).
+
+Phase III, Stage 3 (real signs, sheets, sign tests and their syzygies): `engine/pce/signs.py`, `engine/check_signs.py` (SG1-SG8; needs Macaulay2). Section 8 of `covers/arbitrary_covers.tex` (17 pp).
+
+Phase III, Stage 4 (strata): `engine/pce/cover_strata.py`, `engine/check_cover_strata.py` (CS1-CS8). Section 9-10 of `covers/arbitrary_covers.tex` (19 pp), including the summary table of the two-type theory on covers.
+
+Restriction axioms, the tangent structure on hiding sheets, and global pooling: `engine/pce/restriction.py`, `engine/check_restriction.py` (RC1-RC4, SH1-SH3, GP1-GP4); Sections 10-12 of `tangent/tangent_structure.tex` (21 pp).
+
+Gap 3 (decision functional and the ring of contingency tables, 2026-10-29): `engine/pce/ehrhart.py`, `engine/check_ehrhart.py` (EH1-EH7),
+Section "Theorem D and the ring of contingency tables" of `lab/latent_actor_lab.tex` (`lab/sec_ehrhart.tex`, figure `lab/fig_ehrhart.py`),
+and the pre-registered Study 11c in `engine/study11c_exact/` (3 of 4 predictions held; E2 failed on D5).
+
+Stratified descent (2026-10-30): `engine/pce/levels.py`, `engine/check_levels.py` (LV1-LV8). Section "Stratified descent and the four
+obstruction levels" of `covers/arbitrary_covers.tex` (`covers/sec_levels.tex`, figure `covers/fig_levels.py`; paper now 27 pp):
+support fixes the stratum; one degree-one class in the multiplicative incidence complex carries sign and modulus; positivity is a
+feasibility question with a Farkas certificate, read off a negative cycle because each sheet is a UTVPI system.
+
+Note on `engine/check_strata.py`: the covers Stage 4 work had been saved under the names `pce/strata.py` / `check_strata.py`, which
+overwrote the engine's walls-and-chambers module and check (report Section 19). The module was restored from an earlier copy and the
+Stage 4 code moved to `cover_strata.py`; the original walls-and-chambers check file had no surviving copy, so `check_strata.py` was
+rebuilt (ST1-ST8) from parts (a)-(g) of the report's theorem.
+
+Shared appendices (2026-10-30): `shared/symbols.tex` (one symbol table for the lab, covers and tangent papers, with clashes flagged)
+and `shared/status.tex` (proof-status register: proved / verified / conjectured / open). Each paper `\input`s both from `../shared`,
+so edit them there only. The full check run with tool versions and per-script timings is logged in `CHECK_RUN_20261030.log`.
+
+Study 14 (2026-10-30, pre-registered, frozen SHA-256 before extraction): Theorem J's band on published trials of IV magnesium in acute
+MI (Teo 1991 trials, LIMIT-2, ISIS-4). `engine/study14_magnesium/` (registration, frozen script, cited data, extraction notes,
+deviations, results, post-run exploratory script); lab Section "Study 14" (`lab/sec_magnesium.tex`, figure `lab/fig_magnesium.py`).
+Five of six predictions held; M3 failed narrowly (decision-settled at h = 0 by 0.12 s.e.). Published aggregate counts only.
+
+Global S_k descent through a shared overlap (2026-10-30): `engine/pce/three.py`, `engine/check_three.py` (TH1-TH10); covers Theorem
+"S_k descent through a shared overlap", Corollary (three types on five variables), Proposition (exceptional strata).
+
+Latent frames, the O(2) layer (2026-10-30): `engine/pce/frames.py`, `engine/check_frames.py` (FR1-FR9); covers Lemma "frames" and
+Theorem "frame holonomy".
+
+Phases IV-V, identifiability and walls (2026-10-30): `engine/pce/ident.py`, `engine/check_ident.py` (ID1-ID6); covers Section
+"Phases IV-V" (`covers/sec_ident.tex`).
+
+Large Betti computations (2026-10-31): `engine/betti_large/` (graded-piece generators), `engine/check_betti_large.py` (BG1-BG3; needs
+Macaulay2).
+
+What does not matter (2026-10-31): `engine/pce/relevance.py`, `engine/check_relevance.py` (RL1-RL8); lab Section "What does not
+matter" (`lab/sec_relevance.tex`).
+
+Order three at corners (2026-10-31): `engine/pce/order3.py`, `engine/check_order3.py` (O31-O33); tangent Sections "Higher order at
+corners" and "Scope audit". Wall-crossing for the value of a probe: RL9 in `engine/check_relevance.py`.
+
+Bayesian inversion (2026-10-31): `engine/pce/inversion.py`, `engine/check_inversion.py` (IV1-IV10); lab Subsection "Inversion".
+
+Fourth companion, "Probability, Context and Differentiation: The Layers" (`context/layers.tex`), Step 1: `engine/pce/context.py`,
+`engine/check_context.py` (DL1-DL13). Step 2 (the tangent layer): `engine/pce/tangent_layers.py`, `engine/check_tangent_layers.py` (TL1-TL9); strata and jumps: `engine/pce/jumps.py`, `engine/check_jumps.py` (SJ1-SJ6). Step 3 (orders of transitions): `engine/pce/orders.py`, `engine/check_orders.py` (OR1-OR7). Step 4a-4b (several parameters, order fan, iterated limits): `engine/pce/fans.py`, `engine/check_fans.py` (MP1-MP7). Step 4c (Para, reparametrisations, decision fan): `engine/pce/para.py`, `engine/check_para.py` (PR1-PR6). Step 4d (decorated fan, cross term, Theorem J, Poisson cone): `engine/pce/statfan.py`, `engine/check_statfan.py` (ST1-ST7). Poisson band and Step 4e (graded classes): `engine/pce/poissonband.py`, `engine/pce/graded.py`, `engine/check_graded.py` (PB1-PB5, GC1-GC6). Step 4f (recursive degenerate directions): `engine/pce/degen.py`, `engine/check_degen.py` (DG1-DG6; needs sympy); several parameters: `engine/pce/degen_d.py`, `engine/check_degen_d.py` (DD1-DD10; DD6-DD10 need sympy). Step 5 (functions, duality and logs): `engine/pce/effects.py`, `engine/check_effects.py` (FD1-FD9). Fractures and blind spots: `engine/pce/fracture.py`, `engine/check_fracture.py` (FX1-FX6); fragility, reach and decision bands: `engine/pce/fracband.py`, `engine/check_fracband.py` (FB1-FB5). Exclusion filtration, fibre homology and the computational blueprint (contextuality to categorical probability on one synthetic world, two fans and their refinement): `engine/pce/blueprint.py`, `engine/check_blueprint.py` (BP1-BP9). Spread order, sample law and poison order against tie order on the fan: `engine/pce/conewise.py`, `engine/check_conewise.py` (CW1-CW6). Fracture strata (one stratification for all walls, the global fragility function): `engine/pce/fracstrata.py`, `engine/check_fracstrata.py` (FS1-FS5). Geometric realization (toric picture, Birch, moment map): `engine/pce/toricreal.py`, `engine/check_toricreal.py` (TR1-TR5). An observed environment (forgetting square, reversal walls, pooled orders): `engine/pce/environment.py`, `engine/check_environment.py` (EN1-EN5). Structured environments (hierarchies; the store comonad obstruction): `engine/pce/envhier.py`, `engine/check_envhier.py` (EH1-EH6). Companion note `kahler/conditioned_states_kahler.tex/.pdf` (toric Kahler data, the Birch bridge, the positive thimble and its tropical limit): `engine/pce/kahlerbridge.py`, `engine/check_kahlerbridge.py` (KB1-KB8), figure `kahler/fig_kahler.py`; D1, soft evidence moves lambda (balance programme, circuits, the F_1 wall): `engine/pce/datawalls.py`, `engine/check_datawalls.py` (DW1-DW7; DW6 needs sympy), figure `kahler/fig_datawalls.py`; Part II, contingency tables (cells vs facets, the independence model, margins vs evidence, a structural zero): `engine/pce/contingency_toric.py`, `engine/check_contingency_toric.py` (CT1-CT7). Section 11, one coupling polytope through every layer (Fisher's noncentral hypergeometric family as Tier A, the max-min coupling min(f_i/m, g_j/n), five critical points, the thimble on couplings, leximin vs blow-up walls, the one-count example): `engine/pce/couplingfibre.py`, `engine/check_couplingfibre.py` (CF1-CF8; CF5, CF8 need sympy), figures `kahler/fig_coupling.py`. Section 11.6, the selection theorem (positive valuation = lexicographic max-min point, O(1/log(1/T))) and a column-binding example (f = (2/5,3/5), g = (1/2,3/10,1/5)): `engine/pce/datawalls.py` (lex_maxmin, softmin_point), `engine/check_leximin.py` (LX1-LX9; multiprecision, about 30 s), figure `kahler/fig_leximin.py`. Part III, section 12, objects, morphisms and the categorical comparison (objects = critical points over torus fibres with leading holonomies; orthogonality and Clifford endomorphisms (cited); intrinsic formality; the Clifford shadow of selection; A-infinity equivalence across the F_1 wall; Stokes walls crowd the outcome wall): `engine/pce/floermorph.py`, `engine/check_floermorph.py` (MO1-MO9; multiprecision, about 75 s), figures `kahler/fig_morph.py` (about 2 min). Section 12.7, the column-binding example classified (quintic reduction, Newton polygon, distinct and nondegenerate for all T > 0, distinct critical values on (0,1); five objects over two fibres; the reduction of the Clifford form with hypotheses H1/H2; the 5 x 5 Hom table): `engine/pce/colbind.py`, `engine/check_colbind.py` (CB1-CB8; sympy), figures `kahler/fig_colbind.py`. Part IV, section 13, 2 x 4 couplings (the 148 Kahler chambers classified exactly, ampleness certified by -K.C on invariant curves (Nakai-Moishezon / toric Kleiman): 14 Fano, 134 weak Fano; the box criterion and selection depth in the Fano chambers; examples A (the cube), B (Bl_pt CP^3, exact: six objects over one fibre, distinct critical values for all T) and C (weak Fano, coupled three-step selection, 8 + 2 critical points over two fibres; Chan-Lau-Leung-Tseng corrections); the level-drop spectral conjecture, proved at leading order in A, B, C): `engine/pce/cpl24.py`, `engine/check_cpl24.py` (TF1-TF9; sympy and multiprecision, about 1 min), figures `kahler/fig_cpl24.py`; the chamber certificate `kahler/chambers24.json` (all 148 chambers: sign vector, exact interior point, facets, rays, cones and determinants, wall relations, -K.C, type), verified independently by `engine/check_chambers24_cert.py` (CC1-CC4; standard library only, reads only the certificate). Section 12.8, Stage IV, a path through the column-binding example (g = (7/10 - gamma, 3/10, gamma), one Kahler chamber, two leximin walls; the example lies on a level-2 wall; the reduction (s^2 - B)^2 (1 + Cs) = As; objects 4 + 1 / 2 + 3 / 4 + 1 / 3 + 1 + 1 by Newton polygon; a forced collision at the level-2 wall, none at the level-1 wall; the Clifford scale along the path; Stokes alignments): `engine/pce/pentpath.py`, `engine/check_pentpath.py` (PP1-PP9; sympy and multiprecision, about 4 min), figures `kahler/fig_pentpath.py` (about 6 min). Section 12.9, composing couplings (Markov gluing g1 D^-1 g2: associative, the maximum-entropy point; composition by selection: unital, transposition-compatible, not associative; faces of K_n as dissections; the exact K_4 configuration of eleven composites, binary and 2 -> 3 states; finite T: the associator is order one): `engine/pce/selcomp.py`, `engine/check_selcomp.py` (AS1-AS7; about 1 min), figures `kahler/fig_selcomp.py`. Section 12.10 (the no-go proposition for A-infinity structures on contractible coupling polytopes; binary selection is Frechet-midpoint gluing; uniform margins compose correlations by a signed minimum; continuity on fixed types and across facet-set changes; the associativity census and a one-parameter exact associator): `engine/check_selbin.py` (SB1-SB7; about 8 min), figure `kahler/fig_selbin.py`; exact certificates (cells of associativity; leximin certificates for every selection behind the K_4 examples; exact hull and crossing tests): `engine/check_selcert.py` (SX1-SX3; about 1 min). Section 12.11, a Floer reading of selection at the level of objects (binary chains: the fibre is a product of CP^1's and selection picks its unique Floer-nontrivial fibre, by Cho-Oh and Alston-Amorim; exact Delzant/Fano traversal of the K_4 fibres): `engine/check_selfloer.py` (SF1-SF5; about 30 s; new `selcomp.delzant`, `selcomp.binary_slices`). Section 12.12 separates the three categorical directions. Section 12.13, a small dagger category for finite probability (couplings under Markov gluing; selection keeps units, reversal, relabelling and copied factors, and breaks the tensor and end coarse-graining squares; both break middle coarse-graining) and section 12.14, how little it takes (for binary ends the data determine an interval and selection is its centre; poisoning edits and zero-cost representation changes in the forecast-umbrella-wet example): `engine/pce/selnat.py`, `engine/check_selnat.py` (NC1-NC9; about 20 s), figures `kahler/fig_selnat.py`. Sections 12.15-12.18, rules as sections of the marginal projection (the projection theorem: fibre dimension |V| - 1 - dim G over each face; strictly concave sections are continuous; inner-face consistency gives a category, maximum entropy = Markov gluing; the associative-section problem), the 4-cycle (CHSH) cover (24 facets: 16 local + 8 Clauser-Horne, Fine's theorem exactly; 2721 faces; CH facets are simplices, positivity facets leave fibre 4; the symmetric path and generic paths to the boundary) Simpson reversals made by a rule (selection sensitivity) or by the middle resolution (information loss), the rigidity corollary (every point of the contextuality boundary has one compatible joint law) and section 12.19, every n-cycle (noncontextuality facets are simplices with 2n vertices; local facets leave fibre 3 * 2^(n-2) - 2n): `engine/pce/margsec.py`, `engine/check_margsec.py` (MS1-MS11; about 1 min; MS11: what the entropy cocycle gives, and the tensor-square defect along the Cressie-Read power family, figure `kahler/fig_sections.py`), figure `kahler/fig_margsec.py` (fig_cycle; about 35 s). Section 12.20, how little poisoning in many dimensions (two thresholds c_some <= c_s <= c_all; a cheapest undetectable flip is a conformal sum of at most min(a, dim) circuits of the consistent-edit space, usually one circuit of 4 cells for n = 4..8; undetectable placements monotone in the hidden support, dim + fibre = |S| - 1; removal of batches and contexts as a contravariant functor, value of a context, duration of a one-batch flip, attribution by removal): `engine/pce/poisonflip.py`, `engine/check_poisonflip.py` (PF1-PF9; about 2 min), figure `kahler/fig_poisonflip.py` (about 40 s). Remark cellattr and figure `kahler/fig_edittypes.py`: an observed change as a conformal sum of circuits, and its coordination (PF10). Section 12.21, the geometry of poisoning (certified radii c_some >= (L - tau)/Lam_L, c_all >= (U - tau)/Lam_U with Lam from dual vertices x unit circuits; width Lipschitz while fibre dimension jumps; closed-form distance to the contextuality boundary; continuity of rules with unique optima; a staged example on and off a rigid facet with a PR-box overreach): `engine/check_poisongeom.py` (PG1-PG6; about 30 s), figure `kahler/fig_deform.py`. Section 12.23, the geometry of decisions and of the value of information (utility image; value of identification R by LPs; instance value as Good's inequality; committed robust value with pure and mixed policies; dilation; Das's square; stability from the decision-maker's side): `engine/pce/voigeom.py`, `engine/check_voigeom.py` (VG1-VG8; about 5 min), figure `kahler/fig_voi.py`. Determination theorem and value-based distance (section 12.23: local data determine the value of information exactly when the policy cells' value functionals are sums over contexts; worst-case robust-value change = 2 x Hausdorff TV distance): `engine/check_voidet.py` (VD1-VD4; about 40 s), figure `kahler/fig_voidet.py`. Section 12.24, algebra of the operations and selection that is not concave (removable singularities; irrational maximum entropy (1 + sqrt 3)/4 from rational data; integer explanations grow like N^(fibre dimension); minimum-entropy jumps at Maxwell points): `engine/pce/algsel.py`, `engine/check_algsel.py` (AL1-AL4; about 2 min), figure `kahler/fig_algsel.py`. Section 12.25, trajectories of decision viability (viability shares under any disturbance: reachable set (1 - Q) d + Q D, one LP; open loop: forgetting identities, segments per regime, at most two threshold crossings, certified ranking radius; closed loop with finite memory: eventually periodic decisions; caveats on knots, braids and persistent homology): `engine/pce/viability.py`, `engine/check_viability.py` (VB1-VB6; about 2 min), figure `kahler/fig_viability.py`. Section 12.26, histories, gluing and holonomy (history-indexed selection; holonomy bounded by the fibre diameter, U - L and the VOI envelope; I-projection updating flat over growing context sets, so it is maximum entropy at every step; forgetting, Euclidean updating at the boundary and TV updating curved; a three-snapshot example t1, t2, t3 in the sheaf picture of Tohme-Caterina-Gangle, with a contextual t3 that fails to glue): `engine/pce/holonomy.py`, `engine/check_holonomy.py` (HY1-HY6; about 15 s), figure `kahler/fig_history.py`. Section 12.23, Fisher geometry against decision relevance (phases decision-null; the fibre is the null space of the observed Fisher information, so thm:determination reads as Fisher-visibility; decision value Lipschitz in Fisher-Rao distance, not conversely; volume coefficients sqrt(det g) coordinate-dependent, after Moskowitz-Russell-Lawless 2020): `engine/pce/fishervoi.py`, `engine/check_fishervoi.py` (FV1-FV5; about 1 min). Section 2, a reading guide (information states; no new results). Section 14.5, phases of the Part IV objects (example A = three Bloch spheres, canonical orthonormal basis; holonomies over each fibre form finite groups (Z/2)^3, Z/6, Z/2 x Z/4 and a Z/2-coset; Bloch placement a choice for B and C): `engine/pce/blochtoric.py`, `engine/check_blochtoric.py` (BL1-BL4; a few seconds), figure `kahler/fig_bloch.py`. Prop twist (every-cycle section): perfectly correlated cycle data glue iff the product of the edge signs is +1, twisted data are strongly contextual, paths always glue; Mermin square parity; link to Heusler-Schlummer-Ubben 2020: `engine/pce/signtwist.py`, `engine/check_signtwist.py` (ST1-ST3; a few seconds). Section 13.x, crossings with incomplete data (pseudo-trefoil: knot spectra allowed by crossing data; an expectation is identified iff its Walsh terms lie in observed contexts; writhe from singles, knottedness from all pairs, chirality never from pairs): `engine/pce/pseudoknot.py`, `engine/check_pseudoknot.py` (PK1-PK5; a few seconds), figure `kahler/fig_pseudoknot.py`. Prop figeight: the figure-eight pseudo-diagram (16 resolutions from a PD-code state sum; knottedness = both twist regions agree, Walsh degree 4, not determined by triples; chirality determined by triples): `engine/pce/pdknot.py`, `engine/check_pdknot.py` (PD1-PD4; about 10 s), figure `kahler/fig_figeight.py`. Prop cutglue (gluing the figure-eight pseudo-diagram at a cut state: q-weighted Frechet range of P(knotted), point criterion, Markov glue = maximum entropy): `engine/pce/cutglue.py`, `engine/check_cutglue.py` (CG1-CG4; a few seconds), figure `kahler/fig_cutglue.py`. Prop boundary (minimal sufficient boundary statistic of a cut = row/column classes; gluing given one side's class preserves the outcome; Moebius/Shapley attribution cut-invariant exactly then): `engine/pce/boundary.py`, `engine/check_boundary.py` (BS1-BS4; seconds). Prop chainglue (gluing along a chain of pieces: quotient states recursive; glues commute and give the maximum-entropy chain law; outcome preserved when every cut carries its quotient; a coarser cut state is safe iff the outcome is additive on each merged class; a two-point worked example; loops in a separate remark; Myhill-Nerode reading and tangle outlook): `engine/pce/chainglue.py`, `engine/check_chainglue.py` (CH1-CH6; seconds), figure `kahler/fig_chainglue.py`. Two layers and prop:tlmemo (Temperley-Lieb memos: the bracket of a chain of random H/V crossings through 2 x 2 transfer matrices on the connectivity states [0], [inf]; sufficient cut state; finite rank, not finite index; independent crossings need only the expected memo; the HHVV figure-eight example): `engine/pce/tlmemo.py`, `engine/check_tlmemo.py` (TM1-TM6; needs sympy; seconds). Prop elimquot (the cut quotient by elimination: classes = points of the elimination ideal of the Walsh coefficient map, number = its degree, rank can be smaller; the cost of cutting a decision path and its components; exact only for +-1 switches): `engine/pce/elimquot.py`, `engine/check_elimquot.py` (EQ1-EQ5; sympy; about 1 min). Beliefs under contamination (sec:contam; prop:contam, prop:tamper): presheaf over admitted cells, conflicts and explanations, tamper budgets, the five-cycle sign toy, the toy bridge with five matched histories, and event (trace monoid), braid (explanation strands) and shadow (three-coordinate projections of the closed six-component trajectory) layers: `engine/pce/tamper.py`, `engine/pce/bridgetoy.py`, `engine/pce/trajknot.py`, `engine/check_tamper.py` (TP1-TP11; about 1 min), figure `kahler/fig_bridge.py`. Coherent miscalibration (sec:miscal; prop:miscal): synchronised deformations, coalition reach, anchor certificates, four matched paths (coalition A and an honest drift B0 to the same law give identical reports; only an independent anchor separates them): `engine/pce/miscal.py`, `engine/check_miscal.py` (MC1-MC5; seconds), figure `kahler/fig_miscal.py`. Watching for coordinated deformation (sec:watch; prop:watch): every signal side by side along eight histories on the bridge with redundant reporters: `engine/pce/stalkbank.py`, `engine/pce/watchtoy.py`, saved runs `engine/watchtoy_*.json`, `engine/watchtoy_summary.txt`, check `engine/check_watch.py` (WC1-WC7; reads the saved runs). Study 23 DRAFT (not frozen): `synthetic_sections/PREREG_study23_DRAFT.md`. The mathematical chain and what braids and knots carry (2026-11-09; sec:chain, sec:braidknot): `engine/pce/braidknot.py` (Artin action, Milnor invariants, commutator realisation, parity pair), `engine/pce/bundlebraid.py` (sources as a bundle: exact piecewise-linear braid, closure invariants by state sum and reduced Burau, suspect sets, co-revision network), `engine/check_braidknot.py` (BK1-BK11; summary `engine/bundlebraid_summary.json`); figures `kahler/fig_commutator.py`, `kahler/fig_bundle.py`. Graphs, brokerage and pseudo-link probability (2026-11-10; sec:graphs, sec:brokerage, sec:pseudoprob): `engine/pce/raagbraid.py`, `engine/pce/brokerage.py`, `engine/pce/pseudoprob.py`, `engine/check_raagbraid.py` (RG1-RG5), `engine/check_brokerage.py` (BR1-BR6), `engine/check_pseudoprob.py` (PP1-PP7); figures `kahler/fig_topocoord.py` (fig_graphs, fig_broker). The memory at work and pooling/conditioning (2026-11-10; sec:memwork, sec:poolcond): `engine/pce/dmledger.py`, `engine/pce/poolcond.py` (pce/pooling.py is a different, older module), `engine/check_dmledger.py` (DL1-DL8), `engine/check_poolcond.py` (PC1-PC5); summaries `engine/dmledger_summary.json`, `engine/poolcond_stream.json`; figures `kahler/fig_memory.py` (fig_memory_walks, fig_memory_network, fig_poolcond). Revision trajectories and decision-maker memory (2026-11-10; sec:ordrev, sec:dmmemory): `engine/pce/revtraj.py`, `engine/pce/dmmemory.py`, `engine/check_revtraj.py` (RV1-RV3), `engine/check_dmmemory.py` (DM1-DM8); summaries `engine/revtraj_summary.json`, `engine/dmmemory_summary.json`. Ordered co-revision (2026-11-09; sec:ordrev): `engine/pce/ordrev.py`, `engine/check_ordrev.py` (OR1-OR8; summary `engine/ordrev_summary.json`). The bridge from source histories to pseudo-links (2026-11-09; sec:tiebridge): `engine/pce/tiebraid.py`, `engine/check_tiebraid.py` (TB1-TB8; summary `engine/tiebraid_summary.json`). Study 24 (frozen and run 2026-11-09): `synthetic_sections/PREREG_study24.md`, `FROZEN_PREREG_study24.txt`, `kit_study24.py`, `analyse_study24.py`, `kit24_dev_output.jsonl`, `kit24_smoke_output.txt`, `runs24_eval.jsonl`, `study24_final.json`, `RESULTS_study24.md`, `study24_posthoc.txt` (the draft `PREREG_study24_DRAFT.md` is superseded). Study 22 (run 2026-11-09): lineage braids and survival under independent audit, out of family; validity check failed (baseline no better than a constant), H1/H2 uninformative, H3 failed: `synthetic_sections/PREREG_study22.md`, `FROZEN_PREREG_study22.txt`, `kit_study22.py`, `kit22_dev_output.jsonl` (design seeds), `runs22_*.jsonl`, `study22_final.json`, `RESULTS_study22.md`, `study22_posthoc.txt`. Study 21 (run 2026-11-09): do braid or shadow features of the private history predict realised regret, later contradiction or inspection value beyond the annotated trace and budgets? H0 passed, H1 failed for all three (refutation holds): `synthetic_sections/PREREG_study21.md`, `FROZEN_PREREG_study21.txt`, `kit_study21.py`, `runs21_*.jsonl`, `study21_final.json`, `RESULTS_study21.md`, `study21_posthoc.txt`. The earlier `PREREG_study21_DRAFT.md` (consequential switches) was superseded, never frozen or run. Study 20 (context x VOI arms, varying identification, aligned confusion, run-level thresholds): run once on 2026-11-08 under the frozen plan `synthetic_sections/PREREG_study20.md` and addendum `PREREG_study20_addendum.md` (`kit_study20.py`, `addendum_study20.py`; digests `FROZEN_PREREG_study20.txt`, `FROZEN_PREREG_study20_addendum.txt`). Data `runs20.jsonl`, analyses `study20_final.json`, `study20_addendum.json`, report `RESULTS_study20.md`, labelled post-hoc `study20_posthoc.txt`. H1-H4b pass; H0 fails (identified 10%), so H5 uninformative; the pre-crossing flag is nearly tautological. Section on snapshots and a private decision ledger (definitions only). Study 19 (a private decision ledger under steering and confusion): run once on 2026-11-08 under version 3 of the plan (`synthetic_sections/PREREG_study19_v3.md`, `kit_study19_v3.py`, digests `FROZEN_PREREG_study19_v3.txt`; versions 1 and 2 superseded before any run). Data `runs19.jsonl`, analysis `study19_final.json`, report `RESULTS_study19.md`, labelled post-hoc diagnostics `study19_posthoc.txt`. H3 (steering works, undetected) and H4 pass; H1, H2 and H5a-c fail; the world never identified any monitored quantity. Section 12.22, Bayesian inversion and sections (the dagger of Cpl is Bayesian inversion; composition by a reversal-equivariant section commutes with it; a non-equivariant rule fails; null events against structural zeros; order drift as Bayesian inconsistency): `engine/pce/invsec.py`, `engine/check_invsec.py` (IS1-IS6; about 25 s; IS6 reads Study 18's frozen output). The complete Delzant traversal of the 5-way K_4 fibre (orbifold, 34166 vertices) is `python3 engine/check_selfloer.py --full` (about 77 min). Appendix B lists the exact inputs. The operations ledger `LEDGER.yaml` (single source; rendered to `kahler/ledger_table.tex` by `kahler/render_ledger.py`; checked by `engine/check_ledger.py`, LG1-LG3, which needs PyYAML and reads the run log). Study 15 (pre-registered; kit v1.1 passes an explicit attention mask, Deviation 1; Deviation 2 runs it with `llm_fracture_study/run_icl_mps.py` on the Apple GPU, with progress, immediate writes and `--resume`, the kit unchanged): `llm_fracture_study/`. Study 16 (DRAFT pre-registration, not frozen, not run): a four-question cycle for LLM answers measured against sections 12.15-12.19 (drift, contextuality-by-default, coherence of unasked pairs), `llm_fracture_study/PREREG_study16.md`, kit `llm_fracture_study/kit_cycle_context.py` (items / run / score / smoke), smoke output `kit16_smoke_output.txt`. Studies 17 and 18 (pre-registered, frozen and run; synthetic data only): tiny NoPE transformers trained on the context marginals of exact synthetic worlds, scored against the projection theorem and the rigidity corollary. Study 17: `synthetic_sections/PREREG_study17.md`, kit `kit_learned_sections.py`, results `RESULTS_study17.md`, figure `fig_study17.pdf`. Study 18 (sparsity-matched faces F0/F1/F2, consistency training, noise floors, contextual fraction): `synthetic_sections/PREREG_study18.md`, kit `kit_study18.py`, results `RESULTS_study18.md` (T1-T4 hold; H8 and H11 supported; H7, H9, H10 not supported), figure `fig_study18.pdf` (`fig_study18.py` plots only). Model weights are not packaged.
+
+
+### Co-revision in Birman-Ko-Lee generators; what a newcomer adds (2026-11-10)
+`engine/pce/bklband.py`, `engine/check_bklband.py` (KL1-KL5): in convex position the co-revision twist is the square of the band
+generator a_ts; the BKL relations give commutation of non-crossing chords and the pure triangle identity (Corollary cor:bkl).
+`engine/pce/stranddefect.py`, `engine/check_stranddefect.py` (SD1-SD8): the strand-addition defect of a newcomer over a compatible old
+history, relative to a chosen section (from outside, or echo of a source); first layer = linking numbers, second layer = antisymmetric
+Magnus part, which on the brokerage histories is the relay invariant (Proposition prop:defect). Algebra only; its value for detection
+is untested and deferred to a preregistered study.
+
+### Braids, credal sets and conditioning (2026-11-10)
+`engine/pce/credalbraid.py`, `engine/check_credalbraid.py` (CP1-CP6): projection and conditioning of credal sets commute exactly for
+saturated events (Hausdorff bound otherwise); under all circular tie-resolution laws pairwise linking is precise and the triple invariant
+has a Frechet envelope; the braid as a sufficient statistic, and dilation by finer statistics when timing is an imprecise nuisance
+(Proposition prop:credalbraid).
+
+### Masking: what hiding costs (2026-11-10)
+`engine/pce/masking.py`, `engine/check_masking.py` (HD1-HD4): depth of a newcomer's defect in the lower central series; decomposition into
+Artin-conjugated turns; a lone newcomer hidden below layer k needs >= k turns (exact shortest lengths 1, 4, 8, 14, 14 in F_2 for
+k <= 5); riding the old history reaches depth 1 + depth of the old longitude (Proposition prop:masking).
+
+### Imprecision without contextuality; decision value of the braid; map (2026-11-10)
+`engine/pce/imprecctx.py`, `engine/check_imprecctx.py` (IC1-IC5): tie resolutions from global directions are never contextual; parallel
+walls make patterns total orders and cyclic (Condorcet) pairwise data contextual; higher-order probabilities stay imprecise
+(Proposition prop:imprecctx). `engine/pce/braidvalue.py`, `engine/check_braidvalue.py` (BV1-BV3): ex post / ex ante Gamma-maximin and
+E-admissibility; the braid is more decisive ex post and worth less ex ante with separate nuisances (Proposition prop:braidvalue).
+Subsection sec:map maps the coordination results to their propositions.
+
+### The conditional credal field (2026-11-10)
+`engine/pce/credalfield.py`, `engine/check_credalfield.py` (CQ1-CQ6), figure `kahler/fig_credalfield.py`: a credal set gives each pathway
+a band of conditional probabilities; the joint field's braid has certified crossings and pre-crossings; star covers never contradict;
+relational data decide orders; coordinated poisoning hides a certified crossing cheaply and silently, and anchors expose reversals
+(Proposition prop:credalfield, Remark rem:credalbraidfamily). The toy uses melatonin-flavoured names; its numbers are invented.
+
+### Transport along revisions, holonomy and laundering (2026-11-10)
+`engine/pce/fieldholonomy.py`, `engine/check_fieldholonomy.py` (HL1-HL6), figure `kahler/fig_holonomy.py`: recomputers are path
+independent; Jeffrey edits on the data's own contexts are erased by refitting; a retracted edit on a context outside the data leaves a
+consistent but moved law that can launder an open order into a confident one (Proposition prop:revholonomy).
+
+### Revisions that change the variables (2026-11-10)
+`engine/pce/kerneltransport.py`, `engine/check_kerneltransport.py` (KT1-KT6): stochastic-kernel transport of fibres; refit and coarsening
+commute for coarse-measurable data; representation holonomy as a vertex maximum; an audit that separates honest information loss from
+laundering by a merge-and-split (Proposition prop:kerneltransport).
+
+### The transport/refitting defect (2026-11-10)
+`engine/pce/refitdefect.py`, `engine/check_refitdefect.py` (RD1-RD5): the defect between refit-then-coarsen and coarsen-then-refit
+satisfies D(g_*R || R') = Delta_fine - W; it vanishes for coarse-measurable data and on the fibre; it is not convex; coarse-determined
+functionals never move, while a small defect can flip a decision a larger one leaves alone (Proposition prop:refitdefect).
+
+### The history theorem and the decision theorem (2026-11-10)
+`engine/pce/historytrace.py`, `engine/check_historytrace.py` (HT1-HT8, HC1-HC4): every updater step is multiplicative; the end law depends
+only on the history trace (log-factors modulo the data's context span), a coordinate on the fibre; mechanisms add, cancel and are
+attributable only to spans of contexts; path-discrepancy lemma; decision identification, stability and reversal (Theorems thm:history,
+thm:decision, Lemma lem:pathdisc).
+
+### When refitting and coarsening commute (2026-11-10)
+`engine/pce/refitcommute.py`, `engine/check_refitcommute.py` (CM1-CM6): commutation for every starting law iff every fine statistic read
+along any section of the coarsening is a coarse statistic; for variable designs iff the merged variable is in no context or the data pin
+the law; an event design that commutes with an open coarse fibre (Theorem thm:refitcommute, Corollary cor:refitcommute).
+
+### Two selectors on one fibre (2026-11-10)
+`engine/pce/selectorlink.py`, `engine/check_selectorlink.py` (SL1-SL6): maximum entropy puts the data span on log P, the toric family on the
+law of its terms; limits (leximin, least squares or escape); maximum entropy is not in the family; history moves maximum entropy along the
+whole trace, the leximin limit only at size log(1/T); the two can choose different actions (Proposition prop:selectorlink).
+
+### Study 26: one end-to-end example (2026-11-11)
+`engine/study26_e2e/` (PREREG, frozen generator `world26.py`, `run_study26.py`, RESULTS, DEVIATIONS), `engine/check_study26.py` (XS1-XS4),
+`kahler/fig_study26.py`. 300 development + 100 holdout synthetic tables; every major result applied in sequence (section sec:study26).
+Exact statements hold; 6 of 19 pre-registered checks fail and are recorded as findings.
+`kahler/fig_atlas.py`: Study 26 at five levels (toric chart, probability and decision, contextuality and sheaf, history and transport,
+braid encoding) with each map labelled by what it keeps and loses; one signal (the retracted {M,R,Y} table) followed through all levels.
+### Outer reconciliation and the relay clock (2026-11-11)
+`engine/pce/outerrelay.py`, `engine/check_outerrelay.py` (OW1-OW4, RY1-RY4): extension witnesses, minimal outer witnesses, a witness is
+not a culprit, the outer layer catches every coherent far-side coalition iff rho_W > 0; the relay clock T*, a trace invariant and not a
+braid invariant (Propositions prop:outer, prop:relay, Corollary cor:relayprotect). Figure scripts now read theorem numbers from the .aux
+file (kahler/auxref.py).
+
+### Study 27a and the annotated-history relay clock (2026-11-11)
+`engine/study27a/` (SPEC frozen before the run, DEVIATIONS, results), `engine/check_study27a.py` (ZA1-ZA13), `engine/check_relaytheorem.py`
+(AH1-AH4): exact verification of reconciliation, protection witnesses, attribution, inspection ranking, brokerage, masking, drawings and
+clock invariance; Theorem thm:relayclock (the clock is a function of the event trace, not of the braid class).
+
+### Computability (2026-11-11)
+`engine/check_effective.py` (EX1-EX4): exact rational certificates by a rational simplex, the A_G word problem, the clock on traces
+(Proposition prop:effective, section sec:computability; Downey-Melnikov, Wrathall, Weihrauch).
+
+### The selection theorem, uniform version (2026-11-11)
+`engine/pce/selrate.py` (new module) and `engine/check_selectionuniform.py` (SU1-SU7): Lemma lem:lexunique (the leximin point with ties,
+certificate), Theorem thm:selection (rate K(v,B)/L uniform in the data; walls are kinks; first-order coefficient c_P(b)), Corollary
+cor:selectlaw (law and decision rates). Corrects the earlier remark that the constant depends on the gaps between levels.
+
+### Study 27b (2026-11-11, pre-registered, run once)
+`engine/study27b/` (SPEC frozen 19:54 UTC, SHA-256 b90c6804...; DEVIATIONS; RESULTS; results JSON; exploratory_h1.py), `engine/run_study27b.py`
+(the single run, about 15 minutes), `engine/check_study27b.py` (ZB1-ZB9): full record vs trace vs group class (H1-H4), decision protection
+and attribution (models B2-B7), the witness braid and its explanation map (H5, with the exact toy). H2, H4 held; H1, H3, H5 failed.
+
+### Study 27c (2026-11-12 UTC, pre-registered, run once)
+`engine/study27c/` (attribution_27c.py and ATTRIBUTION_27c.md, exploratory; OVERLAP_TABLE.md, the region/context overlap table; SPEC frozen
+01:50 UTC, SHA-256 21632b08...; RESULTS; DEVIATIONS: none), `engine/run_study27c.py`, `engine/check_study27c.py` (ZC1-ZC8). All six
+predictions held.
+
+`kahler/fig_tower.py`: the overview companion (fig:tower), Study 26 at seven levels with each signal keeping its colour.

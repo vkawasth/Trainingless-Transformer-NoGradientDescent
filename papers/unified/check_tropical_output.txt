@@ -1,0 +1,11 @@
+PASS T1 D_T is a monad (unit laws, associativity, normalisation)
+PASS T2 val(mixture) = min-plus mixture of vals (positive cone, no cancellation); normalisation commutes
+PASS T3 every tropical fibre point lifts to an exact positive decomposition of rho  [83 coordinates with ties]
+PASS T4 -log Gauss norm of each mixture coordinate at the skeleton point s(v) equals mu_T(v)
+PASS T5 the Bayes posterior tropicalises to the argmin (MAP) assignment; leading coefficients split ties
+PASS T6 3x3 independence: tropical and classical affine mixture dimensions agree (5, 8, 9)  [{1: (np.int64(5), np.int64(5)), 2: (np.int64(8), np.int64(8)), 3: (np.int64(9), np.int64(9))}]
+PASS T7 2x2x2 independence: dimensions (tropical, classical)  [{1: (np.int64(4), np.int64(4)), 2: (np.int64(8), np.int64(8))}]
+PASS T8 mu_T is affine on assignment cells and the assignment changes across every tie wall  [511 wall crossings]
+
+8/8 checks pass; tropical dim of 2-mixtures of 2x2x2 = 8
+results SHA-256: 6749d821a447b56749d223c2922b633eb6360836d54d27e41acd07c422da65c2

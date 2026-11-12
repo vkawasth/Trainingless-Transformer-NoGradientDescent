@@ -1,0 +1,20 @@
+Beck table by row:
+  R>=0 | R | C | T
+  comonad                      yes  yes  yes  yes
+  avg natural                  yes  yes  yes  yes
+  avg unit                     yes  yes  yes  yes
+  avg counit                   yes  yes  yes  yes
+  avg multiplication           yes  yes  yes  yes
+  avg comultiplication fails   yes  yes  yes  yes
+  shift natural                yes  yes  yes  yes
+  shift counit                 yes  yes  yes  yes
+  shift unit fails             yes  yes  yes  yes
+  shift multiplication fails   yes  yes  yes  yes
+PASS TG1 comonad laws of C_3 hold in every row
+PASS TG2 averaging law: natural, unit, counit, multiplication hold; comultiplication fails -- in every row
+PASS TG3 shift law: natural, counit hold; unit and multiplication fail -- in every row   [the Beck table is row-independent]
+PASS TG4 change of base R>=0 -> R -> C preserves coherence and commutes with both laws   [tropical row: the valuation monad morphism of the main paper (check_tropical.py T1, T2)]
+PASS TG5 over R: Jensen fails for a coherent signed level-two law (no convex order, no martingale); the signed fibre is unbounded   [sum w phi(r) - phi(rho) = -0.250 < 0; Jensen gap along the fibre from 0.125 to +125 and -125]
+PASS TG6 row splits: level one (PR box) has an R-section and no R>=0-section; level two has a C-fibre and no R-fibre   [PR box: linear gap 0.0e+00, negativity 0.50, lam* 0.00; complex-only table found]
+
+6/6 checks passed
