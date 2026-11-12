@@ -1,0 +1,2 @@
+21632b080071aede0a4559eb5e0d19c015bafcbb16aa06bdf44492cf46af463e  SPEC_study27c.md
+frozen 2026-11-12T01:50:03Z before any 27c test run (calibration and test seeds unused)

@@ -1,0 +1,305 @@
+{
+ "note": "exploratory; seed 27101; 600 runs per scenario",
+ "shapley": {
+  "A/honest": {
+   "N1 source sampling": 0.05127777777777778,
+   "N2 anchor sampling": 0.12738888888888888,
+   "N3 baseline noise": 0.05544444444444445,
+   "N4 repeated looks": 0.045444444444444454,
+   "N5 y noise": 0.045444444444444454
+  },
+  "A/shock": {
+   "N1 source sampling": 0.06680555555555556,
+   "N2 anchor sampling": 0.1775,
+   "N3 baseline noise": 0.05236111111111111,
+   "N4 repeated looks": 0.04583333333333333,
+   "N5 y noise": 0.04583333333333333
+  },
+  "A/relay_fixed": {
+   "N1 source sampling": -0.0006944444444444606,
+   "N2 anchor sampling": 0.0,
+   "N3 baseline noise": 0.00041666666666667634,
+   "N4 repeated looks": 0.00013888888888889211,
+   "N5 y noise": 0.00013888888888889211
+  },
+  "A/cascade_timely": {
+   "N1 source sampling": 0.025999999999999995,
+   "N2 anchor sampling": 0.08822222222222223,
+   "N3 baseline noise": 0.026,
+   "N4 repeated looks": 0.017388888888888884,
+   "N5 y noise": 0.017388888888888884
+  },
+  "A/cascade_lagging": {
+   "N1 source sampling": -0.0005555555555555685,
+   "N2 anchor sampling": 0.00027777777777778423,
+   "N3 baseline noise": 0.00027777777777778423,
+   "N4 repeated looks": 0.0,
+   "N5 y noise": 0.0
+  },
+  "A/drift": {
+   "N1 source sampling": 0.0,
+   "N2 anchor sampling": 0.0,
+   "N3 baseline noise": 0.0,
+   "N4 repeated looks": 0.0,
+   "N5 y noise": 0.0
+  },
+  "B/honest": {
+   "N1 source sampling": 0.09147222222222223,
+   "N2 anchor sampling": 0.11563888888888889,
+   "N3 baseline noise": 0.06827777777777777,
+   "N4 repeated looks": 0.05313888888888889,
+   "N5 y noise": 0.05313888888888889
+  },
+  "B/shock": {
+   "N1 source sampling": 0.12211111111111111,
+   "N2 anchor sampling": 0.15461111111111112,
+   "N3 baseline noise": 0.06155555555555557,
+   "N4 repeated looks": 0.052527777777777784,
+   "N5 y noise": 0.052527777777777784
+  },
+  "B/relay_fixed": {
+   "N1 source sampling": -0.0006944444444444606,
+   "N2 anchor sampling": 0.0,
+   "N3 baseline noise": 0.00041666666666667634,
+   "N4 repeated looks": 0.00013888888888889211,
+   "N5 y noise": 0.00013888888888889211
+  },
+  "B/cascade_timely": {
+   "N1 source sampling": 0.06905555555555556,
+   "N2 anchor sampling": 0.07697222222222222,
+   "N3 baseline noise": 0.03308333333333334,
+   "N4 repeated looks": 0.023777777777777776,
+   "N5 y noise": 0.023777777777777776
+  },
+  "B/cascade_lagging": {
+   "N1 source sampling": -0.0005555555555555685,
+   "N2 anchor sampling": 0.00027777777777778423,
+   "N3 baseline noise": 0.00027777777777778423,
+   "N4 repeated looks": 0.0,
+   "N5 y noise": 0.0
+  },
+  "B/drift": {
+   "N1 source sampling": 0.0,
+   "N2 anchor sampling": 0.0,
+   "N3 baseline noise": 0.0,
+   "N4 repeated looks": 0.0,
+   "N5 y noise": 0.0
+  }
+ },
+ "rates": {
+  "A/honest": {
+   "all_on": 0.325,
+   "all_off": 0.0,
+   "only_N1": 0.0,
+   "only_N2": 0.03333333333333333,
+   "only_N3": 0.0,
+   "only_N4": 0.0,
+   "only_N5": 0.0,
+   "all_but_N1": 0.18333333333333332,
+   "all_but_N2": 0.02,
+   "all_but_N3": 0.16333333333333333,
+   "all_but_N4": 0.15333333333333332,
+   "all_but_N5": 0.15333333333333332
+  },
+  "A/shock": {
+   "all_on": 0.3883333333333333,
+   "all_off": 0.0,
+   "only_N1": 0.0033333333333333335,
+   "only_N2": 0.055,
+   "only_N3": 0.0,
+   "only_N4": 0.0,
+   "only_N5": 0.0,
+   "all_but_N1": 0.22833333333333333,
+   "all_but_N2": 0.023333333333333334,
+   "all_but_N3": 0.265,
+   "all_but_N4": 0.22833333333333333,
+   "all_but_N5": 0.22833333333333333
+  },
+  "A/relay_fixed": {
+   "all_on": 1.0,
+   "all_off": 1.0,
+   "only_N1": 0.9983333333333333,
+   "only_N2": 1.0,
+   "only_N3": 1.0,
+   "only_N4": 1.0,
+   "only_N5": 1.0,
+   "all_but_N1": 1.0,
+   "all_but_N2": 1.0,
+   "all_but_N3": 1.0,
+   "all_but_N4": 1.0,
+   "all_but_N5": 1.0
+  },
+  "A/cascade_timely": {
+   "all_on": 0.175,
+   "all_off": 0.0,
+   "only_N1": 0.0,
+   "only_N2": 0.03166666666666667,
+   "only_N3": 0.0,
+   "only_N4": 0.0,
+   "only_N5": 0.0,
+   "all_but_N1": 0.12333333333333334,
+   "all_but_N2": 0.011666666666666667,
+   "all_but_N3": 0.11333333333333333,
+   "all_but_N4": 0.10666666666666667,
+   "all_but_N5": 0.10666666666666667
+  },
+  "A/cascade_lagging": {
+   "all_on": 1.0,
+   "all_off": 1.0,
+   "only_N1": 0.9983333333333333,
+   "only_N2": 1.0,
+   "only_N3": 1.0,
+   "only_N4": 1.0,
+   "only_N5": 1.0,
+   "all_but_N1": 1.0,
+   "all_but_N2": 1.0,
+   "all_but_N3": 1.0,
+   "all_but_N4": 1.0,
+   "all_but_N5": 1.0
+  },
+  "A/drift": {
+   "all_on": 1.0,
+   "all_off": 1.0,
+   "only_N1": 1.0,
+   "only_N2": 1.0,
+   "only_N3": 1.0,
+   "only_N4": 1.0,
+   "only_N5": 1.0,
+   "all_but_N1": 1.0,
+   "all_but_N2": 1.0,
+   "all_but_N3": 1.0,
+   "all_but_N4": 1.0,
+   "all_but_N5": 1.0
+  },
+  "B/honest": {
+   "all_on": 0.38166666666666665,
+   "all_off": 0.0,
+   "only_N1": 0.021666666666666667,
+   "only_N2": 0.03333333333333333,
+   "only_N3": 0.0,
+   "only_N4": 0.0,
+   "only_N5": 0.0,
+   "all_but_N1": 0.18333333333333332,
+   "all_but_N2": 0.12166666666666667,
+   "all_but_N3": 0.19833333333333333,
+   "all_but_N4": 0.18666666666666668,
+   "all_but_N5": 0.18666666666666668
+  },
+  "B/shock": {
+   "all_on": 0.44333333333333336,
+   "all_off": 0.0,
+   "only_N1": 0.051666666666666666,
+   "only_N2": 0.055,
+   "only_N3": 0.0,
+   "only_N4": 0.0,
+   "only_N5": 0.0,
+   "all_but_N1": 0.22833333333333333,
+   "all_but_N2": 0.145,
+   "all_but_N3": 0.31666666666666665,
+   "all_but_N4": 0.27,
+   "all_but_N5": 0.27
+  },
+  "B/relay_fixed": {
+   "all_on": 1.0,
+   "all_off": 1.0,
+   "only_N1": 0.9983333333333333,
+   "only_N2": 1.0,
+   "only_N3": 1.0,
+   "only_N4": 1.0,
+   "only_N5": 1.0,
+   "all_but_N1": 1.0,
+   "all_but_N2": 1.0,
+   "all_but_N3": 1.0,
+   "all_but_N4": 1.0,
+   "all_but_N5": 1.0
+  },
+  "B/cascade_timely": {
+   "all_on": 0.22666666666666666,
+   "all_off": 0.0,
+   "only_N1": 0.041666666666666664,
+   "only_N2": 0.03166666666666667,
+   "only_N3": 0.0,
+   "only_N4": 0.0,
+   "only_N5": 0.0,
+   "all_but_N1": 0.12333333333333334,
+   "all_but_N2": 0.09333333333333334,
+   "all_but_N3": 0.145,
+   "all_but_N4": 0.13666666666666666,
+   "all_but_N5": 0.13666666666666666
+  },
+  "B/cascade_lagging": {
+   "all_on": 1.0,
+   "all_off": 1.0,
+   "only_N1": 0.9983333333333333,
+   "only_N2": 1.0,
+   "only_N3": 1.0,
+   "only_N4": 1.0,
+   "only_N5": 1.0,
+   "all_but_N1": 1.0,
+   "all_but_N2": 1.0,
+   "all_but_N3": 1.0,
+   "all_but_N4": 1.0,
+   "all_but_N5": 1.0
+  },
+  "B/drift": {
+   "all_on": 1.0,
+   "all_off": 1.0,
+   "only_N1": 1.0,
+   "only_N2": 1.0,
+   "only_N3": 1.0,
+   "only_N4": 1.0,
+   "only_N5": 1.0,
+   "all_but_N1": 1.0,
+   "all_but_N2": 1.0,
+   "all_but_N3": 1.0,
+   "all_but_N4": 1.0,
+   "all_but_N5": 1.0
+  }
+ },
+ "degeneration": {
+  "S3": {
+   "n": 6000,
+   "empirical_sd": 0.013649030924790619,
+   "delta_se_at_P": 0.013558914031242604,
+   "ratio": 1.0066463208882634,
+   "bias": -9.059578985031621e-05,
+   "bias_over_se": -0.006681640553333723,
+   "min_cell_prob": 0.021821359872869654,
+   "min_expected_cell_count": 130.92815923721793,
+   "max_cond": 21.074237087157734
+  },
+  "MRY": {
+   "n": 3000,
+   "empirical_sd": 0.019274778368823506,
+   "delta_se_at_P": 0.019175200114034147,
+   "ratio": 1.0051930751281433,
+   "bias": -0.00016533357712569894,
+   "bias_over_se": -0.008622260844344089,
+   "min_cell_prob": 0.02994102562298999,
+   "min_expected_cell_count": 89.82307686896996,
+   "max_cond": 15.835788046236742
+  },
+  "MHY": {
+   "n": 3000,
+   "empirical_sd": 0.01943840571652126,
+   "delta_se_at_P": 0.019175200114034147,
+   "ratio": 1.0137263549231217,
+   "bias": -0.0004442700294922672,
+   "bias_over_se": -0.02316899051119212,
+   "min_cell_prob": 0.042750016894047824,
+   "min_expected_cell_count": 128.25005068214347,
+   "max_cond": 7.477910902087255
+  },
+  "I120k": {
+   "n": 120000,
+   "empirical_sd": 0.0030667122900575306,
+   "delta_se_at_P": 0.003031865347493417,
+   "ratio": 1.0114935653698878,
+   "bias": 2.675100534714126e-06,
+   "bias_over_se": 0.0008823282791650872,
+   "min_cell_prob": 0.09748235053384922,
+   "min_expected_cell_count": 11697.882064061907,
+   "max_cond": 5.584325973611422
+  }
+ }
+}
