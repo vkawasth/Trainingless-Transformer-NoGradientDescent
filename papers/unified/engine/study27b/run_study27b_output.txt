@@ -1,0 +1,24 @@
+[      0s] constants {'gstar': np.float64(0.16787828023783047), 'tau': np.float64(0.20787828023783048), 'gQ': np.float64(0.31787828023783044), 'g_shock': np.float64(0.16787828023783047), 'se_g_src3': 0.013558914031242604, 'se_g_anchor': 0.019175200114034147, 'se_g_insp120k': 0.003031865347493417}
+[      0s] representation arm
+[      9s] fitted R0 E2 C = 0.1
+[     12s] fitted R0 E3 C = 1
+[     26s] fitted R1 E2 C = 0.1
+[     32s] fitted R1 E3 C = 10
+[     41s] fitted R2 E2 C = 0.1
+[     45s] fitted R2 E3 C = 10
+[     48s] H1 {'diff': 0.05433333333333333, 'ci': (0.047414583333333336, 0.06133541666666665), 'verdict': False} H2 {'E3_diff': 0.028333333333333332, 'E3_ci': (0.023916666666666666, 0.032916666666666664), 'E2_diff': 0.005916666666666666, 'E2_ci': (-0.0011666666666666668, 0.012916666666666667), 'verdict': True}
+[    115s] H3 False H4 {'op_pairs': 2000, 'attempts': 4260, 'op_success_rate': 0.4694835680751174, 'safe_attempts': 4770, 'E3_change_rate': 0.0345, 'err_R1': 0.028, 'err_R2': 0.071, 'ci': (0.0315, 0.05451249999999993), 'identity': True, 'verdict': True}
+[    115s] decision arm
+[    115s] scenario relay_fixed
+[    216s] scenario relay_adaptive
+[    335s] scenario honest
+[    440s] scenario shock
+[    542s] scenario cascade_timely
+[    641s] scenario cascade_lagging
+[    747s] scenario drift
+[    861s] decision runs done
+[    861s] decision endpoints done {'B2': 0.38073999999999997, 'B3': 0.38878, 'B4': 0.33942, 'B4C': 0.34486, 'B4T': 0.3249, 'B7_3000': 0.27064, 'B7_120k': 0.0348}
+[    868s] H5 {'A': {'balanced_accuracy': np.float64(0.9005000000000001), 'TPR_relay': 1.0, 'TNR_cascade_timely': 0.801}, 'B': {'balanced_accuracy': np.float64(0.8745), 'TPR_relay': 1.0, 'TNR_cascade_timely': 0.749}, 'verdict': False}
+[    868s] toy {'WB3': True, 'WB4': True, 'WB5': True, 'WB7b_anchor_first_C2_Phi': {'s=0.0025,anchor_first=True': 0, 's=0.005,anchor_first=True': 0, 's=0.01,anchor_first=True': 0}}
+[    868s] written
+exit 0

@@ -1,0 +1,2 @@
+b90c6804b0391b058ab6b516aaa3b91a06751c51c2290ce38e8789052b61e543  SPEC_study27b.md
+frozen 2026-11-11T19:54:44Z before any 27b code was run
