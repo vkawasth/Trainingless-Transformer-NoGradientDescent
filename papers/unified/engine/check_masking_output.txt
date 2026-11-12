@@ -1,0 +1,5 @@
+PASS HD1 IDENTITY shortest hidden newcomer words in F_2: lengths 1, 4, 8, 14, 14 for depths >= 1..5   [shortest by depth {1: 1, 2: 4, 3: 8, 4: 14, 5: 14}; words (x, y, X = x^-1, Y = y^-1): {1: 'Y', 2: 'YXyx', 3: 'YYXyxxyX', 4: 'YYYXyxxyyyxYXX', 5: 'YYXyxyXYYxyXyx'}]
+PASS HD2 IDENTITY defect = product of conjugated newcomer events; depth invariant under reconjugation by old histories   [50 random histories]
+PASS HD3 IDENTITY lone newcomer between old histories: defect depth = depth of its own event word
+PASS HD4 IDENTITY riding: two newcomer events reach depth 1 + depth(longitude of j in the old history)   [(old history, source, longitude depth, defect depth): [('A12', 1, 1, 2), ('A12', 2, 1, 2), ('A12', 3, None, None), ('[A12,A23]', 1, 2, 3), ('[A12,A23]', 2, 2, 3), ('[A12,A23]', 3, 2, 3), ('[A13,[A12,A23]]', 1, 3, 4), ('[A13,[A12,A23]]', 2, 3, 4), ('[A13,[A12,A23]]', 3, 3, 4), ('[A12,[A12,A23]]', 1, 3, 4), ('[A12,[A12,A23]]', 2, 3, 4), ('[A12,[A12,A23]]', 3, 3, 4)]]
+4/4 passed

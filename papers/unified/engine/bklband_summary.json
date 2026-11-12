@@ -1,0 +1,42 @@
+{
+ "path4": {
+  "1": [
+   true,
+   true
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "cycle4": {
+  "1": [
+   true,
+   true
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "cycle5": {
+  "1": [
+   true,
+   true
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "fan5": {
+  "1": [
+   true,
+   false
+  ],
+  "2": [
+   true,
+   true
+  ]
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "bounds": {
+  "tilt": 3.444918324268481,
+  "corev": 3.813037553777217,
+  "order": 3.7437241268591315
+ },
+ "bounds_primed": {
+  "tilt": 3.0928583128043883,
+  "corev": 3.0155291520251337,
+  "order": 3.0549010873586653
+ },
+ "results": {
+  "honest": {
+   "tilt": {
+    "rate": 0.05,
+    "median": 170.0,
+    "rate_primed": 0.05,
+    "median_primed": 129.5
+   },
+   "corev": {
+    "rate": 0.035,
+    "median": 210.0,
+    "rate_primed": 0.025,
+    "median_primed": 74.0
+   },
+   "order": {
+    "rate": 0.045,
+    "median": 141.0,
+    "rate_primed": 0.025,
+    "median_primed": 122.0
+   }
+  },
+  "tilt": {
+   "tilt": {
+    "rate": 0.97,
+    "median": 301.0,
+    "rate_primed": 0.995,
+    "median_primed": 256.0
+   },
+   "corev": {
+    "rate": 0.02,
+    "median": 88.0,
+    "rate_primed": 0.015,
+    "median_primed": 91.0
+   },
+   "order": {
+    "rate": 0.045,
+    "median": 141.0,
+    "rate_primed": 0.025,
+    "median_primed": 122.0
+   }
+  },
+  "ordered": {
+   "tilt": {
+    "rate": 1.0,
+    "median": 294.5,
+    "rate_primed": 1.0,
+    "median_primed": 229.0
+   },
+   "corev": {
+    "rate": 0.015,
+    "median": 203.0,
+    "rate_primed": 0.065,
+    "median_primed": 411.0
+   },
+   "order": {
+    "rate": 1.0,
+    "median": 25.0,
+    "rate_primed": 1.0,
+    "median_primed": 17.0
+   }
+  },
+  "braidable": {
+   "tilt": {
+    "rate": 1.0,
+    "median": 294.5,
+    "rate_primed": 1.0,
+    "median_primed": 229.0
+   },
+   "corev": {
+    "rate": 0.015,
+    "median": 203.0,
+    "rate_primed": 0.065,
+    "median_primed": 411.0
+   },
+   "order": {
+    "rate": 0.045,
+    "median": 141.0,
+    "rate_primed": 0.025,
+    "median_primed": 122.0
+   }
+  },
+  "follower": {
+   "tilt": {
+    "rate": 0.055,
+    "median": 160.0,
+    "rate_primed": 0.065,
+    "median_primed": 106.0
+   },
+   "corev": {
+    "rate": 1.0,
+    "median": 277.0,
+    "rate_primed": 1.0,
+    "median_primed": 166.0
+   },
+   "order": {
+    "rate": 1.0,
+    "median": 25.0,
+    "rate_primed": 1.0,
+    "median_primed": 17.0
+   }
+  },
+  "shocks": {
+   "tilt": {
+    "rate": 0.05,
+    "median": 170.0,
+    "rate_primed": 0.05,
+    "median_primed": 129.5
+   },
+   "corev": {
+    "rate": 0.035,
+    "median": 210.0,
+    "rate_primed": 0.025,
+    "median_primed": 74.0
+   },
+   "order": {
+    "rate": 0.045,
+    "median": 141.0,
+    "rate_primed": 0.025,
+    "median_primed": 122.0
+   }
+  }
+ }
+}

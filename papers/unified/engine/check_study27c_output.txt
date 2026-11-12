@@ -1,0 +1,9 @@
+PASS ZC1 IDENTITY specification unchanged since the freeze   [21632b080071]
+PASS ZC2 IDENTITY calibration and value-of-information steps follow the frozen rules   [A: z = 2.0, kept ['braid', 'contextual']; B: z = 2.0, kept ['braid', 'contextual']]
+PASS ZC3 RECORD P1 verdict recomputed equals the recorded verdict   [HELD: honest false-relay A 0.026, B 0.042 (<= 0.065)]
+PASS ZC4 RECORD P2 verdict recomputed equals the recorded verdict   [HELD: shock A 0.038, B 0.053 (<= 0.10)]
+PASS ZC5 RECORD P3 verdict recomputed equals the recorded verdict   [HELD: balanced accuracy B 0.974 (>= 0.90)]
+PASS ZC6 RECORD P4 verdict recomputed equals the recorded verdict   [HELD: B 0.974 vs A 0.978]
+PASS ZC7 RECORD P5 verdict recomputed equals the recorded verdict   [HELD: lagging cascade relay-like A 0.998, B 1.000]
+PASS ZC8 RECORD P6 verdict recomputed equals the recorded verdict   [HELD: guard activations A 0, B 0]
+8/8 passed

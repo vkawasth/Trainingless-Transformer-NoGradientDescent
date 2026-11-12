@@ -1,0 +1,7 @@
+PASS KT1 IDENTITY the merge kernel maps the fine fibre onto the coarse fibre of the pushed data, and into no other   [200 laws mapped, 50 coarse laws lifted, 50 perturbed targets unreachable]
+PASS KT2 IDENTITY refit and merge commute for coarse-measurable data; a fine margin makes a defect   [defects with a fine X margin: median 0.0273, max 0.1660]
+PASS KT3 IDENTITY representation holonomy is a vertex maximum; within-class relabelling commutes with merging   [merge then uniform split vs nothing: H = 0.4200 (sampled max 0.4180); relabel then merge vs merge: 0.0e+00]
+PASS KT4 IDENTITY two declared kernel paths differ by at most H on the fibre
+PASS KT5 IDENTITY a split leaves a trace iff its within-class odds depend on the outcome; outcome-dependent splits launder either way   [trace: outcome-free splits max 1.0e-16, outcome-dependent min 0.0270; honest P(Y|a) - P(Y|b) = +0.000; laundered +0.586 and -0.586; recomputer's range over the fibre [-0.875, 0.875]]
+PASS KT6 IDENTITY with the fine table of {X, Y} kept, no split kernel launders
+6/6 passed

@@ -1,0 +1,9 @@
+PASS SD1 IDENTITY forget is well defined on braids and a homomorphism   [180 pairs, 180 rewritten words]
+PASS SD2 IDENTITY far, behind-at-k and echo sections are splittings: braid relations kept, forget o s = id
+PASS SD3 IDENTITY with forget(bp) = b the defect is in the kernel; without it, it is not; defect of s(b) is trivial   [298 incompatible pairs, none in the kernel]
+PASS SD4 IDENTITY the defect is a word in the newcomer's loops A_{i,n+1}: homomorphism, combing, injective   [315 pairs compared, 302 distinct]
+PASS SD5 IDENTITY first layer = linking numbers with the newcomer; an exact echo of i has zero defect relative to e_i and lk(i, j) relative to s_far
+PASS SD6 IDENTITY second layer: shuffle identity, commutator newcomer, Milnor's coefficient, brokerage triple invariant   [zero-linking samples 400, M_12 = - Milnor coefficient on [(-1, 1), (0, 0), (1, -1)]; brokerage: (M_12 - M_21)/2 = - mu_123 on 76 histories, values [(-2, 2), (-1, 1), (0, 0), (1, -1), (2, -2)]]
+PASS SD7 IDENTITY all boundary sections are s_far after relabelling; an echo section is c_i . s_far with c_i a crossed homomorphism whose first layer is lk(i, .)
+PASS SD8 IDENTITY nested regions: forgetting in either order agrees; defects compose by the chain rule
+8/8 passed

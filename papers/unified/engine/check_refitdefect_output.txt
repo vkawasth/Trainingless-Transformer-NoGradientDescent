@@ -1,0 +1,6 @@
+PASS RD1 IDENTITY D(g_*R || R') = Delta_fine - W; Pinsker bound   [largest identity error 3.4e-16]
+PASS RD2 IDENTITY coarse-measurable data: defect, Delta_fine and W vanish; on the fibre the defect vanishes
+PASS RD3 IDENTITY the defect is not convex in the starting law (no vertex principle)   [33 of 150 midpoints above the endpoint average]
+PASS RD4 IDENTITY a coarse-determined functional never moves; an undetermined one does   [defects up to 0.436; largest change of P(Y=1) 2.2e-16; of P(Y=1 | A) 0.682]
+PASS RD5 FINDING a small defect can flip a decision and a large one leave it unchanged   [tau = 0.552; smallest defect that flips 0.012; largest defect that does not 0.230; flips 85 of 400]
+5/5 passed

@@ -1,0 +1,13 @@
+PASS HT1 IDENTITY a refit onto data D_t multiplies the law by exp(h_t) with h_t in H_{D_t}   [largest residual 1.8e-14]
+PASS HT2 IDENTITY the end law depends on the history only through tau modulo H_D   [largest TV between representatives 3.3e-16]
+PASS HT3 FINDING path independence for histories on the data's own contexts; a foreign intermediate table can make order matter   [own-context histories at the honest law: True; order matters in 18 of 20 histories with one foreign refit (max TV 0.0410)]
+PASS HT4 IDENTITY the trace class is a coordinate on the fibre: dimensions agree, every positive law is reached, distinct classes differ   [dim F/H_D = 2 = dim J = 2; reach error 1.1e-15; smallest TV between distinct classes 4.81e-03]
+PASS HT5 IDENTITY merge-and-reconstruction is a multiplicative update; its trace is the class of log theta (Prop. 142 recovered)   [outcome-free: residual max 4.2e-15, trace max 1.0e-16; outcome-dependent: residual min 0.196, trace min 0.0237]
+PASS HT6 IDENTITY the audit recovers the injected class; attribution to a context is a span test   [recovery error 1.4e-15; aY edits: residual from H_D+F_aY max 1.9e-15, from H_D+F_eY min 0.004; XY edits: min residual 0.015]
+PASS HT7 FINDING an outcome-dependent split and a retracted edit on aY leave the same trace, and one cancels the other   [split alone TV 0.0937 from honest; residual from H_D+F_aY 1.8e-15; likelihood exp(2.773 1{a,1}) reproduces it (TV 9.0e-17); split then exp(-2.773 1{a,1}) returns to honest (TV 8.3e-17)]
+PASS HT8 IDENTITY decisions: determined functionals never move; open ones are reversed through the full table; slices lie in the fibre range   [determined: max change 2.2e-16; open: honest +0.173, fibre range [-0.243, +0.525], reversed to -0.235; aY slice range [+0.011, +0.336] (does not cross zero)]
+PASS HC1 IDENTITY path discrepancy satisfies the triangle inequality
+PASS HC2 IDENTITY contraction by the Dobrushin coefficient   [largest ratio 0.896]
+PASS HC3 IDENTITY concatenation bound through the transported fibre   [smallest slack 0.0333]
+PASS HC4 IDENTITY lossless re-encodings leave path discrepancy unchanged; a merge can only lower it   [largest drop under the merge 0.3186]
+12/12 passed

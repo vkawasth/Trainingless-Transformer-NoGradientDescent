@@ -1,0 +1,5 @@
+PASS XS1 IDENTITY the pre-registration and the world generator match their frozen hashes   [PREREG_study26.md, world26.py]
+PASS XS2 IDENTITY a fresh run reproduces the results and the check lines
+PASS XS3 IDENTITY every theorem identity in the run holds   [8 identity checks]
+PASS XS4 IDENTITY every failed pre-registered check is recorded in the deviations   [failed: ['XE2', 'XE3', 'XE4', 'XE9', 'XE10', 'XE18']]
+4/4 passed

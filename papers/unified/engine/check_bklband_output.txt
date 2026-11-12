@@ -1,0 +1,6 @@
+PASS KL1 IDENTITY clockwise chord exchange = a_ts; co-revision twist = a_ts^2   [31 chords]
+PASS KL2 IDENTITY BKL relations hold; crossing chords commute neither as half-twists nor as twists   [non-crossing pairs 42, triples 34, crossing pairs 21]
+PASS KL3 IDENTITY delta rotates the chords; delta^n is the full twist and is central
+PASS KL4 IDENTITY pure triangle relation tau_ts tau_sr tau_tr = full twist (exactly the three cyclic orders), for every triple   [34 triples]
+PASS KL5 FINDING outerplanar convex drawings: homomorphism; N=1 faithful on balls when triangle-free, fails on the triangulated pentagon; N=2 faithful   [(homomorphism, injective) by graph and power, ball radius {'path4': 5, 'cycle4': 4, 'cycle5': 4, 'fan5': 3}: {'path4': {1: (True, True), 2: (True, True)}, 'cycle4': {1: (True, True), 2: (True, True)}, 'cycle5': {1: (True, True), 2: (True, True)}, 'fan5': {1: (True, False), 2: (True, True)}}]
+5/5 passed

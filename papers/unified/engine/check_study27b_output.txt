@@ -1,0 +1,10 @@
+PASS ZB1 IDENTITY specification unchanged since the freeze   [b90c6804b039]
+PASS ZB2 IDENTITY transformations preserve exactly what Theorem 138 says   [R1_comm, R2_comm, R2_pad_safe, R2_mixed, R2_pad_op, act_comm, act_pad_safe, act_pad_op_changes]
+PASS ZB3 IDENTITY exact witness toy: timely anchor separates; lagging anchor and no anchor do not   [WB3 True, WB4 True, WB5 True]
+PASS ZB4 FINDING anchor on the far side: relay Phi   [{'s=0.0025,anchor_first=True': 0, 's=0.005,anchor_first=True': 0, 's=0.01,anchor_first=True': 0}]
+PASS ZB5 RECORD H1 verdict recomputed and recorded   [FAILED: err R1 - R0 = +0.0543, CI +0.0474..+0.0613]
+PASS ZB6 RECORD H2 verdict recomputed and recorded   [HELD: E3: +0.0283 CI +0.0239..+0.0329; E2 CI -0.0012..+0.0129]
+PASS ZB7 RECORD H3 verdict recomputed and recorded   [FAILED: comm CI -0.0050..+0.0225; pad_safe CI -0.0025..+0.0185]
+PASS ZB8 RECORD H4 verdict recomputed and recorded   [HELD: E3 err R1 0.0280, R2 0.0710, CI +0.0315..+0.0545]
+PASS ZB9 RECORD H5 verdict recomputed and recorded   [FAILED: balanced accuracy A 0.901, B 0.875]
+9/9 passed

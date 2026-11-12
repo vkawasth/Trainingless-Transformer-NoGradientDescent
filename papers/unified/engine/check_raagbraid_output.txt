@@ -1,0 +1,6 @@
+PASS RG1 IDENTITY twists commute iff the edges are disjoint and their segments do not cross   [pairs tested per drawing {'path4': 3, 'star3': 3, 'triangle': 3, 'square': 6, 'k4_planar': 15, 'k4_crossed': 15}]
+PASS RG2 IDENTITY crossing independent edges: the diagonals of the crossed K4 are independent but their twists do not commute
+PASS RG3 IDENTITY the triangle relation (single twists): a12 commutes with a02 a01; the product is central; same on an empty triangle of K4   [a12 (a02 a01) = (a02 a01) a12 in the braid group but not in the free group A_triangle]
+PASS RG4 FINDING single twists faithful on balls for triangle-free drawings; squared twists faithful on every planar drawing tested   [(homomorphism, injective) by drawing and power: {'path4': {1: (True, True), 2: (True, True)}, 'star3': {1: (True, True), 2: (True, True)}, 'square': {1: (True, True), 2: (True, True)}, 'triangle': {1: (True, False), 2: (True, True)}, 'k4_planar': {1: (True, False), 2: (True, True)}}]
+PASS RG5 IDENTITY the partially commutative signature separates exactly the elements of A_G (words of length <= 4)   [elements on the ball: {'star3': 937, 'triangle': 937, 'square': 1969}]
+5/5 passed

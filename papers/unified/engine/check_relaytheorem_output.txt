@@ -1,0 +1,5 @@
+PASS AH1 IDENTITY activation and activating events are functions of the trace, not of the multiset of events   [same events, different order: {0: 0, 1: 1, 2: 2} vs {0: 0, 1: 2}]
+PASS AH2 IDENTITY the bound is uniform over all schedules realising the trace, and attained by the fastest   [4000 schedules; every event's round >= its layer; fastest schedule attains T* in 400/400]
+PASS AH3 IDENTITY the braid class bounds the clock in neither direction   [600 padded histories, braid class kept in all; a member unreached along the reduced word in 247; reached earlier along it in 277]
+PASS AH4 IDENTITY without the protocol assumption the bound fails: a side channel flips before T*   [106 histories with a_3 > 1]
+4/4 passed

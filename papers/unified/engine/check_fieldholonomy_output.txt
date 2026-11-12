@@ -1,0 +1,7 @@
+PASS HL1 IDENTITY likelihood edges commute; L then 1/L closes
+PASS HL2 IDENTITY Jeffrey updates on the data's contexts leave the (R,S) interactions unchanged
+PASS HL3 IDENTITY excursions on the data's own contexts are erased by the refit (zero holonomy)   [largest TV 5.6e-17]
+PASS HL4 IDENTITY a retracted edit on a new context leaves a consistent but moved law; full tables reach the whole fibre, {R,S} tables a curve   [holonomy (TV) from retracted {R,S} tables: 0.001 to 0.293; 'alone' difference reachable by {R,S} tables [0.112, 0.303] vs fibre [-0.415, 0.578]]
+PASS HL5 IDENTITY laundering reverses an order the fibre leaves open, never one the fibre decides   [world A: fibre [-0.415, 0.578], honest updater +0.162, laundered -0.242 (TV 0.222), true +0.121; world B: fibre [0.071, 1.000], 200 retracted edits all keep the order]
+PASS HL6 IDENTITY field holonomy <= 2 TV / max(P(E), Q(E))   [largest ratio 0.394]
+6/6 passed

@@ -1,0 +1,5 @@
+PASS EX1 IDENTITY exact rational witnesses and certificates agree with the floating-point verdict   [200 locally compatible rational instances: 134 exact global laws, 66 exact Farkas certificates]
+PASS EX2 IDENTITY the twisted cycle: local tables extend (exact law); the twisted outer pair yields an exact Farkas certificate on the cycle   [certificate supported on ['WX', 'YZ', 'XY', 'WZ']]
+PASS EX3 IDENTITY the equality procedure for A_G gives one verdict whatever the order of cancellations   [300 words x 10 orders]
+PASS EX4 IDENTITY the clock is a computable function on traces and does not descend to A_G   [496 trace classes, activation constant on each; e e^-1 f and f are equal in A_G with activation {0: 0, 1: 1, 2: 3} vs {0: 0}]
+4/4 passed

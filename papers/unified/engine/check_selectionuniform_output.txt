@@ -1,0 +1,8 @@
+PASS SU1 IDENTITY the recursion's point is certified and is the unique leximin maximiser of the sorted values (ties included)   [150 configurations, 50 with duplicated normals, 800 competitors each]
+PASS SU2 IDENTITY uniform rate: L|u_L - u_lex| <= K(V,B) at every distance from the walls, for equal and bounded weights   [66 walls; max L|err| = 27.01; max ratio to the explicit constant = 0.054; K(V,0) from 77 to 848]
+PASS SU3 IDENTITY u_lex is piecewise linear on chambers, Lipschitz with constant max ||A_P||, continuous across walls   [max |A_P lam - u_lex| = 1.3e-14; slopes within max ||A_P|| on 30 lines; 66 bisected walls, increments within the bound 1e-4 either side; at the wall itself |u(a) - u(b)| <= 2.4e-07 with b - a = 5e-11, the certificate tolerance]
+PASS SU4 IDENTITY inside a chamber L(u_L - u_lex) -> c_P(b) at rate exp(-L gamma); c = ln2/2 on the column-binding fibre, c = 0 on Study 26's   [30 chambers: median E(20)/E(10) = 1.000 e^-10, max E e^(L gamma) = 70; colbind c_x = 0.3465735903; Study 26 c = 0, L|err| = 0.146, 1.5e-04 at L = 100, 1000]
+PASS SU5 IDENTITY law rate: TV(toric law at L, leximin law) <= (1/2) sum_k |v_k| K / L on 2 x 3 coupling fibres   [max TV / bound = 0.012]
+PASS SU6 IDENTITY the 1-D wall: exact formula, sup L|err| = (log 2)/2 at the wall, coefficient 0 on both sides   [sup = 0.346574; coefficient 0e+00 | -0.3466 (wall) | 0e+00]
+PASS SU7 IDENTITY the level-block soft-min agrees with a 60-digit Newton solution   [20 cases, max L|diff| = 6.1e-14; plain double Newton off by more than 1e-6/L in 0; column-binding fibre at L = 800: L(u_L - u_lex) plain 0.0e+00, block 0.346574 (ln2/2 = 0.346574)]
+7/7 passed

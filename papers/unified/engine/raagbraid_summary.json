@@ -1,0 +1,52 @@
+{
+ "path4": {
+  "1": [
+   true,
+   true
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "star3": {
+  "1": [
+   true,
+   true
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "square": {
+  "1": [
+   true,
+   true
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "triangle": {
+  "1": [
+   true,
+   false
+  ],
+  "2": [
+   true,
+   true
+  ]
+ },
+ "k4_planar": {
+  "1": [
+   true,
+   false
+  ],
+  "2": [
+   true,
+   true
+  ]
+ }
+}

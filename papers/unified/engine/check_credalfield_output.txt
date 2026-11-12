@@ -1,0 +1,7 @@
+PASS CQ1 IDENTITY star cover: the field is the product of the intervals   [7 times x 40 directions]
+PASS CQ2 IDENTITY decided iff disjoint; five certified crossings; light/arousal never decided; sampled laws agree   [{'receptor signal / light suppression': '------------------.........++++++++++++++++++++++', 'receptor signal / sleep pressure': '----------------........+++++++++++++++++++++++++', 'receptor signal / arousal': '--------------------.......++++++++++++++++++++++', 'light suppression / sleep pressure': '+++++++++++++.........................-----------', 'light suppression / arousal': '.................................................', 'sleep pressure / arousal': '---------------------............++++++++++++++++'}]
+PASS CQ3 IDENTITY a certified crossing fixes only the parity: laws with one and with three swaps   [receptor / sleep pressure: (np.True_, 1), (np.True_, 3)]
+PASS CQ4 IDENTITY relational data decide an order the intervals leave open: v_A - v_L >= (delta - eps)/p   [t = 40 min; (delta, eps, min v_A - v_L): [(0.02, 0.005, 0.03), (0.01, 0.005, 0.01), (0.03, 0.0, 0.06)]]
+PASS CQ5 IDENTITY star cover never contradicts; hiding a certified order costs g = L_i - U_j, flipping it U_i - L_j   [receptor over sleep pressure at 120 min: g = 0.0244 (each source 0.0122), flip 0.1544]
+PASS CQ6 IDENTITY an anchor on pathway i: contradiction iff i's shift exceeds w_i + eta; at the hiding shift it re-certifies   [eta = 0.01, w_i + eta = 0.045]
+6/6 passed
