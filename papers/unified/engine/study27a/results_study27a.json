@@ -1,0 +1,388 @@
+{
+ "protection_witnesses": [
+  {
+   "anchors": [],
+   "tau": 0.02,
+   "inspection": "MY",
+   "rho": 0.01737067572481379,
+   "lam": [
+    -1.0,
+    1.0,
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "anchors": [],
+   "tau": 0.02,
+   "inspection": "MRY",
+   "rho": 0.01737067572481381,
+   "lam": [
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "anchors": [],
+   "tau": 0.02,
+   "inspection": "MHY",
+   "rho": 0.017370675724813645,
+   "lam": [
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "anchors": [],
+   "tau": 0.02,
+   "inspection": "MCRY",
+   "rho": 0.017370675724813718,
+   "lam": [
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "anchors": [],
+   "tau": 0.02,
+   "inspection": "MCY",
+   "rho": 0.017370675724813902,
+   "lam": [
+    -1.0,
+    1.0,
+    -1.0,
+    1.0,
+    1.0,
+    -1.0,
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "anchors": [],
+   "tau": 0.04,
+   "inspection": "MY",
+   "rho": 0.03474135144962785,
+   "lam": [
+    -1.0,
+    1.0,
+    1.0,
+    -1.0
+   ]
+  }
+ ],
+ "infeasibility_witnesses": [
+  {
+   "outer": [
+    "WX-"
+   ],
+   "y": [
+    1000.0,
+    1000.0,
+    1000.0,
+    -2.0,
+    1000.0,
+    1000.0,
+    1000.0,
+    -0.0,
+    1000.0,
+    -1000.0,
+    -1000.0,
+    1000.0
+   ]
+  },
+  {
+   "outer": [
+    "XY+",
+    "ZW-"
+   ],
+   "y": [
+    1000.0,
+    1000.0,
+    1000.0,
+    -1000.0,
+    -1000.0,
+    1000.0,
+    1000.0,
+    1000.0,
+    -1000.0,
+    1000.0,
+    1000.0,
+    -1000.0,
+    1000.0,
+    998.0,
+    1000.0,
+    1000.0
+   ]
+  }
+ ],
+ "minimal_witnesses_cycle": [
+  [
+   "WX-"
+  ],
+  [
+   "XY+",
+   "ZW-"
+  ]
+ ],
+ "inclusion_minimal_s26": [
+  "M"
+ ],
+ "attribution": {
+  "1 one poisoned source": {
+   "consistent": false,
+   "conflicts": [
+    "MC/MR",
+    "MC/CR",
+    "MC/MH",
+    "MC/CH",
+    "MC/MCY",
+    "MC/MCRH"
+   ],
+   "explanations": [
+    "MC",
+    "MR/CR/MH/CH/MCY/MCRH"
+   ],
+   "named": [],
+   "planted": [
+    "MC"
+   ],
+   "planted_is_explanation": true,
+   "planted_minimal": true,
+   "every_conflict_meets_planted": true,
+   "n_explanations": 2
+  },
+  "2 coherent pair + anchor": {
+   "consistent": false,
+   "conflicts": [
+    "MCY/MY(anchor)",
+    "RHY/MY(anchor)"
+   ],
+   "explanations": [
+    "MY(anchor)",
+    "MCY/RHY"
+   ],
+   "named": [],
+   "planted": [
+    "MCY",
+    "RHY"
+   ],
+   "planted_is_explanation": true,
+   "planted_minimal": true,
+   "every_conflict_meets_planted": true,
+   "n_explanations": 2
+  },
+  "2' coherent pair, no anchor": {
+   "consistent": true,
+   "conflicts": [],
+   "explanations": [],
+   "named": [],
+   "planted": [
+    "MCY",
+    "RHY"
+   ],
+   "planted_is_explanation": true,
+   "planted_minimal": false,
+   "every_conflict_meets_planted": true,
+   "n_explanations": 0
+  },
+  "3 honest lag": {
+   "consistent": false,
+   "conflicts": [
+    "MC/CR",
+    "MC/CH",
+    "MC/MCY",
+    "MC/MCRH",
+    "MR/CR",
+    "MR/MCY",
+    "MR/RHY",
+    "MR/MCRH",
+    "MH/CH",
+    "MH/MCY",
+    "MH/RHY",
+    "MH/MCRH"
+   ],
+   "explanations": [
+    "MC/MR/MH",
+    "CR/CH/MCY/RHY/MCRH",
+    "MC/MR/CH/MCY/RHY/MCRH",
+    "MC/CR/MH/MCY/RHY/MCRH",
+    "MR/CR/MH/CH/MCY/MCRH"
+   ],
+   "named": [],
+   "planted": [
+    "MC",
+    "MH",
+    "MR"
+   ],
+   "planted_is_explanation": true,
+   "planted_minimal": true,
+   "every_conflict_meets_planted": true,
+   "n_explanations": 5
+  }
+ },
+ "ranking": [
+  {
+   "inspection": "MY",
+   "rho": 0.03474135144962785,
+   "eta": 0.09000628627274165,
+   "cells": 4,
+   "ratio": 0.09649701395398326,
+   "eligible": false,
+   "N_needed": 80544.05942468469
+  },
+  {
+   "inspection": "MCY",
+   "rho": 0.034741351449627894,
+   "eta": 0.13187551395989444,
+   "cells": 8,
+   "ratio": 0.032930062608318364,
+   "eligible": false,
+   "N_needed": 172908.4267325267
+  },
+  {
+   "inspection": "MRY",
+   "rho": 0.034741351449627825,
+   "eta": 0.13220637067007743,
+   "cells": 8,
+   "ratio": 0.03284765256918413,
+   "eligible": false,
+   "N_needed": 173777.11986179158
+  },
+  {
+   "inspection": "MHY",
+   "rho": 0.03474135144962787,
+   "eta": 0.1389110465693102,
+   "cells": 8,
+   "ratio": 0.031262228875632965,
+   "eligible": false,
+   "N_needed": 191849.81973568763
+  },
+  {
+   "inspection": "MCRY",
+   "rho": 0.03474135144962771,
+   "eta": 0.18737113991788973,
+   "cells": 16,
+   "ratio": 0.011588414664890545,
+   "eligible": false,
+   "N_needed": 349054.48823245603
+  },
+  {
+   "inspection": "CY",
+   "rho": 0.0,
+   "eta": 0.08628462460789704,
+   "cells": 4,
+   "ratio": 0.0,
+   "eligible": false,
+   "N_needed": Infinity
+  },
+  {
+   "inspection": "CRY",
+   "rho": 0.0,
+   "eta": 0.12833965403690356,
+   "cells": 8,
+   "ratio": 0.0,
+   "eligible": false,
+   "N_needed": Infinity
+  }
+ ],
+ "graph": {
+  "edges": [
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    5,
+    0
+   ],
+   [
+    0,
+    3
+   ]
+  ],
+  "valid_positions": [
+   [
+    1.0,
+    0.0
+   ],
+   [
+    0.5,
+    0.866
+   ],
+   [
+    -0.5,
+    0.866
+   ],
+   [
+    -1.0,
+    0.0
+   ],
+   [
+    -0.5,
+    -0.866
+   ],
+   [
+    0.5,
+    -0.866
+   ]
+  ],
+  "invalid_swap": [
+   1,
+   2
+  ],
+  "faithful": {
+   "1": [
+    true,
+    true
+   ],
+   "2": [
+    true,
+    true
+   ]
+  },
+  "L": 3
+ }
+}
