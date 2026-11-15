@@ -1,0 +1,2252 @@
+{
+ "2x2": {
+  "shape": "2x2",
+  "tree_bound": 4,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0030343149999225716,
+      "t_cert": 0.0013854320001200904,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.002950050999970699,
+      "t_cert": 0.0013709119999703034,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0029041269999652286,
+      "t_cert": 0.0014754219999986162,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0030193789999657383,
+      "t_cert": 0.0013043149999703019,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.01744395299988355
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0029535830000213537,
+      "t_cert": 0.0014669959998627746,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0030240709999134197,
+      "t_cert": 0.0013792610000109562,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.002938806999964072,
+      "t_cert": 0.0013977820001400687,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0029442510000308175,
+      "t_cert": 0.0014483680000694221,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.017553119000012884
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.003088265999963369,
+      "t_cert": 0.002002478000008523,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.0029427239999222365,
+      "t_cert": 0.0016142590000072232,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.002976874999944812,
+      "t_cert": 0.0029763320000029125,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 2,
+      "library": 2,
+      "regions_used": 2,
+      "t_lp": 0.003090986000074736,
+      "t_cert": 0.0016353710000203137,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.020327290999944125
+   }
+  },
+  "linear_solves": [
+   2,
+   2,
+   2
+  ],
+  "linear_cap": 2,
+  "lp_median": 0.0014609684999982164,
+  "check_per_table": 2.8793175002306267e-08,
+  "exact_failures": 0.0,
+  "mem_ledger": 160576,
+  "mem_bands": 320000,
+  "direct_estimate": 58.43873999992866,
+  "loglog_slope": [
+   -1.2023646354974355e-17,
+   -1.2023646354974355e-17,
+   -1.2023646354974355e-17,
+   -1.2023646354974355e-17
+  ]
+ },
+ "2x3": {
+  "shape": "2x3",
+  "tree_bound": 12,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 4,
+      "library": 4,
+      "regions_used": 4,
+      "t_lp": 0.007273905000033665,
+      "t_cert": 0.0049693930001240005,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 4,
+      "library": 4,
+      "regions_used": 4,
+      "t_lp": 0.006400150000104077,
+      "t_cert": 0.004382330000112233,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.004864145000055942,
+      "t_cert": 0.003219196999907581,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.004824120999955994,
+      "t_cert": 0.003253565000022718,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.03918680600031621
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.004834889999870029,
+      "t_cert": 0.003451286999961667,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.004737710999961564,
+      "t_cert": 0.003146210000068095,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.004912284999932126,
+      "t_cert": 0.003339729999993324,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.0047636040001179936,
+      "t_cert": 0.0031342190001169,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.0323199360000217
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.00492549200009762,
+      "t_cert": 0.003804491999972015,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.0047827839999854405,
+      "t_cert": 0.0035673239999596262,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.0050608280000687955,
+      "t_cert": 0.004353318000198669,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 3,
+      "library": 3,
+      "regions_used": 3,
+      "t_lp": 0.0048758589999806645,
+      "t_cert": 0.003549414999952205,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.034919512000215036
+   }
+  },
+  "linear_solves": [
+   3,
+   3,
+   3
+  ],
+  "linear_cap": 3,
+  "lp_median": 0.0016389379999850462,
+  "check_per_table": 4.431482500137918e-08,
+  "exact_failures": 0.0,
+  "mem_ledger": 161536,
+  "mem_bands": 320000,
+  "direct_estimate": 65.55751999940185,
+  "loglog_slope": [
+   -0.1229473020344078,
+   -0.1229473020344078,
+   -4.7632358926985305e-17,
+   -4.7632358926985305e-17
+  ]
+ },
+ "2x4": {
+  "shape": "2x4",
+  "tree_bound": 32,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.00800148899998021,
+      "t_cert": 0.007082307000018773,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008209970999814686,
+      "t_cert": 0.007134357000040836,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 4,
+      "library": 4,
+      "regions_used": 4,
+      "t_lp": 0.006405451999967227,
+      "t_cert": 0.006001631999993151,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008331257999998343,
+      "t_cert": 0.00742118399989522,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.05858764999970845
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010262115999921662,
+      "t_cert": 0.009233757999936643,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.009774768999932348,
+      "t_cert": 0.008659544000124697,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 4,
+      "library": 4,
+      "regions_used": 4,
+      "t_lp": 0.006769639000026473,
+      "t_cert": 0.005696142000033433,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.011279736000005869,
+      "t_cert": 0.010537357999851338,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.07221306199983246
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008658877000016219,
+      "t_cert": 0.00883552300001611,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010176492000027793,
+      "t_cert": 0.009865386000114995,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008107766000080119,
+      "t_cert": 0.007820546999937505,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.009756276000075559,
+      "t_cert": 0.009834887000010895,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.0730557540002792
+   }
+  },
+  "linear_solves": [
+   4,
+   4,
+   4
+  ],
+  "linear_cap": 4,
+  "lp_median": 0.0016740049999839357,
+  "check_per_table": 1.0410209999918152e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 164400,
+  "mem_bands": 320000,
+  "direct_estimate": 66.96019999935743,
+  "loglog_slope": [
+   -0.002413738825504754,
+   0.0779191533191104,
+   0.09831951391655284,
+   0.07587836622064634
+  ]
+ },
+ "2x5": {
+  "shape": "2x5",
+  "tree_bound": 80,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010189199000024018,
+      "t_cert": 0.010048626999946464,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013150764000101844,
+      "t_cert": 0.012780472000144982,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.013305739999964317,
+      "t_cert": 0.0126280129998122,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010661919999961356,
+      "t_cert": 0.010026902000049631,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.09279163700000481
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.01254179000000022,
+      "t_cert": 0.013702817000194045,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013921371000151339,
+      "t_cert": 0.014089410999986285,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010820563000038419,
+      "t_cert": 0.01121470100008537,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008698184999957448,
+      "t_cert": 0.008100116000150592,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.09308895400056372
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.011923799999976836,
+      "t_cert": 0.013563344999852234,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013917250999952557,
+      "t_cert": 0.015166529999987688,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008599742999990667,
+      "t_cert": 0.009504806999984794,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 5,
+      "library": 5,
+      "regions_used": 5,
+      "t_lp": 0.008474836999880608,
+      "t_cert": 0.008829998999999589,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.08998031199962497
+   }
+  },
+  "linear_solves": [
+   5,
+   5,
+   5
+  ],
+  "linear_cap": 5,
+  "lp_median": 0.0017217145000358869,
+  "check_per_table": 1.5517795000050684e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 167200,
+  "mem_bands": 320000,
+  "direct_estimate": 68.86858000143548,
+  "loglog_slope": [
+   0.06587970543318382,
+   -8.685265374011758e-17,
+   -0.0803328921446152,
+   -0.07791915331911053
+  ]
+ },
+ "2x6": {
+  "shape": "2x6",
+  "tree_bound": 192,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 15,
+      "library": 15,
+      "regions_used": 15,
+      "t_lp": 0.02550634200008517,
+      "t_cert": 0.03286621500012643,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 15,
+      "library": 15,
+      "regions_used": 15,
+      "t_lp": 0.026014498000222375,
+      "t_cert": 0.029602309999518184,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 10,
+      "library": 10,
+      "regions_used": 10,
+      "t_lp": 0.016868391000002703,
+      "t_cert": 0.022067161999757445,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 10,
+      "library": 10,
+      "regions_used": 10,
+      "t_lp": 0.018290387999968516,
+      "t_cert": 0.022503065999785576,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.1937183719994664
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.01370036100024663,
+      "t_cert": 0.01766966900004263,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 15,
+      "library": 15,
+      "regions_used": 15,
+      "t_lp": 0.026229518999912216,
+      "t_cert": 0.03061789499997758,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.011641722999911508,
+      "t_cert": 0.017898936000165122,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 13,
+      "library": 13,
+      "regions_used": 13,
+      "t_lp": 0.02201818700007152,
+      "t_cert": 0.02841302700005599,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.1681893170003832
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 12,
+      "library": 12,
+      "regions_used": 12,
+      "t_lp": 0.020464367999693422,
+      "t_cert": 0.0308480700000473,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 13,
+      "library": 13,
+      "regions_used": 13,
+      "t_lp": 0.021516021000138608,
+      "t_cert": 0.03038461400012693,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 10,
+      "library": 10,
+      "regions_used": 10,
+      "t_lp": 0.01734072599992942,
+      "t_cert": 0.023703860999830795,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.012319964999960575,
+      "t_cert": 0.01742071599994688,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.17399834099967393
+   }
+  },
+  "linear_solves": [
+   6,
+   6,
+   6
+  ],
+  "linear_cap": 6,
+  "lp_median": 0.0017024354999648494,
+  "check_per_table": 2.702972999969688e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 176464,
+  "mem_bands": 320000,
+  "direct_estimate": 68.09741999859398,
+  "loglog_slope": [
+   -0.08999741995258524,
+   -0.0630518126333313,
+   0.004721987763863597,
+   -0.16062833780420005
+  ]
+ },
+ "2x7": {
+  "shape": "2x7",
+  "tree_bound": 448,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 9,
+      "library": 9,
+      "regions_used": 9,
+      "t_lp": 0.015280382999890207,
+      "t_cert": 0.024003182000228662,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013410366999892176,
+      "t_cert": 0.0205716030000076,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 10,
+      "library": 10,
+      "regions_used": 10,
+      "t_lp": 0.016796496000210936,
+      "t_cert": 0.026373326000111774,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 14,
+      "library": 14,
+      "regions_used": 14,
+      "t_lp": 0.023594903000002887,
+      "t_cert": 0.06647588400016957,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.2065061440005138
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 22,
+      "library": 22,
+      "regions_used": 22,
+      "t_lp": 0.03759869299949514,
+      "t_cert": 0.05815549599969927,
+      "all_certified": true,
+      "second_half_share": 0.045454545454545456
+     },
+     "lo0": {
+      "solves": 11,
+      "library": 11,
+      "regions_used": 11,
+      "t_lp": 0.018499427000051583,
+      "t_cert": 0.027465484999879664,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 12,
+      "library": 12,
+      "regions_used": 12,
+      "t_lp": 0.021593503000076453,
+      "t_cert": 0.030485654999893086,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 11,
+      "library": 11,
+      "regions_used": 11,
+      "t_lp": 0.01913912899999559,
+      "t_cert": 0.02701507799997671,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.2399524659990675
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 16,
+      "library": 16,
+      "regions_used": 16,
+      "t_lp": 0.027600032000009378,
+      "t_cert": 0.04780886800006101,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 10,
+      "library": 10,
+      "regions_used": 10,
+      "t_lp": 0.01689271999975972,
+      "t_cert": 0.026269654000202536,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 12,
+      "library": 12,
+      "regions_used": 12,
+      "t_lp": 0.02057327900013206,
+      "t_cert": 0.031849443999817595,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013568091000252025,
+      "t_cert": 0.021388892999993914,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.20595098100022824
+   }
+  },
+  "linear_solves": [
+   7,
+   7,
+   7
+  ],
+  "linear_cap": 7,
+  "lp_median": 0.001699754999947345,
+  "check_per_table": 3.049185749972594e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 183552,
+  "mem_bands": 320000,
+  "direct_estimate": 67.9901999978938,
+  "loglog_slope": [
+   0.24167862353176708,
+   0.09410353337950515,
+   0.07791915331911016,
+   -0.24338017563666353
+  ]
+ },
+ "2x8": {
+  "shape": "2x8",
+  "tree_bound": 1024,
+  "per_T": {
+   "1000": {
+    "defined": 1000,
+    "ends": {
+     "hi0": {
+      "solves": 16,
+      "library": 16,
+      "regions_used": 16,
+      "t_lp": 0.02818015699983789,
+      "t_cert": 0.05210841699977209,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 16,
+      "library": 16,
+      "regions_used": 16,
+      "t_lp": 0.027538452000271718,
+      "t_cert": 0.049443429999996624,
+      "all_certified": true,
+      "second_half_share": 0.0625
+     },
+     "hi1": {
+      "solves": 15,
+      "library": 15,
+      "regions_used": 15,
+      "t_lp": 0.026559806000022945,
+      "t_cert": 0.053190428999869255,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 13,
+      "library": 13,
+      "regions_used": 13,
+      "t_lp": 0.022232054000028256,
+      "t_cert": 0.03825290500014944,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.2975056499999482
+   },
+   "3000": {
+    "defined": 3000,
+    "ends": {
+     "hi0": {
+      "solves": 11,
+      "library": 11,
+      "regions_used": 11,
+      "t_lp": 0.01898567000012008,
+      "t_cert": 0.041707394000013664,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 23,
+      "library": 23,
+      "regions_used": 23,
+      "t_lp": 0.04058947000021362,
+      "t_cert": 0.07125676200030284,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 10,
+      "library": 10,
+      "regions_used": 10,
+      "t_lp": 0.01828612500003146,
+      "t_cert": 0.03917373299998417,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 17,
+      "library": 17,
+      "regions_used": 17,
+      "t_lp": 0.03113924400020096,
+      "t_cert": 0.05477864299962221,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.315917041000489
+   },
+   "10000": {
+    "defined": 10000,
+    "ends": {
+     "hi0": {
+      "solves": 17,
+      "library": 17,
+      "regions_used": 17,
+      "t_lp": 0.0334269420001192,
+      "t_cert": 0.07304310600011377,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 18,
+      "library": 18,
+      "regions_used": 18,
+      "t_lp": 0.031080101999350518,
+      "t_cert": 0.05820871699984309,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 13,
+      "library": 13,
+      "regions_used": 13,
+      "t_lp": 0.023104320000015832,
+      "t_cert": 0.04523295500007407,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 9,
+      "library": 9,
+      "regions_used": 9,
+      "t_lp": 0.015819322999959695,
+      "t_cert": 0.030327614999919206,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.3102430799993954
+   }
+  },
+  "linear_solves": [
+   8,
+   8,
+   9
+  ],
+  "linear_cap": 8,
+  "lp_median": 0.0017500624999797765,
+  "check_per_table": 4.583707249992131e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 196936,
+  "mem_bands": 320000,
+  "direct_estimate": 70.00249999919106,
+  "loglog_slope": [
+   0.031672411281528874,
+   0.047092033277478525,
+   -0.05768389623859487,
+   -0.16557512359744506
+  ]
+ },
+ "3x3": {
+  "shape": "3x3",
+  "tree_bound": 81,
+  "per_T": {
+   "1000": {
+    "defined": 902,
+    "ends": {
+     "hi0": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010044316999938019,
+      "t_cert": 0.007677422999790906,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.011398808000080862,
+      "t_cert": 0.010125911000045562,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.009929165999892575,
+      "t_cert": 0.0075764399999798115,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.009801042000049165,
+      "t_cert": 0.008691867999914393,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.0752449749996913
+   },
+   "3000": {
+    "defined": 2682,
+    "ends": {
+     "hi0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013239418999887675,
+      "t_cert": 0.010816417000228284,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 9,
+      "library": 9,
+      "regions_used": 9,
+      "t_lp": 0.014834532000008949,
+      "t_cert": 0.01275042400015991,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010160969999787994,
+      "t_cert": 0.008184104000179104,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013188961999958337,
+      "t_cert": 0.011356890000115527,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.09453171800032578
+   },
+   "10000": {
+    "defined": 8954,
+    "ends": {
+     "hi0": {
+      "solves": 7,
+      "library": 7,
+      "regions_used": 7,
+      "t_lp": 0.01182915700042031,
+      "t_cert": 0.010518773999933728,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 8,
+      "library": 8,
+      "regions_used": 8,
+      "t_lp": 0.013767513000061626,
+      "t_cert": 0.012748278000003666,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010419708999847899,
+      "t_cert": 0.008756625000160057,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 6,
+      "library": 6,
+      "regions_used": 6,
+      "t_lp": 0.010481347999871105,
+      "t_cert": 0.01005164599996533,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.08857305000026372
+   }
+  },
+  "linear_solves": [
+   6,
+   6,
+   6
+  ],
+  "linear_cap": 6,
+  "lp_median": 0.0016757155000277635,
+  "check_per_table": 1.3239834151903456e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 148664,
+  "mem_bands": 286528,
+  "direct_estimate": 60.01742634899438,
+  "loglog_slope": [
+   0.06401947532668062,
+   0.05542524666689105,
+   1.6816210181864922e-16,
+   -0.004213398445964767
+  ]
+ },
+ "3x4": {
+  "shape": "3x4",
+  "tree_bound": 432,
+  "per_T": {
+   "1000": {
+    "defined": 760,
+    "ends": {
+     "hi0": {
+      "solves": 13,
+      "library": 13,
+      "regions_used": 13,
+      "t_lp": 0.02152034299990646,
+      "t_cert": 0.021717101000035655,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 14,
+      "library": 14,
+      "regions_used": 14,
+      "t_lp": 0.023134291000246776,
+      "t_cert": 0.023197482000114178,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 12,
+      "library": 12,
+      "regions_used": 12,
+      "t_lp": 0.019891290000032313,
+      "t_cert": 0.019527476999996907,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 15,
+      "library": 15,
+      "regions_used": 15,
+      "t_lp": 0.024643254000125125,
+      "t_cert": 0.02464095399955113,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.17827219200000854
+   },
+   "3000": {
+    "defined": 2268,
+    "ends": {
+     "hi0": {
+      "solves": 12,
+      "library": 12,
+      "regions_used": 12,
+      "t_lp": 0.019999123000047803,
+      "t_cert": 0.02067111000008026,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 16,
+      "library": 16,
+      "regions_used": 16,
+      "t_lp": 0.026518758999827696,
+      "t_cert": 0.026759674999993877,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 11,
+      "library": 11,
+      "regions_used": 11,
+      "t_lp": 0.01827780899998288,
+      "t_cert": 0.018740699000204586,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 16,
+      "library": 16,
+      "regions_used": 16,
+      "t_lp": 0.026841772000125275,
+      "t_cert": 0.026494131999811543,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.18430307900007392
+   },
+   "10000": {
+    "defined": 7496,
+    "ends": {
+     "hi0": {
+      "solves": 11,
+      "library": 11,
+      "regions_used": 11,
+      "t_lp": 0.018581706999952985,
+      "t_cert": 0.02012434200014468,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 14,
+      "library": 14,
+      "regions_used": 14,
+      "t_lp": 0.023868206999736685,
+      "t_cert": 0.02577884300023925,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 11,
+      "library": 11,
+      "regions_used": 11,
+      "t_lp": 0.018549047000078644,
+      "t_cert": 0.01974238900004366,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 13,
+      "library": 13,
+      "regions_used": 13,
+      "t_lp": 0.021715846999995847,
+      "t_cert": 0.02380358499999602,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.17216396700018777
+   }
+  },
+  "linear_solves": [
+   10,
+   10,
+   10
+  ],
+  "linear_cap": 10,
+  "lp_median": 0.001678748499955418,
+  "check_per_table": 2.810132737497575e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 134048,
+  "mem_bands": 239872,
+  "direct_estimate": 50.335595022663256,
+  "loglog_slope": [
+   -0.0729842687864635,
+   -0.0017344603071779996,
+   -0.037425730051664725,
+   -0.0642482475314863
+  ]
+ },
+ "3x5": {
+  "shape": "3x5",
+  "tree_bound": 2025,
+  "per_T": {
+   "1000": {
+    "defined": 627,
+    "ends": {
+     "hi0": {
+      "solves": 22,
+      "library": 22,
+      "regions_used": 22,
+      "t_lp": 0.03798047499981294,
+      "t_cert": 0.04568520699990586,
+      "all_certified": true,
+      "second_half_share": 0.045454545454545456
+     },
+     "lo0": {
+      "solves": 25,
+      "library": 25,
+      "regions_used": 25,
+      "t_lp": 0.042134759999839844,
+      "t_cert": 0.053259134000427366,
+      "all_certified": true,
+      "second_half_share": 0.04
+     },
+     "hi1": {
+      "solves": 20,
+      "library": 20,
+      "regions_used": 20,
+      "t_lp": 0.033917017000135274,
+      "t_cert": 0.039530927999976484,
+      "all_certified": true,
+      "second_half_share": 0.05
+     },
+     "lo1": {
+      "solves": 17,
+      "library": 17,
+      "regions_used": 17,
+      "t_lp": 0.02875015199970221,
+      "t_cert": 0.035598736000110875,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.31685640899991085
+   },
+   "3000": {
+    "defined": 1847,
+    "ends": {
+     "hi0": {
+      "solves": 24,
+      "library": 24,
+      "regions_used": 24,
+      "t_lp": 0.041426040000033026,
+      "t_cert": 0.05166454699974565,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 24,
+      "library": 24,
+      "regions_used": 24,
+      "t_lp": 0.04059227900017959,
+      "t_cert": 0.052592686999787475,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 22,
+      "library": 22,
+      "regions_used": 22,
+      "t_lp": 0.03788888899964604,
+      "t_cert": 0.04413228699979754,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo1": {
+      "solves": 22,
+      "library": 22,
+      "regions_used": 22,
+      "t_lp": 0.03817488299978322,
+      "t_cert": 0.048521442999458486,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.35499305499843103
+   },
+   "10000": {
+    "defined": 6219,
+    "ends": {
+     "hi0": {
+      "solves": 24,
+      "library": 24,
+      "regions_used": 24,
+      "t_lp": 0.04118273299968678,
+      "t_cert": 0.053596289000438446,
+      "all_certified": true,
+      "second_half_share": 0.08333333333333333
+     },
+     "lo0": {
+      "solves": 26,
+      "library": 26,
+      "regions_used": 26,
+      "t_lp": 0.044808361000264085,
+      "t_cert": 0.0597587309997607,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 25,
+      "library": 25,
+      "regions_used": 25,
+      "t_lp": 0.049783777999891754,
+      "t_cert": 0.06606643600014195,
+      "all_certified": true,
+      "second_half_share": 0.04
+     },
+     "lo1": {
+      "solves": 18,
+      "library": 18,
+      "regions_used": 18,
+      "t_lp": 0.031546979000040665,
+      "t_cert": 0.040475171999673876,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.38721847899989825
+   }
+  },
+  "linear_solves": [
+   15,
+   15,
+   15
+  ],
+  "linear_cap": 15,
+  "lp_median": 0.0017207369999709954,
+  "check_per_table": 7.15767768124211e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 135960,
+  "mem_bands": 199008,
+  "direct_estimate": 42.80505361127848,
+  "loglog_slope": [
+   0.037144568148229265,
+   0.018096514245602532,
+   0.09742003079549759,
+   0.02100736173383308
+  ]
+ },
+ "3x6": {
+  "shape": "3x6",
+  "tree_bound": 8748,
+  "per_T": {
+   "1000": {
+    "defined": 512,
+    "ends": {
+     "hi0": {
+      "solves": 31,
+      "library": 31,
+      "regions_used": 31,
+      "t_lp": 0.053187153000408216,
+      "t_cert": 0.07967204600026889,
+      "all_certified": true,
+      "second_half_share": 0.06451612903225806
+     },
+     "lo0": {
+      "solves": 38,
+      "library": 38,
+      "regions_used": 38,
+      "t_lp": 0.06578353399936532,
+      "t_cert": 0.09381089400062592,
+      "all_certified": true,
+      "second_half_share": 0.10526315789473684
+     },
+     "hi1": {
+      "solves": 32,
+      "library": 32,
+      "regions_used": 32,
+      "t_lp": 0.05498190499940847,
+      "t_cert": 0.08334891999959382,
+      "all_certified": true,
+      "second_half_share": 0.0625
+     },
+     "lo1": {
+      "solves": 36,
+      "library": 36,
+      "regions_used": 36,
+      "t_lp": 0.061272107999911896,
+      "t_cert": 0.11955336400001215,
+      "all_certified": true,
+      "second_half_share": 0.1111111111111111
+     }
+    },
+    "build_time": 0.6116099239995947
+   },
+   "3000": {
+    "defined": 1559,
+    "ends": {
+     "hi0": {
+      "solves": 40,
+      "library": 40,
+      "regions_used": 40,
+      "t_lp": 0.06965462799996658,
+      "t_cert": 0.10455031600008624,
+      "all_certified": true,
+      "second_half_share": 0.1
+     },
+     "lo0": {
+      "solves": 36,
+      "library": 36,
+      "regions_used": 36,
+      "t_lp": 0.061512694999919404,
+      "t_cert": 0.08833996300029412,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 33,
+      "library": 33,
+      "regions_used": 33,
+      "t_lp": 0.05657191599948419,
+      "t_cert": 0.08733046800034572,
+      "all_certified": true,
+      "second_half_share": 0.06060606060606061
+     },
+     "lo1": {
+      "solves": 39,
+      "library": 39,
+      "regions_used": 39,
+      "t_lp": 0.0664210509997929,
+      "t_cert": 0.09587731699991764,
+      "all_certified": true,
+      "second_half_share": 0.02564102564102564
+     }
+    },
+    "build_time": 0.6302583539998068
+   },
+   "10000": {
+    "defined": 5191,
+    "ends": {
+     "hi0": {
+      "solves": 45,
+      "library": 45,
+      "regions_used": 45,
+      "t_lp": 0.08149664099937581,
+      "t_cert": 0.12492617500015513,
+      "all_certified": true,
+      "second_half_share": 0.044444444444444446
+     },
+     "lo0": {
+      "solves": 38,
+      "library": 38,
+      "regions_used": 38,
+      "t_lp": 0.06757594399959999,
+      "t_cert": 0.10214381900027547,
+      "all_certified": true,
+      "second_half_share": 0.02631578947368421
+     },
+     "hi1": {
+      "solves": 36,
+      "library": 36,
+      "regions_used": 36,
+      "t_lp": 0.06372658200007209,
+      "t_cert": 0.09606135800049742,
+      "all_certified": true,
+      "second_half_share": 0.027777777777777776
+     },
+     "lo1": {
+      "solves": 35,
+      "library": 35,
+      "regions_used": 35,
+      "t_lp": 0.06131049000009625,
+      "t_cert": 0.09290067699964766,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.6901416859997198
+   }
+  },
+  "linear_solves": [
+   21,
+   21,
+   21
+  ],
+  "linear_cap": 21,
+  "lp_median": 0.0017258244999425187,
+  "check_per_table": 1.2266379791927958e-06,
+  "exact_failures": 0.0,
+  "mem_ledger": 161904,
+  "mem_bands": 166112,
+  "direct_estimate": 35.83501991680646,
+  "loglog_slope": [
+   0.16004749612912333,
+   0.0006003235574792172,
+   0.05113537870005865,
+   -0.013200811131360032
+  ]
+ },
+ "3x7": {
+  "shape": "3x7",
+  "tree_bound": 35721,
+  "per_T": {
+   "1000": {
+    "defined": 441,
+    "ends": {
+     "hi0": {
+      "solves": 44,
+      "library": 44,
+      "regions_used": 44,
+      "t_lp": 0.08106608600007803,
+      "t_cert": 0.17891735000000608,
+      "all_certified": true,
+      "second_half_share": 0.25
+     },
+     "lo0": {
+      "solves": 55,
+      "library": 55,
+      "regions_used": 55,
+      "t_lp": 0.09548243400013234,
+      "t_cert": 0.1763785670003699,
+      "all_certified": true,
+      "second_half_share": 0.2
+     },
+     "hi1": {
+      "solves": 41,
+      "library": 41,
+      "regions_used": 41,
+      "t_lp": 0.07766559900051107,
+      "t_cert": 0.14745215899984032,
+      "all_certified": true,
+      "second_half_share": 0.12195121951219512
+     },
+     "lo1": {
+      "solves": 54,
+      "library": 54,
+      "regions_used": 54,
+      "t_lp": 0.10399063800059594,
+      "t_cert": 0.18266303500047343,
+      "all_certified": true,
+      "second_half_share": 0.09259259259259259
+     }
+    },
+    "build_time": 1.0436158680020071
+   },
+   "3000": {
+    "defined": 1285,
+    "ends": {
+     "hi0": {
+      "solves": 58,
+      "library": 58,
+      "regions_used": 58,
+      "t_lp": 0.10494024400077251,
+      "t_cert": 0.18773888900034308,
+      "all_certified": true,
+      "second_half_share": 0.10344827586206896
+     },
+     "lo0": {
+      "solves": 69,
+      "library": 69,
+      "regions_used": 69,
+      "t_lp": 0.1377861380002514,
+      "t_cert": 0.2463018289995489,
+      "all_certified": true,
+      "second_half_share": 0.08695652173913043
+     },
+     "hi1": {
+      "solves": 57,
+      "library": 57,
+      "regions_used": 57,
+      "t_lp": 0.11335383399966759,
+      "t_cert": 0.21968832400011706,
+      "all_certified": true,
+      "second_half_share": 0.08771929824561403
+     },
+     "lo1": {
+      "solves": 50,
+      "library": 50,
+      "regions_used": 50,
+      "t_lp": 0.08691554200038354,
+      "t_cert": 0.15789010299999973,
+      "all_certified": true,
+      "second_half_share": 0.02
+     }
+    },
+    "build_time": 1.2546149030010838
+   },
+   "10000": {
+    "defined": 4363,
+    "ends": {
+     "hi0": {
+      "solves": 64,
+      "library": 64,
+      "regions_used": 64,
+      "t_lp": 0.11456837000048381,
+      "t_cert": 0.21753102099978605,
+      "all_certified": true,
+      "second_half_share": 0.09375
+     },
+     "lo0": {
+      "solves": 80,
+      "library": 80,
+      "regions_used": 80,
+      "t_lp": 0.15647425299982842,
+      "t_cert": 0.2903950369997119,
+      "all_certified": true,
+      "second_half_share": 0.075
+     },
+     "hi1": {
+      "solves": 59,
+      "library": 59,
+      "regions_used": 59,
+      "t_lp": 0.1078918490001115,
+      "t_cert": 0.1951959819998592,
+      "all_certified": true,
+      "second_half_share": 0.05084745762711865
+     },
+     "lo1": {
+      "solves": 69,
+      "library": 69,
+      "regions_used": 69,
+      "t_lp": 0.12493916500011437,
+      "t_cert": 0.23083827900006781,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 1.437833955999963
+   }
+  },
+  "linear_solves": [
+   28,
+   28,
+   28
+  ],
+  "linear_cap": 28,
+  "lp_median": 0.0017740260000209673,
+  "check_per_table": 2.5175688173238314e-06,
+  "exact_failures": 0.0,
+  "mem_ledger": 246064,
+  "mem_bands": 139616,
+  "direct_estimate": 30.960301752365922,
+  "loglog_slope": [
+   0.16152265061307644,
+   0.16248163884182268,
+   0.15571311498444193,
+   0.11066152054219171
+  ]
+ },
+ "4x4": {
+  "shape": "4x4",
+  "tree_bound": 4096,
+  "per_T": {
+   "1000": {
+    "defined": 540,
+    "ends": {
+     "hi0": {
+      "solves": 33,
+      "library": 33,
+      "regions_used": 33,
+      "t_lp": 0.05707439099978728,
+      "t_cert": 0.06774980299962863,
+      "all_certified": true,
+      "second_half_share": 0.09090909090909091
+     },
+     "lo0": {
+      "solves": 35,
+      "library": 35,
+      "regions_used": 35,
+      "t_lp": 0.05927902299993093,
+      "t_cert": 0.07417881599985776,
+      "all_certified": true,
+      "second_half_share": 0.02857142857142857
+     },
+     "hi1": {
+      "solves": 28,
+      "library": 28,
+      "regions_used": 28,
+      "t_lp": 0.04696852700010368,
+      "t_cert": 0.05787642699965545,
+      "all_certified": true,
+      "second_half_share": 0.07142857142857142
+     },
+     "lo1": {
+      "solves": 32,
+      "library": 32,
+      "regions_used": 32,
+      "t_lp": 0.05348714600029325,
+      "t_cert": 0.06823783600009392,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.4848519689993509
+   },
+   "3000": {
+    "defined": 1534,
+    "ends": {
+     "hi0": {
+      "solves": 40,
+      "library": 40,
+      "regions_used": 40,
+      "t_lp": 0.0679970749996528,
+      "t_cert": 0.08146464799972364,
+      "all_certified": true,
+      "second_half_share": 0.025
+     },
+     "lo0": {
+      "solves": 32,
+      "library": 32,
+      "regions_used": 32,
+      "t_lp": 0.053429189000326005,
+      "t_cert": 0.07238900399988779,
+      "all_certified": true,
+      "second_half_share": 0.0625
+     },
+     "hi1": {
+      "solves": 34,
+      "library": 34,
+      "regions_used": 34,
+      "t_lp": 0.05787302900000668,
+      "t_cert": 0.06937880899965876,
+      "all_certified": true,
+      "second_half_share": 0.029411764705882353
+     },
+     "lo1": {
+      "solves": 30,
+      "library": 30,
+      "regions_used": 30,
+      "t_lp": 0.050612330000149086,
+      "t_cert": 0.0646663439998747,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.5178104279992795
+   },
+   "10000": {
+    "defined": 5009,
+    "ends": {
+     "hi0": {
+      "solves": 38,
+      "library": 38,
+      "regions_used": 38,
+      "t_lp": 0.06521108599986292,
+      "t_cert": 0.08637248000002273,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "lo0": {
+      "solves": 32,
+      "library": 32,
+      "regions_used": 32,
+      "t_lp": 0.05563007899991135,
+      "t_cert": 0.07767982999985179,
+      "all_certified": true,
+      "second_half_share": 0.0
+     },
+     "hi1": {
+      "solves": 36,
+      "library": 36,
+      "regions_used": 36,
+      "t_lp": 0.06316041499985658,
+      "t_cert": 0.08168603400031316,
+      "all_certified": true,
+      "second_half_share": 0.027777777777777776
+     },
+     "lo1": {
+      "solves": 33,
+      "library": 33,
+      "regions_used": 33,
+      "t_lp": 0.059446746999810784,
+      "t_cert": 0.08182622200024525,
+      "all_certified": true,
+      "second_half_share": 0.0
+     }
+    },
+    "build_time": 0.5710128929998746
+   }
+  },
+  "linear_solves": [
+   20,
+   20,
+   20
+  ],
+  "linear_cap": 20,
+  "lp_median": 0.0017185729999482646,
+  "check_per_table": 9.608323517692456e-07,
+  "exact_failures": 0.0,
+  "mem_ledger": 134632,
+  "mem_bands": 160288,
+  "direct_estimate": 34.43332862696343,
+  "loglog_slope": [
+   0.06097734792940543,
+   -0.03934141509583461,
+   0.11140016931758664,
+   0.01529091527988348
+  ]
+ },
+ "4x5": {
+  "shape": "4x5",
+  "tree_bound": 32000,
+  "per_T": {
+   "1000": {
+    "defined": 325,
+    "ends": {
+     "hi0": {
+      "solves": 37,
+      "library": 37,
+      "regions_used": 37,
+      "t_lp": 0.06579608400033976,
+      "t_cert": 0.09446835500000361,
+      "all_certified": true,
+      "second_half_share": 0.05405405405405406
+     },
+     "lo0": {
+      "solves": 50,
+      "library": 50,
+      "regions_used": 50,
+      "t_lp": 0.09164973400004328,
+      "t_cert": 0.13874055099961424,
+      "all_certified": true,
+      "second_half_share": 0.16
+     },
+     "hi1": {
+      "solves": 37,
+      "library": 37,
+      "regions_used": 37,
+      "t_lp": 0.059491149999871595,
+      "t_cert": 0.09270385800039094,
+      "all_certified": true,
+      "second_half_share": 0.05405405405405406
+     },
+     "lo1": {
+      "solves": 52,
+      "library": 52,
+      "regions_used": 52,
+      "t_lp": 0.08266952099972968,
+      "t_cert": 0.13438953099989703,
+      "all_certified": true,
+      "second_half_share": 0.19230769230769232
+     }
+    },
+    "build_time": 0.7599087839998901
+   },
+   "3000": {
+    "defined": 948,
+    "ends": {
+     "hi0": {
+      "solves": 53,
+      "library": 53,
+      "regions_used": 53,
+      "t_lp": 0.08873793300006128,
+      "t_cert": 0.134818615999734,
+      "all_certified": true,
+      "second_half_share": 0.05660377358490566
+     },
+     "lo0": {
+      "solves": 65,
+      "library": 65,
+      "regions_used": 65,
+      "t_lp": 0.10707269799991082,
+      "t_cert": 0.17465026799993666,
+      "all_certified": true,
+      "second_half_share": 0.046153846153846156
+     },
+     "hi1": {
+      "solves": 45,
+      "library": 45,
+      "regions_used": 45,
+      "t_lp": 0.07580382000094232,
+      "t_cert": 0.11627654299991264,
+      "all_certified": true,
+      "second_half_share": 0.06666666666666667
+     },
+     "lo1": {
+      "solves": 58,
+      "library": 58,
+      "regions_used": 58,
+      "t_lp": 0.09409234899999319,
+      "t_cert": 0.14161182899954383,
+      "all_certified": true,
+      "second_half_share": 0.06896551724137931
+     }
+    },
+    "build_time": 0.9330640560000347
+   },
+   "10000": {
+    "defined": 3293,
+    "ends": {
+     "hi0": {
+      "solves": 71,
+      "library": 71,
+      "regions_used": 71,
+      "t_lp": 0.12012286400022276,
+      "t_cert": 0.18854432899991025,
+      "all_certified": true,
+      "second_half_share": 0.11267605633802817
+     },
+     "lo0": {
+      "solves": 71,
+      "library": 71,
+      "regions_used": 71,
+      "t_lp": 0.11715542999991158,
+      "t_cert": 0.20281744199928653,
+      "all_certified": true,
+      "second_half_share": 0.056338028169014086
+     },
+     "hi1": {
+      "solves": 59,
+      "library": 59,
+      "regions_used": 59,
+      "t_lp": 0.09903092600006858,
+      "t_cert": 0.15381286799981808,
+      "all_certified": true,
+      "second_half_share": 0.05084745762711865
+     },
+     "lo1": {
+      "solves": 75,
+      "library": 75,
+      "regions_used": 75,
+      "t_lp": 0.12906969999994544,
+      "t_cert": 0.21234676400081298,
+      "all_certified": true,
+      "second_half_share": 0.05333333333333334
+     }
+    },
+    "build_time": 1.2229003229999762
+   }
+  },
+  "linear_solves": [
+   35,
+   35,
+   35
+  ],
+  "linear_cap": 35,
+  "lp_median": 0.0016104049999512426,
+  "check_per_table": 2.868493850604286e-06,
+  "exact_failures": 0.0,
+  "mem_ledger": 194000,
+  "mem_bands": 105376,
+  "direct_estimate": 21.212254659357768,
+  "loglog_slope": [
+   0.280191345194908,
+   0.14925096097202073,
+   0.20193280929580387,
+   0.15945791692230996
+  ]
+ },
+ "4x6": {
+  "shape": "4x6",
+  "tree_bound": 221184,
+  "per_T": {
+   "1000": {
+    "defined": 231,
+    "ends": {
+     "hi0": {
+      "solves": 61,
+      "library": 61,
+      "regions_used": 61,
+      "t_lp": 0.09871446700014985,
+      "t_cert": 0.19002201199975843,
+      "all_certified": true,
+      "second_half_share": 0.21311475409836064
+     },
+     "lo0": {
+      "solves": 71,
+      "library": 71,
+      "regions_used": 71,
+      "t_lp": 0.11376173099972675,
+      "t_cert": 0.22814361700000063,
+      "all_certified": true,
+      "second_half_share": 0.38028169014084506
+     },
+     "hi1": {
+      "solves": 56,
+      "library": 56,
+      "regions_used": 56,
+      "t_lp": 0.09074379499986662,
+      "t_cert": 0.17666843399968002,
+      "all_certified": true,
+      "second_half_share": 0.21428571428571427
+     },
+     "lo1": {
+      "solves": 73,
+      "library": 73,
+      "regions_used": 73,
+      "t_lp": 0.1173193449997143,
+      "t_cert": 0.27388564100021995,
+      "all_certified": true,
+      "second_half_share": 0.3150684931506849
+     }
+    },
+    "build_time": 1.2892590419991166
+   },
+   "3000": {
+    "defined": 684,
+    "ends": {
+     "hi0": {
+      "solves": 81,
+      "library": 81,
+      "regions_used": 81,
+      "t_lp": 0.13178179199996976,
+      "t_cert": 0.2612570560002041,
+      "all_certified": true,
+      "second_half_share": 0.16049382716049382
+     },
+     "lo0": {
+      "solves": 98,
+      "library": 98,
+      "regions_used": 98,
+      "t_lp": 0.15703620900012538,
+      "t_cert": 0.3179799070005629,
+      "all_certified": true,
+      "second_half_share": 0.17346938775510204
+     },
+     "hi1": {
+      "solves": 80,
+      "library": 80,
+      "regions_used": 80,
+      "t_lp": 0.13051669700053026,
+      "t_cert": 0.2601494090004053,
+      "all_certified": true,
+      "second_half_share": 0.225
+     },
+     "lo1": {
+      "solves": 99,
+      "library": 99,
+      "regions_used": 99,
+      "t_lp": 0.15869045400040704,
+      "t_cert": 0.3162907859996267,
+      "all_certified": true,
+      "second_half_share": 0.16161616161616163
+     }
+    },
+    "build_time": 1.7337023100018314
+   },
+   "10000": {
+    "defined": 2269,
+    "ends": {
+     "hi0": {
+      "solves": 116,
+      "library": 116,
+      "regions_used": 116,
+      "t_lp": 0.19485006600052657,
+      "t_cert": 0.38790935899965007,
+      "all_certified": true,
+      "second_half_share": 0.10344827586206896
+     },
+     "lo0": {
+      "solves": 120,
+      "library": 120,
+      "regions_used": 120,
+      "t_lp": 0.2026149769993708,
+      "t_cert": 0.42817166100007853,
+      "all_certified": true,
+      "second_half_share": 0.11666666666666667
+     },
+     "hi1": {
+      "solves": 106,
+      "library": 106,
+      "regions_used": 106,
+      "t_lp": 0.1806606190001503,
+      "t_cert": 0.3584231159998126,
+      "all_certified": true,
+      "second_half_share": 0.05660377358490566
+     },
+     "lo1": {
+      "solves": 120,
+      "library": 120,
+      "regions_used": 120,
+      "t_lp": 0.2037434469996242,
+      "t_cert": 0.46465527300085796,
+      "all_certified": true,
+      "second_half_share": 0.05
+     }
+    },
+    "build_time": 2.421028518000071
+   }
+  },
+  "linear_solves": [
+   56,
+   56,
+   56
+  ],
+  "linear_cap": 56,
+  "lp_median": 0.0016589730000191594,
+  "check_per_table": 7.831232260920244e-06,
+  "exact_failures": 0.0,
+  "mem_ledger": 335680,
+  "mem_bands": 72608,
+  "direct_estimate": 15.05683894817389,
+  "loglog_slope": [
+   0.2816321783946554,
+   0.22865224073992108,
+   0.2785145253250384,
+   0.21655735355502198
+  ]
+ }
+}
