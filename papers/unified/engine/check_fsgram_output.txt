@@ -1,0 +1,7 @@
+PASS FG1 IDENTITY every 2x3 coupling polygon is a smooth toric del Pezzo surface; facets = Kouchnirenko count of critical points   [4000 margins; violations 0; types {'dP7': 502, 'P2': 657, 'P1xP1': 1466, 'F1': 1315, 'dP6': 60}]
+PASS FG2 IDENTITY line-bundle cohomology agrees with Riemann-Roch and with h^0(O_P2(d)) = C(d+2,2)   [300 bundles + 6; mismatches 0]
+PASS FG3 IDENTITY the toric collection is exceptional (hence full) on each surface; its Gram matrix is unipotent with positive entries   [dP7: 1,3,5,6/2,4,5/2,3/1; P2: 3,6/3; P1xP1: 2,4,6/2,4/2; F1: 3,5,6/2,3/1; dP6: 1,2,3,4,5/1,2,3,4/1,2,3/1,2/1]
+PASS FG4 IDENTITY mutations keep the Gram matrix unipotent and integral, satisfy the braid relation, and preserve the isometry invariants   [failures 0; braid-relation failures 0]
+PASS FG5 IDENTITY the isometry invariants separate the five types (F1 and P1xP1 by the Smith form of G + G^T)   [dP7: sym (1, 1, 2, 2, 8), anti (1, 1, 0, 0, 0); P2: sym (1, 1, 8), anti (3, 3, 0); P1xP1: sym (2, 2, 2, 2), anti (2, 2, 0, 0); F1: sym (1, 1, 4, 4), anti (1, 1, 0, 0); dP6: sym (1, 1, 2, 2, 4, 4), anti (1, 1, 0, 0, 0, 0)]
+PASS FG6 IDENTITY the facet type changes only at support walls (three constraint lines through a vertex); F1 keeps its facets for all alpha   [396 changes on 150 margin paths, 0 not at a triple vertex; F1 facet counts over alpha [4]]
+6/6 passed

@@ -1,0 +1,7 @@
+PASS FK1 IDENTITY the interval of wall values translates rigidly: its width is constant along every data stream   [200 streams; max width change 3.2e-15; width 0.270]
+PASS FK2 IDENTITY the wall decision is indeterminate exactly for s in (c_min/d, c_max/d] in rates; data converge at N^-1/2   [window (0.092, 0.401], duration 0.309 = width 0.27 / drift 0.872; median error 0.1586, 0.0837, 0.0444, 0.0233; slope -0.46]
+PASS FK3 IDENTITY thm:crossing on F1: at most one switch; eventual sign that of term 3 (hard evidence on the best fit); the bound holds   [N=5: last 1.920 <= bound 1.920; N=10: last 1.920 <= bound 1.920; N=20: last 1.920 <= bound 1.920]
+PASS FK4 IDENTITY a two-term payoff is log-linear: g's crossing time equals the tropical transit time alpha_max / (H_4 - H_3) at every N   [tropical window (1.536, 1.920]; N=5: 1.920281; N=20: 1.920281; N=80: 1.920281; N=320: 1.920281; wall window (0.092, 0.401]]
+PASS FK5 IDENTITY forcing the whole set across the wall by s = 1 costs n KL(Q'||Q) >= Delta_n^2 / (2 n B^2) (prop:seqval(iii))   [honest drift -0.439; attack drift 0.400; KL per step 0.0355 >= bound 0.0217 (ratio 1.6)]
+PASS FK6 RECORD F1 credal example: transit, crossing times, attack cost and detectability   [Q' = (0.421, 0.359, 0.220); N=200: total divergence 7.1, power 0.985; N=1000: total divergence 35.5, power 1.000]
+6/6 passed

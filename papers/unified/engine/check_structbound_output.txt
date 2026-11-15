@@ -1,0 +1,17 @@
+/home/claude/paper/unified/engine/check_structbound.py:64: RuntimeWarning: invalid value encountered in log
+  with np.errstate(divide="ignore"): return np.log(p) - np.log1p(-p)
+  P332: defined 10000/10000; exhaustive solves 846; band-only search 0.814 (296 LPs); structure-aware screen 0.003 (49 LPs); U1 time 40.4s; 74s
+/home/claude/paper/unified/engine/check_structbound.py:64: RuntimeWarning: invalid value encountered in log1p
+  with np.errstate(divide="ignore"): return np.log(p) - np.log1p(-p)
+  P332tol: defined 10000/10000; exhaustive solves 4190; band-only search 0.840 (2098 LPs); structure-aware screen 0.004 (70 LPs); U1 time 33.3s; 1523s
+  P442: defined 10000/10000; exhaustive solves 14790; band-only search 0.556 (4283 LPs); structure-aware screen 0.006 (112 LPs); U1 time 38.2s; 855s
+PASS SW1 IDENTITY interaction coordinates   [P332 is the Study 29 population: True; P332: null-space dimension 4 = (a-1)(b-1)(c-1) = 4; reconstruction failures 0/200; programme-in-theta mismatches 0/200; P442: null-space dimension 9 = (a-1)(b-1)(c-1) = 9; reconstruction failures 0/200; programme-in-theta mismatches 0/200]
+PASS SW2 IDENTITY every bound dominates the drift; lower bounds lie below it   [P332: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True; P332tol: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True; P442: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True]
+PASS SW3 IDENTITY screened top-20 equals exhaustive top-20
+PASS SW4 IDENTITY context order: evidence in either order, and C = 0 then B in {0,1}, give the same bands   [1200 band ends; mismatches 0]
+PASS SW5 IDENTITY support boundary: empty blocks undefined, no non-finite band ends, vanishing tolerance blocks undefined   [constructed empty-block tables flagged 100/100; all defined band ends finite True; P332tol undefined 0, re-checked 0, wrong 0]
+PASS SW6 HYPOTHESIS P332: the screen evaluates <= 50% of defined tables   [structure-aware 0.003 (band-only 0.814)]
+FAIL SW7 HYPOTHESIS P332: Spearman(min(U0, U1), D) >= 0.7   [P332: U0 0.31, U1 0.52, minU0U1 0.53, combined 0.57; P332tol: U0 0.22, U1 0.55, minU0U1 0.56, combined 0.64; P442: U0 0.35, U1 0.72, minU0U1 0.72, combined 0.80]
+PASS SW8 HYPOTHESIS P332tol and P442: the screen evaluates no larger share than the band-only search   [P332tol 0.004 vs 0.840; P442 0.006 vs 0.556]
+PASS SW9 RECORD searches, bounds, stability, centre/width, interaction vs tolerance   [P332: screen 32 evals/49 LPs vs band-only 8142/296, stability 0.11, centre 0.0310, width change +0.0397; P332tol: screen 40 evals/70 LPs vs band-only 8398/2098, stability 0.08, centre 0.0285, width change +0.0403; P442: screen 59 evals/112 LPs vs band-only 5559/4283, stability 0.01, centre 0.0288, width change +0.0637; interaction vs tolerance {"tables": 10000, "interaction_width": 0.2164, "tolerance_width": 0.1379, "interaction_drift": 0.0535, "tolerance_drift": -0.001, "share_drift_falls": 0.492, "share_width_grows": 0.9994}]
+8/9 passed

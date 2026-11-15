@@ -1,0 +1,37 @@
+PASS GM1 IDENTITY Hilbert diameter by LP equals the vertex brute force; structural zeros dropped; touching zeros infinite; eps-profile monotone   [300 polytopes; mismatches 0; touching detected 30/30; profile violations 0]
+PASS GM2 IDENTITY sets: bands sit at conditioned vertices; the conditioned mixture uses weights lam_k V_k(C) / sum lam_j V_j(C)   [300 cases; violations 0]
+PASS GM3 IDENTITY the ceiling: every conditional log-odds band is at most the Hilbert diameter; the coin example attains it   [1349 cases; violations 0; median width/diameter 0.48; coin width 4.3944 = diameter 4.3944]
+PASS GM4 IDENTITY the flow map solves the replicator-mutator equation; the diameter never increases; tilt alone is an isometry   [60 generators; ODE mismatches 0; increases 0; tilt-only change 1.8e-15]
+PASS GM5 IDENTITY sleep world: from the sources alone the (P,C,T,O) diameter is infinite (all cells touch 0); eps-profile finite and monotone; anchors make it finite   [touching 24/24; eps-profile 0.002: 9.46, 0.005: 7.54, 0.01: 6.00; with anchors 2.000]
+PASS GM6 IDENTITY band ladder for O = 2: total-probability constraint holds; undefined bands and dilation flagged   [sources: all [0.403, 0.443], T=1 [0.527, 0.612], T=1,P=0 undefined, T=1,P=0,C=1 undefined, P=0,C=1 [0.000, 1.000]; anchors: all [0.403, 0.443], T=1 [0.527, 0.612], T=1,P=0 [0.332, 0.772], T=1,P=0,C=1 [0.405, 0.834], P=0,C=1 [0.296, 0.715]; undefined [('sources', 'T=1,P=0'), ('sources', 'T=1,P=0,C=1'), ('sources', 'T=1,P=0,C=0')]; dilation [('sources', 'all', 'T=1'), ('sources', 'all', 'T=0'), ('anchors', 'all', 'T=1'), ('anchors', 'all', 'T=0'), ('anchors', 'T=1', 'T=1,P=0'), ('anchors', 'T=1', 'T=1,P=1'), ('anchors', 'T=1,P=0', 'T=1,P=0,C=0')]; violations 0]
+PASS GM7 RECORD conditioning reweights the unreported populations: the point-level conditioning-mixing discrepancy   [T=1: true 0.569, prior-weight mixture 0.567, weights given the condition (0.54, 0.46) vs prior (0.50, 0.50); T=1,P=0,C=1: true 0.650, prior-weight mixture 0.646, weights given the condition (0.57, 0.43) vs prior (0.50, 0.50); P=0,C=1: true 0.509, prior-weight mixture 0.505, weights given the condition (0.55, 0.45) vs prior (0.50, 0.50)]
+A 0 diam 2.0000 {'P=0,C=1': 1.7856, 'T=1,P=0,C=1': 2.0}
+A 0.25 diam 2.0000 {'P=0,C=1': 1.8164, 'T=1,P=0,C=1': 2.0}
+A 0.5 diam 2.0000 {'P=0,C=1': 1.8446, 'T=1,P=0,C=1': 2.0}
+A 1 diam 2.0000 {'P=0,C=1': 1.892, 'T=1,P=0,C=1': 2.0}
+A 1.5 diam 2.0000 {'P=0,C=1': 1.9277, 'T=1,P=0,C=1': 2.0}
+A 2 diam 2.0000 {'P=0,C=1': 1.9531, 'T=1,P=0,C=1': 2.0}
+A 3 diam 2.0000 {'P=0,C=1': 1.9814, 'T=1,P=0,C=1': 2.0}
+A 4 diam 2.0000 {'P=0,C=1': 1.993, 'T=1,P=0,C=1': 2.0}
+A 6 diam 2.0000 {'P=0,C=1': 1.999, 'T=1,P=0,C=1': 2.0}
+B 0 diam 2.0000 {'P=0,C=1': 1.7856, 'T=1,P=0,C=1': 2.0}
+B 0.25 diam 1.9974 {'P=0,C=1': 1.7503, 'T=1,P=0,C=1': 1.9559}
+B 0.5 diam 1.9909 {'P=0,C=1': 1.7226, 'T=1,P=0,C=1': 1.9034}
+B 1 diam 1.9724 {'P=0,C=1': 1.6831, 'T=1,P=0,C=1': 1.7996}
+B 1.5 diam 1.9536 {'P=0,C=1': 1.6573, 'T=1,P=0,C=1': 1.7343}
+B 2 diam 1.9372 {'P=0,C=1': 1.6398, 'T=1,P=0,C=1': 1.6965}
+B 3 diam 1.9133 {'P=0,C=1': 1.6194, 'T=1,P=0,C=1': 1.6495}
+B 4 diam 1.8998 {'P=0,C=1': 1.609, 'T=1,P=0,C=1': 1.6251}
+B 6 diam 1.8902 {'P=0,C=1': 1.6007, 'T=1,P=0,C=1': 1.6055}
+C 0 diam 2.0000 {'P=0,C=1': 1.7856, 'T=1,P=0,C=1': 2.0}
+C 0.25 diam 1.9997 {'P=0,C=1': 1.7977, 'T=1,P=0,C=1': 1.9881}
+C 0.5 diam 1.9987 {'P=0,C=1': 1.8095, 'T=1,P=0,C=1': 1.9767}
+C 1 diam 1.9947 {'P=0,C=1': 1.8316, 'T=1,P=0,C=1': 1.9565}
+C 1.5 diam 1.9902 {'P=0,C=1': 1.8498, 'T=1,P=0,C=1': 1.9392}
+C 2 diam 1.9863 {'P=0,C=1': 1.8629, 'T=1,P=0,C=1': 1.9246}
+C 3 diam 1.9796 {'P=0,C=1': 1.8741, 'T=1,P=0,C=1': 1.9012}
+C 4 diam 1.9744 {'P=0,C=1': 1.872, 'T=1,P=0,C=1': 1.883}
+C 6 diam 1.9670 {'P=0,C=1': 1.8546, 'T=1,P=0,C=1': 1.8562}
+PASS GM8 RECORD central experiment: in configuration C the diameter falls while the P(O=2 | P=0, C=1) band widens (H)   [H held; A: diam 2.000 -> 2.000, band 1.786 -> 1.999 (max) -> 1.999; B: diam 2.000 -> 1.890, band 1.786 -> 1.786 (max) -> 1.601; C: diam 2.000 -> 1.967, band 1.786 -> 1.874 (max) -> 1.855]
+PASS GM9 IDENTITY the ceiling holds at every time of every configuration   [54 bands; violations 0]
+9/9 passed

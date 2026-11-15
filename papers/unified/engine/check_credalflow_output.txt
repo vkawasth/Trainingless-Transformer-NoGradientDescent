@@ -1,0 +1,11 @@
+PASS CR1 IDENTITY tilts are Hilbert isometries; restriction never expands; kernels contract by tanh(Delta/4)   [2000 cases; max isometry error 1.1e-14; restriction violations 0; Birkhoff violations 0]
+PASS CR2 IDENTITY a shift of the facet constants moves the Kahler class iff a circuit pairing changes; translations never do   [297 margins; mismatches 0; rank of (margins -> class) by chamber: {np.int64(2): 178, np.int64(1): 64, np.int64(3): 55}]
+PASS CR3 IDENTITY Descartes: <c, p_t> changes sign at most as often as its level coefficients   [5000 cases; violations 0; bound attained in 0.75]
+PASS CR4 IDENTITY the eventual sign of <c, p_t> is the sign of the first non-zero level coefficient   [2000 cases (245 with a vanishing top coefficient); violations 0]
+PASS CR5 IDENTITY brackets sit at tilted vertices; beyond the explicit bound every member is positive; status changes <= 2 V (r-1)   [398 bounded cases; extreme-point violations 0; bound violations 0; status violations 0; actual/bound median 0.62]
+PASS CR6 IDENTITY adversarial control: forced determinacy by the uniform bound; persistent ambiguity by a straddling top cell; fibre-straddle never identified   [(a) 120/120; (b) 30/30; (c) 120/120]
+PASS CR7 IDENTITY conserved: cell conditionals, Hilbert distances, the combinatorial type of K; moved: the R-margins   [conditional/Hilbert violations 0; vertex-count changes 0/300; margins moved in 2500/2500]
+PASS CR8 IDENTITY the long-run bracket is the conserved conditional bracket on the top observation cell   [300 cases; mismatches 0]
+PASS CR9 RECORD dilation: the bracket of P(X=1) - 1/2 grows from {0} to the conserved conditional spread [-0.4, 0.4]   [t=0: [0.000, 0.000]; t=1: [-0.185, 0.185]; t=3: [-0.362, 0.362]; t=10: [-0.400, 0.400]; t=40: [-0.400, 0.400]]
+PASS CR10 IDENTITY in the valuation limit the crossing time is the tropical transit time (error ~ 1/N)   [mean |tau_N - tau_trop| at N = 20, 80, 320: 0.0591, 0.0132, 0.0028; slope -1.10]
+10/10 passed

@@ -1,0 +1,5 @@
+PASS TT8 IDENTITY facet-leximin equals all-cell leximin exactly on 600 nondegenerate 3x3 margins   [600 margins; disagreements 0]
+PASS TT9 IDENTITY the facets are exactly the cells with f_i + g_j <= 1   [600 margins; mismatches 0]
+PASS TT10 RECORD census of 10000 margins: normal-fan types, Fano types, vertex counts   [13 fan types (first seen after margin 2000: 0); by facets {9: 5, 7: 3, 8: 4, 6: 1}; Fano types 1; vertex counts {9: 452, 12: 2277, 15: 4174, 18: 3097} (De Loera et al.: 9, 12, 15, 18)]
+PASS TT11 IDENTITY the Fano chamber is P2 x P2: split normals, Kouchnirenko 9 = vertices, product collection with Gram = Kronecker square, mutation invariants   [Fano fan types 1; example f=('7/30', '2/5', '11/30'), g=('1/8', '33/40', '1/20'); 4! vol = 9.000; vertices 9; Smith form of G + G^T (1, 1, 1, 1, 1, 1, 2, 16, 16); invariant changes under 30 mutations 0]
+4/4 passed

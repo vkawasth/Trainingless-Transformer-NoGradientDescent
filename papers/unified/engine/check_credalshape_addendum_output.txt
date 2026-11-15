@@ -1,0 +1,2 @@
+PASS SO7 RECORD (post hoc) outcome region against the product of its bands   [100 tables; before evidence: ratio min 1.000000 max 1.000000, equal to the product in 100, edges parallel to the simplex in 100; after evidence: ratio min 0.665 median 0.875 max 0.989, equal in 0]
+1/1 passed

@@ -1,0 +1,4 @@
+PASS LQ1 IDENTITY facet-leximin equals all-cell leximin on nondegenerate margins   [331 margins {(2, 3): 82, (3, 3): 89, (2, 4): 81, (3, 4): 79}; disagreements 0]
+PASS LQ2 IDENTITY every redundant cell dominates some facet cell on the whole polytope   [493 redundant cells; dominated 493]
+PASS LQ3 IDENTITY the minimum over all cells equals the minimum over facet cells at every point tested (first level and first optimal set agree)   [6620 points; differences 0]
+3/3 passed

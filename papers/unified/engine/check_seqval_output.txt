@@ -1,0 +1,7 @@
+PASS SQ1 IDENTITY the wall function is c0 - S_n/N exactly for adaptive dependent data, and S_n = A_n + M_n   [max |S - A - M| 1.5e-12; max |c_n - (c0 - S_n/N)| 4.8e-14]
+PASS SQ2 IDENTITY maximal Azuma bound for the martingale part under Markov dependence   [B 4.38; bound point x 412.6; frequency 0.0000; 95th percentile of max|M| 70.7 (bound is conservative)]
+PASS SQ3 IDENTITY the compensator's crossing time predicts the data's at rate N^-1/2 under Markov dependence   [s_A 0.342; median |s_hat - s_A| 6.0e-02, 1.7e-02, 1.3e-02, 6.8e-03; slope -0.462]
+PASS SQ4 IDENTITY an adversary inside the observational fibre leaves the law of every observed sequence unchanged (likelihood ratio 1)   [256 sequences; max |P - P'| 0.0e+00; decision quantity P(11): honest 0.350, adversary 0.630 after a 1]
+PASS SQ5 IDENTITY pathwise cost: the compensator shift satisfies Delta_n^2 <= 2 n B^2 K_n   [violations 0/500; largest ratio Delta^2 / (2 n B^2 K): tilt along Lambda_a 0.322, random 0.0150]
+PASS SQ6 RECORD F_1: the least-divergence wall-crossing attack pays K_n = n KL, linear in N; a likelihood-ratio test against it   [honest drift E Lambda_a 0.098 (c0 -0.40); attack KL per step 0.0339; N=50: K_n 1.7, power 0.579; N=200: K_n 6.8, power 0.978; N=1000: K_n 33.9, power 1.000]
+6/6 passed

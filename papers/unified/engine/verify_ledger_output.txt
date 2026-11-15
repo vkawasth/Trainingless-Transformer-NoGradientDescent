@@ -1,0 +1,2 @@
+PASS QL12 IDENTITY standalone verification of every ledger certificate in exact arithmetic   [3x3: 8837 tables, 1163 undefined, 8 strata; 4x4: 5057 tables, 4943 undefined, 39 strata; band ends verified 55576; failures 0]
+1/1 passed

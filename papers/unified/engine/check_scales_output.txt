@@ -1,0 +1,5 @@
+PASS SV1 IDENTITY Cauchy-Binet: e_k(V W V^T) is a sum of prod w_S det(V_S^T V_S) >= 0   [200 cases; max relative error 6.6e-14]
+PASS SV2 IDENTITY the least weight of an independent k-set is the sum of the k smallest greedy weights   [300 configurations; mismatches 0]
+PASS SV3 IDENTITY least-weight independent sets of facet normals at the leximin point give h_j with multiplicity r_j   [156 margins over 4 shapes; mismatches 0; cases with a multiplicity > 1: 98]
+PASS SV4 IDENTITY finite-L eigenvalue valuations of Q/W at the positive critical point tend to h_j - h_1 with multiplicity r_j   [24 margins; worst extrapolation error 0.0033]
+4/4 passed

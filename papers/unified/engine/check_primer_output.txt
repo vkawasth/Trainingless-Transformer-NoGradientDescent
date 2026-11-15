@@ -1,0 +1,5 @@
+PASS PM1 IDENTITY hand example: scales (0, a); greedy takes one normal at level 0 and one at level a; level b adds nothing   [Q = Matrix([[T**(3/4) + 2, T**(3/4)], [T**(3/4), T**(3/4) + T**(1/3)]]); det Q = T**a*T**b + 2*T**a + 2*T**b; val e1 = 0, val e2 = 1/3]
+PASS PM2 IDENTITY with mixed signs the leading part loses rank (1 < span 2) and the second scale becomes a, not 0   [leading part Matrix([[1/2, -1/2], [-1/2, 1/2]]) (rank 1); det Q = 2*T**a; val e2 = 1/3]
+PASS PM3 IDENTITY eigenvalue valuations = Newton-polygon slopes = greedy weights for positive Gram matrices   [random cases; mismatches 0]
+PASS PM4 IDENTITY grounded weighted graph Laplacians: scale valuations = Kruskal minimum-spanning-tree weights   [51 graphs; mismatches 0]
+4/4 passed
