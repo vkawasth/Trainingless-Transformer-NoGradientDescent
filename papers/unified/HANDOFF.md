@@ -1908,3 +1908,240 @@ Figures sit inside their own sections (`\usepackage[section]{placeins}`, `[!htbp
   guard never active. VOI dropped the geometric guard, kept contextual and braid projection.
 - Explanation map: relay changes after activation ~100%, drift 65% (trace separates relayed from lone departures).
 - Log TOTAL 165 scripts, 1227 PASS. Ledger 67 rows.
+
+## 2026-11-12 UTC (26): feedback applied; Study 27d, coordinated sabotage (sec:study27d, Prop. prop:mimic)
+- From the two feedback memos: overlap table rebuilt (overlap nerve vs revision graph, S0-S5 revision edge has no shared variable;
+  probabilities vs expected counts; 'sampling adequacy' instead of 'region'; I3000/I120k = one context at two sizes); 27c text: the
+  inspection does not improve the classifier, CI half-widths, z at grid floor, 'in this simulated world'; Prop. prop:mimic (lagging
+  cascade = relay in law; error probabilities sum >= 1). Not taken up yet: global extension defect, cycle transport/commutator defects
+  (need declared kernels on revision edges without overlap), the 'same reports + same braid, different gluing' theorem question.
+- 27d SPEC frozen 01:58 UTC (6e2a7ec9...); 27c filter frozen, no recalibration; seed 27402; two covers; 12 scenarios.
+- Held: transfer, duo, one compromised anchor, shock cover, all-anchors-compromised undetectable without honest evidence (detected with
+  the inspection), mimic identity. Failed: D5 (qualifying subset empty by construction), D7 (timing flag relay 0.88-0.91 vs drift
+  0.13-0.27; delayed coalition 0.11-0.19, detection 0.86-0.93).
+- Accomplices in g-blind contexts are never named.
+- Log TOTAL 166 scripts, 1237 PASS. Ledger 68 rows.
+
+## 2026-11-12 UTC (27): §13.43 expanded
+- Tables tab:s27c (27b vs 27c false positives with Wilson intervals, ~90% removed) and tab:s27cabl (paired ablation).
+- New paragraph: the witness braid does not remove thm:protect's 27x factor for the cheapest attack (dg = 0.04 needs anchors ~68,000,
+  floor kappa >= 0.038 from the source's own noise; arithmetic, not simulated); it catches Study 26's coalition (dg = 0.127) at 3000.
+  Study 26 readerbox amended with a pointer. Candidate next study: sweep of attack size x anchor size (power surface).
+
+## 2026-11-12 UTC (28): the decision maker's view (sec:dmview, p. 164), Study 27e
+- Prop. prop:visibility (Fisher kernel / Cramer-Rao); two-views table; three kinds of uncertainty (round caps, compatibility band,
+  flat attribution); blind band d_eff vs kappa; private incoherence register added to the ledger (sec:ledgerdm item list);
+  B2(S^2) = Z/2 (Fadell-Van Buskirk) explains the pairwise braid projection; dashboard figure fig_dmview.png.
+- Study 27e frozen 03:21 UTC (f7a8d119...), run once: 7 of 8 held; E6 failed (cardinality attribution 0.89 < 0.95).
+- Headline: the decision rule matters more than the budget. Pool the anchors with a margin (R3): blind risk <= 0.01 from 3000 anchors;
+  source point decision (R1): never closes (0.11 at 100k). Majority attribution blames the honest anchor when a witness is compromised.
+- Log TOTAL 167 scripts, 1246 PASS. Ledger 69 rows. Note 255 pp.
+
+## 2026-11-12 UTC (29): distance from reality (sec:reality), Study 27f
+- Frozen 03:52 UTC (79edf626...), run once; 6 of 7 held; F6 failed (pooled-rule relay error is structural, not sampling).
+- Floor confirmed (relay + lagging cascade errors 0.99-1.00); ladder oracle 1 / CUSUM 2 / witness@5% 2-4 rounds; harm 0.007;
+  explanation coverage >= 0.99; majority naming 0.99 (relay) vs 0 (compromised or stale witness); intervals 0-2% coverage under attack.
+- Missing theorem: regret bound for a pooled decision rule with a witness veto. Better existing instrument: CUSUM on d_t (1 round).
+- Log TOTAL 168 scripts, 1254 PASS. Ledger 70 rows.
+
+## 2026-11-12 UTC (30): the veto theorem (sec:veto, p. 169; Lemmas 141-142, Theorems 143-144, Corollary 145)
+- Statistical form: barycentre x_bar and inertia Q independent (Cochran); separation inequality lambda >= s^2 W W_H / w_C (Cauchy-Schwarz);
+  veto at alpha exactly; safety bound beta = sup_s Phibar(sqrt W (d - s) + z_d) F_{s^2 W W_H / w_C}(c_alpha), attained by a common shift;
+  sharp (W_H = 0; stale witness via Prop. mimic).
+- Braid form: closure forbidden while inertia > c; rigid translation the only spread-free motion; some coalition strand moves >= s W / w_C
+  against the protected strand (B_2(S^2) side change); K closures <= K beta for any schedule.
+- Corollary: the one-sided pairwise witness misses a poisoned anchor (VT6: 94% unseen) while the register veto sees it (0%).
+- Open: multinomial version (Bernstein), minimax optimality. Recommendation: veto on Q, attribute with the witness braid.
+- Log TOTAL 169 scripts, 1262 PASS. Ledger 71 rows. Theorem numbers after 140 shifted by the new results; figures rerun.
+
+## 2026-11-12 (31): the obstruction map (sec:obstruction), Study 27g
+- pce/obstruction.py: defect / cycle / unresolved classification, named source, decision relevance; Prop. prop:anova (exact independent
+  regional split of the register). Excision rule E vs global rule G.
+- Mechanisms: replacement, injection (cumulative batches), deletion; the own-past witness. Design fact: cover 1 has no room for a cycle
+  obstruction among g-blind contexts (shown on an exact four-cycle instead).
+- Study 27g frozen 17:48 UTC (429c01ad...), run once: 6 of 7 held; G1 failed (deletion invisible to the inner layer at n = 6000).
+  No wrong act in any attack; excision loss 0 vs 0.2; poison-from-start defeats the own past (4.3%), the anchors still catch it.
+- Figure fig_tower27g.png: the tower in four cases plus mechanisms.
+- Log TOTAL 170 scripts, 1271 PASS. Ledger 72 rows.
+
+## 2026-11-13 (32): the order watch (sec:orderwatch), Study 27h
+- pce/orderwatch.py: signed chain counts mu (Milnor/Chen-type iterated sums on the trace), gap-tolerant mu1, positive count nu, prefix.
+  Prop. prop:orderwatch: exact counts are trace invariants and blind to adjacent cancelling pairs; the same invariance lets a planted
+  reversal erase a link (decoy); the positive count resists the decoy but not honest pads.
+- Study 27h frozen 00:28 UTC (8a400986...), design pilot on separate seeds disclosed; run once. 8 of 10 held. Rare events: exact count
+  91.7% of relays at 0.5% honest, waiting irrelevant; chain-then-departure 71.7% vs witness alone 45.1%, honest 0%; warning precedes
+  departure in 84% (lead 6 ticks over the witness). One hidden link or one planted reversal defeats the exact count; loose gap count +
+  departure recovers 69.3% at 2.0% honest; two hidden links defeat all order statistics. Lagging cascade inseparable (70.2% vs 71.7%).
+  Failed: H9 (dense: 39.1% > 30%); H1 / ZH2 (gap count as run not a trace invariant; strict_gap fixes it, ZH13). Not rerun.
+- Figure fig_orderwatch27h.png. Log TOTAL 171 scripts, 1283 PASS, 1 FAIL (ZH2, recorded). Ledger 73 rows.
+
+## 2026-11-13 (33): the local gauge decomposition (sec:gauge)
+- Prop. prop:gauge: V = ker A on the tangent space, H = V^perp in the Fisher metric; H = log-linear tangent P (f - E f), f in row(A);
+  dg|V != 0 iff the prop:visibility kernel condition; an anchor whose margin determines g makes dg|V = 0. Cor. cor:gauge: observational
+  invisibility and decision irrelevance differ. Stated limits: local, first order; horizontal does not mean detected (27g relay).
+- Cover 1 without S3: dim V 18, H 13; 94% of g's Fisher gradient invisible; Q - P exactly vertical; either anchor: 0 exactly;
+  g-blind {C,H}, {R,Y}: still 94%. 2 x 2 example: dg/dt = 4.61 along the margin fibre; 0.87% of mass crosses the boundary.
+- Sheaf: detects incompatibility; "curvature" exact only for Z/2 twists. Order watch = Magnus/Chen coefficient on the trace algebra
+  (GD7); the witness braid is a separate projection. Comonad = access (coKleisli rules); ledger = retained state, not a coalgebra.
+- External feedback adopted (five-part structure; no claim that horizontal = detected; no coalgebra claim); I corrected its reading of
+  the 27h dense failure (base rate, not geometry) and its mislabel of Proposition 147.
+- check_gaugedecomp.py GD1-GD7 7/7; fig_gauge.png. Log TOTAL 172 scripts, 1290 PASS, 1 FAIL (ZH2). Ledger 74 rows. 270 pp.
+
+## 2026-11-13 (34): likelihood, Novikov order, braids, history, the engine and Studies 27i and 27j
+- New sections: sec:likval (likelihood rates are valuation shifts), sec:novorder (graded order watch), sec:stokesbraid (Stokes events
+  are tropical, prop:stokestrop; worked dual Garside / Hurwitz example after Bessis), sec:persist (amoeba bound, attacker split),
+  sec:histval (grade vs resolution; orders collapse before their parts), sec:engine (Study 27i), the three-braid mapbox, sec:braidstats
+  (Study 27j). Checks LN1-6, NO1-5, SK1-5, HZ1-7, PS1-5, HV1-5, DN1-3, SN1-7, ZI1-13, ZJ1-8: all PASS (first-run failures recorded in
+  docstrings / DEVNOTES).
+- Study 27i (frozen d1206ff0..., run once; restarted after a container restart, numbers reproduced exactly): I2-I8 all held.
+  Sabotage glued inside (98%), naive acted 100%, anchored 0%. Honest change fired the generic veto (dst 0.98, boundary 1.0) but never
+  the g-witness.
+- Study 27j (frozen ff3d9efc..., run once): J1-J5 all held. Dual reduction ratio and Burau growth added no power over the plain record;
+  quenched vs annealed separated by accumulation (record 0.66 vs 0.15); order watch did not beat the record against event-adding
+  attacks.
+- Fixes found in this pass: duplicate label prop:stokes (new proposition renamed prop:stokestrop); check prefix EN of the engine
+  collided with check_environment.py -> SN (frozen 27i spec still says EN; noted in DEVIATIONS and DEVNOTES).
+- Ledger 83 rows, 3/3. Log 276 script entries, 1699 PASS, 2 FAIL lines (an earlier LG1 run, since passing; ZH2 standing). 287 pp.
+
+## 2026-11-13 (35): proofs in place of computations
+- prop:seqval (sec:likval): likelihood valuations under dependent/adversarial data. S_n = A_n + M_n (compensator + martingale, maximal
+  Azuma); fibre-preserving adversaries are invisible to every observable statistic; moving the wall by delta by n = sN costs
+  K_n >= N delta^2 / (2 s B^2) (pathwise Pinsker + Cauchy-Schwarz). SQ1-SQ6.
+- thm:separation: valuation (function of counts) and structure (signed chain counts, event braid; trace invariants on non-crossing
+  graphs) are independent both ways. SP1-SP5. A sufficiency argument with witnesses; stated as such.
+- prop:fsgram (sec:fsgram): every nondegenerate 2x3 coupling polygon is a smooth toric del Pezzo (P2, P1xP1, F1, dP7, dP6); FS(W) =
+  D^b(X) cited (Ueda; AKO); toric exceptional collections and Gram matrices exact; invariants separate the types; types change only at
+  support walls. Reading: the categorical layer is non-trivial but fixed by the support pattern. FG1-FG6 (FG4 shortened after timeouts).
+- thm:scales: conj:leveldrop PROVED at the positive object for every shape (positivity + Cauchy-Binet + matroid greedy). SV1-SV4. My
+  earlier conversational claim that it would fail generically was wrong; noted in the text.
+- cor:leximin: further evidence (331 margins, 4 shapes, 0 disagreements); every redundant cell dominates a facet cell; first level
+  proved from domination; general equality still open. LQ1-LQ3.
+- Open-questions list refreshed. Duplicate float problem: [ht] floats were drifting up to 77 pages; all [ht] -> [!htbp], \extrafloats.
+- check_scales rerun after moving its LP helpers into pce/couplinglp.py: identical PASS lines.
+- Ledger 88 rows, 3/3. 294 pp.
+
+## 2026-11-13 (36): credal sets under evidence (sec:credalflow)
+- lem:hilbertflow (tilts are Hilbert isometries; restriction non-expansive; Birkhoff contraction); lem:kahlerclass (evidence moves the
+  class only through circuit pairings; soft evidence on states moves no class); thm:crossing (Descartes bound, soft evidence -> hard in
+  the limit, vertices, explicit crossing time); thm:viability (reachable set, conserved cell conditionals, long-run bracket, forced
+  determinacy, persistent ambiguity, fibre impossibility); cor:tropcross (tropical transit time, rate 1/N); mapbox "What evidence
+  conserves, and what it moves"; fig:credalflow. Checks CR1-CR10 (CR4 first-run failures were rounding in the check; recorded).
+- credal-flow ledger row added.
+
+## 2026-11-13 (37): F1 worked example for sec:credalflow (ex:f1credal, fig:f1credal; FK1-FK6)
+- Credal Kahler class alpha in [0.36, 0.45] on F1. The outcome wall is a log-linear payoff: rigid translation, exact transit window
+  0.092 < s <= 0.401 (width/drift), data at N^-1/2. Linear posterior payoff p4 - p3: one switch, ends with the best fit, tropical window
+  1.54 < s <= 1.92. Attack forcing the outcome: 0.0355 nats/obs vs bound 0.0217; LR power 0.985 at N = 200.
+- Findings: (i) thm:crossing now groups only states with c_i != 0 (first bound 65 vs actual 1.92); (ii) two-term payoffs are log-linear,
+  so their crossing is exact at every N (FK4 first form failed; recorded); (iii) correction to the plan: the tower's wall crossing is
+  not the lexicographic limit of a linear payoff; it is exact and linear because the wall payoff is log-linear.
+
+## 2026-11-13 (38): bands, mixing and a probability flow (sec:credalgeom; GM1-GM9; fig:credalgeom; tab:bandladder)
+- Band ladder for an outcome under conditions (exact, undefined and dilation flags, total-probability check). Hilbert diameter by LP at
+  vertex pairs with structural/touching-zero handling and eps-profiles. lem:ceiling: every conditional log-odds band <= diam_H (attained
+  by the coin). Conditioning commutes with mixing for sets; condition-dependent weights; point-level discrepancy (population Z).
+- Probability flow = replicator-mutator / normalised Feynman-Kac (time-t map projective-linear). Central experiment declared in the
+  script before running; H held: with evidence + mixing the diameter fell 2.000 -> 1.967 while the P(N2 | P=0, C=1) band widened
+  1.786 -> 1.874 (log-odds), then fell to 1.855. Evidence only: band rises to the ceiling 2.0; mixing only: both fall.
+- Sources alone: decision bands undefined / [0, 1]; anchors (relative e^{+-0.5}) make them exist. First run 9/9.
+
+## 2026-11-13 (39): the 3 x 3 test (sec:threebythree; prop:firstlevel; TT1-TT7; fig:threebythree)
+- Exact rational leximin with primal/dual certificates (pce/cpl33.py). prop:firstlevel (any shape): h_1 = min(f_min/c, g_min/r); level 1
+  fixes exactly the minimizing rows/columns; r_1 = c-1 per row, r-1 per column. For nondegenerate 3x3: patterns (2,1,1) 396, (2,2) 196,
+  (4) 8 of 600; (1,1,1,1) and any level of 3 impossible. Also explains the 2x4 patterns (no pattern starting with 2).
+- 2000 sampled chambers: all Delzant; 13 fan types (6/7/8/9 facets: 1/3/4/5 types); only P2 x P2 Fano (5% of margins). Not a census.
+- thm:scales verified exactly in 4D on four examples (worst 0.0026), including a double scale (2,2) and (4).
+- First-run issues recorded in the script: facet test infeasible for never-zero cells (code error, fixed by the Frechet bound); TT5 first
+  classified by facet set (coarser than the fan); TT6 failed its declared minimum of 3 examples because E3/E4 do not exist (the
+  proposition shows why); E5 (2,2) and E6 (4) added after the run and labelled.
+- Open-list item on scales/rank updated (positive object: rank equality holds by (H2) in every shape).
+
+## 2026-11-13 (40): reader's guide to thm:scales (sec:primer) and the 3 x 3 test completed (TT8-TT11)
+- sec:primer (before def:scales): glossary; valuations; invariant factors and the Newton polygon; positivity with a cancellation
+  counterexample; the matroid step; a hand example; relatives (Wentzell 1972, Bovier-Gayrard-Klein 2005, Moro-Burke-Overton 1997,
+  Akian-Bapat-Gaubert 2004/2016) with a comparison table: the graph-Laplacian/Kruskal case is the graphic-matroid instance of the same
+  mechanism; what is new is that the weights are leximin levels. PM1-PM4 (PM3/PM4 first failed at a single L; extrapolation; recorded).
+- 3 x 3: TT8 facet = all-cell leximin exactly on 600 margins; TT9 facets = cells with f_i + g_j <= 1; TT10 10000-margin census, still
+  13 fan types (none new after 2000), vertex counts 9/12/15/18 as in De Loera-Kim-Onn-Santos; TT11 the Fano chamber is P2 x P2 with
+  the product exceptional collection (Gram = Kronecker square). tab:threeverify lists which theorems the 3 x 3 test verifies.
+- References whose page numbers were not verified are cited by DOI.
+
+## 2026-11-13 (41): the stratified ledger (sec:ledger; prop:basiscount; QL1-QL8; fig:stratledger; tab:ledger; engine/stratledger.json)
+- Exact-margin credal sets, 10000 margins each of 3x3 and 4x4; decision P(cell 00 | corner 2x2 block); one rational evidence vector.
+- H1 held: linear objectives need exactly C(r+c-2, r-1) solves (6, 20) for all tables; conditional bands 27 solves (3x3, 8837 defined
+  tables, 35348 exact certificates) and 162 (4x4). Toric chambers do NOT predict basis regions (purity 0.30): different stratifications.
+- H2 mixed (enrichment 1.9 in 3x3, 1.0 in 4x4). H3 partly failed: the logistic drift bound is valid and certifies top-20 (2592 / 1321
+  evaluations) but ranks weakly (Spearman 0.23 / 0.45; most bands do not move because an end is at 0 or 1).
+- Ledger records: tables, strata, walls (pivot with kernel-weighted gradient jump; support wall), boundary profiles (clearance kept
+  separate from valuation profile along a declared family), certificates; reconstruction audit exact.
+- Not done: tolerance / many-context credal sets with sampling (HT) - stated as the open general case.
+
+## 2026-11-13 (42): QL5 withdrawn; chambers refine basis regions (prop:chamberrefine; QL9-QL12; standalone verifier)
+- QL5's "toric chambers do not predict basis regions (purity 0.30)" compared symmetry-quotiented chamber labels with raw basis labels.
+  The claim is withdrawn in the paper, the ledger row and the check_stratledger.py docstring (QL5 marked SUPERSEDED).
+- prop:chamberrefine (proved): within a chamber (fixed feasible-basis set = normal fan) vertices move linearly and, since dual feasibility
+  does not depend on b, the optimal basis of a generic linear objective is constant; ratio objectives can switch inside a chamber.
+- check_stratledger2.py: QL9 PASS (342 raw chambers, 13 up to symmetry; one optimal basis per raw chamber for 10 linear objectives;
+  quotiented labels carry several); QL10 RECORD (paper's band: 1 region per chamber, 0 switches); QL11 RECORD, added after QL9-10 ran
+  (random ratio objectives: 25/145/74/113/29 chambers with >1 region; all located switches interior).
+- verify_ledger.py (QL12): standalone, imports nothing from the project, exact Gaussian elimination; all 55576 band ends (so 4x4 now fully
+  certified, not sampled), stratum memberships and totals: PASS, 0 failures.
+- Paper text: dual-matroid remark (spanning tree / cographic complement = cell normals of thm:scales; shared substrate, no implication),
+  H1 cost wording, H2 dimension-dependent, H3 filter-then-rank, sheaf note (gluing automatic for a global band).
+- Next per user order: conditional-band scaling (2xn, 3xn, 4xn), then tolerance / many-context algorithm separately.
+
+## 2026-11-13 (43): Study 28, scaling of the stratified ledger (sec:ledgerscale; LS1-LS8; fig:ledgerscale; tab:ledgerscale)
+- Pre-registered and frozen (engine/study28_scale/PREREG_study28.md, FROZEN_PREREG_study28.txt) before the run. 15 shapes 2x2..4x6,
+  T = 1000/3000/10000 nested, four band ends, three linear control objectives per shape.
+- LS1 PASS (all certified; exact re-check 300/shape/end). LS2 FAIL: 2x8 objective #2 took 9 > C(8,1) = 8 solves; it is dual degenerate
+  (tied row differences); prop:basiscount(i) assumes genericity. LS8 (post hoc) confirms. LS3 PASS. LS4 PASS (10x tables -> at most 1.9x
+  solves). LS5 PASS (build 6-2900x faster than direct). LS6 PASS (check 200-50000x cheaper than an LP). LS7 RECORD: regions ~ tree
+  bound^0.38; memory ledger/bands > 1 at 3x7 (1.76), 4x5 (1.84), 4x6 (4.62).
+- Next: tolerance / many-context algorithm (certified top-k + stratified HT sample), separately pre-registered.
+
+## 2026-11-14 (44): Study 29, beyond exact margins (sec:tolerance; TK1-TK9; fig:tolerance; pce/credalledger.py)
+- Pre-registered and frozen (engine/study29_tolerance/) before any code ran. Families: 3x3 tolerance boxes e = 0, 1/200, 1/100, 1/50;
+  4x4 e = 1/100; 3x3x2 with three pairwise margins (non-TU). General standard-form library with basis completion; no fallbacks occurred.
+- TK1 e = 0 reproduces all 35348 ledger band ends (independent implementation). TK2 nesting (243 tables become undefined as e grows).
+  TK3 LP and exact re-checks. TK4 bound valid, certified top-20 exact. TK5 30-846 solves for 10000 tables. TK6 FAILED: top-20 evaluates
+  27-32% (tolerance) but 81% (pair332): the logistic bound sees only the band and saturates near 0.172 for narrow interior bands
+  (diagnosis post hoc, in the docstring). TK7 stratified coverage 0.944-0.954 (SRS down to 0.922). TK8 variance ratio 0.73-0.98.
+- Open: a structure-aware drift bound for top-k; many more contexts / high-dimensional tolerance sets.
+
+## 2026-11-14 (45): Study 30, structure-aware certified drift bound (sec:structbound; prop:structbound; tab:structplan; SW1-SW9)
+- Responds to TK6 (stays failed). The user's five-stage proposal and our pre-freeze refinements are both documented (tab:structplan).
+- prop:structbound: (i) pointwise drift sup bounds band-end movement; (ii) a basis's dual feasibility for n1 - lambda d1 is a
+  table-independent lambda-interval, so every solved basis bounds all tables by weak duality; (iii) pairwise-margin null space =
+  span of product contrasts, dimension (a-1)(b-1)(c-1).
+- Families P332 (Study 29 population), P332tol (+-1/100), P442. SW1-SW5 identities PASS. SW6 PASS: 32/10000 evaluated (band-only 8142).
+  SW8 PASS: 40 and 59 (band-only 8398, 5559); 49/70/112 LPs. SW7 FAIL: Spearman(min(U0,U1), D) 0.53 (0.56, 0.72).
+  Post-hoc layer diagnosis (P332): U0 excludes 18.6%, U1 70.9%, a priori 86.4%, after duals 99.8%.
+- Open: interaction coordinates inside the relaxation for better ranking; many more contexts.
+
+## 2026-11-14 (46): reflow toward geometry; stratified credal objects (Study 31); table of contents
+- User: lean with geometry; reflow allowed, nothing deleted; add a table of contents; update the abstract. Done:
+  abstract opens with "The geometry in brief" and gains a closing paragraph on the new part (all earlier paragraphs kept);
+  \tableofcontents (depth 2); new sec:overview (four/five geometric layers, central claim, three reading paths);
+  new \part{The shape of uncertainty: stratified credal objects} with new sec:credalgeomstrat/sec:credalshape, followed by the
+  stratified ledger (sec:ledger + 28/29/30 subsubsections) and sec:bloch, moved there unchanged; \part{Putting it together} before
+  Study 26. Line audit: every original line is present except 7 lines that were extended in place (three readerbox titles, the three
+  uncertainty bullets in sec:dmview, the dual-matroid paragraph). Backup of the pre-reflow source was kept in the session scratchpad.
+- New results: lem:cographic, prop:ratiocone, prop:condpolytope, prop:bandcomplete (Gale supply-demand; for a = 3 the region is a
+  generalised permutohedron = product of bands). Study 31 (pre-registered, identities SO1-SO6 all PASS; SO7 post hoc: 100/100
+  before-evidence regions equal the band product; after evidence 66-99%, median 88%). Figures fig_credalshape, fig_dualmatroid.
+- Terminology: third uncertainty type renamed "observationally invisible variation" (attribution needs anchors); sampling cap
+  qualified as asymptotic.
+
+## 2026-11-14 (47): three corrections from review
+- prop:basiscount(ii) said ratio basis regions are "not cones in general"; wrong: after multiplying by the positive denominator the
+  Dinkelbach conditions are linear and homogeneous in b, so they are polyhedral cones in right-hand-side space (prop:ratiocone), not
+  necessarily unions of chambers. Corrected, with a note that the earlier version was wrong.
+- prop:chamberrefine said a chamber "is" the normal fan of Cpl(f, g); conflated margin space with objective space. Now: margins in one
+  chamber give polytopes with the same normal fan (zero-cell normals generate the vertex cones, lem:cographic), and conversely.
+- Abstract and sec:credalshape: sampling noise is asymptotically a Fisher-Rao confidence region (square-root image ~ cap of radius
+  O(m^{-1/2})), not "uniform in the Fisher-Rao metric". Also added the population scale (0.216, +0.138) to the invisible-variation bullet.
+
+## 2026-11-14 (48): frontispiece (fig:frontispiece, Study 32, UG1-UG5)
+- The user's image-model picture had no mathematics; replaced by a computed six-panel figure on E1 in sec:overview: chamber slice,
+  fibre with x(L) path, dual bases, Theorem 196 combinatorial and spectral sides, conditional region with bands and sphere inset.
+  Pre-registered and frozen; UG1-UG5 all PASS (scales extrapolate to 0, 0, 3/72, 9/144 within 0.0008).

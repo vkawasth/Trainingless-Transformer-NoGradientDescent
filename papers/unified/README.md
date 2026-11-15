@@ -249,4 +249,48 @@ and attribution (models B2-B7), the witness braid and its explanation map (H5, w
 01:50 UTC, SHA-256 21632b08...; RESULTS; DEVIATIONS: none), `engine/run_study27c.py`, `engine/check_study27c.py` (ZC1-ZC8). All six
 predictions held.
 
+### Study 27d (2026-11-12 UTC, pre-registered, run once)
+`engine/study27d/` (SPEC frozen 01:58 UTC, SHA-256 6e2a7ec9...; RESULTS; DEVIATIONS), `engine/run_study27d.py`, `engine/check_study27d.py`
+(ZD1-ZD10): coordinated sabotage vs the frozen 27c filter on two covers; Prop. prop:mimic. 6 of 8 predictions held.
+
+### The decision maker's view and Study 27e (2026-11-12 UTC, pre-registered, run once)
+`engine/pce/dmview.py` (visibility spectrum, Gaussian blind-band model, private incoherence register, Fisher-Rao angles),
+`engine/study27e/` (SPEC frozen 03:21 UTC, SHA-256 f7a8d119...; RESULTS; DEVIATIONS: none), `engine/run_study27e.py`,
+`engine/check_study27e.py` (ZE1-ZE9), `kahler/fig_dmview.py`. Section sec:dmview. 7 of 8 predictions held.
+
+### Study 27f, distance from reality (2026-11-12 UTC, pre-registered, run once)
+`engine/study27f/` (SPEC frozen 03:52 UTC, SHA-256 79edf626...; RESULTS; DEVIATIONS), `engine/run_study27f.py`, `engine/check_study27f.py`
+(ZF1-ZF8). Section sec:reality. 6 of 7 predictions held.
+
+### The veto theorem (2026-11-12 UTC)
+Section sec:veto: Lemma lem:separation, Lemma lem:cochran, Theorem thm:veto (statistical form), Theorem thm:vetobraid (braid form),
+Corollary cor:vetoseq (the one-sided pairwise witness misses a poisoned anchor). `engine/check_vetotheorem.py` (VT1-VT8).
+
+### The obstruction map and Study 27g (2026-11-12, pre-registered, run once)
+`engine/pce/obstruction.py`; `engine/study27g/` (SPEC frozen 17:48 UTC, SHA-256 429c01ad...; RESULTS; DEVIATIONS), `engine/run_study27g.py`,
+`engine/check_study27g.py` (ZG1-ZG9), `kahler/fig_tower27g.py`. Section sec:obstruction. 6 of 7 predictions held.
+
+### The order watch and Study 27h (2026-11-13, pre-registered, run once)
+`engine/pce/orderwatch.py` (signed, gap-tolerant and positive chain counts in the dependence order; prefix warning); `engine/study27h/`
+(SPEC frozen 00:28 UTC, SHA-256 8a400986...; RESULTS; DEVIATIONS), `engine/run_study27h.py`, `engine/check_study27h.py` (ZH1-ZH13),
+`kahler/fig_orderwatch27h.py`. Section sec:orderwatch, Prop. prop:orderwatch. 8 of 10 predictions held; check ZH2 failed (the
+gap-tolerant count, as run, breaks within-round ties by position and is not a trace invariant; the strict form is, ZH13).
+
+### The local gauge decomposition (2026-11-13)
+Section sec:gauge: Prop. prop:gauge (Fisher-orthogonal split into changes invisible to the trusted observations and the rest; the
+horizontal space is the log-linear tangent; dg restricted to the invisible space is the blind band; an anchor that determines g removes
+it exactly), Cor. cor:gauge; the order watch identified as a Magnus coefficient. `engine/check_gaugedecomp.py` (GD1-GD7, writes
+`engine/gaugedecomp_results.json`), `kahler/fig_gauge.py` (2 x 2 example and cover 1).
+
 `kahler/fig_tower.py`: the overview companion (fig:tower), Study 26 at seven levels with each signal keeping its colour.
+
+### The snapshot engine, Study 27i and Study 27j (2026-11-13, pre-registered, each run once)
+`engine/pce/snapengine.py` (checks `engine/check_engine.py` SN1-SN7; notes `engine/DEVNOTES_engine.md`), `engine/pce/sleepworld.py`,
+`engine/run_study27i.py`, `engine/check_study27i.py` (ZI1-ZI13), `engine/study27i/` (SPEC frozen, RESULTS, DEVIATIONS),
+`kahler/fig_engine27i.py`; section sec:engine, followed by the three-braid box. `engine/pce/dualgarside.py` (DN1-DN3),
+`engine/run_study27j.py`, `engine/check_study27j.py` (ZJ1-ZJ8), `engine/study27j/`; section sec:braidstats. Synthetic data only.
+
+### Proof-first results (2026-11-13)
+`engine/check_seqval.py` (SQ, prop:seqval), `engine/check_separation.py` (SP, thm:separation), `engine/pce/fsgram.py` +
+`engine/check_fsgram.py` (FG, prop:fsgram), `engine/pce/couplinglp.py` + `engine/check_scales.py` (SV, thm:scales),
+`engine/check_leximinext.py` (LQ, after cor:leximin).

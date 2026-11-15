@@ -2376,3 +2376,428 @@ PASS LG2 every cited check is PASS in the run log   [408 ids; missing []]
 PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
 3/3 passed
 TOTAL now: 165 scripts, 1227 PASS, 0 FAIL (study27c 8; ledger rerun replaces the earlier LG entry)
+== engine/check_study27d.py (2026-11-12 UTC)
+PASS ZD1 IDENTITY specification unchanged since the freeze   [6e2a7ec98cb2]
+PASS ZD2 IDENTITY lagging cascade with the relay's schedule = relay, in law, at every round
+PASS ZD3 RECORD D1 verdict recomputed and recorded   [HELD]
+PASS ZD4 RECORD D2 verdict recomputed and recorded   [HELD]
+PASS ZD5 RECORD D3 verdict recomputed and recorded   [HELD]
+PASS ZD6 RECORD D4 verdict recomputed and recorded   [HELD]
+PASS ZD7 RECORD D5 verdict recomputed and recorded   [FAILED]
+PASS ZD8 RECORD D6 verdict recomputed and recorded   [HELD]
+PASS ZD9 RECORD D7 verdict recomputed and recorded   [FAILED]
+PASS ZD10 RECORD D8 verdict recomputed and recorded   [HELD]
+10/10 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [68 rows]
+PASS LG2 every cited check is PASS in the run log   [410 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 166 scripts, 1237 PASS, 0 FAIL (study27d 10; ledger rerun replaces the earlier LG entries)
+== engine/check_study27e.py (2026-11-12 UTC)
+PASS ZE1 IDENTITY specification unchanged since the freeze   [f7a8d1190532]
+PASS ZE2 IDENTITY g is unknowable exactly when every independent witness of g may lie
+PASS ZE3 RECORD E1 verdict recomputed equals the recorded verdict   [HELD: share of cells within 0.07: R1 1.00, R2 1.00, R3 1.00]
+PASS ZE4 RECORD E2 verdict recomputed equals the recorded verdict   [HELD: max R3 unseen at N_A >= 3000: 0.010]
+PASS ZE5 RECORD E3 verdict recomputed equals the recorded verdict   [HELD: max R1 unseen per N_A: 0.630, 0.360, 0.195, 0.130, 0.110]
+PASS ZE6 RECORD E4 verdict recomputed equals the recorded verdict   [HELD: max R2 unseen at 3000: 0.095; at >= 10000: 0.010]
+PASS ZE7 RECORD E5 verdict recomputed equals the recorded verdict   [HELD: honest false relay: 0.015, 0.025, 0.033, 0.028, 0.030]
+PASS ZE8 RECORD E6 verdict recomputed equals the recorded verdict   [FAILED: inclusion names nobody 1.000; cardinality names S3 0.894 (n = 11900)]
+PASS ZE9 RECORD E7 verdict recomputed equals the recorded verdict   [HELD: inclusion names nobody 1.000; cardinality names an honest reporter 0.950 (n = 1969)]
+9/9 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [69 rows]
+PASS LG2 every cited check is PASS in the run log   [412 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 167 scripts, 1246 PASS, 0 FAIL (study27e 9; ledger rerun replaces the earlier LG entries)
+== engine/check_study27f.py (2026-11-12 UTC)
+PASS ZF1 IDENTITY specification unchanged since the freeze   [79edf626e182]
+PASS ZF2 IDENTITY compatibility part of the gap for g is zero (g visible from S3 alone and from the anchors alone)
+PASS ZF3 RECORD F1 verdict recomputed equals the recorded verdict   [HELD: relay15 + cascade_lagging error: 3000 R1 1.000, R3 0.990; 30000 R1 1.000, R3 1.000]
+PASS ZF4 RECORD F2 verdict recomputed equals the recorded verdict   [HELD: median delays oracle/CUSUM/witness@5%: 3000 relay15 1.0/2.0/2.0; 3000 relay08 2.0/3.0/4.0; 30000 relay15 1.0/2.0/2.0; 30000 relay08 2.0/2.0/3.0]
+PASS ZF5 RECORD F3 verdict recomputed equals the recorded verdict   [HELD: relay08 at 3000: witness@5% 4.0 vs CUSUM 3.0]
+PASS ZF6 RECORD F4 verdict recomputed equals the recorded verdict   [HELD: mean harmful rounds 0.007]
+PASS ZF7 RECORD F5 verdict recomputed equals the recorded verdict   [HELD: 3000: coverage 0.991/0.999, cardinality exact 0.991/0.000; 30000: coverage 0.991/1.000, cardinality exact 0.991/0.000]
+PASS ZF8 RECORD F6 verdict recomputed equals the recorded verdict   [FAILED: exact-report R3 regret relay15/relay08/anchor1: 3000 1/0/1; 30000 0/0/1]
+8/8 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [70 rows]
+PASS LG2 every cited check is PASS in the run log   [414 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 168 scripts, 1254 PASS, 0 FAIL (study27f 8; ledger rerun replaces the earlier LG entries)
+== engine/check_vetotheorem.py (2026-11-12 UTC)
+PASS VT1 IDENTITY separation inequality, with equality for a common coalition shift
+PASS VT2 IDENTITY barycentre and inertia are independent, with the stated laws   [P(joint) 0.1203 vs product 0.1200; mean Q 16.183 vs 16.180]
+PASS VT3 IDENTITY the safety bound holds for every coalition and is attained by the common shift   [largest excess of simulated over bound = +0.0005 (Monte Carlo noise; tolerance 3 SE + 0.001); attained within Monte Carlo error in 60/60]
+PASS VT4 IDENTITY on honest data the veto fires with probability alpha   [0.0497]
+PASS VT5 IDENTITY sharpness: no honest weight, a rigid translation is invisible to the inertia   [lambda 0.0e+00, wrong act 0.950]
+PASS VT6 IDENTITY a poisoned anchor flips the pooled decision past the one-sided pairwise witness, not past the register veto   [flip 0.951; unseen by the pairwise witness 0.939; unseen by the register veto 0.0000]
+PASS VT7 IDENTITY braid form: some coalition strand moves by at least s W / w_C against every honest strand
+PASS VT8 IDENTITY sequential: over 12 closures the wrong-act probability stays below 12 beta for every schedule   [beta = 0.0007; jump 0.0000, slow drip 0.0008, delayed 0.0000]
+8/8 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [71 rows]
+PASS LG2 every cited check is PASS in the run log   [422 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 169 scripts, 1262 PASS, 0 FAIL (vetotheorem 8; ledger rerun replaces the earlier LG entries)
+== engine/check_study27g.py (2026-11-12)
+PASS ZG1 IDENTITY specification unchanged since the freeze   [429c01ad894b]
+PASS ZG2 IDENTITY the cycle is classified 'cycle' with every table as an explanation; a single miscoded table is a named defect   [cycle: cycle ['A', 'B', 'C', 'D']; miscoded: defect ['S4'], decision-relevant False]
+PASS ZG3 IDENTITY the ANOVA split is exact and its parts are independent chi-squares
+PASS ZG4 RECORD G1 verdict recomputed equals the recorded verdict   [FAILED: miscoded named S4 1.000, decoy 1.000; glues: replace 1.000, inject 1.000, inject_early 1.000; delete named S3 0.000]
+PASS ZG5 RECORD G2 verdict recomputed equals the recorded verdict   [HELD: miscoded loss E 0.000 vs G 0.200]
+PASS ZG6 RECORD G3 verdict recomputed equals the recorded verdict   [HELD: act under V / E: replace 0.000/0.000, inject 0.000/0.000, delete 0.000/0.000, inject_early 0.000/0.000, decoy 0.000/0.000]
+PASS ZG7 RECORD G4 verdict recomputed equals the recorded verdict   [HELD: honest within 0.047, between 0.046, correlation +0.001]
+PASS ZG8 RECORD G5 verdict recomputed equals the recorded verdict   [HELD: own past: inject 1.000, replace 1.000, inject_early 0.043, honest 0.034]
+PASS ZG9 RECORD G6 verdict recomputed equals the recorded verdict   [HELD: decoy, abstain on the inner obstruction 0.000]
+9/9 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [72 rows]
+PASS LG2 every cited check is PASS in the run log   [425 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 170 scripts, 1271 PASS, 0 FAIL (study27g 9; ledger rerun replaces the earlier LG entries)
+== engine/check_study27h.py (2026-11-12)
+PASS ZH1 IDENTITY specification unchanged since the freeze   [8a4009860a95]
+FAIL ZH2 IDENTITY signed counts are invariant under independent swaps and cancelling pairs; the positive count is not; the decoy zeroes the signed count   [violations 151/3000; positive count moved by a pad in 52/3000; decoy: signed 0, positive 1]
+PASS ZH3 IDENTITY gap-tolerant count: full chain 3, one hidden link 1; prefix of a two-link start is 2   [full 3, masked 1, prefix 2]
+PASS ZH4 RECORD H2 verdict recomputed equals the recorded verdict   [HELD: honest alarm: rare mu0 0.005, mu1 0.019, nu0 0.001, nu1 0.024; dense mu0 0.055, mu1 0.029, nu0 0.046, nu1 0.043]
+PASS ZH5 RECORD H3 verdict recomputed equals the recorded verdict   [HELD: mu0 relay 0.917, relay_wait 0.918]
+PASS ZH6 RECORD H4 verdict recomputed equals the recorded verdict   [HELD: mask1: mu0 0.059, mu1 0.242, loose mu1 0.907 (honest 0.148); mask2 max 0.101]
+PASS ZH7 RECORD H5 verdict recomputed equals the recorded verdict   [HELD: decoy: mu0 0.048, nu0 1.000]
+PASS ZH8 RECORD H6 verdict recomputed equals the recorded verdict   [HELD: C(mu0): honest 0.000, drift 0.004, relay 0.717 vs witness alone 0.451; delay 4.0 vs 5.0]
+PASS ZH9 RECORD H7 verdict recomputed equals the recorded verdict   [HELD: C(mu0): lagging cascade 0.702, relay 0.717, timely cascade 0.240]
+PASS ZH10 RECORD H8 verdict recomputed equals the recorded verdict   [HELD: warning before departure: relay 0.844, relay_wait 0.910; lead over the witness 6.0]
+PASS ZH11 RECORD H9 verdict recomputed equals the recorded verdict   [FAILED: dense: mu0 relay 0.391]
+PASS ZH12 RECORD H10 verdict recomputed equals the recorded verdict   [HELD: C(loose mu1): honest 0.020, mask1 0.693]
+PASS ZH13 IDENTITY the exact count is invariant; the k = 1 failures are within-round ties, and the strict-round gap count is invariant   [exact count 0/3000, gap-tolerant with strict rounds 0/3000]
+12/13 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [73 rows]
+PASS LG2 every cited check is PASS in the run log   [428 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 171 scripts, 1283 PASS, 1 FAIL (study27h 12 PASS, 1 FAIL: ZH2, the gap-tolerant count is not a trace invariant as implemented, a recorded finding; ledger rerun replaces the earlier LG entries)
+== engine/check_gaugedecomp.py (2026-11-13)
+PASS GD1 IDENTITY the Fisher-orthogonal split T = V + H on the honest observation map is a direct sum, with R V = 0   [dim V 18, dim H 13, max |R v| 7.4e-16, max |<v,h>_G| 1.7e-14, residual 1.8e-14]
+PASS GD2 IDENTITY lemma: the horizontal space is the log-linear tangent P (f - E f), f in the row space of R   [rank 13 = dim H 13; max sin(angle) 1.9e-15; exact rank [R;1] 14]
+PASS GD3 IDENTITY the blind band: g's sensitivity has an invisible part on the honest sources, and the coalition's move is vertical   [invisible share of g's sensitivity 0.941; max |R (Q - P)| 3.1e-17; g(Q) - g(P) 0.150]
+PASS GD4 IDENTITY an anchor that sees M and Y removes g's invisible part exactly and ends the coalition's verticality; g-blind contexts do not   [+MRY: invisible 0.000, (M,Y) in span True, Q-P vertical False; +MHY: invisible 0.000, (M,Y) in span True, Q-P vertical False; +CH: invisible 0.941, (M,Y) in span False, Q-P vertical False; +RY: invisible 0.941, (M,Y) in span False, Q-P vertical True; +CH+RY: invisible 0.941, (M,Y) in span False, Q-P vertical False]
+PASS GD5 IDENTITY V is the Fisher kernel of the same contexts, and g's kernel part (prop:visibility) vanishes exactly when the exposure does   [5/5 trust sets agree]
+PASS GD6 IDENTITY 2 x 2: along the margin fibre dg/dt = 1/r1 + 1/r0, and the log-linear tangents are Fisher-orthogonal to the fibre   [dg/dt - (1/r1 + 1/r0) = 0; <fibre, log-linear tangents>_G = [0, 0]]
+PASS GD7 IDENTITY the signed chain count is the Magnus coefficient of the chain word; with exp an adjacent cancelling pair is 1   [mismatches 0/2000; exp pair product {(): 1}]
+7/7 passed
+== engine/check_ledger.py (2026-11-13, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [74 rows]
+PASS LG2 every cited check is PASS in the run log   [435 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 172 scripts, 1290 PASS, 1 FAIL (gaugedecomp 7; the FAIL is ZH2 of Study 27h, a recorded finding; ledger rerun replaces the earlier LG entries)
+== engine/check_engine.py (2026-11-13)
+PASS EN1 IDENTITY marginal matrices equal outerrelay.ctxmat on cover 1 and the anchors
+PASS EN2 IDENTITY geometry reproduces the gauge decomposition on cover 1   [dim V 18, dim H 13, invisible share 0.9407; with anchors 3.2e-16, 3.3e-16]
+PASS EN3 IDENTITY the coherence operator: exact tables have Q = 0 and fit themselves; sampled tables are calibrated against chi-square(rank d0)   [exact Q 0.0e+00; rank d0 22; sampled rate above the 95% point 0.044]
+PASS EN4 IDENTITY classification reproduces ZG2: the four-cycle is linearly coherent but 'cycle', every table in the certificate; a miscoded table is a named defect   [cycle: Q 0.0e+00, type cycle, certificate 4 tables, contextual fraction 1.000; miscoded: defect ['S4']]
+PASS EN5 IDENTITY Vorob'ev through GYO: acyclic covers with pairwise-consistent tables always glue; the triangle (core = whole cover) need not   [acyclic glued 300/300; triangle core [('A', 'B'), ('B', 'C'), ('A', 'C')], slack 0.500]
+PASS EN6 IDENTITY the coherent coalition: the inner layer is exactly coherent and glues, the veto statistic is large; honest S3 gives 0   [attack: inner Q 0.0e+00, type none, veto dQ 64.2 on 12 df; honest dQ 0.0e+00]
+PASS EN7 IDENTITY the credal bracket of P(Y=1|M=1): honest sources contain P's and Q's values even at zero tolerance; an anchor makes it a point   [honest [0.407, 0.956] (zero tolerance [0.467, 0.901]) contains P 0.680 and Q 0.728; anchored, zero tolerance [0.6805, 0.6805]; at 3 SE [0.643, 0.717]]
+7/7 passed
+== engine/check_likval.py (2026-11-13)
+PASS LN1 IDENTITY multiplying each term by its likelihood is the shift lam - (n/N) H_hat   [max deviation 7.1e-15]
+PASS LN2 IDENTITY the shift converges to s H(Q, P) at rate N^-1/2 when n = sN, and vanishes like 1/N when n is fixed   [slope -0.495 (errors 5.7e-02, 1.9e-02, 5.6e-03, 1.9e-03); fixed n slope -1.000]
+PASS LN3 IDENTITY cross-entropy and divergence rates give the same leximin point; h* differs by s H(Q)   [21 configurations]
+PASS LN4 IDENTITY the wall statistic <a, H> = <a, D> = -E Lambda_a is linear in the empirical law   [max deviation 2.6e-15]
+PASS LN5 IDENTITY the data-driven crossing time converges to s* = -c / <a, D>   [s* 1.1991; median |s_hat - s*| 2.3e-01, 7.7e-02, 2.6e-02, 7.3e-03; slope -0.496]
+PASS LN6 IDENTITY (Cho-Oh cited) the number of Floer-nontrivial torus fibres of F_1 drops from 2 to 1 at s*, and the leximin point has its kink there   [fibres at s/s* = 0.5, 0.75, 1.25, 1.5, 2: [2, 2, 1, 1, 1]; largest step of u* 0.016; kink at s = 1.199 (s* 1.199)]
+6/6 passed
+== engine/check_novorder.py (2026-11-13)
+PASS NO1 IDENTITY at T = 1 the graded coefficient is the signed chain count   [mismatches 0/2000]
+PASS NO2 IDENTITY grading keeps trace invariance and equal-weight cancellation; unequal weights do not cancel   [swap violations 0, equal-weight pad violations 0; unequal pads changed the coefficient in 190/2000]
+PASS NO3 IDENTITY graded decoy: a weightless reversal does not erase the link; an equal-weight one does; a heavier one dominates   [weightless decoy: signed count 0, graded {4.0: 1, 2.0: -1}; equal weight {}; heavier {4.0: 1, 5.0: -1}]
+PASS NO4 IDENTITY for generic weights the valuation is the max-plus heaviest chain   [mismatches 0/2000]
+PASS NO5 IDENTITY same order, same signs, same signed count, different valuations   [signed counts 1 and 1; valuations 0.3 and 4.2]
+5/5 passed
+== engine/check_stokesbraid.py (2026-11-13)
+PASS SK1 IDENTITY four critical values on F_1, closed under conjugation; three on CP^2
+PASS SK2 IDENTITY valuations: the separated value's gap tends to 2/15 before the wall; all four tie after it   [gap at s = 0: N=16 0.062, N=32 0.099, N=64 0.116; spread at s = 0.5: N=16 0.0114, N=32 0.0005, N=64 0.0000]
+PASS SK3 IDENTITY Stokes events occur only near the outcome wall, converge to it, and involve the separated value   [farthest crossing from s*: N=16 0.074, N=32 0.037, N=64 0.018; slope -1.02]
+PASS SK4 IDENTITY CP^2 (no wall): no Stokes event along any data path
+PASS SK5 RECORD the F_1 data path's braid word, stable in N   [N=16: s1 s2^-1; N=32: s1 s2^-1; N=64: s1 s2^-1]
+5/5 passed
+== engine/check_hurwitz.py (2026-11-13)
+PASS HZ1 IDENTITY braid and band relations under Artin's faithful action; 14 and 42 simples; delta is simple
+PASS HZ2 IDENTITY Hurwitz transitivity (Bessis, Prop. 1.6.1, type A): one orbit of (r+1)^(r-1) factorisations   [r = 4: 125 factorisations, orbit 125; r = 5: 1296, orbit 1296]
+PASS HZ3 IDENTITY each detour's braid is the same element of B_5 on grids of 601 and 1201 points   [phi=0.05: 6 and 6 letters; phi=-0.05: 5 and 5 letters]
+PASS HZ4 IDENTITY the two detours differ by a cusp braid: conjugate to sigma^(+-3), exponent sum +-3, two strands exchanged   [exponent sum 3; strands moved 2; conjugator ([], 1, 1)]
+PASS HZ5 RECORD the two detours and F_1: words, dual invariants and Hurwitz endpoints   [above: s1 s2^-1 s1 s2 s3 s2^-1 | exp 2 | inf -1 sup 4; below: s1^-1 s2 s1^-1 s3 s2^-1 | exp -1 | inf -2 sup 2; F1: s1 s2^-1 | exp 0 | inf -1 sup 1]
+PASS HZ6 IDENTITY the cusp braid sigma_1^3 fixes exactly the factorisations whose first two transpositions do not commute (they generate S_3)   [1296 factorisations]
+PASS HZ7 RECORD same state, different history: the two detours end at one Hurwitz state while their braids, permutations and normal forms differ   [Hurwitz state 1066 and 1066; canonical lengths 5 and 4]
+7/7 passed
+== engine/check_persist.py (2026-11-13)
+PASS PS1 IDENTITY F_1: the critical discriminant is -27 T^2 - 256 T^(3 - 3 alpha); its tropical point is the outcome wall alpha = 1/3   [discriminant -256*T**3/T**(3*alpha) - 27*T**2; tie at alpha = [1/3]]
+PASS PS2 IDENTITY Stage IV: the tropical locus of the quintic's discriminant on the path contains the level-two wall 1/5   [11 monomials; tropical points on [3/20, 11/40]: ['1/5', '4/15']]
+PASS PS3 IDENTITY the collisions lie within the amoeba bound of the tropical point 1/5   [L=50: distance 7.7e-03 <= bound 2.0e-01; L=100: distance 8.2e-04 <= bound 1.0e-01; L=200: distance 1.5e-05 <= bound 5.1e-02]
+PASS PS4 IDENTITY the attacker split: a move inside the observational fibre leaves every log-linear likelihood rate unchanged; a horizontal move does not   [largest change under a fibre move 1.3e-15; horizontal moves changed the rates in 300/300]
+PASS PS5 RECORD same braid, different cost: two kinds of evidence induce one braid on F_1 at different data sizes   [e1: word s1 s2^-1 at s = [np.float64(0.182), np.float64(0.186)] (s* 0.2); e1+e3: word s1 s2^-1 at s = [np.float64(0.091), np.float64(0.093)] (s* 0.1)]
+5/5 passed
+== engine/check_histval.py (2026-11-13)
+PASS HV1 IDENTITY a chain never outlives any of its sub-chains (orders collapse before their parts)   [182 chains, violations 0]
+PASS HV2 IDENTITY the closed-form death time equals the bisected one   [304 chains, mismatches 0]
+PASS HV3 IDENTITY each chain's grade is a grade of the graded Magnus coefficient; the top grade is its valuation   [violations 0/500]
+PASS HV4 IDENTITY aggregation nets weights with the sign of the larger; equal weights annihilate   [[((0, 1), 1, 2.0, 1.5)]; []; [((0, 1), -1, 2.0, 0.6)]]
+PASS HV5 RECORD worked example: the triple dies first, then its pairs, then its events; the braid collapses as weights fade   [triple 0-2-4: 6.82; pair 0-2: 6.82; pair 2-4: 6.82; event 2: 6.82; event 0: 8.59; event 4: 12.21 | t=3: 9 letters, cl 4, t=4: 7 letters, cl 4, t=5: 7 letters, cl 4, t=6: 7 letters, cl 4, t=7: 2 letters, cl 1, t=8: 2 letters, cl 1, t=10: 1 letters, cl 1, t=12: 1 letters, cl 1, t=14: 0 letters, cl 0]
+5/5 passed
+== engine/check_engine.py (2026-11-13)
+PASS SN1 IDENTITY marginal matrices equal outerrelay.ctxmat on cover 1 and the anchors
+PASS SN2 IDENTITY geometry reproduces the gauge decomposition on cover 1   [dim V 18, dim H 13, invisible share 0.9407; with anchors 3.2e-16, 3.3e-16]
+PASS SN3 IDENTITY the coherence operator: exact tables have Q = 0 and fit themselves; sampled tables are calibrated against chi-square(rank d0)   [exact Q 0.0e+00; rank d0 22; sampled rate above the 95% point 0.044]
+PASS SN4 IDENTITY classification reproduces ZG2: the four-cycle is linearly coherent but 'cycle', every table in the certificate; a miscoded table is a named defect   [cycle: Q 0.0e+00, type cycle, certificate 4 tables, contextual fraction 1.000; miscoded: defect ['S4']]
+PASS SN5 IDENTITY Vorob'ev through GYO: acyclic covers with pairwise-consistent tables always glue; the triangle (core = whole cover) need not   [acyclic glued 300/300; triangle core [('A', 'B'), ('B', 'C'), ('A', 'C')], slack 0.500]
+PASS SN6 IDENTITY the coherent coalition: the inner layer is exactly coherent and glues, the veto statistic is large; honest S3 gives 0   [attack: inner Q 0.0e+00, type none, veto dQ 64.2 on 12 df; honest dQ 0.0e+00]
+PASS SN7 IDENTITY the credal bracket of P(Y=1|M=1): honest sources contain P's and Q's values even at zero tolerance; an anchor makes it a point   [honest [0.407, 0.956] (zero tolerance [0.467, 0.901]) contains P 0.680 and Q 0.728; anchored, zero tolerance [0.6805, 0.6805]; at 3 SE [0.643, 0.717]]
+7/7 passed
+== engine/check_dualgarside.py (2026-11-13)
+PASS DN1 IDENTITY dual inf and sup agree with the brute-force search in B_4   [300 words, mismatches 0]
+PASS DN2 IDENTITY dual inf and sup agree with the brute-force search in B_5   [120 words, mismatches 0]
+PASS DN3 IDENTITY delta is simple; inf and sup swap with sign under inversion (B_6); the normal form multiplies back to the input (B_4, B_5)   [inversion mismatches 0/300; reconstruction mismatches 0/200]
+3/3 passed
+== engine/check_study27i.py (2026-11-13)
+PASS ZI1 IDENTITY specification unchanged since the freeze   [d1206ff07876]
+PASS ZI2 IDENTITY the world and its cover: 1152 states, 96 tables, a non-empty GYO core containing the lifestyle cycle   [core: 12 contexts]
+PASS ZI3 IDENTITY the blind band: invisible share 0.866 without (P,C,T,O), 0 with it; the coalition's law is vertical and moves g by 0.12   [invisible share 0.8660 -> 1.3e-15; max |R (Q - P)| 6.9e-17; g 0.3146 -> 0.4346]
+PASS ZI4 IDENTITY the credal bracket of g: wide from the non-vendor sources (contains the honest and the coalition's g), a point from (P,C,T,O)   [non-vendor [-1.000, 1.000]; lab context [0.3146, 0.3146]; g 0.315, coalition 0.435]
+PASS ZI5 IDENTITY the twisted lifestyle cycle keeps every single margin, has no positive global law, and is strongly contextual   [margins kept True; slack 0.450 (zero tolerance), 0.438 (3 SE); contextual fraction 0.900]
+PASS ZI6 IDENTITY value of information: the best unobserved two- and three-variable contexts, and (P,C,T,O) removing everything   [base 0.866; best: PTO 0.677, CTO 0.715, CTE 0.834, PTE 0.837, CAO 0.850; worst TE 0.866]
+PASS ZI7 RECORD I2 verdict recomputed equals the recorded verdict   [HELD: honest: inner_any 0.050, outer_any 0.090, cycle_any 0.000, sing_any 0.000, actN 0.000]
+PASS ZI8 RECORD I3 verdict recomputed equals the recorded verdict   [HELD: vendor: glues 0.980, actN 1.000, outer_any 1.000, actV 0.000]
+PASS ZI9 RECORD I4 verdict recomputed equals the recorded verdict   [HELD: defect: named_defect 0.990, wit_any 0.080, actN 0.000]
+PASS ZI10 RECORD I5 verdict recomputed equals the recorded verdict   [HELD: cycle: type cycle 0.985, cert_lifestyle 0.985, inner_any 0.070]
+PASS ZI11 RECORD I6 verdict recomputed equals the recorded verdict   [HELD: popshift: top family wearable 0.960, inner_any 1.000, wit_any 0.060, actN 0.005]
+PASS ZI12 RECORD I7 verdict recomputed equals the recorded verdict   [HELD: dst: actN 0.000, inner_any 1.000, veto_any 0.980, wit_any 0.050]
+PASS ZI13 RECORD I8 verdict recomputed equals the recorded verdict   [HELD: boundary: sing_kp_by5 1.000]
+13/13 passed
+== engine/check_study27j.py (2026-11-13)
+PASS ZJ1 IDENTITY specification unchanged since the freeze   [ff3d9efcc93f]
+PASS ZJ2 IDENTITY the watched paths are the 28 simple 3-link paths of E6   [28 paths]
+PASS ZJ3 IDENTITY swapping adjacent independent events changes neither the dual normal form's inf and length nor the Burau norm   [345 swaps, mismatches 0]
+PASS ZJ4 RECORD J1 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ5 RECORD J2 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ6 RECORD J3 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ7 RECORD J4 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ8 RECORD J5 verdict recomputed equals the recorded verdict   [HELD]
+8/8 passed
+== engine/check_seqval.py (2026-11-13)
+PASS SQ1 IDENTITY the wall function is c0 - S_n/N exactly for adaptive dependent data, and S_n = A_n + M_n   [max |S - A - M| 1.5e-12; max |c_n - (c0 - S_n/N)| 4.8e-14]
+PASS SQ2 IDENTITY maximal Azuma bound for the martingale part under Markov dependence   [B 4.38; bound point x 412.6; frequency 0.0000; 95th percentile of max|M| 70.7 (bound is conservative)]
+PASS SQ3 IDENTITY the compensator's crossing time predicts the data's at rate N^-1/2 under Markov dependence   [s_A 0.342; median |s_hat - s_A| 6.0e-02, 1.7e-02, 1.3e-02, 6.8e-03; slope -0.462]
+PASS SQ4 IDENTITY an adversary inside the observational fibre leaves the law of every observed sequence unchanged (likelihood ratio 1)   [256 sequences; max |P - P'| 0.0e+00; decision quantity P(11): honest 0.350, adversary 0.630 after a 1]
+PASS SQ5 IDENTITY pathwise cost: the compensator shift satisfies Delta_n^2 <= 2 n B^2 K_n   [violations 0/500; largest ratio Delta^2 / (2 n B^2 K): tilt along Lambda_a 0.322, random 0.0150]
+PASS SQ6 RECORD F_1: the least-divergence wall-crossing attack pays K_n = n KL, linear in N; a likelihood-ratio test against it   [honest drift E Lambda_a 0.098 (c0 -0.40); attack KL per step 0.0339; N=50: K_n 1.7, power 0.579; N=200: K_n 6.8, power 0.978; N=1000: K_n 33.9, power 1.000]
+6/6 passed
+== engine/check_separation.py (2026-11-13)
+PASS SP1 IDENTITY the valuation shift depends only on the counts (every permutation gives the same shift)   [500 words; max deviation 0.0e+00]
+PASS SP2 IDENTITY signed chain counts and the event braid are invariant under independent swaps and cancelling pairs   [445 swaps, 500 cancelling pairs; chain-count changes 0, braid changes 0]
+PASS SP3 IDENTITY same counts and valuation, different structure: the relay and its reversal   [chain counts 1 vs 0; braids (0, ((1, 0, 2, 3, 4, 5), (0, 2, 1, 3, 4, 5), (0, 1, 3, 2, 4, 5))) vs (0, ((3, 0, 1, 2, 4, 5),))]
+PASS SP4 IDENTITY same structure, different valuation: a cancelling pair lowers every coordinate of the shift, moves the wall by its circuit LLR, changes no structure   [300 insertions; least decrease 0.041; max wall-move error 8.2e-16; violations 0]
+PASS SP5 RECORD within a count class the structure varies: share of random classes where some reordering changes a chain count / the braid   [300 classes of 3-6 events: chain counts vary in 0.47, the braid varies in 0.90]
+5/5 passed
+== engine/check_fsgram.py (2026-11-13)
+PASS FG1 IDENTITY every 2x3 coupling polygon is a smooth toric del Pezzo surface; facets = Kouchnirenko count of critical points   [4000 margins; violations 0; types {'dP7': 502, 'P2': 657, 'P1xP1': 1466, 'F1': 1315, 'dP6': 60}]
+PASS FG2 IDENTITY line-bundle cohomology agrees with Riemann-Roch and with h^0(O_P2(d)) = C(d+2,2)   [300 bundles + 6; mismatches 0]
+PASS FG3 IDENTITY the toric collection is exceptional (hence full) on each surface; its Gram matrix is unipotent with positive entries   [dP7: 1,3,5,6/2,4,5/2,3/1; P2: 3,6/3; P1xP1: 2,4,6/2,4/2; F1: 3,5,6/2,3/1; dP6: 1,2,3,4,5/1,2,3,4/1,2,3/1,2/1]
+PASS FG4 IDENTITY mutations keep the Gram matrix unipotent and integral, satisfy the braid relation, and preserve the isometry invariants   [failures 0; braid-relation failures 0]
+PASS FG5 IDENTITY the isometry invariants separate the five types (F1 and P1xP1 by the Smith form of G + G^T)   [dP7: sym (1, 1, 2, 2, 8), anti (1, 1, 0, 0, 0); P2: sym (1, 1, 8), anti (3, 3, 0); P1xP1: sym (2, 2, 2, 2), anti (2, 2, 0, 0); F1: sym (1, 1, 4, 4), anti (1, 1, 0, 0); dP6: sym (1, 1, 2, 2, 4, 4), anti (1, 1, 0, 0, 0, 0)]
+PASS FG6 IDENTITY the facet type changes only at support walls (three constraint lines through a vertex); F1 keeps its facets for all alpha   [396 changes on 150 margin paths, 0 not at a triple vertex; F1 facet counts over alpha [4]]
+6/6 passed
+== engine/check_scales.py (2026-11-13)
+PASS SV1 IDENTITY Cauchy-Binet: e_k(V W V^T) is a sum of prod w_S det(V_S^T V_S) >= 0   [200 cases; max relative error 6.6e-14]
+PASS SV2 IDENTITY the least weight of an independent k-set is the sum of the k smallest greedy weights   [300 configurations; mismatches 0]
+PASS SV3 IDENTITY least-weight independent sets of facet normals at the leximin point give h_j with multiplicity r_j   [156 margins over 4 shapes; mismatches 0; cases with a multiplicity > 1: 98]
+PASS SV4 IDENTITY finite-L eigenvalue valuations of Q/W at the positive critical point tend to h_j - h_1 with multiplicity r_j   [24 margins; worst extrapolation error 0.0033]
+4/4 passed
+== engine/check_leximinext.py (2026-11-13)
+PASS LQ1 IDENTITY facet-leximin equals all-cell leximin on nondegenerate margins   [331 margins {(2, 3): 82, (3, 3): 89, (2, 4): 81, (3, 4): 79}; disagreements 0]
+PASS LQ2 IDENTITY every redundant cell dominates some facet cell on the whole polytope   [493 redundant cells; dominated 493]
+PASS LQ3 IDENTITY the minimum over all cells equals the minimum over facet cells at every point tested (first level and first optimal set agree)   [6620 points; differences 0]
+3/3 passed
+== engine/check_credalflow.py (2026-11-13)
+PASS CR1 IDENTITY tilts are Hilbert isometries; restriction never expands; kernels contract by tanh(Delta/4)   [2000 cases; max isometry error 1.1e-14; restriction violations 0; Birkhoff violations 0]
+PASS CR2 IDENTITY a shift of the facet constants moves the Kahler class iff a circuit pairing changes; translations never do   [297 margins; mismatches 0; rank of (margins -> class) by chamber: {np.int64(2): 178, np.int64(1): 64, np.int64(3): 55}]
+PASS CR3 IDENTITY Descartes: <c, p_t> changes sign at most as often as its level coefficients   [5000 cases; violations 0; bound attained in 0.75]
+PASS CR4 IDENTITY the eventual sign of <c, p_t> is the sign of the first non-zero level coefficient   [2000 cases (245 with a vanishing top coefficient); violations 0]
+PASS CR5 IDENTITY brackets sit at tilted vertices; beyond the explicit bound every member is positive; status changes <= 2 V (r-1)   [398 bounded cases; extreme-point violations 0; bound violations 0; status violations 0; actual/bound median 0.62]
+PASS CR6 IDENTITY adversarial control: forced determinacy by the uniform bound; persistent ambiguity by a straddling top cell; fibre-straddle never identified   [(a) 120/120; (b) 30/30; (c) 120/120]
+PASS CR7 IDENTITY conserved: cell conditionals, Hilbert distances, the combinatorial type of K; moved: the R-margins   [conditional/Hilbert violations 0; vertex-count changes 0/300; margins moved in 2500/2500]
+PASS CR8 IDENTITY the long-run bracket is the conserved conditional bracket on the top observation cell   [300 cases; mismatches 0]
+PASS CR9 RECORD dilation: the bracket of P(X=1) - 1/2 grows from {0} to the conserved conditional spread [-0.4, 0.4]   [t=0: [0.000, 0.000]; t=1: [-0.185, 0.185]; t=3: [-0.362, 0.362]; t=10: [-0.400, 0.400]; t=40: [-0.400, 0.400]]
+PASS CR10 IDENTITY in the valuation limit the crossing time is the tropical transit time (error ~ 1/N)   [mean |tau_N - tau_trop| at N = 20, 80, 320: 0.0591, 0.0132, 0.0028; slope -1.10]
+10/10 passed
+== engine/check_credalflow.py (2026-11-13, rerun after crossing_bound restricted to non-zero payoffs)
+PASS CR1 IDENTITY tilts are Hilbert isometries; restriction never expands; kernels contract by tanh(Delta/4)   [2000 cases; max isometry error 1.1e-14; restriction violations 0; Birkhoff violations 0]
+PASS CR2 IDENTITY a shift of the facet constants moves the Kahler class iff a circuit pairing changes; translations never do   [297 margins; mismatches 0; rank of (margins -> class) by chamber: {np.int64(2): 178, np.int64(1): 64, np.int64(3): 55}]
+PASS CR3 IDENTITY Descartes: <c, p_t> changes sign at most as often as its level coefficients   [5000 cases; violations 0; bound attained in 0.75]
+PASS CR4 IDENTITY the eventual sign of <c, p_t> is the sign of the first non-zero level coefficient   [2000 cases (245 with a vanishing top coefficient); violations 0]
+PASS CR5 IDENTITY brackets sit at tilted vertices; beyond the explicit bound every member is positive; status changes <= 2 V (r-1)   [398 bounded cases; extreme-point violations 0; bound violations 0; status violations 0; actual/bound median 0.62]
+PASS CR6 IDENTITY adversarial control: forced determinacy by the uniform bound; persistent ambiguity by a straddling top cell; fibre-straddle never identified   [(a) 120/120; (b) 30/30; (c) 120/120]
+PASS CR7 IDENTITY conserved: cell conditionals, Hilbert distances, the combinatorial type of K; moved: the R-margins   [conditional/Hilbert violations 0; vertex-count changes 0/300; margins moved in 2500/2500]
+PASS CR8 IDENTITY the long-run bracket is the conserved conditional bracket on the top observation cell   [300 cases; mismatches 0]
+PASS CR9 RECORD dilation: the bracket of P(X=1) - 1/2 grows from {0} to the conserved conditional spread [-0.4, 0.4]   [t=0: [0.000, 0.000]; t=1: [-0.185, 0.185]; t=3: [-0.362, 0.362]; t=10: [-0.400, 0.400]; t=40: [-0.400, 0.400]]
+PASS CR10 IDENTITY in the valuation limit the crossing time is the tropical transit time (error ~ 1/N)   [mean |tau_N - tau_trop| at N = 20, 80, 320: 0.0591, 0.0132, 0.0028; slope -1.10]
+10/10 passed
+== engine/check_f1credal.py (2026-11-13, rerun after crossing_bound restricted to non-zero payoffs)
+PASS FK1 IDENTITY the interval of wall values translates rigidly: its width is constant along every data stream   [200 streams; max width change 3.2e-15; width 0.270]
+PASS FK2 IDENTITY the wall decision is indeterminate exactly for s in (c_min/d, c_max/d] in rates; data converge at N^-1/2   [window (0.092, 0.401], duration 0.309 = width 0.27 / drift 0.872; median error 0.1586, 0.0837, 0.0444, 0.0233; slope -0.46]
+PASS FK3 IDENTITY thm:crossing on F1: at most one switch; eventual sign that of term 3 (hard evidence on the best fit); the bound holds   [N=5: last 1.920 <= bound 1.920; N=10: last 1.920 <= bound 1.920; N=20: last 1.920 <= bound 1.920]
+PASS FK4 IDENTITY a two-term payoff is log-linear: g's crossing time equals the tropical transit time alpha_max / (H_4 - H_3) at every N   [tropical window (1.536, 1.920]; N=5: 1.920281; N=20: 1.920281; N=80: 1.920281; N=320: 1.920281; wall window (0.092, 0.401]]
+PASS FK5 IDENTITY forcing the whole set across the wall by s = 1 costs n KL(Q'||Q) >= Delta_n^2 / (2 n B^2) (prop:seqval(iii))   [honest drift -0.439; attack drift 0.400; KL per step 0.0355 >= bound 0.0217 (ratio 1.6)]
+PASS FK6 RECORD F1 credal example: transit, crossing times, attack cost and detectability   [Q' = (0.421, 0.359, 0.220); N=200: total divergence 7.1, power 0.985; N=1000: total divergence 35.5, power 1.000]
+6/6 passed
+== engine/check_credalgeom.py (2026-11-13)
+PASS GM1 IDENTITY Hilbert diameter by LP equals the vertex brute force; structural zeros dropped; touching zeros infinite; eps-profile monotone   [300 polytopes; mismatches 0; touching detected 30/30; profile violations 0]
+PASS GM2 IDENTITY sets: bands sit at conditioned vertices; the conditioned mixture uses weights lam_k V_k(C) / sum lam_j V_j(C)   [300 cases; violations 0]
+PASS GM3 IDENTITY the ceiling: every conditional log-odds band is at most the Hilbert diameter; the coin example attains it   [1349 cases; violations 0; median width/diameter 0.48; coin width 4.3944 = diameter 4.3944]
+PASS GM4 IDENTITY the flow map solves the replicator-mutator equation; the diameter never increases; tilt alone is an isometry   [60 generators; ODE mismatches 0; increases 0; tilt-only change 1.8e-15]
+PASS GM5 IDENTITY sleep world: from the sources alone the (P,C,T,O) diameter is infinite (all cells touch 0); eps-profile finite and monotone; anchors make it finite   [touching 24/24; eps-profile 0.002: 9.46, 0.005: 7.54, 0.01: 6.00; with anchors 2.000]
+PASS GM6 IDENTITY band ladder for O = 2: total-probability constraint holds; undefined bands and dilation flagged   [sources: all [0.403, 0.443], T=1 [0.527, 0.612], T=1,P=0 undefined, T=1,P=0,C=1 undefined, P=0,C=1 [0.000, 1.000]; anchors: all [0.403, 0.443], T=1 [0.527, 0.612], T=1,P=0 [0.332, 0.772], T=1,P=0,C=1 [0.405, 0.834], P=0,C=1 [0.296, 0.715]; undefined [('sources', 'T=1,P=0'), ('sources', 'T=1,P=0,C=1'), ('sources', 'T=1,P=0,C=0')]; dilation [('sources', 'all', 'T=1'), ('sources', 'all', 'T=0'), ('anchors', 'all', 'T=1'), ('anchors', 'all', 'T=0'), ('anchors', 'T=1', 'T=1,P=0'), ('anchors', 'T=1', 'T=1,P=1'), ('anchors', 'T=1,P=0', 'T=1,P=0,C=0')]; violations 0]
+PASS GM7 RECORD conditioning reweights the unreported populations: the point-level conditioning-mixing discrepancy   [T=1: true 0.569, prior-weight mixture 0.567, weights given the condition (0.54, 0.46) vs prior (0.50, 0.50); T=1,P=0,C=1: true 0.650, prior-weight mixture 0.646, weights given the condition (0.57, 0.43) vs prior (0.50, 0.50); P=0,C=1: true 0.509, prior-weight mixture 0.505, weights given the condition (0.55, 0.45) vs prior (0.50, 0.50)]
+PASS GM8 RECORD central experiment: in configuration C the diameter falls while the P(O=2 | P=0, C=1) band widens (H)   [H held; A: diam 2.000 -> 2.000, band 1.786 -> 1.999 (max) -> 1.999; B: diam 2.000 -> 1.890, band 1.786 -> 1.786 (max) -> 1.601; C: diam 2.000 -> 1.967, band 1.786 -> 1.874 (max) -> 1.855]
+PASS GM9 IDENTITY the ceiling holds at every time of every configuration   [54 bands; violations 0]
+9/9 passed
+== engine/check_threebythree.py (2026-11-13)
+PASS TT1 IDENTITY every linear programme is certified exactly; in every nondegenerate case the levels remove 4 dimensions in total   [600 searched margins + 3 declared; certificate failures 0; totals != 4: 0]
+PASS TT2 RECORD declared examples (and the searched E3, E4)   [E1: f=(1/2, 1/3, 1/6), g=(2/5, 7/20, 1/4), 9 facets, levels 1/18 [3 cells], 7/72 [2 cells], 17/144 [2 cells], 127/720 [1 cells], 163/720 [1 cells], r=[2, 1, 1, 0, 0], vertices 18, simple True, smooth True, Fano False | E2: f=(1/3, 1/3, 1/3), g=(1/3, 1/3, 1/3), 9 facets, levels 1/9 [9 cells], r=[4], vertices 72, simple False, smooth True, Fano True | E2p: f=(1/3, 43/120, 37/120), g=(19/60, 41/120, 41/120), 9 facets, levels 37/360 [3 cells], 77/720 [2 cells], 163/1440 [2 cells], 181/1440 [2 cells], r=[2, 1, 1, 0], vertices 18, simple True, smooth True, Fano False | E5: f=(3/20, 1/30, 49/60), g=(21/40, 1/4, 9/40), 6 facets, levels 1/90 [3 cells], 1/20 [3 cells], r=[2, 2], vertices 9, simple True, smooth True, Fano True | E6: f=(23/120, 29/120, 17/30), g=(3/40, 17/20, 3/40), 6 facets, levels 1/40 [6 cells], r=[4], vertices 9, simple True, smooth True, Fano True]
+PASS TT3 RECORD selection depth over the search: patterns of dimensions removed by successive levels   [600 margins: (2, 1, 1): 396, (2, 2): 196, (4,): 8; E3 not found; E4 not found]
+PASS TT4 IDENTITY every nondegenerate sampled chamber is simple with unimodular vertex cones; the symmetric margins are not simple   [2000 margins: Delzant 2000; facets per chamber {6: 107, 7: 486, 8: 796, 9: 611}; symmetric margins: tight facets per vertex [6]]
+PASS TT5 RECORD chambers up to symmetry and the Fano ones   [13 normal-fan types (4 facet sets) in 2000 margins; Fano fan types 1; share of sampled margins in a Fano chamber 0.05; fan types (facets, vertices, Fano, count): (6, 9, True, 107); (7, 12, False, 210); (7, 12, False, 116); (7, 12, False, 160); (8, 15, False, 104); (8, 15, False, 226); (8, 15, False, 180); (8, 15, False, 286); (9, 18, False, 157); (9, 18, False, 102); (9, 18, False, 64); (9, 18, False, 65); (9, 18, False, 223)]
+PASS TT6 IDENTITY eigenvalue valuations of Q/W at the positive critical point equal h_j - h_1 with multiplicity r_j in four dimensions   [4 examples; worst extrapolation error 0.0026; E1: target [0.0, 0.0, 0.0417, 0.0625]; E2p: target [0.0, 0.0, 0.0042, 0.0104]; E5: target [0.0, 0.0, 0.0389, 0.0389]; E6: target [0.0, 0.0, 0.0, 0.0]]
+PASS TT7 IDENTITY first level: h_1 = min(f_min, g_min)/3, blocked cells = the minimizing rows/columns, r_1 = 2 x their number   [600 searched margins with facet minimizing lines; violations 0]
+7/7 passed
+== engine/check_primer.py (2026-11-13)
+PASS PM1 IDENTITY hand example: scales (0, a); greedy takes one normal at level 0 and one at level a; level b adds nothing   [Q = Matrix([[T**(3/4) + 2, T**(3/4)], [T**(3/4), T**(3/4) + T**(1/3)]]); det Q = T**a*T**b + 2*T**a + 2*T**b; val e1 = 0, val e2 = 1/3]
+PASS PM2 IDENTITY with mixed signs the leading part loses rank (1 < span 2) and the second scale becomes a, not 0   [leading part Matrix([[1/2, -1/2], [-1/2, 1/2]]) (rank 1); det Q = 2*T**a; val e2 = 1/3]
+PASS PM3 IDENTITY eigenvalue valuations = Newton-polygon slopes = greedy weights for positive Gram matrices   [random cases; mismatches 0]
+PASS PM4 IDENTITY grounded weighted graph Laplacians: scale valuations = Kruskal minimum-spanning-tree weights   [51 graphs; mismatches 0]
+4/4 passed
+== engine/check_threebythree2.py (2026-11-13)
+PASS TT8 IDENTITY facet-leximin equals all-cell leximin exactly on 600 nondegenerate 3x3 margins   [600 margins; disagreements 0]
+PASS TT9 IDENTITY the facets are exactly the cells with f_i + g_j <= 1   [600 margins; mismatches 0]
+PASS TT10 RECORD census of 10000 margins: normal-fan types, Fano types, vertex counts   [13 fan types (first seen after margin 2000: 0); by facets {9: 5, 7: 3, 8: 4, 6: 1}; Fano types 1; vertex counts {9: 452, 12: 2277, 15: 4174, 18: 3097} (De Loera et al.: 9, 12, 15, 18)]
+PASS TT11 IDENTITY the Fano chamber is P2 x P2: split normals, Kouchnirenko 9 = vertices, product collection with Gram = Kronecker square, mutation invariants   [Fano fan types 1; example f=('7/30', '2/5', '11/30'), g=('1/8', '33/40', '1/20'); 4! vol = 9.000; vertices 9; Smith form of G + G^T (1, 1, 1, 1, 1, 1, 2, 16, 16); invariant changes under 30 mutations 0]
+4/4 passed
+== engine/check_stratledger.py (2026-11-13)
+PASS QL1 IDENTITY 3x3 linear objectives: at most C(r+c-2,r-1) = 6 solves certify all 10000 tables; bases unimodular; exact certificates   [solves per objective [6, 6, 6, 6, 6, 6, 6, 6, 6, 6]; exact failures 0]
+PASS QL2 IDENTITY 3x3 conditional bands: definedness rule; four libraries certify every defined table within 81 bases; exact re-verification   [8837 defined of 10000; rule mismatches 0/300; solves (hi0, lo0, hi1, lo1) [8, 7, 6, 6]; exact failures 0/35348]
+PASS QL3 IDENTITY 3x3 the ledger drift bound holds for every defined table   [max D 0.1683; max U 0.1716; violations 0]
+PASS QL4 RECORD 3x3 certified top-20 drift search   [evaluations needed 2592 of 8837; recovered true top-20 True]
+PASS QL5 RECORD H1: toric chambers against optimal-basis regions of the upper end   [13 chambers, 8 basis regions; regions per chamber [3, 5, 5, 5, 5, 5, 8, 8, 8, 8, 8, 8, 8]; purity of the majority region per chamber 0.30]
+PASS QL6 RECORD 3x3 H2: top-100 drift tables near walls (clearance <= 0.02) against all tables   [near-wall share: top-100 0.38, all 0.20, enrichment 1.89; walls 14; leading importance 6->1: 1405.27, 5->3: 1345.73, 3->2: 271.57]
+PASS QL7 RECORD 3x3 H3: the ledger bound ranks the drift   [Spearman(U, D) 0.23; top-20 recall within the first 20/50/100 by U: 0.00/0.05/0.10]
+PASS QL8 IDENTITY 3x3 reconstruction audit: stratum totals and wall importances recomputed from table records   [8 strata, 14 walls; mismatches 0]
+PASS QL1 IDENTITY 4x4 linear objectives: at most C(r+c-2,r-1) = 20 solves certify all 10000 tables; bases unimodular; exact certificates   [solves per objective [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]; exact failures 0]
+PASS QL2 IDENTITY 4x4 conditional bands: definedness rule; four libraries certify every defined table within 4096 bases; exact re-verification   [5057 defined of 10000; rule mismatches 0/300; solves (hi0, lo0, hi1, lo1) [39, 46, 36, 41]; exact failures 0/4000]
+PASS QL3 IDENTITY 4x4 the ledger drift bound holds for every defined table   [max D 0.1587; max U 0.1716; violations 0]
+PASS QL4 RECORD 4x4 certified top-20 drift search   [evaluations needed 1321 of 5057; recovered true top-20 True]
+PASS QL6 RECORD 4x4 H2: top-100 drift tables near walls (clearance <= 0.02) against all tables   [near-wall share: top-100 0.41, all 0.41, enrichment 1.00; walls 82; leading importance 19->1: 1823.47, 2->11: 1019.09, 3->21: 996.18]
+PASS QL7 RECORD 4x4 H3: the ledger bound ranks the drift   [Spearman(U, D) 0.45; top-20 recall within the first 20/50/100 by U: 0.00/0.00/0.00]
+PASS QL8 IDENTITY 4x4 reconstruction audit: stratum totals and wall importances recomputed from table records   [39 strata, 82 walls; mismatches 0]
+15/15 passed
+
+== engine/check_stratledger2.py (2026-11-13)
+PASS QL9 IDENTITY each raw chamber carries exactly one optimal basis for every generic linear objective; quotiented labels do not   [342 raw chambers, 13 up to symmetry; raw chambers with >1 basis per objective [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; quotiented [13, 13, 13, 13, 13, 13, 13, 13, 13, 13]]
+PASS QL10 RECORD conditional bands: basis regions per raw chamber; switches lie in chamber interiors   [hi0: 7 bases; chambers by number of basis regions {1: 306}; chambers with >1 region 0; switches located 0; lo0: 7 bases; chambers by number of basis regions {1: 306}; chambers with >1 region 0; switches located 0; switch points outside their chamber 0]
+PASS QL11 RECORD random ratio objectives: optimal bases can switch inside a chamber; located switches lie in chamber interiors   [objective 0: 10 bases, chambers with >1 region 25, switches located 25; objective 1: 15 bases, chambers with >1 region 145, switches located 25; objective 2: 9 bases, chambers with >1 region 74, switches located 25; objective 3: 12 bases, chambers with >1 region 113, switches located 25; objective 4: 8 bases, chambers with >1 region 29, switches located 25; switch points outside their chamber 0]
+3/3 passed
+
+== engine/verify_ledger.py (2026-11-13; python3 -I verify_ledger.py stratledger.json)
+PASS QL12 IDENTITY standalone verification of every ledger certificate in exact arithmetic   [3x3: 8837 tables, 1163 undefined, 8 strata; 4x4: 5057 tables, 4943 undefined, 39 strata; band ends verified 55576; failures 0]
+1/1 passed
+
+== engine/check_ledgerscale.py (2026-11-13; Study 28, pre-registered)
+  2x2: defined 10000; solves (hi0, lo0, hi1, lo1) [2, 2, 2, 2] at T=10000, [2, 2, 2, 2] at T=1000; tree bound 4; build 0.0s vs direct 58.4s; check/LP 0.0000; slopes [-0.0, -0.0, -0.0, -0.0]
+  2x3: defined 10000; solves (hi0, lo0, hi1, lo1) [3, 3, 3, 3] at T=10000, [4, 4, 3, 3] at T=1000; tree bound 12; build 0.0s vs direct 65.6s; check/LP 0.0000; slopes [-0.12, -0.12, -0.0, -0.0]
+  2x4: defined 10000; solves (hi0, lo0, hi1, lo1) [5, 6, 5, 6] at T=10000, [5, 5, 4, 5] at T=1000; tree bound 32; build 0.1s vs direct 67.0s; check/LP 0.0001; slopes [-0.0, 0.08, 0.1, 0.08]
+  2x5: defined 10000; solves (hi0, lo0, hi1, lo1) [7, 8, 5, 5] at T=10000, [6, 8, 6, 6] at T=1000; tree bound 80; build 0.1s vs direct 68.9s; check/LP 0.0001; slopes [0.07, -0.0, -0.08, -0.08]
+  2x6: defined 10000; solves (hi0, lo0, hi1, lo1) [12, 13, 10, 7] at T=10000, [15, 15, 10, 10] at T=1000; tree bound 192; build 0.2s vs direct 68.1s; check/LP 0.0002; slopes [-0.09, -0.06, 0.0, -0.16]
+  2x7: defined 10000; solves (hi0, lo0, hi1, lo1) [16, 10, 12, 8] at T=10000, [9, 8, 10, 14] at T=1000; tree bound 448; build 0.2s vs direct 68.0s; check/LP 0.0002; slopes [0.24, 0.09, 0.08, -0.24]
+  2x8: defined 10000; solves (hi0, lo0, hi1, lo1) [17, 18, 13, 9] at T=10000, [16, 16, 15, 13] at T=1000; tree bound 1024; build 0.3s vs direct 70.0s; check/LP 0.0003; slopes [0.03, 0.05, -0.06, -0.17]
+  3x3: defined 8954; solves (hi0, lo0, hi1, lo1) [7, 8, 6, 6] at T=10000, [6, 7, 6, 6] at T=1000; tree bound 81; build 0.1s vs direct 60.0s; check/LP 0.0001; slopes [0.06, 0.06, 0.0, -0.0]
+  3x4: defined 7496; solves (hi0, lo0, hi1, lo1) [11, 14, 11, 13] at T=10000, [13, 14, 12, 15] at T=1000; tree bound 432; build 0.2s vs direct 50.3s; check/LP 0.0002; slopes [-0.07, -0.0, -0.04, -0.06]
+  3x5: defined 6219; solves (hi0, lo0, hi1, lo1) [24, 26, 25, 18] at T=10000, [22, 25, 20, 17] at T=1000; tree bound 2025; build 0.4s vs direct 42.8s; check/LP 0.0004; slopes [0.04, 0.02, 0.1, 0.02]
+  3x6: defined 5191; solves (hi0, lo0, hi1, lo1) [45, 38, 36, 35] at T=10000, [31, 38, 32, 36] at T=1000; tree bound 8748; build 0.7s vs direct 35.8s; check/LP 0.0007; slopes [0.16, 0.0, 0.05, -0.01]
+  3x7: defined 4363; solves (hi0, lo0, hi1, lo1) [64, 80, 59, 69] at T=10000, [44, 55, 41, 54] at T=1000; tree bound 35721; build 1.4s vs direct 31.0s; check/LP 0.0014; slopes [0.16, 0.16, 0.16, 0.11]
+  4x4: defined 5009; solves (hi0, lo0, hi1, lo1) [38, 32, 36, 33] at T=10000, [33, 35, 28, 32] at T=1000; tree bound 4096; build 0.6s vs direct 34.4s; check/LP 0.0006; slopes [0.06, -0.04, 0.11, 0.02]
+  4x5: defined 3293; solves (hi0, lo0, hi1, lo1) [71, 71, 59, 75] at T=10000, [37, 50, 37, 52] at T=1000; tree bound 32000; build 1.2s vs direct 21.2s; check/LP 0.0018; slopes [0.28, 0.15, 0.2, 0.16]
+  4x6: defined 2269; solves (hi0, lo0, hi1, lo1) [116, 120, 106, 120] at T=10000, [61, 71, 56, 73] at T=1000; tree bound 221184; build 2.4s vs direct 15.1s; check/LP 0.0047; slopes [0.28, 0.23, 0.28, 0.22]
+PASS LS1 IDENTITY every defined table certified at every band end; exact re-check of 300 tables per shape and end   [exact failures {'2x2': np.int64(0), '2x3': np.int64(0), '2x4': np.int64(0), '2x5': np.int64(0), '2x6': np.int64(0), '2x7': np.int64(0), '2x8': np.int64(0), '3x3': np.int64(0), '3x4': np.int64(0), '3x5': np.int64(0), '3x6': np.int64(0), '3x7': np.int64(0), '4x4': np.int64(0), '4x5': np.int64(0), '4x6': np.int64(0)}]
+FAIL LS2 IDENTITY linear control: solves per objective <= C(r+c-2, r-1)   [2x2 2/2; 2x3 3/3; 2x4 4/4; 2x5 5/5; 2x6 6/6; 2x7 7/7; 2x8 9/8; 3x3 6/6; 3x4 10/10; 3x5 15/15; 3x6 21/21; 3x7 28/28; 4x4 20/20; 4x5 35/35; 4x6 56/56]
+PASS LS3 IDENTITY solves <= regions used
+PASS LS4 HYPOTHESIS tenfold more tables at most quintuple the solves, every shape and end   [violations none]
+PASS LS5 HYPOTHESIS ledger build cheaper than direct solving at T = 10000, every shape   [violations none]
+PASS LS6 HYPOTHESIS per-table membership check at least 10x cheaper than one LP, every shape   [violations none]
+PASS LS7 RECORD regions vs T and tree bound; second-half share; memory ratio; log-log slopes   [2x2: regions(hi0) [2, 2, 2], 2nd half 0.00, mem 0.50; 2x3: regions(hi0) [4, 3, 3], 2nd half 0.00, mem 0.50; 2x4: regions(hi0) [5, 6, 5], 2nd half 0.00, mem 0.51; 2x5: regions(hi0) [6, 7, 7], 2nd half 0.00, mem 0.52; 2x6: regions(hi0) [15, 8, 12], 2nd half 0.00, mem 0.55; 2x7: regions(hi0) [9, 22, 16], 2nd half 0.00, mem 0.57; 2x8: regions(hi0) [16, 11, 17], 2nd half 0.00, mem 0.62; 3x3: regions(hi0) [6, 8, 7], 2nd half 0.00, mem 0.52; 3x4: regions(hi0) [13, 12, 11], 2nd half 0.00, mem 0.56; 3x5: regions(hi0) [22, 24, 24], 2nd half 0.08, mem 0.68; 3x6: regions(hi0) [31, 40, 45], 2nd half 0.04, mem 0.97; 3x7: regions(hi0) [44, 58, 64], 2nd half 0.09, mem 1.76; 4x4: regions(hi0) [33, 40, 38], 2nd half 0.00, mem 0.84; 4x5: regions(hi0) [37, 53, 71], 2nd half 0.11, mem 1.84; 4x6: regions(hi0) [61, 81, 116], 2nd half 0.10, mem 4.62]
+6/7 passed
+
+== engine/check_ledgerscale_addendum.py (2026-11-13; post hoc)
+PASS LS8 IDENTITY (post hoc) every objective above the bound is dual degenerate (degenerate ones may still meet it)   [above bound ['2x8#2']; dual-degenerate objectives ['2x5#0 (5/5)', '2x5#2 (5/5)', '2x6#2 (6/6)', '2x8#2 (9/8)', '3x3#0 (6/6)', '3x5#2 (15/15)', '3x6#1 (21/21)', '3x7#0 (28/28)', '3x7#2 (28/28)', '4x5#0 (35/35)', '4x5#2 (35/35)', '4x6#0 (56/56)', '4x6#1 (56/56)', '4x6#2 (56/56)']]
+1/1 passed
+
+== engine/check_tolerance.py (2026-11-14; Study 29, pre-registered)
+  tol3-0: defined 8837/10000; solves {'defined': 6, 'hi0': 6, 'lo0': 6, 'hi1': 6, 'lo1': 6}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [41, 15, 35, 13]; mean width 0.5993; mean drift 0.0185; 0.3s
+  tol3-1/200: defined 8776/10000; solves {'defined': 10, 'hi0': 8, 'lo0': 9, 'hi1': 10, 'lo1': 8}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [8, 9, 10, 8]; mean width 0.6152; mean drift 0.0176; 0.2s
+  tol3-1/100: defined 8721/10000; solves {'defined': 17, 'hi0': 25, 'lo0': 19, 'hi1': 23, 'lo1': 17}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [25, 19, 23, 17]; mean width 0.6309; mean drift 0.0168; 0.2s
+  tol3-1/50: defined 8594/10000; solves {'defined': 19, 'hi0': 27, 'lo0': 19, 'hi1': 22, 'lo1': 22}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [27, 19, 22, 22]; mean width 0.6606; mean drift 0.0151; 0.3s
+  tol4-1/100: defined 4466/10000; solves {'defined': 61, 'hi0': 69, 'lo0': 75, 'hi1': 75, 'lo1': 75}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [93, 82, 92, 79]; mean width 0.8184; mean drift 0.0055; 1.1s
+  pair332: defined 10000/10000; solves {'defined': 222, 'hi0': 158, 'lo0': 163, 'hi1': 148, 'lo1': 155}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [159, 168, 154, 161]; mean width 0.2164; mean drift 0.0535; 2.3s
+PASS TK1 IDENTITY tolerance form at e = 0 reproduces the exact-margin bands of the ledger   [35348 band ends compared; mismatches 0; ledger tables not defined here 0; defined 8837 vs ledger 8837]
+PASS TK2 IDENTITY bands nest as the tolerance grows   [104364 comparisons; violations 0; tables that become undefined as e grows 243]
+PASS TK3 IDENTITY values agree with direct LPs; exact rational re-check of certified tables   [LP / exact failures: tol3-0 0/0; tol3-1/200 0/0; tol3-1/100 0/0; tol3-1/50 0/0; tol4-1/100 0/0; pair332 0/0]
+PASS TK4 IDENTITY drift bound valid; certified top-20 equals exhaustive top-20   [tol3-0: U>=D True, top-20 equal True, evaluated 2592/8837, solves 12; tol3-1/200: U>=D True, top-20 equal True, evaluated 2620/8776, solves 18; tol3-1/100: U>=D True, top-20 equal True, evaluated 2695/8721, solves 34; tol3-1/50: U>=D True, top-20 equal True, evaluated 2770/8594, solves 38; tol4-1/100: U>=D True, top-20 equal True, evaluated 1192/4466, solves 93; pair332: U>=D True, top-20 equal True, evaluated 8142/10000, solves 296]
+PASS TK5 HYPOTHESIS compression persists: LP solves <= 0.2 T   [tol3-0 30; tol3-1/200 45; tol3-1/100 101; tol3-1/50 109; tol4-1/100 355; pair332 846]
+FAIL TK6 HYPOTHESIS certified top-20 evaluates <= 50% of defined tables   [tol3-0 0.29; tol3-1/200 0.30; tol3-1/100 0.31; tol3-1/50 0.32; tol4-1/100 0.27; pair332 0.81]
+PASS TK7 HYPOTHESIS stratified 95% intervals cover in >= 93% of replicates, both targets   [tol3-1/200 mean 0.946 share 0.952 (SRS 0.938/0.946); tol3-1/100 mean 0.948 share 0.952 (SRS 0.936/0.938); tol3-1/50 mean 0.954 share 0.950 (SRS 0.942/0.940); tol4-1/100 mean 0.954 share 0.944 (SRS 0.928/0.922); pair332 mean 0.952 share 0.950 (SRS 0.952/0.940)]
+PASS TK8 HYPOTHESIS stratification reduces the variance of the mean-drift estimate   [tol3-1/200 0.76; tol3-1/100 0.75; tol3-1/50 0.73; tol4-1/100 0.91; pair332 0.98]
+PASS TK9 RECORD widths, drifts, defined share, top-k, half-widths, sample cost   [tol3-0: defined 0.88, width 0.599, drift 0.0185, fallbacks 0; tol3-1/200: defined 0.88, width 0.615, drift 0.0176, fallbacks 0, truth 0.0176+-0.0032, share 0.133+-0.030; tol3-1/100: defined 0.87, width 0.631, drift 0.0168, fallbacks 0, truth 0.0168+-0.0032, share 0.127+-0.030; tol3-1/50: defined 0.86, width 0.661, drift 0.0151, fallbacks 0, truth 0.0151+-0.0031, share 0.112+-0.028; tol4-1/100: defined 0.45, width 0.818, drift 0.0055, fallbacks 0, truth 0.0055+-0.0029, share 0.021+-0.013; pair332: defined 1.00, width 0.216, drift 0.0535, fallbacks 0, truth 0.0535+-0.0028, share 0.506+-0.048]
+8/9 passed
+
+== engine/check_structbound.py (2026-11-14; Study 30, pre-registered)
+/home/claude/paper/unified/engine/check_structbound.py:64: RuntimeWarning: invalid value encountered in log
+  with np.errstate(divide="ignore"): return np.log(p) - np.log1p(-p)
+  P332: defined 10000/10000; exhaustive solves 846; band-only search 0.814 (296 LPs); structure-aware screen 0.003 (49 LPs); U1 time 40.4s; 74s
+/home/claude/paper/unified/engine/check_structbound.py:64: RuntimeWarning: invalid value encountered in log1p
+  with np.errstate(divide="ignore"): return np.log(p) - np.log1p(-p)
+  P332tol: defined 10000/10000; exhaustive solves 4190; band-only search 0.840 (2098 LPs); structure-aware screen 0.004 (70 LPs); U1 time 33.3s; 1523s
+  P442: defined 10000/10000; exhaustive solves 14790; band-only search 0.556 (4283 LPs); structure-aware screen 0.006 (112 LPs); U1 time 38.2s; 855s
+PASS SW1 IDENTITY interaction coordinates   [P332 is the Study 29 population: True; P332: null-space dimension 4 = (a-1)(b-1)(c-1) = 4; reconstruction failures 0/200; programme-in-theta mismatches 0/200; P442: null-space dimension 9 = (a-1)(b-1)(c-1) = 9; reconstruction failures 0/200; programme-in-theta mismatches 0/200]
+PASS SW2 IDENTITY every bound dominates the drift; lower bounds lie below it   [P332: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True; P332tol: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True; P442: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True]
+PASS SW3 IDENTITY screened top-20 equals exhaustive top-20
+PASS SW4 IDENTITY context order: evidence in either order, and C = 0 then B in {0,1}, give the same bands   [1200 band ends; mismatches 0]
+PASS SW5 IDENTITY support boundary: empty blocks undefined, no non-finite band ends, vanishing tolerance blocks undefined   [constructed empty-block tables flagged 100/100; all defined band ends finite True; P332tol undefined 0, re-checked 0, wrong 0]
+PASS SW6 HYPOTHESIS P332: the screen evaluates <= 50% of defined tables   [structure-aware 0.003 (band-only 0.814)]
+FAIL SW7 HYPOTHESIS P332: Spearman(min(U0, U1), D) >= 0.7   [P332: U0 0.31, U1 0.52, minU0U1 0.53, combined 0.57; P332tol: U0 0.22, U1 0.55, minU0U1 0.56, combined 0.64; P442: U0 0.35, U1 0.72, minU0U1 0.72, combined 0.80]
+PASS SW8 HYPOTHESIS P332tol and P442: the screen evaluates no larger share than the band-only search   [P332tol 0.004 vs 0.840; P442 0.006 vs 0.556]
+PASS SW9 RECORD searches, bounds, stability, centre/width, interaction vs tolerance   [P332: screen 32 evals/49 LPs vs band-only 8142/296, stability 0.11, centre 0.0310, width change +0.0397; P332tol: screen 40 evals/70 LPs vs band-only 8398/2098, stability 0.08, centre 0.0285, width change +0.0403; P442: screen 59 evals/112 LPs vs band-only 5559/4283, stability 0.01, centre 0.0288, width change +0.0637; interaction vs tolerance {"tables": 10000, "interaction_width": 0.2164, "tolerance_width": 0.1379, "interaction_drift": 0.0535, "tolerance_drift": -0.001, "share_drift_falls": 0.492, "share_width_grows": 0.9994}]
+8/9 passed
+
+== engine/check_credalshape.py (2026-11-14; Study 31, pre-registered)
+PASS SO1 IDENTITY lem:cographic: optimal vertices have spanning-tree support and independent zero-cell normals; cycles give dependence   [vertices 300, failures 0; all 126 four-cell sets: complement a tree -> independent (failures 0); complement with a cycle (45 sets) -> dependent (failures 0)]
+PASS SO2 IDENTITY prop:ratiocone: ratio basis regions are convex cones   [segment points 10000, outside 0; scalings outside 0]
+PASS SO3 IDENTITY prop:condpolytope: outcome polygon = hull of vertex images = support-function polygon; band ends   [p25: |V(K)| 26, margins True, hull gap 1.1e-16, band ends match True; p50: |V(K)| 16, margins True, hull gap 2.2e-16, band ends match True; p75: |V(K)| 27, margins True, hull gap 1.1e-16, band ends match True]
+PASS SO4 IDENTITY evidence commutes with conditioning, preserves Hilbert distances, transports the polygon   [p25: commute 5.6e-17, Hilbert pairs 44 finite, changed 0, after-evidence hull gap 1.6e-16, bands True; p50: commute 1.4e-17, Hilbert pairs 32 finite, changed 0, after-evidence hull gap 5.0e-16, bands True; p75: commute 5.6e-17, Hilbert pairs 48 finite, changed 0, after-evidence hull gap 1.1e-16, bands True]
+PASS SO5 IDENTITY Fisher-Rao image on the unit sphere; band ends are extreme latitudes
+PASS SO6 RECORD vertex counts, areas, Hilbert diameters, active facets   [p25: |V(K)| 26, |V(pi K)| 26, polygon vertices 5/10/10 (before/after/tolerance), area 0.0054/0.0072/0.0181, Hilbert diameter 1.686/2.284/4.140; p50: |V(K)| 16, |V(pi K)| 16, polygon vertices 4/8/10 (before/after/tolerance), area 0.0121/0.0206/0.0419, Hilbert diameter 1.487/1.593/2.320; p75: |V(K)| 27, |V(pi K)| 27, polygon vertices 5/10/8 (before/after/tolerance), area 0.0687/0.1008/0.1751, Hilbert diameter 3.453/3.870/inf]
+6/6 passed
+
+== engine/check_credalshape_addendum.py (2026-11-14; post hoc)
+PASS SO7 RECORD (post hoc) outcome region against the product of its bands   [100 tables; before evidence: ratio min 1.000000 max 1.000000, equal to the product in 100, edges parallel to the simplex in 100; after evidence: ratio min 0.665 median 0.875 max 0.989, equal in 0]
+1/1 passed
+
+== engine/check_frontispiece.py (2026-11-14; Study 32, pre-registered)
+PASS UG1 IDENTITY chamber walls of the slice are the lines f_i = subset sums of g; vertex count constant on each cell; E1 interior   [58 cells met by 2000 points, inconsistent 0; wall levels [0.25, 0.35, 0.4, 0.6, 0.65, 0.75]; E1 interior True; E1 vertex count 18]
+PASS UG2 IDENTITY vertices are the feasible spanning-tree bases; count = TT2; simple; adjacency shares 4 basic cells   [81 spanning trees, 18 feasible (TT2: 18); degrees [4]]
+PASS UG3 IDENTITY the marked vertex: positive cells a spanning tree; its 4 edges <-> its 4 zero cells   [marked vertex = upper end of the band of q0; positive cells [(0, 0), (0, 1), (0, 2), (1, 0), (2, 1)]; zero cells [(1, 1), (1, 2), (2, 0), (2, 2)]; entering cells of the 4 edges [(1, 1), (1, 2), (2, 0), (2, 2)]]
+PASS UG4 IDENTITY Theorem 196 on E1: levels and rank increments; scale valuations; x(L) -> leximin point   [levels ['1/18', '7/72', '17/144', '127/720', '163/720'], r [2, 1, 1, 0, 0] (TT2 match True); targets [0.0, 0.0, 0.0417, 0.0625], extrapolated [-0.0007, -0.0001, 0.0415, 0.0617], error 0.0008; distance to the leximin point [0.0569, 0.0508, 0.045, 0.0347, 0.0265, 0.0155, 0.0076, 0.0041, 0.0015, 0.0006, 0.0001, 0.0]]
+PASS UG5 IDENTITY the decision region: hull of vertex images = product of bands; transported after evidence; band ends = direct programmes   [band ends mismatched 0; region/product area before 1.000000, after evidence 0.819; bands before [[0.28, 0.48], [0.22, 0.42], [0.1, 0.3]]]
+5/5 passed

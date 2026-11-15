@@ -799,6 +799,396 @@ rows:
     walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "lagging anchors: cascade = relay (confound persists)"}
     wall_certificate: "frozen specification hash; ZC1-ZC2"
     checks: [ZC1, ZC2]
+  - id: study27d
+    operation: "Study 27d (pre-registered, run once): coordinated sabotage against the frozen 27c filter, two covers; Prop. mimic (lagging cascade = relay in law)"
+    assumptions: "frozen SPEC_study27d.md (SHA-256 6e2a7ec9...); 27c filter unchanged (z = 2.00); seed 27402"
+    parameter_map: "attack class -> reporter laws per round -> filtered witness braid -> relay-like, coordinated flag, explanation map"
+    levels:
+      contingency: {status: Numerical, text: "6 of 8 held: transfer, duo, one compromised anchor, shock cover detected (>= 0.97); all anchors compromised undetectable in A (0.035), detected with an honest inspection (0.98); mimic = relay in law; failed: slow-drip prediction untestable (empty subset), coordination timing (relay 0.88-0.91 vs drift 0.13-0.27; delayed coalition 0.11-0.19 and detection 0.86-0.93)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "Prop. mimic (proved in the text): equal reporter laws at every round, so the two error probabilities sum to at least 1"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "g-blind accomplices invisible to the witness and to overlap checks"}
+    wall_certificate: "frozen specification hash; ZD1-ZD2"
+    checks: [ZD1, ZD2]
+  - id: dm-view
+    operation: "The decision maker's view: visibility spectrum (Prop. visibility), blind band, private incoherence register, Fisher-Rao (Bloch) dashboard; Study 27e (pre-registered, run once)"
+    assumptions: "frozen SPEC_study27e.md (SHA-256 f7a8d119...); 27c filter frozen; cover 1; seed 27502; Gaussian model from design SEs"
+    parameter_map: "trusted reports -> Fisher information -> sigma_g, kernel part; rule R1/R2/R3 -> d_eff; anchor size -> kappa; blind risk = flip and not detected"
+    levels:
+      contingency: {status: Numerical, text: "7 of 8 held: Gaussian model within 0.07 in 40/40 cells; R1 blind band never closes (0.11 at 100k), R2 closes from 10k, R3 from 3k (<= 0.01); honest witness 1.5-3.3%; majority attribution blames the honest anchor (95%) when one anchor is in the coalition; failed: cardinality attribution of S3 0.89 < 0.95"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "Prop. visibility (proved in the text): g identifiable iff grad g has no kernel component; Cramer-Rao sigma_g; B2(S^2) = Z/2 gives the pairwise braid projection"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "unknowable when every independent witness of g may lie"}
+    wall_certificate: "frozen specification hash; ZE1-ZE2"
+    checks: [ZE1, ZE2]
+  - id: distance-from-reality
+    operation: "Study 27f (pre-registered, run once): the ledger scored against the truth; gap = sampling + compatibility + identifiability floor + avoidable; detection ladder oracle / CUSUM / witness"
+    assumptions: "frozen SPEC_study27f.md (SHA-256 79edf626...); cover 1; anchors 3000 and 30000; calibration seed 27601, test seed 27602"
+    parameter_map: "run truth -> regret, interval coverage, explanation coverage, naming; series d_t -> oracle LLR, CUSUM, witness, register alarm rounds"
+    levels:
+      contingency: {status: Numerical, text: "6 of 7 held: floor (relay + lagging cascade errors 0.99-1.00), ladder (oracle 1 round before CUSUM, CUSUM <= witness@5%), harm 0.007, explanation coverage >= 0.99, majority naming 0.99 relay / 0 with a compromised or stale witness; failed F6: pooled rule's relay error is structural (exact reports), avoidable only by a veto rule"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "compatibility part zero for g in this world (ZF2)"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "the missing theorem: regret bound for a pooled rule with a witness veto"}
+    wall_certificate: "frozen specification hash; ZF1-ZF2"
+    checks: [ZF1, ZF2]
+  - id: veto-theorem
+    operation: "The veto theorem: act iff pooled barycentre beyond threshold and register inertia Q below the chi-square cut; safe against every coalition leaving honest weight; braid form (forbidden closures)"
+    assumptions: "Gaussian reports with known variances; truth a distance d below the threshold; honest observers fresh; coalition arbitrary"
+    parameter_map: "weights w_j -> barycentre x_bar, inertia Q; shift s, noncentrality lambda >= s^2 W W_H / w_C; strands, protected witness, B_2(S^2) = Z/2"
+    levels:
+      contingency: {status: Proved, text: "Lemma separation (Cauchy-Schwarz), Lemma independence (Cochran), Thm veto: honest veto rate alpha, safety bound beta attained by a common shift, sharpness (W_H = 0; stale witness by Prop mimic); Thm braid form; Cor: the one-sided pairwise witness misses a poisoned anchor"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "multinomial version and minimax optimality open"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "W_H = 0 or a stale witness: no rule protects"}
+    wall_certificate: "VT1-VT8"
+    checks: [VT1, VT2, VT3, VT4, VT5, VT6, VT7, VT8]
+  - id: obstruction-map
+    operation: "The obstruction map: classify non-gluing (defect / cycle / unresolved), decision relevance, excision; regional ANOVA split of the register; three poisoning mechanisms; the own past; Study 27g (pre-registered, run once)"
+    assumptions: "frozen SPEC_study27g.md (SHA-256 429c01ad...); cover 1; tolerances 3 x summed cell SEs; seed 27702"
+    parameter_map: "tables -> gluing LP and single removals -> type, named source, relevance; observers of g -> within / between parts"
+    levels:
+      contingency: {status: Numerical, text: "6 of 7 held: miscoded S4 named in 100% (decoy too); coherent mechanisms glue 100%; excision loss 0 vs 0.2; no wrong act in any attack; regional parts at 4.7% / 4.6%, correlation +0.001; own past flags replacement / injection / deletion 100%, poison-from-start 4.3%; failed G1: deletion invisible to the inner layer (signature 0.01-0.05 below tolerance 0.07-0.12)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "Prop. anova (proved): exact independent regional split; cycle type needs a cyclic cover (Vorob'ev); exact four-cycle classified 'cycle' (ZG2)"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "poison-from-start defeats the own past; only anchors defend"}
+    wall_certificate: "frozen specification hash; ZG1-ZG3"
+    checks: [ZG1, ZG2, ZG3]
+  - id: order-watch
+    operation: "The order watch: signed counts of ordered chains in the dependence order of the event trace (a Milnor-type coefficient), online, with prefix warning and 'order then departure'; adversarial masking, waiting and decoys; Study 27h (pre-registered, run once)"
+    assumptions: "frozen SPEC_study27h.md (SHA-256 8a400986...); cover 1; departure 0.04 in g; watched events rare (3 per history) or dense (10); design pilot disclosed"
+    parameter_map: "event history -> dependence poset -> signed chain counts mu0 (exact), mu1 (one hidden link), positive counts nu0, nu1; then the 27c witness"
+    levels:
+      contingency: {status: Numerical, text: "rare: exact count 91.7% of relays at 0.5% honest, unchanged by waiting (91.8%); one hidden link drops it to 5.9%, loose gap count 90.7% at 14.8% honest; decoy reversal drops it to 4.8%, positive count 100%; order then departure 71.7% vs witness alone 45.1%, honest 0%; lagging cascade 70.2% (inseparable), timely 24.0%; warning precedes departure in 84%; dense: 39.1% (H9 failed); gap count not trace-invariant as run (ZH2 failed)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "Prop. orderwatch (proved): exact signed counts are trace invariants, unchanged by cancelling pairs, and the same invariance zeroes a planted reversal; the strict-round gap count is invariant (ZH13)"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "two hidden links defeat every order statistic; only the witness remains"}
+    wall_certificate: "frozen specification hash; ZH1, ZH3, ZH13"
+    checks: [ZH1, ZH3, ZH13]
+  - id: gauge-decomposition
+    operation: "Local observational gauge decomposition: Fisher-orthogonal split of a perturbation into a part invisible to the trusted observations and a horizontal part; horizontal = log-linear tangent; invisibility vs decision irrelevance; anchors that determine g; the order watch as a Magnus coefficient"
+    assumptions: "interior of the simplex; linear (marginal) observation map; Fisher metric; first order only; no global path split, no claim that every horizontal change is detected"
+    parameter_map: "trusted contexts -> A -> V = ker A on the tangent space, H = V^perp_G; g -> dg restricted to V"
+    levels:
+      contingency: {status: Exact, text: "cover 1 without S3: dim V 18, dim H 13; 94% of g's Fisher gradient invisible; the coalition's move exactly vertical; either anchor removes the invisible part exactly (rational rank); g-blind contexts do not; 2 x 2: dg/dt = 1/r1 + 1/r0"}
+      toric: {status: Defined, text: "H is the tangent of the log-linear (toric) family P exp(theta A); V the m-flat fibre"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "Prop. gauge and Cor. gauge (proved); comonad reading of the decision maker's access stated as a modelling choice, ledger called retained state (no coalgebra laws checked)"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "the decision boundary crossed inside the fibre: the blind band"}
+    wall_certificate: "GD1-GD7"
+    checks: [GD1, GD2, GD3, GD4, GD5, GD6, GD7]
+  - id: snapshot-engine
+    operation: "The snapshot engine, stage 1: one operator representation of overlapping tables (sparse Cech d0 and its weighted projection, df on the noise subspace, positivity LP with dual-multiplier certificate, contextual fraction, GYO core, credal brackets, outer veto, singularity scan), reproducing cover 1"
+    assumptions: "finite joint space enumerable; tolerances 3 standard errors; Pearson weights"
+    parameter_map: "tables -> d0 -> coherent fit, Q, contributions; fits -> positivity -> certificate"
+    levels:
+      contingency: {status: Exact, text: "reproduces the gauge split (dim V 18, invisible share 0.941), ZG2's cycle and defect, Vorob'ev on acyclic covers, the coherent coalition (inner Q 0, veto 64.2 on 12 df), the anchored credal bracket; three first-run failures recorded in DEVNOTES_engine.md"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "Cech operator on the nerve; the cycle certificate is a Farkas-type dual vector"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: "cycle obstruction in the GYO core"}
+    wall_certificate: "SN1-SN7"
+    checks: [SN1, SN2, SN3, SN4, SN5, SN6, SN7]
+  - id: likelihood-valuation
+    operation: "Likelihood rates are Novikov valuation shifts: the exact shift lam - (n/N) H_hat; cross-entropy rates for independent data, divergences act; the circuit log-likelihood ratio; the crossing time; FOOO's non-displaceable fibre along data paths; the F_1 Floer count"
+    assumptions: "finite sample space; hypotheses positive on the data; independent data with n = sN for (ii)-(iv); Floer statements cited (Cho-Oh, FOOO; rational vertices for FOOO)"
+    parameter_map: "data -> empirical cross-entropies -> lam_eff; circuit a -> Lambda_a"
+    levels:
+      contingency: {status: Exact, text: "exact shift; N^-1/2 law (slope -0.495); crossing time slope -0.496; F_1 fibres 2 -> 1 at s*"}
+      toric: {status: Proved, text: "divergences act, constants move only h*; walls reached through <a, D>"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: Cited, text: "Floer-nontrivial fibres = critical points (Cho-Oh); non-displaceable fibre at the leximin point (FOOO); A-infinity functoriality and non-independent data open"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: undefined, support: undefined, tropical: "outcome wall reached at s* = -c / <a, D>", critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "LN1-LN6"
+    checks: [LN1, LN2, LN3, LN4, LN5, LN6]
+  - id: graded-order-watch
+    operation: "The Novikov-graded order watch: events weighted by the circuit log-likelihood ratio; graded Magnus coefficients; equal-weight cancellation only; weightless decoys fail; max-plus valuation"
+    assumptions: "weights non-negative reals; general position for the max-plus statement"
+    parameter_map: "weighted trace -> graded chain coefficient in the Novikov field -> valuation"
+    levels:
+      contingency: {status: Exact, text: "NO1-NO5: T = 1 recovers the signed count; trace invariance; weighted pads; graded decoy; max-plus valuation; same trace, different valuations"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "graded Magnus map on the trace monoid"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "NO1-NO5"
+    checks: [NO1, NO2, NO3, NO4, NO5]
+  - id: stokes-braid
+    operation: "Data paths braid the critical values of W_T: Stokes events concentrate where valuations of critical values meet (O(1/N)); F_1 word sigma_1 sigma_2^-1 converging to the outcome wall; none on CP^2"
+    assumptions: "nondegenerate critical points; generic projection angle; mutation of exceptional collections cited (Seidel)"
+    parameter_map: "lam(s) -> critical values -> order in a generic projection -> braid word"
+    levels:
+      contingency: {status: N/A, text: "no contingency statement"}
+      toric: {status: Proved, text: "Prop. stokes: Stokes events are tropical"}
+      mirror: {status: Numerical, text: "F_1: crossings within 0.074, 0.037, 0.018 of s* at N = 16, 32, 64; CP^2 none"}
+      floer: {status: Cited, text: "Hurwitz moves = mutations in the Fukaya-Seidel category (Seidel 2008); nothing about the category is proved"}
+      category: {status: N/A, text: "no categorical statement of our own"}
+    walls: {probability: undefined, support: undefined, tropical: "valuations of critical values meet", critical: undefined, stokes: "Stokes events at the outcome wall (F_1)", context: undefined}
+    wall_certificate: "SK1-SK5"
+    checks: [SK1, SK2, SK3, SK4, SK5]
+  - id: hurwitz-worked-example
+    operation: "Worked example: braids induced by the Stage IV data path (two detours around a collision) in the dual (Birman-Ko-Lee / Bessis) Garside structure, with Hurwitz states on factorisations of the Coxeter element"
+    assumptions: "T = e^-100; phase +-0.05 on the moving coefficient; projection angle 0.1; Hurwitz states as a combinatorial summary of the braid (no claim that vanishing cycles realise the transpositions)"
+    parameter_map: "path -> braid word (adaptive, grid-stable) -> dual normal form (inf, sup, canonical length) and Hurwitz state"
+    levels:
+      contingency: {status: N/A, text: "no contingency statement"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: Numerical, text: "above: canonical length 5; below: 4; difference exactly sigma_1^3 (cusp); same Hurwitz state 1066 of 1296"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Cited, text: "dual Garside structure and Hurwitz transitivity (Bessis 2003); Deligne's extension not used"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: "fold collision near gamma = 1/5: cusp monodromy", stokes: "Stokes events at the level-two wall and near the level-one wall", context: undefined}
+    wall_certificate: "HZ1-HZ7"
+    checks: [HZ1, HZ2, HZ3, HZ4, HZ5, HZ6, HZ7]
+  - id: persistence
+    operation: "Persistence along data paths: inside chambers only positions move; Stokes events and collisions concentrate within O(1/N) of tropical walls (amoeba bound); the two ways to attack (fibre moves leave log-linear likelihood rates unchanged; horizontal moves act only at walls)"
+    assumptions: "data path in the Kahler cone; D a polynomial vanishing at collisions; hypotheses log-linear in the observed margins for the lemma"
+    parameter_map: "lam(s) -> D(T^-lam) -> amoeba -> Trop(D); Q -> A Q -> rates"
+    levels:
+      contingency: {status: Proved, text: "Lemma split: H(Q, P_k) depends on Q only through A Q (exact, PS4)"}
+      toric: {status: Proved, text: "Prop. persist (iii) via the amoeba bound; F_1: Trop(D) = outcome wall; Stage IV: Trop(D) = {1/5, 4/15}, collisions only near 1/5"}
+      mirror: {status: Numerical, text: "same braid at different cost on F_1 (PS5)"}
+      floer: {status: N/A, text: "no Floer statement beyond those cited in cor:likfloer"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: undefined, support: undefined, tropical: "Trop(D) carries every collision as N grows", critical: "collisions near 1/5 on Stage IV, none on F_1", stokes: "within O(1/N) of meeting valuations", context: undefined}
+    wall_certificate: "PS1-PS5"
+    checks: [PS1, PS2, PS3, PS4, PS5]
+  - id: history-valuation
+    operation: "A history with order and value: grade (total evidence, Novikov valuation) and resolution (weakest link) per chain; dissipation, collapse times, aggregation; the visible braid"
+    assumptions: "weights non-negative; dissipation decreasing in time (exponential for the closed form); general position for (i)"
+    parameter_map: "weighted events -> Z_t in the graded Magnus algebra; chains -> (grade, resolution, death time); visible events -> band word"
+    levels:
+      contingency: {status: Exact, text: "HV1-HV5: chains never outlive sub-chains; closed-form death; grade = valuation; aggregation; relay example"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "graded partially commutative Magnus algebra"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "HV1-HV5"
+    checks: [HV1, HV2, HV3, HV4, HV5]
+  - id: engine-study27i
+    operation: "The snapshot engine over evolving overlapping tables: Study 27i on a declared sleep-onset world (96 tables, 8 snapshots, 7 scenarios)"
+    assumptions: "synthetic declared law; honest anchors; thresholds calibrated on 300 honest runs of this world; pre-registered (SHA-256 d1206ff0...)"
+    parameter_map: "snapshots of tables -> inner coherence, type (defect / cycle / unresolved), veto and g-witness, boundary scan -> decision rules N and V"
+    levels:
+      contingency: {status: Exact, text: "ZI1-ZI6 identities (invisible share 0.866 -> 0, credal bracket, twisted cycle, value of information); I2-I8 held (ZI7-ZI13)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "decision threshold g* + 0.04", support: "the emptying (K, P) cell", tropical: undefined, critical: undefined, stokes: undefined, context: "the twisted lifestyle cycle"}
+    wall_certificate: "ZI1-ZI13"
+    checks: [ZI1, ZI2, ZI3, ZI4, ZI5, ZI6, ZI7, ZI8, ZI9, ZI10, ZI11, ZI12, ZI13]
+  - id: braid-summaries
+    operation: "Braid summaries of event histories as detectors (dual reduction ratio, Burau growth) against the record and the order watch; quenched versus annealed coalitions (Study 27j)"
+    assumptions: "synthetic E6 world whose edges are non-crossing chords (the braid is a trace invariant); pre-registered (SHA-256 ff3d9efc...)"
+    parameter_map: "events -> band generators on 6 strands -> dual left normal form (permutations) and Burau log-norm"
+    levels:
+      contingency: {status: Exact, text: "DN1-DN3 (normal form against brute force); ZJ1-ZJ3 identities; J1-J5 held (ZJ4-ZJ8): braid summaries added no power over the record"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "dual Garside structure of B_6 (Birman-Ko-Lee / Bessis)"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "ZJ1-ZJ8, DN1-DN3"
+    checks: [ZJ1, ZJ2, ZJ3, ZJ4, ZJ5, ZJ6, ZJ7, ZJ8, DN1, DN2, DN3]
+  - id: sequential-valuation
+    operation: "Likelihood valuations under dependent and adversarial data: compensator, fibre invisibility, divergence cost (prop:seqval)"
+    assumptions: "predictable conditional laws; every P_k >= p_min > 0 (bounded circuit LLR); away from walls where cells empty"
+    parameter_map: "data stream -> S_n = A_n + M_n -> wall function c0 - S_n / N"
+    levels:
+      contingency: {status: Proved, text: "Doob decomposition with maximal Azuma; Ionescu-Tulcea invisibility; pathwise cost Delta^2 <= 2 n B^2 K by Pinsker (SQ1-SQ6)"}
+      toric: {status: Proved, text: "the wall function of prop:likval along any data stream"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement beyond cor:likfloer"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: undefined, support: undefined, tropical: "outcome wall c = 0 reached through the compensator", critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "SQ1-SQ6"
+    checks: [SQ1, SQ2, SQ3, SQ4, SQ5, SQ6]
+  - id: separation
+    operation: "Valuation and structure are independent invariants of a history (thm:separation)"
+    assumptions: "co-revision graph of non-crossing chords; exchangeable hypotheses"
+    parameter_map: "history -> (counts-valued shift V, signed chain counts and event braid S)"
+    levels:
+      contingency: {status: Proved, text: "sufficiency plus explicit witnesses both ways (SP1-SP5)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Defined, text: "trace monoid and band-generator braid"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "SP1-SP5"
+    checks: [SP1, SP2, SP3, SP4, SP5]
+  - id: categorical-layer-2x3
+    operation: "The directed Fukaya-Seidel category of a 2x3 coupling polygon (prop:fsgram)"
+    assumptions: "nondegenerate 2x3 margins; W_T a Lefschetz fibration along the path; cited HMS for toric del Pezzo surfaces"
+    parameter_map: "facet set of Cpl(f,g) -> toric del Pezzo X -> D^b(X), Gram matrix of a full exceptional collection"
+    levels:
+      contingency: {status: Exact, text: "facet census, five types (FG1)"}
+      toric: {status: Exact, text: "smooth Fano fans; exceptional toric collections; Gram matrices; invariants separate types (FG1-FG5)"}
+      mirror: {status: Cited, text: "FS(W) = D^b(X) (Ueda; Auroux-Katzarkov-Orlov); Euler pairing = chi (Seidel)"}
+      floer: {status: Cited, text: "every pair of vanishing cycles in the toric basis has HF != 0 (Euler pairing positive)"}
+      category: {status: Defined, text: "directed category of vanishing cycles; mutations as Hurwitz moves"}
+    walls: {probability: undefined, support: "support walls: three constraint lines through a vertex (FG6)", tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "FG1-FG6"
+    checks: [FG1, FG2, FG3, FG4, FG5, FG6]
+  - id: scale-theorem
+    operation: "One scale per removed dimension at the positive object (thm:scales)"
+    assumptions: "nondegenerate margins of any shape; positive object; corrections allowed if 1 + delta_k > 0"
+    parameter_map: "leximin levels (h_j, S_j) -> scale valuations h_j - h_1 with multiplicity r_j"
+    levels:
+      contingency: {status: Proved, text: "Cauchy-Binet with positive terms plus the matroid greedy algorithm (SV1-SV3)"}
+      toric: {status: Proved, text: "valuations of the Hessian of W at the positive critical point; finite-L check (SV4)"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "SV1-SV4; reader's guide PM1-PM4"
+    checks: [SV1, SV2, SV3, SV4, PM1, PM2, PM3, PM4]
+  - id: leximin-evidence
+    operation: "Facet-leximin versus all-cell leximin: further evidence and the first level (after cor:leximin)"
+    assumptions: "nondegenerate margins, shapes 2x3, 3x3, 2x4, 3x4"
+    parameter_map: "facet cells vs all cells -> leximin points"
+    levels:
+      contingency: {status: Numerical, text: "agreement on 331 margins; every redundant cell dominates a facet cell; first level proved from domination (LQ1-LQ3)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: undefined, support: undefined, tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "LQ1-LQ3"
+    checks: [LQ1, LQ2, LQ3]
+  - id: credal-flow
+    operation: "Credal sets under soft evidence: Hilbert isometry, decision crossing, adversarial viability, conserved quantities (sec:credalflow)"
+    assumptions: "credal polytope in the open simplex; linear payoffs; admissible likelihoods constant on observation cells; convex compact control sets"
+    parameter_map: "evidence direction a, time t -> K_t = T_ta(K); payoff bracket; Kahler class moved only through circuit pairings"
+    levels:
+      contingency: {status: Proved, text: "lem:hilbertflow, thm:crossing, thm:viability; conserved cell conditionals; dilation as a revealed conserved spread (CR1, CR3-CR9)"}
+      toric: {status: Proved, text: "lem:kahlerclass: evidence moves the class only through circuit pairings (CR2)"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "decision wall <c, p> = 0", support: "boundary of the simplex: conditioning on lower probability 0 undefined", tropical: "cor:tropcross: tropical transit time (CR10)", critical: undefined, stokes: undefined, context: "fibre impossibility: only a new context cuts"}
+    wall_certificate: "CR1-CR10; F1 worked example FK1-FK6"
+    checks: [CR1, CR2, CR3, CR4, CR5, CR6, CR7, CR8, CR9, CR10, FK1, FK2, FK3, FK4, FK5, FK6]
+  - id: credal-bands-flow
+    operation: "Bands of an outcome under a ladder of conditions; Hilbert diameter with boundaries; the ceiling lemma; mixing; the replicator-mutator probability flow (sec:credalgeom)"
+    assumptions: "credal polytopes given by linear constraints; relative-error anchors for a finite diameter; flow on the 24 decision cells of the sleep world"
+    parameter_map: "conditions -> bands (Charnes-Cooper); K -> diam_H; (L, a, t) -> M_t = exp(t (L + diag a))"
+    levels:
+      contingency: {status: Proved, text: "diameter by LP at vertex pairs; ceiling lem:ceiling (attained); set-level commutation with condition-dependent weights; flow projective-linear (GM1-GM4, GM9)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "bands undefined where the condition can have probability 0", support: "touching zeros: infinite diameter, eps-profile", tropical: undefined, critical: undefined, stokes: undefined, context: "only anchors make the decision bands exist (GM6)"}
+    wall_certificate: "GM1-GM9"
+    checks: [GM1, GM2, GM3, GM4, GM5, GM6, GM7, GM8, GM9]
+  - id: three-by-three
+    operation: "The 3 x 3 test: four-dimensional coupling fibres; the first leximin level in closed form; chambers; spectral correspondence (sec:threebythree)"
+    assumptions: "nondegenerate rational margins; exact certificates for every linear programme; chamber statements from a sample of 2000 margins"
+    parameter_map: "(f, g) -> facets -> certified leximin levels (h_j, S_j, r_j) -> predicted scales; normal fan -> smooth / Fano"
+    levels:
+      contingency: {status: Proved, text: "prop:firstlevel (h_1 = min(f_min/c, g_min/r); blocked lines; r_1); patterns (2,1,1), (2,2), (4) only (TT1, TT3, TT7)"}
+      toric: {status: Numerical, text: "2000 sampled chambers all Delzant; 13 fan types; only P2 x P2 Fano (TT4, TT5)"}
+      mirror: {status: Proved, text: "thm:scales verified exactly in four dimensions: eigenvalue valuations = h_j - h_1 with multiplicity r_j (TT6)"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: Open, text: "the del Pezzo route does not extend to dimension four"}
+    walls: {probability: undefined, support: "cells with f_i + g_j > 1 are never facets (Frechet)", tropical: "leximin levels", critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "TT1-TT11"
+    checks: [TT1, TT2, TT3, TT4, TT5, TT6, TT7, TT8, TT9, TT10, TT11]
+  - id: stratified-ledger
+    operation: "Stratified ledger for many tables: basis libraries certify every table's band; walls, boundary profiles, certified top-k, reconstruction audit (sec:ledger)"
+    assumptions: "credal set = coupling polytope with exact margins; 10000 synthetic nondegenerate margins per shape; one decision quantity and one evidence vector"
+    parameter_map: "margins -> optimal basis (regular triangulation of the product of simplices) -> exact band; strata = basis regions; walls = pivots and the support wall"
+    levels:
+      contingency: {status: Proved, text: "prop:basiscount: at most C(r+c-2, r-1) bases per linear objective, r^(c-1) c^(r-1) for ratio bands; exact certificates for every table (QL1, QL2, QL8)"}
+      toric: {status: Proved, text: "prop:chamberrefine: raw chambers refine the optimal-basis regions of every generic linear objective (342 chambers, 13 up to symmetry, no violation, QL9); the band of sec:ledger had one basis per chamber (QL10); ratio objectives can switch inside chambers (QL11); standalone exact verifier of all 55576 certificates (QL12). The earlier purity-0.30 claim (QL5, inconsistent symmetry labels) is withdrawn"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "support wall f0+f1+g0+g1 = 1 (band undefined below)", support: "pivot walls between adjacent bases", tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "QL1-QL4, QL6-QL9, QL12"
+    checks: [QL1, QL2, QL3, QL4, QL6, QL7, QL8, QL9, QL12]
+  - id: ledger-scaling
+    operation: "Scaling of the stratified ledger over 15 shapes (2xn, 3xn, 4xn up to 4x6), T = 1000/3000/10000 (sec:ledgerscale, Study 28)"
+    assumptions: "exact-margin credal sets; synthetic nondegenerate margins over 1009; decision quantity and evidence of sec:ledger; pre-registered (study28_scale)"
+    parameter_map: "tables -> basis regions met -> linear programmes; per-table cost = one membership check against the library"
+    levels:
+      contingency: {status: Numerical, text: "solves grow with regions, not tables (10x tables, at most 1.9x solves); ledger build 6-2900x faster than direct; check 200-50000x cheaper than one LP; regions ~ tree bound^0.38; memory turns against the ledger at 3x7, 4x5, 4x6 (LS1, LS3-LS7); LS2 failed: one non-generic 2x8 objective took 9 solves against C(8,1) = 8, dual degenerate (LS8, post hoc)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "support wall f0+f1+g0+g1 = 1", support: "pivot walls between adjacent bases", tropical: undefined, critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "LS1, LS3, LS8"
+    checks: [LS1, LS3, LS4, LS5, LS6, LS7, LS8]
+  - id: tolerance-sampling
+    operation: "Credal sets beyond exact margins: tolerance boxes and three pairwise contexts; certified top-k and a stratified probability sample (sec:tolerance, Study 29)"
+    assumptions: "3x3 margins within e in {0, 1/200, 1/100, 1/50}; 4x4 within 1/100; 3x3x2 with AB, BC, AC margins; 10000 tables each; pre-registered (study29_tolerance)"
+    parameter_map: "standard form with slacks -> basis library (Dinkelbach certificates) -> exact bands; logistic bound -> certified top-20; strata of an LP-free covariate -> ratio estimator"
+    levels:
+      contingency: {status: Numerical, text: "e = 0 reproduces all 35348 exact-margin band ends (TK1); bands nest in e (TK2); exact re-checks (TK3); top-20 exact (TK4); 30-846 LPs for 10000 tables (TK5); stratified 95% intervals cover 94.4-95.4% (TK7) and cut variance 2-27% (TK8); TK6 failed: top-20 evaluates 81% of tables with three contexts (bound saturates)"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "support wall: min d.x = 0 (band undefined); moves with e", support: "basis changes of the standard-form programme", tropical: undefined, critical: undefined, stokes: undefined, context: "pairwise contexts AB, BC, AC"}
+    wall_certificate: "TK1-TK4"
+    checks: [TK1, TK2, TK3, TK4, TK5, TK7, TK8, TK9]
+  - id: structure-aware-bound
+    operation: "Structure-aware certified drift bound: block relaxation, interaction coordinates, dual certificates (sec:structbound, Study 30; prop:structbound)"
+    assumptions: "3x3x2 exact pairwise margins (Study 29 population), the same within +-1/100, 4x4x2 exact; 10000 tables each; pre-registered (study30_structure)"
+    parameter_map: "pairwise contexts -> margin rows and interaction coordinates (null space (a-1)(b-1)(c-1)); solved bases -> dual-feasible lambda intervals -> bounds for every table"
+    levels:
+      contingency: {status: Proved, text: "prop:structbound (pointwise drift bound, table-independent dual certificates, interaction coordinates); SW1-SW5 identities pass; certified top-20 after 32/40/59 of 10000 evaluations (band-only 8142/8398/5559; SW6, SW8); SW7 failed: a-priori ranking Spearman 0.53 (floor 0.7); exact-margin band width 0.216 = uncertainty invisible to the cover, tolerance 1/100 adds 0.138"}
+      toric: {status: N/A, text: "no toric statement"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "support wall: block mass 0 (constructed cases flagged)", support: "dual-feasibility intervals of each basis in lambda", tropical: undefined, critical: undefined, stokes: undefined, context: "pairwise contexts AB, BC, AC"}
+    wall_certificate: "SW1-SW5"
+    checks: [SW1, SW2, SW3, SW4, SW5, SW6, SW8, SW9]
+  - id: credal-shape
+    operation: "Stratified credal objects: the shape of a conditioned state (sec:credalgeomstrat, sec:credalshape, Study 31)"
+    assumptions: "exact margins / exact pairwise contexts; nondegenerate margins for lem:cographic; block mass positive on the fibre; C binary for prop:bandcomplete"
+    parameter_map: "credal fibre (polytope) -> interaction coordinates -> vertex bases (graphic) and tight facets (cographic) -> conditional region and its bands; evidence = projective map"
+    levels:
+      contingency: {status: Proved, text: "lem:cographic; prop:ratiocone (ratio basis regions are polyhedral cones, not unions of chambers); prop:condpolytope (conditional region is a polytope; evidence acts projectively, Hilbert isometry at block level); prop:bandcomplete (three-valued bands complete before evidence on a x b x 2 pairwise contexts); SO1-SO6 identities pass; SO7 post hoc: 100/100 before-evidence regions equal the band product, after evidence 66-99% (median 88%)"}
+      toric: {status: Proved, text: "the zero cells of a vertex are the primitive cell normals of the fibre lattice that enter thm:scales (lem:cographic(iii))"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "support wall: block mass 0", support: "basis-region cones of prop:ratiocone; chambers of prop:chamberrefine", tropical: undefined, critical: undefined, stokes: undefined, context: "pairwise contexts AB, BC, AC"}
+    wall_certificate: "SO1-SO5"
+    checks: [SO1, SO2, SO3, SO4, SO5, SO6, SO7]
+  - id: frontispiece
+    operation: "One example (E1) followed from margins to decision: chamber slice, fibre, dual bases, Theorem 196 both sides, conditional region (fig:frontispiece, Study 32)"
+    assumptions: "f = (30, 20, 10)/60, g = (24, 21, 15)/60; row block {1, 2}; evidence weights L(i, j) = 1 + ((i + 2j) mod 3)/2"
+    parameter_map: "margins -> chamber -> 18 spanning-tree vertices -> leximin levels (h_j, r_j) -> spectral scales -> conditional region and bands"
+    levels:
+      contingency: {status: Numerical, text: "UG1 chamber walls f_i = subset sums of g, vertex count constant per cell; UG5 region = product of bands before evidence, 82% after"}
+      toric: {status: Numerical, text: "UG2 18 vertices = TT2, simple; UG3 4 edges <-> 4 zero cells; UG4 scale valuations -> (0, 0, 3/72, 9/144), error 0.0008; x(L) -> leximin point"}
+      mirror: {status: N/A, text: "no mirror statement"}
+      floer: {status: N/A, text: "no Floer statement"}
+      category: {status: N/A, text: "no categorical statement"}
+    walls: {probability: "support wall", support: "chamber walls of the slice", tropical: "leximin levels", critical: undefined, stokes: undefined, context: undefined}
+    wall_certificate: "UG1-UG5"
+    checks: [UG1, UG2, UG3, UG4, UG5]
   - id: algebra-selection
     operation: "Algebra of the probability operations, counting explanations, and selection that is not concave"
     assumptions: "finite variables; Study 18 face laws for counts (N = 240..1200); straight data paths for the jump test"
