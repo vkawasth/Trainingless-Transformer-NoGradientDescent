@@ -1,0 +1,7 @@
+PASS CZ1 IDENTITY F_L = A w + B/w, and +-sqrt(B/A) are its critical points   [max relative errors 2.5e-14, 5.3e-16]
+PASS CZ2 IDENTITY A = 0 at r1 - c2 = i pi(2k+1)/L and B = 0 at r1 - c1 = i pi(2k+1)/L   [max |A|, |B|/scale 6.1e-16]
+PASS CZ3 IDENTITY around a zero of A the two critical points swap; around a circle enclosing no zero they return   [L=20: swap True, return True; L=80: swap True, return True; L=320: swap True, return True]
+PASS CZ4 IDENTITY the positive critical point tends to the leximin point with |t_L - t_lex| <= log 2 / L   [max L|t_L - t_lex|/log 2 = 0.4939]
+PASS CZ5 IDENTITY the kink at r1 = c2 is smoothed with peak curvature L/8 at the wall and width 4 arccosh(sqrt 2)/L   [L=20: peak 2.5000 (L/8 = 2.5), FWHM 3.5254/L (pred 3.5255/L); L=80: peak 10.0000 (L/8 = 10.0), FWHM 3.5254/L (pred 3.5255/L); L=320: peak 40.0000 (L/8 = 40.0), FWHM 3.5254/L (pred 3.5255/L)]
+PASS CZ6 IDENTITY fibre monodromy: a swap around each critical value, the identity around both (tau tau = id)   [around +cv: swap True; around -cv: swap True; around both: return True]
+6/6 passed

@@ -1,0 +1,7 @@
+PASS RK1 IDENTITY prop:troprank1: the leximin point is tropical rank one, x_ij = min(row max, column max)   [5 shapes x 50 tables; max deviation 0.0e+00]
+PASS RK2 IDENTITY cor:peel: exact peeling gives the leximin point and its level partition   [250 tables; max difference 4.4e-16; partition mismatches 0]
+PASS RK3 IDENTITY prop:troprank1 (converse): every table min(a_i, b_j) is the leximin point of its own margins   [250 random (a, b); max difference 1.7e-15]
+PASS RK4 IDENTITY cor:peel: every change of the leximin signature is a tie between two peeling ratios   [2x3: 112 changes, violations 0, max tie gap 2.2e-16, stalled bisections 39; 3x3: 51 changes, violations 0, max tie gap 1.9e-16, stalled bisections 3]
+PASS RK5 RECORD changes off every circuit wall, and the peeling step of their tie   [2x3: 8 of 112 off the secondary fan, 0 of them at the first step; 3x3: 23 of 51 off the secondary fan, 0 of them at the first step]
+PASS RK6 RECORD time per 4x6 table   [leximin_float 180.6 ms; exact peeling 0.32 ms]
+6/6 passed

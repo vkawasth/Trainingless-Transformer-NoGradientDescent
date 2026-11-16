@@ -1,0 +1,7 @@
+PASS LW1 IDENTITY prop:symdescent: symmetric margins give a block-constant fine leximin point that descends to weighted coarse leximin (and to plain coarse leximin for equal blocks)   [failures 0; merge E: 30 tables, block-constant and weighted descent exact in all unless counted; plain coarse descent 30/30; merge U: 30 tables, block-constant and weighted descent exact in all unless counted; plain coarse descent 0/30]
+PASS LW2 IDENTITY prop:firstbound: the fine first level never exceeds the weighted coarse first level   [1000 tables; violations 0]
+PASS LW3 IDENTITY piecewise linearity: within an unchanged level signature the defect is eps times the directional derivative   [260 (table, eps) cases tested; violations 0; worst error 3.1e-12]
+PASS LW4 RECORD sensitivity the coarse view cannot see   [signature unchanged up to eps = 0.004 in 80/100; |q D x_f*[delta]| median 0.000, max 0.271, zero (<1e-6) in 90]
+PASS LW5 HYPOTHESIS weighting helps under unequal blocks: median weighted defect < median plain defect   [median weighted 0.0049 vs plain 0.0261]
+PASS LW6 RECORD descent rates and correction gain (merge U, 1000 random tables)   [descent plain 0.000, weighted 0.211; max defect plain 0.0958, weighted 0.0983; correction gain plain - weighted: median 0.0179, positive in 0.875, negative in 0.120]
+6/6 passed

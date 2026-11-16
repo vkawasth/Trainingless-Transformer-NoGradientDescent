@@ -1,0 +1,10 @@
+PASS DQ1 IDENTITY lem:ownarr(i): across chamber walls inside one leximin region the selected point is affine   [30 segments in 181 candidates; max second difference 6.66e-16]
+PASS DQ2 IDENTITY lem:ownarr(ii): across leximin walls inside one chamber every robust quantity is affine   [30 segments in 204 candidates; max second difference 4.93e-16]
+PASS DQ3 IDENTITY thm:witness(i): every decision flip is a sign change of the gap between the two decisions   [40 segments x 2 rules; 19 flips (3 selected, 16 robust); violations 0]
+PASS DQ4 IDENTITY thm:witness(ii): inside the own region the flip time is predicted by one affine scalar   [13 flips with the region fixed up to the flip; max error 3.31e-11; violations 0]
+FAIL DQ5 IDENTITY thm:witness(iii): one scalar is sufficient, and the direction it measures is necessary   [28 grid points with a gap zero in their leximin region; violations 0]
+PASS DQ6 IDENTITY prop:onesided: a side whose half of the cut has one cell carries no vanishing edge   [4 such sides on 40 segments; violations 0]
+PASS DQ7 HYPOTHESIS converse: every side whose half of the cut has at least two cells carries a vanishing edge   [76 such sides; violations 0]
+PASS DQ8 RECORD common refinement on the 91-point grid   [67 (signature, chamber) pairs; 52 signatures; 46 chambers]
+PASS DQ9 RECORD decision descent under merging rows {1,2}   [25 values of f3: merged selected point varies in 11; selected-point decision constant in 23; robust decision constant in 25]
+8/9 passed

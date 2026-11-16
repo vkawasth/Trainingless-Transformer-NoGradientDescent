@@ -1,0 +1,2 @@
+PASS LZ9 RECORD (post hoc) leximin descent on the discovery population   [descent 0.104; Spearman(defect, within-group imbalance) 0.36; level-pure tables 0 (descent among them nan); level-mixed 2000 (descent 0.104); median imbalance among descending 1.253 vs failing 1.463]
+1/1 passed

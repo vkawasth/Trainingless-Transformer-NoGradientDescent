@@ -1,0 +1,6 @@
+FAIL WX1 IDENTITY prop:vanishedge: at a chamber wall the shortest edge shrinks linearly to zero and the combinatorics change   [40 segments; violations 8]
+PASS WX2 RECORD two arrangements on margin space   [91 grid points; distinct leximin signatures 52, distinct chambers 46; grid edges with a leximin change 180, with a chamber change 171, both 141]
+PASS WX3 IDENTITY prop:realmono: around closed loops the leximin point and its level partition return unchanged   [20 loops; violations 0]
+FAIL WX4 HYPOTHESIS cor:width: away from a leximin wall (distance > 10/L) the first-order law x(L) = x_lex + c_P/L improves from L = 60 to 240 in >= 18 of 20 segments   [20 segments; improved in 0]
+PASS WX5 RECORD location of maximal curvature of x(L) relative to the leximin wall (segment-parameter units)   [L=60: median 0.321; L=120: median 0.128; L=240: median 0.086]
+3/5 passed
