@@ -1,0 +1,13 @@
+PASS GZ1 IDENTITY prop:shiftinv(i): adding s to every cell shifts the leximin point by s and leaves the critical point unchanged   [2 shapes x 50 margins x 2 shifts; max leximin error 2.8e-16; max critical-point error 3.1e-16]
+FAIL GZ2 IDENTITY prop:shiftinv(iii): an unbalanced chamber wall changes nothing in the leximin point   [2x3: 0 segments, max second difference 0.0e+00, signature changes 0; 3x3: 0 segments, max second difference 0.0e+00, signature changes 0]
+PASS GZ3 IDENTITY prop:gkz(a): vertices of the fibre = complements of the cells of the regular subdivision of the vector configuration   [200 margins over 2 shapes; mismatches 0]
+FAIL GZ4 IDENTITY prop:gkz(b): the first-level tie set = the minimal cell containing 0 of the lower hull of the lifted exponents   [200 margins over 2 shapes; mismatches 200]
+Traceback (most recent call last):
+  File "/home/claude/paper/unified/engine/check_gkz.py", line 186, in <module>
+    if key(S.lex(*at(p, q, mid))) == a: lo_ = mid
+           ~~~~~^^^^^^^^^^^^^^^^
+  File "/home/claude/paper/unified/engine/check_gkz.py", line 56, in lex
+    lv, x, _, _ = leximin_float(list(f), list(g), s.cells, s.A.tolist(), s.cells)
+                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 72, in leximin_float
+RuntimeError: stalled
