@@ -1,0 +1,27 @@
+1. Column family is the row family after Y = a^(1/3) Z:
+   a^(-2/3) G(a^(1/3) Z) - f_b(Z) with b = a^(-4/3): 0
+2. Critical points of f_b: Y1 Y2-derivatives
+   Y1 d1 f - Y2 d2 f = (Y1 - Y2)/(Y1*Y2)  (so Y1 = Y2 = Y); then Y**4 - Y - b
+   value at Y1 = Y2 = Y using Y^4 = Y + b: (3*Y + 2*b)/Y**2
+   critical-value polynomial P(s, b) = -16*b**3 + 8*b**2*s**2 - b*s**4 + 36*b*s - s**3 + 27
+   disc_s P = -(256*b**3 + 27)**3 ; disc_Y (Y^4 - Y - b) = -256*b**3 - 27
+   Res_Y(Y^4 - Y - b, 4Y^3 - 1) = -256*b**3 - 27 ; 4Y^3 - 1 = (3Y + 4b)/Y on Y^4 = Y + b: True
+3. Hessian in log coordinates at Y1 = Y2 = Y: entries
+   H11 - 2Y^2 and H12 - (2Y^2 - 1/Y) on Y^4 = Y + b: [0, 0]
+4. Window: b in [e^-4/3, e^4/3] = [[0.263597 +/- 1.39e-7], [3.79367 +/- 2.11e-6]]; eps = e^(4/3 - 0.15 L) bounds both perturbation coefficients (row and column side).
+   |Y| > 1/4: |Y^4 - Y| <= (1/4)^4 + 1/4 = [0.253906 +/- 2.50e-7] < b0;   |Y| < 1.55: |Y^4 - Y| >= 1.55^4 - 1.55 = [4.22201 +/- 3.76e-6] > b1
+   b in [[0.2636 +/- 2.87e-6], [0.7049 +/- 4.41e-5]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [0.0200440 +/- 3.76e-8]
+   b in [[0.7049 +/- 4.41e-5], [1.146 +/- 1.15e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [0.104410 +/- 3.81e-7]
+   b in [[1.146 +/- 1.15e-4], [1.587 +/- 3.74e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [0.355173 +/- 3.78e-7]
+   b in [[1.587 +/- 3.74e-4], [2.029 +/- 3.68e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [0.802131 +/- 3.71e-7]
+   b in [[2.029 +/- 3.68e-4], [2.470 +/- 1.09e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [1.43136 +/- 3.61e-6]
+   b in [[2.470 +/- 1.09e-4], [2.911 +/- 1.51e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [2.21743 +/- 1.59e-6]
+   b in [[2.911 +/- 1.51e-4], [3.352 +/- 4.10e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [3.13490 +/- 2.63e-6]
+   b in [[3.352 +/- 4.10e-4], [3.794 +/- 3.33e-4]]:  |3Y + 4b| >= (256 b^3 + 27) b / (4.65 + 4b)^3 >= [4.16164 +/- 4.79e-6]
+   ||H^-1||_inf <= |Y|^2/|3Y + 4b| + |Y| <= M = [121.411 +/- 8.09e-5]
+   Lipschitz constant of the Hessian on the ball of radius r = 0.01 (sup norm): K <= 4 (|Y|^2 + 2/|Y| + b/|Y|^2 + 2 eps|Y|) e^(2r) <= [294.231 +/- 9.25e-5]
+   prod |s_i - s_j|^2 >= [1.19439e+7 +/- 36.1] (minimum at b = (27/128)^(1/3) = [0.59528 +/- 4.61e-6]); |s| <= 2|Y|^2 + 1/|Y| <= [8.8050 +/- 3e-8]; so every |s_i - s_j| >= [0.0020407 +/- 1.04e-8]
+5. Kantorovich holds and the value change stays below half the separation for eps <= 7.437e-08 (h = [0.5000 +/- 3e-9], step bound [2.799e-5 +/- 2.87e-9], value change [3.482e-7 +/- 4.37e-11]),
+   i.e. for e^(4/3 - 0.15 L) <= 7.437e-08, i.e. L >= 118.3.
+6. Canonical braid of the stratum (x < y real, z, conj z) between the window ends, straight line, e^(-0.7i) reading: s1 s2^-1
+   ends: tau = -2: x, y = -3.7254, 3.2442, z = -1.6562+2.3749j;  tau = 2: x, y = 1.2270, 2.7048, z = -2.0335+0.7327j

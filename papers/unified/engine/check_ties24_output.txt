@@ -1,0 +1,40 @@
+1. First-level tie types of a 2x4 table (row i has value f_i/4, column j has g_j/2; generic walls are two-way ties):
+   row-row (f_0 = f_1, both below every g_j/2), row-column (f_i/4 = g_j/2), column-column (g_j = g_j'); by symmetry i = 0, j = 0, j' = 1.
+   row-column    : cells [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0)]; exponents [(1, 1, 1), (-1, 0, 0), (0, -1, 0), (0, 0, -1), (-1, -1, -1)]; rank 3 of 3; normalised volume 6
+   column-column : cells [(0, 0), (1, 0), (0, 1), (1, 1)]; exponents [(1, 1, 1), (-1, -1, -1), (-1, 0, 0), (1, 0, 0)]; rank 2 of 3; normalised volume (not full-dimensional)
+   row-row       : cells [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]; exponents [(1, 1, 1), (-1, 0, 0), (0, -1, 0), (0, 0, -1), (-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1)]; rank 3 of 3; normalised volume 12
+   whole 2x4 support: normalised volume 12 (number of critical points of W for generic coefficients)
+2. Row-column family f_b = Y1Y2Y3 + sum 1/Yj + b/(Y1Y2Y3) (row side; b in (0,1]); column side g_a = Y1Y2Y3 + 1/(Y1Y2Y3) + a sum 1/Yj (a in (0,1]).
+   Y1 d1 f - Y2 d2 f = (Y1 - Y2)/(Y1*Y2) -> every critical point is diagonal (likewise for each pair)
+   diagonal critical equation: Y**6 - Y**2 - b ; with X = Y^2: X**3 - X - b
+   critical scheme at b = 1/5 (Groebner basis, torus enforced): last generator in Y3 = 5*Y3**6 - 5*Y3**2 - 1
+   column side diagonal equation: Y**6 - Y**2*a - 1
+   column side after Y = a^(1/4) Z, divided by a^(3/4), minus f with b = a^(-3/2) : 0
+   disc_X (X^3 - X - b) = 4 - 27*b**2;  disc_Y (Y^6 - Y^2 - b) = 64*b*(27*b**2 - 4)**2;  positive root b* = 2*sqrt(3)/9 = 0.384900
+   double root at b*: X* = [-sqrt(3)/3] -> Y* = +-i 3^(-1/4) (each a double root of Y^6 - Y^2 - b*); the third root X = 2*sqrt(3)/3
+   value on the diagonal: Y**3 + 3/Y + b/Y**3 = (Y^6 + 3Y^2 + b)/Y^3 = (4X + 2b)/Y^3 on the critical set
+   value polynomial P(s, b) = -b**2*(-64*b**4 + 48*b**3*s**2 - 12*b**2*s**4 - 512*b**2 + b*s**6 - 320*b*s**2 + 4*s**4 - 1024)
+   P is even in s: True
+   Q(u, b) with u = s^2: -b**2*(-64*b**4 + 48*b**3*u - 12*b**2*u**2 - 512*b**2 + b*u**3 - 320*b*u + 4*u**2 - 1024)
+   disc_u Q = -4096*b**8*(27*b**2 - 4)**3 ;  Q(0, b) = 64*b**2*(b**2 + 4)**2
+   positive real b with a value collision (disc_u Q = 0): [('27*b**2 - 4', 0.3849001794597505)] ; with a zero value (Q(0,b) = 0): []
+   (the column side is the row family at b = a^(-3/2) >= 1 up to the positive factor a^(3/4); so the same polynomials decide it for b >= 1)
+3. Parity character chi: Z^(n-1) -> Z/2 with chi = 1 on every cell exponent of a 2xn table:
+   n = 3: none
+   n = 4: (1, 1, 1)
+   n = 5: none
+   n = 6: (1, 1, 1, 1, 1)
+   n = 7: none
+   n = 8: (1, 1, 1, 1, 1, 1, 1)
+4. A2 data at the fold (log coordinates w, Y = e^w):
+   Hessian eigenvalues at Y*, b*: {0: 1, -3**(1/4)*I: 2}  (transverse eigenvalue 1/Y* expected: -3**(1/4)*I )
+   third derivative along (1,1,1) at Y*, b*: -24*3**(1/4)*I (nonzero -> ordinary fold)
+   d/db of the gradient along (1,1,1) at the fold: -3*3**(3/4)*I ; disc'(b*) = -54 b* = -12*sqrt(3) (transverse crossing)
+   critical values at the two folds: +- -8*3**(1/4)*I/3 = -3.5095307*I (purely imaginary; the two folds sit at opposite values)
+5. 2xn row-column leading families (diagonal reduction Y^(2n-2) - Y^(n-2) - b), n = 3..8:
+   n = 3: disc_Y = -256*b**3 - 27; positive b with a point collision: []; value-collision candidates on b in (1e-3, 50) (numerical): []
+   n = 4: disc_Y = 64*b*(27*b**2 - 4)**2; positive b with a point collision: [('27*b**2 - 4', 0.3849001794597505)]; value-collision candidates on b in (1e-3, 50) (numerical): [(np.float64(0.38513), np.float64(2.1002870441145377e-05))]
+   n = 5: disc_Y = -b**2*(16777216*b**5 + 84375); positive b with a point collision: []; value-collision candidates on b in (1e-3, 50) (numerical): []
+   n = 6: disc_Y = 1024*b**3*(3125*b**3 + 108)**2; positive b with a point collision: []; value-collision candidates on b in (1e-3, 50) (numerical): []
+   n = 7: disc_Y = -b**4*(8916100448256*b**7 + 2573571875); positive b with a point collision: []; value-collision candidates on b in (1e-3, 50) (numerical): []
+   n = 8: disc_Y = 16384*b**5*(823543*b**4 - 6912)**2; positive b with a point collision: [('823543*b**4 - 6912', 0.30267695927080335)]; value-collision candidates on b in (1e-3, 50) (numerical): [(np.float64(0.30273), np.float64(2.1515086737460692e-06))]

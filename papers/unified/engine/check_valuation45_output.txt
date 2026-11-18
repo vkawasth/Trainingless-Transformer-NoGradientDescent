@@ -1,0 +1,17 @@
+==== run 2026-11-17 09:00:01
+  [T0 L 20->40] 1715 steps, 6s, inside [True, True, True, True, False, False], outside [False, False, False, False, True, True]
+  [T0 L 40->80] 6635 steps, 28s, inside [True, True, True, True, False, False], outside [False, False, False, False, True, True]
+  [T0 L 80->160] 13564 steps, 50s, inside [True, True, True, True, False, False], outside [False, False, False, False, True, True]
+  [T0 L 160->320] 16520 steps, 60s, inside [True, True, True, True, False, False], outside [False, False, False, False, True, True]
+  [TA L 20->40] 1749 steps, 7s, inside [True, False, True, True, False, False], outside [False, True, False, False, True, True]
+  [TA L 40->80] 7620 steps, 28s, inside [True, False, True, True, False, False], outside [False, True, False, False, True, True]
+  [TA L 80->160] 10026 steps, 37s, inside [True, False, True, True, False, False], outside [False, True, False, False, True, True]
+  [TA L 160->320] 13223 steps, 47s, inside [True, False, True, True, False, False], outside [False, False, False, False, True, True]
+  [TB L 20->40] 8979 steps, 29s, inside [True, True, True, True, True, False], outside [False, False, False, False, False, True]
+  [TB L 40->80] 461650 steps, 1559s, inside [True, True, True, True, True, False], outside [False, False, False, False, False, True]
+==== run 2026-11-17 09:41:24
+==== run 2026-11-17 10:09:37
+PASS VL1 HYPOTHESIS t = 0: leading-group valuations inside the fibre for L >= 40, within 0.01 of the leximin point at L = 320   [inside by L: [(20, [True, True, True, True]), (40, [True, True, True, True]), (80, [True, True, True, True]), (160, [True, True, True, True]), (320, [True, True, True, True])]; distance to u* at L = 320: [0.00019, 0.00101, 0.00019, 0.00062]]
+PASS VL2 HYPOTHESIS t = 0: far valuations outside the fibre at every recorded L   [outside by L: [(20, [True, True]), (40, [True, True]), (80, [True, True]), (160, [True, True]), (320, [True, True])]; u at L = 320: [[-0.295, 0.185], [0.255, -0.465]]]
+PASS VL3 HYPOTHESIS t = 0: val(s) -> 1/10 for the leading group (within 0.01 at L = 320), val(s) < 0 for the far values   [leading [0.09661, 0.10346, 0.09661, 0.09583]; far (upper) [-0.05, -0.15]]
+PASS VL4 RECORD t = -1/10 and 1/10: valuations by branch   [TA (L up to 320): branch 0: ['in', 'in', 'in', 'in', 'in'], u(320) [0.0033, 0.0233], val(s) 0.0632; branch 1: ['out', 'out', 'out', 'out', '?'], u(320) [0.07, 0.09], val(s) 0.0; branch 2: ['in', 'in', 'in', 'in', 'in'], u(320) [0.0033, 0.0233], val(s) 0.0632; branch 3: ['in', 'in', 'in', 'in', 'in'], u(320) [0.0033, 0.0233], val(s) 0.0632; branch 4: ['out', 'out', 'out', 'out', 'out'], u(320) [-0.43, 0.24], val(s) -0.15; branch 5: ['out', 'out', 'out', 'out', 'out'], u(320) [0.32, -0.61], val(s) -0.25; inside at L = 320: 3 || TB (L up to 80): branch 0: ['in', 'in', 'in'], u(80) [-0.0101, 0.0301], val(s) 0.0913; branch 1: ['in', 'in', 'in'], u(80) [-0.0098, 0.0299], val(s) 0.0916; branch 2: ['in', 'in', 'in'], u(80) [-0.0101, 0.0301], val(s) 0.0913; branch 3: ['in', 'in', 'in'], u(80) [-0.0099, 0.0298], val(s) 0.0911; branch 4: ['in', 'in', 'in'], u(80) [-0.16, 0.13], val(s) 0.05; branch 5: ['out', 'out', 'out'], u(80) [0.19, -0.32], val(s) -0.05; inside at L = 80: 5]

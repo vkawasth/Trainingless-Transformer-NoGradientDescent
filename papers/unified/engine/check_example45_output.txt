@@ -1,0 +1,73 @@
+[S1_wall] computing
+[S1_wall] done in 0s
+[S2_leading] computing
+[S2_leading] done in 1s
+[S2_leading] loaded from checkpoint
+[S2_leading] computing
+[S2_leading] done in 0s
+[S3_points] computing
+[S3_points] done in 1s
+[S3_points] computing
+[S3_points] done in 4s
+[S4_track] computing
+[S4_track] computing
+[S4_track] done in 6s
+[S5_braid] computing
+[S5_braid] done in 3s
+[S6_real] computing
+[S6_real] done in 2s
+[S7_fold] computing
+[S7_fold] done in 21s
+[S8_loop] computing
+[S8_loop] done in 8s
+[S9_classes] computing
+[S9_classes] computing
+[S8b_foldlabels] computing
+[S8b_foldlabels] done in 5s
+[S11_transfer] computing
+[S11_transfer] done in 95s
+[S12_independent] computing
+[S12_independent] done in 0s
+  [S9 part TA 0] {'M': [[4, -9], [1, -2]], 'v': [3, 1], 'kappa': -1, 'steps': 51079, 'events': 9, 'encloses_only_this_value': True, 'seconds': 247}
+  [S9 part TA 1] {'M': [[-1, -4], [1, 3]], 'v': [-2, 1], 'kappa': -1, 'steps': 55402, 'events': 5, 'encloses_only_this_value': True, 'seconds': 273}
+  [S9 part TA 3] {'M': [[1, 0], [1, 1]], 'v': [0, 1], 'kappa': -1, 'steps': 50775, 'events': 3, 'encloses_only_this_value': True, 'seconds': 250}
+  [S9 part TA 2] {'M': [[-2, -9], [1, 4]], 'v': [-3, 1], 'kappa': -1, 'steps': 60426, 'events': 9, 'encloses_only_this_value': True, 'seconds': 317}
+  [S9 part TA 4] {'M': [[1, -1], [0, 1]], 'v': [-1, 0], 'kappa': -1, 'steps': 111524, 'events': 17, 'encloses_only_this_value': True, 'seconds': 579}
+  [S9 part TA 5] {'M': [[1, -1], [0, 1]], 'v': [-1, 0], 'kappa': -1, 'steps': 113946, 'events': 13, 'encloses_only_this_value': True, 'seconds': 567}
+  [S9 part TB 0] {'M': [[0, -1], [1, 2]], 'v': [-1, 1], 'kappa': -1, 'steps': 12934, 'events': 9, 'encloses_only_this_value': True, 'seconds': 57}
+  [S9 part TB 2] {'M': [[-2, -9], [1, 4]], 'v': [-3, 1], 'kappa': -1, 'steps': 12655, 'events': 11, 'encloses_only_this_value': True, 'seconds': 55}
+  [S9 part TB 4] {'M': [[-1, -4], [1, 3]], 'v': [-2, 1], 'kappa': -1, 'steps': 18331, 'events': 7, 'encloses_only_this_value': True, 'seconds': 79}
+  [S9 part TA big] {'M': [[1, 6], [0, 1]], 'steps': 164019, 'events': 12, 'seconds': 833}
+  [S9 part TB big] {'M': [[1, 6], [0, 1]], 'steps': 24801, 'events': 12, 'seconds': 122}
+  [S9 part TB 1] {'M': [[-1, -4], [1, 3]], 'v': [-2, 1], 'kappa': -1, 'steps': 11587, 'events': 5, 'encloses_only_this_value': True, 'seconds': 51}
+  [S9 part TB 3] {'M': [[1, 0], [1, 1]], 'v': [0, 1], 'kappa': -1, 'steps': 11136, 'events': 3, 'encloses_only_this_value': True, 'seconds': 48}
+  [S9 part TB 5] {'M': [[1, -1], [0, 1]], 'v': [-1, 0], 'kappa': -1, 'steps': 12787, 'events': 13, 'encloses_only_this_value': True, 'seconds': 58}
+==== run 2026-11-17 01:29:13
+[S1_wall] loaded from checkpoint
+[S2_leading] loaded from checkpoint
+[S3_points] loaded from checkpoint
+[S4_track] loaded from checkpoint
+[S5_braid] loaded from checkpoint
+[S6_real] loaded from checkpoint
+[S7_fold] loaded from checkpoint
+[S8_loop] loaded from checkpoint
+[S8b_foldlabels] loaded from checkpoint
+[S9_classes] computing
+[S9_classes] done in 0s
+[S10_closing] computing
+[S10_closing] done in 0s
+[S11_transfer] loaded from checkpoint
+[S12_independent] loaded from checkpoint
+PASS CE1 IDENTITY exact wall: the only tie on [-1/10, 1/10] is the first-level row0/col0 tie at t = 0   [ties [{'t': '0', 'step': 1, 'tied': ['c0', 'r0'], 'value': '1/10'}]]
+PASS CE2 IDENTITY exact leading form: wall polynomial, the four wall values, exact zero and collision parameters   [-s**4 - s**3 + 8*s**2 + 36*s + 11 = 0; values [(0.3305, 1.0), (2.9597, -0.7724), (2.9597, 0.7724), (3.7996, 0.0)]; zero at b in ['3*2**(2/3)/4', '-3*2**(2/3)/8 - 3*2**(2/3)*sqrt(3)*I/8', '-3*2**(2/3)/8 + 3*2**(2/3)*sqrt(3)*I/8'] (row), a in ['-2*3**(1/4)/3', '2*3**(1/4)/3', '-2*3**(1/4)*I/3', '2*3**(1/4)*I/3'] (column); collisions -256*b**3 - 27 = 0, -27*a**4 - 256 = 0]
+PASS CE3 IDENTITY six certified, disjoint critical points with disjoint values at t = -1/10, 0, 1/10   [TA: 6 found; T0: 6 found; TB: 6 found]
+PASS CE4 IDENTITY certified continuation over [-1/10, 1/10], boxes pairwise disjoint on every step   [850 steps; branch -> point at t = 1/10: [0, 1, 2, 3, 4, 5]]
+PASS CE5 IDENTITY complete braid word as seen from s0, every swap certified simple and adjacent   [R = 480; start order [5, 4, 2, 1, 3, 0]; word t in [-0.00103, -0.00069]: near 3, far 0, eps -1, positions 4,5, t in [0.06745, 0.06777]: near 1, far 0, eps -1, positions 3,4, t in [0.07464, 0.07495]: near 2, far 4, eps +1, positions 1,2]
+PASS CE6 HYPOTHESIS exactly one real critical value changes sign along the segment   [branch 0: non-real; branch 1: signs [1, 1], zeros [(0.01494, 0.01572, -1, 1)]; branch 2: non-real; branch 3: signs [0, 0], zeros []; branch 4: signs [0, 1], zeros []; branch 5: signs [1, 0], zeros []]
+PASS CE7 IDENTITY certified fold: regular zero of (grad W, det Hess), Hessian rank 1, cubic term nonzero (A2)   [t* = [-0.05569483882808067, 0.07853981633974483]; s* = ['[+/- 9.59e-22]', '[0.46212148350969837147 +/- 3.05e-21]']; candidates found 1]
+PASS CE8 HYPOTHESIS loop around t* exchanges exactly the colliding pair; their value difference turns by +-3 pi   [rho = 0.02356; permutation [[0], [2], [1], [3], [4], [5]]; turn/pi [3.00000000000000000 +/- 9.31e-19]; the pair is segment branches [1, 2]]
+PASS CE9 IDENTITY Picard-Lefschetz at both ends: transvections with one kappa, ordered product = monodromy at infinity (trace 2, gcd 6)   [kappa [-1]; TA: classes (angular order) [[-1, 0], [-1, 0], [-3, 1], [-2, 1], [0, 1], [3, 1]], M_big [[1, 6], [0, 1]]; TB: classes (angular order) [[-1, 0], [-3, 1], [-2, 1], [-1, 1], [-2, 1], [0, 1]], M_big [[1, 6], [0, 1]]]
+PASS CE10 IDENTITY closing identity: Gram matrix at t = 1/10 = Hurwitz image of t = -1/10 under the braid word, one global sign c   [c that works: ['-1']; G_start [[0, 0, -1, -1, -1, -1], [0, 0, -1, -1, -1, -1], [1, 1, 0, -1, -3, -6], [1, 1, 1, 0, -2, -5], [1, 1, 3, 2, 0, -3], [1, 1, 6, 5, 3, 0]]; G_end [[0, -1, -1, -1, -1, -1], [1, 0, -1, -2, -1, -3], [1, 1, 0, -1, 0, -2], [1, 2, 1, 0, 1, -1], [1, 1, 0, -1, 0, -2], [1, 3, 2, 1, 2, 0]]; G_end equals G_start without the moves: False]
+PASS CE11 RECORD transfer: scaled critical values at t = 0, L = 160, against the wall-form values   [branch 0: wall value 2 within 4.0e-11 (next 2.72); branch 1: wall value 0 within 2.7e-11 (next 2.72); branch 2: wall value 3 within 4.0e-11 (next 2.72); branch 3: wall value 1 within 4.6e-11 (next 4.13); branch 4: wall value 2 within 2.6e+10 (next 26489122127.61); branch 5: wall value 2 within 2.4e+17 (next 235385266837019968.00)]
+PASS CE12 RECORD independent re-derivation (separate agent, mpmath.iv, own code): CE3 at t = +-1/10 and CE7   [t = -1/10: 6 certified, values one-to-one with ours True; t = 1/10: 6 certified, one-to-one True; fold: {'their_certified': True, 'their_rank_one': True, 'their_cubic_nonzero': True, 't_star_overlap': True, 'value_overlap': True}]
+12/12 passed
