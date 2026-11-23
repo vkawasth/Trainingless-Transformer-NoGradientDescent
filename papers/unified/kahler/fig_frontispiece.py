@@ -37,7 +37,9 @@ ax.text(0.5, -0.1, r"walls: $\sum_{i\in I} f_i=\sum_{j\in J} g_j$   (slice $g=g_
 ax.set_aspect("equal"); ax.axis("off"); ax.set_title("A  Base: the chamber complex of the margins", loc="left", fontsize=8.6, fontweight="bold", color=INK)
 # B ----------------------------------------------------------------
 ax = fig.add_subplot(gs[0, 1], projection="3d"); V = np.array(D["vertices"]); path = np.array(D["path"]); lex = np.array(D["leximin"])
-mu = V.mean(0); _, _, vt = np.linalg.svd(V - mu); Pj = lambda X: (np.atleast_2d(X) - mu) @ vt[:3].T
+mu = V.mean(0); fE_, gE_ = np.array([30, 20, 10]) / 60, np.array([24, 21, 15]) / 60; ME = np.outer(fE_, gE_).ravel()
+e0 = (lex - ME) / np.linalg.norm(lex - ME); Rz = (V - mu) - np.outer((V - mu) @ e0, e0); _, _, vt2 = np.linalg.svd(Rz); vt = np.vstack([e0, vt2[:2]])
+Pj = lambda X: (np.atleast_2d(X) - mu) @ vt[:3].T
 PV = Pj(V); m = D["mark"]
 for i, nb in enumerate(D["adj"]):
     for j in nb:
@@ -48,9 +50,10 @@ for j in D["adj"][m]:
     ax.text(*mid, f"{CELLS[ent][0] + 1}{CELLS[ent][1] + 1}", color=CORAL, fontsize=6.5)
 ax.scatter(*PV.T, color=INK, s=7); ax.scatter(*PV[m], color=CORAL, s=40, ec=INK)
 PP = Pj(path); ax.plot(*PP.T, color=GOLD, lw=1.6, ls="-"); ax.scatter(*Pj(lex).T, color=GOLD, s=60, ec=INK, marker="*", zorder=6)
+ax.scatter(*Pj(ME).T, color=TEAL, s=45, ec=INK, marker="o", zorder=6)
 
-ax.tick_params(labelsize=0, length=0); ax.set_xticklabels([]); ax.set_yticklabels([]); ax.set_zticklabels([]); ax.view_init(18, 35)
-ax.text2D(0.0, -0.02, "18 vertices = feasible spanning trees; every vertex has 4 edges (simple).\nGold: positive critical point $x(L)$ tending to the leximin point (star).",
+ax.tick_params(labelsize=0, length=0); ax.set_xticklabels([]); ax.set_yticklabels([]); ax.set_zticklabels([]); ax.view_init(20, -60)
+ax.text2D(0.0, -0.02, "18 vertices = feasible spanning trees; every vertex has 4 edges (simple).\nGold: positive critical point $x(L)$ tending to the leximin point (star).\nTeal dot: the maximum-entropy law $fg^\\top$, a different selection.",
           transform=ax.transAxes, fontsize=6.8, color=INK, va="top")
 ax.set_title("B  Fibre: the credal polytope Cpl(f, g), dim 4", loc="left", fontsize=8.6, fontweight="bold", color=INK)
 # C ----------------------------------------------------------------

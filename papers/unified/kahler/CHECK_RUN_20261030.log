@@ -2376,3 +2376,988 @@ PASS LG2 every cited check is PASS in the run log   [408 ids; missing []]
 PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
 3/3 passed
 TOTAL now: 165 scripts, 1227 PASS, 0 FAIL (study27c 8; ledger rerun replaces the earlier LG entry)
+== engine/check_study27d.py (2026-11-12 UTC)
+PASS ZD1 IDENTITY specification unchanged since the freeze   [6e2a7ec98cb2]
+PASS ZD2 IDENTITY lagging cascade with the relay's schedule = relay, in law, at every round
+PASS ZD3 RECORD D1 verdict recomputed and recorded   [HELD]
+PASS ZD4 RECORD D2 verdict recomputed and recorded   [HELD]
+PASS ZD5 RECORD D3 verdict recomputed and recorded   [HELD]
+PASS ZD6 RECORD D4 verdict recomputed and recorded   [HELD]
+PASS ZD7 RECORD D5 verdict recomputed and recorded   [FAILED]
+PASS ZD8 RECORD D6 verdict recomputed and recorded   [HELD]
+PASS ZD9 RECORD D7 verdict recomputed and recorded   [FAILED]
+PASS ZD10 RECORD D8 verdict recomputed and recorded   [HELD]
+10/10 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [68 rows]
+PASS LG2 every cited check is PASS in the run log   [410 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 166 scripts, 1237 PASS, 0 FAIL (study27d 10; ledger rerun replaces the earlier LG entries)
+== engine/check_study27e.py (2026-11-12 UTC)
+PASS ZE1 IDENTITY specification unchanged since the freeze   [f7a8d1190532]
+PASS ZE2 IDENTITY g is unknowable exactly when every independent witness of g may lie
+PASS ZE3 RECORD E1 verdict recomputed equals the recorded verdict   [HELD: share of cells within 0.07: R1 1.00, R2 1.00, R3 1.00]
+PASS ZE4 RECORD E2 verdict recomputed equals the recorded verdict   [HELD: max R3 unseen at N_A >= 3000: 0.010]
+PASS ZE5 RECORD E3 verdict recomputed equals the recorded verdict   [HELD: max R1 unseen per N_A: 0.630, 0.360, 0.195, 0.130, 0.110]
+PASS ZE6 RECORD E4 verdict recomputed equals the recorded verdict   [HELD: max R2 unseen at 3000: 0.095; at >= 10000: 0.010]
+PASS ZE7 RECORD E5 verdict recomputed equals the recorded verdict   [HELD: honest false relay: 0.015, 0.025, 0.033, 0.028, 0.030]
+PASS ZE8 RECORD E6 verdict recomputed equals the recorded verdict   [FAILED: inclusion names nobody 1.000; cardinality names S3 0.894 (n = 11900)]
+PASS ZE9 RECORD E7 verdict recomputed equals the recorded verdict   [HELD: inclusion names nobody 1.000; cardinality names an honest reporter 0.950 (n = 1969)]
+9/9 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [69 rows]
+PASS LG2 every cited check is PASS in the run log   [412 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 167 scripts, 1246 PASS, 0 FAIL (study27e 9; ledger rerun replaces the earlier LG entries)
+== engine/check_study27f.py (2026-11-12 UTC)
+PASS ZF1 IDENTITY specification unchanged since the freeze   [79edf626e182]
+PASS ZF2 IDENTITY compatibility part of the gap for g is zero (g visible from S3 alone and from the anchors alone)
+PASS ZF3 RECORD F1 verdict recomputed equals the recorded verdict   [HELD: relay15 + cascade_lagging error: 3000 R1 1.000, R3 0.990; 30000 R1 1.000, R3 1.000]
+PASS ZF4 RECORD F2 verdict recomputed equals the recorded verdict   [HELD: median delays oracle/CUSUM/witness@5%: 3000 relay15 1.0/2.0/2.0; 3000 relay08 2.0/3.0/4.0; 30000 relay15 1.0/2.0/2.0; 30000 relay08 2.0/2.0/3.0]
+PASS ZF5 RECORD F3 verdict recomputed equals the recorded verdict   [HELD: relay08 at 3000: witness@5% 4.0 vs CUSUM 3.0]
+PASS ZF6 RECORD F4 verdict recomputed equals the recorded verdict   [HELD: mean harmful rounds 0.007]
+PASS ZF7 RECORD F5 verdict recomputed equals the recorded verdict   [HELD: 3000: coverage 0.991/0.999, cardinality exact 0.991/0.000; 30000: coverage 0.991/1.000, cardinality exact 0.991/0.000]
+PASS ZF8 RECORD F6 verdict recomputed equals the recorded verdict   [FAILED: exact-report R3 regret relay15/relay08/anchor1: 3000 1/0/1; 30000 0/0/1]
+8/8 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [70 rows]
+PASS LG2 every cited check is PASS in the run log   [414 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 168 scripts, 1254 PASS, 0 FAIL (study27f 8; ledger rerun replaces the earlier LG entries)
+== engine/check_vetotheorem.py (2026-11-12 UTC)
+PASS VT1 IDENTITY separation inequality, with equality for a common coalition shift
+PASS VT2 IDENTITY barycentre and inertia are independent, with the stated laws   [P(joint) 0.1203 vs product 0.1200; mean Q 16.183 vs 16.180]
+PASS VT3 IDENTITY the safety bound holds for every coalition and is attained by the common shift   [largest excess of simulated over bound = +0.0005 (Monte Carlo noise; tolerance 3 SE + 0.001); attained within Monte Carlo error in 60/60]
+PASS VT4 IDENTITY on honest data the veto fires with probability alpha   [0.0497]
+PASS VT5 IDENTITY sharpness: no honest weight, a rigid translation is invisible to the inertia   [lambda 0.0e+00, wrong act 0.950]
+PASS VT6 IDENTITY a poisoned anchor flips the pooled decision past the one-sided pairwise witness, not past the register veto   [flip 0.951; unseen by the pairwise witness 0.939; unseen by the register veto 0.0000]
+PASS VT7 IDENTITY braid form: some coalition strand moves by at least s W / w_C against every honest strand
+PASS VT8 IDENTITY sequential: over 12 closures the wrong-act probability stays below 12 beta for every schedule   [beta = 0.0007; jump 0.0000, slow drip 0.0008, delayed 0.0000]
+8/8 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [71 rows]
+PASS LG2 every cited check is PASS in the run log   [422 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 169 scripts, 1262 PASS, 0 FAIL (vetotheorem 8; ledger rerun replaces the earlier LG entries)
+== engine/check_study27g.py (2026-11-12)
+PASS ZG1 IDENTITY specification unchanged since the freeze   [429c01ad894b]
+PASS ZG2 IDENTITY the cycle is classified 'cycle' with every table as an explanation; a single miscoded table is a named defect   [cycle: cycle ['A', 'B', 'C', 'D']; miscoded: defect ['S4'], decision-relevant False]
+PASS ZG3 IDENTITY the ANOVA split is exact and its parts are independent chi-squares
+PASS ZG4 RECORD G1 verdict recomputed equals the recorded verdict   [FAILED: miscoded named S4 1.000, decoy 1.000; glues: replace 1.000, inject 1.000, inject_early 1.000; delete named S3 0.000]
+PASS ZG5 RECORD G2 verdict recomputed equals the recorded verdict   [HELD: miscoded loss E 0.000 vs G 0.200]
+PASS ZG6 RECORD G3 verdict recomputed equals the recorded verdict   [HELD: act under V / E: replace 0.000/0.000, inject 0.000/0.000, delete 0.000/0.000, inject_early 0.000/0.000, decoy 0.000/0.000]
+PASS ZG7 RECORD G4 verdict recomputed equals the recorded verdict   [HELD: honest within 0.047, between 0.046, correlation +0.001]
+PASS ZG8 RECORD G5 verdict recomputed equals the recorded verdict   [HELD: own past: inject 1.000, replace 1.000, inject_early 0.043, honest 0.034]
+PASS ZG9 RECORD G6 verdict recomputed equals the recorded verdict   [HELD: decoy, abstain on the inner obstruction 0.000]
+9/9 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [72 rows]
+PASS LG2 every cited check is PASS in the run log   [425 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 170 scripts, 1271 PASS, 0 FAIL (study27g 9; ledger rerun replaces the earlier LG entries)
+== engine/check_study27h.py (2026-11-12)
+PASS ZH1 IDENTITY specification unchanged since the freeze   [8a4009860a95]
+FAIL ZH2 IDENTITY signed counts are invariant under independent swaps and cancelling pairs; the positive count is not; the decoy zeroes the signed count   [violations 151/3000; positive count moved by a pad in 52/3000; decoy: signed 0, positive 1]
+PASS ZH3 IDENTITY gap-tolerant count: full chain 3, one hidden link 1; prefix of a two-link start is 2   [full 3, masked 1, prefix 2]
+PASS ZH4 RECORD H2 verdict recomputed equals the recorded verdict   [HELD: honest alarm: rare mu0 0.005, mu1 0.019, nu0 0.001, nu1 0.024; dense mu0 0.055, mu1 0.029, nu0 0.046, nu1 0.043]
+PASS ZH5 RECORD H3 verdict recomputed equals the recorded verdict   [HELD: mu0 relay 0.917, relay_wait 0.918]
+PASS ZH6 RECORD H4 verdict recomputed equals the recorded verdict   [HELD: mask1: mu0 0.059, mu1 0.242, loose mu1 0.907 (honest 0.148); mask2 max 0.101]
+PASS ZH7 RECORD H5 verdict recomputed equals the recorded verdict   [HELD: decoy: mu0 0.048, nu0 1.000]
+PASS ZH8 RECORD H6 verdict recomputed equals the recorded verdict   [HELD: C(mu0): honest 0.000, drift 0.004, relay 0.717 vs witness alone 0.451; delay 4.0 vs 5.0]
+PASS ZH9 RECORD H7 verdict recomputed equals the recorded verdict   [HELD: C(mu0): lagging cascade 0.702, relay 0.717, timely cascade 0.240]
+PASS ZH10 RECORD H8 verdict recomputed equals the recorded verdict   [HELD: warning before departure: relay 0.844, relay_wait 0.910; lead over the witness 6.0]
+PASS ZH11 RECORD H9 verdict recomputed equals the recorded verdict   [FAILED: dense: mu0 relay 0.391]
+PASS ZH12 RECORD H10 verdict recomputed equals the recorded verdict   [HELD: C(loose mu1): honest 0.020, mask1 0.693]
+PASS ZH13 IDENTITY the exact count is invariant; the k = 1 failures are within-round ties, and the strict-round gap count is invariant   [exact count 0/3000, gap-tolerant with strict rounds 0/3000]
+12/13 passed
+== engine/check_ledger.py (2026-11-12, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [73 rows]
+PASS LG2 every cited check is PASS in the run log   [428 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 171 scripts, 1283 PASS, 1 FAIL (study27h 12 PASS, 1 FAIL: ZH2, the gap-tolerant count is not a trace invariant as implemented, a recorded finding; ledger rerun replaces the earlier LG entries)
+== engine/check_gaugedecomp.py (2026-11-13)
+PASS GD1 IDENTITY the Fisher-orthogonal split T = V + H on the honest observation map is a direct sum, with R V = 0   [dim V 18, dim H 13, max |R v| 7.4e-16, max |<v,h>_G| 1.7e-14, residual 1.8e-14]
+PASS GD2 IDENTITY lemma: the horizontal space is the log-linear tangent P (f - E f), f in the row space of R   [rank 13 = dim H 13; max sin(angle) 1.9e-15; exact rank [R;1] 14]
+PASS GD3 IDENTITY the blind band: g's sensitivity has an invisible part on the honest sources, and the coalition's move is vertical   [invisible share of g's sensitivity 0.941; max |R (Q - P)| 3.1e-17; g(Q) - g(P) 0.150]
+PASS GD4 IDENTITY an anchor that sees M and Y removes g's invisible part exactly and ends the coalition's verticality; g-blind contexts do not   [+MRY: invisible 0.000, (M,Y) in span True, Q-P vertical False; +MHY: invisible 0.000, (M,Y) in span True, Q-P vertical False; +CH: invisible 0.941, (M,Y) in span False, Q-P vertical False; +RY: invisible 0.941, (M,Y) in span False, Q-P vertical True; +CH+RY: invisible 0.941, (M,Y) in span False, Q-P vertical False]
+PASS GD5 IDENTITY V is the Fisher kernel of the same contexts, and g's kernel part (prop:visibility) vanishes exactly when the exposure does   [5/5 trust sets agree]
+PASS GD6 IDENTITY 2 x 2: along the margin fibre dg/dt = 1/r1 + 1/r0, and the log-linear tangents are Fisher-orthogonal to the fibre   [dg/dt - (1/r1 + 1/r0) = 0; <fibre, log-linear tangents>_G = [0, 0]]
+PASS GD7 IDENTITY the signed chain count is the Magnus coefficient of the chain word; with exp an adjacent cancelling pair is 1   [mismatches 0/2000; exp pair product {(): 1}]
+7/7 passed
+== engine/check_ledger.py (2026-11-13, rerun)
+PASS LG1 ledger schema, allowed statuses, unique ids, a Proved category level only for a standard construction   [74 rows]
+PASS LG2 every cited check is PASS in the run log   [435 ids; missing []]
+PASS LG3 kahler/ledger_table.tex is up to date with LEDGER.yaml
+3/3 passed
+TOTAL now: 172 scripts, 1290 PASS, 1 FAIL (gaugedecomp 7; the FAIL is ZH2 of Study 27h, a recorded finding; ledger rerun replaces the earlier LG entries)
+== engine/check_engine.py (2026-11-13)
+PASS EN1 IDENTITY marginal matrices equal outerrelay.ctxmat on cover 1 and the anchors
+PASS EN2 IDENTITY geometry reproduces the gauge decomposition on cover 1   [dim V 18, dim H 13, invisible share 0.9407; with anchors 3.2e-16, 3.3e-16]
+PASS EN3 IDENTITY the coherence operator: exact tables have Q = 0 and fit themselves; sampled tables are calibrated against chi-square(rank d0)   [exact Q 0.0e+00; rank d0 22; sampled rate above the 95% point 0.044]
+PASS EN4 IDENTITY classification reproduces ZG2: the four-cycle is linearly coherent but 'cycle', every table in the certificate; a miscoded table is a named defect   [cycle: Q 0.0e+00, type cycle, certificate 4 tables, contextual fraction 1.000; miscoded: defect ['S4']]
+PASS EN5 IDENTITY Vorob'ev through GYO: acyclic covers with pairwise-consistent tables always glue; the triangle (core = whole cover) need not   [acyclic glued 300/300; triangle core [('A', 'B'), ('B', 'C'), ('A', 'C')], slack 0.500]
+PASS EN6 IDENTITY the coherent coalition: the inner layer is exactly coherent and glues, the veto statistic is large; honest S3 gives 0   [attack: inner Q 0.0e+00, type none, veto dQ 64.2 on 12 df; honest dQ 0.0e+00]
+PASS EN7 IDENTITY the credal bracket of P(Y=1|M=1): honest sources contain P's and Q's values even at zero tolerance; an anchor makes it a point   [honest [0.407, 0.956] (zero tolerance [0.467, 0.901]) contains P 0.680 and Q 0.728; anchored, zero tolerance [0.6805, 0.6805]; at 3 SE [0.643, 0.717]]
+7/7 passed
+== engine/check_likval.py (2026-11-13)
+PASS LN1 IDENTITY multiplying each term by its likelihood is the shift lam - (n/N) H_hat   [max deviation 7.1e-15]
+PASS LN2 IDENTITY the shift converges to s H(Q, P) at rate N^-1/2 when n = sN, and vanishes like 1/N when n is fixed   [slope -0.495 (errors 5.7e-02, 1.9e-02, 5.6e-03, 1.9e-03); fixed n slope -1.000]
+PASS LN3 IDENTITY cross-entropy and divergence rates give the same leximin point; h* differs by s H(Q)   [21 configurations]
+PASS LN4 IDENTITY the wall statistic <a, H> = <a, D> = -E Lambda_a is linear in the empirical law   [max deviation 2.6e-15]
+PASS LN5 IDENTITY the data-driven crossing time converges to s* = -c / <a, D>   [s* 1.1991; median |s_hat - s*| 2.3e-01, 7.7e-02, 2.6e-02, 7.3e-03; slope -0.496]
+PASS LN6 IDENTITY (Cho-Oh cited) the number of Floer-nontrivial torus fibres of F_1 drops from 2 to 1 at s*, and the leximin point has its kink there   [fibres at s/s* = 0.5, 0.75, 1.25, 1.5, 2: [2, 2, 1, 1, 1]; largest step of u* 0.016; kink at s = 1.199 (s* 1.199)]
+6/6 passed
+== engine/check_novorder.py (2026-11-13)
+PASS NO1 IDENTITY at T = 1 the graded coefficient is the signed chain count   [mismatches 0/2000]
+PASS NO2 IDENTITY grading keeps trace invariance and equal-weight cancellation; unequal weights do not cancel   [swap violations 0, equal-weight pad violations 0; unequal pads changed the coefficient in 190/2000]
+PASS NO3 IDENTITY graded decoy: a weightless reversal does not erase the link; an equal-weight one does; a heavier one dominates   [weightless decoy: signed count 0, graded {4.0: 1, 2.0: -1}; equal weight {}; heavier {4.0: 1, 5.0: -1}]
+PASS NO4 IDENTITY for generic weights the valuation is the max-plus heaviest chain   [mismatches 0/2000]
+PASS NO5 IDENTITY same order, same signs, same signed count, different valuations   [signed counts 1 and 1; valuations 0.3 and 4.2]
+5/5 passed
+== engine/check_stokesbraid.py (2026-11-13)
+PASS SK1 IDENTITY four critical values on F_1, closed under conjugation; three on CP^2
+PASS SK2 IDENTITY valuations: the separated value's gap tends to 2/15 before the wall; all four tie after it   [gap at s = 0: N=16 0.062, N=32 0.099, N=64 0.116; spread at s = 0.5: N=16 0.0114, N=32 0.0005, N=64 0.0000]
+PASS SK3 IDENTITY Stokes events occur only near the outcome wall, converge to it, and involve the separated value   [farthest crossing from s*: N=16 0.074, N=32 0.037, N=64 0.018; slope -1.02]
+PASS SK4 IDENTITY CP^2 (no wall): no Stokes event along any data path
+PASS SK5 RECORD the F_1 data path's braid word, stable in N   [N=16: s1 s2^-1; N=32: s1 s2^-1; N=64: s1 s2^-1]
+5/5 passed
+== engine/check_hurwitz.py (2026-11-13)
+PASS HZ1 IDENTITY braid and band relations under Artin's faithful action; 14 and 42 simples; delta is simple
+PASS HZ2 IDENTITY Hurwitz transitivity (Bessis, Prop. 1.6.1, type A): one orbit of (r+1)^(r-1) factorisations   [r = 4: 125 factorisations, orbit 125; r = 5: 1296, orbit 1296]
+PASS HZ3 IDENTITY each detour's braid is the same element of B_5 on grids of 601 and 1201 points   [phi=0.05: 6 and 6 letters; phi=-0.05: 5 and 5 letters]
+PASS HZ4 IDENTITY the two detours differ by a cusp braid: conjugate to sigma^(+-3), exponent sum +-3, two strands exchanged   [exponent sum 3; strands moved 2; conjugator ([], 1, 1)]
+PASS HZ5 RECORD the two detours and F_1: words, dual invariants and Hurwitz endpoints   [above: s1 s2^-1 s1 s2 s3 s2^-1 | exp 2 | inf -1 sup 4; below: s1^-1 s2 s1^-1 s3 s2^-1 | exp -1 | inf -2 sup 2; F1: s1 s2^-1 | exp 0 | inf -1 sup 1]
+PASS HZ6 IDENTITY the cusp braid sigma_1^3 fixes exactly the factorisations whose first two transpositions do not commute (they generate S_3)   [1296 factorisations]
+PASS HZ7 RECORD same state, different history: the two detours end at one Hurwitz state while their braids, permutations and normal forms differ   [Hurwitz state 1066 and 1066; canonical lengths 5 and 4]
+7/7 passed
+== engine/check_persist.py (2026-11-13)
+PASS PS1 IDENTITY F_1: the critical discriminant is -27 T^2 - 256 T^(3 - 3 alpha); its tropical point is the outcome wall alpha = 1/3   [discriminant -256*T**3/T**(3*alpha) - 27*T**2; tie at alpha = [1/3]]
+PASS PS2 IDENTITY Stage IV: the tropical locus of the quintic's discriminant on the path contains the level-two wall 1/5   [11 monomials; tropical points on [3/20, 11/40]: ['1/5', '4/15']]
+PASS PS3 IDENTITY the collisions lie within the amoeba bound of the tropical point 1/5   [L=50: distance 7.7e-03 <= bound 2.0e-01; L=100: distance 8.2e-04 <= bound 1.0e-01; L=200: distance 1.5e-05 <= bound 5.1e-02]
+PASS PS4 IDENTITY the attacker split: a move inside the observational fibre leaves every log-linear likelihood rate unchanged; a horizontal move does not   [largest change under a fibre move 1.3e-15; horizontal moves changed the rates in 300/300]
+PASS PS5 RECORD same braid, different cost: two kinds of evidence induce one braid on F_1 at different data sizes   [e1: word s1 s2^-1 at s = [np.float64(0.182), np.float64(0.186)] (s* 0.2); e1+e3: word s1 s2^-1 at s = [np.float64(0.091), np.float64(0.093)] (s* 0.1)]
+5/5 passed
+== engine/check_histval.py (2026-11-13)
+PASS HV1 IDENTITY a chain never outlives any of its sub-chains (orders collapse before their parts)   [182 chains, violations 0]
+PASS HV2 IDENTITY the closed-form death time equals the bisected one   [304 chains, mismatches 0]
+PASS HV3 IDENTITY each chain's grade is a grade of the graded Magnus coefficient; the top grade is its valuation   [violations 0/500]
+PASS HV4 IDENTITY aggregation nets weights with the sign of the larger; equal weights annihilate   [[((0, 1), 1, 2.0, 1.5)]; []; [((0, 1), -1, 2.0, 0.6)]]
+PASS HV5 RECORD worked example: the triple dies first, then its pairs, then its events; the braid collapses as weights fade   [triple 0-2-4: 6.82; pair 0-2: 6.82; pair 2-4: 6.82; event 2: 6.82; event 0: 8.59; event 4: 12.21 | t=3: 9 letters, cl 4, t=4: 7 letters, cl 4, t=5: 7 letters, cl 4, t=6: 7 letters, cl 4, t=7: 2 letters, cl 1, t=8: 2 letters, cl 1, t=10: 1 letters, cl 1, t=12: 1 letters, cl 1, t=14: 0 letters, cl 0]
+5/5 passed
+== engine/check_engine.py (2026-11-13)
+PASS SN1 IDENTITY marginal matrices equal outerrelay.ctxmat on cover 1 and the anchors
+PASS SN2 IDENTITY geometry reproduces the gauge decomposition on cover 1   [dim V 18, dim H 13, invisible share 0.9407; with anchors 3.2e-16, 3.3e-16]
+PASS SN3 IDENTITY the coherence operator: exact tables have Q = 0 and fit themselves; sampled tables are calibrated against chi-square(rank d0)   [exact Q 0.0e+00; rank d0 22; sampled rate above the 95% point 0.044]
+PASS SN4 IDENTITY classification reproduces ZG2: the four-cycle is linearly coherent but 'cycle', every table in the certificate; a miscoded table is a named defect   [cycle: Q 0.0e+00, type cycle, certificate 4 tables, contextual fraction 1.000; miscoded: defect ['S4']]
+PASS SN5 IDENTITY Vorob'ev through GYO: acyclic covers with pairwise-consistent tables always glue; the triangle (core = whole cover) need not   [acyclic glued 300/300; triangle core [('A', 'B'), ('B', 'C'), ('A', 'C')], slack 0.500]
+PASS SN6 IDENTITY the coherent coalition: the inner layer is exactly coherent and glues, the veto statistic is large; honest S3 gives 0   [attack: inner Q 0.0e+00, type none, veto dQ 64.2 on 12 df; honest dQ 0.0e+00]
+PASS SN7 IDENTITY the credal bracket of P(Y=1|M=1): honest sources contain P's and Q's values even at zero tolerance; an anchor makes it a point   [honest [0.407, 0.956] (zero tolerance [0.467, 0.901]) contains P 0.680 and Q 0.728; anchored, zero tolerance [0.6805, 0.6805]; at 3 SE [0.643, 0.717]]
+7/7 passed
+== engine/check_dualgarside.py (2026-11-13)
+PASS DN1 IDENTITY dual inf and sup agree with the brute-force search in B_4   [300 words, mismatches 0]
+PASS DN2 IDENTITY dual inf and sup agree with the brute-force search in B_5   [120 words, mismatches 0]
+PASS DN3 IDENTITY delta is simple; inf and sup swap with sign under inversion (B_6); the normal form multiplies back to the input (B_4, B_5)   [inversion mismatches 0/300; reconstruction mismatches 0/200]
+3/3 passed
+== engine/check_study27i.py (2026-11-13)
+PASS ZI1 IDENTITY specification unchanged since the freeze   [d1206ff07876]
+PASS ZI2 IDENTITY the world and its cover: 1152 states, 96 tables, a non-empty GYO core containing the lifestyle cycle   [core: 12 contexts]
+PASS ZI3 IDENTITY the blind band: invisible share 0.866 without (P,C,T,O), 0 with it; the coalition's law is vertical and moves g by 0.12   [invisible share 0.8660 -> 1.3e-15; max |R (Q - P)| 6.9e-17; g 0.3146 -> 0.4346]
+PASS ZI4 IDENTITY the credal bracket of g: wide from the non-vendor sources (contains the honest and the coalition's g), a point from (P,C,T,O)   [non-vendor [-1.000, 1.000]; lab context [0.3146, 0.3146]; g 0.315, coalition 0.435]
+PASS ZI5 IDENTITY the twisted lifestyle cycle keeps every single margin, has no positive global law, and is strongly contextual   [margins kept True; slack 0.450 (zero tolerance), 0.438 (3 SE); contextual fraction 0.900]
+PASS ZI6 IDENTITY value of information: the best unobserved two- and three-variable contexts, and (P,C,T,O) removing everything   [base 0.866; best: PTO 0.677, CTO 0.715, CTE 0.834, PTE 0.837, CAO 0.850; worst TE 0.866]
+PASS ZI7 RECORD I2 verdict recomputed equals the recorded verdict   [HELD: honest: inner_any 0.050, outer_any 0.090, cycle_any 0.000, sing_any 0.000, actN 0.000]
+PASS ZI8 RECORD I3 verdict recomputed equals the recorded verdict   [HELD: vendor: glues 0.980, actN 1.000, outer_any 1.000, actV 0.000]
+PASS ZI9 RECORD I4 verdict recomputed equals the recorded verdict   [HELD: defect: named_defect 0.990, wit_any 0.080, actN 0.000]
+PASS ZI10 RECORD I5 verdict recomputed equals the recorded verdict   [HELD: cycle: type cycle 0.985, cert_lifestyle 0.985, inner_any 0.070]
+PASS ZI11 RECORD I6 verdict recomputed equals the recorded verdict   [HELD: popshift: top family wearable 0.960, inner_any 1.000, wit_any 0.060, actN 0.005]
+PASS ZI12 RECORD I7 verdict recomputed equals the recorded verdict   [HELD: dst: actN 0.000, inner_any 1.000, veto_any 0.980, wit_any 0.050]
+PASS ZI13 RECORD I8 verdict recomputed equals the recorded verdict   [HELD: boundary: sing_kp_by5 1.000]
+13/13 passed
+== engine/check_study27j.py (2026-11-13)
+PASS ZJ1 IDENTITY specification unchanged since the freeze   [ff3d9efcc93f]
+PASS ZJ2 IDENTITY the watched paths are the 28 simple 3-link paths of E6   [28 paths]
+PASS ZJ3 IDENTITY swapping adjacent independent events changes neither the dual normal form's inf and length nor the Burau norm   [345 swaps, mismatches 0]
+PASS ZJ4 RECORD J1 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ5 RECORD J2 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ6 RECORD J3 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ7 RECORD J4 verdict recomputed equals the recorded verdict   [HELD]
+PASS ZJ8 RECORD J5 verdict recomputed equals the recorded verdict   [HELD]
+8/8 passed
+== engine/check_seqval.py (2026-11-13)
+PASS SQ1 IDENTITY the wall function is c0 - S_n/N exactly for adaptive dependent data, and S_n = A_n + M_n   [max |S - A - M| 1.5e-12; max |c_n - (c0 - S_n/N)| 4.8e-14]
+PASS SQ2 IDENTITY maximal Azuma bound for the martingale part under Markov dependence   [B 4.38; bound point x 412.6; frequency 0.0000; 95th percentile of max|M| 70.7 (bound is conservative)]
+PASS SQ3 IDENTITY the compensator's crossing time predicts the data's at rate N^-1/2 under Markov dependence   [s_A 0.342; median |s_hat - s_A| 6.0e-02, 1.7e-02, 1.3e-02, 6.8e-03; slope -0.462]
+PASS SQ4 IDENTITY an adversary inside the observational fibre leaves the law of every observed sequence unchanged (likelihood ratio 1)   [256 sequences; max |P - P'| 0.0e+00; decision quantity P(11): honest 0.350, adversary 0.630 after a 1]
+PASS SQ5 IDENTITY pathwise cost: the compensator shift satisfies Delta_n^2 <= 2 n B^2 K_n   [violations 0/500; largest ratio Delta^2 / (2 n B^2 K): tilt along Lambda_a 0.322, random 0.0150]
+PASS SQ6 RECORD F_1: the least-divergence wall-crossing attack pays K_n = n KL, linear in N; a likelihood-ratio test against it   [honest drift E Lambda_a 0.098 (c0 -0.40); attack KL per step 0.0339; N=50: K_n 1.7, power 0.579; N=200: K_n 6.8, power 0.978; N=1000: K_n 33.9, power 1.000]
+6/6 passed
+== engine/check_separation.py (2026-11-13)
+PASS SP1 IDENTITY the valuation shift depends only on the counts (every permutation gives the same shift)   [500 words; max deviation 0.0e+00]
+PASS SP2 IDENTITY signed chain counts and the event braid are invariant under independent swaps and cancelling pairs   [445 swaps, 500 cancelling pairs; chain-count changes 0, braid changes 0]
+PASS SP3 IDENTITY same counts and valuation, different structure: the relay and its reversal   [chain counts 1 vs 0; braids (0, ((1, 0, 2, 3, 4, 5), (0, 2, 1, 3, 4, 5), (0, 1, 3, 2, 4, 5))) vs (0, ((3, 0, 1, 2, 4, 5),))]
+PASS SP4 IDENTITY same structure, different valuation: a cancelling pair lowers every coordinate of the shift, moves the wall by its circuit LLR, changes no structure   [300 insertions; least decrease 0.041; max wall-move error 8.2e-16; violations 0]
+PASS SP5 RECORD within a count class the structure varies: share of random classes where some reordering changes a chain count / the braid   [300 classes of 3-6 events: chain counts vary in 0.47, the braid varies in 0.90]
+5/5 passed
+== engine/check_fsgram.py (2026-11-13)
+PASS FG1 IDENTITY every 2x3 coupling polygon is a smooth toric del Pezzo surface; facets = Kouchnirenko count of critical points   [4000 margins; violations 0; types {'dP7': 502, 'P2': 657, 'P1xP1': 1466, 'F1': 1315, 'dP6': 60}]
+PASS FG2 IDENTITY line-bundle cohomology agrees with Riemann-Roch and with h^0(O_P2(d)) = C(d+2,2)   [300 bundles + 6; mismatches 0]
+PASS FG3 IDENTITY the toric collection is exceptional (hence full) on each surface; its Gram matrix is unipotent with positive entries   [dP7: 1,3,5,6/2,4,5/2,3/1; P2: 3,6/3; P1xP1: 2,4,6/2,4/2; F1: 3,5,6/2,3/1; dP6: 1,2,3,4,5/1,2,3,4/1,2,3/1,2/1]
+PASS FG4 IDENTITY mutations keep the Gram matrix unipotent and integral, satisfy the braid relation, and preserve the isometry invariants   [failures 0; braid-relation failures 0]
+PASS FG5 IDENTITY the isometry invariants separate the five types (F1 and P1xP1 by the Smith form of G + G^T)   [dP7: sym (1, 1, 2, 2, 8), anti (1, 1, 0, 0, 0); P2: sym (1, 1, 8), anti (3, 3, 0); P1xP1: sym (2, 2, 2, 2), anti (2, 2, 0, 0); F1: sym (1, 1, 4, 4), anti (1, 1, 0, 0); dP6: sym (1, 1, 2, 2, 4, 4), anti (1, 1, 0, 0, 0, 0)]
+PASS FG6 IDENTITY the facet type changes only at support walls (three constraint lines through a vertex); F1 keeps its facets for all alpha   [396 changes on 150 margin paths, 0 not at a triple vertex; F1 facet counts over alpha [4]]
+6/6 passed
+== engine/check_scales.py (2026-11-13)
+PASS SV1 IDENTITY Cauchy-Binet: e_k(V W V^T) is a sum of prod w_S det(V_S^T V_S) >= 0   [200 cases; max relative error 6.6e-14]
+PASS SV2 IDENTITY the least weight of an independent k-set is the sum of the k smallest greedy weights   [300 configurations; mismatches 0]
+PASS SV3 IDENTITY least-weight independent sets of facet normals at the leximin point give h_j with multiplicity r_j   [156 margins over 4 shapes; mismatches 0; cases with a multiplicity > 1: 98]
+PASS SV4 IDENTITY finite-L eigenvalue valuations of Q/W at the positive critical point tend to h_j - h_1 with multiplicity r_j   [24 margins; worst extrapolation error 0.0033]
+4/4 passed
+== engine/check_leximinext.py (2026-11-13)
+PASS LQ1 IDENTITY facet-leximin equals all-cell leximin on nondegenerate margins   [331 margins {(2, 3): 82, (3, 3): 89, (2, 4): 81, (3, 4): 79}; disagreements 0]
+PASS LQ2 IDENTITY every redundant cell dominates some facet cell on the whole polytope   [493 redundant cells; dominated 493]
+PASS LQ3 IDENTITY the minimum over all cells equals the minimum over facet cells at every point tested (first level and first optimal set agree)   [6620 points; differences 0]
+3/3 passed
+== engine/check_credalflow.py (2026-11-13)
+PASS CR1 IDENTITY tilts are Hilbert isometries; restriction never expands; kernels contract by tanh(Delta/4)   [2000 cases; max isometry error 1.1e-14; restriction violations 0; Birkhoff violations 0]
+PASS CR2 IDENTITY a shift of the facet constants moves the Kahler class iff a circuit pairing changes; translations never do   [297 margins; mismatches 0; rank of (margins -> class) by chamber: {np.int64(2): 178, np.int64(1): 64, np.int64(3): 55}]
+PASS CR3 IDENTITY Descartes: <c, p_t> changes sign at most as often as its level coefficients   [5000 cases; violations 0; bound attained in 0.75]
+PASS CR4 IDENTITY the eventual sign of <c, p_t> is the sign of the first non-zero level coefficient   [2000 cases (245 with a vanishing top coefficient); violations 0]
+PASS CR5 IDENTITY brackets sit at tilted vertices; beyond the explicit bound every member is positive; status changes <= 2 V (r-1)   [398 bounded cases; extreme-point violations 0; bound violations 0; status violations 0; actual/bound median 0.62]
+PASS CR6 IDENTITY adversarial control: forced determinacy by the uniform bound; persistent ambiguity by a straddling top cell; fibre-straddle never identified   [(a) 120/120; (b) 30/30; (c) 120/120]
+PASS CR7 IDENTITY conserved: cell conditionals, Hilbert distances, the combinatorial type of K; moved: the R-margins   [conditional/Hilbert violations 0; vertex-count changes 0/300; margins moved in 2500/2500]
+PASS CR8 IDENTITY the long-run bracket is the conserved conditional bracket on the top observation cell   [300 cases; mismatches 0]
+PASS CR9 RECORD dilation: the bracket of P(X=1) - 1/2 grows from {0} to the conserved conditional spread [-0.4, 0.4]   [t=0: [0.000, 0.000]; t=1: [-0.185, 0.185]; t=3: [-0.362, 0.362]; t=10: [-0.400, 0.400]; t=40: [-0.400, 0.400]]
+PASS CR10 IDENTITY in the valuation limit the crossing time is the tropical transit time (error ~ 1/N)   [mean |tau_N - tau_trop| at N = 20, 80, 320: 0.0591, 0.0132, 0.0028; slope -1.10]
+10/10 passed
+== engine/check_credalflow.py (2026-11-13, rerun after crossing_bound restricted to non-zero payoffs)
+PASS CR1 IDENTITY tilts are Hilbert isometries; restriction never expands; kernels contract by tanh(Delta/4)   [2000 cases; max isometry error 1.1e-14; restriction violations 0; Birkhoff violations 0]
+PASS CR2 IDENTITY a shift of the facet constants moves the Kahler class iff a circuit pairing changes; translations never do   [297 margins; mismatches 0; rank of (margins -> class) by chamber: {np.int64(2): 178, np.int64(1): 64, np.int64(3): 55}]
+PASS CR3 IDENTITY Descartes: <c, p_t> changes sign at most as often as its level coefficients   [5000 cases; violations 0; bound attained in 0.75]
+PASS CR4 IDENTITY the eventual sign of <c, p_t> is the sign of the first non-zero level coefficient   [2000 cases (245 with a vanishing top coefficient); violations 0]
+PASS CR5 IDENTITY brackets sit at tilted vertices; beyond the explicit bound every member is positive; status changes <= 2 V (r-1)   [398 bounded cases; extreme-point violations 0; bound violations 0; status violations 0; actual/bound median 0.62]
+PASS CR6 IDENTITY adversarial control: forced determinacy by the uniform bound; persistent ambiguity by a straddling top cell; fibre-straddle never identified   [(a) 120/120; (b) 30/30; (c) 120/120]
+PASS CR7 IDENTITY conserved: cell conditionals, Hilbert distances, the combinatorial type of K; moved: the R-margins   [conditional/Hilbert violations 0; vertex-count changes 0/300; margins moved in 2500/2500]
+PASS CR8 IDENTITY the long-run bracket is the conserved conditional bracket on the top observation cell   [300 cases; mismatches 0]
+PASS CR9 RECORD dilation: the bracket of P(X=1) - 1/2 grows from {0} to the conserved conditional spread [-0.4, 0.4]   [t=0: [0.000, 0.000]; t=1: [-0.185, 0.185]; t=3: [-0.362, 0.362]; t=10: [-0.400, 0.400]; t=40: [-0.400, 0.400]]
+PASS CR10 IDENTITY in the valuation limit the crossing time is the tropical transit time (error ~ 1/N)   [mean |tau_N - tau_trop| at N = 20, 80, 320: 0.0591, 0.0132, 0.0028; slope -1.10]
+10/10 passed
+== engine/check_f1credal.py (2026-11-13, rerun after crossing_bound restricted to non-zero payoffs)
+PASS FK1 IDENTITY the interval of wall values translates rigidly: its width is constant along every data stream   [200 streams; max width change 3.2e-15; width 0.270]
+PASS FK2 IDENTITY the wall decision is indeterminate exactly for s in (c_min/d, c_max/d] in rates; data converge at N^-1/2   [window (0.092, 0.401], duration 0.309 = width 0.27 / drift 0.872; median error 0.1586, 0.0837, 0.0444, 0.0233; slope -0.46]
+PASS FK3 IDENTITY thm:crossing on F1: at most one switch; eventual sign that of term 3 (hard evidence on the best fit); the bound holds   [N=5: last 1.920 <= bound 1.920; N=10: last 1.920 <= bound 1.920; N=20: last 1.920 <= bound 1.920]
+PASS FK4 IDENTITY a two-term payoff is log-linear: g's crossing time equals the tropical transit time alpha_max / (H_4 - H_3) at every N   [tropical window (1.536, 1.920]; N=5: 1.920281; N=20: 1.920281; N=80: 1.920281; N=320: 1.920281; wall window (0.092, 0.401]]
+PASS FK5 IDENTITY forcing the whole set across the wall by s = 1 costs n KL(Q'||Q) >= Delta_n^2 / (2 n B^2) (prop:seqval(iii))   [honest drift -0.439; attack drift 0.400; KL per step 0.0355 >= bound 0.0217 (ratio 1.6)]
+PASS FK6 RECORD F1 credal example: transit, crossing times, attack cost and detectability   [Q' = (0.421, 0.359, 0.220); N=200: total divergence 7.1, power 0.985; N=1000: total divergence 35.5, power 1.000]
+6/6 passed
+== engine/check_credalgeom.py (2026-11-13)
+PASS GM1 IDENTITY Hilbert diameter by LP equals the vertex brute force; structural zeros dropped; touching zeros infinite; eps-profile monotone   [300 polytopes; mismatches 0; touching detected 30/30; profile violations 0]
+PASS GM2 IDENTITY sets: bands sit at conditioned vertices; the conditioned mixture uses weights lam_k V_k(C) / sum lam_j V_j(C)   [300 cases; violations 0]
+PASS GM3 IDENTITY the ceiling: every conditional log-odds band is at most the Hilbert diameter; the coin example attains it   [1349 cases; violations 0; median width/diameter 0.48; coin width 4.3944 = diameter 4.3944]
+PASS GM4 IDENTITY the flow map solves the replicator-mutator equation; the diameter never increases; tilt alone is an isometry   [60 generators; ODE mismatches 0; increases 0; tilt-only change 1.8e-15]
+PASS GM5 IDENTITY sleep world: from the sources alone the (P,C,T,O) diameter is infinite (all cells touch 0); eps-profile finite and monotone; anchors make it finite   [touching 24/24; eps-profile 0.002: 9.46, 0.005: 7.54, 0.01: 6.00; with anchors 2.000]
+PASS GM6 IDENTITY band ladder for O = 2: total-probability constraint holds; undefined bands and dilation flagged   [sources: all [0.403, 0.443], T=1 [0.527, 0.612], T=1,P=0 undefined, T=1,P=0,C=1 undefined, P=0,C=1 [0.000, 1.000]; anchors: all [0.403, 0.443], T=1 [0.527, 0.612], T=1,P=0 [0.332, 0.772], T=1,P=0,C=1 [0.405, 0.834], P=0,C=1 [0.296, 0.715]; undefined [('sources', 'T=1,P=0'), ('sources', 'T=1,P=0,C=1'), ('sources', 'T=1,P=0,C=0')]; dilation [('sources', 'all', 'T=1'), ('sources', 'all', 'T=0'), ('anchors', 'all', 'T=1'), ('anchors', 'all', 'T=0'), ('anchors', 'T=1', 'T=1,P=0'), ('anchors', 'T=1', 'T=1,P=1'), ('anchors', 'T=1,P=0', 'T=1,P=0,C=0')]; violations 0]
+PASS GM7 RECORD conditioning reweights the unreported populations: the point-level conditioning-mixing discrepancy   [T=1: true 0.569, prior-weight mixture 0.567, weights given the condition (0.54, 0.46) vs prior (0.50, 0.50); T=1,P=0,C=1: true 0.650, prior-weight mixture 0.646, weights given the condition (0.57, 0.43) vs prior (0.50, 0.50); P=0,C=1: true 0.509, prior-weight mixture 0.505, weights given the condition (0.55, 0.45) vs prior (0.50, 0.50)]
+PASS GM8 RECORD central experiment: in configuration C the diameter falls while the P(O=2 | P=0, C=1) band widens (H)   [H held; A: diam 2.000 -> 2.000, band 1.786 -> 1.999 (max) -> 1.999; B: diam 2.000 -> 1.890, band 1.786 -> 1.786 (max) -> 1.601; C: diam 2.000 -> 1.967, band 1.786 -> 1.874 (max) -> 1.855]
+PASS GM9 IDENTITY the ceiling holds at every time of every configuration   [54 bands; violations 0]
+9/9 passed
+== engine/check_threebythree.py (2026-11-13)
+PASS TT1 IDENTITY every linear programme is certified exactly; in every nondegenerate case the levels remove 4 dimensions in total   [600 searched margins + 3 declared; certificate failures 0; totals != 4: 0]
+PASS TT2 RECORD declared examples (and the searched E3, E4)   [E1: f=(1/2, 1/3, 1/6), g=(2/5, 7/20, 1/4), 9 facets, levels 1/18 [3 cells], 7/72 [2 cells], 17/144 [2 cells], 127/720 [1 cells], 163/720 [1 cells], r=[2, 1, 1, 0, 0], vertices 18, simple True, smooth True, Fano False | E2: f=(1/3, 1/3, 1/3), g=(1/3, 1/3, 1/3), 9 facets, levels 1/9 [9 cells], r=[4], vertices 72, simple False, smooth True, Fano True | E2p: f=(1/3, 43/120, 37/120), g=(19/60, 41/120, 41/120), 9 facets, levels 37/360 [3 cells], 77/720 [2 cells], 163/1440 [2 cells], 181/1440 [2 cells], r=[2, 1, 1, 0], vertices 18, simple True, smooth True, Fano False | E5: f=(3/20, 1/30, 49/60), g=(21/40, 1/4, 9/40), 6 facets, levels 1/90 [3 cells], 1/20 [3 cells], r=[2, 2], vertices 9, simple True, smooth True, Fano True | E6: f=(23/120, 29/120, 17/30), g=(3/40, 17/20, 3/40), 6 facets, levels 1/40 [6 cells], r=[4], vertices 9, simple True, smooth True, Fano True]
+PASS TT3 RECORD selection depth over the search: patterns of dimensions removed by successive levels   [600 margins: (2, 1, 1): 396, (2, 2): 196, (4,): 8; E3 not found; E4 not found]
+PASS TT4 IDENTITY every nondegenerate sampled chamber is simple with unimodular vertex cones; the symmetric margins are not simple   [2000 margins: Delzant 2000; facets per chamber {6: 107, 7: 486, 8: 796, 9: 611}; symmetric margins: tight facets per vertex [6]]
+PASS TT5 RECORD chambers up to symmetry and the Fano ones   [13 normal-fan types (4 facet sets) in 2000 margins; Fano fan types 1; share of sampled margins in a Fano chamber 0.05; fan types (facets, vertices, Fano, count): (6, 9, True, 107); (7, 12, False, 210); (7, 12, False, 116); (7, 12, False, 160); (8, 15, False, 104); (8, 15, False, 226); (8, 15, False, 180); (8, 15, False, 286); (9, 18, False, 157); (9, 18, False, 102); (9, 18, False, 64); (9, 18, False, 65); (9, 18, False, 223)]
+PASS TT6 IDENTITY eigenvalue valuations of Q/W at the positive critical point equal h_j - h_1 with multiplicity r_j in four dimensions   [4 examples; worst extrapolation error 0.0026; E1: target [0.0, 0.0, 0.0417, 0.0625]; E2p: target [0.0, 0.0, 0.0042, 0.0104]; E5: target [0.0, 0.0, 0.0389, 0.0389]; E6: target [0.0, 0.0, 0.0, 0.0]]
+PASS TT7 IDENTITY first level: h_1 = min(f_min, g_min)/3, blocked cells = the minimizing rows/columns, r_1 = 2 x their number   [600 searched margins with facet minimizing lines; violations 0]
+7/7 passed
+== engine/check_primer.py (2026-11-13)
+PASS PM1 IDENTITY hand example: scales (0, a); greedy takes one normal at level 0 and one at level a; level b adds nothing   [Q = Matrix([[T**(3/4) + 2, T**(3/4)], [T**(3/4), T**(3/4) + T**(1/3)]]); det Q = T**a*T**b + 2*T**a + 2*T**b; val e1 = 0, val e2 = 1/3]
+PASS PM2 IDENTITY with mixed signs the leading part loses rank (1 < span 2) and the second scale becomes a, not 0   [leading part Matrix([[1/2, -1/2], [-1/2, 1/2]]) (rank 1); det Q = 2*T**a; val e2 = 1/3]
+PASS PM3 IDENTITY eigenvalue valuations = Newton-polygon slopes = greedy weights for positive Gram matrices   [random cases; mismatches 0]
+PASS PM4 IDENTITY grounded weighted graph Laplacians: scale valuations = Kruskal minimum-spanning-tree weights   [51 graphs; mismatches 0]
+4/4 passed
+== engine/check_threebythree2.py (2026-11-13)
+PASS TT8 IDENTITY facet-leximin equals all-cell leximin exactly on 600 nondegenerate 3x3 margins   [600 margins; disagreements 0]
+PASS TT9 IDENTITY the facets are exactly the cells with f_i + g_j <= 1   [600 margins; mismatches 0]
+PASS TT10 RECORD census of 10000 margins: normal-fan types, Fano types, vertex counts   [13 fan types (first seen after margin 2000: 0); by facets {9: 5, 7: 3, 8: 4, 6: 1}; Fano types 1; vertex counts {9: 452, 12: 2277, 15: 4174, 18: 3097} (De Loera et al.: 9, 12, 15, 18)]
+PASS TT11 IDENTITY the Fano chamber is P2 x P2: split normals, Kouchnirenko 9 = vertices, product collection with Gram = Kronecker square, mutation invariants   [Fano fan types 1; example f=('7/30', '2/5', '11/30'), g=('1/8', '33/40', '1/20'); 4! vol = 9.000; vertices 9; Smith form of G + G^T (1, 1, 1, 1, 1, 1, 2, 16, 16); invariant changes under 30 mutations 0]
+4/4 passed
+== engine/check_stratledger.py (2026-11-13)
+PASS QL1 IDENTITY 3x3 linear objectives: at most C(r+c-2,r-1) = 6 solves certify all 10000 tables; bases unimodular; exact certificates   [solves per objective [6, 6, 6, 6, 6, 6, 6, 6, 6, 6]; exact failures 0]
+PASS QL2 IDENTITY 3x3 conditional bands: definedness rule; four libraries certify every defined table within 81 bases; exact re-verification   [8837 defined of 10000; rule mismatches 0/300; solves (hi0, lo0, hi1, lo1) [8, 7, 6, 6]; exact failures 0/35348]
+PASS QL3 IDENTITY 3x3 the ledger drift bound holds for every defined table   [max D 0.1683; max U 0.1716; violations 0]
+PASS QL4 RECORD 3x3 certified top-20 drift search   [evaluations needed 2592 of 8837; recovered true top-20 True]
+PASS QL5 RECORD H1: toric chambers against optimal-basis regions of the upper end   [13 chambers, 8 basis regions; regions per chamber [3, 5, 5, 5, 5, 5, 8, 8, 8, 8, 8, 8, 8]; purity of the majority region per chamber 0.30]
+PASS QL6 RECORD 3x3 H2: top-100 drift tables near walls (clearance <= 0.02) against all tables   [near-wall share: top-100 0.38, all 0.20, enrichment 1.89; walls 14; leading importance 6->1: 1405.27, 5->3: 1345.73, 3->2: 271.57]
+PASS QL7 RECORD 3x3 H3: the ledger bound ranks the drift   [Spearman(U, D) 0.23; top-20 recall within the first 20/50/100 by U: 0.00/0.05/0.10]
+PASS QL8 IDENTITY 3x3 reconstruction audit: stratum totals and wall importances recomputed from table records   [8 strata, 14 walls; mismatches 0]
+PASS QL1 IDENTITY 4x4 linear objectives: at most C(r+c-2,r-1) = 20 solves certify all 10000 tables; bases unimodular; exact certificates   [solves per objective [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]; exact failures 0]
+PASS QL2 IDENTITY 4x4 conditional bands: definedness rule; four libraries certify every defined table within 4096 bases; exact re-verification   [5057 defined of 10000; rule mismatches 0/300; solves (hi0, lo0, hi1, lo1) [39, 46, 36, 41]; exact failures 0/4000]
+PASS QL3 IDENTITY 4x4 the ledger drift bound holds for every defined table   [max D 0.1587; max U 0.1716; violations 0]
+PASS QL4 RECORD 4x4 certified top-20 drift search   [evaluations needed 1321 of 5057; recovered true top-20 True]
+PASS QL6 RECORD 4x4 H2: top-100 drift tables near walls (clearance <= 0.02) against all tables   [near-wall share: top-100 0.41, all 0.41, enrichment 1.00; walls 82; leading importance 19->1: 1823.47, 2->11: 1019.09, 3->21: 996.18]
+PASS QL7 RECORD 4x4 H3: the ledger bound ranks the drift   [Spearman(U, D) 0.45; top-20 recall within the first 20/50/100 by U: 0.00/0.00/0.00]
+PASS QL8 IDENTITY 4x4 reconstruction audit: stratum totals and wall importances recomputed from table records   [39 strata, 82 walls; mismatches 0]
+15/15 passed
+
+== engine/check_stratledger2.py (2026-11-13)
+PASS QL9 IDENTITY each raw chamber carries exactly one optimal basis for every generic linear objective; quotiented labels do not   [342 raw chambers, 13 up to symmetry; raw chambers with >1 basis per objective [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; quotiented [13, 13, 13, 13, 13, 13, 13, 13, 13, 13]]
+PASS QL10 RECORD conditional bands: basis regions per raw chamber; switches lie in chamber interiors   [hi0: 7 bases; chambers by number of basis regions {1: 306}; chambers with >1 region 0; switches located 0; lo0: 7 bases; chambers by number of basis regions {1: 306}; chambers with >1 region 0; switches located 0; switch points outside their chamber 0]
+PASS QL11 RECORD random ratio objectives: optimal bases can switch inside a chamber; located switches lie in chamber interiors   [objective 0: 10 bases, chambers with >1 region 25, switches located 25; objective 1: 15 bases, chambers with >1 region 145, switches located 25; objective 2: 9 bases, chambers with >1 region 74, switches located 25; objective 3: 12 bases, chambers with >1 region 113, switches located 25; objective 4: 8 bases, chambers with >1 region 29, switches located 25; switch points outside their chamber 0]
+3/3 passed
+
+== engine/verify_ledger.py (2026-11-13; python3 -I verify_ledger.py stratledger.json)
+PASS QL12 IDENTITY standalone verification of every ledger certificate in exact arithmetic   [3x3: 8837 tables, 1163 undefined, 8 strata; 4x4: 5057 tables, 4943 undefined, 39 strata; band ends verified 55576; failures 0]
+1/1 passed
+
+== engine/check_ledgerscale.py (2026-11-13; Study 28, pre-registered)
+  2x2: defined 10000; solves (hi0, lo0, hi1, lo1) [2, 2, 2, 2] at T=10000, [2, 2, 2, 2] at T=1000; tree bound 4; build 0.0s vs direct 58.4s; check/LP 0.0000; slopes [-0.0, -0.0, -0.0, -0.0]
+  2x3: defined 10000; solves (hi0, lo0, hi1, lo1) [3, 3, 3, 3] at T=10000, [4, 4, 3, 3] at T=1000; tree bound 12; build 0.0s vs direct 65.6s; check/LP 0.0000; slopes [-0.12, -0.12, -0.0, -0.0]
+  2x4: defined 10000; solves (hi0, lo0, hi1, lo1) [5, 6, 5, 6] at T=10000, [5, 5, 4, 5] at T=1000; tree bound 32; build 0.1s vs direct 67.0s; check/LP 0.0001; slopes [-0.0, 0.08, 0.1, 0.08]
+  2x5: defined 10000; solves (hi0, lo0, hi1, lo1) [7, 8, 5, 5] at T=10000, [6, 8, 6, 6] at T=1000; tree bound 80; build 0.1s vs direct 68.9s; check/LP 0.0001; slopes [0.07, -0.0, -0.08, -0.08]
+  2x6: defined 10000; solves (hi0, lo0, hi1, lo1) [12, 13, 10, 7] at T=10000, [15, 15, 10, 10] at T=1000; tree bound 192; build 0.2s vs direct 68.1s; check/LP 0.0002; slopes [-0.09, -0.06, 0.0, -0.16]
+  2x7: defined 10000; solves (hi0, lo0, hi1, lo1) [16, 10, 12, 8] at T=10000, [9, 8, 10, 14] at T=1000; tree bound 448; build 0.2s vs direct 68.0s; check/LP 0.0002; slopes [0.24, 0.09, 0.08, -0.24]
+  2x8: defined 10000; solves (hi0, lo0, hi1, lo1) [17, 18, 13, 9] at T=10000, [16, 16, 15, 13] at T=1000; tree bound 1024; build 0.3s vs direct 70.0s; check/LP 0.0003; slopes [0.03, 0.05, -0.06, -0.17]
+  3x3: defined 8954; solves (hi0, lo0, hi1, lo1) [7, 8, 6, 6] at T=10000, [6, 7, 6, 6] at T=1000; tree bound 81; build 0.1s vs direct 60.0s; check/LP 0.0001; slopes [0.06, 0.06, 0.0, -0.0]
+  3x4: defined 7496; solves (hi0, lo0, hi1, lo1) [11, 14, 11, 13] at T=10000, [13, 14, 12, 15] at T=1000; tree bound 432; build 0.2s vs direct 50.3s; check/LP 0.0002; slopes [-0.07, -0.0, -0.04, -0.06]
+  3x5: defined 6219; solves (hi0, lo0, hi1, lo1) [24, 26, 25, 18] at T=10000, [22, 25, 20, 17] at T=1000; tree bound 2025; build 0.4s vs direct 42.8s; check/LP 0.0004; slopes [0.04, 0.02, 0.1, 0.02]
+  3x6: defined 5191; solves (hi0, lo0, hi1, lo1) [45, 38, 36, 35] at T=10000, [31, 38, 32, 36] at T=1000; tree bound 8748; build 0.7s vs direct 35.8s; check/LP 0.0007; slopes [0.16, 0.0, 0.05, -0.01]
+  3x7: defined 4363; solves (hi0, lo0, hi1, lo1) [64, 80, 59, 69] at T=10000, [44, 55, 41, 54] at T=1000; tree bound 35721; build 1.4s vs direct 31.0s; check/LP 0.0014; slopes [0.16, 0.16, 0.16, 0.11]
+  4x4: defined 5009; solves (hi0, lo0, hi1, lo1) [38, 32, 36, 33] at T=10000, [33, 35, 28, 32] at T=1000; tree bound 4096; build 0.6s vs direct 34.4s; check/LP 0.0006; slopes [0.06, -0.04, 0.11, 0.02]
+  4x5: defined 3293; solves (hi0, lo0, hi1, lo1) [71, 71, 59, 75] at T=10000, [37, 50, 37, 52] at T=1000; tree bound 32000; build 1.2s vs direct 21.2s; check/LP 0.0018; slopes [0.28, 0.15, 0.2, 0.16]
+  4x6: defined 2269; solves (hi0, lo0, hi1, lo1) [116, 120, 106, 120] at T=10000, [61, 71, 56, 73] at T=1000; tree bound 221184; build 2.4s vs direct 15.1s; check/LP 0.0047; slopes [0.28, 0.23, 0.28, 0.22]
+PASS LS1 IDENTITY every defined table certified at every band end; exact re-check of 300 tables per shape and end   [exact failures {'2x2': np.int64(0), '2x3': np.int64(0), '2x4': np.int64(0), '2x5': np.int64(0), '2x6': np.int64(0), '2x7': np.int64(0), '2x8': np.int64(0), '3x3': np.int64(0), '3x4': np.int64(0), '3x5': np.int64(0), '3x6': np.int64(0), '3x7': np.int64(0), '4x4': np.int64(0), '4x5': np.int64(0), '4x6': np.int64(0)}]
+FAIL LS2 IDENTITY linear control: solves per objective <= C(r+c-2, r-1)   [2x2 2/2; 2x3 3/3; 2x4 4/4; 2x5 5/5; 2x6 6/6; 2x7 7/7; 2x8 9/8; 3x3 6/6; 3x4 10/10; 3x5 15/15; 3x6 21/21; 3x7 28/28; 4x4 20/20; 4x5 35/35; 4x6 56/56]
+PASS LS3 IDENTITY solves <= regions used
+PASS LS4 HYPOTHESIS tenfold more tables at most quintuple the solves, every shape and end   [violations none]
+PASS LS5 HYPOTHESIS ledger build cheaper than direct solving at T = 10000, every shape   [violations none]
+PASS LS6 HYPOTHESIS per-table membership check at least 10x cheaper than one LP, every shape   [violations none]
+PASS LS7 RECORD regions vs T and tree bound; second-half share; memory ratio; log-log slopes   [2x2: regions(hi0) [2, 2, 2], 2nd half 0.00, mem 0.50; 2x3: regions(hi0) [4, 3, 3], 2nd half 0.00, mem 0.50; 2x4: regions(hi0) [5, 6, 5], 2nd half 0.00, mem 0.51; 2x5: regions(hi0) [6, 7, 7], 2nd half 0.00, mem 0.52; 2x6: regions(hi0) [15, 8, 12], 2nd half 0.00, mem 0.55; 2x7: regions(hi0) [9, 22, 16], 2nd half 0.00, mem 0.57; 2x8: regions(hi0) [16, 11, 17], 2nd half 0.00, mem 0.62; 3x3: regions(hi0) [6, 8, 7], 2nd half 0.00, mem 0.52; 3x4: regions(hi0) [13, 12, 11], 2nd half 0.00, mem 0.56; 3x5: regions(hi0) [22, 24, 24], 2nd half 0.08, mem 0.68; 3x6: regions(hi0) [31, 40, 45], 2nd half 0.04, mem 0.97; 3x7: regions(hi0) [44, 58, 64], 2nd half 0.09, mem 1.76; 4x4: regions(hi0) [33, 40, 38], 2nd half 0.00, mem 0.84; 4x5: regions(hi0) [37, 53, 71], 2nd half 0.11, mem 1.84; 4x6: regions(hi0) [61, 81, 116], 2nd half 0.10, mem 4.62]
+6/7 passed
+
+== engine/check_ledgerscale_addendum.py (2026-11-13; post hoc)
+PASS LS8 IDENTITY (post hoc) every objective above the bound is dual degenerate (degenerate ones may still meet it)   [above bound ['2x8#2']; dual-degenerate objectives ['2x5#0 (5/5)', '2x5#2 (5/5)', '2x6#2 (6/6)', '2x8#2 (9/8)', '3x3#0 (6/6)', '3x5#2 (15/15)', '3x6#1 (21/21)', '3x7#0 (28/28)', '3x7#2 (28/28)', '4x5#0 (35/35)', '4x5#2 (35/35)', '4x6#0 (56/56)', '4x6#1 (56/56)', '4x6#2 (56/56)']]
+1/1 passed
+
+== engine/check_tolerance.py (2026-11-14; Study 29, pre-registered)
+  tol3-0: defined 8837/10000; solves {'defined': 6, 'hi0': 6, 'lo0': 6, 'hi1': 6, 'lo1': 6}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [41, 15, 35, 13]; mean width 0.5993; mean drift 0.0185; 0.3s
+  tol3-1/200: defined 8776/10000; solves {'defined': 10, 'hi0': 8, 'lo0': 9, 'hi1': 10, 'lo1': 8}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [8, 9, 10, 8]; mean width 0.6152; mean drift 0.0176; 0.2s
+  tol3-1/100: defined 8721/10000; solves {'defined': 17, 'hi0': 25, 'lo0': 19, 'hi1': 23, 'lo1': 17}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [25, 19, 23, 17]; mean width 0.6309; mean drift 0.0168; 0.2s
+  tol3-1/50: defined 8594/10000; solves {'defined': 19, 'hi0': 27, 'lo0': 19, 'hi1': 22, 'lo1': 22}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [27, 19, 22, 22]; mean width 0.6606; mean drift 0.0151; 0.3s
+  tol4-1/100: defined 4466/10000; solves {'defined': 61, 'hi0': 69, 'lo0': 75, 'hi1': 75, 'lo1': 75}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [93, 82, 92, 79]; mean width 0.8184; mean drift 0.0055; 1.1s
+  pair332: defined 10000/10000; solves {'defined': 222, 'hi0': 158, 'lo0': 163, 'hi1': 148, 'lo1': 155}; fallbacks {'defined': 0, 'hi0': 0, 'lo0': 0, 'hi1': 0, 'lo1': 0}; libraries [159, 168, 154, 161]; mean width 0.2164; mean drift 0.0535; 2.3s
+PASS TK1 IDENTITY tolerance form at e = 0 reproduces the exact-margin bands of the ledger   [35348 band ends compared; mismatches 0; ledger tables not defined here 0; defined 8837 vs ledger 8837]
+PASS TK2 IDENTITY bands nest as the tolerance grows   [104364 comparisons; violations 0; tables that become undefined as e grows 243]
+PASS TK3 IDENTITY values agree with direct LPs; exact rational re-check of certified tables   [LP / exact failures: tol3-0 0/0; tol3-1/200 0/0; tol3-1/100 0/0; tol3-1/50 0/0; tol4-1/100 0/0; pair332 0/0]
+PASS TK4 IDENTITY drift bound valid; certified top-20 equals exhaustive top-20   [tol3-0: U>=D True, top-20 equal True, evaluated 2592/8837, solves 12; tol3-1/200: U>=D True, top-20 equal True, evaluated 2620/8776, solves 18; tol3-1/100: U>=D True, top-20 equal True, evaluated 2695/8721, solves 34; tol3-1/50: U>=D True, top-20 equal True, evaluated 2770/8594, solves 38; tol4-1/100: U>=D True, top-20 equal True, evaluated 1192/4466, solves 93; pair332: U>=D True, top-20 equal True, evaluated 8142/10000, solves 296]
+PASS TK5 HYPOTHESIS compression persists: LP solves <= 0.2 T   [tol3-0 30; tol3-1/200 45; tol3-1/100 101; tol3-1/50 109; tol4-1/100 355; pair332 846]
+FAIL TK6 HYPOTHESIS certified top-20 evaluates <= 50% of defined tables   [tol3-0 0.29; tol3-1/200 0.30; tol3-1/100 0.31; tol3-1/50 0.32; tol4-1/100 0.27; pair332 0.81]
+PASS TK7 HYPOTHESIS stratified 95% intervals cover in >= 93% of replicates, both targets   [tol3-1/200 mean 0.946 share 0.952 (SRS 0.938/0.946); tol3-1/100 mean 0.948 share 0.952 (SRS 0.936/0.938); tol3-1/50 mean 0.954 share 0.950 (SRS 0.942/0.940); tol4-1/100 mean 0.954 share 0.944 (SRS 0.928/0.922); pair332 mean 0.952 share 0.950 (SRS 0.952/0.940)]
+PASS TK8 HYPOTHESIS stratification reduces the variance of the mean-drift estimate   [tol3-1/200 0.76; tol3-1/100 0.75; tol3-1/50 0.73; tol4-1/100 0.91; pair332 0.98]
+PASS TK9 RECORD widths, drifts, defined share, top-k, half-widths, sample cost   [tol3-0: defined 0.88, width 0.599, drift 0.0185, fallbacks 0; tol3-1/200: defined 0.88, width 0.615, drift 0.0176, fallbacks 0, truth 0.0176+-0.0032, share 0.133+-0.030; tol3-1/100: defined 0.87, width 0.631, drift 0.0168, fallbacks 0, truth 0.0168+-0.0032, share 0.127+-0.030; tol3-1/50: defined 0.86, width 0.661, drift 0.0151, fallbacks 0, truth 0.0151+-0.0031, share 0.112+-0.028; tol4-1/100: defined 0.45, width 0.818, drift 0.0055, fallbacks 0, truth 0.0055+-0.0029, share 0.021+-0.013; pair332: defined 1.00, width 0.216, drift 0.0535, fallbacks 0, truth 0.0535+-0.0028, share 0.506+-0.048]
+8/9 passed
+
+== engine/check_structbound.py (2026-11-14; Study 30, pre-registered)
+/home/claude/paper/unified/engine/check_structbound.py:64: RuntimeWarning: invalid value encountered in log
+  with np.errstate(divide="ignore"): return np.log(p) - np.log1p(-p)
+  P332: defined 10000/10000; exhaustive solves 846; band-only search 0.814 (296 LPs); structure-aware screen 0.003 (49 LPs); U1 time 40.4s; 74s
+/home/claude/paper/unified/engine/check_structbound.py:64: RuntimeWarning: invalid value encountered in log1p
+  with np.errstate(divide="ignore"): return np.log(p) - np.log1p(-p)
+  P332tol: defined 10000/10000; exhaustive solves 4190; band-only search 0.840 (2098 LPs); structure-aware screen 0.004 (70 LPs); U1 time 33.3s; 1523s
+  P442: defined 10000/10000; exhaustive solves 14790; band-only search 0.556 (4283 LPs); structure-aware screen 0.006 (112 LPs); U1 time 38.2s; 855s
+PASS SW1 IDENTITY interaction coordinates   [P332 is the Study 29 population: True; P332: null-space dimension 4 = (a-1)(b-1)(c-1) = 4; reconstruction failures 0/200; programme-in-theta mismatches 0/200; P442: null-space dimension 9 = (a-1)(b-1)(c-1) = 9; reconstruction failures 0/200; programme-in-theta mismatches 0/200]
+PASS SW2 IDENTITY every bound dominates the drift; lower bounds lie below it   [P332: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True; P332tol: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True; P442: U0 True, U1 True, combined0 True, combinedF True, lower0 True, lowerF True, relax True, dual True]
+PASS SW3 IDENTITY screened top-20 equals exhaustive top-20
+PASS SW4 IDENTITY context order: evidence in either order, and C = 0 then B in {0,1}, give the same bands   [1200 band ends; mismatches 0]
+PASS SW5 IDENTITY support boundary: empty blocks undefined, no non-finite band ends, vanishing tolerance blocks undefined   [constructed empty-block tables flagged 100/100; all defined band ends finite True; P332tol undefined 0, re-checked 0, wrong 0]
+PASS SW6 HYPOTHESIS P332: the screen evaluates <= 50% of defined tables   [structure-aware 0.003 (band-only 0.814)]
+FAIL SW7 HYPOTHESIS P332: Spearman(min(U0, U1), D) >= 0.7   [P332: U0 0.31, U1 0.52, minU0U1 0.53, combined 0.57; P332tol: U0 0.22, U1 0.55, minU0U1 0.56, combined 0.64; P442: U0 0.35, U1 0.72, minU0U1 0.72, combined 0.80]
+PASS SW8 HYPOTHESIS P332tol and P442: the screen evaluates no larger share than the band-only search   [P332tol 0.004 vs 0.840; P442 0.006 vs 0.556]
+PASS SW9 RECORD searches, bounds, stability, centre/width, interaction vs tolerance   [P332: screen 32 evals/49 LPs vs band-only 8142/296, stability 0.11, centre 0.0310, width change +0.0397; P332tol: screen 40 evals/70 LPs vs band-only 8398/2098, stability 0.08, centre 0.0285, width change +0.0403; P442: screen 59 evals/112 LPs vs band-only 5559/4283, stability 0.01, centre 0.0288, width change +0.0637; interaction vs tolerance {"tables": 10000, "interaction_width": 0.2164, "tolerance_width": 0.1379, "interaction_drift": 0.0535, "tolerance_drift": -0.001, "share_drift_falls": 0.492, "share_width_grows": 0.9994}]
+8/9 passed
+
+== engine/check_credalshape.py (2026-11-14; Study 31, pre-registered)
+PASS SO1 IDENTITY lem:cographic: optimal vertices have spanning-tree support and independent zero-cell normals; cycles give dependence   [vertices 300, failures 0; all 126 four-cell sets: complement a tree -> independent (failures 0); complement with a cycle (45 sets) -> dependent (failures 0)]
+PASS SO2 IDENTITY prop:ratiocone: ratio basis regions are convex cones   [segment points 10000, outside 0; scalings outside 0]
+PASS SO3 IDENTITY prop:condpolytope: outcome polygon = hull of vertex images = support-function polygon; band ends   [p25: |V(K)| 26, margins True, hull gap 1.1e-16, band ends match True; p50: |V(K)| 16, margins True, hull gap 2.2e-16, band ends match True; p75: |V(K)| 27, margins True, hull gap 1.1e-16, band ends match True]
+PASS SO4 IDENTITY evidence commutes with conditioning, preserves Hilbert distances, transports the polygon   [p25: commute 5.6e-17, Hilbert pairs 44 finite, changed 0, after-evidence hull gap 1.6e-16, bands True; p50: commute 1.4e-17, Hilbert pairs 32 finite, changed 0, after-evidence hull gap 5.0e-16, bands True; p75: commute 5.6e-17, Hilbert pairs 48 finite, changed 0, after-evidence hull gap 1.1e-16, bands True]
+PASS SO5 IDENTITY Fisher-Rao image on the unit sphere; band ends are extreme latitudes
+PASS SO6 RECORD vertex counts, areas, Hilbert diameters, active facets   [p25: |V(K)| 26, |V(pi K)| 26, polygon vertices 5/10/10 (before/after/tolerance), area 0.0054/0.0072/0.0181, Hilbert diameter 1.686/2.284/4.140; p50: |V(K)| 16, |V(pi K)| 16, polygon vertices 4/8/10 (before/after/tolerance), area 0.0121/0.0206/0.0419, Hilbert diameter 1.487/1.593/2.320; p75: |V(K)| 27, |V(pi K)| 27, polygon vertices 5/10/8 (before/after/tolerance), area 0.0687/0.1008/0.1751, Hilbert diameter 3.453/3.870/inf]
+6/6 passed
+
+== engine/check_credalshape_addendum.py (2026-11-14; post hoc)
+PASS SO7 RECORD (post hoc) outcome region against the product of its bands   [100 tables; before evidence: ratio min 1.000000 max 1.000000, equal to the product in 100, edges parallel to the simplex in 100; after evidence: ratio min 0.665 median 0.875 max 0.989, equal in 0]
+1/1 passed
+
+== engine/check_frontispiece.py (2026-11-14; Study 32, pre-registered)
+PASS UG1 IDENTITY chamber walls of the slice are the lines f_i = subset sums of g; vertex count constant on each cell; E1 interior   [58 cells met by 2000 points, inconsistent 0; wall levels [0.25, 0.35, 0.4, 0.6, 0.65, 0.75]; E1 interior True; E1 vertex count 18]
+PASS UG2 IDENTITY vertices are the feasible spanning-tree bases; count = TT2; simple; adjacency shares 4 basic cells   [81 spanning trees, 18 feasible (TT2: 18); degrees [4]]
+PASS UG3 IDENTITY the marked vertex: positive cells a spanning tree; its 4 edges <-> its 4 zero cells   [marked vertex = upper end of the band of q0; positive cells [(0, 0), (0, 1), (0, 2), (1, 0), (2, 1)]; zero cells [(1, 1), (1, 2), (2, 0), (2, 2)]; entering cells of the 4 edges [(1, 1), (1, 2), (2, 0), (2, 2)]]
+PASS UG4 IDENTITY Theorem 196 on E1: levels and rank increments; scale valuations; x(L) -> leximin point   [levels ['1/18', '7/72', '17/144', '127/720', '163/720'], r [2, 1, 1, 0, 0] (TT2 match True); targets [0.0, 0.0, 0.0417, 0.0625], extrapolated [-0.0007, -0.0001, 0.0415, 0.0617], error 0.0008; distance to the leximin point [0.0569, 0.0508, 0.045, 0.0347, 0.0265, 0.0155, 0.0076, 0.0041, 0.0015, 0.0006, 0.0001, 0.0]]
+PASS UG5 IDENTITY the decision region: hull of vertex images = product of bands; transported after evidence; band ends = direct programmes   [band ends mismatched 0; region/product area before 1.000000, after evidence 0.819; bands before [[0.28, 0.48], [0.22, 0.42], [0.1, 0.3]]]
+5/5 passed
+
+== engine/check_triangle.py (2026-11-14; Study 33, pre-registered)
+PASS CY1 IDENTITY four-cycle: l = 0.9 violates Clauser-Horne and is empty, l = 0.5 is not; the odd binary triangle is empty   [CH excess at 0.9: +0.40, fibre nonempty False; at 0.5: +0.00, nonempty True; binary triangle with P(A!=B) = P(B!=C) = P(A!=C) = 1 nonempty False]
+PASS CY2 IDENTITY the compatible triangle: dim 4; vertices and both selected laws reproduce the pair tables; the selected laws differ   [dim 4; vertices 16 (exact pair tables True); max-ent residual 5.6e-17, leximin residual 5.6e-17; |max-ent - leximin| = 0.0086]
+PASS CY3 IDENTITY Case A (signal C): every full-dimensional cell's value functional is orthogonal to the fibre; VOI is constant   [threshold t = 0.0791 (midpoint of the band [0.0000, 0.1583]); max |g.H| 0.0e+00; VOI spread 4.2e-17, VOI = 0.03416]
+PASS CY4 IDENTITY Case B (signal B): value functionals not orthogonal; VOI varies; on the segment through the selected laws the pair tables are constant and the action given B = 0 changes at a wall   [max |g.H| 1.000; VOI over J_d in [-0.00000, 0.01833]; segment s in [-2.143, 4.365] (max-ent at 0, leximin at 1), pair-table change 2.8e-16, wall at s = 1.0]
+PASS CY5 RECORD VOI and actions at the selected laws   [Case A VOI 0.03416 (max-ent) = 0.03416 (leximin); Case B VOI -0.00000 (max-ent), 0.00000 (leximin); act given B = 0: max-ent True, leximin False; no-signal action act everywhere]
+PASS CY6 IDENTITY E1: the maximum-entropy law is f g^T and is interior   [IPF error 2.8e-17; smallest cell 0.0417]
+6/6 passed
+
+== engine/check_dynamics.py (2026-11-14; Study 34, pre-registered)
+PASS DX1 IDENTITY prop:fibremotion: revisions translate the fibre; the direction space changes only at additions (shrinks) and withdrawals (grows)   [2400 steps; violations 0]
+PASS DX2 IDENTITY prop:certstate: the certificate summary answers every query exactly; reused certificates match fresh values   [mismatches 0; retained certificates 1727, of which a fresh solve chose a different optimal basis in 355 (values equal: the basis, not the value, is path dependent)]
+PASS DX3 IDENTITY prop:crossing: dual certificates bound the time to cross the threshold along every revision path   [637 path points tested, violations 0]
+PASS DX4 IDENTITY prop:hidden: with data fixed, the decision can move inside the fibre iff the fibre straddles the threshold   [straddling fibres 1462 of 2400; violations 0]
+PASS DX5 IDENTITY prop:separate: a cell observation lowers the upper end iff its value leaves the cell's range on the optimal face   [32130 (cell, value) pairs; violations 0]
+PASS DX6 IDENTITY prop:historyfunctor: updater = recomputer on add-only and revision-only paths; retracted foreign table: KL(U||R) = H(R) - H(U)   [worst add/revise gap 1.1e-16; defect identity failures 0/40; defects KL in [0.0030, 0.1540]]
+PASS DX7 HYPOTHESIS at revisions at least 50% of query-end updates reuse the previous certificate   [reuse 0.928 (1727 reused, 133 fresh)]
+PASS DX8 RECORD update counts, chamber changes, straddles, empty and vacuous fibres   [fresh solves by type {'rev': 133, 'add': 640, 'wd': 450}; basis changes at revisions 133; straddle share 0.609; empty 0; vacuous bands 925; tau 0.1500]
+8/8 passed
+
+== engine/check_four6.py (2026-11-14; Study 35, pre-registered)
+PASS LZ1 IDENTITY prop:twowaycomplete: column-given-row-block region = box cut by the plane, any number of outcomes   [10000 support values; mismatches 0]
+PASS LZ2 IDENTITY prop:coarsen: merge-respecting bands on the fine fibre equal those on the coarse fibre   [3000 coarse-cell bands; mismatches 0]
+PASS LZ3 IDENTITY maximum entropy commutes with merging   [2000 tables; violations 0]
+PASS LZ4 RECORD census of leximin patterns at 4 x 6   [2000 tables in 487s; patterns (dimensions removed per level) {(3, 3, 3, 2, 2, 1, 1): 174, (5, 2, 2, 2, 2, 1, 1): 98, (3, 4, 2, 2, 2, 1, 1): 96, (3, 3, 3, 2, 2, 2): 94, (3, 3, 3, 3, 1, 1, 1): 77, (3, 4, 2, 3, 1, 1, 1): 64, (3, 4, 2, 2, 2, 2): 60, (5, 2, 2, 3, 1, 1, 1): 54, (5, 2, 2, 2, 2, 2): 53, (3, 3, 3, 3, 3): 53}; levels {5: 6, 6: 28, 7: 147, 8: 635, 9: 1184}; all 15 dimensions removed in 2000; programmes 186332, blocked tests saved by Frechet pruning 0]
+FAIL LZ5 IDENTITY Theorem 196 at 4 x 6: scale valuations = h_j - h_1 with multiplicity r_j (exact levels; extrapolated in 1/L)   [table 22: r = (3, 3, 3, 2, 2, 1, 1), error 0.0105; table 6: r = (5, 2, 2, 2, 2, 1, 1), error 0.0081; table 4: r = (3, 4, 2, 2, 2, 1, 1), error 0.0077; table 48: r = (3, 3, 3, 2, 2, 2), error 0.0056; table 7: r = (3, 3, 3, 3, 1, 1, 1), error 0.0080; table 95: r = (3, 4, 2, 3, 1, 1, 1), error 0.0053; table 45: r = (3, 4, 2, 2, 2, 2), error 0.0140; table 15: r = (5, 2, 2, 3, 1, 1, 1), error 0.0075]
+PASS LZ6 RECORD leximin coarsening defect   [share with defect <= 1e-9: 0.104; defect median 0.0135, max 0.0718]
+PASS LZ7 HYPOTHESIS leximin is not merge consistent in general: defect > 1e-9 in >= 50% of the census   [share with defect > 1e-9: 0.895]
+6/7 passed
+
+== engine/check_four6_addendum.py (2026-11-15; post hoc)
+  table 22: r = (3, 3, 3, 2, 2, 1, 1); max error: raw at L = 960 0.0014; straight line from 240-960 0.0018; quadratic in 1/L 0.0029
+  table 45: r = (3, 4, 2, 2, 2, 2); max error: raw at L = 960 0.0016; straight line from 240-960 0.0012; quadratic in 1/L 0.0029
+PASS LZ8 RECORD (post hoc) finite-L bias of the extrapolation   [table 22: linear(240-960) 0.0018, quadratic 0.0029; table 45: linear(240-960) 0.0012, quadratic 0.0029]
+1/1 passed
+
+== engine/check_four6_descent_posthoc.py (2026-11-15; post hoc)
+PASS LZ9 RECORD (post hoc) leximin descent on the discovery population   [descent 0.104; Spearman(defect, within-group imbalance) 0.36; level-pure tables 0 (descent among them nan); level-mixed 2000 (descent 0.104); median imbalance among descending 1.253 vs failing 1.463]
+1/1 passed
+
+== engine/check_lexdescent.py (2026-11-15; Study 36, pre-registered, with recorded deviations)
+PASS LW1 IDENTITY prop:symdescent: symmetric margins give a block-constant fine leximin point that descends to weighted coarse leximin (and to plain coarse leximin for equal blocks)   [failures 0; merge E: 30 tables, block-constant and weighted descent exact in all unless counted; plain coarse descent 30/30; merge U: 30 tables, block-constant and weighted descent exact in all unless counted; plain coarse descent 0/30]
+PASS LW2 IDENTITY prop:firstbound: the fine first level never exceeds the weighted coarse first level   [1000 tables; violations 0]
+PASS LW3 IDENTITY piecewise linearity: within an unchanged level signature the defect is eps times the directional derivative   [260 (table, eps) cases tested; violations 0; worst error 3.1e-12]
+PASS LW4 RECORD sensitivity the coarse view cannot see   [signature unchanged up to eps = 0.004 in 80/100; |q D x_f*[delta]| median 0.000, max 0.271, zero (<1e-6) in 90]
+PASS LW5 HYPOTHESIS weighting helps under unequal blocks: median weighted defect < median plain defect   [median weighted 0.0049 vs plain 0.0261]
+PASS LW6 RECORD descent rates and correction gain (merge U, 1000 random tables)   [descent plain 0.000, weighted 0.211; max defect plain 0.0958, weighted 0.0983; correction gain plain - weighted: median 0.0179, positive in 0.875, negative in 0.120]
+6/6 passed
+
+== engine/check_walls.py (2026-11-15; Study 37, pre-registered)
+FAIL WX1 IDENTITY prop:vanishedge: at a chamber wall the shortest edge shrinks linearly to zero and the combinatorics change   [40 segments; violations 8]
+PASS WX2 RECORD two arrangements on margin space   [91 grid points; distinct leximin signatures 52, distinct chambers 46; grid edges with a leximin change 180, with a chamber change 171, both 141]
+PASS WX3 IDENTITY prop:realmono: around closed loops the leximin point and its level partition return unchanged   [20 loops; violations 0]
+FAIL WX4 HYPOTHESIS cor:width: away from a leximin wall (distance > 10/L) the first-order law x(L) = x_lex + c_P/L improves from L = 60 to 240 in >= 18 of 20 segments   [20 segments; improved in 0]
+PASS WX5 RECORD location of maximal curvature of x(L) relative to the leximin wall (segment-parameter units)   [L=60: median 0.321; L=120: median 0.128; L=240: median 0.086]
+3/5 passed
+
+== engine/check_witness.py (2026-11-15; Study 38, pre-registered; ids DQ = pre-registered DW, renamed after the run)
+PASS DQ1 IDENTITY lem:ownarr(i): across chamber walls inside one leximin region the selected point is affine   [30 segments in 181 candidates; max second difference 6.66e-16]
+PASS DQ2 IDENTITY lem:ownarr(ii): across leximin walls inside one chamber every robust quantity is affine   [30 segments in 204 candidates; max second difference 4.93e-16]
+PASS DQ3 IDENTITY thm:witness(i): every decision flip is a sign change of the gap between the two decisions   [40 segments x 2 rules; 19 flips (3 selected, 16 robust); violations 0]
+PASS DQ4 IDENTITY thm:witness(ii): inside the own region the flip time is predicted by one affine scalar   [13 flips with the region fixed up to the flip; max error 3.31e-11; violations 0]
+FAIL DQ5 IDENTITY thm:witness(iii): one scalar is sufficient, and the direction it measures is necessary   [28 grid points with a gap zero in their leximin region; violations 0]
+PASS DQ6 IDENTITY prop:onesided: a side whose half of the cut has one cell carries no vanishing edge   [4 such sides on 40 segments; violations 0]
+PASS DQ7 HYPOTHESIS converse: every side whose half of the cut has at least two cells carries a vanishing edge   [76 such sides; violations 0]
+PASS DQ8 RECORD common refinement on the 91-point grid   [67 (signature, chamber) pairs; 52 signatures; 46 chambers]
+PASS DQ9 RECORD decision descent under merging rows {1,2}   [25 values of f3: merged selected point varies in 11; selected-point decision constant in 23; robust decision constant in 25]
+8/9 passed
+
+== engine/check_complex22.py (2026-11-15; prop:complex22, pre-registered identities)
+PASS CZ1 IDENTITY F_L = A w + B/w, and +-sqrt(B/A) are its critical points   [max relative errors 2.5e-14, 5.3e-16]
+PASS CZ2 IDENTITY A = 0 at r1 - c2 = i pi(2k+1)/L and B = 0 at r1 - c1 = i pi(2k+1)/L   [max |A|, |B|/scale 6.1e-16]
+PASS CZ3 IDENTITY around a zero of A the two critical points swap; around a circle enclosing no zero they return   [L=20: swap True, return True; L=80: swap True, return True; L=320: swap True, return True]
+PASS CZ4 IDENTITY the positive critical point tends to the leximin point with |t_L - t_lex| <= log 2 / L   [max L|t_L - t_lex|/log 2 = 0.4939]
+PASS CZ5 IDENTITY the kink at r1 = c2 is smoothed with peak curvature L/8 at the wall and width 4 arccosh(sqrt 2)/L   [L=20: peak 2.5000 (L/8 = 2.5), FWHM 3.5254/L (pred 3.5255/L); L=80: peak 10.0000 (L/8 = 10.0), FWHM 3.5254/L (pred 3.5255/L); L=320: peak 40.0000 (L/8 = 40.0), FWHM 3.5254/L (pred 3.5255/L)]
+PASS CZ6 IDENTITY fibre monodromy: a swap around each critical value, the identity around both (tau tau = id)   [around +cv: swap True; around -cv: swap True; around both: return True]
+6/6 passed
+
+== engine/check_gkz.py (2026-11-15; Study 39a, pre-registered; second run after recorded deviations; first run in study39a_gkz/check_gkz_output_run1.txt)
+PASS GZ1 IDENTITY prop:shiftinv(i): adding s to every cell shifts the leximin point by s and leaves the critical point unchanged   [2 shapes x 50 margins x 2 shifts; max leximin error 2.8e-16; max critical-point error 3.1e-16]
+PASS GZ2 IDENTITY prop:shiftinv(iii): an unbalanced chamber wall changes nothing in the leximin point   [2x3: 40 segments, max second difference 3.6e-16, signature changes 0; 3x3: 40 segments, max second difference 7.8e-16, signature changes 0]
+PASS GZ3 IDENTITY prop:gkz(a): vertices of the fibre = complements of the cells of the regular subdivision of the vector configuration   [200 margins over 2 shapes; mismatches 0]
+PASS GZ4 IDENTITY prop:gkz(b): the first-level tie set = the minimal cell containing 0 of the lower hull of the lifted exponents   [200 margins over 2 shapes; mismatches 0]
+FAIL GZ5 IDENTITY prop:gkz(b): every first-level change lies on a circuit wall of the point configuration   [2x3: 38 first-level changes, violations 0, max distance 8.3e-08; 3x3: 17 first-level changes, violations 0, max distance 7.1e-08; unresolved bisections {'2x3': 48, '3x3': 1}]
+FAIL GZ6 HYPOTHESIS every change of the full leximin signature lies on a circuit wall   [2x3: 126 signature changes, violations 15, max distance 1.4e-02; 3x3: 64 signature changes, violations 27, max distance 3.0e-02]
+PASS GZ7 RECORD walls per shape, and Study 37 grid edges with a leximin change across an unbalanced wall and no circuit wall   [2x3: {'cuts': 8, 'balanced': 0, 'circuits': 15, 'circuit_walls': 15}; 3x3: {'cuts': 24, 'balanced': 9, 'circuits': 15, 'circuit_walls': 15}; grid: 150 edges with a leximin change, 6 of them cross an unbalanced chamber wall and no circuit wall]
+PASS GZ8 RECORD 2x3: regular subdivisions of the hexagon and first-level tie sets met over 2000 margins   [14 subdivisions; 5 first-level tie sets: [['(0, 0)', '(0, 1)', '(0, 2)'], ['(0, 0)', '(1, 0)'], ['(0, 1)', '(1, 1)'], ['(0, 2)', '(1, 2)'], ['(1, 0)', '(1, 1)', '(1, 2)']]]
+6/8 passed
+
+== engine/check_troprank.py (2026-11-15; Study 40, pre-registered)
+PASS RK1 IDENTITY prop:troprank1: the leximin point is tropical rank one, x_ij = min(row max, column max)   [5 shapes x 50 tables; max deviation 0.0e+00]
+PASS RK2 IDENTITY cor:peel: exact peeling gives the leximin point and its level partition   [250 tables; max difference 4.4e-16; partition mismatches 0]
+PASS RK3 IDENTITY prop:troprank1 (converse): every table min(a_i, b_j) is the leximin point of its own margins   [250 random (a, b); max difference 1.7e-15]
+PASS RK4 IDENTITY cor:peel: every change of the leximin signature is a tie between two peeling ratios   [2x3: 112 changes, violations 0, max tie gap 2.2e-16, stalled bisections 39; 3x3: 51 changes, violations 0, max tie gap 1.9e-16, stalled bisections 3]
+PASS RK5 RECORD changes off every circuit wall, and the peeling step of their tie   [2x3: 8 of 112 off the secondary fan, 0 of them at the first step; 3x3: 23 of 51 off the secondary fan, 0 of them at the first step]
+PASS RK6 RECORD time per 4x6 table   [leximin_float 180.6 ms; exact peeling 0.32 ms]
+6/6 passed
+
+== engine/check_rcwalls.py (2026-11-15; Study 40b, pre-registered). Run 1 and run 2 FAILED (recorded deviations in study40_troprank/DEVIATION_study40b.md); outputs kept as check_rcwalls_output_run1.txt and _run2.txt. Run 3:
+PASS RK7 IDENTITY prop:rcwalls: the leximin point is exactly affine inside one block pattern and kinks at every change   [60 exact segments x 201 points; violations 0]
+PASS RK8 IDENTITY prop:rcwalls(i): crossing a tie of two rows or two columns is not a wall   [66 windows with a same-family order change; violations 0]
+PASS RK9 IDENTITY prop:rcwalls(ii): crossing a row-column tie is a wall   [95 block-pattern changes; violations 0]
+PASS RK10 IDENTITY degenerate margins: exact peeling = leximin, in min-envelope form exactly   [150 tables from integer tables; max difference 1.7e-16; min-envelope violations 0; solver stalls 0]
+PASS RK11 RECORD counts per shape   [{'2x3': {'same_family_windows': 4, 'block_changes': 23}, '3x3': {'same_family_windows': 16, 'block_changes': 20}, '3x4': {'same_family_windows': 46, 'block_changes': 52}}]
+5/5 passed
+
+== Study 39 (2026-11-15; pre-registered in engine/study39_structural/)
+-- engine/check_threeway.py
+PASS TW1 HYPOTHESIS axial three-way leximin has the min form x_ijk = min(A_i, B_j, C_k)   [90 tables; max deviation 0.0e+00; tables with cells off the min form 0; solver failures 0]
+FAIL TW2 HYPOTHESIS planar three-way leximin has the min form x_ijk = min(A_jk, B_ik, C_ij)   [90 tables; max deviation 1.2e-01; tables with cells off the min form 69; solver failures 0]
+PASS TW3 RECORD peeling analogue and fraction of cells off the min form   [axial: peeling analogue agrees on 90 of 90, mean fraction of cells off the min form 0.000; planar: peeling analogue agrees on 21 of 90, mean fraction of cells off the min form 0.123]
+2/3 passed
+-- engine/check_peelbench.py
+  n=5: {'peel_float_ms': np.float64(0.04076957702636719), 'peel_exact_ms': np.float64(0.2472400665283203), 'lex_lp_ms': np.float64(193.1772232055664), 'maxmin_lp_ms': np.float64(2.6369094848632812), 'steps': 6}
+  n=10: {'peel_float_ms': np.float64(0.091552734375), 'peel_exact_ms': np.float64(0.8213520050048828), 'lex_lp_ms': np.float64(1958.0762386322021), 'maxmin_lp_ms': np.float64(3.275632858276367), 'steps': 17}
+  n=15: {'peel_float_ms': np.float64(0.1704692840576172), 'peel_exact_ms': np.float64(1.8322467803955078), 'lex_lp_ms': np.float64(10424.425601959229), 'maxmin_lp_ms': np.float64(5.28717041015625), 'steps': 27}
+  n=20: {'peel_float_ms': np.float64(0.32258033752441406), 'peel_exact_ms': np.float64(3.3342838287353516), 'lex_lp_ms': np.float64(57264.97578620911), 'maxmin_lp_ms': np.float64(10.498762130737305), 'steps': 37}
+  n=30: {'peel_float_ms': np.float64(0.7717609405517578), 'peel_exact_ms': np.float64(8.143186569213867), 'lex_lp_ms': np.float64(1472255.9502124786), 'maxmin_lp_ms': np.float64(27.889251708984375), 'steps': 57}
+PASS BM1 IDENTITY the min-envelope solver agrees with the sequential-LP leximin   [21 tables of sizes 5x5 to 30x30 compared; max difference 2.2e-16; LP runs over 300 s skipped: 4]
+PASS BM2 RECORD median times (ms) per size; float peeling alone for large tables   [5x5: peel 0.04, exact 0.2, max-min LP 2.6, sequential-LP leximin 193.2; 10x10: peel 0.09, exact 0.8, max-min LP 3.3, sequential-LP leximin 1958.1; 15x15: peel 0.17, exact 1.8, max-min LP 5.3, sequential-LP leximin 10424.4; 20x20: peel 0.32, exact 3.3, max-min LP 10.5, sequential-LP leximin 57265.0; 30x30: peel 0.77, exact 8.1, max-min LP 27.9, sequential-LP leximin 1472256.0; 100x100: peel 7; 300x300: peel 82; 1000x1000: peel 1081]
+PASS BM3 RECORD steps and exact ties on large tables (float margins)   [100x100: 197 steps, 0 row-column and 0 same-family exact ties; 300x300: 597 steps, 0 row-column and 0 same-family exact ties; 1000x1000: 1995 steps, 0 row-column and 0 same-family exact ties]
+3/3 passed
+-- engine/check_walltrack.py
+PASS WT1 IDENTITY the incremental engine's table equals a fresh exact peeling at every query time   [40 paths (3x4, 5x7, 10x10) x 100 rational query times; mismatches 0]
+PASS WT2 IDENTITY no change of block pattern is missed between reported events   [40 paths x 400 fresh peelings; missed changes 0]
+PASS WT3 RECORD events per path and fraction of peeling steps recomputed per event   [3x4: 3.6 events per path (2.6 row-column), 60% of steps recomputed per event; 5x7: 18.7 events per path (11.6 row-column), 52% of steps recomputed per event; 10x10: 77.0 events per path (46.0 row-column), 49% of steps recomputed per event]
+3/3 passed
+-- engine/check_complex23.py (crashed in CO5; CO2-CO4 evaluated from this log in study39_structural/CO_evaluation_from_log.txt)
+PASS CO1 IDENTITY 2x3: six complex critical points, exactly one real positive (the positive critical point)   [20 margins at L = 20; counts [6], real positive [1]]
+  first-step wall: L=20: 0.1070 (L|z| 2.139), L=40: 0.0521 (L|z| 2.084), L=80: 0.0258 (L|z| 2.067)
+  first-step wall: L=20: 0.1352 (L|z| 2.705), L=40: 0.0671 (L|z| 2.683), L=80: 0.0336 (L|z| 2.686)
+  first-step wall: L=20: 0.1100 (L|z| 2.201), L=40: 0.0534 (L|z| 2.136), L=80: 0.0260 (L|z| 2.084)
+  first-step wall: L=20: 0.1369 (L|z| 2.738), L=40: 0.0674 (L|z| 2.698), L=80: 0.0336 (L|z| 2.686)
+  first-step wall: L=20: 0.1371 (L|z| 2.742), L=40: 0.0676 (L|z| 2.704), L=80: 0.0336 (L|z| 2.689)
+  first-step wall: L=20: 0.1379 (L|z| 2.759), L=40: 0.0679 (L|z| 2.715), L=80: 0.0336 (L|z| 2.690)
+  first-step wall: L=20: 0.1087 (L|z| 2.174), L=40: 0.0530 (L|z| 2.121), L=80: 0.0261 (L|z| 2.086)
+  first-step wall: L=20: 0.1086 (L|z| 2.171), L=40: 0.0528 (L|z| 2.113), L=80: 0.0101 (L|z| 0.809)
+  first-step wall: L=20: 0.1360 (L|z| 2.720), L=40: 0.0672 (L|z| 2.688), L=80: 0.0336 (L|z| 2.685)
+  first-step wall: L=20: 0.1355 (L|z| 2.710), L=40: 0.0671 (L|z| 2.685), L=80: 0.0336 (L|z| 2.686)
+  later-step wall: L=20: 0.1072 (L|z| 2.145), L=40: 0.0511 (L|z| 2.045), L=80: 0.0261 (L|z| 2.091)
+  later-step wall: L=20: 0.1149 (L|z| 2.298), L=40: 0.0567 (L|z| 2.269), L=80: 0.0278 (L|z| 2.228)
+  later-step wall: L=20: 0.1063 (L|z| 2.127), L=40: 0.0515 (L|z| 2.062), L=80: 0.0262 (L|z| 2.095)
+  later-step wall: L=20: 0.1426 (L|z| 2.851), L=40: 0.0684 (L|z| 2.737), L=80: 0.0330 (L|z| 2.640)
+  later-step wall: L=20: 0.1100 (L|z| 2.200), L=40: 0.0537 (L|z| 2.147), L=80: 0.0248 (L|z| 1.981)
+  later-step wall: L=20: 0.1447 (L|z| 2.894), L=40: 0.0691 (L|z| 2.763), L=80: 0.0332 (L|z| 2.658)
+  later-step wall: L=20: 0.0305 (L|z| 0.611), L=40: 0.0555 (L|z| 2.218), L=80: 0.0273 (L|z| 2.184)
+  later-step wall: L=20: 0.1360 (L|z| 2.720), L=40: 0.0615 (L|z| 2.459), L=80: 0.0319 (L|z| 2.554)
+  later-step wall: L=20: 0.1100 (L|z| 2.199), L=40: 0.0536 (L|z| 2.144), L=80: 0.0249 (L|z| 1.996)
+  later-step wall: L=20: 0.1126 (L|z| 2.253), L=40: 0.0143 (L|z| 0.574), L=80: 0.0272 (L|z| 2.178)
+  control: L=20: 0.1732 (L|z| 3.464), L=40: 0.0995 (L|z| 3.980), L=80: 0.0666 (L|z| 5.324)
+  control: L=20: 0.1948 (L|z| 3.896), L=40: 0.1085 (L|z| 4.339), L=80: 0.0914 (L|z| 7.313)
+  control: L=20: 0.1435 (L|z| 2.871), L=40: 0.0713 (L|z| 2.853), L=80: none
+  control: L=20: 0.1497 (L|z| 2.994), L=40: 0.0460 (L|z| 1.842), L=80: 0.0521 (L|z| 4.172)
+  control: L=20: 0.1333 (L|z| 2.666), L=40: 0.0687 (L|z| 2.748), L=80: 0.0416 (L|z| 3.331)
+  control: L=20: 0.1107 (L|z| 2.213), L=40: 0.0594 (L|z| 2.378), L=80: 0.0308 (L|z| 2.462)
+  control: L=20: 0.1342 (L|z| 2.684), L=40: 0.0685 (L|z| 2.740), L=80: 0.0404 (L|z| 3.233)
+  control: L=20: 0.1800 (L|z| 3.601), L=40: 0.0976 (L|z| 3.904), L=80: 0.0696 (L|z| 5.566)
+  control: L=20: 0.1459 (L|z| 2.919), L=40: 0.0820 (L|z| 3.279), L=80: 0.0893 (L|z| 7.148)
+  control: L=20: 0.1505 (L|z| 3.011), L=40: 0.0768 (L|z| 3.072), L=80: 0.0469 (L|z| 3.751)
+  same-family tie: L=20: 0.4486 (L|z| 8.973), L=40: 0.6789 (L|z| 27.155), L=80: none
+  same-family tie: L=20: 0.1931 (L|z| 3.862), L=40: 0.1012 (L|z| 4.049), L=80: 0.0577 (L|z| 4.615)
+  same-family tie: L=20: 0.3595 (L|z| 7.191), L=40: 0.2384 (L|z| 9.535), L=80: 0.2382 (L|z| 19.053)
+  same-family tie: L=20: 0.1820 (L|z| 3.641), L=40: 0.0999 (L|z| 3.996), L=80: 0.0579 (L|z| 4.631)
+  same-family tie: L=20: 0.4652 (L|z| 9.305), L=40: none, L=80: none
+  same-family tie: L=20: none, L=40: none, L=80: none
+  same-family tie: L=20: 0.4935 (L|z| 9.869), L=40: 0.3760 (L|z| 15.041), L=80: none
+FAIL CO2 HYPOTHESIS first-step walls (evaluated from log)
+FAIL CO3 HYPOTHESIS later-step walls (evaluated from log)
+FAIL CO4 HYPOTHESIS control points (evaluated from log)
+CO5 RECORD same-family ties: 7 of 10 points logged before the crash
+
+== engine/check_lefschetz23.py (2026-11-15; Study 41, pre-registered). Run 1 (vacuous: tracker failed on all margins) kept as study41_lefschetz/check_lefschetz23_output_run1.txt; run 2 after the recorded deviation:
+FAIL VC1 IDENTITY W is a Lefschetz fibration: six Morse critical points with distinct critical values   [20 margins at L = 20]
+PASS VC2 IDENTITY every singular fibre is nodal: exactly two branch points meet   [120 critical values]
+PASS VC3 IDENTITY Picard-Lefschetz: each local monodromy on H1 of the elliptic fibre is a transvection   [120 loops]
+FAIL VC4 IDENTITY the ordered product of the six local monodromies is the monodromy around all of them   [20 margins]
+PASS VC5 HYPOTHESIS the monodromy at infinity is of type I_6 (trace 2, M - I divisible by exactly 6)   [(trace, gcd) over 20 margins: [(2, 6)]]
+PASS VC6 RECORD vanishing classes and intersection numbers (first margin)   [classes [(-3, 1), (-2, 1), (-2, 1), (-1, 1), (-2, 1), (0, 1)]; det matrix [[0, -1, -1, -2, -1, -3], [1, 0, 0, -1, 0, -2], [1, 0, 0, -1, 0, -2], [2, 1, 1, 0, 1, -1], [1, 0, 0, -1, 0, -2], [3, 2, 2, 1, 2, 0]]]
+FAIL VC7 HYPOTHESIS a loop around a collision exchanges the positive critical point with one other, fixing the rest   [perm [3, 1, 2, 0, 4, 5], positive 0; perm [3, 1, 2, 0, 4, 5], positive 0; perm [2, 1, 0, 3, 4, 5], positive 0; perm [4, 3, 5, 1, 0, 2], positive 0; perm [5, 3, 2, 1, 4, 0], positive 0]
+FAIL VC8 HYPOTHESIS the two colliding vanishing classes meet once (|det| = 1)   [dets [1, 1, 1, None, None]]
+PASS VC9 RECORD real wall crossing: critical-value separation and changes of their angular order   [min separation 2.83e-04, order changes 3; min separation 1.03e-03, order changes 3; min separation 2.46e-04, order changes 3; min separation 9.55e-04, order changes 6; min separation 1.33e-05, order changes 3]
+5/9 passed
+
+== Study 42 (2026-11-15; pre-registered in engine/study42_ties/)
+-- engine/check_faces.py
+PASS FC1 IDENTITY 2x2: both proper faces admit escapes; 2x3: none does   [2x2: 2 of 2; 2x3: 0 of 12]
+PASS FC2 RECORD faces admitting escapes in larger shapes   [2x4: 6 of 26 proper faces (dimensions [2]), e.g. [['(0, 0)', '(0, 1)', '(1, 2)', '(1, 3)']]; 2x5: 0 of 140 proper faces (dimensions []), e.g. []; 3x3: 15 of 48 proper faces (dimensions [2, 3]), e.g. [['(0, 0)', '(0, 1)', '(1, 2)', '(2, 2)']]; 3x4: 0 of 1008 proper faces (dimensions []), e.g. []]
+PASS FC3 RECORD normalised volumes (numbers of critical points)   [2x2: 4; 2x3: 6; 2x4: 12; 2x5: 30; 3x3: 18; 3x4: 96]
+3/3 passed
+-- engine/check_tropcrit.py (second run; first run crashed, kept as study42_ties/check_tropcrit_output_run1.txt)
+PASS TV1 IDENTITY the positive critical value has valuation within log(6)/L of the first leximin level   [max |val - h1| L / log 6 = 0.777; margins skipped (six critical points not found) {'first': 0, 'later': 1, 'same': 0, 'control': 0}]
+PASS TV2 HYPOTHESIS at first-step walls the dominant tropical critical value ties with another (Delta_400 <= 0.35 Delta_100)   [ratios [0.242, 0.248, 0.236, 0.245, 0.247, 0.25, 0.25, 0.244, 0.25, 0.249]]
+FAIL TV3 HYPOTHESIS at control points it does not (Delta_400 >= 0.5 Delta_100 and > 0.01)   [(Delta_100, Delta_400) [(0.0002, 0.0), (0.0001, 0.0), (0.0001, 0.0), (0.0001, 0.0), (0.0001, 0.0), (0.0, 0.0), (0.0003, 0.0), (0.0001, 0.0), (0.0001, 0.0), (0.0, 0.0)]]
+PASS TV4 RECORD later-step walls and same-family ties   [later [0.0, 0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, None, 0.0]; same [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
+3/4 passed
+-- engine/check_mhties.py (second run; first run crashed before any measurement)
+FAIL MH1 HYPOTHESIS a small loop around the collision exchanges the positive critical point with exactly one other   [8 of 10]
+FAIL MH2 HYPOTHESIS the braid of critical values is a single half-twist (exponent sum +-1)   [exponent sums [-3, -3, -3, -3, -3, -3, -3, -3, None, -3]]
+PASS MH3 HYPOTHESIS the exchanged vanishing classes meet once   [dets [1, 1, 1, 1, 1, 1, 1, 1, None, 1]]
+PASS MH4 RECORD later-step walls   [transposition with the positive one 9 of 10; exponent sums [-3, -3, -3, -3, None, -3, -3, -3, -3, -3]; dets [1, 1, 1, 1, None, 1, 1, 1, 1, 1]]
+2/4 passed
+
+== engine/check_phases.py (2026-11-16; Study 43, pre-registered)
+PASS PH1 IDENTITY row bottleneck: three dominant values 3 e^{-L h1} at phases 0, +-2pi/3   [10 points; violating 0]
+PASS PH2 HYPOTHESIS column bottleneck: dominant values near +-2 e^{-L h1}   [10 points; violating 0; group sizes [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]]
+PASS PH3 IDENTITY first-step walls: the leading form's critical values 3.7996, 2.9597 e^{+-0.7724 pi i}, 0.3305 e^{pi i}   [10 points; violating 0]
+FAIL PH4 HYPOTHESIS later-step walls: no change of the dominant pattern   [changed [True, None, True, True, True, True, True, True, True, True]]
+PASS PH5 RECORD same-family first-step ties: change of the dominant pattern   [changed [True, True, False, True, True, False, True, True, True, True]]
+PASS PH6 RECORD skipped margins   [{'later': 1}]
+5/6 passed
+
+==== Study 44 (2026-11-16): engine/check_wallcross.py (part W; killed by a container restart during XW1, XW2-XW4 evaluated from the logged per-segment lines by the registered criteria, see engine/study44_wallcross/DEVIATION_W_restart.md), engine/check_wallcross_xw1.py (XW1 alone, rerun), engine/check_multiplicity.py (part M)
+FAIL XW1 IDENTITY between angular swaps the distinguished classes are constant; at a swap the far class changes by a transvection by the near class   [4 segments, 25 swap events checked; violations 2]
+PASS XW2 HYPOTHESIS crossing a first-step wall, exactly one real critical value changes sign   [10 segments; sign changes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]] (evaluated from log)
+FAIL XW3 HYPOTHESIS along control segments no real critical value changes sign   [9 segments; sign changes [3, 1, 1, 0, 1, 1, 1, 7, 4]] (evaluated from log)
+PASS XW4 RECORD later walls, same-family ties, angular swaps   [later [4, 2, 0, 4, 1, 1, 5, 1, 1]; same [2, 2, 6, 2, 2, 4, 2, 2, 2, 2]; swaps first [8, 7, 8, 7, 7, 6, 7, 8, 6, 5], control [2, 6, 7, 11, 6, 5, 4, 2, 5]] (evaluated from log)
+FAIL XW5 HYPOTHESIS the dominant count changes across later walls (>= 6/10) but rarely across same-family ties (<= 3/10)   [later 9 of 9; same-family 0 of 9]
+PASS XW6 RECORD branch jumps and skipped margins   [jumps 14; skipped 2]
+
+==== Study 45 (2026-11-17): engine/check_example45.py (checkpointed by stage; coding notes in engine/study45_example/NOTES_study45.md)
+PASS CE1 IDENTITY exact wall: the only tie on [-1/10, 1/10] is the first-level row0/col0 tie at t = 0   [ties [{'t': '0', 'step': 1, 'tied': ['c0', 'r0'], 'value': '1/10'}]]
+PASS CE2 IDENTITY exact leading form: wall polynomial, the four wall values, exact zero and collision parameters   [-s**4 - s**3 + 8*s**2 + 36*s + 11 = 0; values [(0.3305, 1.0), (2.9597, -0.7724), (2.9597, 0.7724), (3.7996, 0.0)]; zero at b in ['3*2**(2/3)/4', '-3*2**(2/3)/8 - 3*2**(2/3)*sqrt(3)*I/8', '-3*2**(2/3)/8 + 3*2**(2/3)*sqrt(3)*I/8'] (row), a in ['-2*3**(1/4)/3', '2*3**(1/4)/3', '-2*3**(1/4)*I/3', '2*3**(1/4)*I/3'] (column); collisions -256*b**3 - 27 = 0, -27*a**4 - 256 = 0]
+PASS CE3 IDENTITY six certified, disjoint critical points with disjoint values at t = -1/10, 0, 1/10   [TA: 6 found; T0: 6 found; TB: 6 found]
+PASS CE4 IDENTITY certified continuation over [-1/10, 1/10], boxes pairwise disjoint on every step   [850 steps; branch -> point at t = 1/10: [0, 1, 2, 3, 4, 5]]
+PASS CE5 IDENTITY complete braid word as seen from s0, every swap certified simple and adjacent   [R = 480; start order [5, 4, 2, 1, 3, 0]; word t in [-0.00103, -0.00069]: near 3, far 0, eps -1, positions 4,5, t in [0.06745, 0.06777]: near 1, far 0, eps -1, positions 3,4, t in [0.07464, 0.07495]: near 2, far 4, eps +1, positions 1,2]
+PASS CE6 HYPOTHESIS exactly one real critical value changes sign along the segment   [branch 0: non-real; branch 1: signs [1, 1], zeros [(0.01494, 0.01572, -1, 1)]; branch 2: non-real; branch 3: signs [0, 0], zeros []; branch 4: signs [0, 1], zeros []; branch 5: signs [1, 0], zeros []]
+PASS CE7 IDENTITY certified fold: regular zero of (grad W, det Hess), Hessian rank 1, cubic term nonzero (A2)   [t* = [-0.05569483882808067, 0.07853981633974483]; s* = ['[+/- 9.59e-22]', '[0.46212148350969837147 +/- 3.05e-21]']; candidates found 1]
+PASS CE8 HYPOTHESIS loop around t* exchanges exactly the colliding pair; their value difference turns by +-3 pi   [rho = 0.02356; permutation [[0], [2], [1], [3], [4], [5]]; turn/pi [3.00000000000000000 +/- 9.31e-19]; the pair is segment branches [1, 2]]
+PASS CE9 IDENTITY Picard-Lefschetz at both ends: transvections with one kappa, ordered product = monodromy at infinity (trace 2, gcd 6)   [kappa [-1]; TA: classes (angular order) [[-1, 0], [-1, 0], [-3, 1], [-2, 1], [0, 1], [3, 1]], M_big [[1, 6], [0, 1]]; TB: classes (angular order) [[-1, 0], [-3, 1], [-2, 1], [-1, 1], [-2, 1], [0, 1]], M_big [[1, 6], [0, 1]]]
+PASS CE10 IDENTITY closing identity: Gram matrix at t = 1/10 = Hurwitz image of t = -1/10 under the braid word, one global sign c   [c that works: ['-1']; G_start [[0, 0, -1, -1, -1, -1], [0, 0, -1, -1, -1, -1], [1, 1, 0, -1, -3, -6], [1, 1, 1, 0, -2, -5], [1, 1, 3, 2, 0, -3], [1, 1, 6, 5, 3, 0]]; G_end [[0, -1, -1, -1, -1, -1], [1, 0, -1, -2, -1, -3], [1, 1, 0, -1, 0, -2], [1, 2, 1, 0, 1, -1], [1, 1, 0, -1, 0, -2], [1, 3, 2, 1, 2, 0]]; G_end equals G_start without the moves: False]
+PASS CE11 RECORD transfer: scaled critical values at t = 0, L = 160, against the wall-form values   [branch 0: wall value 2 within 4.0e-11 (next 2.72); branch 1: wall value 0 within 2.7e-11 (next 2.72); branch 2: wall value 3 within 4.0e-11 (next 2.72); branch 3: wall value 1 within 4.6e-11 (next 4.13); branch 4: wall value 2 within 2.6e+10 (next 26489122127.61); branch 5: wall value 2 within 2.4e+17 (next 235385266837019968.00)]
+PASS CE12 RECORD independent re-derivation (separate agent, mpmath.iv, own code): CE3 at t = +-1/10 and CE7   [t = -1/10: 6 certified, values one-to-one with ours True; t = 1/10: 6 certified, one-to-one True; fold: {'their_certified': True, 'their_rank_one': True, 'their_cubic_nonzero': True, 't_star_overlap': True, 'value_overlap': True}]
+12/12 passed
+
+==== Study 46 (2026-11-17): engine/check_leadbraid46.py (checkpointed; notes in engine/study46_leadbraid/NOTES_study46.md)
+PASS LB1 IDENTITY model braid of the leading families, certified, continuous at the wall, no collision   [beta_lead = s1 s2^-1 (projection reading, 196 steps), permutation [1, 2, 3, 0]; leading-sector Hurwitz word from R' = 13: near 0 far 1 eps -1 at tau in [-1.1687, -1.1437], near 3 far 1 eps -1 at tau in [1.3731, 1.3846]; zero crossing at tau = 0.26162 (exact -2 ln(2 3^(1/4) / 3)), branch [3]]
+PASS LB2 HYPOTHESIS uniform certificate for L0 = 40: leading critical values of F_{tau,c} disjoint on every step for all c in the box   [{'L0': 40, 'ok': True, 'eps': [0.006737946999085467, 0.00012340980408667956], 'pieces': 4, 'min_separation_lower': 1.3668961245566607, 'max_value_radius': 0.27562964940443635, 'steps': 971}]
+PASS LB3 RECORD smallest L0 in {20, 25, 30, 35, 40} with the uniform certificate   [smallest certified L0 = 30; tried [25, 30, 35, 40]; L0 = 40: ok, 4 pieces; L0 = 35: ok, 4 pieces; L0 = 30: ok, 16 pieces; L0 = 25: failed: tracking failed at p = 1.384681365608058]
+PASS LB4 HYPOTHESIS direct confirmation on W at L = 20, 40, 80, 160: uniformly within half the model separation, and the same element of B_4   [L = 20: close True (max dist / half separation 0.331), braid equal True; L = 40: close True (max dist / half separation 0.18), braid equal True; L = 80: close True (max dist / half separation 0.117), braid equal True; L = 160: close True (max dist / half separation 0.159), braid equal True]
+PASS LB5 RECORD distances and the full six-value Hurwitz words   [L = 20: max |scaled W - model| = 0.241; R = 470; word (3,0,-1,lead), (1,0,-1,lead), (2,4,+1) || L = 40: max |scaled W - model| = 0.222; R = 9800; word (3,0,-1,lead), (1,0,-1,lead) || L = 80: max |scaled W - model| = 0.181; R = 3700000; word (3,0,-1,lead), (1,0,-1,lead) || L = 160: max |scaled W - model| = 0.244; R = 610000000000; word (3,0,-1,lead), (1,0,-1,lead)]
+PASS LB6 RECORD zero crossing of a leading value: model and W   [model tau = 0.26162; L = 20: branch 1 tau in [0.3057, 0.3093]; L = 40: branch 1 tau in [0.2586, 0.2642]; L = 80: branch 1 tau in [0.2588, 0.2618]; L = 160: branch 1 tau in [0.2612, 0.2651]]
+
+==== Study 45V (2026-11-17): engine/check_valuation45.py (notes in engine/study45_example/valuation/NOTES_valuation.md)
+PASS VL1 HYPOTHESIS t = 0: leading-group valuations inside the fibre for L >= 40, within 0.01 of the leximin point at L = 320   [inside by L: [(20, [True, True, True, True]), (40, [True, True, True, True]), (80, [True, True, True, True]), (160, [True, True, True, True]), (320, [True, True, True, True])]; distance to u* at L = 320: [0.00019, 0.00101, 0.00019, 0.00062]]
+PASS VL2 HYPOTHESIS t = 0: far valuations outside the fibre at every recorded L   [outside by L: [(20, [True, True]), (40, [True, True]), (80, [True, True]), (160, [True, True]), (320, [True, True])]; u at L = 320: [[-0.295, 0.185], [0.255, -0.465]]]
+PASS VL3 HYPOTHESIS t = 0: val(s) -> 1/10 for the leading group (within 0.01 at L = 320), val(s) < 0 for the far values   [leading [0.09661, 0.10346, 0.09661, 0.09583]; far (upper) [-0.05, -0.15]]
+PASS VL4 RECORD t = -1/10 and 1/10: valuations by branch   [TA (L up to 320): branch 0: ['in', 'in', 'in', 'in', 'in'], u(320) [0.0033, 0.0233], val(s) 0.0632; branch 1: ['out', 'out', 'out', 'out', '?'], u(320) [0.07, 0.09], val(s) 0.0; branch 2: ['in', 'in', 'in', 'in', 'in'], u(320) [0.0033, 0.0233], val(s) 0.0632; branch 3: ['in', 'in', 'in', 'in', 'in'], u(320) [0.0033, 0.0233], val(s) 0.0632; branch 4: ['out', 'out', 'out', 'out', 'out'], u(320) [-0.43, 0.24], val(s) -0.15; branch 5: ['out', 'out', 'out', 'out', 'out'], u(320) [0.32, -0.61], val(s) -0.25; inside at L = 320: 3 || TB (L up to 80): branch 0: ['in', 'in', 'in'], u(80) [-0.0101, 0.0301], val(s) 0.0913; branch 1: ['in', 'in', 'in'], u(80) [-0.0098, 0.0299], val(s) 0.0916; branch 2: ['in', 'in', 'in'], u(80) [-0.0101, 0.0301], val(s) 0.0913; branch 3: ['in', 'in', 'in'], u(80) [-0.0099, 0.0298], val(s) 0.0911; branch 4: ['in', 'in', 'in'], u(80) [-0.16, 0.13], val(s) 0.05; branch 5: ['out', 'out', 'out'], u(80) [0.19, -0.32], val(s) -0.05; inside at L = 80: 5]
+
+==== Study 47 (2026-11-17): engine/check_transition47.py (notes in engine/study47_transition/NOTES_study47.md); hand proof constants: engine/check_handproof48.py (no checks)
+FAIL LT1 HYPOTHESIS leading-braid certificate on every L-interval [L1, L1+2], L1 = 28, ..., 20 (so the leading braid holds for all L >= 20)   [[28,30]: ok; [26,28]: ok; [24,26]: ok; [22,24]: ok; [20,22]: failed (tracking failed at p = 1.9415829876466315)]
+PASS LT2 RECORD below L = 20: first failure and diagnosis   [; diagnosis at L = 20: tau -2.00: 5 critical points, moduli [np.float64(2.8881), np.float64(2.8881), np.float64(3.2602), np.float64(3.7293), np.float64(76.2012)]; tau -1.50: 6 critical points, moduli [np.float64(2.5962), np.float64(2.8633), np.float64(2.8633), np.float64(3.355), np.float64(54.6046), np.float64(403.4297)]; tau -1.00: 5 critical points, moduli [np.float64(1.7239), np.float64(2.8493), np.float64(2.8493), np.float64(3.4815), np.float64(39.1338)]; tau -0.50: 6 critical points, moduli [np.float64(1.0074), np.float64(2.8646), np.float64(2.8646), np.float64(3.6487), np.float64(28.0561), np.float64(207.1309)]; tau +0.00: 6 critical points, moduli [np.float64(0.3714), np.float64(2.9326), np.float64(2.9326), np.float64(3.8676), np.float64(20.1332), np.float64(148.4202)]; tau +0.50: 6 critical points, moduli [np.float64(0.1978), np.float64(2.6047), np.float64(2.6047), np.float64(3.5141), np.float64(12.261), np.float64(90.0287)]; tau +1.00: 5 critical points, moduli [np.float64(0.6014), np.float64(2.3771), np.float64(2.3771), np.float64(3.2361), np.float64(7.5185)]; tau +1.50: 5 critical points, moduli [np.float64(0.8894), np.float64(2.2261), np.float64(2.2261), np.float64(3.0218), np.float64(4.6947)]; tau +2.00: 6 critical points, moduli [np.float64(1.093), np.float64(2.1309), np.float64(2.1309), np.float64(2.8611), np.float64(3.068), np.float64(20.1375)]]
+PASS LT3 RECORD direct W, L = 20..30, 40: leading and six-value braids, Hurwitz words (rule and fixed base point), end orders   [L = 20: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 470: [(3, 0, -1), (1, 0, -1), (2, 4, 1)]; fixed: [(3, 0, -1), (1, 0, -1), (2, 4, 1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 21: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 550: [(3, 0, -1), (1, 0, -1), (2, 4, 1)]; fixed: [(3, 0, -1), (1, 0, -1), (2, 4, 1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 22: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 640: [(3, 0, -1), (1, 0, -1), (2, 4, 1)]; fixed: [(3, 0, -1), (1, 0, -1), (2, 4, 1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 23: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 750: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 24: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 870: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 25: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 1100: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 26: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 1200: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 27: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 1400: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 28: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 1600: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 29: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 1900: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 30: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 2200: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]] || L = 40: B4 s1 s2^-1; B6 s3 s4^-1; rule R = 9800: [(3, 0, -1), (1, 0, -1)]; fixed: [(3, 0, -1), (1, 0, -1)]; ends [[5, 4, 1, 0, 2, 3], [5, 4, 0, 2, 1, 3]]]
+PASS LT4 HYPOTHESIS the leading B_4 element is sigma_1 sigma_2^{-1} at every L in {20, ..., 30, 40}   [[(20, 's1 s2^-1'), (21, 's1 s2^-1'), (22, 's1 s2^-1'), (23, 's1 s2^-1'), (24, 's1 s2^-1'), (25, 's1 s2^-1'), (26, 's1 s2^-1'), (27, 's1 s2^-1'), (28, 's1 s2^-1'), (29, 's1 s2^-1'), (30, 's1 s2^-1'), (40, 's1 s2^-1')]]
+PASS LT5 RECORD classification of the extra letter: (E) exit through the window end, (B) base-point artifact, (C) collision   [present at L = [20, 21, 22]; positions [(20, [[1.4956, 1.4978]]), (21, [[1.7234, 1.7256]]), (22, [[1.9488, 1.9505]])]; (E) True; (B) False; (C) B_6 changes between []]
+PASS LT6 RECORD collisions between consecutive L (if any)   [none: the six-value braid element is the same at all L tested]
+
+==== Study 48 (2026-11-17): engine/check_ties24.py (exact, no checks), engine/check_fold48.py (notes in engine/study48_2x4/NOTES_study48.md)
+PASS FL1 HYPOTHESIS fold persistence: certified real fold with t real, rank 2, nonzero cubic, at every L; convergence to tau* and to 3.5095 i   [L = 40: tau_f = -1.903969, scaled value -3.49976 i, cubic [-1.25772559; L = 60: tau_f = -1.908892, scaled value -3.50839 i, cubic [-3.57252929; L = 80: tau_f = -1.909461, scaled value -3.50939 i, cubic [-9.87393937; L = 120: tau_f = -1.909541, scaled value -3.50953 i, cubic [-7.49091562; tau* = -1.909543, |v*| = 3.50953]
+PASS FL2 HYPOTHESIS two separate local events: loop permutation = two transpositions (the nearest pairs at +-v_f), each pair turning +-3 pi, same sign   [L = 40, rho = 0.5: pairs [[2, 4], [3, 5]], turns/pi [3.0, 3.0]; L = 40, rho = 0.25: pairs [[2, 4], [3, 5]], turns/pi [3.0, 3.0]; L = 80, rho = 0.5: pairs [[2, 4], [3, 5]], turns/pi [3.0, 3.0]; L = 80, rho = 0.25: pairs [[2, 4], [3, 5]], turns/pi [3.0, 3.0]]
+PASS FL3 HYPOTHESIS detour monodromy: loop braid = H_1^{3e} H_2^{3e}; beta(above)^-1 beta(below) = transported loop braid   [L = 40, rho = 0.5: loop [[2, -1], [4, -1], [2, -1], [4, -1], [2, -1], [4, -1]], matches e = ['1'], quotient ok True, discs free True; L = 40, rho = 0.25: loop [[2, -1], [4, -1], [2, -1], [4, -1], [2, -1], [4, -1]], matches e = ['1'], quotient ok True, discs free True; L = 80, rho = 0.5: loop [[2, -1], [4, -1], [2, -1], [4, -1], [2, -1], [4, -1]], matches e = ['1'], quotient ok True, discs free True; L = 80, rho = 0.25: loop [[2, -1], [4, -1], [2, -1], [4, -1], [2, -1], [4, -1]], matches e = ['1'], quotient ok True, discs free True]
+PASS FL4 HYPOTHESIS stability under a smaller detour radius (as elements of B_6)   [L = 40: above [[1, -1], [5, -1], [2, 1], [4, 1], [3, -1]], below [[1, -1], [5, -1], [2, -1], [4, -1], [2, -1], [4, -1], [3, -1]]; L = 80: above [[1, -1], [5, -1], [2, 1], [4, 1], [3, -1]], below [[1, -1], [5, -1], [2, -1], [4, -1], [2, -1], [4, -1], [3, -1]]]
+PASS FL5 RECORD local Picard-Lefschetz data at each fold: A2 germ (splitting lemma, from FL1), vanishing 2-spheres meeting with intersection +-1; derived, not computed   [global classes in H_2 of the fibre not computed]
+PASS FL6 RECORD capture: first L from which no far value enters the leading range on the window; valuation crossing   [float following failed for L <= 35 ([10, 15, 20, 25, 30, 35]); entries (first tau): {40: 2.75, 45: 3.3500000000000005, 50: 3.95}; no entry for L >= 55; valuation crossing at L = 400: t_c = 0.1 (gap at t = 0: -0.0517), 4/|t_c| = 40.0]
+
+==== Study 49 (2026-11-17): engine/check_euler49.py
+PASS EU1 IDENTITY the reference collection is exceptional (chi upper unitriangular)   [chi = [['1', '0', '0', '-1', '-1', '-1'], ['0', '1', '0', '-1', '-1', '-1'], ['0', '0', '1', '-1', '-1', '-1'], ['0', '0', '0', '1', '3', '6'], ['0', '0', '0', '0', '1', '3'], ['0', '0', '0', '0', '0', '1']]]
+PASS EU2 IDENTITY chi - chi^T = (global sign) x det pairing of w = (rank, c1.K)   [w = [(0, -1), (0, -1), (0, -1), (1, 0), (1, -3), (1, -6)]; sign [-1]]
+PASS EU3 HYPOTHESIS invariant match: product of the transvections of the w's is unipotent with off-diagonal 6 (ours: [[1,6],[0,1]])   [products {(1, 'forward'): [[-53, 24], [276, -125]], (1, 'reverse'): [[1, 0], [6, 1]], (-1, 'forward'): [[1, 0], [-6, 1]], (-1, 'reverse'): [[-125, -24], [-276, -53]]}]
+PASS EU4 HYPOTHESIS orbit match: one convention c relates dP6's chi - chi^T to our Gram matrices at both ends by a Hurwitz word of length <= 12   [c = 1, t=-1/10: word of length 1; c = 1, t=+1/10: word of length 4; c = -1, t=-1/10: none within depth 6 + 6; c = -1, t=+1/10: none within depth 6 + 6]
+PASS EU5 RECORD words and mutated collections   [{'c=1, t=-1/10': {'word': [(3, -1)], 'mutated_w': [(0, -1), (0, -1), (1, 0), (1, -1), (1, -3), (1, -6)], 'ours': [(-1, 0), (-1, 0), (-3, 1), (-2, 1), (0, 1), (3, 1)], 'gram_equal_up_to_signs': True}, 'c=1, t=+1/10': {'word': [(4, -1), (3, -1), (4, 1), (2, -1)], 'mutated_w': [(0, -1), (1, -3), (1, -4), (-1, 5), (1, -4), (1, -6)], 'ours': [(-1, 0), (-
+==== run 2026-11-17 19:12:09
+PASS KQ1 IDENTITY two nondegenerate critical points with values +-2 sqrt(AB), distinct   [L=10: values 0.534765, -0.534765; L=20: values 0.10623, -0.10623]
+PASS KQ2 IDENTITY thimble arcs join the base-fibre points through their critical points, meet only at {p,q}, transversely   [L=10: residual/ends/through-crit [('1.3e-14', '0.0e+00', '0.0e+00'), ('1.5e-14', '1.2e-16', '0.0e+00')]; interior separation 0.00062; min |sin| 0.156; L=20: residual/ends/through-crit [('2.5e-15', '5.6e-17', '0.0e+00'), ('3.1e-15', '5.5e-17', '0.0e+00')]; interior separation 0.000129; min |sin| 0.156]
+PASS KQ3 HYPOTHESIS with Omega = dw/w both generators in one degree: Kronecker quiver, derived category D^b(Coh P^1)   [L=10: delta(p) = -1.950240, delta(q) = -1.950240, deg(q) - deg(p) = 0; L=20: delta(p) = -1.950240, delta(q) = -1.950240, deg(q) - deg(p) = 0]
+PASS KQ4 IDENTITY Floer Euler characteristic = signed intersection = +-2 = chi(O,O(1)) up to sign; consistent signs   [L=10: degrees [-2, -2], signs [1, 1], Floer Euler char 2.0, signed intersection 2; symmetric form [[2,2],[2,2]] up to sign; L=20: degrees [-2, -2], signs [1, 1], Floer Euler char 2.0, signed intersection 2; symmetric form [[2,2],[2,2]] up to sign]
+PASS KQ5 HYPOTHESIS each counterclockwise loop around a zero of A or B exchanges the critical values by sigma^{+1}   [A-zero L=10: AB winds +1.000000, v1 turns +1.000000 pi, min|AB| 0.0299, angular order of the tracked value swapped: True; A-zero L=20: AB winds +1.000000, v1 turns +1.000000 pi, min|AB| 0.00214, angular order of the tracked value swapped: True; B-zero L=10: AB winds +1.000000, v1 turns +1.000000 pi, min|AB| 0.0299, angular order of the tracked value swapped: True; B-zero L=20: AB winds +1.000000, v1 turns +1.000000 pi, min|AB| 0.00214, angular order of the tracked value swapped: True]
+PASS KQ6 IDENTITY the real wall r1 = c2 causes no Hurwitz move and no change of degrees   [L=10: angular orders seen {False}, deg(q)-deg(p) at r1=0.6, 0.8: [0, 0]; L=20: angular orders seen {False}, deg(q)-deg(p) at r1=0.6, 0.8: [0, 0]]
+PASS KQ7 RECORD deltas, Omega = dw degree differences (predicted +-2), labels, R   [L=10: deg diff dw/w 0, dw -2 (delta_dw p 0.0498, q -1.9502), R 2.139; L=20: deg diff dw/w 0, dw -2 (delta_dw p 0.0498, q -1.9502), R 0.4249]
+FAIL FX1 IDENTITY exactly two branch points collide (square-root rate), arcs clear of marked points   [pos 1: dist/sqrt(1-t) in [1.24e-05, 1.24e-05], others/pair 3.2e+13, arc clearance 8.4e-06; pos 2: dist/sqrt(1-t) in [1.02, 3], others/pair 3.6e+04, arc clearance 2.7; pos 3: dist/sqrt(1-t) in [89.6, 89.6], others/pair 75, arc clearance 0.00053; pos 4: dist/sqrt(1-t) in [2.68, 2.68], others/pair 1.4e+04, arc clearance 0.00053; pos 5: dist/sqrt(1-t) in [98, 98], others/pair 81, arc clearance 0.0023; pos 6: dist/sqrt(1-t) in [89.7, 89.7], others/pair 75, arc clearance 0.00053]
+PASS FX2 IDENTITY periods reproduce the Study 45 classes in one lattice; ramification points consistent mod Lambda   [relative residual 5.69e-07, signs [np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)], lattice coords of periods [[-1, 0], [-1, 0], [-3, 1], [-2, 1], [0, 1], [3, 1]], ramification consistency 6.6e-07]
+FAIL FX1 IDENTITY exactly two branch points collide (square-root rate), arcs clear of marked points   [pos 1: dist/sqrt(1-t) in [1.24e-05, 1.24e-05], others/pair 3.2e+13, arc clearance 8.4e-06; pos 2: dist/sqrt(1-t) in [1.02, 3], others/pair 3.6e+04, arc clearance 2.7; pos 3: dist/sqrt(1-t) in [89.6, 89.6], others/pair 75, arc clearance 0.00053; pos 4: dist/sqrt(1-t) in [2.68, 2.68], others/pair 1.4e+04, arc clearance 0.00053; pos 5: dist/sqrt(1-t) in [98, 98], others/pair 81, arc clearance 0.0023; pos 6: dist/sqrt(1-t) in [89.7, 89.7], others/pair 75, arc clearance 0.00053]
+PASS FX2 IDENTITY periods reproduce the Study 45 classes in one lattice; ramification points consistent mod Lambda   [relative residual 5.69e-07, signs [np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)], lattice coords of periods [[-1, 0], [-1, 0], [-3, 1], [-2, 1], [0, 1], [3, 1]], ramification consistency 6.6e-07]
+PASS FX3 IDENTITY taut curves simple, avoid the punctures, total turning 0   [pos 1: self-intersections 0, clearance 7.11e-05 (r0 7.2e-05), turning 0.0e+00, pegs 3; pos 2: self-intersections 0, clearance 1.55e-02 (r0 7.2e-05), turning 0.0e+00, pegs 0; pos 3: self-intersections 0, clearance 3.44e-03 (r0 7.2e-05), turning 0.0e+00, pegs 0; pos 4: self-intersections 0, clearance 1.36e-04 (r0 7.2e-05), turning 0.0e+00, pegs 2; pos 5: self-intersections 0, clearance 6.29e-03 (r0 7.2e-05), turning 0.0e+00, pegs 0; pos 6: self-intersections 0, clearance 1.79e-04 (r0 7.2e-05), turning 0.0e+00, pegs 1]
+FAIL FX4 HYPOTHESIS minimal position (no null-homotopic bigon loops) and rank HF(V_i,V_j) = |Gram_ij| for all 15 pairs   [(1,2): 2 vs 0; (1,3): 1 vs 1; (1,4): 3 vs 1; (1,5): 1 vs 1; (1,6): 3 vs 1; (2,3): 1 vs 1; (2,4): 1 vs 1; (2,5): 1 vs 1; (2,6): 1 vs 1; (3,4): 1 vs 1; (3,5): 3 vs 3; (3,6): 6 vs 6; (4,5): 2 vs 2; (4,6): 5 vs 5; (5,6): 3 vs 3; V1, V2 pegs [3, 0]]
+FAIL FX6 IDENTITY counterclockwise triangles have one constant raw deg z - deg x - deg y = c0, clockwise ones c0 - 1   [ccw values [-1, 0] (11 triangles), cw values [-1] (39)]
+FAIL FX5 HYPOTHESIS each CF(V_i,V_j) in one degree D_ij and D_ij = s_j - s_i + e_ij (dP6 Ext degrees)   [degrees {'12': [0, 1], '13': [1], '14': [0, 1], '15': [1], '16': [-1, 0], '23': [1], '24': [1], '25': [1], '26': [-1], '34': [1], '35': [1], '36': [-1], '45': [1], '46': [-1], '56': [-1]}; shifts {0: 0}]
+FAIL FX7 HYPOTHESIS the P^2 triple (3,5,6): mu^2 has rank 6 over F_2   [rank 0]
+FAIL FX8 HYPOTHESIS all 20 triples have the predicted mu^2 rank over F_2   [(1,2,3): 0 vs 0; (1,2,4): 0 vs 0; (1,2,5): 1 vs 0; (1,2,6): 2 vs 0; (1,3,4): 0 vs 1; (1,3,5): 0 vs 1; (1,3,6): 1 vs 1; (1,4,5): 1 vs 1; (1,4,6): 3 vs 1; (1,5,6): 0 vs 1; (2,3,4): 0 vs 1; (2,3,5): 0 vs 1; (2,3,6): 0 vs 1; (2,4,5): 0 vs 1; (2,4,6): 0 vs 1; (2,5,6): 0 vs 1; (3,4,5): 1 vs 2; (3,4,6): 0 vs 5; (3,5,6): 0 vs 6; (4,5,6): 0 vs 5]
+PASS GX1 IDENTITY omega has order 0 at all six punctures and is nonzero along the curves   [orders: ['order of omega +0', 'order of omega +0', 'order of omega +0', 'order of omega +0', 'order of omega +0', 'order of omega +0']; min |omega| coefficient along the curves 6.83e-08]
+PASS GX2 IDENTITY the degree phase (tangent argument in z) has winding 0 on every curve and equal lifts on translates   [turnings ['0.0e+00', '0.0e+00', '0.0e+00', '0.0e+00', '0.0e+00', '0.0e+00']; translate difference 0.0e+00]
+FAIL GX3 IDENTITY push-off calibration: exactly one generator of CF(V,V') acts as the identity for all W, and the Seidel degree rule gives it 0, the other 1   [(cycle, deg unit, deg other) [(1, None, None), (2, None, None), (3, None, None), (4, None, None), (5, None, None), (6, None, None)]]
+FAIL GX4 IDENTITY Seidel-oriented triangles have additive degrees; the other orientation is off by -1   [50 triangles; violations [((3, 4, 5), 'other', 0)]]
+FAIL GX5 IDENTITY V1's taut peg sequence is the same under 60-digit polishing, a drag started at 1 - t = 1e-6, and a bent homotopic path   [base ((0, 1, (0, 0)), (4, 1, (np.int64(-2), np.int64(1))), (1, -1, (1, -1))); variants {'dps60': ((0, 1, (0, 0)), (4, 1, (np.int64(-2), np.int64(1))), (1, -1, (1, -1))), 'stop1e-6': ('straight',), 'bentpath': ((0, 1, (0, 0)), (4, 1, (np.int64(-2), np.int64(1))), (1, -1, (1, -1)))}; bent path homotopic True; classes [[np.int64(-1), np.int64(0)], [np.int64(-1), np.int64(0)], [np.int64(-1), np.int64(0)]]]
+PASS GX6 RECORD V1 diagnostic   [adjacent puncture y1 = -a5/a0 (y2 -> inf): omega order 0 (GX1); V1 turning 0.0e+00; calibrated V1 degrees {'12': [0, 1], '13': [0], '14': [0, 1], '15': [0], '16': [1, 2]}; V1 triangles: Seidel-oriented additive 6/6, other-oriented off by -1 10/10; same for the other five: 33/33, 0/1]
+FAIL GX7 IDENTITY counts and Seidel mu^2 ranks unchanged under reversed offset order and halved r0   [reversed equal False, halved equal False; differences [((2, 3, 4), 0, 1, 1)]]
+PASS GX8 IDENTITY triangle sets unchanged when the winding range is raised from 3 to 6   [counts at 3: 50, at 6: 50]
+FAIL GX9 IDENTITY every triangle loop has winding 0 about every puncture, and its area sign agrees with its total turning (+-2 pi)   [max winding 1.4e-15; turning/area agreement False]
+PASS GX10 HYPOTHESIS rank HF = |Gram| for all pairs (V1 excluded: GX5 failed)   [(2,3): 1 vs 1; (2,4): 1 vs 1; (2,5): 1 vs 1; (2,6): 1 vs 1; (3,4): 1 vs 1; (3,5): 3 vs 3; (3,6): 6 vs 6; (4,5): 2 vs 2; (4,6): 5 vs 5; (5,6): 3 vs 3]
+PASS GX11 HYPOTHESIS each Hom in one degree, D = s_b - s_a + e_ab   [degrees {'23': [0], '24': [0], '25': [0], '26': [2], '34': [0], '35': [0], '36': [2], '45': [0], '46': [2], '56': [2]}; shifts {1: 0, 2: -1, 3: -1, 4: -1, 5: 1}]
+PASS GX12 HYPOTHESIS the P^2 triple (3,5,6): mu^2 rank 6 over F_2   [rank 6]
+FAIL GX13 HYPOTHESIS all triples have the predicted mu^2 rank over F_2 (V1 excluded)   [(2,3,4): 0 vs 1; (2,3,5): 1 vs 1; (2,3,6): 1 vs 1; (2,4,5): 1 vs 1; (2,4,6): 1 vs 1; (2,5,6): 1 vs 1; (3,4,5): 0 vs 2; (3,4,6): 3 vs 5; (3,5,6): 6 vs 6; (4,5,6): 5 vs 5]
+PASS GX14 RECORD   [sub-collection V2..V6: ranks {'234': (0, 1), '235': (1, 1), '236': (1, 1), '245': (1, 1), '246': (1, 1), '256': (1, 1), '345': (0, 2), '346': (3, 5), '356': (6, 6), '456': (5, 5)}; all triples Seidel ranks {'123': 1, '124': 2, '125': 0, '126': 0, '134': 0, '135': 0, '136': 0, '145': 0, '146': 0, '156': 2, '234': 0, '235': 1, '236': 1, '245': 1, '246': 1, '256': 1, '345': 0, '346': 3, '356': 6, '456': 5}; V1 variants steps [39944, 39903, 39776]]
+FAIL HX1 IDENTITY each curve has one class word (raw fibre curve, three offset configurations, 20 random perturbations)   [V1: 1 class(es), word length 7; V2: 1 class(es), word length 2; V3: 1 class(es), word length 13; V4: 1 class(es), word length 5; V5: 1 class(es), word length 1; V6: 2 class(es), word length 13 (raw (('A', -1), ('c2', -1), ('c1', -1), ('A', -1), ('c2', -1), ('c5', -1), ('c3', -1), ('c1', -1), ('A', -1), ('c2', -1), ('c4', -1), ('c5', -1), ('B', -1)) vs base (('A', -1), ('B', -1), ('A', -1), ('c2', -1), ('c1', -1), ('A', -1), ('c2', -1), ('c5', -1), ('c3', -1), ('c1', -1)))]
+FAIL HX2 IDENTITY base triangles convex with turning +-2 pi agreeing with area; triangle sets unchanged under 2x subdivision   [50 triangles, non-convex [((3, 4, 5), True)]; subdivision equal True]
+PASS HX3 IDENTITY synthetic calibration (straight L, push-off, straight W): one unit, Seidel degree 0, other 1   [result (0, 1) (ok)]
+FAIL HX4 IDENTITY the calibration on each vanishing cycle   [{1: ((0, 1), 'ok'), 2: (None, 'units {0}, per-point [1, 1, 1, 0, 1, 1]'), 3: ((0, 1), 'ok'), 4: ((0, 1), 'ok'), 5: (None, 'units {0}, per-point [1, 1, 0, 1, 1, 0, 1, 1, 1, 1]'), 6: ((0, 1), 'ok')}]
+PASS HX5 IDENTITY chain level in all 20 samples: d^2 = 0, bigons join d -> d+1, Leibniz rule   [5301: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5302: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5303: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5304: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5305: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5306: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5307: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5308: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5309: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5310: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5311: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5312: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5313: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5314: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5315: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5316: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5317: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5318: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5319: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0; 5320: points 34, bigons 0, d^2 True, Leibniz True, bad degree bigons 0]
+FAIL HX6 IDENTITY cohomology ranks (15 pairs) and cohomology-level mu^2 ranks (20 triples) identical in all 23 configurations   [2 distinct; base dims {'12': 2, '13': 1, '14': 3, '15': 1, '16': 3, '23': 1, '24': 1, '25': 1, '26': 1, '34': 1, '35': 3, '36': 6, '45': 2, '46': 5, '56': 3}; rev: ranks differ at ['345'], dims differ at []; 5301: ranks differ at ['345'], dims differ at []; 5302: ranks differ at ['345'], dims differ at []; 5303: ranks differ at ['345'], dims differ at []; 5304: ranks differ at ['345'], dims differ at []; 5305: ranks differ at ['345'], dims differ at []; 5306: ranks differ at ['345'], dims differ at []; 5307: ranks differ at ['345'], dims differ at []; 5308: ranks differ at ['345'], dims differ at []; 5309: ranks differ at ['345'], dims differ at []; 5310: ranks differ at ['345'], dims differ at []; 5311: ranks differ at ['345'], dims differ at []; 5312: ranks differ at ['345'], dims differ at []; 5313: ranks differ at ['345'], dims differ at []; 5314: ranks differ at ['345'], dims differ at []; 5315: ranks differ at ['345'], dims differ at []; 5316: ranks differ at ['345'], dims differ at []; 5317: ranks differ at ['345'], dims differ at []; 5318: ranks differ at ['345'], dims differ at []; 5319: ranks differ at ['345'], dims differ at []; 5320: ranks differ at ['345'], dims differ at []]
+FAIL HX7 IDENTITY V1 seed certified (Arb) and 60-digit V1 has the base class word   [Krawczyk failed; 60-digit word equal True]
+FAIL HX8 IDENTITY second base point: no angular swap (certified); same cohomology ranks, degrees up to shifts, mu^2 ranks   [no swap True; dims equal True; ranks equal False; degree shifts consistent False; rank differences [('345', 0, 1)]; dim differences []]
+FAIL HX9 HYPOTHESIS V2..V6 at cohomology level: ranks |Gram|, one degree each with dP6 Ext degrees up to shifts, mu^2 ranks = predictions   [dims [('23', 1, 1), ('24', 1, 1), ('25', 1, 1), ('26', 1, 1), ('34', 1, 1), ('35', 3, 3), ('36', 6, 6), ('45', 2, 2), ('46', 5, 5), ('56', 3, 3)]; degrees {'23': [0], '24': [0], '25': [0], '26': [2], '34': [0], '35': [0], '36': [2], '45': [0], '46': [2], '56': [2]}; shifts {1: 0, 2: -1, 3: -1, 4: -1, 5: 1}; ranks [('234', 0, 1), ('235', 1, 1), ('236', 1, 1), ('245', 1, 1), ('246', 1, 1), ('256', 1, 1), ('345', 0, 2), ('346', 3, 5), ('356', 6, 6), ('456', 5, 5)]]
+PASS HX10 HYPOTHESIS P^2 triple: a bijection makes mu^2 symmetric with 6 independent symmetric products (Beilinson relations over F_2)   [bijections [(2, 0, 1)]; matrix columns (x,y) -> z: [(0, 0, [np.int64(0)]), (0, 1, [np.int64(4)]), (0, 2, [np.int64(5)]), (1, 0, [np.int64(1)]), (1, 1, [np.int64(2)]), (1, 2, [np.int64(0)]), (2, 0, [np.int64(2)]), (2, 1, [np.int64(3)]), (2, 2, [np.int64(4)])]]
+PASS HX12 RECORD   [base cohomology ranks {'123': 1, '124': 2, '125': 0, '126': 0, '134': 0, '135': 0, '136': 0, '145': 0, '146': 0, '156': 2, '234': 0, '235': 1, '236': 1, '245': 1, '246': 1, '256': 1, '345': 0, '346': 3, '356': 6, '456': 5}; dims {'12': 2, '13': 1, '14': 3, '15': 1, '16': 3, '23': 1, '24': 1, '25': 1, '26': 1, '34': 1, '35': 3, '36': 6, '45': 2, '46': 5, '56': 3}; degrees {'12': [0, 1], '13': [0], '14': [0, 1], '15': [0], '16': [1, 2], '23': [0], '24': [0], '25': [0], '26': [2], '34': [0], '35': [0], '36': [2], '45': [0], '46': [2], '56': [2]}]
+PASS JX1 IDENTITY all six representatives carry the raw class words (repair rule recorded)   [[(1, 'as is', True), (2, 'as is', True), (3, 'as is', True), (4, 'as is', True), (5, 'as is', True), (6, 'rule (b): guarded taut (2 operations rejected; rule (a) had 0 matches)', True)]; pegs [3, 0, 0, 2, 0, 3]]
+PASS JX2 IDENTITY 20 perturbations keep the raw class words and stay clear of P   [min clearance 2.67e-05]
+FAIL JX3 IDENTITY V1 seed certified (Krawczyk, certified clearance) and 60-digit V1 has the raw word   [Krawczyk failed for [2, 3]; 60-digit word = raw True]
+FAIL JX4 IDENTITY cohomology dims and degree multisets (up to object shifts) equal across the 20 perturbations   [mu^1 = 0 in all samples: False; dims {'12': 2, '13': 1, '14': 3, '15': 1, '16': 3, '23': 1, '24': 1, '25': 1, '26': 1, '34': 1, '35': 3, '36': 6, '45': 2, '46': 5, '56': 3}]
+PASS JX5 HYPOTHESIS V2..V6: dims = |Gram|, one degree each, D = s_b - s_a + e_ab   [dims [('23', 1, 1), ('24', 1, 1), ('25', 1, 1), ('26', 1, 1), ('34', 1, 1), ('35', 3, 3), ('36', 6, 6), ('45', 2, 2), ('46', 5, 5), ('56', 3, 3)]; degrees {'23': [0], '24': [0], '25': [0], '26': [2], '34': [0], '35': [0], '36': [2], '45': [0], '46': [2], '56': [2]}; shifts {1: 0, 2: -1, 3: -1, 4: -1, 5: 1}]
+PASS JX7 IDENTITY cohomology-level mu^2 ranks of all 20 triples identical across the 20 perturbations   [ranks {'123': 1, '124': 2, '125': 0, '126': 0, '134': 0, '135': 0, '136': 0, '145': 0, '146': 0, '156': 2, '234': 0, '235': 1, '236': 1, '245': 1, '246': 1, '256': 1, '345': 1, '346': 3, '356': 6, '456': 5}; differing samples []]
+FAIL JX8 HYPOTHESIS (2,3,4) rank 1   [inputs 1x1 (degrees [0], [0]) -> 1 (degrees [0]); triangles 0; rank 0, kernel dim 1; matrix (x,y)->z [(0, 0, [])]]
+FAIL JX9 HYPOTHESIS (3,4,5) rank 2   [inputs 1x2 (degrees [0], [0]) -> 3 (degrees [0]); triangles 1; rank 1, kernel dim 1; matrix (x,y)->z [(0, 0, []), (0, 1, [0])]]
+FAIL JX10 HYPOTHESIS (3,4,6) rank 5   [inputs 1x5 (degrees [0], [2]) -> 6 (degrees [2]); triangles 3; rank 3, kernel dim 2; matrix (x,y)->z [(0, 0, []), (0, 1, []), (0, 2, [5]), (0, 3, [0]), (0, 4, [1])]]
+PASS JX11 HYPOTHESIS P^2 triple rank 6, kernel 3, symmetric bijection; (4,5,6) rank 5; control (2,3,5) rank 1   [P^2: inputs 3x3 (degrees [0], [2]) -> 6 (degrees [2]); triangles 9; rank 6, kernel dim 3; matrix (x,y)->z [(0, 0, [0]), (0, 1, [1]), (0, 2, [5]), (1, 0, [1]), (1, 1, [2]), (1, 2, [3]), (2, 0, [5]), (2, 1, [3]), (2, 2, [4])]; bijections [(0, 1, 2)]; (4,5,6): inputs 2x3 (degrees [0], [2]) -> 5 (degrees [2]); triangles 7; rank 5, kernel dim 1; matrix (x,y)->z [(0, 0, []), (0, 1, [0]), (0, 2, [1]), (1, 0, [3]), (1, 1, [1, 4]), (1, 2, [0, 2])]; (2,3,5): inputs 1x3 (degrees [0], [0]) -> 1 (degrees [0]); triangles 2; rank 1, kernel dim 2; matrix (x,y)->z [(0, 0, []), (0, 1, [0]), (0, 2, [0])]]
+PASS JX12 IDENTITY chain-level mu^2 associative on all quadruples of certified objects, every sample with mu^1 = 0   [195 sample-quadruples tested; failing quadruples []; failing samples 0]
+FAIL JX13 IDENTITY unit calibration on all certified cycles, window 200 eps   [{1: ((0, 1), 'ok'), 2: (None, 'units {0}, per-point [1, 1, 1, 0, 1, 1]'), 3: ((0, 1), 'ok'), 4: ((0, 1), 'ok'), 5: (None, 'units {0}, per-point [1, 1, 0, 1, 1, 0, 1, 1, 1, 1]'), 6: ((0, 1), 'ok')}]
+FAIL JX14 IDENTITY second base point (object gate applied there): same dims, degree multisets up to shifts, mu^2 ranks   [gate there [(1, 'as is', True), (2, 'as is', True), (3, 'as is', True), (4, 'rule (b): guarded taut (4 operations rejected; rule (a) had 0 matches)', True), (5, 'as is', True), (6, 'rule (b): guarded taut (2 operations rejected; rule (a) had 0 matches)', True)]; dims equal True; ranks equal False; rank diffs [('126', 0, 1), ('346', 3, 2)]]
+PASS KX1 IDENTITY Abel for div(y1): z(P0)+z(P1)-z(P2)-z(P3) in Lambda   [distance 1.08e-18 (tolerance 1.2e-07), lattice point (0, 0)]
+PASS KX2 IDENTITY Abel for div(y2): -z(P0)+z(P3)-z(P4)+z(P5) in Lambda   [distance 3.95e-08, lattice point (2, -1)]
+FAIL KX3 IDENTITY punctures recomputed from R_2 agree with the stored positions mod Lambda   [deviations {1: '3.5e-07', 3: '2.3e-08', 4: '1.0e-08', 5: '1.7e-08'}; path clearances {'y1=0': 0.0077, 'y1=inf': 0.0123, 'y1=-a5/a0': 0.0026, 'y1=-a3/a2': 0.0038}]
+PASS KX4 RECORD triangle ledger   [see RECORD line]
+PASS MX1 IDENTITY object gate at s0': six representatives carry the raw class words   [[(1, 'as is', True), (2, 'as is', True), (3, 'as is', True), (4, 'rule (b): guarded taut (4 operations rejected; rule (a) had 0 matches)', True), (5, 'as is', True), (6, 'rule (b): guarded taut (2 operations rejected; rule (a) had 0 matches)', True)]]
+FAIL MX2 IDENTITY 20 perturbations at s0' keep the raw words and stay clear of P   [min clearance 3.48e-05]
+FAIL MX3 IDENTITY graded cohomology dims identical across the 20 perturbations at s0 and across the 20 at s0'   [s0: True (samples with bigons [5404, 5408, 5412, 5413, 5414, 5416, 5420]); s0': False (with bigons [5601, 5602, 5603, 5604, 5605, 5606, 5607, 5608, 5609, 5610, 5611, 5612, 5613, 5614, 5615, 5616, 5617, 5618, 5619, 5620]); s0 graded {'12': {0: 1, 1: 1}, '13': {0: 1}, '14': {0: 2, 1: 1}, '15': {0: 1}, '16': {1: 1, 2: 2}, '23': {0: 1}, '24': {0: 1}, '25': {0: 1}, '26': {2: 1}, '34': {0: 1}, '35': {0: 3}, '36': {2: 6}, '45': {0: 2}, '46': {2: 5}, '56': {2: 3}}]
+PASS MX4 IDENTITY mu^2 cohomology ranks identical across the 20 perturbations at s0'   [(s0 consistency, for reference: True); s0' ranks {'123': 1, '124': 2, '125': 0, '126': 0, '134': 0, '135': 0, '136': 0, '145': 0, '146': 0, '156': 2, '234': 0, '235': 1, '236': 1, '245': 1, '246': 1, '256': 1, '345': 1, '346': 3, '356': 6, '456': 5}]
+PASS MX5 HYPOTHESIS (primary) consensus at s0' equals consensus at s0: graded dims up to shifts and all 20 mu^2 ranks   [graded up to shifts True (shifts {0: 0, 1: -1, 2: 0, 3: -1, 4: 0, 5: -1}); rank differences []; V4 triples s0 [0, 1, 3], s0' [0, 1, 3]]
+PASS MX6 RECORD differing triples (V1-free)   [[]]
+PASS MX7 RECORD polygon ledger preserved (study56_base/ledger.json)   [s0 {'234': {'encloses punctures': 12, 'no closing winding': 157}, '345': {'counted': 1, 'encloses punctures': 25, 'no closing winding': 988}, '346': {'counted': 3, 'encloses punctures': 62, 'no closing winding': 5005}}; s0' {'234': {'encloses punctures': 13, 'no closing winding': 156}, '345': {'counted': 1, 'encloses punctures': 25, 'no closing winding': 988}, '346': {'counted': 3, 'encloses punctures': 88, 'no closing winding': 7007}}]
+PASS NX1 IDENTITY toric data of dP6: smooth fan, D_k^2 = -1, relations in the kernel, c1^2 = 6, chi(O) = 1   [adjacent determinants [np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(1)]]
+FAIL NX2 IDENTITY periods: agree with Study 51 at s0, and tend to +-2 pi i / sqrt(det Hess) at the critical value   [at s0 ['6.5e-11', '1.7e-11', '3.7e-10', '7.4e-11', '1.8e-11', '1.3e-10']; at v_i ['1.5e+00', '1.4e+00', '1.4e+00', '1.4e+00', '1.4e+00', '1.4e+00']]
+FAIL NX3 HYPOTHESIS Iritani: Theta_5 / Z(O) constant over 12 values of |z| and equal to +-1   [ratio mean 0.46158162+0.028933395j, relative spread 1.9e+00]
+FAIL NX4 HYPOTHESIS integral lattice: each thimble's central charge is Z(kappa) for an integral class (residual < 1e-5, integrality 1e-4)   [pos 1: (r, c1[D0..D3], chi) = [1317.334735, -4380765.712022, 4381209.162504, -889770.832838, 5179538.909541, 2158979.64063], residual 1.5e-01, integrality 3.6e-01; pos 2: (r, c1[D0..D3], chi) = [-0.000574, 28.644207, -28.644273, -0.669096, -16.734711, -8.249629], residual 5.7e-02, integrality 3.6e-01; pos 3: (r, c1[D0..D3], chi) = [3.1e-05, -28.448997, 28.44917, -7.261424, 40.428369, 15.94109], residual 4.8e-02, integrality 4.5e-01; pos 4: (r, c1[D0..D3], chi) = [4e-05, -29.814846, 29.81502, -6.911594, 39.605396, 15.18076], residual 4.9e-02, integrality 3.9e-01; pos 5: (r, c1[D0..D3], chi) = [3.8e-05, -29.282269, 29.282443, -7.267793, 37.864244, 14.141757], residual 5.2e-02, integrality 2.8e-01; pos 6: (r, c1[D0..D3], chi) = [4.5e-05, -30.301908, 30.302083, -7.050645, 35.053396, 13.409944], residual 4.0e-02, integrality 4.1e-01]
+PASS NX8 RECORD values   [Theta at |z| = 8: ['-1.60271e+07+8.2345e+06j', '0.289164+36.8235j', '20.083-46.4025j', '38.5797-35.965j', '34.76+6.98442j', '6.99271+55.2765j']; Z(O) -8334.51-3629.88j; c 1; series truncation 30 vs 40: 1.2e+02; radial tail bound 2.0e-14]
+PASS PX1 IDENTITY series truncation 30 vs 40 agree at all 16 values of Z   [max relative difference 0.0e+00]
+PASS PX1 IDENTITY series truncation 30 vs 40 agree at all 16 values of Z   [max relative difference 0.0e+00]
+FAIL PX2 IDENTITY ray periods continue the segment periods at s0; omitted tail negligible   [start mismatch 2.6e-04; tail 5.2e-20]
+FAIL PX3 IDENTITY thimble integrals stable (48 vs 32 ray nodes, 400 vs 600 quadrature points)   [max relative change 1.1e-02]
+FAIL PX4 HYPOTHESIS Iritani: Theta_5 / Z(O) constant over 16 values of Z and equal to +-1   [ratio 0.6043514831+0.009108269657j, relative spread 3.3e-01]
+FAIL PX5 HYPOTHESIS integral lattice: each Theta_i = Z(kappa_i), residual < 1e-6, integral to 1e-4   [condition number 9.8e+04; pos 1: [0.01683, 5.9394, -0.27554, -8.90873, 2.48739, 0.21189], res 1.4e-02, int 4.9e-01; pos 2: [0.01727, -45.19276, 54.21079, 9.02975, -18.84459, 0.20586], res 1.1e-02, int 2.1e-01; pos 3: [0.01277, -1586.53562, 1771.30777, 452.93265, -644.33223, -6.84274], res 7.8e-02, int 4.6e-01; pos 4: [-0.00447, -1537.44403, 1713.12591, 441.85285, -623.36513, -7.06462], res 6.9e-02, int 4.4e-01; pos 5: [-0.03902, -1437.51957, 1594.98865, 418.5557, -580.2603, -6.4459], res 6.8e-02, int 4.8e-01; pos 6: [-0.09088, -1288.66693, 1418.82641, 384.38534, -516.38838, -4.97035], res 7.8e-02, int 3.9e-01]
+# Study 58 Amendment 1, first run (2026-11-18; defective reduction; time limit before PXb3)
+FAIL PXb1 IDENTITY Gauss-Manin reduction matches the finite-difference derivative of the direct period at s0   [['1.0e+04', '6.6e-03', '5.2e-02', '1.1e+04', '1.1e+04', '1.1e+04']]
+FAIL PXb2 IDENTITY Gauss-Manin transport of the small-pair cycle agrees with its direct period along the ray   [['2.0e-10', '4.3e-09', '9.0e-10', '1.1e-08', '1.6e-08', '4.9e-09']]
+NOT EVALUATED PXb3-PXb9 (time limit, exit 124)
+# Study 58 Amendments 2+3 rerun (post-deviation)
+FAIL PXb1 IDENTITY Gauss-Manin reduction matches the finite-difference derivative of the direct period at s0   [['1.0e+04', '6.6e-03', '6.9e-06', '1.1e+04', '1.1e+04', '1.1e+04']]
+FAIL PXb2 IDENTITY Gauss-Manin transport of the small-pair cycle agrees with its direct period along the ray   [['2.0e-10', '4.3e-09', '9.0e-10', '1.1e-08', '1.6e-08', '4.9e-09']]
+PASS PXb3 IDENTITY stability: rtol 1e-12 vs 1e-10 and 64 vs 96 points   [max relative change 2.1e-11]
+FAIL PXb4 HYPOTHESIS Iritani: Theta_5 / Z(O) constant over 16 values of Z and equal to +-1   [ratio 0.604592104+0.01269144767j, relative spread 3.3e-01; ratio at the ends 0.714741+0.00899622j, 0.403735+0.0176348j]
+FAIL PXb5 HYPOTHESIS integral lattice: each Theta_i = Z(kappa_i), residual < 1e-6, integral to 1e-4   [condition 9.8e+04; pos 1: [0.01683, 5.93905, -0.27515, -8.90863, 2.48725, 0.21189], res 1.4e-02, int 4.9e-01; pos 2: [0.01727, -45.19318, 54.21125, 9.02987, -18.84475, 0.20586], res 1.1e-02, int 2.1e-01; pos 3: [0.01628, -1594.43579, 1780.77737, 454.67271, -648.00958, -7.00829], res 7.9e-02, int 4.4e-01; pos 4: [-0.00097, -1545.34412, 1722.59542, 443.59289, -627.04245, -7.23016], res 6.9e-02, int 4.1e-01; pos 5: [-0.03552, -1445.41937, 1604.45782, 420.29566, -583.9375, -6.61145], res 6.8e-02, int 4.6e-01; pos 6: [-0.08738, -1296.5671, 1428.29601, 386.1254, -520.06573, -5.1359], res 7.8e-02, int 4.3e-01]
+NOT EVALUATED PXb6-PXb9 (PXb5 did not pass)
+# Study 59 first run (2026-11-18)
+FAIL YQ1 IDENTITY GKZ box equations of the computed I-function for the opposite pairs   [K0 |zeta|=150 (0,3): 1.3e-04; K0 |zeta|=150 (1,4): 4.5e-03; K0 |zeta|=150 (2,5): 1.4e-02; K0 |zeta|=2000 (0,3): 2.4e-02; K0 |zeta|=2000 (1,4): 4.3e-01; K0 |zeta|=2000 (2,5): 8.5e-01; K1 |zeta|=150 (0,3): 5.4e-05; K1 |zeta|=150 (1,4): 2.1e-03; K1 |zeta|=150 (2,5): 1.8e-02; K1 |zeta|=2000 (0,3): 2.2e-02; K1 |zeta|=2000 (1,4): 2.6e-01; K1 |zeta|=2000 (2,5): 7.6e-01]
+PASS YQ2 IDENTITY truncation 30 vs 40 for the K1 variables   [max relative difference 0.0e+00]
+PASS YQ3 IDENTITY thimble functions on the 32-point grid stable   [max relative change 2.1e-11]
+FAIL YQ4 HYPOTHESIS span (complex coefficients): some registered candidate has every Theta_i in the span to 1e-6   [K0.-1: max res 3.0e-03 (per position ['3e-03', '2e-03', '9e-04', '6e-04', '5e-04', '1e-03']), cond 2.3e+08; K0.+0: max res 6.9e-05 (per position ['7e-05', '5e-05', '6e-05', '6e-05', '7e-05', '6e-05']), cond 2.1e+08; K0.+1: max res 2.8e-04 (per position ['3e-04', '2e-04', '2e-04', '2e-04', '2e-04', '2e-04']), cond 5.2e+08; K1.-1: max res 3.9e-03 (per position ['4e-03', '2e-03', '1e-03', '8e-04', '4e-04', '1e-03']), cond 2.8e+08; K1.+0: max res 1.3e-04 (per position ['1e-04', '1e-04', '1e-04', '1e-04', '1e-04', '1e-04']), cond 2.3e+08; K1.+1: max res 3.6e-04 (per position ['4e-04', '3e-04', '3e-04', '3e-04', '3e-04', '3e-04']), cond 5.3e+08; passing []]
+NOT EVALUATED YQ5-YQ8 (no candidate passed YQ4)
+PASS YQ9 RECORD   [K0.-1: cond 2.3e+08; K0.+0: cond 2.1e+08; K0.+1: cond 5.2e+08; K1.-1: cond 2.8e+08; K1.+0: cond 2.3e+08; K1.+1: cond 5.3e+08]
+# Study 59 Amendment 1 rerun (exact GKZ derivative; post-deviation)
+PASS YQ1b IDENTITY GKZ box equations of the computed I-function, exact derivative (Amendment 1)   [K0 |zeta|=150 (0,3): 5.7e-16; K0 |zeta|=150 (1,4): 3.2e-16; K0 |zeta|=150 (2,5): 3.0e-16; K0 |zeta|=2000 (0,3): 3.3e-16; K0 |zeta|=2000 (1,4): 3.1e-16; K0 |zeta|=2000 (2,5): 3.4e-16; K1 |zeta|=150 (0,3): 4.9e-16; K1 |zeta|=150 (1,4): 4.1e-16; K1 |zeta|=150 (2,5): 1.9e-16; K1 |zeta|=2000 (0,3): 2.6e-16; K1 |zeta|=2000 (1,4): 2.1e-16; K1 |zeta|=2000 (2,5): 1.9e-16]
+PASS YQ2 IDENTITY truncation 30 vs 40 for the K1 variables   [max relative difference 0.0e+00]
+PASS YQ3 IDENTITY thimble functions on the 32-point grid stable   [max relative change 2.1e-11]
+FAIL YQ4 HYPOTHESIS span (complex coefficients): some registered candidate has every Theta_i in the span to 1e-6   [K0.-1: max res 3.0e-03 (per position ['3e-03', '2e-03', '9e-04', '6e-04', '5e-04', '1e-03']), cond 2.3e+08; K0.+0: max res 6.9e-05 (per position ['7e-05', '5e-05', '6e-05', '6e-05', '7e-05', '6e-05']), cond 2.1e+08; K0.+1: max res 2.8e-04 (per position ['3e-04', '2e-04', '2e-04', '2e-04', '2e-04', '2e-04']), cond 5.2e+08; K1.-1: max res 3.9e-03 (per position ['4e-03', '2e-03', '1e-03', '8e-04', '4e-04', '1e-03']), cond 2.8e+08; K1.+0: max res 1.3e-04 (per position ['1e-04', '1e-04', '1e-04', '1e-04', '1e-04', '1e-04']), cond 2.3e+08; K1.+1: max res 3.6e-04 (per position ['4e-04', '3e-04', '3e-04', '3e-04', '3e-04', '3e-04']), cond 5.3e+08; passing []]
+NOT EVALUATED YQ5-YQ8 (no candidate passed YQ4)
+PASS YQ9 RECORD   [K0.-1: cond 2.3e+08; K0.+0: cond 2.1e+08; K0.+1: cond 5.2e+08; K1.-1: cond 2.8e+08; K1.+0: cond 2.3e+08; K1.+1: cond 5.3e+08]
+# Study 60 (Gate 1) first run: crashed before any check (t_eval not sorted; see study60_segment/run1_crash.log)
+# Study 60 Amendment 1 rerun (post-deviation)
+FAIL UX1 IDENTITY Gauss-Manin periods along the segment agree with the Study 57 drag periods at the nodes   [['8.2e-06', '6.6e-06', '2.3e-06', '3.1e-06', '4.4e-07', '1.9e-06']]
+FAIL UX2 IDENTITY P_i at the critical value equals +-2 pi / sqrt(det Hess)   [['4.7e-06', '6.7e-06', '2.9e-05', '4.8e-05', '1.9e-05', '2.7e-05']; signs ['-', '-', '+', '-', '-', '+']]
+PASS UX3 IDENTITY segment stable (rtol 1e-12, eps 1e-7 vs rtol 1e-10, eps 1e-8), relative to |Theta|   [bound 8.3e-11]
+PASS UX4 RECORD old - new segment relative to |Theta|   [['1.4e-03', '2.1e-02', '4.2e-03', '1.4e-02', '1.0e-04', '3.8e-02']]
+PASS UX5 HYPOTHESIS the old segment was inaccurate (> 1e-6 for some position)   [max 3.8e-02]
+NOT EVALUATED UX6-UX9 (UX1-UX3 did not all pass)
+# Study 61 (Gate 2A) run 1: crashed before any check (mpmath matrix not picklable); run 2: crashed on the empty checkpoint left by run 1 (removed)
+# Study 61 Amendment 1 rerun (post-deviation)
+PASS ZL1 IDENTITY simple pole, R_{-1} P_0 = 0, no resonance n = 1..40   [pos 1: R-2 1e-13, kernel 2e-19, svmin 1.0e+00; pos 2: R-2 5e-15, kernel 9e-20, svmin 3.7e-04; pos 3: R-2 3e-17, kernel 9e-17, svmin 6.8e-01; pos 4: R-2 5e-16, kernel 2e-17, svmin 9.7e-01; pos 5: R-2 2e-17, kernel 2e-17, svmin 6.9e-01; pos 6: R-2 3e-17, kernel 9e-17, svmin 6.8e-01]
+FAIL ZL2 IDENTITY local-series coefficients n = 1..3 equal the independent Laplace-expansion values   [max relative 1.5e-06]
+PASS ZL3 IDENTITY local series main vs variant at the overlap point   [['0e+00', '0e+00', '0e+00', '0e+00', '0e+00', '0e+00']]
+FAIL ZL4 IDENTITY overlap: Gauss-Manin transport from s0 agrees with the local series at d/4 and d/6   [pos 1: 1.4e-02 / 2.0e-02; pos 2: 1.0e+00 / 1.0e+00; pos 3: 9.1e-02 / 9.4e-02; pos 4: 4.8e-01 / 5.6e-01; pos 5: 2.3e-02 / 3.2e-02; pos 6: 1.2e-01 / 1.0e-01; signs [-1, -1, 1, -1, -1, 1]]
+FAIL ZL5 IDENTITY segment stability (overlap d/4, rtol 1e-12 vs d/6, rtol 1e-10), relative to |Theta|   [2.9e-07]
+PASS ZL6 RECORD new segment minus Study 60 / minus Study 57 segment, relative to |Theta|   [pos 1: 8.5e-07 / 1.4e-03; pos 2: 5.8e-07 / 2.1e-02; pos 3: 8.2e-08 / 4.2e-03; pos 4: 5.7e-08 / 1.4e-02; pos 5: 2.5e-08 / 1.0e-04; pos 6: 5.9e-08 / 3.8e-02]
+PASS ZL7 RECORD Study 57 drag periods near the critical value vs the local series   [pos 1: 7 nodes, max 1.1e+00; pos 2: 3 nodes, max 6.6e-07; pos 3: 1 nodes, max 1.6e-08; pos 4: 1 nodes, max 3.4e-10; pos 5: 1 nodes, max 2.7e-08; pos 6: 1 nodes, max 2.7e-08]
+# Study 63 first run: AF0-AF4 evaluated, crashed at AF5 (shape error; study63_affine/run1_partial.log)
+PASS AF0 IDENTITY weighted drag reproduces the Study 57 drag P0 at all nodes   [['0e+00', '0e+00', '0e+00', '0e+00', '0e+00', '0e+00']]
+PASS AF1 IDENTITY extension structure: the infinity loop L(s) is a flat section of the Gauss-Manin system   [max 4.9e-16]
+PASS AF2 IDENTITY compact classes agree at s0 (second-kind periods P0, P2~)   [['6.5e-11', '1.7e-11', '3.7e-10', '6.0e-10', '1.8e-11', '2.3e-10']]
+PASS AF3 IDENTITY infinity sector integral and consistent between the x and x^2 forms   [pos 1: e_inf -9.8504e-20-2.38919e-19j (dist 3e-19), P2 check 0e+00; pos 2: e_inf 2.06811e-20+6.25721e-20j (dist 7e-20), P2 check 0e+00; pos 3: e_inf -1.49502e-12+4.59212e-11j (dist 5e-11), P2 check 0e+00; pos 4: e_inf -4.05839e-10-2.07759e-10j (dist 5e-10), P2 check 0e+00; pos 5: e_inf -2.9892e-12-2.27382e-12j (dist 4e-12), P2 check 0e+00; pos 6: e_inf 1.69546e-10+4.23669e-11j (dist 2e-10), P2 check 0e+00]
+PASS AF4 RECORD finite-puncture sector (normalized differences)   [pos 1: e_0 1.35525e-11-6.40241e-11j, e_4 -8.48148e-16-1.68481e-14j, e_5 -4.2885e-17-1.4895e-16j; pos 2: e_0 -4.60494e-12+1.59597e-11j, e_4 -6.18562e-16-4.49177e-15j, e_5 -1.15989e-17-3.67634e-17j; pos 3: e_0 2.2582e-11+3.39584e-09j, e_4 -2.99142e-12-2.18856e-11j, e_5 -3.37026e-12-2.27258e-11j; pos 4: e_0 9.94498e-12-8.85293e-12j, e_4 2.18323e-10+6.5892e-11j, e_5 2.18324e-10+6.59101e-11j; pos 5: e_0 2.7259e-11-1.61882e-10j, e_4 1.68578e-12+8.91121e-13j, e_5 1.67472e-12+8.58891e-13j; pos 6: e_0 -1.5282e-09-1.22081e-10j, e_4 -8.76213e-11-5.54123e-12j, e_5 -8.72323e-11-5.65884e-12j]
+# Study 63 Amendment 1 rerun (post-deviation)
+PASS AF0 IDENTITY weighted drag reproduces the Study 57 drag P0 at all nodes   [['0e+00', '0e+00', '0e+00', '0e+00', '0e+00', '0e+00']]
+PASS AF1 IDENTITY extension structure: the infinity loop L(s) is a flat section of the Gauss-Manin system   [max 4.9e-16]
+PASS AF2 IDENTITY compact classes agree at s0 (second-kind periods P0, P2~)   [['6.5e-11', '1.7e-11', '3.7e-10', '6.0e-10', '1.8e-11', '2.3e-10']]
+PASS AF3 IDENTITY infinity sector integral and consistent between the x and x^2 forms   [pos 1: e_inf -9.8504e-20-2.38919e-19j (dist 3e-19), P2 check 0e+00; pos 2: e_inf 2.06811e-20+6.25721e-20j (dist 7e-20), P2 check 0e+00; pos 3: e_inf -1.49502e-12+4.59212e-11j (dist 5e-11), P2 check 0e+00; pos 4: e_inf -4.05839e-10-2.07759e-10j (dist 5e-10), P2 check 0e+00; pos 5: e_inf -2.9892e-12-2.27382e-12j (dist 4e-12), P2 check 0e+00; pos 6: e_inf 1.69546e-10+4.23669e-11j (dist 2e-10), P2 check 0e+00]
+PASS AF4 RECORD finite-puncture sector (normalized differences)   [pos 1: e_0 1.35525e-11-6.40241e-11j, e_4 -8.48148e-16-1.68481e-14j, e_5 -4.2885e-17-1.4895e-16j; pos 2: e_0 -4.60494e-12+1.59597e-11j, e_4 -6.18562e-16-4.49177e-15j, e_5 -1.15989e-17-3.67634e-17j; pos 3: e_0 2.2582e-11+3.39584e-09j, e_4 -2.99142e-12-2.18856e-11j, e_5 -3.37026e-12-2.27258e-11j; pos 4: e_0 9.94498e-12-8.85293e-12j, e_4 2.18323e-10+6.5892e-11j, e_5 2.18324e-10+6.59101e-11j; pos 5: e_0 2.7259e-11-1.61882e-10j, e_4 1.68578e-12+8.91121e-13j, e_5 1.67472e-12+8.58891e-13j; pos 6: e_0 -1.5282e-09-1.22081e-10j, e_4 -8.76213e-11-5.54123e-12j, e_5 -8.72323e-11-5.65884e-12j]
+FAIL AF5 IDENTITY new architecture vs local series at both overlap points (ratio to bound shown; <= 1 passes)   [pos 1: 4.5e+03; pos 2: 1e+09; pos 3: 3.6e+06; pos 4: 5.5e+05; pos 5: 3.5e+06; pos 6: 2.6e+06]
+FAIL AF6 IDENTITY new architecture vs weighted drag along the whole path outside the local disc (ratio to bound)   [pos 1: 32 nodes, worst 4.5e+02; pos 2: 36 nodes, worst 6.3e+02; pos 3: 38 nodes, worst 3.5e+05; pos 4: 38 nodes, worst 3.4e+04; pos 5: 38 nodes, worst 3.1e+05; pos 6: 38 nodes, worst 2.1e+05]
+PASS AF7 RECORD P0 relative error at the overlap points: new architecture vs Study 61 3x3 transport   [pos 1 d/4: new 4.5e-06 vs Study 61 4.5e-06; pos 1 d/6: new 4.5e-06 vs Study 61 4.5e-06; pos 2 d/4: new 6.0e-06 vs Study 61 6.0e-06; pos 2 d/6: new 6.0e-06 vs Study 61 6.0e-06; pos 3 d/4: new 3.5e-06 vs Study 61 3.5e-06; pos 3 d/6: new 3.8e-06 vs Study 61 3.8e-06; pos 4 d/4: new 5.7e-06 vs Study 61 5.7e-06; pos 4 d/6: new 6.1e-06 vs Study 61 6.1e-06; pos 5 d/4: new 5.8e-07 vs Study 61 5.8e-07; pos 5 d/6: new 6.6e-07 vs Study 61 6.6e-07; pos 6 d/4: new 2.7e-06 vs Study 61 2.7e-06; pos 6 d/6: new 2.9e-06 vs Study 61 2.9e-06]
+# Study 64 (Gate 2A repeat on the Study 63 architecture)
+FAIL GR1 IDENTITY anchor consistency (ratio to bound; <= 1 passes)   [['83', '1.1e+02', '30', '41', '53', '30']]
+FAIL GR2 IDENTITY overlap with certified class correction   [pos 1 d/4: P0 4.1e-06, n1 2.26789e-13-1.481378e-13j, n 0, corrected ratio 4.1e+02; pos 1 d/6: P0 4.1e-06, n1 1.855427e-13-1.344659e-13j, n 0, corrected ratio 4.1e+02; pos 2 d/4: P0 8.2e-08, n1 -1+3.330404e-13j, n -1, corrected ratio 8.2; pos 2 d/6: P0 8.2e-08, n1 -1+2.969168e-13j, n -1, corrected ratio 8.2; pos 3 d/4: P0 5.8e-09, n1 3.845466e-11-2.24066e-11j, n 0, corrected ratio 0.58; pos 3 d/6: P0 6.4e-09, n1 3.826407e-11-1.361819e-11j, n 0, corrected ratio 0.64; pos 4 d/4: P0 4.5e-10, n1 4.568156e-13-4.611233e-13j, n 0, corrected ratio 0.045; pos 4 d/6: P0 4.6e-10, n1 5.004375e-13-3.932121e-13j, n 0, corrected ratio 0.046; pos 5 d/4: P0 1.4e-09, n1 -1.459197e-11+2.83168e-11j, n 0, corrected ratio 0.27; pos 5 d/6: P0 2.0e-09, n1 -1.188244e-11+2.276406e-11j, n 0, corrected ratio 0.24; pos 6 d/4: P0 7.5e-09, n1 1.293652e-11+1.835116e-11j, n 0, corrected ratio 0.75; pos 6 d/6: P0 9.0e-09, n1 1.02514e-11+7.838268e-12j, n 0, corrected ratio 0.9]
+PASS GR3 RECORD class-correction integers n_i (d/4, d/6)   [{'pos 1': (0, 0), 'pos 2': (-1, -1), 'pos 3': (0, 0), 'pos 4': (0, 0), 'pos 5': (0, 0), 'pos 6': (0, 0)}]
+PASS GR4 IDENTITY position 1 class in the P0/P4 sector (m integral to 1e-3)   [pos 1: |s-v|/d 7.9e-03, P0 match 9.6e-06, m -1+1.30687e-07j; pos 2: |s-v|/d 4.2e-02, P0 match 2.0e-06, m -5.02358e-11-5.98662e-12j; pos 3: |s-v|/d 9.4e-01, P0 match 8.8e-03, m -3.65783e-05+5.17269e-06j; pos 4: |s-v|/d 9.3e-01, P0 match 9.2e-02, m -8.13291e-06-7.04034e-05j; pos 5: |s-v|/d 5.4e-01, P0 match 1.2e-02, m 1.38045e-05-7.01657e-06j; pos 6: |s-v|/d 9.5e-01, P0 match 1.4e-02, m -4.5246e-05+2.60866e-05j]
+PASS GR5 IDENTITY local components at 80 digits (Frobenius vs Laplace) and 50 vs 80 digits   [pos 1: ratio 2.8e-06, 50 vs 80 0e+00; pos 2: ratio 7.6e-06, 50 vs 80 0e+00; pos 3: ratio 1.5e-07, 50 vs 80 0e+00; pos 4: ratio 1.3e-06, 50 vs 80 0e+00; pos 5: ratio 1.4e-08, 50 vs 80 0e+00; pos 6: ratio 2.6e-07, 50 vs 80 0e+00]
+FAIL GR6 IDENTITY segment stability (d/4, rtol 1e-12 vs d/6, rtol 1e-10) relative to |Theta|   [2.6e-07]
+PASS GR7 RECORD segment minus Study 60 / minus Study 61 segment, relative to |Theta|   [pos 1: 3.2e-06 / 2.4e-06; pos 2: 7.1e-06 / 7.1e-06; pos 3: 1.0e-06 / 9.7e-07; pos 4: 1.0e-06 / 9.8e-07; pos 5: 3.4e-07 / 3.1e-07; pos 6: 8.0e-07 / 8.0e-07]
+# Study 65 exploratory dump (no pass/fail; MEASURE lines in engine/study65_global/dump65.txt); theory and prediction frozen before the held-out run
+PASS Q1 (single registered check) backward transport from the local series lands on the independent lattice at s0'   [(a) True, (b) True, (c) True; pos 1: coords [-1, 0] (dist 1.6e-15), P0 rel 2.0e-15, loop +0.000000000 (dist 1.7e-19); pos 2: coords [-1, 0] (dist 2.7e-15), P0 rel 2.1e-14, loop +1.000000000 (dist 1.7e-15); pos 3: coords [2, -1] (dist 7.7e-13), P0 rel 8.2e-14, loop -0.000000000 (dist 5.0e-14); pos 4: coords [-1, 1] (dist 2.6e-12), P0 rel 2.8e-13, loop +0.000000000 (dist 1.8e-13); pos 5: coords [1, 1] (dist 9.9e-13), P0 rel 2.4e-13, loop -0.000000000 (dist 1.3e-13); pos 6: coords [-1, 2] (dist 4.8e-12), P0 rel 3.0e-13, loop +0.000000000 (dist 3.3e-13)]
+RECORD R1 old routine vs 80-digit lattice on the straight-segment cycles at s0' (rel per form): (0,1): ['1.2e-10', '1.2e-10', '1.2e-10']; (0,2): ['6.2e-03', '4.4e-10', '1.1e-11']; (0,3): ['7.4e-03', '2.6e-10', '4.9e-12']; (1,2): ['6.7e-07', '7.9e-12', '1.1e-11']; (1,3): ['7.4e-07', '3.8e-12', '5.7e-12']; (2,3): ['2.2e-12', '2.4e-12', '5.0e-12']
+RECORD R2 AGM / Carlson distance from lattice points at s0': max 8.9e-16; 50 vs 80 digits max rel 0.0e+00
+RECORD R3 |W|/(4 pi/|a4|^2) for the backward vectors at s0': max distance from an integer 8.1e-13; values [(1, 2, np.float64(0.0)), (1, 3, np.float64(1.0)), (1, 4, np.float64(1.0)), (1, 5, np.float64(1.0)), (1, 6, np.float64(2.0)), (2, 3, np.float64(1.0)), (2, 4, np.float64(1.0)), (2, 5, np.float64(1.0)), (2, 6, np.float64(2.0)), (3, 4, np.float64(1.0)), (3, 5, np.float64(3.0)), (3, 6, np.float64(3.0)), (4, 5, np.float64(2.0)), (4, 6, np.float64(1.0)), (5, 6, np.float64(3.0))]
+RECORD R4 segment radius invariance at s0' (d/4 vs d/6, relative): ['1.5e-14', '1.1e-14', '5.0e-14', '6.4e-14', '2.0e-13', '1.1e-13']
+# Study 66 (Gate 2B) exploratory dumps (no pass/fail; MEASURE lines in engine/study66_gate2b/dump66.txt; three runs, NOTES_study66.md); theory and prediction frozen before the held-out run
+FAIL GB1 (single registered check) held-out detours obey the integral affine Picard-Lefschetz rule   [(a) True, (b) False; pos 1: integers [-1, 0, 0, 0, 2, 0] (pred [-1, 0, 0, 0, 2, 0], dist 1.6e-10), PL residual 2.5e-14; pos 2: integers [1, -1, 1, -1, -1, -1] (pred [1, -1, 1, -1, -1, -1], dist 3.3e-11), PL residual 1.2e+00; pos 3: integers [5, 2, 0, -2, -2, -2] (pred [5, 2, 0, -2, -2, -2], dist 6.6e-13), PL residual 3.6e-04; pos 4: integers [1, 0, 0, 0, 0, -2] (pred [1, 0, 0, 0, 0, -2], dist 5.0e-14), PL residual 2.3e+00; pos 5: integers [7, -2, 0, -6, -6, -6] (pred [7, -2, 0, -6, -6, -6], dist 2.9e-13), PL residual 6.8e+00; pos 6: integers [-1, 2, 0, 2, 2, 2] (pred [-1, 2, 0, 2, 2, 2], dist 4.6e-13), PL residual 3.6e-04]
+RECORD R1 per-component rel. change rtol 1e-12 -> 1e-13 on the held-out paths: pos 1: ['3e-15', '6e-08', '7e-01', '2e-15', '2e-15', '1e-15']; pos 2: ['3e-13', '1e-13', '7e-14', '3e-13', '3e-13', '3e-13']; pos 3: ['4e-14', '6e-14', '6e-14', '3e-14', '3e-14', '4e-14']; pos 4: ['1e-13', '2e-06', '1e+00', '3e-14', '3e-14', '6e-14']; pos 5: ['9e-15', '2e-14', '2e-14', '7e-15', '7e-15', '2e-14']; pos 6: ['4e-14', '4e-14', '4e-14', '4e-14', '4e-14', '4e-14']
+RECORD R2 x^2 component |D - V - k V_j| / |V_p,2|: 1.1e+01, 1.1e+00, 8.1e-14, 4.8e+00, 1.4e+01, 3.4e-13
+# Study 66 AMEND1 (index defect in the check script; GB1 stays FAIL); rerun on the cached held-out vectors
+PASS GB1b (AMEND1: index fix; single registered check) held-out detours obey the integral affine Picard-Lefschetz rule   [(a) True, (b) True; pos 1: integers [-1, 0, 0, 0, 2, 0] (pred [-1, 0, 0, 0, 2, 0], dist 1.6e-10), PL residual 2.5e-14; pos 2: integers [1, -1, 1, -1, -1, -1] (pred [1, -1, 1, -1, -1, -1], dist 3.3e-11), PL residual 3.9e-12; pos 3: integers [5, 2, 0, -2, -2, -2] (pred [5, 2, 0, -2, -2, -2], dist 6.6e-13), PL residual 3.8e-13; pos 4: integers [1, 0, 0, 0, 0, -2] (pred [1, 0, 0, 0, 0, -2], dist 5.0e-14), PL residual 1.4e-13; pos 5: integers [7, -2, 0, -6, -6, -6] (pred [7, -2, 0, -6, -6, -6], dist 2.9e-13), PL residual 4.0e-13; pos 6: integers [-1, 2, 0, 2, 2, 2] (pred [-1, 2, 0, 2, 2, 2], dist 4.6e-13), PL residual 7.9e-14]
+RECORD R1 per-component rel. change rtol 1e-12 -> 1e-13 on the held-out paths: pos 1: ['3e-15', '6e-08', '7e-01', '2e-15', '2e-15', '1e-15']; pos 2: ['3e-13', '1e-13', '7e-14', '3e-13', '3e-13', '3e-13']; pos 3: ['4e-14', '6e-14', '6e-14', '3e-14', '3e-14', '4e-14']; pos 4: ['1e-13', '2e-06', '1e+00', '3e-14', '3e-14', '6e-14']; pos 5: ['9e-15', '2e-14', '2e-14', '7e-15', '7e-15', '2e-14']; pos 6: ['4e-14', '4e-14', '4e-14', '4e-14', '4e-14', '4e-14']
+RECORD R2 x^2 component |D - V - k V_j| / |V_p,2|: 1.1e+01, 1.7e-12, 3.8e-13, 1.4e-13, 3.8e-13, 8.0e-14
+RECORD R3 position 4 around s5: |up - down| / |D| = 3.2e-11; |up - straight-through| / |D| = 1.6e-08; integers up [1, 0, 0, 0, 0, -2], down [1, 0, 0, 0, 0, -2]
+# Study 67 (Gate 2C) exploratory campaign only (no registered check; MEASURE lines in engine/study67_gate2c/dump67.txt); held-out settings frozen (HELDOUT67.md)
+# Study 68 (Iritani I-0 audit frozen: I0_applicability.md, I0_addendum.md; I-1 held-out points and prediction frozen before computation)
+PASS IR1 (single registered check) Iritani Theorem 5.7 for O_X: real-cycle integral = Z(O) with the derived normalization, no fitting   [L 20, zeta 250: Theta_5 = 1.599913939510e+02-9.498709610477e-16j, Z(O) = 1.599913939511e+02+0.000000000000e+00j, eps +1, |ratio - eps| = 6.4e-13, Im Z/|Z| = 0.0e+00; L 20, zeta 700: Theta_5 = 2.134245149851e+02-1.339746033086e-15j, Z(O) = 2.134245149853e+02+2.842170943040e-14j, eps +1, |ratio - eps| = 6.5e-13, Im Z/|Z| = 1.3e-16; L 21, zeta 400: Theta_5 = 1.882245941914e+02+1.646241174497e-15j, Z(O) = 1.882245941915e+02+0.000000000000e+00j, eps +1, |ratio - eps| = 7.1e-13, Im Z/|Z| = 0.0e+00]
+RECORD R1 |Im Theta_5| / |Theta_5|: 5.9e-18, 6.3e-18, 8.7e-18
+RECORD R2 ratio change rtol 1e-12 -> 1e-13: 5.5e-13, 5.5e-13, 6.0e-13
+RECORD R3 negative controls |ratio - eps|: beta 2g+i pi: 1.06e+00, beta 0: 6.94e-01; beta 2g+i pi: 1.02e+00, beta 0: 6.29e-01; beta 2g+i pi: 1.04e+00, beta 0: 6.60e-01
+RECORD R4 Z(O) truncation N = 30 vs 40: 0.0e+00, 0.0e+00, 0.0e+00
+# Study 69 (I-2: six-object integral lattice; theory and prediction frozen, held-out = Study 67 settings)
+PASS IL1 (single registered check) six-object integral lattice: dictionary, phase, rotation, manifold   [(a) integrality True (B0 2.9e-11, H1 2.5e-11, H2 3.0e-11, H3a 2.7e-11, H3b 2.7e-11, H5 2.1e-11); (b) dictionary True (hits [(11, [5, 4, 3], [-1, -1, -1, 1, 1, -1], [1, -1, -1, -1, 1, -1])]); (c) phase/modulus True; (d) rotation True (H2 True, H3a True, H3b True); (e) manifold True]
+RECORD R1 N(B0) = [[0, 0, -1, 1, 1, -1], [-1, -1, 1, -1, 0, -1], [0, 1, -1, 1, 0, 1], [1, 0, -1, 1, 0, 1], [1, 1, -2, 1, 0, 2], [1, 1, -3, 2, 1, 0]]; F_i = N_i^vee = [[0, 1, 0, -1, -1, 0], [0, 1, -1, 0, -1, 0], [-1, -1, 1, 1, 2, 0], [1, 1, -1, -1, -1, 0], [1, 0, 0, 0, 0, 1], [-1, 1, -1, -1, -2, -3]]; N(H5) = [[0, 0, -1, -1, 1, -1], [1, -1, 1, 1, 0, -1], [0, 1, -1, -1, 0, 1], [-1, 0, -1, -1, 0, 1], [-1, 1, -2, -1, 0, 2], [-1, 1, -3, -2, 1, 0]]
+RECORD R2 integrality: {'B0': 2.8605060172138428e-11, 'H1': 2.4745767484831273e-11, 'H2': 3.006675959422534e-11, 'H3a': 2.7149514466083177e-11, 'H3b': 2.696554969514669e-11, 'H5': 2.0918877756316565e-11, 'R4': 2.7179762608740345e-11}
+RECORD R3 chi(F_i, F_j) = [[1, 0, -1, 1, 1, -1], [0, 1, -1, 1, 1, -1], [0, 0, 1, -1, -3, 6], [0, 0, 0, 1, 2, -5], [0, 0, 0, 0, 1, -3], [0, 0, 0, 0, 0, 1]]; chi - chi^T vs Study 66 det(n_i, n_j): equal False, negated True
+RECORD R4 H3 at rtol 1e-13: integrality 2.7e-11, same N True
+RECORD R5 full rotation: chain-rule product equals the frame computation at arg 0.3 + 2 pi: False (integrality 5.5e-11); chain [[0, 0, -1, 1, 1, -1], [-21, -1, 2, -2, -1, 0], [20, 1, -3, 3, 2, -1], [1, 0, -3, 3, 2, -1], [25, 5, -5, 4, 3, -1], [50, 10, -12, 10, 7, -3]]; frames [[0, 0, -1, 1, 1, -1], [-1, -1, 2, -2, -1, 0], [0, 1, -3, 3, 2, -1], [1, 0, -3, 3, 2, -1], [1, 1, -5, 4, 3, -1], [2, 2, -12, 10, 7, -3]]
+# Study 70 (I-2b: monodromy in q; held-out loops 4, 5 frozen first; exploratory loops 2, 3; theory and prediction frozen)
+PASS IQ1 (single registered check) monodromy in q: integrality at complex q, Stokes reflections along the loop, closure = tensoring by O(D_k)   [k 4: (a) True (1.5: 2e-11, 4.4: 2e-11, 6.15: 2e-11); (b) True/True/True; (c) closure True, twist non-trivial True (perm [1, 2, 3, 4, 5, 6]); k 5: (a) True (1.5: 6e-11, 4.4: 3e-11, 6.15: 2e-11); (b) True/True/True; (c) closure True, twist non-trivial True (perm [1, 2, 3, 4, 5, 6])]
+RECORD R1 integrality {4: {1.5: 2.4013564156974077e-11, 4.4: 2.3075999292727974e-11, 6.15: 1.9666510754865805e-11}, 5: {1.5: 5.682234960085061e-11, 4.4: 2.6537032348092703e-11, 6.15: 1.7505699370924542e-11}}
+RECORD R2 k 4: N_2pi - N(0) columns [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1], [0, -1, 1, 0, 1, 1], [0, 1, -1, 0, -1, -1], [0, 1, -1, 0, -1, -1], [0, -1, 1, 0, 1, 1]]; k 5: N_2pi - N(0) columns [[0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0], [0, -1, 0, 1, 1, 1], [0, 1, 0, -1, -1, -1], [0, 1, 0, -1, -1, -1], [0, -1, 0, 1, 1, 1]]
+RECORD R3 k 4: one-sided rule equals reflection at 4.4 True, at 6.15 True; k 5: one-sided rule equals reflection at 4.4 True, at 6.15 True
+# Study 71 (simultaneous Stokes-ray composition; derivation and held-out frozen first; exploratory block at arg pi; check renamed SR1 -> YS1 before computation)
+PASS YS1 (single registered check) simultaneous Stokes-ray composition at arg 0   [(a) integrality True (2e-11, 2e-11, 2e-11, 2e-11); (b) D1 direct True; (c) perturbation True; (d) limiting products True (24 cases, 6 orders); (e) Euler True; (f) full rotation True (frames integrality 6e-11)]
+RECORD R1 discrimination at arg 0: first-order sum reproduces N(+0.002): True; distance-ordered product: False; columns changed by the block: [1, 2, 4]
+RECORD R2 column 1: before [1, 0, -1, 0, -1, 0], after [-1, 0, -1, 0, -1, -2], D1 [-1, 0, -1, 0, -1, -2], first-order [-1, 0, -1, 0, -1, -2], distance-ordered [-25, 4, -5, -24, -25, -50]; chi on the line before [[1, 0, 0, 2], [0, 1, 0, 2], [0, 0, 1, -2], [0, 0, 0, 1]], after [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [-2, -2, 2, 1]]
+RECORD R3 integrality unpert 2.2e-11/2.1e-11, pert 2.2e-11/1.7e-11; full-rotation chain [[0, 0, -1, 1, 1, -1], [-1, -1, 2, -2, -1, 0], [0, 1, -3, 3, 2, -1], [1, 0, -3, 3, 2, -1], [1, 1, -5, 4, 3, -1], [2, 2, -12, 10, 7, -3]] vs frames [[0, 0, -1, 1, 1, -1], [-1, -1, 2, -2, -1, 0], [0, 1, -3, 3, 2, -1], [1, 0, -3, 3, 2, -1], [1, 1, -5, 4, 3, -1], [2, 2, -12, 10, 7, -3]]
+# Study 72 part A (I6 at infinity; prediction frozen first)
+FAIL XJ1 (single registered check, Study 72 part A) fibre at infinity of type I6   [(a) False: order [1, 2, 3, 4, 5, 6], product [[-167, -562], [-52, -175]], trace -342, gcd(M - I) 2; (b) False: transported matrix [[1, 6], [0, 1]], integrality 4.2e-13]
+RECORD reverse-order product [[1, -6], [0, 1]]; start coords [[-1, 0], [2, -1]], end coords [[-1, 0], [-4, -1]]
+# Study 72 part B (re-scoped: wall action on the K-lattice; held-out column side frozen first; row-side control exploratory)
+PASS WM1 (single registered check) the leximin wall mutates the six-object K-lattice   [(a) integrality True (0.005: 1e-12, 0.03: 1e-12, 0.071: 2e-12, 0.09: 1e-12); (b) events True; (c) wall mutation True (columns changed [6]); (d) exceptional in order 1,2,3,4,6,5 True]
+RECORD F before (t = -0.1) [[0, 1, 0, -1, -1, 0], [0, 1, -1, 0, -1, 0], [-1, -1, 1, 1, 2, 0], [1, 1, -1, -1, -1, 0], [1, 0, 0, 0, 0, 1], [-1, 1, -1, -1, -2, -3]]; F after the wall (t = 0.03) [[0, -1, 0, 1, 1, 0], [0, 1, -1, 0, -1, 0], [-1, -1, 1, 1, 2, 0], [-1, -1, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1], [2, 1, -1, -1, -2, 0]]; chi(F) at 0.03 in order [1, 2, 3, 4, 6, 5]: [[1, 0, 1, 1, -2, -1], [0, 1, -1, -1, 2, 1], [0, 0, 1, 1, -3, -3], [0, 0, 0, 1, -1, -2], [0, 0, 0, 0, 1, 3], [0, 0, 0, 0, 0, 1]]
+# Study 73 / S-0 (3x3 strand geometry audit; criteria frozen first)
+[regression 2x3] construction rows [[1, 1], [-1, 0], [0, -1], [-1, -1], [1, 0], [0, 1]] vs check_cat51.V [[1, 1], [-1, 0], [0, -1], [-1, -1], [1, 0], [0, 1]]: equal True
+[3x3] cells [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]; exponent vectors [[1, 1, 1, 1], [-1, 0, -1, 0], [0, -1, 0, -1], [-1, -1, 0, 0], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, -1], [0, 0, 1, 0], [0, 0, 0, 1]]
+[P = conv(v), 3x3] vertices 9 (all vertices: 9), facets 6, lattice points 10, interior 1, facet heights [1], reflexive True, simplicial fan False, smooth fan False, normalized volume 18, facet sizes [6]
+[P* (anticanonical polytope of X)] vertices 6 (all vertices: 6), facets 9, lattice points 55, interior 1, facet heights [1], reflexive True, simplicial fan True, smooth fan False, normalized volume 243, facet sizes [4]
+[Batyrev] CY threefolds Y in X (Newton polytope P*): h11(Y) = 5, h21(Y) = 50, Euler number 2(h11 - h21) = -90; mirror family: h11 = 50, h21 = 5
+S-0 gate (PREREG73_S0): PASS; Picard rank (rays - dim) 5; number of maximal cones 6 (Euler number of X if smooth); critical points of generic W = normalized volume 18
+# Study 73 / S-0b (resolutions as maps; v1 crashed on a wrong face model, v2 face lattice, v2.1 test-data fix)
+faces: 6 prism facets, 9 squares, 6 triangles, 18 edges
+simplicial refinements with the 9 rays: 102; unimodular 102; regular (projective) 102; maximal cones per refinement 18
+independence tables with distinct margins: 36 orderings -> 1 distinct refinements; all valid triangulations: False
+faces: 6 prism facets, 9 squares, 6 triangles, 18 edges
+simplicial refinements with the 9 rays: 102; unimodular 102; regular (projective) 102; maximal cones per refinement 18
+  walls on the simplex (f2 = 1 - f0 - f1, g2 = 1 - g0 - g1): -f0 - g0 - g1 + 1; -f0 + g1; -f0 - f1 - g0 + 1; -f1 + g0; -f0 + g0; -f1 + g1; -f0 - f1 - g1 + 1; -f1 - g0 - g1 + 1; -f0 - f1 + g0 + g1
+independence tables (4000 random margin pairs): 102 distinct refinements, all valid triangulations True; each refinement determined by the sign pattern of f_i - g_j: True; distinct sign patterns 102
+# Study 74 (3x3 strand, Options A and C; HELDOUT74 + AMEND1, THEORY74, PREDICTION74 frozen first; exploratory dump74, dump74b, calib74, mirrormap74)
+PASS VS1 (registered, Option A + change of variables) Z(O) of the selected small resolution with the identity change of variables equals the real-cycle integral   [no F/mirror-map/h classes (|E| <= 8); held-out C +-0.02, F +-0.03, X +-0.03: |A16-B|/|B| 1.1e-14..1.3e-14; h-stability 3e-14; N12 vs 16 <= 4.3e-13; adjacent-chamber slopes +1.516..+1.520 (divergent)]
+PASS VS2 (registered, Option C) breakdown localized in the flopping variable q_C   [C +-0.01: same resolution, 1.3e-14/1.4e-14; F, X +-0.01: fitted rate 0.5123..0.5162 vs 0.5 (dev <= 0.032), |A16-B|/tail 1.03 (4 points), adjacent slopes +0.551..+0.553]
+PASS VS3 (registered) wall action on line bundles at the held-out walls W1 (leximin + flop) and W2 (flop)   [Z(O) a vs b 7.7e-13 / 1.0e-10, vs B 2.0e-5 / 1.5e-5; off-circuit O(+-D_k) agree (<= 9.5e-11), on-circuit differ (2.1e-3..2.8e-3); same rule at W1 and W2]
+RECORD Study 74 overall PASS; output engine/study74_strand/check_strand74_output.txt
+# Study 75 Part 1 (categorical identification, exact A-side; PREREG75 frozen first)
+FAIL CI1 (registered) exact A-side Ext algebra of C': (a) exceptional True, (b) strong after [-1] on F1, F2 False, (c) dim Hom = |chi| True   [check-script sign error in the degree of shifted Ext; AMEND1]
+PASS CI1b (registered, after AMEND1) C' exceptional, strong after [-1] on F1, F2, dim Hom = |chi|, Euler form = Study 69   [arrows 1->3, 2->3, 3->4, 3->5, 4->5 (2), 5->6 (3); ranks 345 2/3, 346 5/6, 356 6/6, 456 5/5, torsion triples 1]
+RECORD Study 75 post-hoc diagnostics: V4 deficit of Studies 51-56 not a winding-window or F_2-sign artefact; the smallest missing triangles are blocked only by the near-coincident puncture pairs {P0, P4} and {P1, P5}
+# Study 75 Parts 2-3 (PREREG75b frozen first; CI3 first run stopped in the taut step (performance), AMEND2 decimation recorded before any criterion was evaluated)
+PASS CI2 (registered) Morse, tame path from our coefficients to Ueda's (Ueda's theorem applies)   [6 critical points over 2000 steps, min relative separation 0.143, min |det Hess| ratio 9.0e-6, positive coefficients; 10 order swaps (Hurwitz moves, record)]
+PASS CI3 (registered) vanishing cycles built in the fibre by horizontal transport reproduce the dP6 directed category   [(a) classes = Study 45, residual <= 5.7e-7; (b) mu^1 = 0, dims = |chi| on all 15 pairs; (c) one degree per pair, per-object shifts (0,0,0,0,0,2); (d) mu^2 ranks over F_2 = CI1b on all 20 triples]
+RECORD Study 75: transported class words differ from Study 54's at V1, V2, V4 (V4 now passes round the tight puncture pair {P0, P4}); V3, V5, V6 equal
+# Study 76 (signed triangles and an explicit algebra isomorphism; PREREG76 frozen first)
+PASS AI1 (registered) explicit isomorphism Phi of directed cohomology algebras (thimbles -> End(C')), degrees, units and multiplication preserved   [structure constants +-1 only; unique support-matching bijection; GF(2) sign system solvable; Phi printed in study76_signs/run1.log]
+PASS AI2 (registered) signed P^2 block: rational rank 6, kernel 3, symmetric under the induced bijection
+PASS AI3 (registered) the isomorphism exists on 10/10 perturbed configurations (seeds 7601-7610, mu^1 = 0)
+RECORD AI4 trivial spin structure on one circle: isomorphism persists for V1, V2, V4, V5; fails (sign system inconsistent) for V3 and V6
+# Study 77 (independent triangle census with a completeness bound; PREREG77 + AMEND1 frozen before code; run 1 FAIL kept; AMEND2 before re-run)
+PASS TQ1 (registered, run 1) completeness bound computed (rho 0.0196, delta_c <= 0.0034, D_max per triple 0.14-3.2); window 1.2 D_max
+FAIL TQ2 (registered, run 1) per-triangle agreement with the Study 76 census   [only "old only" discrepancies, window-dependent; cause: loop-closure tolerance 1e-12 below GEOS interpolation error (AMEND2)]
+FAIL TQ3 (registered, run 1) tensor and Phi from the new census   [follows from TQ2]
+PASS TQ1b (registered, after AMEND2) completeness bound and window as in TQ1
+PASS TQ2b (registered, after AMEND2) the independent enumerator finds exactly the Study 76 triangles in all 16 non-vacuous triples (corners, signed area to 1e-9, star parity); no new-only, old-only, duplicate, orientation or star discrepancies
+PASS TQ3b (registered, after AMEND2) the multiplication tensor rebuilt from the new census equals Study 76's and the isomorphism solver returns the identical Phi
+RECORD Study 77 post-hoc: with the fixed tolerance the comparison also agrees completely at window 3 D_max (diag/diag77_tolerance.py)
+# Study 78 (orientations; PREREG78 frozen first, orient78.py hashed, run once)
+PASS ZT1 (registered) an orientation of V1..V6 making every generator even (local intersection number -1, Seidel's convention) exists   [no flips needed]
+PASS ZT2 (registered) the Study 75-76 traversal orientations already make all 37 generators of the 15 pairs even: Seidel's sign rule reduces to (-1)^stars, and Seidel's Z/2-grading agrees with our Z-grading
+RECORD literature audit for Theorem 260(c): GPS (Covariantly functorial Ex. 2.20; Sectorial descent Prop. 8.20, Cor. 1.17/1.27; Microlocal Cor. 6.16, Ex. 6.20) + Zhou + Kuwagaki; Hanlon as support; single named hypothesis (H_sigma)
+# Study 79 (critical points of the 3x3 mirror at the flop walls; PREREG79 + AMEND1 (derivation wording) frozen before code; escape79.py hashed, run once)
+PASS ES1 (registered) 18 distinct nondegenerate critical points at t = +-0.02 on all five paths (and along every step)
+FAIL ES2 (registered) escaping/bounded split with growth >= 2.0, monotone, R^2 >= 0.98, bounded change <= 0.5   [pure flop walls F, W2: one triple escapes (growth 4.9-7.5, slope 1.29-1.37, R^2 0.9999); but non-escaping points drift up to 1.2 (> 0.5), F side +1 not monotone at the first step, and at the leximin walls X, W1 the escaping triple grows only 0.65-1.5 over the range]
+PASS ES3 (registered) every escaping point leaves in the normal cone of the flipping square (its four vertices are the top four exponents)
+FAIL ES4 (registered) control C: points drift up to 0.94 (> 0.5) although none escapes and 18 are found at t = 0
+RECORD ES5 finite critical points at t = 0: C 18; F, X, W1, W2 15 each (exactly 3 lost at every wall); critical points come in triples (identical statistics)
+RECORD Study 79 post hoc (diag79): at every wall the fastest triple leaves along the flipping square; slopes per log(1/|t|): pure flops 1.29-1.37, leximin walls 0.18-0.47 (with a second triple at 0.13-0.33); control |slopes| <= 0.036
+# Study 80 (escape valuation at the 3x3 walls; DERIVATION80 frozen before any Study 80 critical-point computation; exploratory dump80 on the Study 79 paths; PREDICTION80 frozen; run 1 crashed in the Krawczyk test (singular pseudo-root), AMEND1 before any criterion was evaluated)
+PASS VQ1 (registered) certified count at t = 0: exactly 15 on H1-H3 (15 Krawczyk-certified disjoint roots; <= 15 by Lemma Z/3 and Bernstein), 18 certified on the control H4
+PASS VQ2 (registered) valuation slope against log(1/|delta|) in [1e-7, 1e-5]: 0.9956-1.0046 on all six wall sides (leximin H1 included)
+PASS VQ3 (registered) escape direction within 0.007 of the Newton-Puiseux vertex nu* on all wall sides
+PASS VQ4 (registered) |Re u|_inf slope = |nu*|_inf: H1 (leximin) 1.3275/1.3395 vs 4/3; H2, H3 0.6666-0.6668 vs 2/3
+PASS VQ5 (registered) the escaping set is one Z/3 orbit; 18 points at every grid step
+PASS VQ6 (registered) control H4: 18 at every step, sorted |Re u|_inf slopes <= 0.0001
+RECORD Study 80: the 'slower leximin escape' of Study 79 is a coordinate effect (|nu*|_inf = 1/3, 2/3 for the X, W1 squares) plus slow convergence (H1 window Wa: valuation slope 0.83-0.94); escape law is the same for leximin and pure flop walls. ES2, ES4 of Study 79 remain failed.
+==== Study 81 (categorical wall-crossing on dP6), 2026-11-21
+FAIL MW1 (registered wording of (c): Euler forms compared up to the sign of the sixth class only; Study 72 classes carry one sign per object)
+PASS MW1c (AMEND1 wording (c'): diagonal signs D = (1,-1,1,1,-1,-1)); C'' strong exceptional, Hom(N_i,T) = 2,2,3,1, Hom(T,F5) = 3, associativity exact on 105 quadruples
+PASS MW3 (t = 0.020 held out: order 1,2,3,4,6,5; class 6 = (3,-2) fit 3.2e-8; dims, degrees, F2 ranks = C'')
+PASS MW4 (unique bijection on U; mutation condition nullity 1; M, H_i invertible signed permutations; (i,j,T) tensors exact)
+PASS MW5 (all 47 products over 20 triples exact, forward and inverse)
+FAIL MW6 (reproduction step tolerance 1e-4 vs the Study 75 configuration; differences up to 0.03); POST HOC with the ladder matching rule: sigma'' o cont = sigma76, signs up to object gauge (diagnostic, not a pass)
+PASS MW7 (pre-wall control recovers C' with the Study 76 isomorphism; random kernels fail; right-mutation dims differ)
+PASS MW7bp (AMEND2: seven frozen controls incl. four minimal decoys fail)
+FAIL MW9 (AMEND2: continuation 0.015 -> 0.020 ambiguous after two insertions; carried tensor test not evaluated)
+FAIL MW9strict (same; not evaluated)
+==== Study 82 (wall-crossing comparison along the path), 2026-11-21; run 1 crashed (triple points of cylinder cores), AMEND2; run 2:
+PASS PW0 (held-out t = 0.025: Study 81 criteria, 47 products both ways)
+PASS PW1 (natural transformation on the unchanged objects: Study 76 comparison continued -0.1 -> 0.025 equals Phi'' up to one sign per object)
+PASS PW2strict (frozen t = 0.01 comparison carried to 0.025 without re-solving or sign freedom; all 47 products both ways)
+PASS PW2 (implied by PW2strict)
+PASS PW3 (wrong carried maps fail: cyclic (V3,V6') bijection, permuted H_3)
+==== Study 83 (one synthetic data stream through the whole machinery), held-out seed 8302, 2026-11-21; check run 1 + run 2 (AMEND2: GE7 script key bug)
+FAIL GE1 (min |det Hess| 8.2e-4 < 1e-3 on class A at L = 30; period fit 0.198 of the predicted classes at two C0 points after a missed collision wall)
+PASS GE2 (leximin walls <-> (6,5) Stokes events: L20 recall 12/14 precision 12/14; L30 14/14, 14/14)
+FAIL GE3 (three leximin brackets: mutation dims exact; margin-order controls: D0 isomorphic, B0 dims differ -- collision wall)
+PASS GE4 (margin-blind twins identical in L2/L3, decisions differ; decision walls and categorical walls discordant both ways)
+PASS GE5 (population bands contain the truth; finite coverage 20/20; region vs band E2/E3; defect null 1.2e-12 vs 1.0e-3; Controls F, G)
+PASS GE6 (no false 'seed'; every population model extends)
+FAIL GE7 (run 1: script bug; run 2: audit week 6 does not match its chamber representative; ledger 3 of 9 Floer runs)
+==== Study 84 (citation audit of (H_sigma)), 2026-11-22: verdicts in engine/study84_hsigma/AUDIT84.md (no PASS/FAIL checks; reduced to L1, L2)
+==== Study 84b (lemmas L1, L2 for (H_sigma)), 2026-11-22; hs_l1 run 1 + run 2 (AMEND1: critical-point census), hs_l2 run 1
+PASS HS1 (exact: hexagon unimodular, strictly convex, 0 interior; edge and vertex polynomials without toric critical points for all nonzero coefficients)
+FAIL HS2pre (run 1: critical-point census incomplete at some states, counts 5/6; two root-finders each missed points)
+PASS HS2preb (AMEND1: union of three sources refined to 50 digits; six critical points at all 42 states, complete by Kouchnirenko's count; V_max = 148.4)
+PASS HS2 (certified M-tameness: R = 24, T = 960; gamma >= 0.447, min Phi_R = 9.0e-5, e^(R h_min) Phi_R = 2.1e3 > T; both runs)
+PASS HS4 (42 states: Seidel thimbles thimble-like; angles at s0 distinct, min 6.1e-6 rad, within 0.07 rad of arg s0; stored order 22/22)
+PASS HS5 (Study 75 algebra: 14 nonzero pairs, one degree each, all degree 0 after shifts (0,0,0,0,0,2); formal)
+==== Study 85 (credal support and braid transport), held-out seed 8502, 2026-11-22; one run after PREDICTION85 (calibration 8501 dry run kept in calib/)
+FAIL BTR (RETRO85, registered before opening the data: Study 83 B0 control dims after the transposition of the colliding positions do not match; post hoc: the before-point run is defective)
+PASS BT1 (6500 Markov moves on 260 count tables: coefficients bitwise equal; 260/260 single-cell changes move them)
+PASS BT2 (118 linear + 88 fractional credal walls all on chamber walls; Stokes events differ L20 vs L30 on 20/20 paths; 91 Stokes-only, 59 credal-only)
+PASS BT3 (40/40 paths L20, L30: events = mutations, 106 collisions = orthogonal swaps; exceptional throughout; shadow = Picard-Lefschetz classes)
+PASS BT4 (full twist at 5 states x 2 directions: 30 crossings, k = +-6, classes M V_i, K_0 lift = Serre functor F (x) omega^-+1)
+PASS BT5 (conditioning commutes; Jeffrey braid relation fails off product tables; IPF limits agree; order dependence iff both margins move)
+PASS BT6 (53 margin-order walls: collision |dv| <= 8.9e-6, intersection 0, both B-field resolutions identical)
