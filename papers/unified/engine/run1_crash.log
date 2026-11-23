@@ -1,0 +1,12 @@
+==== Study 82 check 2026-11-21 18:49:47
+Traceback (most recent call last):
+  File "/home/claude/paper/unified/engine/check_path82.py", line 30, in <module>
+    NP, K, nd = I.load_A(); P = {t: b82(t) for t in sorted(set(L1 + L2), key=float)}; B = P["0.025"]
+                                    ~~~^^^
+  File "/home/claude/paper/unified/engine/check_path82.py", line 20, in b82
+    subprocess.run([sys.executable, "wall82.py", t], cwd=HERE, env=env, check=True, capture_output=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/usr/local/bin/python3', 'wall82.py', '-0.01']' returned non-zero exit status 1.

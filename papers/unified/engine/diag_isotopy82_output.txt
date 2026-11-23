@@ -1,0 +1,1 @@
+POST HOC: subdivided isotopy unambiguous True (worst ratio 0.115); composite map = direct match on all pairs: True

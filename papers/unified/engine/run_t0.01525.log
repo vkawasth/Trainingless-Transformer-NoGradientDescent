@@ -1,0 +1,77 @@
+==== Study 81 B side at t = 0.01525 (post-wall) 2026-11-21 18:12:30; a = [0.28337051, 0.11005776, 0.05858656, 0.06463495, 0.00828549, 0.00210645]
+  critical values (positions 1..6): [(-14.806809-0j), (-2.012455-0j), (-0.296486+0.218017j), (-0.000118-0j), (0.492927+0j), (-0.296486-0.218017j)]; arg(v - s0) order: [5, 6, 4, 3, 2, 1]
+  S1 pos 1 (crit 5): steps 10235, colliding pair (2, 3), final distance 1.57e-07, others >= 1.79e+03
+  S1 pos 2 (crit 4): steps 8804, colliding pair (2, 3), final distance 1.36e-02, others >= 1.5
+  S1 pos 3 (crit 2): steps 8509, colliding pair (1, 3), final distance 1.44e-02, others >= 0.92
+  S1 pos 4 (crit 1): steps 8476, colliding pair (1, 2), final distance 6.65e-03, others >= 1.07
+  S1 pos 5 (crit 3): steps 8466, colliding pair (1, 2), final distance 1.56e-02, others >= 0.931
+  S1 pos 6 (crit 0): steps 8532, colliding pair (2, 3), final distance 1.44e-02, others >= 0.922
+  [stage S1_tracks done in 96s]
+  S2 pos 1: arc points 1567, substeps 23704, end errors 0.0e+00 0.0e+00, clearance from other marked points 0.000719
+  S2 pos 2: arc points 815, substeps 19658, end errors 0.0e+00 0.0e+00, clearance from other marked points 2.47
+  S2 pos 3: arc points 757, substeps 19357, end errors 0.0e+00 0.0e+00, clearance from other marked points 0.00149
+  S2 pos 4: arc points 593, substeps 19334, end errors 0.0e+00 4.4e-16, clearance from other marked points 0.00647
+  S2 pos 5: arc points 569, substeps 19207, end errors 0.0e+00 0.0e+00, clearance from other marked points 0.00652
+  S2 pos 6: arc points 823, substeps 19559, end errors 0.0e+00 0.0e+00, clearance from other marked points 0.0023
+  [stage S2_arcs done in 214s]
+  S3 pos 1: period 0.0038683045+0.012505298j, half A 0.0019341523+0.0062526488j
+  S3 pos 2: period 0.0038683265+0.012505359j, half A 0.0019341633+0.0062526793j
+  S3 pos 3: period -0.1029744+0.069012096j, half A -0.051487198+0.034506048j
+  S3 pos 4: period -0.11457944+0.031496143j, half A -0.057289721+0.015748071j
+  S3 pos 5: period 0.11457944-0.031496165j, half A 0.057289722-0.015748083j
+  S3 pos 6: period 0.21755383-0.1005082j, half A 0.10877692-0.050254102j
+  S3 punctures (from R_1): ('y1=0', 0): z = -0.0424833+0.0183557j, y2 -> -2.29e+14+7.57e+13j; ('y1=0', 1): z = 0.0424833-0.0183557j, y2 -> -0.587-3.22e-10j; ('y1=inf', 0): z = -0.00361391+0.00764311j, y2 -> -0.0292+0j; ('y1=inf', 1): z = 0.00361391-0.00764311j, y2 -> -5.59e-22+1.85e-22j; ('y1=-a5/a0', 0): z = -0.0353224+0.0167755j, y2 -> -1.31e+14-6.63e+13j; ('y1=-a5/a0', 1): z = 0.0353224-0.0167755j, y2 -> -0.0167+0.00502j; ('y1=-a3/a2', 0): z = -0.0254231+0.0137325j, y2 -> -1.48e+03-457j; ('y1=-a3/a2', 1): z = 0.0254231-0.0137325j, y2 -> 1.15e-13-7.15e-14j; path clearances {'y1=0': 0.2681612550857146, 'y1=inf': 0.038819911408319155, 'y1=-a5/a0': 0.26226561676782856, 'y1=-a3/a2': 0.26102976084546337}
+  [stage S3_curves done in 226s]
+  transport pos 1: points 12263, fibre residual 9.2e-13, period 0.0038683613+0.012505324j (S3 period 0.0038683045+0.012505298j); 6s
+  transport pos 2: points 16593, fibre residual 1.0e-12, period 0.0038683541+0.012505326j (S3 period 0.0038683265+0.012505359j); 8s
+  transport pos 3: points 21064, fibre residual 1.2e-12, period -0.10297438+0.069012109j (S3 period -0.1029744+0.069012096j); 10s
+  transport pos 4: points 17681, fibre residual 1.4e-12, period 0.10684273-0.056506783j (S3 period -0.11457944+0.031496143j); 9s
+  transport pos 5: points 15661, fibre residual 1.3e-12, period -0.11457943+0.031496128j (S3 period 0.11457944-0.031496165j); 6s
+  transport pos 6: points 41104, fibre residual 1.4e-12, period 0.21755383-0.10050824j (S3 period 0.21755383-0.1005082j); 21s
+  period fits on the transported periods (relative residual): class 6 = (3, 1): 1.91e-01; class 6 = (3, 4): 1.93e-01; class 6 = (3, -2): 3.63e-08
+  using CLASS = [(-1, 0), (-1, 0), (-3, 1), (-2, 1), (0, 1), (3, -2)]
+  S3 (projection model) period minus transported period: [6e-08, 4e-08, 2e-08, 0.23826937, 0.23765904, 4e-08]
+  [stage S4_flat done in 0s]
+  S5 pair (1,2): 2 points, raw degrees [1, 0], signs [1, -1], null loops 0
+  S5 pair (1,3): 1 points, raw degrees [1], signs [1], null loops 0
+  S5 pair (1,4): 1 points, raw degrees [-2], signs [-1], null loops 0
+  S5 pair (1,5): 1 points, raw degrees [1], signs [1], null loops 0
+  S5 pair (1,6): 2 points, raw degrees [0, 0], signs [-1, -1], null loops 0
+  S5 pair (2,3): 1 points, raw degrees [1], signs [1], null loops 0
+  S5 pair (2,4): 1 points, raw degrees [-2], signs [-1], null loops 0
+  S5 pair (2,5): 1 points, raw degrees [1], signs [1], null loops 0
+  S5 pair (2,6): 2 points, raw degrees [0, 0], signs [-1, -1], null loops 0
+  S5 pair (3,4): 3 points, raw degrees [-2, -2, -1], signs [-1, -1, 1], null loops 2
+  S5 pair (3,5): 3 points, raw degrees [1, 1, 1], signs [1, 1, 1], null loops 0
+  S5 pair (3,6): 3 points, raw degrees [0, 0, 0], signs [-1, -1, -1], null loops 0
+  S5 pair (4,5): 2 points, raw degrees [4, 4], signs [-1, -1], null loops 0
+  S5 pair (4,6): 1 points, raw degrees [3], signs [1], null loops 0
+  S5 pair (5,6): 3 points, raw degrees [-1, -1, -1], signs [1, 1, 1], null loops 0
+  [stage S5_floer done in 1s]
+12 candidates; chi of the first: [[1, 0, -1, -1, -1, -1], [0, 1, -1, -1, -1, -1], [0, 0, 1, 1, 3, 6], [0, 0, 0, 1, 2, 5], [0, 0, 0, 0, 1, 3], [0, 0, 0, 0, 0, 1]]
+  S4 ramification consistency [4.6e-07, 2.01e-06, 0.0, 0.0, 1.71e-06, 2.47e-06]; S4 fit residual 3.63e-08, signs [1, 1, 1, -1, 1, 1], lattice classes [[-1, 0], [-1, 0], [-3, 1], [2, -1], [0, 1], [3, -2]]
+  pos 1: lattice coords residual 7.3e-08 -> [-1, 0] (S4 class [-1, 0]); offset consistency mod Lambda 2.0e-06
+  pos 2: lattice coords residual 9.1e-09 -> [-1, 0] (S4 class [-1, 0]); offset consistency mod Lambda 8.6e-07
+  pos 3: lattice coords residual 2.4e-09 -> [-3, 1] (S4 class [-3, 1]); offset consistency mod Lambda 8.6e-07
+  pos 4: lattice coords residual 1.4e-08 -> [2, -1] (S4 class [2, -1]); offset consistency mod Lambda 8.6e-07
+  pos 5: lattice coords residual 6.2e-08 -> [0, 1] (S4 class [0, 1]); offset consistency mod Lambda 9.9e-07
+  pos 6: lattice coords residual 3.9e-08 -> [3, -2] (S4 class [3, -2]); offset consistency mod Lambda 8.6e-07
+  V1: period residual 6.6e-07; decimation 64; word length 3; taut keeps word True
+  V2: period residual 8.2e-08; decimation 64; word length 5; taut keeps word True
+  V3: period residual 2.3e-09; decimation 64; word length 13; taut keeps word True
+  V4: period residual 1.4e-08; decimation 64; word length 6; taut keeps word True
+  V5: period residual 6.2e-08; decimation 64; word length 1; taut keeps word True
+  V6: period residual 1.9e-08; decimation 64; word length 14; taut keeps word True
+  order [1, 2, 3, 4, 6, 5]; mu^1 = 0: True; dims {'12': 0, '13': 1, '14': 1, '15': 2, '16': 1, '23': 1, '24': 1, '25': 2, '26': 1, '34': 1, '35': 3, '36': 3, '45': 1, '46': 2, '56': 3}
+  degrees {'12': [], '13': [0], '14': [1], '15': [1], '16': [0], '23': [0], '24': [1], '25': [1], '26': [0], '34': [1], '35': [1], '36': [0], '45': [0], '46': [-1], '56': [-1]}
+  mu^2 ranks (F_2) {'123': 0, '124': 0, '125': 0, '126': 0, '134': 1, '135': 2, '136': 1, '145': 1, '146': 1, '156': 1, '234': 1, '235': 2, '236': 1, '245': 1, '246': 1, '256': 1, '345': 1, '346': 2, '356': 3, '456': 2}
+  signed structure constants occurring [-1, 1]; stars [23.309, 23.371, 0.351, 0.53, 5.873, 0.013]
+==== done
+==== Study 81 B side at t = 0.01525 (post-wall) 2026-11-21 18:18:13; a = [0.28337051, 0.11005776, 0.05858656, 0.06463495, 0.00828549, 0.00210645]
+  critical values (positions 1..6): [(-14.806809-0j), (-2.012455-0j), (-0.296486+0.218017j), (-0.000118-0j), (0.492927+0j), (-0.296486-0.218017j)]; arg(v - s0) order: [5, 6, 4, 3, 2, 1]
+  period fits on the transported periods (relative residual): class 6 = (3, 1): 1.91e-01; class 6 = (3, 4): 1.93e-01; class 6 = (3, -2): 3.63e-08
+  using CLASS = [(-1, 0), (-1, 0), (-3, 1), (-2, 1), (0, 1), (3, -2)]
+  S3 (projection model) period minus transported period: [6e-08, 4e-08, 2e-08, 0.23826937, 0.23765904, 4e-08]
+12 candidates; chi of the first: [[1, 0, -1, -1, -1, -1], [0, 1, -1, -1, -1, -1], [0, 0, 1, 1, 3, 6], [0, 0, 0, 1, 2, 5], [0, 0, 0, 0, 1, 3], [0, 0, 0, 0, 0, 1]]
+  S4 ramification consistency [4.6e-07, 2.01e-06, 0.0, 0.0, 1.71e-06, 2.47e-06]; S4 fit residual 3.63e-08, signs [1, 1, 1, -1, 1, 1], lattice classes [[-1, 0], [-1, 0], [-3, 1], [2, -1], [0, 1], [3, -2]]
+points written 0.01525

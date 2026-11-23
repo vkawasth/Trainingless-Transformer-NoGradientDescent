@@ -1,0 +1,12 @@
+==== Study 82 check 2026-11-21 18:53:43
+12 candidates; chi of the first: [[1, 0, -1, -1, -1, -1], [0, 1, -1, -1, -1, -1], [0, 0, 1, 1, 3, 6], [0, 0, 0, 1, 2, 5], [0, 0, 0, 0, 1, 3], [0, 0, 0, 0, 0, 1]]
+  PW0 at 0.025: fits {0: '1.9e-01', 1: '1.9e-01', -1: '3.5e-08'}; dims = C'' True; ok; nullity 1; products both ways True on 47
+PW0 PASS
+  PW1 ladder unambiguous True (worst ratio 0.416); sigma'' o cont = sigma76 True; signs up to one per object True
+PW1 PASS
+  PW2 continuation unambiguous True (worst ratio 0.907); carried products both ways (strict) True on 47
+PW2-strict PASS; PW2 PASS
+  PW3 control cyclic (V3, V6') bijection: products hold False
+  PW3 control H_3 columns swapped: products hold False
+PW3 PASS
+Study 82 overall: PASS
