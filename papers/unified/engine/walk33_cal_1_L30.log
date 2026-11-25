@@ -1,0 +1,14 @@
+start 18 max res 3.2e-17 ok True 67s
+  for k in range(n - 1, -1, -1): x[:, k] = (b[:, k] - (A[:, k, k + 1:] * x[:, k + 1:]).sum(1)) / A[:, k, k]
+  for k in range(n - 1, -1, -1): x[:, k] = (b[:, k] - (A[:, k, k + 1:] * x[:, k + 1:]).sum(1)) / A[:, k, k]
+  Jm[:, i, i] = (R[:, i, None] / P[:, i, :]).sum(-1)                        # d/du_i
+  for j in range(s.c - 1): Jm[:, i, s.r + j] = R[:, i] / P[:, i, j]             # d/dv_j
+  for i in range(s.r): Jm[:, s.r + j, i] = C[:, j] / P[:, i, j]
+  Jm[:, s.r + j, s.r + j] = (C[:, j, None] / P[:, :, j]).sum(-1)
+  f = A[:, k + 1:, k] / A[:, k, k][:, None]
+  for k in range(n - 1, -1, -1): x[:, k] = (b[:, k] - (A[:, k, k + 1:] * x[:, k + 1:]).sum(1)) / A[:, k, k]
+  for k in range(n - 1, -1, -1): x[:, k] = (b[:, k] - (A[:, k, k + 1:] * x[:, k + 1:]).sum(1)) / A[:, k, k]
+walk done 1178s detours 18
+events {'collision': 8, 'caustic': 5} ties 13 collisions on ties 8 off 0
+per tie: [np.int64(1), np.int64(1), np.int64(0), np.int64(0), np.int64(0), np.int64(1), np.int64(1), np.int64(1), np.int64(1), np.int64(0), np.int64(1), np.int64(1), np.int64(0)]
+real count range 4 6 1543s

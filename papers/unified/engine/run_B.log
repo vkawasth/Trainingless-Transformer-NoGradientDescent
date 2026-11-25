@@ -1,0 +1,7 @@
+/home/claude/paper/unified/engine/lib91.py:249: RuntimeWarning: overflow encountered in conversion from string
+  def _mp2ld(z): return np.longdouble(_mp.nstr(z.real, 25)) + 1j * np.longdouble(_mp.nstr(z.imag, 25)) if False else (np.clongdouble(np.longdouble(_mp.nstr(z.real, 25))) + np.clongdouble(1j) * np.longdouble(_mp.nstr(z.imag, 25)))
+0 30 collisions 659 certified 627 simple 627 102s
+/home/claude/paper/unified/engine/lib91.py:249: RuntimeWarning: overflow encountered in conversion from string
+  def _mp2ld(z): return np.longdouble(_mp.nstr(z.real, 25)) + 1j * np.longdouble(_mp.nstr(z.imag, 25)) if False else (np.clongdouble(np.longdouble(_mp.nstr(z.real, 25))) + np.clongdouble(1j) * np.longdouble(_mp.nstr(z.imag, 25)))
+1 30 collisions 1072 certified 1064 simple 1064 155s
+2 30 collisions 1168 certified 1156 simple 1156 144s

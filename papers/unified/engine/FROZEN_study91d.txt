@@ -1,0 +1,7 @@
+355de5863c68ba6b9a9e6839ae9e3c2e3b61b800250f601ba44e73deac444f8d  PREREG91D.md
+aa64e9627c693df4e35a76b741aecc7e711f373c1c4cc99c9bc4a45d235bfaf1  ../rescale91d.py
+# re-frozen before running: RQ2 wording corrected to match the script
+f1b0f62feed463ba4328cbdb1937c7e2ddefe05b390d1ed8ff21e70634a7c624  PREREG91D.md
+Tue Nov 24 20:07:16 PST 2026
+02013391c5eb3f3f0689804308a368c937ce1f6f3720ebb6579c2f8d7ef5b192  study91d_rescale/check91d_output.txt
+3c2733f867e4ba94d365532a1f47e1f0e3d78e6ae35a9d32b7008941277e3f0e  study91d_rescale/rescale91d.json

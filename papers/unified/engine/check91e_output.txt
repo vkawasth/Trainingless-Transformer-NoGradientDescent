@@ -1,0 +1,23 @@
+==== Study 91E (PREREG91E), 2026-11-24
+PASS LH1 intrinsic nondegeneracy at the 19 conditioning events: 19/19 with kappaH >= 1e-14
+  t=8.629379 kappaH min 4.3e-05 res 2.8e-37 ok
+  t=9.659643 kappaH min 4.9e-05 res 1.4e-37 ok
+  t=9.659643 kappaH min 1.3e-04 res 1.1e-36 ok
+  t=9.773774 kappaH min 4.0e-05 res 1.5e-37 ok
+  t=9.773845 kappaH min 3.6e-05 res 6.1e-37 ok
+  t=9.774540 kappaH min 8.5e-07 res 4.1e-37 ok
+  t=9.774245 kappaH min 3.5e-05 res 9.0e-37 ok
+  t=9.773479 kappaH min 3.4e-06 res 2.9e-37 ok
+  t=9.774245 kappaH min 4.0e-05 res 8.1e-37 ok
+  t=9.774174 kappaH min 4.0e-05 res 9.7e-37 ok
+  t=9.773550 kappaH min 3.4e-06 res 4.7e-37 ok
+  t=9.774245 kappaH min 8.5e-07 res 1.0e-36 ok
+  t=9.773951 kappaH min 3.4e-06 res 6.0e-37 ok
+  t=9.774317 kappaH min 3.6e-05 res 4.8e-37 ok
+  t=9.774245 kappaH min 3.6e-05 res 5.4e-37 ok
+  t=9.774717 kappaH min 3.5e-05 res 7.3e-37 ok
+  t=9.774939 kappaH min 8.5e-07 res 9.5e-37 ok
+  t=9.774645 kappaH min 3.5e-05 res 9.5e-37 ok
+  t=9.775011 kappaH min 8.5e-07 res 4.9e-37 ok
+REC  LH2 reference kappaH min: 2.3e-02, 1.9e-03, 1.8e-03, 2.5e-02, 3.2e-02, 4.4e-02, 7.2e-03, 1.2e-02, 3.2e-02, 2.0e-03
+REC  LH2 other events kappaH min: t=7.724197 8.1e-07, t=8.899998 2.2e-06

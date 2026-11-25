@@ -1,0 +1,35 @@
+==== Study 91C run 1 (PREREG91C; one run), 2026-11-24
+FAIL DJ1 every collision certified (distinct, nondegenerate, equal values): 5095/5170
+FAIL DJ2 every collision simple: 5095/5170 (c4 failed nowhere among certified events)
+REC  DJ3 tie events 955/981 certified, off-tie 4140/4189
+  path 0 L20: 518/541 certified (120 tie events, 113 certified), 518 simple; failing conditions {'res': 23}
+  path 0 L30: 627/659 certified (145 tie events, 132 certified), 627 simple; failing conditions {'res': 13, 'res+cond': 19}
+  path 1 L20: 864/864 certified (134 tie events, 134 certified), 864 simple; failing conditions {}
+  path 1 L30: 1064/1072 certified (159 tie events, 156 certified), 1064 simple; failing conditions {'res': 6, 'track+c1+res': 1, 'c2+res': 1}
+  path 2 L20: 866/866 certified (205 tie events, 205 certified), 866 simple; failing conditions {}
+  path 2 L30: 1156/1168 certified (218 tie events, 215 certified), 1156 simple; failing conditions {'res': 12}
+==== Study 91C AMEND1 (50-digit recheck of the 75 events not certified in run 1), 2026-11-24
+FAIL DJ1b every collision certified in run 1 or the recheck: 5149/5170
+FAIL DJ2b every collision simple in run 1 or the recheck: 5149/5170
+REC  recheck: 54/75 certified; still uncertified 21:
+  path 0 L30 t=8.629379 tie=True fails cond  res 2.8e-37 cond 1.1e-15 c2 7.4e-04
+  path 0 L30 t=9.659643 tie=True fails cond  res 1.4e-37 cond 7.9e-16 c2 1.7e-03
+  path 0 L30 t=9.659643 tie=True fails cond  res 1.1e-36 cond 4.2e-16 c2 1.1e-03
+  path 0 L30 t=9.773774 tie=False fails cond  res 1.5e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.773845 tie=False fails cond  res 6.1e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774540 tie=False fails cond  res 4.1e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774245 tie=True fails cond  res 9.0e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.773479 tie=False fails cond  res 2.9e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774245 tie=True fails cond  res 8.1e-37 cond 4.7e-16 c2 1.0e+00
+  path 0 L30 t=9.774174 tie=False fails cond  res 9.7e-37 cond 4.7e-16 c2 1.0e+00
+  path 0 L30 t=9.773550 tie=False fails cond  res 4.7e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774245 tie=True fails cond  res 1.0e-36 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.773951 tie=False fails cond  res 6.0e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774317 tie=False fails cond  res 4.8e-37 cond 4.7e-16 c2 1.0e+00
+  path 0 L30 t=9.774245 tie=True fails cond  res 5.4e-37 cond 4.7e-16 c2 1.0e+00
+  path 0 L30 t=9.774717 tie=False fails cond  res 7.3e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774939 tie=False fails cond  res 9.5e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.774645 tie=False fails cond  res 9.5e-37 cond 4.4e-16 c2 1.0e+00
+  path 0 L30 t=9.775011 tie=False fails cond  res 4.9e-37 cond 4.4e-16 c2 1.0e+00
+  path 1 L30 t=7.724197 tie=False fails c1+res  res 1.3e-03 cond 6.5e-11 c2 3.5e-04
+  path 1 L30 t=8.899998 tie=False fails c2  res 2.4e-41 cond 2.9e-12 c2 5.3e-55

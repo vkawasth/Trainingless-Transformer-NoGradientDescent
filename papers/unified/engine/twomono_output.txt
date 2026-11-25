@@ -1,0 +1,3 @@
+2x2: pairs tested 2400, 2-monotonicity violations 80, worst gap -0.469
+2x3: pairs tested 40320, 2-monotonicity violations 2340, worst gap -0.491
+3x3: pairs tested 5353, 2-monotonicity violations 126, worst gap -0.356

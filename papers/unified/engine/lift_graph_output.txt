@@ -1,0 +1,2 @@
+K4 (rank 3): max |lift defect - CF| = 3.6e-16; contextual cases 150/200
+theta (rank 2): max |lift defect - CF| = 3.9e-16; contextual cases 106/200

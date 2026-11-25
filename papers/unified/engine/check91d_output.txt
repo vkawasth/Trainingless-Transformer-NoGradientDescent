@@ -1,0 +1,23 @@
+==== Study 91D (PREREG91D), 2026-11-24
+FAIL RQ1 two-sided scaled conditioning at the 19 conditioning events: 0/19 meet kappa2 >= 1e-14
+  t=8.629379 kappa2 min 1.2e-15 res 2.8e-37 c2 7.4e-04 no
+  t=9.659643 kappa2 min 7.9e-16 res 1.4e-37 c2 1.7e-03 no
+  t=9.659643 kappa2 min 4.2e-16 res 1.1e-36 c2 1.1e-03 no
+  t=9.773774 kappa2 min 4.6e-16 res 1.5e-37 c2 1.0e+00 no
+  t=9.773845 kappa2 min 4.6e-16 res 6.1e-37 c2 1.0e+00 no
+  t=9.774540 kappa2 min 4.6e-16 res 4.1e-37 c2 1.0e+00 no
+  t=9.774245 kappa2 min 4.6e-16 res 9.0e-37 c2 1.0e+00 no
+  t=9.773479 kappa2 min 4.7e-16 res 2.9e-37 c2 1.0e+00 no
+  t=9.774245 kappa2 min 4.7e-16 res 8.1e-37 c2 1.0e+00 no
+  t=9.774174 kappa2 min 4.7e-16 res 9.7e-37 c2 1.0e+00 no
+  t=9.773550 kappa2 min 4.7e-16 res 4.7e-37 c2 1.0e+00 no
+  t=9.774245 kappa2 min 4.7e-16 res 1.0e-36 c2 1.0e+00 no
+  t=9.773951 kappa2 min 4.6e-16 res 6.0e-37 c2 1.0e+00 no
+  t=9.774317 kappa2 min 4.7e-16 res 4.8e-37 c2 1.0e+00 no
+  t=9.774245 kappa2 min 4.7e-16 res 5.4e-37 c2 1.0e+00 no
+  t=9.774717 kappa2 min 4.6e-16 res 7.3e-37 c2 1.0e+00 no
+  t=9.774939 kappa2 min 4.7e-16 res 9.5e-37 c2 1.0e+00 no
+  t=9.774645 kappa2 min 4.6e-16 res 9.5e-37 c2 1.0e+00 no
+  t=9.775011 kappa2 min 4.7e-16 res 4.9e-37 c2 1.0e+00 no
+REC  RQ2 other events: t=7.724197 kappa2 6.5e-11 c2 3.5e-04 res 1.3e-03; t=8.899998 kappa2 2.9e-12 c2 5.3e-55 res 2.4e-41
+REC  RQ2 reference (first 10 certified, path 0 L30): kappa2 min 6.0e-04, 8.1e-05, 8.3e-05, 2.2e-04, 4.0e-03, 3.2e-03, 2.2e-08, 6.7e-04, 1.9e-03, 8.3e-05

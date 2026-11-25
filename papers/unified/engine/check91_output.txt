@@ -1,0 +1,15 @@
+==== Study 91 check 2026-11-23 23:55:38
+PASS QF1 exact: exponents in Z^12/(rows, cols) with zero row and column sums; normalized volume 96; anticanonical margins on no chamber wall; anticanonical polytope simple with 96 vertices   [volume 96.000000, on a wall False, simple True, vertices 96]
+FAIL QF2 solver: 96 distinct nondegenerate solutions at the base point (L = 20, 30); 2x3 anchor to 1e-9; 96 distinct at every held-out start   [L20: 96 sols, sep 1.2e-01, res 1.3e-15, |detJ| 2.8e-10; L30: 96 sols, sep 2.9e-02, res 2.0e-13, |detJ| 1.0e-15; anchor 9.3e-16; starts (0, 20.0): 96 sep 1.4e-01, (0, 30.0): 96 sep 3.9e-02, (1, 20.0): 96 sep 9.7e-02, (1, 30.0): 96 sep 3.8e-02, (2, 20.0): 96 sep 9.0e-02, (2, 30.0): 96 sep 2.7e-02]
+FAIL QF3 every tie carries a collision, and every tie collision pairs points exchanged by the transposition (L = 20, 30)   [path 0 L20: 12 ties, 120 tie collisions, symmetric 120; path 0 L30: 12 ties, 145 tie collisions, symmetric 145; path 1 L20: 13 ties, 134 tie collisions, symmetric 134; path 1 L30: 13 ties, 159 tie collisions, symmetric 159; path 2 L20: 20 ties, 205 tie collisions, symmetric 205; path 2 L30: 20 ties, 218 tie collisions, symmetric 218]
+FAIL QF4 off-tie collisions exist, at most 5% recur at L = 30 within 1e-6, and every tie carries collisions at both L   [path 0: off-tie collisions at L20 419, recurring at L30 1, ties carry collisions at both L False; path 1: off-tie collisions at L20 729, recurring at L30 0, ties carry collisions at both L False; path 2: off-tie collisions at L20 659, recurring at L30 0, ties carry collisions at both L True]
+==== Study 91 check resumed under AMEND3 2026-11-24 03:40:39 (QF1-QF4 above stand from invocation 1)
+PASS QF5 local braids: caustic loops exchange the pair with winding 3 pi (others fixed); off-tie collision loops are pure with winding 2 pi   [path 0: caustic windings/pi [-3.0, -3.0, -3.0, -3.0, -3.0]; off-tie collision windings/pi [-2.0, -2.0, -2.0, -2.0, -2.0]; path 1: caustic windings/pi [-3.0, -3.0, -3.0, -3.0, -3.0]; off-tie collision windings/pi [-2.0, -2.0, -2.0, -2.0, -2.0]; path 2: caustic windings/pi [-3.0, -3.0, -3.0, -3.0, -3.0]; off-tie collision windings/pi [-2.0, -2.0, -2.0, -2.0, -2.0]]
+PASS QF6 decision band: LP band = Frechet band, integral optimal vertices, every integer week of the held-out paths   [42 weeks]
+R7 RECORD path 0 L20: collisions 541, caustics 44, other 2, Stokes events 3426, detours 47, 1913s
+R7 RECORD path 0 L30: collisions 659, caustics 44, other 1, Stokes events 3847, detours 45, 2801s
+R7 RECORD path 1 L20: collisions 864, caustics 39, other 4, Stokes events 4661, detours 44, 2486s
+R7 RECORD path 1 L30: collisions 1072, caustics 52, other 3, Stokes events 5127, detours 55, 2775s
+R7 RECORD path 2 L20: collisions 866, caustics 33, other 3, Stokes events 5358, detours 36, 2522s
+R7 RECORD path 2 L30: collisions 1168, caustics 52, other 1, Stokes events 6519, detours 54, 2801s
+==== done

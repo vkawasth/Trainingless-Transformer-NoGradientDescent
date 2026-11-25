@@ -1,0 +1,188 @@
+{
+ "walk_9102_0_L20.pkl": {
+  "events": 585,
+  "0.025": {
+   "pairs_within_w": 1929,
+   "order_sensitive": 213,
+   "frac": 0.11,
+   "mean_pending": 0.2,
+   "max_pending": 8
+  },
+  "0.1": {
+   "pairs_within_w": 5552,
+   "order_sensitive": 655,
+   "frac": 0.118,
+   "mean_pending": 2.25,
+   "max_pending": 29
+  },
+  "0.25": {
+   "pairs_within_w": 12411,
+   "order_sensitive": 1487,
+   "frac": 0.12,
+   "mean_pending": 8.48,
+   "max_pending": 57
+  },
+  "1.0": {
+   "pairs_within_w": 42891,
+   "order_sensitive": 4638,
+   "frac": 0.108,
+   "mean_pending": 41.84,
+   "max_pending": 173
+  }
+ },
+ "walk_9102_0_L30.pkl": {
+  "events": 703,
+  "0.025": {
+   "pairs_within_w": 2950,
+   "order_sensitive": 367,
+   "frac": 0.124,
+   "mean_pending": 0.5,
+   "max_pending": 21
+  },
+  "0.1": {
+   "pairs_within_w": 8121,
+   "order_sensitive": 997,
+   "frac": 0.123,
+   "mean_pending": 3.35,
+   "max_pending": 41
+  },
+  "0.25": {
+   "pairs_within_w": 17335,
+   "order_sensitive": 1961,
+   "frac": 0.113,
+   "mean_pending": 11.06,
+   "max_pending": 73
+  },
+  "1.0": {
+   "pairs_within_w": 58587,
+   "order_sensitive": 6131,
+   "frac": 0.105,
+   "mean_pending": 50.98,
+   "max_pending": 196
+  }
+ },
+ "walk_9102_1_L20.pkl": {
+  "events": 903,
+  "0.025": {
+   "pairs_within_w": 2873,
+   "order_sensitive": 321,
+   "frac": 0.112,
+   "mean_pending": 0.35,
+   "max_pending": 5
+  },
+  "0.1": {
+   "pairs_within_w": 8846,
+   "order_sensitive": 1205,
+   "frac": 0.136,
+   "mean_pending": 3.92,
+   "max_pending": 32
+  },
+  "0.25": {
+   "pairs_within_w": 20080,
+   "order_sensitive": 2679,
+   "frac": 0.133,
+   "mean_pending": 13.86,
+   "max_pending": 55
+  },
+  "1.0": {
+   "pairs_within_w": 68811,
+   "order_sensitive": 8569,
+   "frac": 0.125,
+   "mean_pending": 65.26,
+   "max_pending": 149
+  }
+ },
+ "walk_9102_1_L30.pkl": {
+  "events": 1124,
+  "0.025": {
+   "pairs_within_w": 5816,
+   "order_sensitive": 936,
+   "frac": 0.161,
+   "mean_pending": 0.77,
+   "max_pending": 26
+  },
+  "0.1": {
+   "pairs_within_w": 14984,
+   "order_sensitive": 2263,
+   "frac": 0.151,
+   "mean_pending": 5.99,
+   "max_pending": 53
+  },
+  "0.25": {
+   "pairs_within_w": 31680,
+   "order_sensitive": 4318,
+   "frac": 0.136,
+   "mean_pending": 18.91,
+   "max_pending": 93
+  },
+  "1.0": {
+   "pairs_within_w": 105125,
+   "order_sensitive": 12389,
+   "frac": 0.118,
+   "mean_pending": 81.91,
+   "max_pending": 184
+  }
+ },
+ "walk_9102_2_L20.pkl": {
+  "events": 899,
+  "0.025": {
+   "pairs_within_w": 2990,
+   "order_sensitive": 303,
+   "frac": 0.101,
+   "mean_pending": 0.3,
+   "max_pending": 7
+  },
+  "0.1": {
+   "pairs_within_w": 8814,
+   "order_sensitive": 1173,
+   "frac": 0.133,
+   "mean_pending": 4.15,
+   "max_pending": 30
+  },
+  "0.25": {
+   "pairs_within_w": 20046,
+   "order_sensitive": 2635,
+   "frac": 0.131,
+   "mean_pending": 14.72,
+   "max_pending": 51
+  },
+  "1.0": {
+   "pairs_within_w": 70818,
+   "order_sensitive": 9358,
+   "frac": 0.132,
+   "mean_pending": 66.93,
+   "max_pending": 132
+  }
+ },
+ "walk_9102_2_L30.pkl": {
+  "events": 1220,
+  "0.025": {
+   "pairs_within_w": 5305,
+   "order_sensitive": 563,
+   "frac": 0.106,
+   "mean_pending": 0.7,
+   "max_pending": 13
+  },
+  "0.1": {
+   "pairs_within_w": 18446,
+   "order_sensitive": 2466,
+   "frac": 0.134,
+   "mean_pending": 6.82,
+   "max_pending": 40
+  },
+  "0.25": {
+   "pairs_within_w": 42520,
+   "order_sensitive": 5711,
+   "frac": 0.134,
+   "mean_pending": 20.99,
+   "max_pending": 98
+  },
+  "1.0": {
+   "pairs_within_w": 136982,
+   "order_sensitive": 16857,
+   "frac": 0.123,
+   "mean_pending": 91.44,
+   "max_pending": 224
+  }
+ }
+}

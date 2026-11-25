@@ -1,0 +1,24 @@
+0.04760853717831423 -2.0 True
+0.06299042950116701 -2.0 True
+0.06003784715911706 -2.0 True
+0.05506743625181798 -2.0 True
+0.08667849253776012 -2.0 True
+Traceback (most recent call last):
+  File "/home/claude/paper/unified/engine/check91_resume.py", line 31, in <module>
+    json.dump(dict(path=p, kind=kind, w=out, ok=bool(ok), n=n, seconds=time.time() - t0), open(os.path.join(J5, f"qf5_{p}_{kind}.json"), "w"))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/__init__.py", line 181, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/usr/local/lib/python3.13/json/encoder.py", line 435, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/local/lib/python3.13/json/encoder.py", line 409, in _iterencode_dict
+    yield from chunks
+  File "/usr/local/lib/python3.13/json/encoder.py", line 328, in _iterencode_list
+    yield from chunks
+  File "/usr/local/lib/python3.13/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/usr/local/lib/python3.13/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type longdouble is not JSON serializable
