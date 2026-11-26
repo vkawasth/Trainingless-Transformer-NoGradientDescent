@@ -41,7 +41,7 @@ a1.plot([], [], "D", mfc=PURPLE, mec="white", label="collision wall: strands tou
 a1.legend(loc="upper center", bbox_to_anchor=(0.5, 1.30), ncol=1, frameon=False, fontsize=8)
 a1.set_ylim(-0.6, 5.6); a1.spines[["top", "right"]].set_visible(False)
 S = np.linspace(0, 12, 1201)
-for h, col, lab in (("h1", BLUE, "$h_1=P(\\mathrm{above}\\mid S=1)$"), ("h3", GREEN, "$h_3=x_{12}/(x_{12}+x_{01})$")):
+for h, col, lab in (("h1", BLUE, "$h_1=P(\\mathrm{below}\\mid\\mathrm{unseeded})$"), ("h3", GREEN, "$h_3=x_{12}/(x_{12}+x_{01})$")):
     bd = np.array([B.band(h, *fg_at(P, s))[:2] for s in S]); a2.fill_between(S, bd[:, 0], bd[:, 1], color=col, alpha=0.22, lw=0); a2.plot(S, bd[:, 0], color=col, lw=0.9); a2.plot(S, bd[:, 1], color=col, lw=0.9, label=f"band of {lab} over all tables with these margins")
 bw = sorted({round(w["s"], 4) for h in ("h1", "h3") for w in R["bands"][h]})
 for x in bw: a2.axvline(x, color=GRAY, lw=0.7, ls="-", zorder=0)
@@ -92,7 +92,7 @@ for first, col, lab in (("R", BLUE, "rows first: $J_R, J_C, J_R,\\dots$"), ("C",
         y = (JR if (n % 2 == 0) == (first == "R") else JC)(y); qs.append(q(y)); f0s.append(y.sum(1)[0])
     b1.plot(range(13), qs, "o-", color=col, ms=3, lw=1.2, label=lab); b2.semilogy(range(13), np.abs(np.array(qs) - qstar) + 1e-17, "o-", color=col, ms=3, lw=1.2)
 b1.axhline(qstar, color=GRAY, lw=0.8, ls="--"); b1.text(12, qstar, "I-projection (IPF limit)", ha="right", va="bottom", fontsize=7, color=MUTED)
-b1.set_xlabel("number of update steps"); b1.set_ylabel("$P(\\mathrm{above}\\mid\\mathrm{seeded})$"); b1.legend(fontsize=7, frameon=False)
+b1.set_xlabel("number of update steps"); b1.set_ylabel("$P(\\mathrm{below}\\mid\\mathrm{unseeded})$"); b1.legend(fontsize=7, frameon=False)
 b2.set_xlabel("number of update steps"); b2.set_ylabel("distance to the limit"); b2.set_title("order matters, then washes out geometrically", fontsize=8)
 for ax in (b1, b2): ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, "fig85_F4.pdf")); fig.savefig(os.path.join(HERE, "fig85_F4.png"), dpi=150); plt.close(fig)

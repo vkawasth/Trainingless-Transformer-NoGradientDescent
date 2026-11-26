@@ -2807,3 +2807,202 @@ cylindrical cocores: GPS defer it "similar to [43, sec 6.2]", Sylvan calls it ex
 - RETRO85 (BTR, registered before opening Study 83 data): FAIL; post hoc, the B0 before-point Floer run is defective (cons 0.24, mu1 != 0).
 - Paper: sec:study85 (23.5) with tab:s85, prop:credalwalls, prop:collision, prop:updateorder, figs F1-F4 (kahler/fig85.py); study row 85;
   appendix record; correction note on Study 83 GE3/GE7 attributions. 468 pp. Ledger row credal-braid-dp6 [BT1-BT6]; 3/3.
+
+## 115. Study 86 (Floer-level collision check) -- KW2, KW3 PASS; KW1, KW4 FAIL
+- PREREG86 (frozen first), AMEND1 (selection clarification before any Floer run), wall86 = wall83 with output dir changed; 6 brackets from
+  the Study 85 held-out collision list; 12 Floer runs (launcher first detached and stopped, relaunched; caches reused).
+- 4/6 audited (B2, B3 mu1 != 0); on the 4: colliding pair adjacent, 0 generators both ways, after-algebra = before relabelled by the
+  swap (iso83). KW4: unrelabelled comparison also iso -- post hoc, the colliding pair is exchangeable (identical Hom dims to others).
+- BTR (Study 85) was mis-specified: Study 83 records index by Seidel rank, BTR transposed position labels.
+## 116. Study 87 (vector-valued hypotheses: support regions) -- VH1-VH4 PASS; VH5 FAIL
+- PREREG87 + NOTES87 sec. 1 (prop:region) frozen first; calibration 8701 + slice Sigma_C (dry runs kept); PREDICTION87 + hashes; held-out
+  8702 + slice Sigma_H, one run each. Regions: H_lin polygon (vertex tables = corners; integer hull exact by TU), H_frac non-convex 254/260,
+  H_3 ruled surface; Markov invariant sublattices; 54 support-wall changes on chamber walls; Jeffrey reorder changes the region in 8
+  scenarios where the scalar is unchanged. VH5: all computed loops trivial, but the snake traversal was cut off behind a merge point;
+  post hoc BFS: 561/561 and 538/538 trivial, caustic corner patch (critical points merge) grows with L.
+- Paper: sec:study8687 (23.6), prop:region, tab:s87, figs fig87_G1..G5 (kahler/fig87.py); study rows 86, 87; appendix record. 475 pp.
+  Ledger rows collision-floer-dp6 [KW2, KW3], support-region-dp6 [VH1-VH4]; 3/3. Next natural study: the caustic (sigma^3 monodromy).
+
+## 117. Study 88 (coordinated poisoning; synthetic, defensive) -- AD1-AD4, AD6 PASS; AD5 FAIL (one clause)
+- PREREG88 + NOTES88 sec. 1 (prop:poison) frozen first; lib88 (station-resolved gen83 law, conventional vs credal I3 decisions, MILP
+  margin-preserving attack, fabricated reports, Shapley); calibration 8801 (order campaign 30/month; coalition sized by redundancy search);
+  PREDICTION88 + hashes; held-out 8802 one run. Results: margin-preserving attack invisible to credal decisions and thimbles (20/20),
+  flips 6 conventional; credal needs median 486 fabricated reports vs 0; Stokes events are not decision flips; order changes interim
+  decisions (7) but not end state (20/20); Shapley top-3 = colluders 18/20 and honest outlier influential 18/20; interaction recovers the
+  coalition 20/20, outlier never flagged. AD5 failed clause: coalition-out restored 19/20 (A2: losing the colluders' genuine data widens
+  the band across theta).
+- LABEL CORRECTION (Studies 85, 87): the 2x3 target table is rows (seeded, unseeded) x columns (above, normal, below); x_12 is
+  P(below | unseeded), not P(above | seeded). Text and figures corrected with a note at the start of sec:study88; no result changes.
+- Paper: correction note + sec:study88 (23.7), prop:poison, tab:s88, figs fig88_H1-H4; study row 88; appendix record. 481 pp.
+  Ledger row poisoning-geometry-dp6 [AD1-AD4, AD6] (category status Used, first draft said Numerical and failed LG1); 3/3.
+
+## 118. Study 84c (H_sigma finished in Seidel's framework) -- HQ1, HQ2 PASS; HQ3 written proof; HQ4 cited
+- Re-reading Thm 260(c): it is about Seidel's Fukaya-Seidel category Fuk(pi) of an exact Lefschetz fibration, for which the GPS steps
+  (HS3c, HS6) are unnecessary. PREREG84c, then the proof (NOTES84c sec. 1) before code: lem:elf84c builds an exact Lefschetz fibration
+  (McLean Def 2.12) from Lemma 261: six cylindrical ends (HQ1: edges of lattice length 1), action-angle coordinates on the ends,
+  truncation at a fixed action c+1 above max r_in (compactness), fibrewise-exact correction, product collar; critical points untouched
+  (HQ2: six nondegenerate, distinct values). Generation: Seidel Sec. 18 (Lemma 18.15; Abouzaid-Smith Lemma 3.3/Remark 3.4).
+- Paper: note after the Study 84 note in 23.3 with lem:elf84c, cor:dp6c (Thm 260(c) unconditional in Seidel's framework at the
+  registered state); status row; study row 84c; appendix record; bibitems McLean2009, AbouzaidSmith2012. 483 pp.
+  Ledger row seidel-fs-dp6 [HQ1, HQ2, HS2]; 3/3. Open: GPS wrapped version (HS3c, HS6).
+
+## 119. Study 89 (caustics) -- KS1-KS5 PASS (run 3 / L = 30) after two recorded failures
+- PREREG89 + NOTES89 sec. 1 (A2 local model, sigma^3 on K_0, tolerances) frozen first; caustics fixed in advance (g1 = 0.205 on Sigma_H,
+  L = 20 and 30). Runs 1-2 failed (imaginary parts not reduced mod 2 pi: pair selection, exchange test); AMEND1/AMEND2; runs kept.
+- Results: A2 folds at real points (Hessian rank 1, cubic 0.050 / 0.013); merging pair V3, V6 adjacent with intersection number 1;
+  transverse complex loop exchanges the pair, value difference turns 3 pi exactly, Hurwitz word sigma^{+-3}, one object shifted (KS4b
+  K_0 lift computed afterwards). Replicates at L = 30.
+- Paper: sec:study89 (23.8), prop:caustic, fig89_K1; study row 89; appendix record. 485 pp. Ledger row caustic-dp6 [KS1-KS5]; 3/3.
+
+## 120. Graphical summaries (author-supplied, AI-generated) -- no new checks
+- Two Gemini images from the author added as schematic figures: fig:gs85 (start of sec:study85, kahler/graphical_summary_85.png)
+  and fig:gs8489 (end of sec:study89, kahler/graphical_summary_8489.png). Patched copies (PIL): legend colours redrawn, garbled
+  labels fixed ("2-dim transportation polytope (the fibre)", "dashed: convex hull", "k = 3: a ruled surface sheet"), Study 88
+  scenario axis relabelled A0 ... E3. Captions say: AI-generated, schematic, not data; data figures are F1-F4, G1-G5, H1-H4, K1;
+  the Study 85 scope panel predates Study 86 (Floer collision check done there). Originals kept outside the paper. 487 pp.
+
+## 121. Graphical summary of Studies 84/84b -- no new checks
+- Author-supplied Gemini image added as fig:gs84 (kahler/graphical_summary_84.png), at the end of the Study 84/84b note, before the
+  84c note. Patched: hexagon vertex labels (were 8 labels with duplicates; now (0,1),(1,1),(1,0),(0,-1),(-1,-1),(-1,0)), stray "24"
+  after "Kouchnirenko count" removed. Caption: AI-generated schematic; number of drawn critical values not meaningful (six); image
+  shows the state after 84b, superseded for Seidel's framework by 84c (lem:elf84c, cor:dp6c); GPS version still needs HS3, HS6.
+
+## 122. Study 90: repair study (KW1, Study 83 B0 control, GE7, VH5)
+- engine/study90_repair/: PREREG90 (frozen; calibration C1-C4 on cached stage data, labelled), PREDICTION90 (code hashes), NOTES90.
+  Code: lib90.py (rule F = remove unpegged fold vertices, pi/2 <= |turn| <= pi - 1e-3, empty corner triangle; state_fine = Study 85
+  fine continuation truncated at s), wall90.py (wall83 + rule F), select90.py, run90.py, slice90.py (BFS + Sigma_R), check90.py.
+- Results: RP1 PASS (5/6 held out, seed 8503), RP4 PASS (Study 86 B2, B3 repaired), RP2/RP3 FAIL (B0 of 8503), RP6 FAIL (GE7: audit
+  gate fails after the 4.775 event, fit 0.198), RP7 FAIL (VH5 clause; Sigma_R L30 19 two-wall loops), R5 recorded (B0 control unresolved).
+- Post hoc: B0-type failures = non-convex bigon not counted by floer_chain; GE7 = class prediction after one event; VH5 unexplained cells
+  are interior to the unreachable patch (never attempted).
+- Paper: sec:study90 (before sec:strand33), notes added at the KW1 item and the Study 87 scope paragraph, study-table row 90, appendix
+  record. Ledger row minimal-position-repair-dp6 (RP1, RP4). 490 pp.
+- Open: count non-convex bigons (or isotope near-collinear pegged curves); fix class bookkeeping at the 4.775 event; VH5 clause.
+
+## 123. Abstract restructured around the running example -- no checks run
+- Abstract now: geometry in brief; running example (cloud seeding, 2x3 table, theta, back to the decision; Studies 83-90); what it
+  verifies (i)-(vi) incl. 10 of 12 Floer brackets (A3 not audited, B0 non-minimal kept in record); what it does not verify (no real
+  data; three open problems: GE7 chamber reuse after one event, Study 83 control bracket + held-out B0, VH5 coherence); categorical
+  status corrected (Seidel framework proved: lem:elf84c, cor:dp6c; GPS wrapped version rests on two argued steps); compressed rest.
+- The former abstract paragraphs are kept verbatim in the introduction as sec:fullsummary (with a superseded-status note).
+- Fixed pre-existing duplicate labels: Study 88 proposition -> prop:poison88 (LEDGER text updated); "A dynamical reading" subsection
+  -> sec:dynreading (one ref updated); duplicate bibitem AurouxKatzarkovOrlov2006 removed. No multiply-defined warnings remain.
+
+## 124. Section 23.10: mapping class groups and the groups that drive the thimbles -- exposition, no checks run
+- New subsection sec:mcg (after sec:study90), referencing Lu--Wedeen--Zhang (SURIM 2016) for Hurwitz moves (Prop 2.16, 2.17, sec 2.4),
+  the sigma^2 identity (p. 10) and the abelianization of MCG(torus with n holes) (Thm 5.1, Lemma 5.3).
+- Exact statements: prop:cochar (Markov-move lattice = cocharacter lattice N of the mirror torus; torus = tables mod row/column scaling
+  = odds ratios); prop:ipfthimble (IPF map from the positive thimble onto the credal-fibre interior; classical scaling theorem);
+  lem:sigma2 (sigma^2 = conjugation by the product; trivial on disjoint curves = mapping-class form of prop:collision).
+- Dictionary table tab:mcgdict (Stokes = Hurwitz move; collision = commuting twists; caustic = braid relation; full twist = global
+  conjugation; coefficient loop = line bundle). Abelianization check: monodromy at infinity -> 6b.
+- Figures (kahler/figmcg.py): figmcg_groups, figmcg_odds (exact 2x3 IPF picture), figmcg_hurwitz (schematic), figmcg_fibre (Study 86
+  cached representatives at A3: disjoint colliding pair; V1, V3 meeting once), figmcg_strands (Study 91 CALIBRATION path, labelled).
+- Proposed Study 92 (A: 2x3 intersection numbers and minimal-position oracle; B: 3x4 pairwise windings, tie products, quasipositivity;
+  C: IPF/thimble at held-out margins, table selected by the critical point). Not registered.
+- Study 91: AMEND1 (extended precision) registered; six walks rerunning; check91 not yet run. 498 pp.
+
+## 125. sec:mcg extended: singularity-theoretic reading -- no checks run
+- Paragraph: bifurcation set = caustic (our caustics) + Maxwell stratum (our collision walls, real part); Lyashko--Looijenga braid map;
+  local models sigma^2 (Maxwell) and versal A2 (sigma^3, Study 89); Brieskorn's discriminant theorem distinguished from LL.
+- prop:effparams (exact): coefficients matter only through row/column products alpha_i, beta_j; effective parameter space has
+  dimension r+c-1; complexified margins reach all of it, so the dynamics group is the braid map of the whole family.
+- Open: surjectivity of the braid map onto B_6 / B_96 (one Hurwitz orbit?). Study 92 gains Part D (codim-2 relations), with the
+  corrections: commutation only for disjoint pairs; shared value -> braid relation; A3: braid of 3 values in B_3 vs Brieskorn B_4.
+- Bib: ArnoldGZV1988, Looijenga1974, Brieskorn1971, MassuyeauOanceaSalamon2013, PortillaSalter (preprint). 499 pp.
+- 3x4 numbers deferred to the Study 91 check (rerun under AMEND1; path 0 L30 failed again at t = 5.925, to be diagnosed).
+
+## 126. cor:canonical (Corollary 277) -- no checks run
+- Real data crossing a Maxwell wall with disjoint vanishing cycles: upper/lower detours agree (sigma^2 trivial, lem:sigma2): canonical.
+  At a caustic (A2 fold) they differ by sigma^{+-3}, nontrivial for curves meeting once (T_a commutes with T_aT_b iff i(a,b) = 0):
+  transport needs a registered side (our walkers: upper semicircle). 2x3: all collisions canonical (prop:collision). 3x4: off-tie
+  collisions open; needs the 96x96 intersection (Stokes) matrix -- named as the next layer, not attempted.
+
+## 127. Graphical summary for sec:mcg (fig:gsmcg) -- no checks run
+- Author-supplied Gemini image patched by kahler/patch_gsmcg.py -> kahler/graphical_summary_mcg.png: fibre panel redrawn exactly
+  (square with identified sides: disjoint pair; pair meeting once), thimble sketch redrawn (paths fan out from s0), formulas
+  T_V(x) = x +- <x,V> V and I_ij = <V_i,V_j> retyped, labels B_6, H_1, 96x96 retyped, garbled arrow after rho_br removed.
+  Left as supplied (illustrative): caustic drawn as a curve not a cusp; torus icon for (C*)^n. Caption says so. 501 pp.
+
+## 128. Study 91: the 3x4 table (two seeding agents) at the strand level -- checks QF1-QF6, R7
+- Registered PREREG91/PREDICTION91 (prefix QF) before seed 9102. AMEND1 (extended precision; run 1 lost 4/6 walks), AMEND2 (single-strand
+  mpmath fallback; + erratum for a double-precision conversion bug) -> all six walks complete (paths 0-2, L = 20, 30).
+- Check invocation 1 stopped by the 30-min background limit during QF5 (QF1-QF4 decided). AMEND3 (procedural): check91_resume.py runs
+  QF5 as six jobs (verbatim code), then QF6, R7. AMEND3 erratum: json could not save numpy longdouble; path 0 QF5 rebuilt from job logs.
+- Results: QF1 PASS (volume 96, simple, 96 vertices); QF2 FAIL (min |det J| 1.0e-15 < 1e-14 at L = 30); QF3 FAIL (981/981 tie
+  collisions symmetric, but two ties at L = 20 with none recorded); QF4 FAIL (same two ties; off-tie 419/729/659, recurring 1/0/0);
+  QF5 PASS 30/30 (caustics -3 pi with exchange, off-tie collisions pure -2 pi; clockwise loops); QF6 PASS (42 weeks); R7 recorded.
+- Post hoc (NOTES91): the empty ties sit in substeps with a multiple caustic where lib91.analyse skips collision detection; all 30
+  windings one sign (quasipositivity, not registered); loop_caustic's comment "counter-clockwise?" is wrong (clockwise).
+- Paper: sec:study91 (23.10, before sec:mcg) with fig:study91 (kahler/fig91.py -> fig91_heldout.png); abstract item (vii) and a 3x4
+  sentence in "does not verify"; sec:mcg 3x4 paragraph updated; test B note; study-table row 91; appendix record. Ledger row
+  strands-3x4-dp6 (QF1, QF5, QF6). 503 pp.
+- Next: register Study 92 from engine/study92_groups/DESIGN92_draft.md (new unused prefix; calibration line on another seed).
+  Deferred: non-convex bigons.
+
+## 129. Study 92 design v2 (draft, not registered) -- no checks run
+- engine/study92_groups/DESIGN92_draft.md: adds Part F (3x3 strand walk, 18 strands, escape walls by complex detour; F1 local braids,
+  F2 tie symmetry with analyser fix, F3 quasipositivity, F4 record escape loops), Part G (2x3 fibre level: Hurwitz realised by transported
+  curves, Gram transport, lattice invariants, total monodromy two routes, K-theory Coxeter check), Part H (stability under transport:
+  constant between events, predicted move at events, path-homotopy invariance with discriminant search). "Dynamics" = symplectic parallel
+  transport of the Lefschetz fibration, not an autonomous Hamiltonian flow. Hypotheses H-local, H-pos, H-inv, H-stab kept separate.
+  Tentative prefix GA (unused). Next: calibration on seeds 9201 (3x3) etc., then PREREG92.
+
+## 130. Study 93 design (draft, not registered) -- structural transfer; no checks run
+- engine/study93_transfer/DESIGN93_draft.md: verdicts HONOR / RECOMPUTE / PRUNE / NEW; operators Signature, Restrict (face vs
+  aggregation, kept distinct), Extend (typed), Prune (O1 ties, O2 recurrence, O3 local type, O4 crossing sequence, O5 odds-ratio
+  homogeneity, O6 old/new wall loops). Base/fibre split: W sees margins only; the seeding effect lives in the credal fibre.
+  Experiment A (two regions: time shift + different odds ratios + control), Experiment B (2x3 inside 3x4, eps -> 0 clusters, inherited
+  walls, O6). Operad not claimed. Tentative prefix XT (unused). Separate from Study 92.
+
+## 131. Forced structure (sec:mcg part 4) and Study 91C -- DJ1, DJ2, DJ1b, DJ2b FAIL (kept)
+- Paper: prop:disjoint (distinct nondegenerate critical points with a common value: disjoint vanishing cycles, <V,V'> = 0, commuting
+  twists, HF = 0; any dimension; tameness hypothesis: holds for all coefficients on 2x3 and 3x4, fails on 3x3 escape loci),
+  cor:anycollision (half-twist = exchange, canonical; loop = sigma^2), prop:localbraid (argument principle: sigma^{2k}, sigma^3, signs
+  by orientation), rem:forced (Study 91 sign uniformity forced; loops -> certified hypotheses), prop:homotopy, prop:tierecur,
+  conj:tropicalwalls, intersection-certificate table, "Where the data hides" (caustics hide transport; Stokes hide intersections),
+  Study 91C paragraph, corrected intersection status; test B rewritten. Study-table row 91C; appendix record. 507 pp.
+- Study 91C (prefix DJ): PREREG91C frozen before computing; run 1: 5095/5170 certified (ties 955/981, off-tie 4140/4189); AMEND1
+  (frozen before rerun) 50-digit recheck of the 75: 54 certified -> 5149/5170. Remaining 21: 19 path 0 L30 near t = 9.66 / 9.774
+  (conditioning ~4e-16 at 50 digits, row equilibration only), 1 artefact (same point twice), 1 not converged. No ledger row (no PASS).
+- Designs: DESIGN92 v3 (loops -> certified hypotheses; H-pos removed), DESIGN93 v2 (corrected degeneration: coefficients, not margins,
+  -> 0; Experiment C stacking two regions; Cayley / mixed volume). Updated image prompt given (not yet generated).
+
+## 132. Graphical summary for sec:mcg part 4 (fig:gsforced) -- figure only, no checks run
+- Author-supplied Gemini image patched by kahler/patch_gsforced.py -> kahler/graphical_summary_forced.png: panel 1 row labels (old 2x3 =
+  AgI/unseeded as a face; salt row and 'none' column new), panel 2 Lefschetz sketch redrawn (two nodes over c), panel 3A collision drawing,
+  3B end labels, 3C Stokes event redrawn (value crosses a vanishing path; Hurwitz move; no braid of values). Panels 4-6 as supplied. 508 pp.
+
+## 133. Stokes wording reconciled; 91C sentence -- text and figure only, no checks run
+- sec:stokesbraid: letters of a data path's braid word are relative to the reference (s0 / projection); open path = path in configuration
+  space; only closed loops give intrinsic group elements; a Stokes event is a letter, not a local event (unlike collisions, caustics).
+- tab:mcgdict Stokes row and fig:gsforced Stokes footer: "a letter relative to s0, not a local event" (patch_gsforced.py). Caption updated.
+- Study 91C paragraph: the 21 are failures of certification, not of prop:disjoint; unresolved, neither degenerate nor orthogonal.
+
+## 134. Studies 91D/91E; Study 92 calibration (in progress); hypotheses as thimbles; rings and lifts; outside results -- text + exploratory only
+- Study 91D (prefix RQ, PREREG91D frozen first): two-sided (Ruiz) scaled conditioning at the 19 conditioning events: RQ1 FAIL 0/19
+  (post hoc: tracks min|u+v|/max|u+v|, a reduced-coordinate effect near the toric boundary). Study 91E (prefix LH, PREREG91E frozen first;
+  measure chosen after 91D, stated): intrinsic log-coordinate Hessian H = sum p_ij m m^T: LH1 PASS 19/19 (min 8.5e-7). Certified 5168/5170.
+- Study 92 calibration (engine/lib92.py, study92_groups/calib/, CALIB92_notes.md): 3x3 walker works (seed 9201); real events sparse
+  (1-8 collisions per path), 9/9 collisions at ties; escape at some ties only. E1 on a log line works (caustics conj. of sigma^3, Maxwell
+  pure exp-sum 2); algebraic line needs a new solver. G proposed dropped (Studies 45/49/67/85/90). Part E scope awaiting the author.
+- Paper: sec:mcg part 5 "Hypotheses as thimbles" (Pham decomposition, event dictionary, classes of thimbles + Lehner faithful quotient,
+  vague hypotheses + inner measure, credal envelope not 2-monotone (exploratory counts), aggregation pushforward exact, prop:commit +
+  replay of Study 91 events (11-14% order-sensitive), Lehner almost-Boolean streaming limits, two cautions); prop:lift after prop:twist
+  (contextuality = failure of a periodic lift; min defect = contextual fraction, proved; CHSH (S-2)/2; 900 random cycles agree to 5e-16,
+  exploratory); co-revision stability remark (Fournier-Facio--Willett: chordal commutation graph -> LP, FD; two disjoint co-revising
+  cherries -> F2xF2; B6 contains F2xF2). Bib: FournierFacioWillett2026, Lehner2025, Pham1985, KeimelPlotkin2017. 511 pp.
+- Exploratory scripts (not checks): engine/explore_rings/rings_lift.py, engine/explore_stream/replay91.py, engine/explore_credal/twomono.py.
+
+## 135. Landscape framing; prop:liftgraph; lift decoding -- text + exploratory only
+- Abstract opens with "What is new" (one geometric landscape; forced vs computed walls; complete for 2x3, strands for 3x4, calibrated 3x3;
+  seeing is not predicting); item (viii) (local theorems, 5168/5170 certified); sec:overview gains "The landscape and what it locates"
+  (layer/shows/status table). prop:liftgraph (one cut per independent cycle; CF = minimal disagreement of copies; cycle rank), CbD
+  citation (DzhafarovKujala2016), "Lift decoding, and where it applies" (a single table is never contextual). Exploratory check:
+  engine/explore_rings/lift_graph.py (K4, theta graph: agree to 4e-16). DESIGN93 v3: Experiment D (ring of sources). 512 pp.
+
+## 136. Landscape figure (fig:gslandscape, sec:overview) -- figure only, no checks run
+- Author-supplied Gemini image patched by kahler/patch_gslandscape.py -> graphical_summary_landscape.png: state labels I0..I3, It;
+  collision box (crossing sigma, loop sigma^2; stray glyph removed); caustic box (A2 fold, sigma^3, <V,V'> = +-1, side by convention);
+  Stokes 'intersections: computed'; escape loci (3x3); vanishing cycle; duplicate labels replaced (Hypotheses J_k; one cut per independent
+  cycle); legend ('one state seen in every layer'). Caption states AI origin and corrections. 513 pp.

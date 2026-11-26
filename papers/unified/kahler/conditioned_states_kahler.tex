@@ -29,23 +29,27 @@
 \maketitle
 
 \begin{abstract}
+\emph{What is new.} The individual tools here are known: Fr\'echet bands, Vorob'ev gluing, toric selection, Picard--Lefschetz moves. What is new is one geometric landscape in which a decision maker's information state is a point that moves as evidence arrives, and every change it undergoes is located, typed and given a consequence. The credal fibre shows what the data leave open; the walls of the mirror potential show where the description changes; each wall is classified as forced or computed. A collision of critical values is forced: the two hypotheses are orthogonal and the crossing is canonical, in every fibre dimension. A caustic forces its intersection number, but the side from which it was approached is a convention the data cannot fix. A Stokes event carries intersection numbers that must be computed. Rings of contexts show where gluing fails and by how much. The history of the state records what can be committed at once and what must wait. The landscape is mapped completely for $2\times3$ tables, at the level of critical values for $3\times4$, and by calibration for $3\times3$. It explains how an information state flows; whether it also anticipates decisions earlier than simpler records is an open, registered question.
+
 \emph{The geometry in brief.} A conditioned state is a geometric object. The laws compatible with what has been observed form a polytope, the credal fibre. Its faces are cut out by the cells of the tables, and its vertices are certified by bases that come in dual pairs: the positive cells of a vertex form a spanning tree of the bipartite graph of the table (a graphic-matroid basis), and the zero cells form the complementary cographic basis, whose normals span the vertex cone. Conditioning maps the fibre onto a polytope of conditional laws, and the probability bands we report are coordinate projections of that polytope. Evidence acts on it by a projective map, an isometry of the Hilbert metric. Sampling noise is described differently: under regular sampling conditions it is asymptotically a Fisher--Rao confidence region, whose square-root image on the round sphere is approximately a spherical cap of radius of order $m^{-1/2}$. Toric K\"ahler geometry supplies the selected law inside the fibre, its scales and its walls; the chamber complex of the margins supplies the stratification along which all of this changes. The note develops this picture and tests every computable claim against exact, pre-registered checks.
 
-This note is a companion to ``Probability, Context and Differentiation: The Layers''. It asks what the toric K\"ahler picture of a polytope says about probability tables, and where that picture stops being useful.
+\emph{A running example.} A water authority must decide whether to keep seeding storms with silver iodide. It continues if $q=P(\text{above-normal rain}\mid\text{seeded, wet forecast})$ is at least a cost ratio $\theta$. The records arrive in pieces: monthly flight counts, monthly rain categories, and later the $2\times3$ table of seeded and unseeded storms against above-normal, normal and below-normal rain. We follow this one synthetic data stream through the whole construction and back to the decision (Studies 83--90, held-out seeds, every check pre-registered and frozen with SHA-256). The data give a credal fibre and its probability bands; the margins give toric chambers and walls; the margins also set the mirror potential of the degree-six del Pezzo surface, whose thimbles form an exceptional collection in its Fukaya--Seidel category. The experiment is a carrier for a realistic decision problem, not a claim about seeding.
 
-Part~I is geometry. On a compact Delzant polytope with potential $W_T=\sum_kT^{-\lambda_k}y^{v_k}$, balancing the leading terms identifies candidates for the selected state but does not choose among them. We show that the point actually chosen is the lexicographic max--min point, up to an error of order $1/\log(1/T)$, and we write the K\"ahler dictionary (Fisher metric, relative entropy, Duistermaat--Heckman) in probabilistic language.
+\emph{What the example verifies.} Each layer is tested on held-out data:
+(i) credal walls lie on the chamber walls, while Stokes events are mutations;
+(ii) margin-order ties are collision walls where two orthogonal objects swap, confirmed at the Floer level on 10 of 12 brackets (the other two, one not audited and one with a non-minimal representative, stay in the record);
+(iii) a full twist of the potential acts as the Serre functor;
+(iv) the support region of a vector-valued hypothesis is cut out by Markov moves on the table;
+(v) poisoning that preserves the margins cannot move a credal decision, though it flips conventional ones (6 flips against 0);
+(vi) caustics, where two critical points merge, are $A_2$ folds acting by $\sigma^{\pm3}$;
+(vii) with two seeding agents ($3\times4$, $96$ critical points, fibres of complex dimension $5$) the same local braids appear on held-out paths, $\sigma^3$ at caustics and pure $\sigma^2$ at collisions ($30$ of $30$ loops), and the decision band is still the Fr\'echet band;
+(viii) these local braids, the orthogonality of every collision pair and the sign of every loop are then proved once, by the argument principle and a Morse-chart argument; the hypotheses are certified at $5168$ of the $5170$ recorded $3\times4$ collisions.
 
-Part~II reads the same structure on contingency tables. The margins are a point of the base, and the polytope of couplings with those margins is the fibre. We identify the coupling that is selected on that fibre and show that a single count of data can cross a wall and change it.
+\emph{What it does not verify.} Nothing here concerns real data or whether seeding works. Three problems remain open after a registered repair, with their checks recorded as failed: chamber reuse after one Stokes event, the control bracket of Study~83 (and the held-out bracket with the same defect), and coherence of the lift on a full slice. For $3\times4$ only the strands of critical values are tested, not the thimbles, and three of its six checks failed (two ties where the event detector did not look, and a conditioning floor at $L=30$). Seeing the landscape is not yet predicting with it: in pre-registered studies, braid and knot summaries of decision histories added nothing beyond the plain record. Every failed check is kept in the record.
 
-Part~III is about composition. Gluing couplings by the Markov rule is associative, gluing them by selection is not, and the difference matters when data may be poisoned. Along the way we treat contextuality on cycles of contexts, the value of information, and a private ledger in which a decision maker records how his decisions changed as data arrived. Statements from Floer theory are cited, not proved.
+\emph{Categorical status.} In Seidel's framework the thimbles generate and the identification of their category with the derived category of the surface is proved (\cref{lem:elf84c}, \cref{cor:dp6c}). Only the wrapped version in the sense of Ganatra--Pardon--Shende still rests on two steps that are argued, not certified.
 
-Part~IV treats $2\times4$ tables, where the fibre is three-dimensional, and classifies its $148$ K\"ahler chambers exactly.
-
-The last sections ask what a decision maker can do when some of his sources may be poisoned, or may coordinate. Trust turns out to be relative to a decision. A coalition can have room to move one decision without being seen and no room at all on another, and agreement among the inputs does not protect him; only independent anchors do. An inspection protects a decision if it separates the coalition's possible endpoints from the truth and arrives before the coalition can reach them, and this survives inspection noise below half the separation. Two pre-registered synthetic studies test whether braid and knot summaries of a decision history predict more than a plain record of it. In both, they did not. We then say exactly what such summaries can carry: braids built from data carry the order of exchanges, or, for strands in the plane, windings and then Milnor-type invariants; knot invariants of uncertain diagrams are high-order functionals of the hidden law. Drawing the sources as a bundle of strands gives a well-defined link only for sources the data keep apart; where the data tie sources, it gives a pseudo-link whose resolutions are cut out by the history and whose probabilities come from the noise model, and its entropy measures how much topology the data leave open. What survives is a record of which sources are blamed, and of which sources revise together. In a third pre-registered study, the group of sources that revised together recovered coordinated coalitions that attribution by explanation missed, and never named an honest source; braid and knot features again added nothing. Finally, braid invariants do separate orders of co-revision that pairwise statistics cannot, but for three sources they coincide level by level with the path signature of the count path; with more sources the braid is that signature taken modulo the order of independent events. The braid is a compression of event order, not the topology that revising reports trace out. Over many decisions, a private memory of three random walks per source and pair (lean towards a decision, co-movement, habitual order) finds coordination invisible in any single episode; its order walk sees a coalition only if the coalition's order breaks exchangeability. A worked example shows the three levels of evidence (individual, relational, ordered) separating, an honest cascade and a coalition told apart only by independent inspection, and honest sources with better access to news being flagged. Finally, pooling sources and conditioning on evidence commute for logarithmic pooling but not for linear pooling, whose defect is a reweighting by predictive success; a source that plants the evidence it predicts can capture the weight. Beyond a line, the algebra of co-revision histories is the right-angled Artin group of the co-revision graph; a braid encoding of it exists only when that graph is planar, and in convex position its relations are those of Birman, Ko and Lee, squared. Milnor's triple invariant, in a brokerage experiment, measures relay through a broker: it is a signed count of crossing relationships that no single precedence statistic determines. And when ties are resolved by persistent biases, pairwise linking laws are universal while the law of the triple invariant reveals how the biases are correlated. When a new source enters, its contribution relative to a chosen null insertion lies in a free group: its first layer is the newcomer's linking numbers, and its second layer contains the relay invariant. Braids also condition credal sets: pairwise linking under tie resolution is precise while the triple invariant has a Fr\'echet envelope, and when timing is an imprecise nuisance the braid can give sharper posteriors than the full record. Hiding a newcomer below layer $k$ costs at least $k$ events of its own, or structure in the old sources visible one layer lower. Imprecision and contextuality are separate: tie resolutions from global directions are never contextual yet leave higher-order probabilities imprecise, while cyclic pairwise resolutions of one-dimensional ties are contextual. A compressed statistic can be more decisive one observation at a time and still worth less to a policy fixed in advance. A credal set gives each pathway a band of conditional probabilities whose braid has certified crossings and pre-crossings; a coordinated coalition hides a certified crossing cheaply and silently, and only relational data or anchors expose it. Carried along revisions, the field is path independent for a decision maker who recomputes; one who updates keeps the trace of a retracted table on a context the data never had, which can launder an open order into a confident one. When revisions change the variables, honest information loss is bounded by a representation holonomy computable from the kernels, and a merge-and-split launders only through a reconstruction whose odds depend on the outcome. Refitting and coarsening fail to commute by a defect equal to the extra divergence the fine data force beyond what the coarse cells absorb; its size does not decide whether a decision moves, only whether the decision depends on what the coarse data leave open. On a fixed set of variables these mechanisms are one: every step of an updater multiplies its law, and what survives at identical data is a class of log-factors modulo the data's contexts, a coordinate on the fibre that an auditor can read off but can attribute only to sets of contexts; a history can reverse a decision exactly when the reachable part of the fibre leaves it open. Refitting and coarsening commute for every starting law exactly when every fine statistic, read along any choice of representatives of the merged classes, is a coarse statistic; for data on sets of variables this happens only if the merged variable is never observed or the law is pinned. The maximum-entropy selector and the toric selector of Part~I put the same data-span condition on different objects, the logarithm of the law and the law of the potential's terms; they are not one family, history moves the first along its whole trace but the leximin limit of the second only at size $\log(1/T)$, and on one fibre they can choose different actions. A pre-registered end-to-end example on $300$ development and $100$ holdout tables runs the whole machinery in sequence, from fibre and projections to decisions, selection, contextuality at the sheaf, fibre and cocycle layers, history and protection: the exact statements hold, and six of nineteen pre-registered checks fail in instructive ways. Among them, a coordinated coalition flips a decision while every compatibility test passes: compatibility does not imply honesty. A wider cover of tables catches such a coalition exactly when it has a positive separation margin, so reconciliation and inspection are one mechanism; a conflict never names its culprit; and a relay delays the coalition by an amount that depends on the trace of its events, which the braid, by cancelling contacts that were opened and closed, cannot bound.
-
-The final part puts the pieces together as stratified credal objects. For pairwise contexts on an $a\times b\times 2$ table, the region of a three-valued conditional law before evidence is exactly the product of its coordinate bands, and evidence breaks this. A ledger of certified bases computes exact bands for $10^4$ tables with a few dozen linear programmes, and a structure-aware bound built from interaction coordinates and dual certificates finds the $20$ most evidence-sensitive tables after evaluating $0.3\%$ of them. Three pre-registered checks behind these results failed (LS2, TK6 and SW7), and we report them as failures.
-
-For one $2\times3$ table we test the mirror-symmetry statement behind the toric picture. Its potential is the Givental mirror of the toric del Pezzo surface of degree six. We reconstruct the periods of its vanishing cycles by Gauss--Manin transport from independently normalized local expansions, including the loops around the punctures, and confirm them at held-out points. An earlier comparison had failed through a defective base-point routine, and we report those failures. With every normalization derived in advance from Iritani's theorem and nothing fitted, the oscillatory integral over the real Lefschetz cycle equals the Gamma-class central charge of the structure sheaf to $7\times10^{-13}$ at three held-out points. The six thimbles carry the $K$-classes of the exceptional collection predicted by an earlier Euler-form test, with Stokes jumps acting as mutations, at held-out phases, rotations and a second K\"ahler scale; rotating one coefficient once around zero tensors by a line bundle, and the chain of Stokes reflections along the loop reproduces it. For a $3\times3$ table, whose polytope is reflexive with $102$ small crepant resolutions, the real-cycle integral equals the central charge of the structure sheaf of the resolution selected by the margins, with the identity change of variables (proved from the relation lattice) at held-out margins; near a flop wall the chamber series breaks down only through the flopping variable, and a wall, leximin or not, identifies exactly the line bundles off the flipping circuit. The equivalence of categories is Ueda's theorem. We test that our six thimbles, rebuilt directly in the fibre, carry the Hom dimensions, degrees and composition ranks of the predicted exceptional collection on all pairs and triples, and an explicit signed isomorphism of the two directed algebras, together with formality on both sides, identifies them as $A_\infty$ categories, independently of Ueda's theorem; the census of holomorphic triangles is verified by an independent enumerator under a completeness bound, and the sign rule is derived from Seidel's. Identifying the result with the full Fukaya--Seidel category of $W$, in the sense of Ganatra--Pardon--Shende, needs one named hypothesis: that $W$ is a Liouville Lefschetz fibration in their sense. Followed through one synthetic data stream, the leximin walls of the margins predict on held-out data where the category mutates, while margin-order walls turn out to be collision walls of critical values, a second kind of categorical wall. Across the leximin wall, the thimble algebra at a held-out point is isomorphic, on all composition tensors and with its inverse, to the algebra of the left-mutated collection, while seven substitutes with the same $K$-theory are excluded; that this comparison is the one transported along the path is not yet established (two registered checks failed). A follow-up with canonical representatives (Study 82) then established it: on the unchanged objects the comparison is the one transported across the wall, up to one sign per object, and a comparison frozen at one post-wall point, carried along the path without being solved again, is still an isomorphism at a second held-out point. The $3\times3$ statements are decategorified.
+\emph{The rest of the note.} Part~I identifies the state selected by a toric potential as the lexicographic max--min point, up to $O(1/\log(1/T))$, and writes the K\"ahler dictionary in probabilistic language. Part~II reads it on contingency tables, where one count of data can cross a wall. Part~III treats composition, contextuality, the value of information and poisoned or coordinated sources: trust is relative to a decision, only independent anchors protect it, and braid and knot summaries of a decision history, tested in pre-registered studies, carry the order of exchanges but add no predictive power. Contextuality is the failure of a lift around a ring of contexts, and its minimal defect is the contextual fraction. Part~IV classifies the $148$ K\"ahler chambers of $2\times4$ tables. The final parts treat stratified credal objects and the mirror of the $2\times3$ and $3\times3$ tables, where Gamma-class central charges are matched to $7\times10^{-13}$ at held-out points, the $3\times4$ table of two seeding agents, and a reading of thimbles as the decision maker's hypotheses. A full summary of all results, previously in this abstract, is in \cref{sec:fullsummary}.
 
 Section~1 states the status of every claim (proved, cited, computed or open), and a ledger of check scripts records every computation.
 \end{abstract}
@@ -176,6 +180,23 @@ The lenses are parallel, not successive stages. This note does not offer a new t
 \rbfirst Read the table and the central claim. Then follow the reading path that matches your interest.
 \end{readerbox}
 
+\paragraph{The landscape and what it locates.} The contribution of the note is not any single identity; it is the joining of known tools into one space in which a decision maker's information state moves and every change is located and typed. Given a stream of evidence, the note says in which region of this space the state lies, which walls are near, what kind each wall is, and whether crossing it changes a decision, a hypothesis, or only a label.
+\begin{center}\small\begin{tabular}{@{}p{0.2\linewidth}p{0.46\linewidth}p{0.28\linewidth}@{}}\toprule
+layer & what the geometry shows & status\\\midrule
+credal fibre & what the data leave open; when a decision is identified & proved, exact\\
+mirror and parameters & where the walls are: collisions, caustics, escapes, Stokes rays & $2\times3$ complete; $3\times4$ at the level of critical values; $3\times3$ calibrated\\
+thimbles as hypotheses & which hypotheses are live, their support, how they are re-described & interpretation on proved pieces (\cref{sec:mcg}, part 5)\\
+events on a path & forced (collisions $0$ and canonical; caustics $\pm1$, side by convention) versus computed (Stokes integers) & local theorems proved; $5168/5170$ $3\times4$ collisions certified\\
+rings of contexts & where gluing fails and by how much & proved (\cref{prop:twist,prop:lift})\\
+history & the trace; what can be committed and what must wait; what was laundered & proved (\cref{thm:history,prop:commit})\\\bottomrule
+\end{tabular}\end{center}
+Three limits are stated wherever they apply: the landscape is complete only for $2\times3$; seeing is not predicting (braid summaries added nothing in pre-registered studies); and the known pieces are cited as such.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{graphical_summary_landscape.png}
+\caption{The landscape of information states (schematic, not a data plot). One information state $I_0,\dots,I_t$ moves as evidence arrives; the credal fibre, the mirror's walls, the thimbles and the rings of contexts are views of the same state, not stations along a journey. The picture was generated by the author with an AI image tool (Google Gemini) from a prompt written for this section. We corrected it (\texttt{kahler/patch\_gslandscape.py}): the state labels (originally $I_t,I_1,I_1,I_2,I_t$); the collision box (crossing $\sigma$, loop $\sigma^2$; a stray glyph removed); the caustic box, which was garbled, now $A_2$ fold, $\sigma^3$, $\langle V,V'\rangle=\pm1$, side by convention; the Stokes label (intersections computed, not forced); escape loci marked as $3\times3$ only; ``vanishing fibre'' to ``vanishing cycle''; duplicated labels replaced (hypotheses $J_k$; one cut per independent cycle, \cref{prop:liftgraph}); and the legend.}\label{fig:gslandscape}
+\end{figure}
+
 \begin{center}\small
 \begin{tabular}{p{0.15\linewidth}p{0.27\linewidth}p{0.27\linewidth}p{0.21\linewidth}}\toprule
 layer & object & what it tells you & where\\\midrule
@@ -212,6 +233,25 @@ The uncertainty of a conditioned state is a convex region in probability coordin
 \end{itemize}
 
 \section{What this note does and does not do}
+\subsection{Summary of results in full}\label{sec:fullsummary}
+The following paragraphs were the abstract before the running example was moved forward (2026-11-23); they are kept verbatim, except that the categorical status in the last paragraph is superseded by \cref{cor:dp6c} (Study 84c), and the results of Studies 85--90 are in \cref{sec:study85,sec:study8687,sec:study88,sec:study89,sec:study90}.
+
+This note is a companion to ``Probability, Context and Differentiation: The Layers''. It asks what the toric K\"ahler picture of a polytope says about probability tables, and where that picture stops being useful.
+
+Part~I is geometry. On a compact Delzant polytope with potential $W_T=\sum_kT^{-\lambda_k}y^{v_k}$, balancing the leading terms identifies candidates for the selected state but does not choose among them. We show that the point actually chosen is the lexicographic max--min point, up to an error of order $1/\log(1/T)$, and we write the K\"ahler dictionary (Fisher metric, relative entropy, Duistermaat--Heckman) in probabilistic language.
+
+Part~II reads the same structure on contingency tables. The margins are a point of the base, and the polytope of couplings with those margins is the fibre. We identify the coupling that is selected on that fibre and show that a single count of data can cross a wall and change it.
+
+Part~III is about composition. Gluing couplings by the Markov rule is associative, gluing them by selection is not, and the difference matters when data may be poisoned. Along the way we treat contextuality on cycles of contexts, the value of information, and a private ledger in which a decision maker records how his decisions changed as data arrived. Statements from Floer theory are cited, not proved.
+
+Part~IV treats $2\times4$ tables, where the fibre is three-dimensional, and classifies its $148$ K\"ahler chambers exactly.
+
+The last sections ask what a decision maker can do when some of his sources may be poisoned, or may coordinate. Trust turns out to be relative to a decision. A coalition can have room to move one decision without being seen and no room at all on another, and agreement among the inputs does not protect him; only independent anchors do. An inspection protects a decision if it separates the coalition's possible endpoints from the truth and arrives before the coalition can reach them, and this survives inspection noise below half the separation. Two pre-registered synthetic studies test whether braid and knot summaries of a decision history predict more than a plain record of it. In both, they did not. We then say exactly what such summaries can carry: braids built from data carry the order of exchanges, or, for strands in the plane, windings and then Milnor-type invariants; knot invariants of uncertain diagrams are high-order functionals of the hidden law. Drawing the sources as a bundle of strands gives a well-defined link only for sources the data keep apart; where the data tie sources, it gives a pseudo-link whose resolutions are cut out by the history and whose probabilities come from the noise model, and its entropy measures how much topology the data leave open. What survives is a record of which sources are blamed, and of which sources revise together. In a third pre-registered study, the group of sources that revised together recovered coordinated coalitions that attribution by explanation missed, and never named an honest source; braid and knot features again added nothing. Finally, braid invariants do separate orders of co-revision that pairwise statistics cannot, but for three sources they coincide level by level with the path signature of the count path; with more sources the braid is that signature taken modulo the order of independent events. The braid is a compression of event order, not the topology that revising reports trace out. Over many decisions, a private memory of three random walks per source and pair (lean towards a decision, co-movement, habitual order) finds coordination invisible in any single episode; its order walk sees a coalition only if the coalition's order breaks exchangeability. A worked example shows the three levels of evidence (individual, relational, ordered) separating, an honest cascade and a coalition told apart only by independent inspection, and honest sources with better access to news being flagged. Finally, pooling sources and conditioning on evidence commute for logarithmic pooling but not for linear pooling, whose defect is a reweighting by predictive success; a source that plants the evidence it predicts can capture the weight. Beyond a line, the algebra of co-revision histories is the right-angled Artin group of the co-revision graph; a braid encoding of it exists only when that graph is planar, and in convex position its relations are those of Birman, Ko and Lee, squared. Milnor's triple invariant, in a brokerage experiment, measures relay through a broker: it is a signed count of crossing relationships that no single precedence statistic determines. And when ties are resolved by persistent biases, pairwise linking laws are universal while the law of the triple invariant reveals how the biases are correlated. When a new source enters, its contribution relative to a chosen null insertion lies in a free group: its first layer is the newcomer's linking numbers, and its second layer contains the relay invariant. Braids also condition credal sets: pairwise linking under tie resolution is precise while the triple invariant has a Fr\'echet envelope, and when timing is an imprecise nuisance the braid can give sharper posteriors than the full record. Hiding a newcomer below layer $k$ costs at least $k$ events of its own, or structure in the old sources visible one layer lower. Imprecision and contextuality are separate: tie resolutions from global directions are never contextual yet leave higher-order probabilities imprecise, while cyclic pairwise resolutions of one-dimensional ties are contextual. A compressed statistic can be more decisive one observation at a time and still worth less to a policy fixed in advance. A credal set gives each pathway a band of conditional probabilities whose braid has certified crossings and pre-crossings; a coordinated coalition hides a certified crossing cheaply and silently, and only relational data or anchors expose it. Carried along revisions, the field is path independent for a decision maker who recomputes; one who updates keeps the trace of a retracted table on a context the data never had, which can launder an open order into a confident one. When revisions change the variables, honest information loss is bounded by a representation holonomy computable from the kernels, and a merge-and-split launders only through a reconstruction whose odds depend on the outcome. Refitting and coarsening fail to commute by a defect equal to the extra divergence the fine data force beyond what the coarse cells absorb; its size does not decide whether a decision moves, only whether the decision depends on what the coarse data leave open. On a fixed set of variables these mechanisms are one: every step of an updater multiplies its law, and what survives at identical data is a class of log-factors modulo the data's contexts, a coordinate on the fibre that an auditor can read off but can attribute only to sets of contexts; a history can reverse a decision exactly when the reachable part of the fibre leaves it open. Refitting and coarsening commute for every starting law exactly when every fine statistic, read along any choice of representatives of the merged classes, is a coarse statistic; for data on sets of variables this happens only if the merged variable is never observed or the law is pinned. The maximum-entropy selector and the toric selector of Part~I put the same data-span condition on different objects, the logarithm of the law and the law of the potential's terms; they are not one family, history moves the first along its whole trace but the leximin limit of the second only at size $\log(1/T)$, and on one fibre they can choose different actions. A pre-registered end-to-end example on $300$ development and $100$ holdout tables runs the whole machinery in sequence, from fibre and projections to decisions, selection, contextuality at the sheaf, fibre and cocycle layers, history and protection: the exact statements hold, and six of nineteen pre-registered checks fail in instructive ways. Among them, a coordinated coalition flips a decision while every compatibility test passes: compatibility does not imply honesty. A wider cover of tables catches such a coalition exactly when it has a positive separation margin, so reconciliation and inspection are one mechanism; a conflict never names its culprit; and a relay delays the coalition by an amount that depends on the trace of its events, which the braid, by cancelling contacts that were opened and closed, cannot bound.
+
+The final part puts the pieces together as stratified credal objects. For pairwise contexts on an $a\times b\times 2$ table, the region of a three-valued conditional law before evidence is exactly the product of its coordinate bands, and evidence breaks this. A ledger of certified bases computes exact bands for $10^4$ tables with a few dozen linear programmes, and a structure-aware bound built from interaction coordinates and dual certificates finds the $20$ most evidence-sensitive tables after evaluating $0.3\%$ of them. Three pre-registered checks behind these results failed (LS2, TK6 and SW7), and we report them as failures.
+
+For one $2\times3$ table we test the mirror-symmetry statement behind the toric picture. Its potential is the Givental mirror of the toric del Pezzo surface of degree six. We reconstruct the periods of its vanishing cycles by Gauss--Manin transport from independently normalized local expansions, including the loops around the punctures, and confirm them at held-out points. An earlier comparison had failed through a defective base-point routine, and we report those failures. With every normalization derived in advance from Iritani's theorem and nothing fitted, the oscillatory integral over the real Lefschetz cycle equals the Gamma-class central charge of the structure sheaf to $7\times10^{-13}$ at three held-out points. The six thimbles carry the $K$-classes of the exceptional collection predicted by an earlier Euler-form test, with Stokes jumps acting as mutations, at held-out phases, rotations and a second K\"ahler scale; rotating one coefficient once around zero tensors by a line bundle, and the chain of Stokes reflections along the loop reproduces it. For a $3\times3$ table, whose polytope is reflexive with $102$ small crepant resolutions, the real-cycle integral equals the central charge of the structure sheaf of the resolution selected by the margins, with the identity change of variables (proved from the relation lattice) at held-out margins; near a flop wall the chamber series breaks down only through the flopping variable, and a wall, leximin or not, identifies exactly the line bundles off the flipping circuit. The equivalence of categories is Ueda's theorem. We test that our six thimbles, rebuilt directly in the fibre, carry the Hom dimensions, degrees and composition ranks of the predicted exceptional collection on all pairs and triples, and an explicit signed isomorphism of the two directed algebras, together with formality on both sides, identifies them as $A_\infty$ categories, independently of Ueda's theorem; the census of holomorphic triangles is verified by an independent enumerator under a completeness bound, and the sign rule is derived from Seidel's. Identifying the result with the full Fukaya--Seidel category of $W$, in the sense of Ganatra--Pardon--Shende, needs one named hypothesis: that $W$ is a Liouville Lefschetz fibration in their sense. Followed through one synthetic data stream, the leximin walls of the margins predict on held-out data where the category mutates, while margin-order walls turn out to be collision walls of critical values, a second kind of categorical wall. Across the leximin wall, the thimble algebra at a held-out point is isomorphic, on all composition tensors and with its inverse, to the algebra of the left-mutated collection, while seven substitutes with the same $K$-theory are excluded; that this comparison is the one transported along the path is not yet established (two registered checks failed). A follow-up with canonical representatives (Study 82) then established it: on the unchanged objects the comparison is the one transported across the wall, up to one sign per object, and a comparison frozen at one post-wall point, carried along the path without being solved again, is still an isomorphism at a second held-out point. The $3\times3$ statements are decategorified.
+
 The layers paper ends its toric section with an outlook remark: the precise dictionary is between conditioned states and moment fibres,
 not between sources and Lagrangians \cite[Remark ``outlook: a symplectic reading'']{Layers}. This note makes that remark exact in two places
 and leaves the rest open. Its components have different status.
@@ -313,10 +353,10 @@ component & status & source\\\midrule\endhead
 \rowcolor{stNew} leximin descent under merging: symmetric merges descend (\cref{prop:symdescent}), first-level bound (\cref{prop:firstbound}), weighting repairs unequal blocks; real monodromy trivial (\cref{prop:realmono}); edge length $=\sqrt\ell\times$ cut value (\cref{prop:edgelength}) & Proved; LW1--LW6 passed; WX1 failed (corrected), WX4 failed vacuously & this note\\
 \rowcolor{stNew} valuations of the six critical points over the Novikov field (\cref{sec:valuations}): at the wall the leading group is exactly the set with valuation in the fibre (tending to the leximin point), the far pair outside; away from the wall the split changes and boundary valuations occur & Numerical (certified enclosures; VL as reported) & this note\\
 \rowcolor{stNew} the $2\times3$ directed category from curves (Studies 51--54): flat structure, conventions from Seidel, class-word object gate; on certified $V_2..V_6$: Hom ranks $=|\mathrm{Gram}|$ with $\mathrm{dP}_6$ degrees, $\mathbb P^2$ block rank 6 with Beilinson relations over $\mathbb F_2$, $(4,5,6)$ and control as predicted, chain-level associativity; $V_4$ triples short, base-point stability open, $V_1$ uncertified & Partial (certified objects; FX, GX, HX, JX as reported, failures kept) & this note\\
-\rowcolor{stNew} central charges of the six $2\times3$ thimbles against Iritani's $\widehat\Gamma$-integral structure (Studies 57--80): ray part of the thimbles converged by Gauss--Manin transport ($2\times10^{-11}$; no Stokes ray crossed), segment part only to about $10^{-5}$; series side converged at $|z|\ge150$; $\Theta_5/Z(\mathcal O)$ not constant and the thimbles not in the span of the $Z(\kappa)$; central-charge side verified as the GKZ system of $W$ to $10^{-16}$ (Study 59); six registered dictionaries fail the complex span test (best residual $7\times10^{-5}$), but that window has little power (near rank 5; Study 60, post hoc); old thimble segments were off by up to $4\%$ (Study 60); local periods validated for $P_0$ but Gate 2A not passed (Study 61); loop classes at positions 1, 2 certified; periods reconstructed by backward transport and confirmed at a held-out base point, the old base-point routine being the defective layer (Studies 63--65); integral decomposition into compact class and the four puncture-loop sectors, with Picard--Lefschetz transport, confirmed on held-out detour paths (Study 66); Iritani's Theorem 5.7 for the structure sheaf confirmed at three held-out real points with every normalization derived in advance (Study 68); the six thimbles carry the $K$-classes of a $\mathrm{dP}_6$ exceptional collection, with Stokes jumps as mutations, confirmed on held-out settings (Study 69); monodromy in the coefficients = tensoring by $\mathcal O(D_k)$, reproduced by the Stokes reflections along the loop (Study 70); simultaneous Stokes rays composed as a single mutation, closing the full rotation (Study 71); the leximin wall acts on the collection by a single mutation without degenerating the geometry (Study 72); for the $3\times3$ table (reflexive, $102$ small resolutions), the real-cycle integral equals $Z(\mathcal O)$ of the selected resolution with the identity change of variables, the chamber series breaks down only through the flopping variable, and a flop wall, leximin or not, identifies exactly the line bundles off the flipping circuit (Studies 73--74, \cref{sec:strand33}); the $2\times3$ thimbles identified with the predicted dP$_6$ objects on the cohomological directed category (Study 75, \cref{sec:catid}; correction: Study 75 matched dimensions, degrees and ranks, and the isomorphism is Study 76) and, by an explicit signed algebra isomorphism, as directed $A_\infty$ categories (Study 76, \cref{sec:algiso}); past the leximin wall, the thimble algebra at a held-out point realizes the left-mutated collection exactly on the tensors, with the pathwise (continuation) comparison open (Study 81, \cref{sec:wall81}); the pathwise comparison established with canonical representatives (Study 82, \cref{sec:path82}); otherwise decategorified & Identification categorical for $2\times3$ (census verified, Study 77; sign rule derived, Study 78; full FS category under $(\mathrm{H}_\sigma)$; Study 84b: proved modulo two written but uncertified standard steps, \cref{sec:hsigma84}) (NX2--NX4, PX2--PX5, PXb1, PXb2, PXb4, PXb5, YQ1, YQ4, UX1, UX2, ZL2, ZL4, ZL5, AF5, AF6, GR1, GR2, GR6, GB1 FAIL; PX1, PXb3, YQ1b, YQ2, YQ3, UX3, UX5, ZL1, ZL3, AF0--AF3, GR4, GR5, Q1, GB1b, IR1, IL1, IQ1, YS1, WM1, VS1--VS3, CI1b, CI2, CI3, AI1--AI3, TQ1, TQ1b--TQ3b, ZT1, ZT2, ES1, ES3, VQ1--VQ6, MW3--MW5, MW7, MW7b$'$, PW0--PW3, GE2, GE4--GE6 PASS; XJ1, CI1, TQ2, TQ3, ES2, ES4, MW1 (as registered), MW6, MW9, GE1, GE3, GE7 FAIL) & this note\\
+\rowcolor{stNew} central charges of the six $2\times3$ thimbles against Iritani's $\widehat\Gamma$-integral structure (Studies 57--80): ray part of the thimbles converged by Gauss--Manin transport ($2\times10^{-11}$; no Stokes ray crossed), segment part only to about $10^{-5}$; series side converged at $|z|\ge150$; $\Theta_5/Z(\mathcal O)$ not constant and the thimbles not in the span of the $Z(\kappa)$; central-charge side verified as the GKZ system of $W$ to $10^{-16}$ (Study 59); six registered dictionaries fail the complex span test (best residual $7\times10^{-5}$), but that window has little power (near rank 5; Study 60, post hoc); old thimble segments were off by up to $4\%$ (Study 60); local periods validated for $P_0$ but Gate 2A not passed (Study 61); loop classes at positions 1, 2 certified; periods reconstructed by backward transport and confirmed at a held-out base point, the old base-point routine being the defective layer (Studies 63--65); integral decomposition into compact class and the four puncture-loop sectors, with Picard--Lefschetz transport, confirmed on held-out detour paths (Study 66); Iritani's Theorem 5.7 for the structure sheaf confirmed at three held-out real points with every normalization derived in advance (Study 68); the six thimbles carry the $K$-classes of a $\mathrm{dP}_6$ exceptional collection, with Stokes jumps as mutations, confirmed on held-out settings (Study 69); monodromy in the coefficients = tensoring by $\mathcal O(D_k)$, reproduced by the Stokes reflections along the loop (Study 70); simultaneous Stokes rays composed as a single mutation, closing the full rotation (Study 71); the leximin wall acts on the collection by a single mutation without degenerating the geometry (Study 72); for the $3\times3$ table (reflexive, $102$ small resolutions), the real-cycle integral equals $Z(\mathcal O)$ of the selected resolution with the identity change of variables, the chamber series breaks down only through the flopping variable, and a flop wall, leximin or not, identifies exactly the line bundles off the flipping circuit (Studies 73--74, \cref{sec:strand33}); the $2\times3$ thimbles identified with the predicted dP$_6$ objects on the cohomological directed category (Study 75, \cref{sec:catid}; correction: Study 75 matched dimensions, degrees and ranks, and the isomorphism is Study 76) and, by an explicit signed algebra isomorphism, as directed $A_\infty$ categories (Study 76, \cref{sec:algiso}); past the leximin wall, the thimble algebra at a held-out point realizes the left-mutated collection exactly on the tensors, with the pathwise (continuation) comparison open (Study 81, \cref{sec:wall81}); the pathwise comparison established with canonical representatives (Study 82, \cref{sec:path82}); otherwise decategorified & Identification categorical for $2\times3$ (census verified, Study 77; sign rule derived, Study 78; full FS category under $(\mathrm{H}_\sigma)$; Study 84b: proved modulo two written but uncertified standard steps, \cref{sec:hsigma84}; Study 84c: proved in Seidel's framework, \cref{cor:dp6c}; the GPS wrapped version stays open) (NX2--NX4, PX2--PX5, PXb1, PXb2, PXb4, PXb5, YQ1, YQ4, UX1, UX2, ZL2, ZL4, ZL5, AF5, AF6, GR1, GR2, GR6, GB1 FAIL; PX1, PXb3, YQ1b, YQ2, YQ3, UX3, UX5, ZL1, ZL3, AF0--AF3, GR4, GR5, Q1, GB1b, IR1, IL1, IQ1, YS1, WM1, VS1--VS3, CI1b, CI2, CI3, AI1--AI3, TQ1, TQ1b--TQ3b, ZT1, ZT2, ES1, ES3, VQ1--VQ6, MW3--MW5, MW7, MW7b$'$, PW0--PW3, GE2, GE4--GE6 PASS; XJ1, CI1, TQ2, TQ3, ES2, ES4, MW1 (as registered), MW6, MW9, GE1, GE3, GE7 FAIL) & this note\\
 \rowcolor{stNew} the directed category of a $2\times2$ table from its thimble curves (\cref{prop:FS22}, Study 50): Kronecker quiver with the torus grading $dw/w$, so $D^b(\operatorname{Coh}\mathbb P^1)$; grading by $dw$ shifts one generator by $2$; a loop around an escape point is one mutation, the real wall acts trivially & Proved (standard mirror of $\mathbb P^1$, recomputed); KQ1--KQ7 passed (KQ3 equal degrees, explanation post hoc) & this note\\
 \rowcolor{stNew} Fukaya--Seidel realization for $2\times3$, conditional (\cref{prop:FS23cond}): hypotheses of Ueda and of Auroux--Katzarkov--Orlov checked against our setting; Ueda's hexagon is ours; Newton-nondegeneracy and tameness for all coefficients and connectedness of the generic set proved; transfer to our coefficients assuming Seidel's deformation invariance (H) & Proved (a), (b); cited (Ueda); conditional on (H) & this note\\
-\rowcolor{stNew} the selection-to-transport theory in one place (\cref{sec:theory}): eight theorems by scale, with status; new: smoothness and nondegeneracy of the selected point at finite $L$ (\cref{thm:ST3}(b)), the location of the nearest $2\times3$ folds at distance $\pi/(2L)$ (\cref{thm:ST6}(a)); \cref{conj:FS23}; a dynamical reading and what it does not support (\cref{sec:dynamics}) & Proved / cited / conjecture, as labelled & this note\\
+\rowcolor{stNew} the selection-to-transport theory in one place (\cref{sec:theory}): eight theorems by scale, with status; new: smoothness and nondegeneracy of the selected point at finite $L$ (\cref{thm:ST3}(b)), the location of the nearest $2\times3$ folds at distance $\pi/(2L)$ (\cref{thm:ST6}(a)); \cref{conj:FS23}; a dynamical reading and what it does not support (\cref{sec:dynreading}) & Proved / cited / conjecture, as labelled & this note\\
 \rowcolor{stNew} the $2\times4$ row--column wall (\cref{sec:study48}, Study 48): exact classification of walls; leading family $Y^6-Y^2-b$ with a double $A_2$ fold at $b^\ast=2/\sqrt{27}$ on the real path and no other point or value degeneracy; parity symmetry; fold persists (\cref{prop:fold24}; certified at $L=40,\dots,120$); the two detours differ by $(\sigma_2\sigma_4)^3$; capture $\approx55$ & Proved (exact; \cref{prop:fold24} by the implicit function theorem); FL as reported & this note\\
 \rowcolor{stNew} the leading braid by hand for $L\ge119$ (\cref{thm:leadbraidhand}: one family $Y^4-Y-b$, discriminant $-(256b^3+27)^3$, contractible real stratum, Newton--Kantorovich); below $L=30$ (Study 47): certified for $L\ge22$, direct at $20$--$30$; the extra letter is a far value entering the window, leaving through its end at $L\approx22$; no collision & Proved (by hand for $L\ge119$; computer-assisted for $L\ge22$); LT as reported & this note\\
 \rowcolor{stNew} the leading braid of the Study 45 wall: exact reduction of the scaled potential to the quartic families plus a coefficient box; predicted braid $\sigma_1\sigma_2^{-1}$; \cref{thm:leadbraid} for all $L\ge30$; direct confirmation on $W$ at $L=20,40,80,160$ (\cref{sec:study46}, Study 46) & Proved (computer-assisted, interval arithmetic) & this note\\
@@ -1241,7 +1281,7 @@ We call it a probability flow: geometry decides how far bands can spread, and mi
 
 \subsection{Data paths braid the critical values}\label{sec:stokesbraid}
 \begin{readerbox}{where the data reorder the thimbles}
-\rbwhat A data path moves $\lambda$, and with it the critical values of $W_T$ in the complex plane. When two of them change order in a fixed generic projection (a Stokes event), the distinguished basis of thimbles changes by one Hurwitz move: one braid generator. So a data path induces a braid of the critical values.
+\rbwhat A data path moves $\lambda$, and with it the critical values of $W_T$ in the complex plane. When two of them change order in a fixed generic projection (a Stokes event), the distinguished basis of thimbles changes by one Hurwitz move: one braid generator. So a data path induces a braid of the critical values. The letters are relative to the chosen reference (the base point $s_0$ and its straight vanishing paths, or the projection): along an open path the braid is a path in the configuration space, and its word changes with the reference; only closed loops give elements of the braid group independent of that choice. A Stokes event is therefore a letter of the path's word, not a local event of the values: nothing singular happens to them there, unlike at a collision ($\sigma^2$ when looped) or a caustic ($\sigma^3$).
 \rbwhy This gives the ``Stokes walls'' column of the ledger a definition and a computation, and it connects data to the braid-group action on Fukaya--Seidel categories without claiming more than is known.
 \rbex On $F_1$ the data path of \cref{ex:F1wall}(e) induces the word $\sigma_1\sigma_2^{-1}$ at every $N$ tested. Its Stokes events converge to the outcome wall $s^*=1/5$ at rate $1/N$. On $\mathbb{CP}^2$, which has no wall, no Stokes event occurs (SK3, SK4).
 \end{readerbox}
@@ -2851,6 +2891,37 @@ A perfect correlation forces $x_ix_{i+1}=s_i$ on every assignment that carries w
 
 The obstruction is a single sign carried around a closed loop, a twist, like the half-turn of a M\"obius band. A PR box is the $4$-cycle with the twist. The noncontextuality facets of \cref{thm:ncycle} are its fractional shadows. Each is indexed by a twisted sign pattern, and the data cross it when they correlate too strongly in the twisted pattern. The same sign drives the Kochen--Specker argument in Mermin's square: nine $\pm1$ observables whose row products are $+1$ and whose column products are $(+1,+1,-1)$ cannot all have values, since the product of the row products equals the product of the column products \cite{Mermin1990,Peres1990}. Heusler, Schlummer and Ubben trace the $-1$ in the quantum version to the difference between $IJK=-1$ and $JIK=+1$ for the spin flips $I,J,K$. The Bloch sphere cannot show this difference, because it forgets the overall sign of an $SU(2)$ element, and they recover it with Dirac's belt \cite{HeuslerSchlummerUbben2020}. Here the sign is classical, a property of the observed tables, but it plays the same role. It also explains a feature of \cref{ex:history}: local tables always glue along a path, and gluing can fail only when a cycle closes, because only a closed loop can carry a twist. ST1--ST3 confirm (1) and (2) for every sign pattern with $n\le7$, and the count of Mermin assignments.
 
+\paragraph{Rings and lifts.} The twist suggests a lifting picture, and it holds for every cycle, not only for perfect correlations. Unroll the $n$-cycle cover into a path: variables $X_0,\dots,X_n$, contexts $\{X_k,X_{k+1}\}$, where the context $\{X_{n-1},X_n\}$ carries the data of $\{X_{n-1},X_0\}$, so that $X_n$ is a second copy of $X_0$. A \emph{lift} of the data is a joint law of $X_0,\dots,X_n$ with these pair marginals. Lifts always exist, since a path always glues (\cref{prop:twist}(2)). A lift carries a hypothesis about $X_0$ once around the ring, to a hypothesis about its copy $X_n$.
+
+\begin{proposition}[contextuality is the failure of a periodic lift]\label{prop:lift}
+Let $d$ be no-signalling data on the $n$-cycle cover, with finite alphabets. Then
+\[
+\min_{\text{lifts }\ell}\ \ell(X_n\ne X_0)\;=\;\mathrm{CF}(d),
+\]
+the contextual fraction of $d$ \cite{AbramskyBarbosaMansfield2017}. In particular $d$ glues on the ring if and only if some lift is periodic ($X_n=X_0$ almost surely). For the twisted perfect data of \cref{prop:twist}, every lift sends each hypothesis $x$ to its flip, and the minimum is $1$.
+\end{proposition}
+\begin{proof}
+($\ge$) Let $\ell$ be a lift and restrict it to the event $\{X_n=X_0\}$. Identifying $X_n$ with $X_0$ gives a sub-probability law on $(X_0,\dots,X_{n-1})$ of mass $1-\ell(X_n\ne X_0)$ whose marginal on every context is dominated by the data. So the noncontextual fraction is at least $1-\ell(X_n\ne X_0)$, i.e.\ $\mathrm{CF}(d)\le\ell(X_n\ne X_0)$.
+($\le$) Let $\gamma$ be a global sub-probability law of mass $1-\mathrm{CF}(d)$ dominated by the data, and $r=d-\gamma|$ the residual on each context: non-negative tables of total mass $\mathrm{CF}(d)$, with consistent single marginals because both $d$ and $\gamma$ are no-signalling. Placed on the path, the residual tables glue (Markov gluing along a chain), giving a law of mass $\mathrm{CF}(d)$. Add $\gamma$, lifted with $X_n=X_0$. The sum is a lift whose mass off $\{X_n=X_0\}$ is at most $\mathrm{CF}(d)$.
+\end{proof}
+So contextuality on a ring is monodromy. Hypotheses can always be carried around it; what fails is a carrying that returns every hypothesis to itself, and the contextual fraction is exactly the share of the data that cannot return. On the CHSH family with correlations $(\lambda,\lambda,\lambda,-\lambda)$ the minimal defect is $2\lambda-1=(S-2)/2$ for $\lambda\ge\tfrac12$ ($0$ on the Bell boundary, $0.414$ at Tsirelson's bound, $1$ for the PR box). As an exploratory consistency check (not a registered study), the two sides were computed by linear programming on $900$ random no-signalling binary $n$-cycles ($n=3,4,5$; $117$ contextual) and agree to $5\cdot10^{-16}$ (\texttt{engine/explore\_rings/rings\_lift.py}). The same picture, monodromy around a loop with local data unobstructed, governs the thimbles of \cref{sec:mcg}, but on a different base: there the loop is in the space of margins, here in the cover of contexts. The two are parallel uses of one idea, not one object.
+
+The identity itself is a coupling argument, close in spirit to the Contextuality-by-Default treatment of contextuality through couplings of copies of variables \cite{DzhafarovKujala2016}; what the ring adds is that one copy suffices. The same proof shows how many copies are needed in general.
+
+\begin{proposition}[one cut per independent cycle]\label{prop:liftgraph}
+Let the contexts be the edges of a connected graph $\Gamma$ on the variables, with no-signalling data $d$ and finite alphabets. Choose a spanning tree $T$ of $\Gamma$. For each edge $e=\{u,w\}$ outside $T$, add a copy $w_e$ of $w$ and place the data of $e$ on $\{u,w_e\}$. Lifts (joint laws of the variables and copies with these pair marginals) exist, and
+\[
+\min_{\text{lifts }\ell}\ \ell\big(w_e\ne w\text{ for some }e\notin T\big)=\mathrm{CF}(d).
+\]
+The number of copies is the cycle rank $|E(\Gamma)|-|V(\Gamma)|+1$; for an $n$-cycle it is $1$, which is \cref{prop:lift}.
+\end{proposition}
+\begin{proof}
+The graph of the variables and copies is a tree, and data on a tree glue (Markov gluing along the tree; Vorob'ev's condition \cite{Vorobev1962}), so lifts exist. Restricting a lift to the event that every copy equals its original gives a sub-probability global law dominated by the data, so $\mathrm{CF}(d)$ is at most the probability of disagreement. Conversely, take a global sub-probability law $\gamma$ of mass $1-\mathrm{CF}(d)$ dominated by the data, lifted with every copy equal to its original, and glue the residual tables (consistent single marginals, total mass $\mathrm{CF}(d)$) on the tree; the sum is a lift whose disagreement has probability at most $\mathrm{CF}(d)$.
+\end{proof}
+As an exploratory consistency check, the two sides agree to $4\cdot10^{-16}$ on $200$ random binary data sets on $K_4$ (cycle rank $3$; $150$ contextual) and $200$ on the theta graph (cycle rank $2$; $106$ contextual) (\texttt{engine/explore\_rings/lift\_graph.py}).
+
+\paragraph{Lift decoding, and where it applies.} For a decision maker the lift is a decoding: it carries each local hypothesis across the cover and reports the smallest share of the data that cannot be made globally consistent, cut by cut. It applies only when several sources report different, overlapping sets of variables (one reports seeding and rain, another rain and runoff, a third runoff and seeding). A single contingency table is one context: it always glues, its contextual fraction is $0$, and lift decoding says nothing about it. In particular the cloud-seeding tables of Studies 83--91, and a table built by stacking regions, are never contextual; their uncertainty is credal, not contextual (\cref{sec:contextvoi}).
+
 \subsection{How little poisoning, in many dimensions}\label{sec:poisondim}
 \Cref{sec:howlittle} measured edits of one binary chain. Here the cover is general, the decision concerns a quantity that is never observed, and three different things are counted: how many cells of the data an attacker must change, how much can change with no data edit at all, and how a change over time is explained afterwards.
 
@@ -4310,6 +4381,8 @@ We placed the sources on the concave arc $y=-x^2$, numbered by $x$, and read eve
 \includegraphics[width=\linewidth]{fig_graphs.pdf}
 \caption{Six drawings of co-revision graphs. In red, independent edges whose segments cross: their twists fail to commute, so the braid encoding is not a homomorphism. Below each drawing: whether single ($N=1$) and squared ($N=2$) twists were faithful on all histories of length at most $4$ or $5$.}\label{fig:graphs}
 \end{figure}
+
+\paragraph{Stability of noisy co-revision structure.} In practice the relations of $A_G$ are estimated: ``these two sources revise independently'' holds only approximately in real histories, so the data give approximate representations of $A_G$ rather than honest ones. Fournier-Facio and Willett \cite{FournierFacioWillett2026} prove that a right-angled Artin group whose \emph{commutation graph} is chordal has Kirchberg's lifting property and Lubotzky--Shalom's property FD (their Thm.~1.2(v)). Hence it is very flexibly stable: every asymptotic unitary representation is approximated by corners of honest finite-dimensional ones, for the operator, Hilbert--Schmidt and normalised Schatten norms (their Thm.~1.1). The commutation graph of $A_G$ is the complement of the line graph of $G$. It contains an induced square exactly when $G$ has two vertex-disjoint pairs of edges, each pair sharing a source. Then $A_G$ contains $F_2\times F_2$, which is not residually finite-dimensional (via the negative solution of the Connes embedding problem), and whose lifting property is open (their Question~1.6). So near-independence of co-revisions can be rounded to exact independence, in this sense, when the commutation graph is chordal; with two separate co-revising triples it cannot be guaranteed. The same group $F_2\times F_2$ sits in the braid group $B_6$ of the $2\times3$ mirror (braids on strands $1$--$3$ commute with braids on strands $4$--$6$, and each pure $B_3$ contains $F_2$), while the free groups of punctured lines and the local group $B_3$ (the trefoil group) are in the stable class. This is a remark about estimation; every representation computed in this note is exact.
 
 \subsection{Brokerage and Milnor's invariant}\label{sec:brokerage}
 This subsection constructs a coordination experiment in which topology is genuinely needed, and identifies what it measures. Three sources sit on a line: source $1$, a broker $2$, and source $3$. A \emph{relationship} of source $1$ with the broker is an interval. It opens when source $1$ turns once around the broker, the twist $A$, and closes when the turn is undone, $A^{-1}$. Relationships of source $3$ are intervals of $B$. Each source's own history is fixed. The broker never moves, and each visitor has the same curve and the same sequence open, close, open, close, $\dots$ ($m$ intervals). Only the relative timing varies, so a history is an interleaving of the two visitors' sequences, and there are $\binom{4m}{2m}$ of them. In every history the event counts, the co-revision counts and all pairwise linking numbers are the same, the latter all zero.
@@ -8305,7 +8378,16 @@ study & question & registered outcome\\\midrule
 82 & the wall-crossing comparison along the path; canonical representatives & run 1 crashed (triple point), amendment recorded; PW0, PW1, PW2-strict, PW3 PASS\\
 83 & one synthetic data stream through all layers: compute saved, information extracted & GE2, GE4, GE5, GE6 PASS; GE1, GE3, GE7 FAIL (collision walls; GE7 script bug in run 1)\\
 84, 84b & the hypothesis $(\mathrm{H}_\sigma)$: citation audit; explicit tameness; thimble-like objects; formality & HS1, HS2, HS4, HS5 PASS (HS2 pre-check FAIL in run 1: incomplete critical-point census, amendment recorded); HS3, HS6 argued in writing, not certified\\
-85 & what the data support vs what the thimbles see: credal walls, braid lift, collisions, full twist, update order & BT1--BT6 PASS; BTR FAIL (post-hoc retest of a Study~83 failure)\\\bottomrule
+85 & what the data support vs what the thimbles see: credal walls, braid lift, collisions, full twist, update order & BT1--BT6 PASS; BTR FAIL (post-hoc retest of a Study~83 failure)\\
+86 & Floer-level check of collision walls & KW2, KW3 PASS; KW1 FAIL (4/6 audited), KW4 FAIL (pair exchangeable)\\
+87 & support regions of vector-valued hypotheses; Markov action; support walls; order; coherence of the lift & VH1--VH4 PASS; VH5 FAIL (traversal cut off at a caustic; every computed loop trivial)\\
+88 & coordinated poisoning: margin-preserving and fabricated-report attacks, order campaigns, coalition recovery (Shapley, interaction) & AD1--AD4, AD6 PASS; AD5 FAIL (coalition-out restored 19/20)\\
+84c & part (c) of the $\mathrm{dP}_6$ theorem in Seidel's framework: an exact Lefschetz fibration for $W$ & HQ1, HQ2 PASS; HQ3 written proof (\cref{lem:elf84c}); generation cited (Seidel, \S18)\\
+89 & caustics: $A_2$ folds, intersection number $1$, $\sigma^{\pm3}$ around them & KS1--KS5 PASS after two recorded failures and amendments (run 3); KS4b computed afterwards\\
+90 & repair study: rule F for minimal position; KW1, B0 control, GE7, VH5 & RP1, RP4 PASS; RP2, RP3, RP6, RP7 FAIL (kept); R5 recorded\\
+91 & $3\times4$ table (two seeding agents), strand level: $96$ critical points, tie and off-tie collisions, local braids, decision band & QF1, QF5, QF6 PASS; QF2, QF3, QF4 FAIL (kept); R7 recorded\\
+91C & certification of the hypotheses of \cref{prop:disjoint} at the $5170$ Study~91 collisions & DJ1, DJ2 FAIL ($5095$); AMEND1: DJ1b, DJ2b FAIL ($5149$); $21$ uncertified, kept\\
+91D, 91E & the $19$ conditioning events: two-sided scaling of the reduced Jacobian; intrinsic log-coordinate Hessian & RQ1 FAIL ($0/19$); LH1 PASS ($19/19$); certified total $5168/5170$\\\bottomrule
 \end{tabular}\end{center}
 
 \emph{Later explanations.} The failures have three independent causes and two cycle conventions; none of them is a failure of the mathematics being tested.
@@ -8457,6 +8539,68 @@ Two steps are argued in writing, by standard techniques, but neither certified n
 \end{itemize}
 
 \emph{Status after Study 84b.} Part~(c) of \cref{thm:dp6cat} holds for our $W$ at all registered states, modulo the written but uncertified steps HS3 and HS6. Both are of the kind the literature calls standard and has not written down for Laurent polynomials. Records: \texttt{engine/study84\_hsigma/AUDIT84.md} and \texttt{engine/study84b\_lemmas/}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{graphical_summary_84.png}
+\caption{Graphical summary of Studies 84 and 84b (schematic, not a data plot): the potential, tameness (\cref{lem:tame84}), the thimbles in the GPS chart, and the chain of reasoning for $(\mathrm{H}_\sigma)$ in the GPS framework. The picture was generated by the author with an AI image tool (Google Gemini) from a description of the findings; we corrected the vertex labels of the hexagon and removed a stray number from the Kouchnirenko label, and otherwise left it as supplied. Positions are illustrative: in particular the number of plotted critical values in the right panel is not meaningful (there are six). The picture shows the state after Study 84b. Study 84c then proved part~(c) in Seidel's framework (\cref{lem:elf84c,cor:dp6c}); the GPS wrapped version still rests on the two steps marked ``argued'' (HS3, HS6).}\label{fig:gs84}
+\end{figure}
+
+\paragraph{Note added (Study 84c): part (c) in Seidel's framework, proved.} Re-reading part~(c) shows that it concerns the Fukaya--Seidel category \emph{in Seidel's sense}. That is the category $\mathrm{Fuk}(\pi)$ of an exact Lefschetz fibration $\pi:E\to D$, whose objects are the closed exact Lagrangian branes in $E$ and the Lefschetz thimbles \cite{Seidel2008}. For this category the GPS steps HS3c and HS6 are not needed. Two ingredients remain:
+\begin{itemize}
+\item that $W$, on a compact domain and with its exact form changed only near the horizontal boundary, is an exact Lefschetz fibration;
+\item Seidel's generation argument.
+\end{itemize}
+Study~84c (\texttt{PREREG84c.md} frozen first, the proof below written before any code) supplies the first and checks the inputs.
+
+\begin{lemma}[an exact Lefschetz fibration for $W$, Study 84c]\label{lem:elf84c}
+At the registered state of \cref{thm:dp6cat}, let $R=24$ and $T=960$ as in \cref{lem:tame84}. There are a compact domain $E\subset W^{-1}(D_T)$ containing $\{|w|\le R\}\cap W^{-1}(D_T)$ and a primitive $\lambda_2$ on $E$ with the following properties.
+\begin{itemize}
+\item $\lambda_2$ equals the standard $\lambda=u\,d\phi+v\,d\psi$ on $|w|<R$, which contains all critical points.
+\item $(E,\pi=W|_E,\lambda_2+N\pi^*\alpha)$ is an exact Lefschetz fibration in the sense of \cite{McLean2009}, Definition~2.12, for $N$ large.
+\end{itemize}
+Different choices in the construction are joined by deformations of such fibrations.
+\end{lemma}
+
+\begin{proof}
+\emph{(1) Ends.} Every edge of the hexagon has lattice length~1 (HQ1). So the restriction of $W-t$ to each boundary curve $D_k$ of the toric surface is the edge binomial, with a single root $p_k$ that does not depend on $t$. Each fibre $F_t$, $|t|\le T$, therefore has six ends $E_k(t)=F_t\cap\{|w|\ge R\}$. They are punctured discs around the $p_k$: $\rho=|w|^2/2$ has no critical point there (\cref{lem:tame84}) and is proper on $F_t$. In the toric chart at $p_k$ the fibre closures form a smooth family of discs transverse to $D_k$, smooth in $t$. The level-circle action $a_k(t,s)=\frac1{2\pi}\oint_{\{\rho=s\}}\lambda$ grows like $|d_k|\sqrt{2s}$, uniformly on $D_T$, where $d_k$ is the primitive normal of the edge.
+
+\emph{(2) Action-angle coordinates.} On $E_k(t)$ let $r$ be the action of the level circle through a point. It increases with $\rho$, because its derivative is the $\omega$-area density of a holomorphic curve. The Hamiltonian flow of $r$ has period $2\pi$, so with an angle $\theta$ measured from a section chosen smoothly over the disc $D_T$, $\omega=dr\wedge d\theta$. Then $\lambda|_{E_k(t)}=r\,d\theta+dg$, with $g$ smooth in $(t,x)$, because the difference is closed with zero periods.
+
+\emph{(3) Truncation.} Choose $c>\max_{t,k}r(t,k)|_{|w|=R}+1$. Let $E$ be $W^{-1}(D_T)\cap\{|w|\le R\}$ together with the ends cut at $r\le c+1$. This set is compact, and its horizontal boundary is the six circles $r=c+1$.
+
+\emph{(4) Exact correction.} Put $\lambda_1=\lambda-d(\chi(r)g)$ with $\chi=0$ for $r\le c$ and $\chi=1$ for $r\ge c+\frac13$. On fibres, $\lambda_1=r\,d\theta$ where $r\ge c+\frac13$.
+
+\emph{(5) Product collar.} Put $\lambda_2=(1-\eta)\lambda_1+\eta\,r\,d\theta$ with $\eta=0$ for $r\le c+\frac13$ and $\eta=1$ for $r\ge c+\frac23$. Where $\eta>0$, $\lambda_2|_F=r\,d\theta$; elsewhere $d\lambda_2=\omega$. So every fibre stays symplectic. On $\{c+\frac23\le r\le c+1\}$ the coordinates $(t,r,\theta,k)$ identify the fibration with $D_T\times\bigsqcup_k[c+\frac23,c+1]\times S^1$, and $\lambda_2,d\lambda_2$ are pulled back from the second factor.
+
+\emph{(6) The remaining conditions.} The critical points lie in $|w|<R$, where nothing changed: they are nondegenerate, one per fibre (HQ2), with $W$ holomorphic for the standard Kähler structure. The vertical boundary is $\pi^{-1}(\partial D_T)$. Finally, $d\lambda_2+N\pi^*\beta$ is symplectic for $N$ large, by \cite{McLean2009}, Lemma~2.13.
+\end{proof}
+
+Two checks back the inputs:
+\begin{itemize}
+\item \emph{HQ1:} all six edges have lattice length~1 (exact).
+\item \emph{HQ2:} at the registered state there are six nondegenerate critical points ($|\det\mathrm{Hess}|\ge0.199$), with values pairwise at least $0.827$ apart and at most $148.4$ in modulus. The census is complete by Kouchnirenko's count.
+\end{itemize}
+
+For an exact Lefschetz fibration, Seidel's argument (\cite{Seidel2008}, Section~18, Lemma~18.15 and the generation statement deduced from it; see also \cite{AbouzaidSmith2012}, Lemma~3.3 and Remark~3.4, which records that no assumption on the characteristic is needed) shows two things:
+\begin{itemize}
+\item the thimbles of a distinguished basis generate $D^b\mathrm{Fuk}(\pi)$;
+\item their full subcategory is the directed category of the vanishing cycles.
+\end{itemize}
+
+\begin{corollary}[\cref{thm:dp6cat}(c) in Seidel's framework]\label{cor:dp6c}
+At the registered state, the derived Fukaya--Seidel category of the exact Lefschetz fibration of \cref{lem:elf84c} is equivalent to $D^b(\mathrm{dP}_6)$, with the thimbles going to $F_1,\dots,F_6$.
+\end{corollary}
+
+\noindent The corollary rests on three things:
+\begin{itemize}
+\item \cref{lem:elf84c};
+\item the cited generation argument (verified at the level of the numbered lemma through \cite{AbouzaidSmith2012});
+\item \cref{thm:dp6cat}(a,b), with their stated qualifications (the sign rule; the triangle census, verified computationally in Study~77).
+\end{itemize}
+It no longer needs $(\mathrm{H}_\sigma)$.
+
+The \emph{stronger} statement still needs HS3c and HS6, and they remain open in the literature: the statement that the wrapped Fukaya category of $(\mathbb C^*)^2$ with the stop of GPS Proposition~8.20 is generated by the same thimbles. Records: \texttt{engine/study84c\_seidel/}.
 
 \paragraph{Crossing the leximin wall on the algebra (Study 81).}\label{sec:wall81} Study 72 found that the leximin wall of the margin path acts on the thimble classes by a single mutation: at the Stokes event $t=-0.000825$ the critical value $v_5$ crosses the ray of $v_6$, the sixth class changes by $\pm3$ times the fifth, and the order becomes $1,2,3,4,6,5$. That is a statement about $K$-theory. Study 81 asks whether the wall acts by the predicted mutation functor on the directed algebra itself: on the objects, the Hom generators with their degrees, the composition tensors, the units and the inverse.
 
@@ -8641,6 +8785,11 @@ margin-order walls (L2) & critical-value collisions (post hoc) & not yet used: a
 Established on held-out data (registered passes): the identification bands and their coverage, the robust decisions (never wrong), region versus band, the defect null, information versus action, global extensions (GE4--GE6), and the leximin $\leftrightarrow$ Stokes correspondence (GE2) with the mutation dimensions at leximin brackets (part of GE3). Not established (registered failures): ``no change'' across margin-order walls (refuted: they are collision walls), correct chamber reuse along a whole path (GE7), the audit gate (GE1). Post hoc: the collision mechanism. Not claimed: anything about whether seeding works, and any speed advantage at the statistical layer. Assumptions: the hypotheses of \cref{thm:dp6cat}, and (H$_\sigma$) for the Fukaya--Seidel identification.
 
 \subsection{What the data support and what the thimbles see (Study 85)}\label{sec:study85}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{graphical_summary_85.png}
+\caption{Graphical summary of Study 85 (schematic, not a data plot). The picture was generated by the author with an AI image tool (Google Gemini) from a description of the findings; we corrected garbled labels (the polytope label) and otherwise left it as supplied. Shapes such as the drawn braid and the fibre are illustrative. The scope panel shows the state at the end of Study 85: the Floer-level collision check marked ``not run'' was done afterwards in Study 86 (\cref{sec:study8687}). The measured results are in \cref{fig:s85F1,fig:s85F2,fig:s85F3,fig:s85F4} and the statements in this section.}\label{fig:gs85}
+\end{figure}
 \paragraph{The question in plain words.} A contingency table with known margins does not pin down one answer. Many tables share those margins, and they are connected by Markov moves, which shift counts around without changing any row or column total. So a hypothesis such as ``seeding raises the chance of above-normal rain'' is supported only as a \emph{range}: the smallest and largest value it takes over all those tables. Study 85 asks how this supported range relates to the geometry of thimbles. The answer is a clean separation:
 \begin{itemize}
 \item the \emph{credal state} is the set of tables compatible with the constraints, and the supported range of each hypothesis over it;
@@ -8760,7 +8909,7 @@ Both held exactly at the base and at four held-out week-6 states, in both direct
 \noindent BT5 confirmed the exact pattern on all 20 held-out scenarios:
 \begin{itemize}
 \item the braid relation fails except on the four product tables (the margin-blind twins);
-\item the hypothesis value $P(\text{above}\mid\text{seeded})$ depends on the order exactly when both margins move;
+\item the hypothesis value $P(\text{below}\mid\text{unseeded})$ depends on the order exactly when both margins move;
 \item the dependence decays geometrically (\cref{fig:s85F4}).
 \end{itemize}
 This makes the ``pseudo-knot'' picture precise. Reordering steps matters, and the history can be recorded, but the record is a word in two idempotents whose effect washes out. The braid word of the thimbles between the two end states is a separate record.
@@ -8787,6 +8936,300 @@ Not established:
 The $K_0$ lift is a lift of classes and Euler forms; the categorical statements rest on \cref{thm:dp6cat}, on the standard mutation formulas, and on \cref{prop:collision}.
 
 
+\subsection{Collision walls at the Floer level, and hypotheses with many components (Studies 86--87)}\label{sec:study8687}
+\paragraph{Study 86: the swap at a collision wall, computed.} Study~85 proved (\cref{prop:collision}) that crossing a collision wall swaps two orthogonal thimbles and changes nothing else. It checked this only on classes. Study~86 computed the full Floer algebra on both sides of six collision walls. The brackets were chosen by a frozen rule from the Study~85 held-out output, and the same Floer pipeline as Study~83 was used.
+\begin{itemize}
+\item On the four brackets that passed the audit gate:
+  \begin{itemize}
+  \item the colliding pair was adjacent in the Seidel order, with no Floer generators in either direction on both sides (KW2);
+  \item the order change across the wall was exactly that adjacent swap;
+  \item the algebra after the wall equalled the algebra before, relabelled by the swap, at full tensor level (KW3).
+  \end{itemize}
+  This is the Floer-level form of \cref{prop:collision}; \cref{fig:s86} shows one bracket.
+\item Two brackets failed the audit (KW1, 4 of 6 against the registered 5). At one or both points a Hom space of the colliding pair to a third object carried 3 or 5 generators instead of 1, with $\mu^1\neq0$. This is the same non-minimal-position defect as the Study~83 B0 control. \emph{Note added (Study~90).} The cause was a fold vertex left by the guarded taut reduction; with it removed (rule F) both brackets pass the audit and KW2/KW3 (RP4). The B0 control has a second defect, a non-convex bigon (\cref{sec:study90}).
+\item The discrimination control (KW4) also failed as registered:
+  \begin{itemize}
+  \item a wrong adjacent swap always failed, as expected;
+  \item but the \emph{unrelabelled} comparison also succeeded.
+  \end{itemize}
+  A post-hoc diagnostic explains why. At the wall the symmetry of $W$ exchanges the two colliding objects, and their Hom dimensions to the other four are identical in every audited run. So both labellings are isomorphisms; the data cannot tell the swap from the identity here.
+\end{itemize}
+Study~86 also corrects the Study~85 retro-test (BTR): the Study~83 records index Hom spaces by Seidel rank, but BTR transposed position labels, so it tested a mis-specified relabelling.
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.92\linewidth]{fig87_G5.pdf}
+\caption{Study 86 (held-out C0, week $6.51$). Floer Hom dimensions in the Seidel order on both sides of a collision wall. The violet box is the colliding pair: no morphisms either way. The two objects swap places, and the algebra after is the algebra before, relabelled (full tensor-level isomorphism).}\label{fig:s86}
+\end{figure}
+
+\paragraph{Study 87: from one hypothesis to a family.} So far a hypothesis was one number, and the data supported an interval of it. A scientific question usually involves several numbers at once: how likely below-normal rain is without seeding, how likely normal rain is, and a ratio comparing unseeded with seeded weeks. For a vector-valued hypothesis $H:\mathcal M_b\to\mathbb R^k$ the natural object is the \emph{support region}
+\[
+\mathcal R_H(b)=H(\mathcal M_b)\subseteq\mathbb R^k,
+\]
+the set of all values the family takes over all tables compatible with the margins. The interval of Study~85 is the case $k=1$. Here $\mathcal M_b$ is a polygon, since the $2\times3$ fibre has dimension $2$. So for $k=2$ the region is a planar shape bounded by curves, and for $k=3$ a surface. These are the curves and surfaces of the hypothesis picture, now with a precise meaning: images of the credal fibre.
+
+Three families were registered:
+\begin{itemize}
+\item $H_{\rm lin}=(P(\text{below}\mid S{=}0),P(\text{normal}\mid S{=}0))$, which is linear;
+\item $H_{\rm frac}=(P(\text{below}\mid S{=}0),x_{12}/(x_{12}+x_{01}))$, with fractional components of different denominators;
+\item $H_3=(P(\text{above}\mid S{=}0),P(\text{normal}\mid S{=}0),x_{12}/(x_{12}+x_{01}))$, with $k=3$.
+\end{itemize}
+
+\begin{proposition}[support regions on the $2\times3$ fibre]\label{prop:region}
+Write $x=\bar x+a\,m_A+c\,m_B$, where $m_A$ and $m_B$ are the $2\times2$ moves on column pairs $(0,1)$ and $(1,2)$, and $m_{02}=m_A+m_B$.
+\begin{enumerate}
+\item[(a)] \emph{Markov action.} Every move preserves the observations (the margins). The moves leaving a member invariant form a sublattice:
+  \begin{itemize}
+  \item $\mathbb Z m_A$ for $P(\text{below}\mid S{=}0)$;
+  \item $\mathbb Z m_{02}$ for $P(\text{normal}\mid S{=}0)$;
+  \item $\mathbb Z m_B$ for $P(\text{above}\mid S{=}0)$.
+  \end{itemize}
+  No move leaves $H_{\rm lin}$ invariant. Level sets of $h_3=x_{12}/(x_{12}+x_{01})$ are lines of a pencil; the move $\alpha m_A+\beta m_B$ is tangent to the level $t$ exactly when $\alpha t=\beta(2t-1)$, which has integer solutions exactly when $t$ is rational.
+\item[(b)] \emph{Regions.}
+  \begin{itemize}
+  \item $H_{\rm lin}$ is an injective affine map on $\mathcal M_b$. So $\mathcal R_{H_{\rm lin}}(b)$ is a polygon whose corners are exactly the images of the vertex tables, the extremal witnesses. By total unimodularity, the hull of the image of the integer fibre equals the region whenever $Nb$ is integral.
+  \item $H_{\rm frac}$ is injective where $x_{12}>0$, with Jacobian $-(1/f_1)\,x_{12}/(x_{12}+x_{01})^2$. It collapses the edge $x_{12}=0$ to a corner. Its other edges map to arcs of hyperbolas, so the region is a curvilinear polygon, convex or not.
+  \item $H_3$ is the graph of $h_3$ over an injective linear chart: a ruled surface.
+  \end{itemize}
+\item[(c)] \emph{Support walls.} For these injective families, the corners and their witnesses change exactly on the chamber walls $f_0=\sum_Jg_j$. None of these walls depends on $L$.
+\item[(d)] \emph{Paths.} The region and its witnesses are functions of the margins. A path changes them only through its end point, while the word of walls crossed depends on the path.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a): the moves change $(x_{10},x_{11},x_{12},x_{01})$ by $(-1,1,0,-1)$ for $m_A$ and $(0,-1,1,1)$ for $m_B$. Differentiating $h_3$ along $\alpha m_A+\beta m_B$ gives the tangency condition.
+(b): $P(\text{below}\mid S{=}0)$ fixes $c$. Then $P(\text{normal}\mid S{=}0)$ fixes $a$, and $h_3$ is strictly monotone in $a$ where $x_{12}>0$. Along an edge, $h_1$ is affine and $h_3$ projective in the edge parameter. Total unimodularity of the transportation matrix makes the vertices integral.
+(c) follows from (b) and the parametric-LP argument of \cref{prop:credalwalls}. (d) follows because the region and its witnesses are determined by $b$ alone.
+\end{proof}
+
+\noindent The design followed the usual pattern:
+\begin{itemize}
+\item \texttt{PREREG87.md} and this proposition were frozen before any code ran;
+\item calibration on seed $8701$ fixed the numerical choices (\texttt{NOTES87.md}, section~2);
+\item \texttt{PREDICTION87.md}, with the hashes of the scripts, was frozen before seed $8702$ and the held-out slice $\Sigma_H$ were generated;
+\item the held-out check ran once (\cref{tab:s87}).
+\end{itemize}
+
+\begin{table}[H]\centering\footnotesize
+\begin{tabular}{p{0.07\linewidth}p{0.47\linewidth}p{0.38\linewidth}}\toprule
+check & registered statement & held-out result (seed 8702)\\\midrule
+VH1 & $H_{\rm lin}$ a polygon with every vertex table a corner; integer hull equals the region; $H_{\rm frac}$ injective and non-convex; $H_3$ a graph & all 260 weeks; 40 count tables exact; non-convex in 254/260 weeks (defect up to $0.38$)\\
+VH2 & invariant sublattices as in \cref{prop:region}(a); tangent moves of $h_3$ & all 260 fibres, exact\\
+VH3 & corners and witnesses change only on chamber walls & 54 changes, all on chamber walls ($10^{-11}$)\\
+VH4 & end witnesses path-independent, words path-dependent; reordered updates change the region exactly off product tables; the region can move while the scalar does not & 8/20 paths with different words; Jeffrey rule exact; region-only changes in 8 scenarios\\
+VH5 & every grid loop of the slice ($L=20,30$) returns to the identity; failures only at merging critical points; at least 20 two-wall loops & \textbf{failed}: every computed loop was trivial, but the traversal was cut off behind one merge point (see text)\\\bottomrule
+\end{tabular}
+\caption{Study 87 checks (frozen in \texttt{PREDICTION87.md}).}\label{tab:s87}
+\end{table}
+
+\paragraph{The region, the moves and the witnesses.} \Cref{fig:s87G1} shows the passage from the credal fibre to the support regions. Markov moves are arrows inside the fibre, and their images show what each move does to the hypothesis. $m_A$ moves $P(\text{normal}\mid S{=}0)$ and leaves $P(\text{below}\mid S{=}0)$ fixed; no move leaves both fixed. The corners of the linear region are the vertex tables. The fractional family bends the edges into hyperbolic arcs and the region stops being convex, in 254 of 260 held-out weeks.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig87_G1.pdf}
+\caption{Study 87, G1 (held-out C1, week 1).
+\emph{Left:} the credal fibre, all tables with the observed margins. The grey dots are the integer count tables, joined by Markov moves; the arrows are the three moves.
+\emph{Middle:} the support region of $H_{\rm lin}$ and the images of the moves. It is a polygon whose corners are the vertex tables, and the hull of the integer tables fills it exactly.
+\emph{Right:} the support region of $H_{\rm frac}$: curved and not convex (dashed: convex hull).}\label{fig:s87G1}
+\end{figure}
+
+\noindent \Cref{fig:s87G2} follows the region through the season and shows a three-component family as a surface.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig87_G2.pdf}
+\caption{Study 87, G2.
+\emph{Left:} the support region of $H_{\rm frac}$ as the cumulative tables of held-out scenario D1 accumulate. It shrinks and changes shape; its corners and witnesses change only on chamber walls (54 changes over all held-out paths, all on chamber walls).
+\emph{Right:} a three-component family ($k=3$). Its support region is a ruled surface, the graph of $h_3$ over the linear chart.}\label{fig:s87G2}
+\end{figure}
+
+\paragraph{Order: the region sees what the scalar hides.} Study~85 found that reordering two margin revisions changes the scalar $P(\text{below}\mid\text{unseeded})$ only when both margins move. The region is more sensitive. Reordering changes it in every scenario whose prior is not a product table, including 8 held-out scenarios where the scalar does not move at all (\cref{fig:s87G3}). So a single summary can hide an order effect that the full family of hypotheses records. The history of a path is recorded in the word of walls it crosses, which differed between two routes to the same end point in 8 of 20 scenarios. The end state does not depend on the route.
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.7\linewidth]{fig87_G3.pdf}
+\caption{Study 87, G3 (held-out D0). Revising the rows first or the columns first gives the same point estimate of $P(\text{below}\mid S{=}0)$ (dotted line), but different supported regions for the pair of hypotheses.}\label{fig:s87G3}
+\end{figure}
+
+\paragraph{Coherence of the categorical lift, and where it stops.} A path through margin space induces a sequence of wall crossings. Each crossing acts in two ways:
+\begin{itemize}
+\item a relabelling of the region's corners at chamber walls;
+\item a mutation at Stokes events, or an orthogonal swap at collision walls, of the exceptional collection (Study~85).
+\end{itemize}
+For this to be a well-defined functor from paths, the composite around every small loop must be the identity. That is a coherence condition, and it was checked by computation, not assumed. The registered slice $\Sigma_H$ ($f_0\in[0.30,0.46]$, $g_1\in[0.20,0.44]$, $g_0=0.30$) was covered by a $25\times25$ grid, and every cell boundary was used as a loop.
+
+Every loop that was computed returned the same objects, classes and Seidel order: 479 of 479 at $L=20$ and 430 of 430 at $L=30$. Every collision on these loops was orthogonal.
+
+The registered check still failed. Near one corner of the slice ($f_0\approx0.44$, $g_1=0.20$) two critical points merge: the Hessian vanishes and continuation stops. The registered traversal of the grid reached every later node only through that point, so whole rows were cut off. As a result many failed cells had no merge diagnosis, and too few two-wall loops were computed.
+
+A post-hoc breadth-first traversal (labelled as such) gives 561 of 561 and 538 of 538 trivial loops, including 26 and 33 two-wall loops. The unreachable cells form a corner patch bounded by merging critical points: a \emph{caustic}, shown in red in \cref{fig:s87G4}.
+
+This completes the classification of what can happen to thimbles along a path of data:
+\begin{itemize}
+\item at a Stokes event a thimble mutates;
+\item at a collision wall two orthogonal thimbles swap (Studies 85--86);
+\item at a caustic two critical points merge, and the Lefschetz picture itself stops.
+\end{itemize}
+Only the last is a genuine collapse. It lies outside the scope of \cref{thm:dp6cat} and of Lemma~\ref{lem:tame84}, both of which assume Morse critical points.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig87_G4.pdf}
+\caption{Study 87, G4 (held-out slice $\Sigma_H$, post-hoc breadth-first traversal). Each grid cell is a loop in margin space; shading shows how many walls it crosses. Every computed loop returns to the identity, so composition is coherent. Grey lines are chamber walls (support walls of the region); violet dotted lines are margin-order walls (collisions); the bands of shaded cells away from them are Stokes walls, which move with $L$. Red cells lie beyond a caustic, where two critical points merge; the caustic grows from $L=20$ to $L=30$.}\label{fig:s87G4}
+\end{figure}
+
+\paragraph{Scope.} Established on held-out data:
+\begin{itemize}
+\item the support regions and their Markov structure (VH1, VH2);
+\item support walls on chamber walls (VH3);
+\item order effects visible in the region but not in the scalar (VH4);
+\item the Floer-level swap at four audited collision walls (KW2, KW3).
+\end{itemize}
+Not established as registered: coherence of the lift on the full slice (VH5 failed through the traversal; the post-hoc result is suggestive, not confirmatory). \emph{Note added (Study~90).} The registered rerun with the breadth-first traversal also failed VH5 (RP7): coherence held on every computed loop of $\Sigma_H$ and a held-out slice, but the failure-explanation clause cannot be met as written (\cref{sec:study90}). Also not established: a Floer-level check at the two collision brackets whose curves were not in minimal position, and anything about real data. The caustic is the natural subject of a next study, where the braid monodromy of a merging pair should be $\sigma^3$.
+
+
+\paragraph{Correction to Studies 85 and 87 (labels only).} The $2\times3$ target table has rows (seeded, unseeded) and columns (above, normal, below) (\texttt{gen83.target\_table}). In Studies~85 and~87 the cell $x_{12}$ was described as ``above-normal rain given seeding''; it is \emph{below}-normal rain on \emph{unseeded} opportunities. The text and figures of \cref{sec:study85,sec:study8687} now carry the correct words:
+\begin{itemize}
+\item $h_1=x_{12}/f_1=P(\text{below}\mid\text{unseeded})$;
+\item $H_{\rm lin}=(P(\text{below}\mid S{=}0),P(\text{normal}\mid S{=}0))$;
+\item the first component of $H_3$ is $P(\text{above}\mid S{=}0)$.
+\end{itemize}
+Every statement, proposition and check concerns these functionals as defined in the code, so no result changes. Study~83's decision quantity $q=P(\text{above}\mid\text{seeded},\text{wet})$ was always computed on the global law and is unaffected.
+
+\subsection{Coordinated poisoning of the evidence (Study 88)}\label{sec:study88}
+\paragraph{The question in plain words.} Suppose some of the stations reporting cloud-seeding outcomes are not honest. A small group coordinates: they rewrite or fabricate reports to push the decision the way they want. What can they achieve, what do the credal geometry and the thimbles see, and what can a review of the sources recover?
+
+This study is defensive. It measures how robust a decision is to coordinated manipulation, and what an integrity review can see. It is synthetic throughout: the Study~83 law with its 10 target and 10 control stations made explicit as sources. In each scenario three target stations are planted as colluders, and one other target station is planted as an \emph{honest outlier}, a genuinely wetter site. The geometry measures influence on a decision; it never establishes intent, and the outlier is there to test exactly that.
+
+Two decision makers see the same pooled reports:
+\begin{itemize}
+\item the \emph{conventional} one decides ``seed'' when the plug-in estimate of $q=P(\text{above}\mid\text{seeded},\text{wet})$ reaches $\theta=0.6$;
+\item the \emph{credal} one trusts only the aggregate margins at level $I_3$, and decides from the band of $q$ over all laws with those margins (Study~83).
+\end{itemize}
+The thimble state is built from the $2\times3$ target-table margins, which are functions of those trusted aggregates.
+
+\begin{proposition}[poisoning and credal decisions]\label{prop:poison88}
+Let $A$ be the $I_3$ margin operator and $n$ the pooled counts.
+\begin{enumerate}
+\item[(a)] If an attack changes the reports by $\delta$ with $A\delta=0$, then the credal band, the credal decision, the $2\times3$ margins and the whole thimble state are unchanged. The plug-in estimate moves by $(\delta\cdot\mathrm{NUM})/(n\cdot\mathrm{DEN})$.
+\item[(b)] The plug-in estimate always lies in the credal band. So along any attack the credal decision flips toward a target no earlier than the conventional one.
+\item[(c)] Two campaigns with the same month-level totals end with the same band and, wherever the critical points stay Morse, the same thimble state, whatever the order of injection. Their weekly interim decisions and their words of walls crossed can differ.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a): the band depends on $An$ only. The $2\times3$ margins are read off the contexts ST and TGR. The denominator of $q$ is a sum of S$\times$T$\times$W blocks, which are fixed. (b): the pooled empirical law satisfies its own margins, so it is one of the laws in the band. (c): the end aggregates are equal, and coherence of the lift is \cref{sec:study8687}.
+\end{proof}
+
+\noindent \texttt{PREREG88.md} and the theory notes were frozen before any code ran. Calibration on seed $8801$ fixed the attack sizes (\texttt{NOTES88.md}, section~2). \texttt{PREDICTION88.md} with script hashes was frozen before seed $8802$, and the held-out check ran once (\cref{tab:s88}).
+
+\begin{table}[H]\centering\footnotesize
+\begin{tabular}{p{0.07\linewidth}p{0.47\linewidth}p{0.38\linewidth}}\toprule
+check & registered statement & held-out result (seed 8802)\\\midrule
+AD1 & a margin-preserving attack (three colluders rewrite up to 30\% of their reports) leaves the credal band and decision and the thimble state exactly unchanged, moves the plug-in estimate, and can flip the conventional decision & 20/20 invariant; estimate moved by $0.03$--$0.08$; conventional decision flipped in 6\\
+AD2 & fabricated reports flip the credal decision no earlier than the conventional one & 20/20 (median $0$ vs $486$ reports)\\
+AD3 & along the attack, Stokes events and decision flips are different events & 47 Stokes events without a flip; 25 flips without a Stokes event\\
+AD4 & reordering the campaign leaves the end band and the end thimble state unchanged; interim decisions and words can differ & end state equal 20/20; interim decisions differ in 7, words in 11\\
+AD5 & under redundant coordination no single leave-out restores the honest decision, leaving the coalition out does; the interaction recovers the coalition and never flags the honest outlier & \textbf{failed one clause}: coalition-out restored 19/20 (see text); exact recovery 20/20; outlier never flagged\\
+AD6 & the colluders are the top three Shapley sources; the honest outlier is influential but never recovered as a colluder & top three 18/20; outlier above the honest median 18/20\\\bottomrule
+\end{tabular}
+\caption{Study 88 checks (frozen in \texttt{PREDICTION88.md}).}\label{tab:s88}
+\end{table}
+
+\paragraph{Rewriting reports without moving the margins.} The colluders can rewrite their own reports in ways that keep every trusted margin exactly as it was. The conventional estimate moves by up to $0.08$ and its decision flips in 6 of 20 scenarios. The credal band does not move at all, nor does the thimble state (\cref{fig:s88H1}). This is not a blind spot of the geometry; it is a guarantee. A decision that rests only on well-provenanced aggregates cannot be moved by manipulation the aggregates do not register.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig88_H1.pdf}
+\caption{Study 88, H1 (held out). Three colluding stations rewrite up to 30\% of their reports while keeping every trusted margin fixed. The conventional estimate (orange) moves, across the threshold in 6 of 20 scenarios. The credal band (green) is exactly unchanged, and so is the thimble state.}\label{fig:s88H1}
+\end{figure}
+
+\paragraph{Fabricating reports.} To move the credal decision the colluders must change the margins, by adding fabricated reports. The conventional decision is already on their side in most scenarios: median $0$ reports needed. The credal decision needs a median of 486. Along the way the thimbles go through Stokes events, collisions and chamber walls, but these are not where the decisions flip (\cref{fig:s88H2}). An attack that crosses a Stokes wall changes the distinguished basis, not the decision.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig88_H2.pdf}
+\caption{Study 88, H2 (held-out B2). \emph{Top:} as fabricated reports are added, the conventional estimate crosses the threshold after about 100 reports, while the credal band needs about 770 before its lower edge does. \emph{Bottom:} the thimble events along the same path (Stokes events, a collision, a chamber wall). They occur at their own places, not where either decision flips.}\label{fig:s88H2}
+\end{figure}
+
+\paragraph{The order of the campaign.} The same 90 fabricated reports injected in the first or the last week of each month lead to the same end-of-season aggregates. The end band and the end thimble state agreed in all 20 held-out scenarios. The weekly decisions along the way did not: they differed in 7 scenarios (\cref{fig:s88H3}). So the order of a campaign is a lever over \emph{interim} decisions, and it is recorded in the word of walls crossed (11 scenarios), but it does not change where the evidence ends up.
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.9\linewidth]{fig88_H3.pdf}
+\caption{Study 88, H3 (held out). Weekly credal decisions under the same campaign injected early or late in each month. The interim decisions differ; the end of season is the same.}\label{fig:s88H3}
+\end{figure}
+
+\paragraph{Finding the coalition: influence versus coordination.} The colluders were sized so that any two of them suffice to flip the credal decision. As a result, withholding any single station never restores the honest decision (20/20): leave-one-out influence analysis cannot see them. Two further statistics, computed over leave-out coalitions, do the work:
+\begin{itemize}
+\item the Shapley value of each station, with $v(S)$ the displacement of the credal band when $S$ is withheld;
+\item the pairwise interaction $I(i,j)=D(\{i,j\})-D(\{i\})-D(\{j\})$.
+\end{itemize}
+Shapley values measure influence. They put the three colluders on top in 18 of 20 scenarios, but they also rank the honest outlier above the honest median in 18. Influence alone would accuse an honest, genuinely unusual site. The interaction measures coordination: colluders are substitutes for one another. It recovered exactly the planted coalition in 20 of 20 and never flagged the outlier (\cref{fig:s88H4}).
+
+The one registered failure is informative. In scenario A2 leaving the coalition out did not restore the honest decision. Withholding the colluders also withholds their genuine reports, and with a quarter of the target-region evidence gone the band widened across the threshold. Removing suspect sources has a cost in evidence, and a decision process should report it.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig88_H4.pdf}
+\caption{Study 88, H4 (held-out A0). \emph{Left:} Shapley values. The planted colluders (orange) are most influential, but the honest outlier (blue) also stands out. \emph{Right:} pairwise interactions. Only the colluder pairs show the positive, redundant coupling (boxed) of a coordinated group; the honest outlier does not.}\label{fig:s88H4}
+\end{figure}
+
+\paragraph{What this means for decision support.} Four separate questions should be answered separately and never merged into one score:
+\begin{enumerate}
+\item Is the observation authentic?
+\item Is the source independent?
+\item Does it change the decision geometry (band, region, walls)?
+\item Is there independent evidence of intent?
+\end{enumerate}
+The geometry answers only the third. The study shows that it answers it well:
+\begin{itemize}
+\item credal decisions are immune to manipulation that leaves the trusted aggregates fixed;
+\item they require far more fabrication than plug-in decisions;
+\item coordination leaves a measurable interaction signature that influence alone does not.
+\end{itemize}
+
+\paragraph{Scope.} Not established:
+\begin{itemize}
+\item the power of the interaction statistic when the injection is small relative to natural station variation (weaker in calibration scenarios with small attacks);
+\item attacks on the definition of the trusted aggregates themselves;
+\item knot invariants, which cannot be reached by real data paths: closed data loops have trivial categorical monodromy where the critical points stay Morse;
+\item anything about real sources.
+\end{itemize}
+
+
+\subsection{Caustics: where two critical points merge (Study 89)}\label{sec:study89}
+\paragraph{The question.} Studies 85--87 found three kinds of event along a path of data:
+\begin{itemize}
+\item Stokes events, where a thimble mutates;
+\item collision walls, where two orthogonal thimbles swap;
+\item caustics, where two critical points merge and the Lefschetz description stops.
+\end{itemize}
+Study~89 identifies the third kind. Real margins can only \emph{cross} a caustic: it is a curve in the real slice. A loop \emph{around} one therefore needs complexified parameters, and the study uses a small loop in a complex line transverse to the caustic.
+
+\begin{proposition}[the caustic is a fold]\label{prop:caustic}
+Suppose a critical point of $W$ degenerates with Hessian of corank one and nonzero cubic term along the kernel (type $A_2$). Then, with parameters, $W$ is locally $z_1^3/3-uz_1+z_2^2$. The two nearby critical points $z_1=\pm\sqrt u$ have values differing by $\tfrac43u^{3/2}$. Once around $u=0$ the pair is exchanged, and the difference of the values turns through $3\pi$: the braid is $\sigma^{\pm3}$. The vanishing cycles of the pair meet once. On an exceptional pair with $\chi(e,f)=\pm1$, $\sigma^{\pm3}$ negates exactly one of the two classes (one object returns shifted by $[1]$) and leaves the order unchanged. On the real slice such a merger is seen along a curve exactly when the merging point is real.
+\end{proposition}
+\begin{proof}
+This is the versal deformation of the $A_2$ singularity. The $K_0$ computation is three mutations: $\sigma(e,f)=(f-e,e)$, $\sigma^2(e,f)=(f,f-e)$, $\sigma^3(e,f)=(-e,f)$, and symmetrically for $\sigma^{-1}$. The real structure gives the last statement: conjugation permutes the critical points, so a merger seen in the real slice must happen at a real point.
+\end{proof}
+
+\noindent \texttt{PREREG89.md} and the theory with all tolerances were frozen before any code. The caustics were fixed in advance: the first merger along the line $g_1=0.205$ of Study~87's held-out slice, at $L=20$ (primary) and $L=30$ (replication). Results:
+\begin{itemize}
+\item \emph{KS1:} both mergers are of type $A_2$ at a real point. The Hessian has rank one (eigenvalues $0.449$ and $\le10^{-17}$ at $L=20$), with cubic coefficient $0.050$ ($L=20$) and $0.013$ ($L=30$); $f_0^*=0.4303$ and $0.4166$.
+\item \emph{KS2:} the merging pair, $V_3$ and $V_6$, is adjacent in the Seidel order and has intersection number $1$. Collision pairs have $0$ (Study~85), so this is the invariant that tells a caustic from a collision.
+\item \emph{KS3:} the transverse complex loop exchanges the pair, and the difference of their values turns through $3\pi$, to four decimals at both $L$.
+\item \emph{KS4:} the Hurwitz word is three events of the pair in one direction, with no other event. Exactly one class of the pair returns negated. The $K_0$ lift does the same while keeping the collection exceptional. This last check (KS4b) was part of the registered KS4 statement but omitted by the script, so it was computed afterwards.
+\item \emph{KS5:} all of this replicates at $L=30$.
+\end{itemize}
+Two registered runs failed first and are kept, each with an amendment recorded before the rerun. Both failures came from comparing log coordinates without reducing their imaginary parts modulo $2\pi$: once in choosing the pair, once in the exchange test.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig89_K1.pdf}
+\caption{Study 89. A small loop around the caustic, in complexified margins.
+\emph{Left:} the difference of the two merging critical values turns through exactly three half-turns ($3\pi$), as $u^{3/2}$ predicts, at $L=20$ and $L=30$.
+\emph{Middle:} the same difference in the complex plane ($L=20$), winding one and a half times around $0$.
+\emph{Right:} the resulting braid $\sigma^{\pm3}$ on the pair. The pair is exchanged, and one of the two objects comes back shifted.}\label{fig:s89}
+\end{figure}
+
+\paragraph{What this completes.} The three kinds of event along a path of data now have the following categorical meanings:
+\begin{itemize}
+\item a \emph{Stokes event} is a mutation of the exceptional collection (Studies 81--85);
+\item a \emph{collision wall} is a swap of two orthogonal objects. Their intersection number is $0$, and Study~86 checked the swap at the Floer level;
+\item a \emph{caustic} is an $A_2$ fold. Its pair has intersection number $1$, and the monodromy around it is $\sigma^{\pm3}$, which shifts one object.
+\end{itemize}
+Real data can cross a caustic but cannot loop around it. Data paths therefore never produce this monodromy (or the trefoil of its closure). What they meet is the breakdown of the presentation at the fold.
+
+
 
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth]{fig_path82.pdf}
@@ -8800,6 +9243,305 @@ A. Do the relevant periods satisfy the potential's differential system? & centra
 B. Do the thimble and Gamma central-charge functions span the same solution space? & for the structure sheaf, yes: Iritani's Theorem 5.7 confirmed at held-out real points with derived normalization (Study 68); for all six, the $K$-classes of the predicted exceptional collection, confirmed on held-out settings (Study 69)\\
 C. Does the integral structure identify the thimbles with the intended objects? & at the level of $K$-classes and Euler form, yes (Study 69); at the level of the cohomological directed category, yes (Study 75) [correction, added after review: Study 75 matched Hom dimensions, degrees and composition ranks; the algebra isomorphism itself is Study 76]; by an explicit signed algebra isomorphism and formality on both sides, as directed $A_\infty$ categories (Study 76), with the triangle census verified independently under a completeness bound (Study 77) and the sign rule derived from Seidel's (Study 78); the full Fukaya--Seidel category under the single hypothesis $(\mathrm{H}_\sigma)$ (GPS audit)\\\bottomrule
 \end{tabular}\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{graphical_summary_8489.png}
+\caption{Graphical summary of Studies 84c and 87--89 (schematic, not a data plot): $(\mathrm{H}_\sigma)$ in Seidel's framework (\cref{lem:elf84c}), support regions (Study 87), coordinated poisoning (Study 88) and caustics (Study 89), with the three kinds of thimble event. The picture was generated by the author with an AI image tool (Google Gemini) from a description of the findings; we corrected the legend colours, two garbled labels and the scenario axis, and otherwise left it as supplied. Sketches such as the braid strands and the cusp are illustrative, and positions and sizes carry no data. The measured results are in \cref{fig:s87G1,fig:s88H1,fig:s89} and the neighbouring figures.}\label{fig:gs8489}
+\end{figure}
+
+\subsection{Repair study for four recorded failures (Study 90)}\label{sec:study90}
+\emph{In plain words.} Four earlier checks had failed: KW1 (Study~86, two collision brackets not audited), the Study~83 B0 control, GE7 (Study~83, chamber reuse) and VH5 (Study~87, coherence of the lift on a slice). Study~90 looked for their causes on cached data (calibration, labelled), registered one repair and the tests in \texttt{engine/study90\_repair/PREREG90.md} with the code hashes in \texttt{PREDICTION90.md}, and ran each check once on a new seed (8503), a new slice $\Sigma_R$ and the old failures. The original failures stay recorded; no threshold was changed.
+
+\emph{The repair (rule F).} Calibration traced KW1 and the $\mu^1$ part of the B0 control to one cause. The guarded taut reduction leaves unpegged vertices on some curves when its per-step word guard rejects their removal. When such a vertex is a fold (turn between $90^\circ$ and just under $180^\circ$) around an empty triangle, the curve bounds an empty bigon with a straight curve, so a Hom space carries 3 or 5 generators instead of 1 and $\mu^1\neq0$. Rule F removes exactly these vertices and changes nothing else. Exact spikes ($180^\circ$) and shallow turns are kept: removing them broke runs that had passed.
+
+\begin{center}\small\begin{tabular}{@{}p{0.08\linewidth}p{0.55\linewidth}p{0.3\linewidth}@{}}\toprule
+Check & Registered test & Result\\\midrule
+RP1 & KW1 audit gate on six held-out brackets (seed 8503), at least 5 & PASS, 5 of 6 (A3 misses on cons $1.2\cdot10^{-6}$); rule F removed nothing\\
+RP2 & KW2 and KW3 on the audited held-out brackets & FAIL: A0, A1, A2, B1 hold; B0 dims differ\\
+RP3 & wrong swap fails; unrelabelled comparison succeeds iff the pair is exchangeable & FAIL through B0; holds at the other four\\
+RP4 & Study~86 B2, B3 rerun with rule F (repair, not held out) & PASS: audited, adjacent, orthogonal, isomorphic after the swap\\
+R5 & Study~83 B0 control with rule F (record) & unresolved: one fold removed, but the word changes, cons $0.24$, a pair keeps 3 generators\\
+RP6 & GE7 retest with chambers bounded by events and collisions, fine-continuation states & FAIL: audits isomorphic to their representatives, mis-assigned point not; the two runs after the Stokes event at $s=4.775$ fail the audit (period fit $0.198$)\\
+RP7 & VH5 with the breadth-first traversal on $\Sigma_H$ and held-out $\Sigma_R$ & FAIL: every computed loop trivial (561, 538, 510, 481); the failure-explanation clause is not met, and $\Sigma_R$ at $L=30$ has 19 two-wall loops (floor 20)\\\bottomrule
+\end{tabular}\end{center}
+
+\emph{What this changes.} Across a collision wall, \cref{prop:collision} now holds at the Floer level on 10 of the 12 brackets examined: all six of Study~86 (four before, two after the repair) and four of six held-out brackets. Of the other two, A3 is not audited and B0 shows the defect described next.
+
+\emph{Post hoc (labelled).} (i) Both B0-type failures (Study~83 control, Study~90 RP2) have the same signature: on the before side a pair carries 3 generators in degrees $-2,-1,0$ with one non-convex bigon, which the Floer code does not count, so $\mu^1=0$ passes although the curves are not in minimal position. The audit gate cannot see this second defect, and it is not evidence that a collision changes the category. (ii) What remains of GE7 is a class prediction, not chamber reuse. Within each audited chamber the algebra is constant, but the class of one position after the event at $4.775$ disagrees with the transported periods, under both the fine continuation and the $K_0$ lift. (iii) The unexplained VH5 failures are cells inside the unreachable patch, where no continuation was ever attempted, so no traversal can supply the merging diagnosis the clause asks for. The Study~87 note overstated this; its claim referred only to the boundary nodes.
+
+Not established: the B0 control, GE7 and VH5 as registered. The open repairs are counting non-convex bigons (or a further isotopy of near-collinear pegged curves), and the class bookkeeping at the $4.775$ event.
+
+\subsection{Two seeding agents: the $3\times4$ table at the level of strands (Study 91)}\label{sec:study91}
+\emph{In plain words.} With a second seeding agent (silver iodide, salt, unseeded) and four rain categories the table is $3\times4$. Its mirror $W$ lives on $(\mathbb C^*)^6$ and has $96$ critical points, so the questions of Studies 83--90 can be asked again one dimension up. The fibres of $W$ are now complex $5$-folds and our Floer code works only with curves, so Study~91 tests the base level only: the $96$ critical values as strands in $\mathbb C$, their crossings and their local braids, together with the exact toric facts and the decision band. The registration (\texttt{engine/study91\_3x4/PREREG91.md}, prefix QF) and the code hashes (\texttt{PREDICTION91.md}) were frozen before the held-out seed 9102 was generated.
+
+\emph{Why $3\times4$ is smooth.} For an $r\times c$ table the anticanonical margins $(c,\dots,c\mid r,\dots,r)$ lie on a chamber wall $\sum_I f=\sum_J g$ iff $|I|c=|J|r$ has a solution with $I,J$ nonempty and proper, that is iff $\gcd(r,c)>1$. So $3\times3$ is singular (and needs crepant resolutions) while $2\times3$ and $3\times4$ are smooth toric Fano; for $3\times4$ the polytope is a $6$-dimensional smooth Fano polytope of normalized volume $96$, the number of critical points (Kouchnirenko). The critical points reduce exactly to $r+c-1$ unknowns: $p_{ij}=u_i+v_j$ with $\prod_j(u_i+v_j)=e^{-Lf_i}$, $\prod_i(u_i+v_j)=e^{-Lg_j}$, critical value $4\sum u+3\sum v$ (\texttt{engine/lib91.py}).
+
+\emph{Calibration (labelled, seed 9101).} Monodromy finds all $96$ solutions; tracking needs relative residuals and per-path step control because some roots have $|u_i+v_j|\sim10^{-7}$. On the calibration path every margin tie carries $10$--$12$ simultaneous collisions of real critical values, but $659$ collisions lie off the ties (\cref{fig:mcgstrands}); for $2\times3$ the same machinery finds all $16$ collisions on ties. So the $2\times3$ statement ``collision walls are the margin-order walls'' does not carry over as stated, and the registered checks test the refined picture: ties carry symmetric collisions, other collisions exist and move with $L$.
+
+\emph{Procedure.} Run 1 lost four of six walks to cancellation (condition $\sim10^{12}$); AMEND1 moved tracking to extended precision. Run 2 failed on one walk at condition $\sim10^{17}$; AMEND2 added a single-strand $50$-digit fallback (with an erratum for a conversion bug). All six held-out walks then completed (seed 9102, three paths, $L=20,30$; $587$--$1221$ events each). The single check run was stopped by an environment time limit during QF5, after QF1--QF4 had been decided; AMEND3 (procedural) ran the rest from verbatim copies of the code. Every amendment was frozen before the rerun it governs, and all failed runs are kept.
+
+\begin{center}\small\begin{tabular}{@{}p{0.07\linewidth}p{0.5\linewidth}p{0.36\linewidth}@{}}\toprule
+Check & Registered test & Result\\\midrule
+QF1 & exact: exponents span $\mathbb Z^6$, volume $96$, anticanonical point off the walls, simple polytope with $96$ vertices & PASS\\
+QF2 & solver: $96$ distinct nondegenerate solutions at the base point ($L=20,30$), $2\times3$ anchor, starts & FAIL: all counts and residuals hold, but $\min|\det J|=1.0\cdot10^{-15}<10^{-14}$ at $L=30$\\
+QF3 & every tie carries a collision; every tie collision is a symmetric pair & FAIL: $981/981$ symmetric, but two ties at $L=20$ carry no recorded collision\\
+QF4 & off-tie collisions exist, $\le5\%$ recur at $L=30$, ties carry collisions at both $L$ & FAIL through the same two ties; off-tie $419,729,659$, recurring $1,0,0$\\
+QF5 & local braids: caustic loop $|{\rm winding}|=3\pi$ with exchange, off-tie collision loop pure with $2\pi$ & PASS, $30/30$ (all $-3\pi$, $-2\pi$ exactly)\\
+QF6 & decision band: LP band over the transportation polytope $=$ Fr\'echet band, integral vertices & PASS, $42$ weeks\\
+R7 & record: collisions, caustics, Stokes events & e.g.\ path~0: $541/44/3426$ ($L=20$), $659/44/3847$ ($L=30$)\\\bottomrule
+\end{tabular}\end{center}
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{fig91_heldout.png}
+\caption{Study 91, held-out walks (seed 9102). Left: real critical values (asinh scale) of the $3\times4$ mirror near the tie $g_1=g_2$ at $t=9.66$ on path~0, $L=20$; dots: collisions at a tie, crosses: off the ties, blue line: a caustic. The shaded substep contains the tie and a multiple caustic, where the registered analyser does not look for collisions, so this tie has none recorded (QF3, QF4 fail). Right: collisions recorded at each of the $45$ ties crossed, $L=20$ against $L=30$; the two zeros are the failures.}\label{fig:study91}
+\end{figure}
+
+\emph{What this changes.} The local braid picture of Studies 85 and 89 survives the step from $2\times3$ to $3\times4$: on held-out paths every caustic loop examined is $\sigma^{3}$ on the merging pair and every off-tie collision loop is a pure full twist $\sigma^2$, with all other $94$ strands returning (QF5). The decision band is still the Fr\'echet band (QF6). Margin ties are still symmetric collisions ($981$ of $981$), but the registered tie checks failed and are not cited.
+
+\emph{Post hoc (labelled).} (i) At both empty ties the $1/40$-week substep containing the tie also contains a multiple caustic (the number of real values changes by more than one pair), and the analyser skips collision detection in such substeps; at $L=30$ the same ties carry $10$--$16$ collisions. (ii) The QF2 miss is the $L=30$ ill-conditioning that required AMEND1 and AMEND2; the floor was set at $L=20$. (iii) All $30$ windings have the same sign; the loops are traversed clockwise, so taken counter-clockwise every caustic and collision loop winds positively ($+3\pi$, $+2\pi$). This sign uniformity is forced by the argument principle (\cref{prop:localbraid}, \cref{rem:forced}), so it is a consequence, not a finding. (iv) Off-tie collisions essentially never recur at another $L$, so they are not walls of the data: they are Maxwell walls of $W$ that move with $L$.
+
+Not established: the tie checks QF3 and QF4 and the solver floor QF2 as registered; anything above the strand level (thimbles, K-classes, the $96\times96$ Stokes matrix).
+
+\subsection{Mapping class groups and the groups that drive the thimbles}\label{sec:mcg}
+\emph{In plain words.} The thimble results of Studies 85--91 are statements about how an ordered list of vanishing cycles changes as the margins move. The natural language for such statements is that of mapping class groups and Hurwitz moves, as set out for Lefschetz fibrations in the report of Lu, Wedeen and Zhang \cite{LuWedeenZhang2016}. This section rewrites our results in that language and asks which groups act. There are three, and keeping them apart clarifies what the data do to the thimbles: the symmetry of the data (Markov moves), which builds the space the thimbles live in; a change-of-description group (the braid group acting on distinguished bases), which records the thimbles in a chosen basis; and a dynamics group (loops of complexified margins), which actually moves them. Status: \cref{prop:cochar,prop:ipfthimble,lem:sigma2} are exact (the second rests on classical results); the dictionary in \cref{tab:mcgdict} summarizes results proved or tested earlier; everything labelled \emph{proposed} is not yet tested.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{figmcg_groups.png}
+\caption{The three groups. A loop of complexified margins avoiding the discriminant gives a braid of the critical values ($B_N$ is the mapping class group of the disc with $N$ holes), the braid acts on vanishing cycles through the mapping class group of the fibre, and that action lifts to the category. Stokes events belong to the middle box: they change the basis in which the thimbles are recorded, not the thimbles. Schematic.}\label{fig:mcggroups}
+\end{figure}
+
+\subsubsection*{1. The data symmetry: Markov moves are the cocharacters of the mirror torus}
+For an $r\times c$ table write $A:\mathbb Z^{rc}\to\mathbb Z^{r+c}$ for the margin map. The monomials of the mirror potential are indexed by the cells, with exponents in the quotient lattice $M=\mathbb Z^{rc}/\operatorname{im}A^{\mathsf T}$ (cells modulo row and column indicators), of rank $(r-1)(c-1)$, and $W$ lives on the torus $\operatorname{Hom}(M,\mathbb C^*)$.
+
+\begin{proposition}[Markov moves are cocharacters; exact]\label{prop:cochar}
+The cocharacter lattice $N=\operatorname{Hom}(M,\mathbb Z)$ of the mirror torus is the lattice $\ker A$ of integer tables with zero margins, the lattice generated by the Markov moves. Hence the mirror torus is $N\otimes\mathbb C^*$, and a point of it is a complex table $z$ modulo rescaling of rows and columns; equivalently, the collection of its cross-product ratios $z_{ij}z_{kl}/(z_{il}z_{kj})$.
+\end{proposition}
+\begin{proof}
+A homomorphism $M\to\mathbb Z$ is a functional on $\mathbb Z^{rc}$ vanishing on the row and column indicators, i.e.\ an integer table with zero row and column sums. A homomorphism $M\to\mathbb C^*$ is a table $z\in(\mathbb C^*)^{rc}$ with $\prod_jz_{ij}=\prod_iz_{ij}=1$, and every table is equivalent to exactly one such table modulo row and column scaling; the cross-product ratios are the characters $z^{\delta}$ indexed by the basic moves $\delta$, which generate $N$.
+\end{proof}
+So the data side and the thimble side share one lattice. Additively, $N$ acts on counts by Markov moves and spans the tangent space of the credal fibre. Multiplicatively, $N\otimes\mathbb R_{>0}$ acts on positive odds-ratio patterns. The margins are the complementary data: they set the coefficients $a_{ij}=e^{-Lf_ig_j}$, i.e.\ the K\"ahler parameters, and the dimensions match ($(r-1)(c-1)$ odds-ratio directions and $r+c-1$ margins: $2+4$ for $2\times3$, $6+6$ for $3\times4$).
+
+\begin{proposition}[the positive thimble is the credal fibre; exact, classical]\label{prop:ipfthimble}
+Fix positive margins $(f,g)$. The map $\Phi$ sending a positive point $y$ of the mirror torus, i.e.\ a positive table $z$ modulo row and column scaling, to the unique table $x_{ij}=\rho_i\kappa_jz_{ij}$ with margins $(f,g)$ (iterative proportional fitting) is a real-analytic diffeomorphism from $N\otimes\mathbb R_{>0}\cong\mathbb R_{>0}^{(r-1)(c-1)}$ onto the interior of the credal fibre. It sends the identity (all odds ratios $1$) to the independence table $f_ig_j$, and its derivative maps odds-ratio directions (natural parameters) to Markov directions (mean parameters).
+\end{proposition}
+\begin{proof}
+Existence and uniqueness of $\rho,\kappa$ for positive $z$ and positive margins is the classical scaling theorem \cite{Sinkhorn1964,Fienberg1970,Csiszar1975}; $x$ and $z$ have the same cross-product ratios, so $\Phi$ is injective, and any interior table $x$ is $\Phi$ of its own class, so $\Phi$ is onto. Analyticity of the inverse follows from the implicit function theorem applied to the strictly convex dual problem.
+\end{proof}
+The positive real locus of the mirror torus is the positive real cycle of the Gamma comparisons (Studies 57--80): for positive coefficients $W$ is strictly convex in $\log y$ and proper on it, with a single critical point, a nondegenerate minimum, and we use the standard identification of this cycle with the Lefschetz thimble of that minimum. \Cref{prop:ipfthimble} therefore identifies the interior of the credal fibre, point by point, with the positive thimble. \Cref{fig:mcgodds} draws the identification for the $2\times3$ table of the running example. The critical point of $W$ maps to a table that is not the independence table; which table it is, as a function of the margins and $L$, is a question for Part~C below.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{figmcg_odds.png}
+\caption{\Cref{prop:ipfthimble} for the $2\times3$ seeding table at the Study~83 base margins, $L=20$ (exact computation). Left: the positive real thimble in log coordinates, with level sets of $W$; the grid lines fix one log odds ratio. Right: the same grid pushed forward by IPF into the credal fibre (tables with the given margins), which it fills. Square: all odds ratios $1$, the independence table. Dot: the critical point of $W$ and its image.}\label{fig:mcgodds}
+\end{figure}
+
+\subsubsection*{2. The change of description: Hurwitz moves}
+Choose a regular base point $s_0$ and paths $\gamma_1,\dots,\gamma_N$ from $s_0$ to the critical values; they give an ordered list of vanishing cycles $V_1,\dots,V_N$, and the monodromy around $\gamma_k$ is the Dehn twist $T_{V_k}$. Another choice of paths differs by a braid, and the generator $\sigma_i$ acts by the Hurwitz move \cite[Prop.~2.16]{LuWedeenZhang2016}
+\[
+(\gamma_i,\gamma_{i+1})\mapsto(\gamma_i\gamma_{i+1}\gamma_i^{-1},\gamma_i),\qquad (T_{V_i},T_{V_{i+1}})\mapsto(T_{V_i}T_{V_{i+1}}T_{V_i}^{-1},T_{V_i}),
+\]
+i.e.\ $V_{i+1}$ is replaced by $T_{V_i}(V_{i+1})$. Together with global conjugation by a mapping class of the fibre, these moves classify the fibration \cite[Prop.~2.17 and \S2.4]{LuWedeenZhang2016}; this is the Hurwitz problem. In our setting the paths are the straight segments from $s_0$, so a Stokes event, where one critical value crosses the segment to another, is exactly a Hurwitz move: it changes the basis, not the fibration. Its shadow in $K$-theory is the mutation $[E_i]\mapsto[E_i]-\chi\,[E_j]$ tested in Study~85. One point needs care: a braid of the critical values becomes a braid of thimbles only once the paths are fixed; that is why every thimble statement in Studies 83--90 is made relative to the straight paths from the registered $s_0$.
+
+\begin{lemma}[a full twist of two commuting twists is trivial; exact]\label{lem:sigma2}
+For any two Dehn twists, $\sigma_i^2$ acts by global conjugation by their product \cite[p.~10]{LuWedeenZhang2016}:
+\[
+\sigma_i^2(T_a,T_b)=(T_aT_b)\,(T_a,T_b)\,(T_aT_b)^{-1}.
+\]
+If $a$ and $b$ are disjoint, then $T_aT_b=T_bT_a$ and $\sigma_i^2$ fixes the pair.
+\end{lemma}
+\begin{proof}
+Apply the Hurwitz move twice: $(T_a,T_b)\mapsto(T_aT_bT_a^{-1},T_a)\mapsto(T_aT_bT_aT_b^{-1}T_a^{-1},T_aT_bT_a^{-1})$, which is conjugation by $T_aT_b$. Disjoint curves give commuting twists, and conjugation by $T_aT_b$ then fixes both.
+\end{proof}
+This is the mapping-class form of \cref{prop:collision}. At a collision wall, the two colliding vanishing cycles have no Floer generators in either direction; in minimal position they are disjoint, the two ways around the collision differ by $\sigma^2$, and by \cref{lem:sigma2} they give the same factorization: $\sigma=\sigma^{-1}$. \Cref{fig:mcgfibre} shows such a pair on the actual fibre, next to a pair that meets once.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{figmcg_hurwitz.png}
+\caption{Left: distinguished paths from $s_0$ to the critical values. Middle: the Hurwitz move $\sigma_1$, which replaces $\gamma_1$ by $\gamma_1\gamma_2\gamma_1^{-1}$ and $T_2$ by $T_1T_2T_1^{-1}$. Right: \cref{lem:sigma2}, after \cite[p.~10]{LuWedeenZhang2016}. Schematic.}\label{fig:mcghurwitz}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{figmcg_fibre.png}
+\caption{Vanishing cycles on the fibre of the $2\times3$ mirror (a torus with six punctures, drawn in its universal cover) at the Study~86 bracket A3, before the collision, from the cached representatives. Left: the colliding pair $V_1,V_2$, two parallel lifts and their translate, disjoint, with no Floer generators in either direction; their twists commute. Right: $V_1$ and $V_3$, which meet once (one generator each way).}\label{fig:mcgfibre}
+\end{figure}
+
+\subsubsection*{3. The dynamics: loops of complexified margins}
+A loop of complexified margins that avoids the discriminant (where critical values coincide or critical points merge) gives a braid of the critical values, i.e.\ an element of $B_N$, the mapping class group of the disc with $N$ holes, and through the monodromy a transformation of the thimbles. The local generators are the events we have met:
+
+\begin{table}[H]\centering\small
+\begin{tabular}{@{}p{0.2\linewidth}p{0.25\linewidth}p{0.24\linewidth}p{0.24\linewidth}@{}}\toprule
+event & braid of the values & mapping-class reading & where tested\\\midrule
+Stokes event & a letter of the word relative to $s_0$; not a local event & Hurwitz move; $V\mapsto T_{V'}(V)$ & Study 85: $K$-class mutation, held out\\
+collision wall & $\sigma^{\pm1}$; looped: $\sigma^2$ & disjoint curves, commuting twists, $\sigma^2=\mathrm{id}$ (\cref{lem:sigma2}) & Studies 86, 90: Floer level, 10 of 12 brackets\\
+caustic ($A_2$ fold) & looped: $\sigma^{\pm3}$ & curves meeting once; braid relation $T_aT_bT_a=T_bT_aT_b$ & Study 89; 3$\times$4 calibration: winding $-3\pi$\\
+full twist of $W$ & $\Delta^2$ & global conjugation by the monodromy at infinity & Study 85 (BT4): the Serre functor\\
+coefficient once around $0$ & large-radius loop & $\otimes$ a line bundle & Study 70\\\bottomrule
+\end{tabular}
+\caption{Dictionary between the thimble events of Studies 70--91 and mapping class groups.}\label{tab:mcgdict}
+\end{table}
+
+\paragraph{The singularity-theoretic reading.} The events of \cref{tab:mcgdict} are the classical strata of singularity theory \cite{ArnoldGZV1988}. For a family of functions, the \emph{bifurcation set} in the parameter space is the union of the \emph{caustic}, where two critical points merge, and the \emph{Maxwell stratum}, where two distinct critical points have the same critical value. Its complement is where the Lyashko--Looijenga map, sending a parameter to the unordered set of its critical values, is defined \cite{Looijenga1974}; on fundamental groups it gives the braid map $\pi_1(\text{parameters}\setminus\text{bifurcation set})\to B_N$, and through Hurwitz moves an action on distinguished bases of vanishing cycles. Our caustics are the caustic, and our collision walls are the real part of the Maxwell stratum. The local braids are the textbook ones. Across the Maxwell stratum two critical values separate linearly, so a small loop gives $\sigma^2$ (winding $2\pi$). Across the caustic the local model is the versal $A_2$ family $x^3+ux+v$: the two critical values differ like $u^{3/2}$, so a loop around $u=0$ gives $\sigma^3$ (winding $3\pi$), which is what Study~89 found at held-out caustics of the $2\times3$ mirror; for $A_2$ the Maxwell stratum is empty, so the fold is the whole local picture. Brieskorn's theorem, that the complement of the discriminant of a simple singularity has the corresponding Artin group as fundamental group \cite{Brieskorn1971}, concerns the discriminant (where $0$ is a critical value), a related but different set; for the versal $A_2$ family the discriminant is the cusp $4u^3+27v^2=0$, whose complement has fundamental group $B_3$.
+
+\begin{proposition}[the complexified margins are the whole effective deformation space; exact]\label{prop:effparams}
+For an $r\times c$ table, two coefficient vectors $a,a'\in(\mathbb C^*)^{rc}$ define Laurent polynomials that differ by a rescaling of the mirror torus if and only if they have the same row and column products $\alpha_i=\prod_ja_{ij}$, $\beta_j=\prod_ia_{ij}$. These satisfy $\prod_i\alpha_i=\prod_j\beta_j$ and otherwise are free, so the effective parameter space is $\{(\alpha,\beta)\in(\mathbb C^*)^{r+c}:\prod\alpha=\prod\beta\}$, of dimension $r+c-1$. For the margin family $a_{ij}=e^{-Lf_ig_j}$ with $\sum f=\sum g=1$, $\alpha_i=e^{-Lf_i}$ and $\beta_j=e^{-Lg_j}$, and complex margins and $L$ reach every point of the effective parameter space (up to the branch of the logarithm). Hence the complexified margins are the full deformation space of Laurent polynomials with this Newton polytope, and the dynamics group of this section is the braid map of the whole family.
+\end{proposition}
+\begin{proof}
+Rescaling $y\mapsto t\cdot y$ with $t\in N\otimes\mathbb C^*$ multiplies $a_{ij}$ by the character $t^{m_{ij}}$. Since the exponents of each row and each column sum to zero (\cref{prop:cochar}), every $\alpha_i$ and $\beta_j$ is unchanged. Conversely, $\log a$ modulo the $(r-1)(c-1)$-dimensional span of the characters is determined by its row and column sums, and this quotient has dimension $rc-(r-1)(c-1)=r+c-1$. For the margin family, $\prod_ja_{ij}=e^{-Lf_i\sum_jg_j}=e^{-Lf_i}$, and similarly for columns. The critical-point equations depend on $a$ only through $(\alpha,\beta)$, as the reduction in \texttt{engine/lib91.py} shows directly.
+\end{proof}
+
+In these coordinates the parts of the dynamics group are concrete: the caustic is the hypersurface where the Jacobian of the reduced critical-point system vanishes, the Maxwell stratum is where two critical values coincide, and the large-radius loops are $\alpha_i$ or $\beta_j$ going once around $0$, which act by tensoring with a line bundle (Study~70). Whether the braid map is onto $B_6$ for $2\times3$ and onto $B_{96}$ for $3\times4$, i.e.\ whether all thimble bases form one Hurwitz orbit, is open here; for $\mathrm{dP}_6$ the theory of exceptional collections \cite{KuleshovOrlov1994} bears on the categorical version of this question but does not settle the braid-group statement. For the homological action of the braid group through intersection numbers, the route to the fibre level for $3\times4$ without Floer theory, see \cite{MassuyeauOanceaSalamon2013}; for the role of framings in deciding which curves are vanishing cycles on a surface fibre, relevant to $2\times3$ only, see \cite{PortillaSalter}.
+
+\begin{corollary}[where data-driven transport is canonical]\label{cor:canonical}
+Let a real margin path cross the bifurcation set transversally at an isolated point, and compare the thimble systems obtained after the crossing by passing above or below the crossing point in the complexified parameter.
+\begin{enumerate}
+\item[(a)] At a Maxwell wall whose colliding pair has disjoint vanishing cycles (no Floer generators either way), the two systems agree: they differ by $\sigma^2$, which fixes the pair by \cref{lem:sigma2}. The crossing is canonical.
+\item[(b)] At a caustic (an $A_2$ fold), they differ by the local loop $\sigma^{\pm3}$. Its square-root part exchanges the two merging critical values, and its full-twist part is conjugation by $T_aT_b$, which for two curves meeting once moves each of them. So the two systems are related by a nontrivial Hurwitz transformation, and transport across a caustic is canonical only after a side has been chosen.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+The two detours differ by a small loop around the crossing point, whose braid is the local generator: $\sigma^2$ at a transversal Maxwell point and $\sigma^{\pm3}$ at an $A_2$ fold. For (a), apply \cref{lem:sigma2}. For (b), $\sigma^3=\sigma\cdot\sigma^2$; $\sigma^2$ is conjugation by $T_aT_b$, which does not fix $T_a$ when $i(a,b)=1$ (it would make $T_a$ commute with $T_aT_b$, hence with $T_b$, which forces $i(a,b)=0$), and the extra $\sigma$ is a Hurwitz move. Composing, the two sides give different ordered pairs.
+\end{proof}
+For the $2\times3$ table every collision wall is orthogonal (\cref{prop:collision}, confirmed at the Floer level on 10 of 12 brackets), so every collision crossing is canonical. Caustic crossings are not, which is why the walkers of Studies 85--91 fix a side by registration (the upper semicircle in the complexified path parameter). Without that convention, a statement about ``the thimbles after the data crossed a caustic'' is ambiguous. For $3\times4$, the tie collisions pair critical points exchanged by a symmetry. Whether the off-tie collisions of \cref{fig:mcgstrands} have disjoint vanishing cycles, and so cross canonically, is not known: it needs the fibre level, which for $3\times4$ means the intersection matrix of the $96$ vanishing $5$-spheres. That matrix is, up to sign conventions, the Stokes matrix of the oscillatory integrals $\int e^{-W/\hbar}$, which Dubrovin's conjecture and the Gamma framework used earlier relate to the Euler form of an exceptional collection on the smooth Fano $6$-fold. Computing it from period asymptotics, as was done for the $2\times3$ periods, is the natural next layer and is not attempted here.
+
+Real data paths reach only the real slice of this group. They cross collision walls (a half-twist whose two resolutions coincide) and caustics (half of a $\sigma^3$), but cannot loop around either; this is the reason behind the Study~89 observation that real data can cross a caustic but never loop around it.
+
+For the $2\times3$ fibre the abelianization gives a check. The fibre is a torus with six holes; its mapping class group has abelianization $\mathbb Z^6$, in which every twist about a nonseparating curve maps to the same generator $b$ \cite[Thm.~5.1, Lemma~5.3]{LuWedeenZhang2016}. The monodromy at infinity, the product of the six vanishing-cycle twists, therefore maps to $6b$, consistent with the action $\begin{psmallmatrix}1&6\\0&1\end{psmallmatrix}$ on the first homology of the closed torus found in Study~85.
+
+\subsubsection*{3\texorpdfstring{$\times$}{x}4: the base level carries over}
+For the $3\times4$ table the fibre of $W$ is a complex $5$-fold and its vanishing cycles are $5$-spheres, so the surface mapping class group, and our curve-based Floer code, no longer apply; the action on the fibre is visible only through Picard--Lefschetz transvections on $H_5$, which would need the $96\times96$ intersection matrix. The braid group of the $96$ critical values does carry over unchanged. \Cref{fig:mcgstrands} shows the real strands on the Study~91 calibration path (seed 9101, labelled calibration, not held out): at each margin tie $g_j=g_l$ the transposition of the tied columns is a symmetry of $W$, and $10$ to $12$ pairs of strands cross at once, a product of commuting two-hole twists; in addition, unlike $2\times3$, many real strands cross away from the ties. The held-out test of this picture is Study~91 (\cref{sec:study91}): on held-out paths the local braids are confirmed ($30$ of $30$ loops: $\sigma^3$ at caustics, pure $\sigma^2$ off the ties), the tie collisions are symmetric ($981$ of $981$), and the registered tie checks failed at two ties where the event detector did not look.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{figmcg_strands.png}
+\caption{Real critical values of the $3\times4$ mirror along part of the Study~91 calibration path (seed 9101, $L=20$; asinh scale). Dotted lines: margin ties. Dots: crossings at a tie (symmetric pairs). Crosses: crossings away from the ties. Calibration data, not a registered result.}\label{fig:mcgstrands}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\linewidth]{graphical_summary_mcg.png}
+\caption{Graphical summary of this section (schematic, not a data plot). The picture was generated by the author with an AI image tool (Google Gemini) from a prompt written for this section. We corrected it as follows: the fibre panel was redrawn exactly (the fibre as a square with opposite sides identified: a disjoint pair, and a pair meeting once); the thimble sketch was redrawn with straight paths fanning out from $s_0$ to the critical values; the formulas $T_V(x)=x\pm\langle x,V\rangle V$ and $I_{ij}=\langle V_i,V_j\rangle$ and the labels $B_6$, $H_1$ and $96\times96$ were retyped; and a garbled second arrow after $\rho_{\mathrm{br}}$ was removed. Other elements are left as supplied and are illustrative: the caustic in the parameter-space panel is drawn as a curve, not the cusp of the versal $A_2$ family, and the torus icon stands for the non-compact $(\mathbb C^*)^n$. The exact figures are \cref{fig:mcgodds,fig:mcgfibre,fig:mcghurwitz,fig:mcgstrands}.}\label{fig:gsmcg}
+\end{figure}
+
+\subsubsection*{4. What local analysis forces: theorems that replace computation}
+Much of what Studies 85--91 measured at events is forced by local analysis. This subsection proves those statements once, with explicit hypotheses, so that later studies need only certify the hypotheses at each event, which costs one solve, and no longer track loops (about eight minutes per loop for $3\times4$). Throughout, $W_\lambda$ is the mirror of an $r\times c$ table at complexified margins $\lambda$ (\cref{prop:effparams}); its fibre has complex dimension $n=r+c-2$ ($1$ for $2\times3$, $3$ for $3\times3$, $5$ for $3\times4$), its vanishing cycles are $n$-spheres and its thimbles $(n+1)$-discs.
+
+\emph{Standing hypothesis (tameness).} $W_\lambda$ is Newton-nondegenerate with $0$ interior to its Newton polytope, so it is tame at infinity \cite{Broughton1988}, its critical points do not escape, and their number is the normalised volume \cite{Kouchnirenko1976}. By \cref{prop:escape} this holds for \emph{every} coefficient vector on $2\times3$ and on $3\times4$ tables (no proper face permits escapes: $0$ of $1008$ for $3\times4$). On $3\times3$ tables $15$ of the $48$ proper faces permit escapes, and it fails on the loci where one of them is degenerate; there critical points do escape (Study 79); every statement below is restricted to the complement of those loci there.
+
+\begin{proposition}[disjointness at a common critical value]\label{prop:disjoint}
+Let $p\ne q$ be nondegenerate critical points of a tame $W_\lambda$ with $W_\lambda(p)=W_\lambda(q)=c$, and let $\gamma$ be a path from a regular value to $c$ whose interior avoids the critical values. Then the vanishing cycles $V_p,V_q$ along $\gamma$ have disjoint representatives in the fibres over $\gamma(1-\delta)$ for all small $\delta>0$. Consequently:
+\begin{enumerate}
+\item[(a)] $\langle V_p,V_q\rangle=0$ in $H_n$ of the fibre, in every dimension $n$;
+\item[(b)] the Dehn twists $T_{V_p}$ and $T_{V_q}$ commute;
+\item[(c)] in the disjoint model the Floer complex of $V_p$ and $V_q$ has no generators, and $HF(V_p,V_q)=0$ (the fibres are exact and the vanishing cycles are exact Lagrangian spheres, so Floer cohomology is invariant under Hamiltonian isotopy; a perturbed model may have generators, but its cohomology is still $0$).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+By the holomorphic Morse lemma there are disjoint balls $B_p\ni p$, $B_q\ni q$ in which $W_\lambda-c$ is a nondegenerate quadratic form. For $w$ close to $c$ the vanishing cycle of $p$ along the final segment of $\gamma$ is the real sphere of radius $\sim|w-c|^{1/2}$ in $W_\lambda^{-1}(w)\cap B_p$, and likewise for $q$ in $B_q$. Transporting both back along the same path gives the vanishing cycles along $\gamma$; since parallel transport is a diffeomorphism of fibres, disjointness at $\gamma(1-\delta)$ is all that is needed. Then (a) holds because disjoint cycles have intersection number $0$, (b) because Dehn twists have support in a neighbourhood of their sphere, and (c) because disjoint Lagrangians have no intersection points, and $HF$ is invariant under the Hamiltonian isotopies used to perturb.
+\end{proof}
+Tameness is used only to make $\gamma$ and the transport well defined globally. \Cref{prop:collision} is the case of a margin tie on a $2\times3$ table; \cref{prop:disjoint} needs no symmetry and holds in every dimension, so it covers the collisions off the ties and those of $3\times3$ and $3\times4$. What the symmetry adds is a reason for the collision: see \cref{prop:tierecur}.
+
+\begin{corollary}[every collision crossing is canonical]\label{cor:anycollision}
+Let a real margin path cross a collision (two distinct nondegenerate critical points whose values coincide at one parameter). Passing above or below the collision in the complexified parameter gives the half-twist $\sigma$ or $\sigma^{-1}$ on the pair. Both act by the plain exchange $(V_p,V_q)\mapsto(V_q,V_p)$, because $T_{V_p}(V_q)=V_q$; so the crossing is canonical. A small closed loop around the collision gives the full twist $\sigma^2$: two exchanges, which return the ordered pair to itself (\cref{lem:sigma2}).
+\end{corollary}
+\begin{proof}
+The Hurwitz move for $\sigma$ sends $(V_p,V_q)$ to $(T_{V_p}(V_q),V_p)=(V_q,V_p)$, and that for $\sigma^{-1}$ sends it to $(V_q,T_{V_q}^{-1}(V_p))=(V_q,V_p)$, by \cref{prop:disjoint}(b). This discharges the hypothesis of \cref{cor:canonical}(a) at every collision.
+\end{proof}
+So a data path that crosses a collision contributes a half-twist (an exchange); only a closed loop contributes $\sigma^2$. The two are different braids and the text keeps them apart: the pure $2\pi$ loops of Study~91 (QF5) are full twists, and the exchanges along its walks are half-twists.
+
+\begin{proposition}[local braids, by the argument principle]\label{prop:localbraid}
+Let $\lambda(s)$ be a holomorphic one-parameter family of complexified margins, $s$ in a disc $D_\rho$ around $0$, with $W_{\lambda(s)}$ tame, and suppose $s=0$ is the only point of $D_\rho$ where the bifurcation set is met. Orient $\partial D_\rho$ counter-clockwise.
+\begin{enumerate}
+\item[(i)] (collision) If two critical points $p_a(s),p_b(s)$ are nondegenerate and distinct on $D_\rho$, and $h(s)=v_a(s)-v_b(s)$ has a zero of order $k$ at $0$, then along $\partial D_\rho$ the difference $h$ winds $+2\pi k$: the braid of the pair is $\sigma^{2k}$, with trivial permutation.
+\item[(ii)] (fold) If at $s=0$ two critical points merge in a nondegenerate fold ($A_2$: the Hessian has corank $1$, the cubic term along the kernel is nonzero, and the family is transverse to the caustic), then $h(s)=c\,s^{3/2}(1+O(s^{1/2}))$ with $c\ne0$; along $\partial D_\rho$ the difference winds $+3\pi$ and the two points are exchanged: the braid is $\sigma^{3}$.
+\item[(iii)] Every other critical point is single-valued and holomorphic on $D_\rho$, so it returns to itself. Reversing the orientation reverses every sign.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) and (iii): nondegenerate critical points are simple zeros of $dW$, so by the implicit function theorem they are holomorphic functions of $s$ on a disc containing no fold; hence $h$ is holomorphic and the argument principle gives winding $2\pi k$, while the two points themselves return. (ii) By the splitting lemma, near the fold $W=Q(z')+x^3+\mu(s)x+\nu(s)$ with $Q$ a nondegenerate quadratic form and $\mu$ holomorphic, $\mu(0)=0$, $\mu'(0)\ne0$ (transversality). The two critical points are $x=\pm(-\mu/3)^{1/2}$ with values $\nu\mp\tfrac{2}{3\sqrt3}(-\mu)^{3/2}$, so $h\propto\mu^{3/2}\propto s^{3/2}$; going once around $0$ turns $s^{3/2}$ by $3\pi$ and exchanges the two square roots. In the configuration space of points in $\mathbb C$ a relative rotation by $\pi$ is a half-twist, which gives $\sigma^{2k}$ and $\sigma^3$.
+\end{proof}
+
+\begin{remark}[what this replaces]\label{rem:forced}
+(1) The sign uniformity seen on all $30$ loops of Study~91 is forced. Those loops were run clockwise, giving $-3\pi$ and $-2\pi$, which is \cref{prop:localbraid} with the orientation reversed. This is the local form of Rudolph's quasipositivity \cite{Rudolph1983}, so it is removed from the proposed tests as a hypothesis. (2) Study~91's QF5 therefore checked the tracker and the event locations, not the theory. Later studies certify the hypotheses of \cref{prop:localbraid} at each event: a simple zero ($h'\ne0$), a nonzero cubic coefficient (as KS1 did), and isolation (a separation bound on $\partial D_\rho$). This takes one solve and one derivative per event instead of a $400$-step loop of all strands.
+\end{remark}
+
+\begin{proposition}[path-homotopy invariance]\label{prop:homotopy}
+Over the complement $S^\circ$ of the bifurcation set the family of tame fibrations is locally trivial, so the ordered thimble system transported along a path in $S^\circ$ depends only on the homotopy class of the path relative to its endpoints. If two paths with the same endpoints bound a disc in a complex line that meets the bifurcation set in isolated points $q_1,\dots,q_m$, the two transported systems differ by the product of the local braids of the $q_i$ (\cref{prop:localbraid}), each conjugated by the path joining it to the base point.
+\end{proposition}
+\begin{proof}
+Local triviality over $S^\circ$ follows from tameness (no critical points at infinity) and Ehresmann's theorem for the restriction to the complement of the critical values; parallel transport along homotopic paths is then isotopic. The disc minus $\{q_i\}$ has fundamental group freely generated by small loops around the $q_i$ joined to the base point (van Kampen), so the difference of the two paths is the stated product.
+\end{proof}
+
+\begin{proposition}[tie walls recur at every $L$]\label{prop:tierecur}
+On an $r\times c$ table, if $f_i=f_k$ (or $g_j=g_l$) then $a_{ij}=a_{kj}$ for all $j$ (or $a_{ij}=a_{il}$ for all $i$) at every $L$, and the lattice map exchanging the two rows (columns) is a symmetry of $W$. Hence at every $L$ the critical points not fixed by it come in pairs with equal values, and every such pair is a collision covered by \cref{prop:disjoint}.
+\end{proposition}
+\begin{proof}
+$a_{ij}=e^{-Lf_ig_j}$, so equal row margins give equal coefficient rows for every $L$. The exchange of the two rows permutes the exponents $m_{ij}$ by a lattice automorphism, so $W$ is invariant. The rest is as in \cref{prop:collision}.
+\end{proof}
+Which pairs are real, and so visible as crossings of real values, depends on $L$; that is a count at one point, not a walk. Collisions off the ties have no such reason, and in Study~91 they essentially never recurred at a second $L$ (QF4: $1$, $0$, $0$). The following would explain that.
+
+\begin{conjecture}[large-$L$ walls are tropical]\label{conj:tropicalwalls}
+As $L\to\infty$, each critical value is $L$ times a linear function of the margins evaluated at a vertex of the transportation polytope, plus $O(1)$, matching the $96$ critical points of the $3\times4$ mirror with the $96$ vertices (QF1). Collisions of real values then lie within $O(1/L)$ of the $L$-independent hyperplanes where two vertex values tie, computable exactly by linear programming.
+\end{conjecture}
+The proof route is Viro patchworking; it needs care with critical points that are not real. If proved, wall locations and crossing orders at large $L$ become exact combinatorics, and walks are needed only to check finite-$L$ corrections.
+
+\paragraph{The intersection certificate.} With these results, the vanishing-cycle pairs of any table fall into five classes, each with its own status:
+\begin{center}\small\begin{tabular}{@{}p{0.2\linewidth}p{0.36\linewidth}p{0.36\linewidth}@{}}\toprule
+pair & intersection data & what must be checked\\\midrule
+collision pair & $0$, twists commute, $HF=0$ (\cref{prop:disjoint}) & distinct and nondegenerate at the event\\
+caustic pair & $\pm1$ ($A_2$ model; sign by convention) & nondegenerate fold (cubic coefficient $\ne0$)\\
+Stokes-related pair & any integer (e.g.\ $-3,1,1$ in Study~45) & must be computed\\
+inherited pair (after an extension) & transported, if the embedding and transport hypotheses hold & the embedding\\
+new pair & & computed separately\\\bottomrule
+\end{tabular}\end{center}
+
+
+\paragraph{Where the data hides.} The three kinds of event differ in what they leave undetermined. At a \emph{collision of critical values} nothing is hidden: the intersection is $0$ and the crossing is canonical (\cref{cor:anycollision}). At a \emph{collision of critical points} (a caustic) the intersection is forced ($\pm1$), but the transport is not: a real path crosses half of a $\sigma^3$, the two resolutions differ by a nontrivial move (\cref{cor:canonical}(b)), and two real critical points become a complex-conjugate pair that real data no longer sees. So the data cannot choose the side; a registered convention does. At a \emph{Stokes event} the transport is determined (a Hurwitz move: one critical value crosses another's vanishing path, with no braid of the values), but the intersection numbers are not forced and must be computed. In short: caustics hide the transport from the data; Stokes events hide the intersection numbers.
+
+\paragraph{Study 91C: certifying the hypotheses at the $3\times4$ collisions.} Registered before any computation (\texttt{engine/study91c\_cert/PREREG91C.md}, prefix DJ): for each of the $5170$ collisions recorded on the six held-out Study~91 walks, track the pair to the event, apply Newton, and require equal values (relative $10^{-8}$), distinct points ($10^{-6}$), relative residual $\le10^{-12}$ and row-equilibrated $\sigma_{\min}/\sigma_{\max}\ge10^{-14}$ for both points (the hypotheses of \cref{prop:disjoint}), and a simple crossing (that of \cref{prop:localbraid}(i), $k=1$). Run~1 certified $5095$ ($955$ of $981$ at ties, $4140$ of $4189$ off them; every collision on paths 1 and 2 at $L=20$); DJ1 and DJ2 failed. Almost all failures were the residual condition, the precision problem of Study~91. An amendment frozen before the rerun rechecked only the $75$ uncertified events at $50$ digits with the same thresholds: $54$ more were certified (DJ1b, DJ2b still FAIL: $5149/5170$). Of the remaining $21$, $19$ (path~0, $L=30$, near the ties at $t=9.66$ and $9.774$) converge to residual $10^{-37}$ and are well separated but have $\sigma_{\min}/\sigma_{\max}\approx4\cdot10^{-16}$; one is an artefact (the two strands are the same critical point at the event); one does not converge. \Cref{prop:disjoint} is cited for the $5149$ certified collisions only. The $21$ are failures of certification, not of the proposition: its hypotheses are not established there, and the events are left unresolved, classified neither as degenerate nor as orthogonal. Two follow-up checks, each registered before it was computed, examined the $19$ conditioning events. Study~91D (prefix RQ) replaced row scaling by two-sided (Ruiz) scaling of the reduced Jacobian: RQ1 FAIL, $0$ of $19$. Its values tracked $\min_{ij}|u_i+v_j|/\max_{ij}|u_i+v_j|$ (post hoc): the reduced coordinates are ill-conditioned when one cell value $p_{ij}=u_i+v_j$ is close to $0$, i.e.\ near the toric boundary, which says nothing about $W$ itself. Study~91E (prefix LH) therefore measured nondegeneracy intrinsically, by the Hessian of $W$ in logarithmic coordinates of the torus, $H=\sum_{ij}p_{ij}\,m_{ij}m_{ij}^{T}$, at $50$ digits: LH1 PASS, all $19$ events have $\sigma_{\min}(H)/\sigma_{\max}(H)\ge8.5\cdot10^{-7}$ (reference events $2\cdot10^{-3}$--$4\cdot10^{-2}$). The measure was chosen after Study~91D, and that is stated here; its threshold is 91C's. With it, the hypotheses of \cref{prop:disjoint} are certified at $5168$ of the $5170$ collisions; the two left are the artefact (one critical point recorded twice) and the event where Newton does not converge.
+
+\paragraph{Where intersection theory stands.} For $2\times3$ the algebraic intersection theory is complete and checked several ways: the Euler form of an exceptional collection with $\chi-\chi^{T}$ equal to the intersection form (Study~49), unipotent total monodromy $\left(\begin{smallmatrix}1&6\\0&1\end{smallmatrix}\right)$ with $6=K^2$ (Study~45), integer transvections only at Stokes rays (Study~67), caustic pairs meeting once (Study~89), orthogonal collision pairs (Study~86). Geometric intersection agrees with it only for curves in minimal position, and non-convex bigons are still not counted (Study~90). For $3\times3$ we have $K$-theory data only (Study~74), with no matching of the $18$ thimbles to $K$-classes. For $3\times4$: collision pairs are orthogonal by \cref{prop:disjoint}, at the $5168$ of $5170$ recorded collisions where its hypotheses are certified (Studies~91C and 91E, below); caustic pairs meet once by the $A_2$ model; the intersections of Stokes-related pairs, and the $96\times96$ matrix as a whole, are open.
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.8\linewidth]{graphical_summary_forced.png}
+\caption{Graphical summary of part 4 (schematic, not a data plot). The picture was generated by the author with an AI image tool (Google Gemini) from a prompt written for this part. We corrected it as follows (\texttt{kahler/patch\_gsforced.py}). In panel 1, the row labels were changed so that the old $2\times3$ table (silver iodide, unseeded) sits inside the $3\times4$ table as a face, with the salt row and the ``none'' column new. In panel 2, the Lefschetz sketch was redrawn: a singular fibre with two nodes $p,q$ over a point $c$ of the base. In panel 3, the collision drawing (crossing strands, and a loop that encircles the collision point), the end labels of the caustic panel, and the Stokes panel were redrawn: a critical value crosses another value's vanishing path, and the two path systems are related by a Hurwitz move. The Stokes footer was changed to ``a letter relative to $s_0$, not a local event'' (\cref{sec:stokesbraid}). Panels 4--6 are as supplied.}\label{fig:gsforced}
+\end{figure}
+
+\subsubsection*{5. Hypotheses as thimbles: the decision maker's ledger}
+\emph{In plain words.} A decision maker does not hold data; he holds hypotheses, and data only change how strongly each is supported. This part reads the thimbles of $W$ that way: each thimble is a hypothesis, and its history along the data path is the history of its support. The reading is an interpretation built on proved pieces. The two cautions at the end say what it does not give.
+
+\paragraph{The dictionary.} For a cycle $\Gamma$ of integration, the oscillatory integral splits exactly over the thimbles $J_k$ of the critical points \cite{Pham1985}:
+\[
+\int_\Gamma e^{-W/\hbar}\,\Omega\;=\;\sum_k n_k\int_{J_k}e^{-W/\hbar}\,\Omega\;=\;\sum_k n_k\,e^{-v_k/\hbar}\big(c_k+O(\hbar)\big),\qquad n_k=\langle\Gamma,K_k\rangle\in\mathbb Z,
+\]
+with $K_k$ the dual (upward) thimbles. Read $J_k$ as a hypothesis, the integer $n_k$ as whether, and with what multiplicity, it is live, and $e^{-\operatorname{Re}v_k/\hbar}$ as its support. Data never act on a hypothesis directly: they move the parameters, which change the supports continuously, and at isolated events change which hypotheses are live or how they are described.
+\begin{center}\small\begin{tabular}{@{}p{0.2\linewidth}p{0.74\linewidth}@{}}\toprule
+event & reading\\\midrule
+collision of values & two hypotheses tie in support; they are independent alternatives (\cref{prop:disjoint}), and only their order flips\\
+caustic & two hypotheses are born or die together: a real pair becomes a complex pair, with forced interaction $\pm1$; the data cannot say from which side they were approached (\cref{cor:canonical}(b))\\
+Stokes event & a hypothesis passes in front of another, relative to the decision maker's reference $s_0$; the passed one is re-described (a Hurwitz move), and the live multiplicities $n_k$ jump by intersection numbers\\\bottomrule
+\end{tabular}\end{center}
+The state of the decision maker is the live set with its multiplicities, the supports, and the history, the trace of events. Along paths in $S^\circ$ the end state depends only on the homotopy class of the path (\cref{prop:homotopy}), as, for updaters of laws, it depends only on the trace (\cref{thm:history}).
+
+\paragraph{Hypotheses are classes of thimbles.} The thimbles of $W$ are fixed by the shape of the table ($6$, $18$, $96$); at large $L$ they should correspond to the vertices of the transportation polytope, the extreme joint explanations of what was observed (QF1 matches the counts; the correspondence of values is \cref{conj:tropicalwalls}). A decision maker's hypotheses (``harmless'', ``contaminating'') are coarser: a hypothesis is a set of thimbles, grouped by the decision quantity, and the decision follows the set that dominates. How coarse the classes may honestly be is settled by Lehner's faithful quotient \cite[Lemma~4.33]{Lehner2025}: two hypotheses that every admissible body of evidence supports equally ($\mu(p)=\mu(p\wedge q)=\mu(q)$ for every admissible $\mu$) are one hypothesis for any decision, and are merged. This prunes distinctions the evidence cannot make, not hypotheses that are false. Hypotheses that fail a structural check (a conservation law, a forbidden support) never enter as thimbles at all.
+
+\paragraph{Vague hypotheses.} Real hypotheses are often not events. Lehner assigns every sublocale, in particular every subset, the inner measure $\mu_*(S)=\sup\{\mu(K):K\subseteq S\text{ compact}\}$, invariant under measure-preserving symmetries \cite[Cor.~1.8]{Lehner2025}. A vaguely stated hypothesis thus has a canonical support, that of the largest well-specified hypothesis inside it, and two rival vague hypotheses can have supports that do not add up to $1$; the gap is what the evidence leaves undecided. This inner measure comes from one measure. It is not the lower envelope of a credal set, which on contingency tables is not even $2$-monotone: by exact linear programming over the transportation polytope, $80$ of $2400$ tested pairs of cell sets violate $2$-monotonicity on $2\times2$ tables, $2340$ of $40320$ on $2\times3$ and $126$ of $5353$ sampled on $3\times3$ (worst gap $-0.49$; exploratory, \texttt{engine/explore\_credal/twomono.py}). A credal set is a convex set of measures, whose natural envelope is a lower prevision on functions, not a capacity on events \cite{KeimelPlotkin2017}; Lehner's results apply to it pointwise and through pushforwards. One pushforward is exact: merging categories maps the transportation polytope onto that of the merged margins (any merged table splits back, for example proportionally to the original margins), so aggregation maps credal sets to credal sets and is a morphism of valuation sites for each of their members \cite[Cor.~4.37]{Lehner2025}.
+
+\paragraph{Streaming data: what to commit and what to hold.} When data arrive while events are still in progress, the propositions of part~4 say which half-finished structure may be committed. Events on disjoint pairs of strands commute; a collision commutes with everything on other strands and is canonical (\cref{cor:anycollision}).
+
+\begin{proposition}[commit rule]\label{prop:commit}
+Along a data path, commit an event as soon as it is certified and shares no strand with any pending event; hold the others until the data order them. Then the final ordered thimble system does not depend on when commuting events were committed.
+\end{proposition}
+\begin{proof}
+Two committed orders differ by swaps of adjacent events on disjoint strand pairs. Such letters commute in the braid group (far commutation), so the two words define the same braid, and by \cref{prop:homotopy} the same transported system.
+\end{proof}
+Replaying the Study~91 event lists as streaming data (exploratory, \texttt{engine/explore\_stream/replay91.py}): of the pairs of events within a quarter week of each other, $11$--$14\%$ share a strand and must wait; the rest commute and can be committed at once. With a one-substep window the mean number of events held is below one ($0.2$--$0.8$; at most $5$--$26$). In the limit of an infinite stream, the propositions that make sense need not have complements: Lehner shows that limits of ever finer event algebras can fail to be Boolean (the locale of random sequences, fat Cantor sets), and the almost-Boolean condition \cite[Def.~6.9, Thm.~6.18]{Lehner2025} is exactly what rules out a hypothesis for which neither it nor its negation is ever supported. For finite tables it holds automatically.
+
+\paragraph{Two cautions.} (1) $W$ sees only the margins. Evidence about the interior of the table, where an effect such as that of seeding lives, does not move these thimbles; it moves which point of the credal fibre is true. The thimbles carry which explanations exist and how they are supported, not the effect. (2) The reading explains the ledger; it has not been shown to predict anything. In Part~III, braid and knot summaries of decision histories predicted nothing beyond the plain record in pre-registered studies. Whether a switch of the dominant class of thimbles anticipates a decision reversal earlier than the Fr\'echet band crossing the threshold is an empirical question, proposed as a registered test with Study~92.
+
+\subsubsection*{Proposed tests (Study 92; not yet registered)}
+\begin{itemize}
+\item[A.] ($2\times3$, curves.) Geometric intersection numbers of the stored vanishing curves, computed combinatorially, without holomorphic curves: $i=0$ at every collision (so $\sigma^2$ acts trivially), $i=1$ at every caustic pair (braid relation), and across each Stokes event the transported curve isotopic to $T^{\pm1}$ of the original. The same computation is a minimal-position oracle for the open B0 brackets of \cref{sec:study90}.
+\item[B.] ($3\times4$, strands.) Pairwise winding numbers of the strands from the Study~91 walks (the pure-braid part of the Plamenevskaya--Van Horn-Morris invariant used in \cite{LuWedeenZhang2016,PlamenevskayaVHM2010}); tie collisions as products of commuting twists; positivity is no longer a test: it is forced by \cref{prop:localbraid} (\cref{rem:forced}), and the local loops are replaced by certified hypotheses at each event.
+\item[C.] (odds ratios and thimbles.) \Cref{prop:ipfthimble} at held-out margins for $2\times3$ and $3\times4$, and the table $\Phi(y^*)$ selected by the critical point of $W$, compared with the independence, maximum-entropy and leximin tables.
+\item[D.] (relations at codimension-$2$ points.) Two-parameter loops of complexified margins around points where strata of the bifurcation set meet, testing the relations forced by the local fundamental group: where two Maxwell walls for disjoint pairs of critical values cross transversally, the two loops commute (this is the predicted structure of the $10$ to $12$ simultaneous crossings at a $3\times4$ margin tie, whose pairs are exchanged by one transposition and are disjoint); where two Maxwell walls share a critical value, so that three values meet, a braid relation; at a swallowtail point, where three critical points merge (the $A_3$ stratum), the relations of the local $A_3$ bifurcation set, whose braid of three critical values lies in $B_3$ while Brieskorn's discriminant group for $A_3$ is $B_4$. All of this is prediction; the $3\times4$ numbers (held-out windings $2\pi$ and $3\pi$, tie products) will be reported only from the Study~91 check.
+\end{itemize}
+
 \subsection{A fully worked example: the \texorpdfstring{$3\times3$}{3x3} strand (Studies 73--74)}\label{sec:strand33}
 The $2\times3$ studies above test one surface. Here we follow a single $3\times3$ independence table through every step, from margins to central charges, and then move it across walls. The format is the same as before: geometry and held-out points are frozen first, then an exploratory dump, then a frozen theory and prediction, then one registered evaluation. In this example everything is a map, and every change between settings is described by a functor, or by its shadow on $K$-theory, recorded in \cref{tab:functors33}.
 
@@ -8922,7 +9664,7 @@ The programme statement this section replaces made five claims that are false or
 \item \emph{``Criticality is a diffeomorphism onto the fibre''} and \emph{``escape if and only if a face relation''}. Criticality selects one point (\cref{thm:ST1}), and a face relation only permits escape (\cref{thm:ST5}).
 \end{enumerate}
 
-\subsection{A dynamical reading}\label{sec:dynamics}
+\subsection{A dynamical reading}\label{sec:dynreading}
 A path of margins $\lambda(s)$, and the scale $L$, can be read as the parameters of a dynamical system: time, a stimulus, a dose. The theory then makes four precise statements about the trajectories, and several popular analogies are not supported.
 
 \emph{(D1) The selected trajectory is smooth; walls are crossovers.} By \cref{thm:ST3}(b) the selected table is real-analytic along any real path for every finite $L$. Its limit is piecewise linear, with kinks at the walls, and the profile of the crossover is given, within a window of width $O(1/L)$, by the tied-cell polynomial with coefficients in $(0,1]$ (\cref{thm:ST3}(c)). So a leximin wall is a crossover of the selection, sharp only in the limit, and not a bifurcation of it: the selected state never stalls, splits or jumps.
@@ -9131,6 +9873,22 @@ C. Does the integral structure identify the thimbles with the intended objects? 
 \emph{Studies 84 and 84b: the hypothesis $(\mathrm{H}_\sigma)$.} \texttt{engine/study84\_hsigma/PREREG84.md} was frozen before any source was read; \texttt{AUDIT84.md} records each source, quotation and verdict (two sessions, hashed). \texttt{engine/study84b\_lemmas/PREREG84b.md} was frozen before any code ran, together with the proof of the tameness inequality (\texttt{NOTES84b.md}, section 1). Run 1 of \texttt{hs\_l1.py} passed HS1 and HS2 but failed the critical-point census pre-check: two root-finders each missed points. \texttt{AMEND1.md} took the union of three sources, refined to 50 digits, with completeness by Kouchnirenko's count, before run 2; run 1 is kept as \texttt{hs\_l1\_run1\_kept.log}. \texttt{hs\_l2.py} (HS4, HS5) was frozen after NOTES section 2 and run once. The written arguments for HS3 and HS6 are in NOTES section 3.
 
 \emph{Study 85: credal support and braid transport.} \texttt{engine/study85\_braid/PREREG85.md} and \texttt{NOTES85.md} section~1 (theory) were frozen before any code ran or any seed was generated. Calibration on seed 8501 (\texttt{calib/}, exploratory) fixed three numerical definitions (\texttt{NOTES85.md} section~3): fine sub-steps with collision swaps, optimal faces for band walls, and exact integer margins for BT1; the calibration dry run of \texttt{check85.py} is kept. \texttt{RETRO85.md} was frozen before the Study~83 Floer data were opened, and its test failed (kept). \texttt{PREDICTION85.md} with the hashes of \texttt{lib85.py} and \texttt{check85.py} was frozen before seed 8502 was generated; \texttt{check85.py 8502} ran once (\texttt{H\_check\_run1.log}). Figures: \texttt{kahler/fig85.py}.
+
+\emph{Studies 86 and 87.} \texttt{engine/study86\_floer/PREREG86.md} was frozen before any Study~86 code ran. \texttt{AMEND1.md} clarified the selection rule before any Floer run: a collision's own wall was being counted among the others. \texttt{check86.py} was frozen before its single run. The Floer launcher was first started detached and stopped; it was relaunched, completed runs were kept, and partial runs resumed from stage caches (\texttt{run86.log}). Post-hoc diagnostics: \texttt{diag\_exchangeable.txt}, \texttt{NOTES86.md}. For Study~87, \texttt{engine/study87\_region/PREREG87.md} and \texttt{NOTES87.md} section~1 were frozen before code and seeds; calibration dry runs (seed 8701) are kept; \texttt{PREDICTION87.md} with script hashes was frozen before seed 8702. The held-out slices and checks ran once (\texttt{H\_*run1.log}). The post-hoc breadth-first traversal is \texttt{diag/slice87\_bfs.py}. Figures: \texttt{kahler/fig87.py}.
+
+\emph{Study 88.} \texttt{engine/study88\_adversarial/PREREG88.md} and \texttt{NOTES88.md} section~1 were frozen before code and seeds. Calibration (seed 8801, \texttt{calib/}) set the order-campaign size and the coalition sizing by search (two dry runs kept). \texttt{PREDICTION88.md} with script hashes was frozen before seed 8802, and \texttt{check88.py 8802} ran once. The post-hoc diagnosis of the AD5 clause is in \texttt{diag\_AD5.txt}. Figures: \texttt{kahler/fig88.py}. The label correction to Studies 85 and 87 regenerated \texttt{fig85\_*}, \texttt{fig87\_*} (labels only).
+
+\emph{Study 84c.} \texttt{engine/study84c\_seidel/PREREG84c.md} was frozen first and \texttt{NOTES84c.md} section~1 (the proof of \cref{lem:elf84c}) before any code; \texttt{hq84c.py} (HQ1, HQ2) was frozen before its single run.
+
+\emph{Study 90.} \texttt{engine/study90\_repair/PREREG90.md} was frozen (SHA-256 in \texttt{FROZEN\_study90.txt}) before any Study~90 code beyond the labelled calibration in \texttt{calib/} ran; \texttt{PREDICTION90.md} records the code hashes and was frozen before seed 8503 was generated. One check run (\texttt{check90\_output.txt}); post-hoc diagnosis in \texttt{NOTES90.md}.
+
+\emph{Studies 91D, 91E.} \texttt{engine/study91d\_rescale/PREREG91D.md} (script \texttt{engine/rescale91d.py}) and \texttt{engine/study91e\_hessian/PREREG91E.md} (script \texttt{engine/hessian91e.py}), each frozen before it was computed; outputs \texttt{check91d\_output.txt}, \texttt{check91e\_output.txt}.
+
+\emph{Study 91C.} \texttt{engine/study91c\_cert/PREREG91C.md} frozen before the computation; \texttt{AMEND1.md} (50-digit recheck of the uncertified events) frozen before the rerun; scripts \texttt{engine/cert91c.py}, \texttt{engine/cert91c\_mp.py}; output \texttt{check91c\_output.txt}; post-hoc notes \texttt{NOTES91C.md}.
+
+\emph{Study 91.} \texttt{engine/study91\_3x4/PREREG91.md} and \texttt{PREDICTION91.md} (code hashes) were frozen before seed 9102 was generated; calibration on seed 9101 is in \texttt{calib/}. \texttt{AMEND1.md} (extended precision), \texttt{AMEND2.md} (multiprecision fallback, with an erratum) and \texttt{AMEND3.md} (procedural resumption of the check after a time limit, with an erratum) were frozen before the runs they govern (\texttt{FROZEN\_study91.txt}); failed runs are in \texttt{walks\_run1/} and \texttt{walks\_amend1\_fail/}. Output: \texttt{check91\_output.txt}; post-hoc diagnosis in \texttt{NOTES91.md}. Figure: \texttt{kahler/fig91.py}.
+
+\emph{Study 89.} \texttt{engine/study89\_caustic/PREREG89.md} and \texttt{NOTES89.md} section~1 were frozen before code. Run 1 failed (KS1, KS2) and run 2 failed (KS3), both from imaginary parts not reduced mod $2\pi$; \texttt{AMEND1.md} and \texttt{AMEND2.md} were frozen before each rerun, and runs 1--2 are kept. Run 3 ($L=20$) and the $L=30$ run passed. KS4b is \texttt{diag/ks4b\_k0.py}. Figure: \texttt{kahler/fig89.py}.
 
 \section*{Checks}
 \begin{center}\small
@@ -9409,6 +10167,8 @@ C.~Wrathall, The word problem for free partially commutative groups, \emph{J. Sy
 \bibitem{Pirozhkov2020} D.~Pirozhkov, Admissible subcategories of del Pezzo surfaces, arXiv:2006.07643.
 \bibitem{FangZhou2019} B.~Fang and P.~Zhou, Gamma II for toric varieties from integrals on T-dual branes and homological mirror symmetry, arXiv:1903.05300.
 \bibitem{GirouxPardon2017} E.~Giroux and J.~Pardon, Existence of Lefschetz fibrations on Stein and Weinstein domains, \emph{Geom. Topol.} \textbf{21} (2017) 963--997.
+\bibitem{McLean2009} M.~McLean, Lefschetz fibrations and symplectic homology, \emph{Geom. Topol.} \textbf{13} (2009) 1877--1944; arXiv:0709.1639.
+\bibitem{AbouzaidSmith2012} M.~Abouzaid and I.~Smith, Exact Lagrangians in plumbings, \emph{Geom. Funct. Anal.} \textbf{22} (2012) 785--831; arXiv:1107.0129.
 \bibitem{GPSsectorial} S.~Ganatra, J.~Pardon and V.~Shende, Sectorial descent for wrapped Fukaya categories, arXiv:1809.03427.
 \bibitem{GPSmicrolocal} S.~Ganatra, J.~Pardon and V.~Shende, Microlocal Morse theory of wrapped Fukaya categories, arXiv:1809.08807.
 \bibitem{Zhou2020} P.~Zhou, Lagrangian skeleta of hypersurfaces in $(\mathbb C^*)^n$, arXiv:1803.00320.
@@ -9427,7 +10187,6 @@ C.~Wrathall, The word problem for free partially commutative groups, \emph{J. Sy
 \bibitem{BovierGayrardKlein2005} A.~Bovier, V.~Gayrard and M.~Klein, Metastability in reversible diffusion processes II: precise asymptotics for small eigenvalues, \emph{J.\ Eur.\ Math.\ Soc.} \textbf{7} (2005) 69--99.
 \bibitem{AtarZeitouni1997} R.~Atar and O.~Zeitouni, Exponential stability for nonlinear filtering, \emph{Ann.\ Inst.\ H.\ Poincar\'e Probab.\ Statist.} \textbf{33} (1997) 697--725.
 \bibitem{Gale1957} D.~Gale, A theorem on flows in networks, \emph{Pacific J.\ Math.} \textbf{7} (1957) 1073--1082.
-\bibitem{AurouxKatzarkovOrlov2006} D.~Auroux, L.~Katzarkov and D.~Orlov, Mirror symmetry for del Pezzo surfaces: vanishing cycles and coherent sheaves, \emph{Invent.\ Math.} (2006), doi:10.1007/s00222-006-0003-4; arXiv:math/0506166.
 \bibitem{SturmfelsTelenVialardvonRenesse2024} B.~Sturmfels, S.~Telen, F.-X.~Vialard and M.~von Renesse, Toric geometry of entropic regularization, \emph{J.\ Symbolic Comput.} \textbf{120} (2024) 102221; arXiv:2202.01571.
 \bibitem{Postnikov2009} A.~Postnikov, Permutohedra, associahedra, and beyond, \emph{Int.\ Math.\ Res.\ Not.} \textbf{2009} (2009) 1026--1106.
 \bibitem{Birkhoff1957} G.~Birkhoff, Extensions of Jentzsch's theorem, \emph{Trans.\ Amer.\ Math.\ Soc.} \textbf{85} (1957) 219--227.
@@ -9447,7 +10206,22 @@ C.~Wrathall, The word problem for free partially commutative groups, \emph{J. Sy
 \bibitem{Vigneaux2020} J.~P.~Vigneaux, Information structures and their cohomology, \emph{Theory Appl. Categ.} \textbf{35} (2020) 1476--1529.
 \bibitem{Robinson2017} M.~Robinson, Sheaves are the canonical data structure for sensor integration, \emph{Inform. Fusion} \textbf{36} (2017) 208--224.
 
+\bibitem{FournierFacioWillett2026} F.~Fournier-Facio and R.~Willett, The local lifting property, property FD, and stability of approximate representations, preprint, \texttt{arXiv:2603.18456} (2026).
+\bibitem{Lehner2025} G.~Lehner, Measure theory via locales, preprint, \texttt{arXiv:2510.08826} (2025).
+\bibitem{Pham1985} F.~Pham, La descente des cols par les onglets de Lefschetz, avec vues sur Gauss--Manin, \emph{Ast\'erisque} \textbf{130} (1985) 11--47.
+\bibitem{KeimelPlotkin2017} K.~Keimel and G.~D.~Plotkin, Mixed powerdomains for probability and nondeterminism, \emph{Log. Methods Comput. Sci.} \textbf{13} (2017) 1:2.
+\bibitem{DzhafarovKujala2016} E.~N.~Dzhafarov and J.~V.~Kujala, Context--content systems of random variables: the Contextuality-by-Default theory, \emph{J. Math. Psych.} \textbf{74} (2016) 11--33.
 \bibitem{Vorobev1962} N.~N.~Vorob'ev, Consistent families of measures and their extensions, \emph{Theory Probab. Appl.} \textbf{7} (1962) 147--163.
 \bibitem{WalkupWets1969} D.~W.~Walkup and R.~J.-B.~Wets, A Lipschitzian characterization of convex polyhedra, \emph{Proc. Amer. Math. Soc.} \textbf{23} (1969) 167--173.
+\bibitem{LuWedeenZhang2016} C.~Lu, R.~Wedeen and A.~Zhang, Mapping class groups and Lefschetz fibrations, SURIM report, Stanford University, August 2016.
+\bibitem{PlamenevskayaVHM2010} O.~Plamenevskaya and J.~Van Horn-Morris, Planar open books, monodromy factorizations and symplectic fillings, \emph{Geom.\ Topol.} \textbf{14} (2010).
+\bibitem{Rudolph1983} L.~Rudolph, Algebraic functions and closed braids, \emph{Topology} \textbf{22} (1983) 191--202.
+\bibitem{Sinkhorn1964} R.~Sinkhorn, A relationship between arbitrary positive matrices and doubly stochastic matrices, \emph{Ann.\ Math.\ Statist.} \textbf{35} (1964) 876--879.
+\bibitem{Fienberg1970} S.~E.~Fienberg, An iterative procedure for estimation in contingency tables, \emph{Ann.\ Math.\ Statist.} \textbf{41} (1970) 907--917.
+\bibitem{ArnoldGZV1988} V.~I.~Arnold, S.~M.~Gusein-Zade and A.~N.~Varchenko, \emph{Singularities of Differentiable Maps}, Vol.~II, Birkh\"auser, 1988.
+\bibitem{Looijenga1974} E.~Looijenga, The complement of the bifurcation variety of a simple singularity, \emph{Invent.\ Math.} \textbf{23} (1974) 105--116.
+\bibitem{Brieskorn1971} E.~Brieskorn, Die Fundamentalgruppe des Raumes der regul\"aren Orbits einer endlichen komplexen Spiegelungsgruppe, \emph{Invent.\ Math.} \textbf{12} (1971) 57--61.
+\bibitem{MassuyeauOanceaSalamon2013} G.~Massuyeau, A.~Oancea and D.~A.~Salamon, Lefschetz fibrations, intersection numbers, and representations of the framed braid group, \emph{Bull.\ Math.\ Soc.\ Sci.\ Math.\ Roumanie} (2013).
+\bibitem{PortillaSalter} P.~Portilla Cuadrado and N.~Salter, Vanishing cycles, plane curve singularities, and framed mapping class groups, preprint.
 \end{thebibliography}
 \end{document}
